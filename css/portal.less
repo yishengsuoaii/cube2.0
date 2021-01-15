@@ -1,0 +1,1194 @@
+.parentMain {
+    .containerBox {
+        width: 1559px;
+        background-color: #fff;
+        height: 900px;
+
+        .head {
+            height: 60px;
+            background-color: #FF914D;
+            box-sizing: border-box;
+            line-height: 60px;
+            padding: 0 13px;
+
+            .title {
+                font-size: 24px;
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #FFFFFF;
+            }
+
+            .titleRight {
+                float: right;
+                width: 128px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 20px;
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                background: #FFFFFF;
+                text-align: center;
+                border-radius: 5px;
+                margin-top: 10px;
+                cursor: pointer;
+
+                img {
+                    width: 15px;
+                    height: 15px;
+                    vertical-align: middle;
+                    margin-right: 5px;
+                }
+            }
+
+            .preview {
+                color: #666666;
+                position: relative;
+            }
+
+            .copyUrl {
+                color: #F2591A;
+                margin-left: 10px;
+            }
+        }
+
+        .mainCont {
+            display: flex;
+            height: 754px;
+            justify-content: center;
+            padding: 39px 0 47px;
+            position: relative;
+
+            .mainLeft {
+                width: 381px;
+                height: 754px;
+                background: url('./../image/mobile-bgc.png') no-repeat;
+                background-size: 381px 754px;
+
+                /* 左侧顶部信息 */
+                .mainLeft-top {
+                    width: 375px;
+                    height: 256px;
+                    background: url(./../image/mobile-cover.png) no-repeat;
+                    background-size: 375px 256px;
+                    margin: 20px auto 0;
+                    position: relative;
+
+                    &:hover .mainLeft-top-layer {
+                        display: block;
+                    }
+
+                    /* 左侧顶部遮罩层 */
+                    .mainLeft-top-layer {
+                        display: none;
+                        width: 375px;
+                        height: 146px;
+                        text-align: center;
+                        position: absolute;
+                        top: 0;
+                        background: rgba(0, 0, 0, .5);
+                        box-shadow: 0px 2px 8px 0px rgba(255, 145, 77, 0.1);
+                        padding-top: 110px;
+                        font-size: 16px;
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #FFFFFF;
+                        cursor: pointer;
+                    }
+
+                    .appOperation {
+                        height: 40px;
+                        line-height: 40px;
+                        color: #FFFFFF;
+                        padding: 0 10px;
+
+                        .appOperation-back {
+                            font-size: 18px;
+                            float: left;
+                        }
+
+                        .appOperation-more {
+                            font-size: 24px;
+                            float: right;
+
+                        }
+
+                    }
+
+                    .portal-info {
+                        position: absolute;
+                        bottom: 0;
+                        width: 360px;
+                        height: 88px;
+                        background: url('./../image/mobile-name-bgc.png') no-repeat;
+                        background-size: 375px 88px;
+                        padding-left: 15px;
+                        display: flex;
+                        margin: 0 auto;
+
+                        .portal-info-image {
+                            width: 56px;
+                            height: 56px;
+                            border-radius: 50%;
+                            margin-top: -10px;
+                        }
+
+                        .portal-info-s {
+                            width: 280px;
+                            height: 80px;
+                            padding-left: 15px;
+
+                            .portal-info-name {
+                                height: 30px;
+                                line-height: 30px;
+                                font-size: 17px;
+                                font-family: Source Han Sans CN;
+                                font-weight: 400;
+                                color: #666666;
+                                margin-top: 20px;
+                            }
+
+                            .portal-info-visit {
+                                height: 38px;
+                                line-height: 38px;
+                                font-size: 16px;
+                                font-family: Source Han Sans CN;
+                                font-weight: 400;
+                                color: #666666;
+
+                                img {
+                                    width: 22px;
+                                    height: 12px;
+                                }
+
+                                .portal-info-synopsis {
+                                    display: inline-block;
+                                    width: 56px;
+                                    height: 26px;
+                                    text-align: center;
+                                    line-height: 26px;
+                                    background: #FFFFFF;
+                                    box-shadow: 0px 2px 8px 0px rgba(9, 1, 3, 0.1);
+                                    border-radius: 13px;
+                                    font-size: 16px;
+                                    font-family: Source Han Sans CN;
+                                    font-weight: 400;
+                                    color: #F2591A;
+
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+                /*左侧 分割线 */
+                .mainLeft-line {
+                    width: 375px;
+                    height: 10px;
+                    background: #F0F0F0;
+                    margin: 0 auto
+                }
+
+                /* 精彩推荐 */
+                .mainLeft-wonderful {
+                    width: 375px;
+                    height: 465px;
+                    margin: 0 auto;
+                    position: relative;
+
+                    &:hover .mainLeft-wonderful-layer {
+                        display: block;
+                    }
+
+                    /* 精彩推荐遮罩层 */
+                    .mainLeft-wonderful-layer {
+                        display: none;
+                        width: 375px;
+                        height: 241px;
+                        position: absolute;
+                        top: 0;
+                        text-align: center;
+                        padding-top: 224px;
+                        background: rgba(0, 0, 0, .5);
+                        box-shadow: 0px 2px 8px 0px rgba(255, 145, 77, 0.1);
+                        font-size: 16px;
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #FFFFFF;
+                        cursor: pointer;
+                    }
+
+                    .wonderful-channel {
+                        width: 375px;
+                        height: 150px;
+
+                        .wonderful-recommend {
+                            height: 30px;
+                            padding-left: 10px;
+                            line-height: 30px;
+                            font-size: 18px;
+                            font-family: Source Han Sans CN;
+                            font-weight: 400;
+                            color: #333333;
+
+                            .moreCont {
+                                float: right;
+                                font-size: 16px;
+                                font-family: Source Han Sans CN;
+                                font-weight: 400;
+                                color: #999999;
+                                cursor: pointer;
+                                display: none;
+                            }
+                        }
+
+                        .wonderful-channel-cont {
+                            width: 375px;
+                            height: 120px;
+                            position: relative;
+                            display: flex;
+                            overflow: hidden;
+
+                            .wonderful-channel-list {
+                                width: 144px;
+                                height: 95px;
+                                margin-top: 13px;
+                                margin-left: 10px;
+                                position: relative;
+
+                                img {
+                                    width: 144px;
+                                    height: 95px;
+                                }
+
+                                .wonderful-channel-list-name {
+                                    font-size: 14px;
+                                    font-family: Source Han Sans CN;
+                                    font-weight: 400;
+                                    color: #FFFFFF;
+                                    position: absolute;
+                                    bottom: 10px;
+                                    left: 10px;
+                                }
+                            }
+
+                            .add-wonderful {
+                                /* 立即添加精彩视频Or频道 */
+                                position: absolute;
+                                width: 375px;
+                                height: 30px;
+                                line-height: 30px;
+                                font-size: 16px;
+                                font-family: Source Han Sans CN;
+                                font-weight: 400;
+                                color: #999999;
+                                text-align: center;
+                                top: 50%;
+                                transform: translateY(-50%);
+                            }
+                        }
+
+
+                    }
+
+                    .wonderful-line {
+                        width: 375px;
+                        height: 10px;
+                        background: #F0F0F0;
+                    }
+
+                    .wonderful-video {
+                        width: 375px;
+                        height: 305px;
+                        position: relative;
+                        display: flex;
+                        flex-wrap: wrap;
+                        overflow: hidden;
+
+                        .wonderful-video-list {
+                            width: 375px;
+                            height: 274px;
+
+                            .wonderful-video-describe {
+                                height: 32px;
+                                line-height: 32px;
+                                padding: 0 10px;
+                                font-size: 14px;
+                                font-family: Source Han Sans CN;
+                                font-weight: 400;
+                                color: #666666;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                            }
+
+                            .wonderful-video-cover {
+                                width: 355px;
+                                height: 200px;
+                                margin: 0 10px;
+                            }
+
+                            .wonderful-video-info {
+                                height: 32px;
+                                line-height: 32px;
+                                padding: 0 10px;
+                                font-size: 14px;
+                                font-family: Source Han Sans CN;
+                                font-weight: 400;
+                                color: #666666;
+
+                                .wonderful-video-view {
+                                    float: right;
+
+                                    img {
+                                        width: 22px;
+                                        height: 12px;
+                                    }
+                                }
+                            }
+
+                            .wonderful-video-bg {
+                                height: 10px;
+                                background-color: #F0F0F0;
+                            }
+                        }
+
+                        .add-wonderful {
+                            /* 立即添加精彩视频Or频道 */
+                            position: absolute;
+                            width: 375px;
+                            height: 30px;
+                            line-height: 30px;
+                            font-size: 16px;
+                            font-family: Source Han Sans CN;
+                            font-weight: 400;
+                            color: #999999;
+                            text-align: center;
+                            top: 50%;
+                            transform: translateY(-50%);
+                        }
+                    }
+
+                }
+            }
+
+            /* 右侧门户信息 开始-------------------------------------------------------------------------------------------------*/
+            .main-right-portal {
+                width: 610px;
+                height: 748px;
+                margin-left: 31px;
+                position: relative;
+
+                /* 门户信息 */
+                .portal {
+                    width: 608px;
+                    height: 686px;
+                    border: 1px solid rgba(255, 145, 77, 0.3);
+                    border-radius: 10px 0px 0px 0px;
+                    position: relative;
+
+                    /* 门户左侧边框小尖角 */
+                    .portal-angle {
+                        width: 10px;
+                        height: 10px;
+                        border-left: 1px solid rgba(255, 145, 77, 0.3);
+                        border-bottom: 1px solid rgba(255, 145, 77, 0.3);
+                        position: absolute;
+                        top: 134px;
+                        left: -6px;
+                        transform: rotate(45deg);
+                        background-color: #fff;
+                    }
+
+                    /* 门户顶部 */
+                    .portalTop {
+                        display: flex;
+                        height: 248px;
+                        padding: 20px 20px 0;
+
+                        /* 门户用户头像 */
+                        .portalTop-left {
+                            width: 100px;
+                            height: 100px;
+                            position: relative;
+
+                            &:hover #userLayer {
+                                display: block
+                            }
+
+                            img {
+                                width: 100px;
+                                height: 100px;
+                                border-radius: 50%;
+                            }
+
+                            #userLayer {
+                                width: 100px;
+                                height: 100px;
+                                text-align: center;
+                                line-height: 100px;
+                                display: none;
+                                border-radius: 50%;
+                                background-color: rgba(0, 0, 0, 0.3);
+                                position: absolute;
+                                top: 0;
+                                cursor: pointer;
+                                color: #FFFFFF;
+                            }
+                        }
+
+                        /* 门户名称 */
+                        .portalTop-right {
+                            width: 468px;
+                            height: 162px;
+
+                            .portalTop-right-title {
+                                height: 32px;
+                                line-height: 32px;
+                                font-size: 16px;
+                                font-family: Source Han Sans CN;
+                                font-weight: 400;
+                                color: #666666;
+                                line-height: 32px;
+                                padding-left: 40px;
+                                margin-bottom: 20px;
+
+                                .portalTop-right-title-input {
+                                    width: 280px;
+                                    height: 30px;
+                                    border: 1px solid #CCCCCC;
+                                    border-radius: 5px;
+                                    padding-left: 5px;
+
+                                    &:focus {
+                                        border: 1px solid rgba(255, 145, 77, 0.3);
+                                    }
+
+                                }
+
+                                .portalTop-right-title-length {
+                                    font-size: 16px;
+                                    font-family: Source Han Sans CN;
+                                    font-weight: 400;
+                                    color: #CCCCCC;
+                                }
+                            }
+
+                            .portalTop-right-intro {
+                                height: 120px;
+                                font-size: 16px;
+                                font-family: Source Han Sans CN;
+                                font-weight: 400;
+                                color: #666666;
+                                padding-left: 40px;
+
+                                .portalTop-right-textarea {
+                                    width: 280px;
+                                    height: 118px;
+                                    border: 1px solid #CCCCCC;
+                                    padding-left: 5px;
+                                    border-radius: 5px;
+                                    resize: none;
+                                    vertical-align: top;
+
+                                    &:focus {
+                                        border: 1px solid rgba(255, 145, 77, 0.3);
+                                    }
+                                }
+
+                                .portalTop-right-textarea-length {
+                                    font-size: 16px;
+                                    font-family: Source Han Sans CN;
+                                    font-weight: 400;
+                                    color: #CCCCCC;
+                                }
+
+                            }
+
+                        }
+                    }
+
+                    .segmentation-line {
+                        margin: 0;
+                        background-color: #FF914D;
+                        opacity: 0.2;
+                    }
+
+                    /* 封面设置 */
+                    .cover-name {
+                        height: 20px;
+                        line-height: 20px;
+                        font-size: 16px;
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #666666;
+                        margin: 10px 0 20px;
+                        padding-left: 20px;
+                    }
+
+                    .cover-box {
+                        width: 559px;
+                        height: 268px;
+                        border: 1px solid #CCCCCC;
+                        border-radius: 5px;
+                        margin: 0 auto;
+
+                        .cover-image {
+                            height: 190px;
+                            padding: 10px;
+                            display: flex;
+
+                            .cover-image-name {
+                                font-size: 16px;
+                                font-family: Source Han Sans CN;
+                                font-weight: 400;
+                                color: #666666;
+                                width: 80px;
+                            }
+
+                            .cover-image-img {
+                                width: 300px;
+                                height: 190px;
+                                position: relative;
+
+                                &:hover .cover-image-img-layer {
+                                    display: block;
+                                }
+
+                                .cover-image-img-layer {
+                                    width: 300px;
+                                    height: 150px;
+                                    text-align: center;
+                                    line-height: 150px;
+                                    border-radius: 5px;
+                                    background-color: rgba(0, 0, 0, 0.3);
+                                    position: absolute;
+                                    top: 0;
+                                    cursor: pointer;
+                                    color: #FFFFFF;
+                                    display: none;
+                                }
+
+                                .bgc {
+                                    width: 300px;
+                                    height: 150px;
+                                    border-radius: 5px;
+                                    overflow: hidden;
+                                    background: url(./../image/mobile-cover.png) no-repeat;
+                                    background-size: 300px 150px;
+                                }
+
+                                .cover-image-describe {
+                                    height: 40px;
+                                    line-height: 40px;
+                                    font-size: 16px;
+                                    font-family: Source Han Sans CN;
+                                    font-weight: 400;
+                                    color: #666666;
+                                }
+                            }
+                        }
+
+                        .cover-url {
+                            height: 48px;
+                            line-height: 48px;
+                            padding: 0 10px;
+                            font-size: 16px;
+                            font-family: Source Han Sans CN;
+                            font-weight: 400;
+                            color: #666666;
+
+                            .cover-url-span {
+                                display: inline-block;
+                                width: 80px;
+                            }
+
+                            .cover-url-input {
+                                width: 440px;
+                                height: 30px;
+                                border: 1px solid #CCCCCC;
+                                border-radius: 5px;
+                                padding-left: 5px;
+
+                                &:focus {
+                                    border: 1px solid rgba(255, 145, 77, 0.3);
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+                /* 门户信息保存 */
+                .portalSave {
+                    width: 74px;
+                    height: 40px;
+                    position: absolute;
+                    left: 50%;
+                    bottom: 0;
+                    transform: translateX(-50%)
+                }
+            }
+
+            /* 右侧精彩推荐 开始-----------------------------------------------------------------------------------------------------*/
+            .main-right-recommend {
+                width: 610px;
+                height: 748px;
+                margin-left: 31px;
+                position: relative;
+                display: none;
+
+                .recommend-set {
+                    width: 608px;
+                    height: 686px;
+                    border: 1px solid rgba(255, 145, 77, 0.3);
+                    border-radius: 10px 0px 0px 0px;
+                    position: relative;
+
+                    /* 添加精彩频道 */
+                    .channel-set {
+                        width: 588px;
+                        height: 248px;
+                        padding: 20px 0 0 20px;
+
+                        .channel-set-name {
+                            height: 26px;
+                            line-height: 26px;
+                            padding-right: 20px;
+                            margin-bottom: 20px;
+                            font-size: 18px;
+                            font-family: Source Han Sans CN;
+                            font-weight: 400;
+                            color: #666666;
+
+                            .add-channel-btn {
+                                float: right;
+                                width: 89px;
+                                height: 26px;
+                                line-height: 26px;
+                                border: 1px solid #F2591A;
+                                border-radius: 3px;
+                                font-size: 16px;
+                                font-family: Source Han Sans CN;
+                                font-weight: 400;
+                                color: #F2591A;
+                                text-align: center;
+                                cursor: pointer;
+                            }
+                        }
+
+                        .channel-cont-add {
+                            height: 202px;
+                            overflow-y: auto;
+
+                            .channel-none {
+                                padding-left: 5px;
+                                height: 32px;
+                                line-height: 32px;
+                                margin-right: 20px;
+                                border: 1px solid #CCCCCC;
+                                border-radius: 5px;
+                                font-size: 16px;
+                                font-family: Source Han Sans CN;
+                                font-weight: 400;
+                                color: #666666;
+                            }
+
+                            .add-channel-list {
+                                display: flex;
+                                width: 568px;
+                                height: 56px;
+                                margin-bottom: 20px;
+
+                                .add-channel-list-info {
+                                    width: 500px;
+                                    height: 40px;
+                                    padding: 7px;
+                                    border: 1px solid #CCCCCC;
+                                    border-radius: 5px;
+
+                                    img {
+                                        width: 69px;
+                                        height: 40px;
+                                        vertical-align: bottom;
+                                    }
+
+                                    .channel-name {
+                                        font-size: 14px;
+                                        font-family: Source Han Sans CN;
+                                        font-weight: 400;
+                                        color: #666666;
+                                    }
+                                }
+
+                                .recommend-delete {
+                                    font-size: 24px;
+                                    margin: 16px 15px;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+
+                    }
+
+                    .segmentation-line {
+                        margin: 0;
+                        background-color: #FF914D;
+                        opacity: 0.2;
+                    }
+
+                    /* 添加精彩视频 */
+                    .video-set {
+                        width: 588px;
+                        height: 397px;
+                        padding: 20px 0 0 20px;
+
+                        .video-set-name {
+                            height: 26px;
+                            line-height: 26px;
+                            padding-right: 20px;
+                            text-align: right;
+                            margin-bottom: 20px;
+
+                            .add-video-btn {
+                                display: inline-block;
+                                width: 89px;
+                                height: 26px;
+                                line-height: 26px;
+                                border: 1px solid #F2591A;
+                                border-radius: 3px;
+                                font-size: 16px;
+                                font-family: Source Han Sans CN;
+                                font-weight: 400;
+                                color: #F2591A;
+                                text-align: center;
+                                cursor: pointer;
+                            }
+                        }
+
+                        .video-cont-add {
+                            height: 351px;
+                            overflow-y: auto;
+
+                            .video-none {
+                                padding-left: 5px;
+                                height: 32px;
+                                line-height: 32px;
+                                margin-right: 20px;
+                                border: 1px solid #CCCCCC;
+                                border-radius: 5px;
+                                font-size: 16px;
+                                font-family: Source Han Sans CN;
+                                font-weight: 400;
+                                color: #666666;
+                            }
+
+                            .add-video-list {
+                                display: flex;
+                                width: 568px;
+                                height: 56px;
+                                margin-bottom: 20px;
+
+                                .add-video-list-info {
+                                    width: 500px;
+                                    height: 40px;
+                                    padding: 7px;
+                                    border: 1px solid #CCCCCC;
+                                    border-radius: 5px;
+
+                                    img {
+                                        width: 69px;
+                                        height: 40px;
+                                        vertical-align: bottom;
+                                    }
+
+                                    .video-name {
+                                        font-size: 14px;
+                                        font-family: Source Han Sans CN;
+                                        font-weight: 400;
+                                        color: #666666;
+                                    }
+                                }
+
+                                .recommend-delete {
+                                    font-size: 24px;
+                                    margin: 16px 15px;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+
+                    /* 精彩推荐左侧边框小尖角 */
+                    .recommend-angle {
+                        width: 10px;
+                        height: 10px;
+                        border-left: 1px solid rgba(255, 145, 77, 0.3);
+                        border-bottom: 1px solid rgba(255, 145, 77, 0.3);
+                        position: absolute;
+                        top: 350px;
+                        left: -6px;
+                        transform: rotate(45deg);
+                        background-color: #fff;
+                    }
+
+                }
+
+                /* 精彩推荐设置 保存 */
+                .recommendSave {
+                    width: 74px;
+                    height: 40px;
+                    position: absolute;
+                    left: 50%;
+                    bottom: 0;
+                    transform: translateX(-50%)
+                }
+            }
+
+            /* 手机预览 */
+            #qrcode {
+                display: none;
+                position: absolute;
+                top: 0px;
+                right: 100px;
+                width: 256px;
+                height: 256px;
+                z-index: 3;
+            }
+
+        }
+    }
+}
+
+
+
+/* 添加频道弹窗 */
+#channel-dialog {
+    display: none;
+    width: 1170px;
+    height: 707px;
+    background-color: #FFF;
+    box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
+    .cd-content {
+        width: 1090px;
+        height: 623px;
+        padding: 20px 40px 0;
+
+        .select-search {
+            height: 34px;
+            line-height: 34px;
+            font-size: 18px;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: #666666;
+            margin-bottom: 20px;
+
+            .search-channel {
+                float: right;
+                width: 250px;
+                height: 34px;
+
+                .search-channel-input {
+                    width: 201px;
+                    height: 32px;
+                    padding: 0 7px;
+                    background: #FFFFFF;
+                    border: 1px solid #CCCCCC;
+                    border-right: 0;
+                    border-top-left-radius: 5px;
+                    border-bottom-left-radius: 5px;
+                }
+
+                .search-channel-btn {
+                    display: inline-block;
+                    width: 34px;
+                    height: 34px;
+                    background: #FF914D;
+                    border-radius: 0px 5px 5px 0px;
+                    vertical-align: top;
+                    cursor: pointer;
+
+                    img {
+                        width: 24px;
+                        height: 24px;
+                        margin: 5px;
+                    }
+                }
+            }
+        }
+
+        .cd-content-main {
+            height: 548px;
+            margin-top: 20px;
+
+            .cd-content-main-top {
+                height: 474px;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                align-content: flex-start;
+
+                .cd-content-main-list {
+                    width: 493px;
+                    height: 96px;
+                    padding: 20px;
+                    border: 1px solid #CCCCCC;
+                    margin-bottom: 20px;
+                    font-size: 16px;
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #333333;
+                    position: relative;
+
+                    img {
+                        width: 96px;
+                        height: 96px;
+                        vertical-align: bottom;
+                    }
+
+                    .cd-content-main-list-name {
+                        display: inline-block;
+                        width: 392px;
+                        padding-left: 5px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+                    .channel-right-check {
+                        width: 20px;
+                        height: 20px;
+                        position: absolute;
+                        top: 20px;
+                        right: 20px;
+                        .cd-content-main-list-check {
+                            width: 20px;
+                            height: 20px;
+                        }
+                    }
+
+                    
+                }
+            }
+
+            .cd-content-main-foot {
+                height: 64px;
+                padding-top: 10px;
+                text-align: center;
+            }
+        }
+
+    }
+
+    .cd-footer {
+        height: 50px;
+        padding-top: 12px;
+        padding-right: 40px;
+        background: #FAFAFA;
+        box-shadow: 0px 1px 0px 0px rgba(85, 85, 85, 0.1);
+        text-align: right;
+
+        button {
+            width: 72px;
+            margin-left: 20px !important;
+            border-radius: 5px;
+        }
+    }
+}
+
+
+
+
+
+/* 添加视频弹窗 */
+#video-dialog {
+    display: none;
+    width: 1170px;
+    height: 707px;
+    background-color: #FFF;
+    box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
+    border-radius: 10px 10px 0px 0px;
+    .vd-content {
+        width: 1090px;
+        height: 623px;
+        padding: 20px 40px 0;
+
+        .select-search {
+            height: 34px;
+            line-height: 34px;
+            font-size: 18px;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: #666666;
+            margin-bottom: 20px;
+
+            .search-video {
+                float: right;
+                width: 250px;
+                height: 34px;
+
+                .search-video-input {
+                    width: 201px;
+                    height: 32px;
+                    padding: 0 7px;
+                    background: #FFFFFF;
+                    border: 1px solid #CCCCCC;
+                    border-right: 0;
+                    border-top-left-radius: 5px;
+                    border-bottom-left-radius: 5px;
+                }
+
+                .search-video-btn {
+                    display: inline-block;
+                    width: 34px;
+                    height: 34px;
+                    background: #FF914D;
+                    border-radius: 0px 5px 5px 0px;
+                    vertical-align: top;
+                    cursor: pointer;
+
+                    img {
+                        width: 24px;
+                        height: 24px;
+                        margin: 5px;
+                    }
+                }
+
+            }
+        }
+
+        .vd-content-main {
+            height: 548px;
+            margin-top: 20px;
+            .vd-content-main-top {
+                height: 474px;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                align-content: flex-start;
+                position: relative;
+                .vd-content-main-list {
+                    width: 493px;
+                    height: 96px;
+                    padding: 20px;
+                    border: 1px solid #CCCCCC;
+                    margin-bottom: 20px;
+                    font-size: 16px;
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #333333;
+                    position: relative;
+                    .vd-video {
+                        display: inline-block !important;
+                        width: 180px;
+                        height: 96px;
+                        vertical-align: top;
+                        pointer-events: auto !important;
+                    }
+                    .vd-content-main-list-info {
+                        display: inline-block;
+                        width: 290px;
+                        height: 96px;
+                        span {
+                            display: inline-block;
+                            width: 285px;
+                            height: 32px;
+                            line-height: 32px;
+                            padding-left: 5px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+                        .vd-content-main-list-name {
+                            font-size: 18px;
+                            font-family: Source Han Sans CN;
+                            font-weight: 400;
+                            color: #333333;
+                        }
+                        
+                         .vd-content-main-list-time {
+                            font-size: 16px;
+                            font-family: Source Han Sans CN;
+                            font-weight: 400;
+                            color: #666666;
+                        }
+                        
+                         .vd-content-main-list-num {
+                            font-size: 16px;
+                            font-family: Source Han Sans CN;
+                            font-weight: 400;
+                            color: #666666;
+                            vertical-align: top;
+                        }
+                        i{
+                            font-style:normal
+                        }
+                    }
+                    .video-right-check{
+                        width: 20px;
+                        height: 20px;
+                        position: absolute;
+                        top: 20px;
+                        right: 20px;
+                        .vd-content-main-list-check {
+                            width: 20px;
+                            height: 20px;
+                        }
+                    }
+                    
+                }
+                .vd-content-main-none {
+                    width: 142px;
+                    height: 147px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    img {
+                        width: 142px;
+                        height: 107px;
+                    }
+                    p {
+                        height: 40px;
+                        line-height: 40px;
+                        font-size: 20px;
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #CCCCCC;
+                    }
+                }
+            }
+            .vd-content-main-foot {
+                height: 10px;
+                padding-top: 10px;
+                text-align: center;
+            }
+            
+        }
+        
+    }
+    .vd-footer {
+        height: 50px;
+        padding: 12px 40px 0 40px;
+        background: #FAFAFA;
+        box-shadow: 0px 1px 0px 0px rgba(85, 85, 85, 0.1);
+        text-align: right;
+        button {
+            width: 72px;
+            margin-left: 20px !important;
+            border-radius: 5px;
+        }
+        .mediaUpload {
+            float: left;
+            line-height: 50px;
+            font-size: 16px;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: #666666;
+            display: none;
+            a {
+                color: #F2591A;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./../layui/css/layui.css">
+    <link rel="stylesheet" href="./../css/video-js.min.css">
+    <link rel="stylesheet" href="./../css/common.css">
+    <link rel="stylesheet" href="./../css/media.css">
+	<script src="./../layui/layui.all.js"></script>
+	<script src="./../layui/layui.js"></script>
+    <script src="./../commonJs/jquery-3.2.1.min.js"></script>
+    <script src="./../commonJs/video.min.js"></script>
+    <script src="./../js/common.js"></script>
+	<title>媒体库</title>
+	<style>
+		.layui-form-checked[lay-skin=primary] i {
+			border-color: #F2591A !important;
+			background-color: #F2591A;
+			color: #fff;
+		}
+
+		.layui-layer-title {
+			background-color: #FF914D;
+			color: #fff;
+			font-size: 20px;
+			font-family: Source Han Sans CN;
+			font-weight: 300;
+
+		}
+
+		.layui-layer-btn a {
+			width: 72px;
+			height: 34px;
+			background: #FFFFFF;
+			border: 1px solid #C5C5C5;
+			border-radius: 3px;
+			text-align: center;
+			line-height: 34px;
+		}
+
+		.layui-layer-btn .layui-layer-btn0 {
+			background-color: #FF914D;
+			border: 0;
+		}
+		.layui-tab-title {
+            border: none;
+		}
+		.layui-tab-title li {
+                width: 120px;
+                margin-right: 100px;
+                font-size: 26px;
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #333;
+
+            }
+	</style>
+</head>
+
+<body>
+    <div id="container">
+        <!--上方标题栏-->
+        <div class="parentTop">
+            <img class="logImage" src="./../image/login-logo.png">
+            <div class="loginNameDiv">
+                <div class="messageBox">
+                    <img src="./../image/message-icon.png" alt="" class="messageIcon">
+                    <span class="layui-badge-dot" id="hot"></span>
+                </div>
+                <div class="nameContent">
+                    <span class="userName"></span>
+                </div>
+                <div id="userExit">退出</div>
+            </div>
+        </div>
+        <div id="mainContent">
+            <!--左侧菜单-->
+            <ul class="leftMenu">
+                <li>
+                    <a href="./../index.html">
+                        <img class="menu-icon" width="35" height="28" src="./../image/channel-icon.png" alt="">频道
+                    </a>
+                </li>
+                <li>
+                    <a href="./portal.html">
+                        <img class="menu-icon" width="32" height="30" src="./../image/video-icon.png">门户
+                    </a>
+                </li>
+                <li>
+                    <a href="./media.html" class="menuActive">
+                        <img class="menu-icon" width="32" height="26" src="./../image/media-active.png">媒体库
+                    </a>
+                </li>
+                <li>
+                    <a href="./account.html">
+                        <img class="menu-icon" width="34" height="26" src="./../image/account-icon.png">账户
+                    </a>
+                </li>
+                <li>
+                    <a href="./data.html">
+                        <img class="menu-icon" width="32" height="24" src="./../image/data-icon.png">数据统计
+                    </a>
+                </li>
+                <li>
+                    <a  href="./appStore.html">
+                        <img class="menu-icon" width="30" height="30" src="./../image/app-store-icon.png">应用商店
+                    </a>
+                </li>
+                <li>
+                    <a href="./userSet.html">
+                        <img class="menu-icon" width="34" height="29" src="./../image/user-set-icon.png">设置
+                    </a>
+                </li>
+            </ul>
+
+            <!--主要内容区-->
+            <div class="parentMain">
+                <div id="containerBox">
+                    <p class="hintInfo">
+                        <span class="hintIcon">!</span>直播暂存中的视频为您保留3天，到期后将自动删除
+                    </p>
+                    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">视频库</li>
+                            <li>直播暂存</li>
+                        </ul>
+                        <div class="layui-tab-content">
+                            <div class="layui-tab-item layui-show">
+                                <!-- 视频库 -->
+                                <form class="layui-form" action="" id="video-filter">
+                                    <div class="video-time">
+                                        按时间搜索<input type="text" class="layui-input" id="videoTime"
+                                            placeholder=" 开始日期      ~      结束日期   ">
+                                    </div>
+            
+                                    <div class="video-keyword">
+                                        <input type="text" name="title" placeholder="请输入文件名" class="layui-input fileName"><button
+                                            type="button" class="layui-btn fileSearch"><i
+                                                class="layui-icon layui-icon-search"></i></button>
+                                    </div>
+                                </form>
+                                <div class="setup_List">
+                                    <div class="layui-form" id="check_all">
+                                        <input type="checkbox" lay-skin="primary" id="all-check" lay-filter="all-check" title="全选">
+                                    </div>
+                                    <div class="select-num">已选<span style="margin-left: 10px;">(0)</span></div>
+                                    <div class="all-operate">
+                                        <button id="delete-video" type="button" class="layui-btn">
+                                            <img src="./../image/delete-icon.png" alt="">
+                                            删除</button>
+                                        <a id="editing" class="layui-btn">
+                                            <img src="./../image/editing-icon.png" alt="">
+                                            剪辑</a>
+                                        <a id="merge" class="layui-btn">
+                                            <img src="./../image/merge-icon.png" alt="">
+                                            合并</a>
+                                        <button type="button" name="event_file" class="layui-btn" id="move-ts">
+                                            <img src="./../image/video-move-icon.png" alt="">
+                                            移至暂存库</button>
+                                        <button type="button" name="event_file" class="layui-btn" id="uploadVideo">
+                                            <img src="./../image/upload-icon.png" alt="">
+                                            上传视频</button>
+                                        <span class="loadingBox"><img src="./../image/loading.gif"> <i
+                                                class="loadingText">加载中...</i></span>
+                                    </div>
+                                </div>
+                                <div class="videoContent">
+                                </div>
+                                <div id="videoPage"></div>
+                            </div>
+                            <div class="layui-tab-item">
+                                <!-- 直播暂存 -->
+                                <div class="ts-setup">
+                                    <div class="layui-form" id="ts-check_all">
+                                        <input type="checkbox" lay-skin="primary" id="ts-all-check" lay-filter="ts-all-check"
+                                            title="全选">
+                                    </div>
+                                    <div class="ts-select-num">
+                                        已选<span style="margin-left: 10px;">(0)</span>
+                                    </div>
+                                    <button id="ts-delete-video" type="button" class="layui-btn"><img
+                                            src="./../image/delete-icon.png" alt="">删除</button>
+                                    <button id="ts-move-video" type="button" class="layui-btn"><img
+                                            src="./../image/video-move-icon.png" alt="">移至视频库</button>
+                                </div>
+                                <div class="tsContent"></div>
+                                <div id="tsPage"></div>
+            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="messageDialog">
+        <p id="messageDialogName">
+            消息
+        </p>
+        <div id="messageContent">
+        </div>
+	</div>
+	
+	<!-- 上传视频弹窗 -->
+	<div id="uploadDialog">
+		<div id="uploadBox">
+			<img src="./../image/upload-video-icon.png" id="uploadImage" alt="">
+			<p id="uploadName">上传视频</p>
+			<video id="previewVideo" controls width="558" height="268"></video>
+		</div>
+		<p class="hintUpload">
+			<span class="hintIcons">!</span>上传没声音的视频,剪辑、合并时可能会出现播放异常!
+		</p>
+		<p class="uploadDesName">视频描述</p>
+		<textarea name="" id="textarea" maxlength="140" placeholder="请输入视频描述"></textarea>
+		<p class="textLength">0/140</p>
+	</div>
+
+	<!-- 编辑视频描述弹窗 -->
+	<div id="describeDialog">
+		<p class="editDesName">视频描述</p>
+		<textarea id="editDesText" maxlength="140" placeholder="视频描述"></textarea>
+		<p id="editTextLength">0/140</p>
+	</div>
+
+	<!-- 观看视频弹窗 -->
+	<div id="showVideoDialog">
+		<video class="video-js vjs-big-play-centered" id="viewVideos"></video>
+		<p class="commentNum">评论共<span style="color: #F2591A">0</span>条</p>
+		<div class="commentBox">
+		</div>
+	</div>
+
+	<script src="./../js/media.js"></script>
+</body>
+</html>

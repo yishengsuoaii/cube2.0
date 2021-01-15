@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>微信登录</title>
+		<script src="../commonJs/jquery-3.2.1.min.js"></script>
+	</head>
+	<style>
+		
+	</style>
+	<body>
+	</body>
+	<script>
+		let event_uri_key=window.location.search.substring(1).split("=")[1]
+		$(function(){
+			
+			$.ajax({
+			    type:"POST",
+			    dataType:"json",
+				async: false,
+			    url:"http://8.131.247.153/viewer/code/"+event_uri_key,
+			    data:{"redirect_uri":"http://8.131.247.153/h5/index.html"},
+			    success:function (result){
+					
+					if (result.msg  == "success") {
+						window.location.href =  result.data;
+					}
+			    },
+			});
+		})
+		
+	</script>
+</html>

@@ -1,0 +1,221 @@
+@media screen and (min-width: 750px) {
+  html {
+    font-size: 75px!important;
+  }
+}
+@media screen and (max-width: 320px) {
+  html {
+    font-size: 32px!important;
+  }
+}
+* {
+  margin: 0;
+}
+body {
+  width: 10rem !important;
+  min-width: 320px;
+  margin: 0 auto;
+}
+body .header {
+  width: 10rem;
+  height: 6.82666667rem;
+}
+body .header #coverUrl {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+body .header #coverUrl #coverImage {
+  position: relative;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+body .portalInfo {
+  width: 10rem;
+  box-sizing: border-box;
+  padding-left: 0.4rem;
+  background: url('../image/mobile-name-bgc.png') no-repeat;
+  background-size: 100% 2.34666667rem;
+  display: flex;
+  margin-top: -2.33333333rem;
+}
+body .portalInfo #portalUser {
+  width: 1.49333333rem;
+  height: 1.49333333rem;
+  border-radius: 50%;
+  margin-top: -0.26666667rem;
+}
+body .portalInfo .particularInfo {
+  box-sizing: border-box;
+  width: 8rem;
+  padding-left: 0.32rem;
+  padding-top: 0.53333333rem;
+}
+body .portalInfo .particularInfo .portalName {
+  width: 100%;
+  height: 0.90666667rem;
+  line-height: 0.90666667rem;
+  font-size: 0.45333333rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+body .portalInfo .particularInfo .portalDescribe {
+  width: 100%;
+  display: none;
+  font-size: 0.42666667rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+}
+body .portalInfo .particularInfo .portalShow {
+  height: 0.90666667rem;
+  line-height: 0.90666667rem;
+  font-size: 0.42666667rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  display: flex;
+}
+body .portalInfo .particularInfo .portalShow img {
+  width: 0.58666667rem;
+  height: 0.32rem;
+  margin-top: 0.29333333rem;
+}
+body .portalInfo .particularInfo .portalShow .showNum {
+  width: 2.4rem;
+  margin: 0 0.26666667rem;
+}
+body .portalInfo .particularInfo .portalShow .portalBtn {
+  width: 1.36rem;
+  height: 0.69333333rem;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 8px 0px rgba(9, 1, 3, 0.1);
+  border-radius: 0.34666667rem;
+  color: #F2591A;
+  text-align: center;
+  line-height: 0.69333333rem;
+  cursor: pointer;
+  margin-top: 0.10666667rem;
+}
+body .segmentation-line {
+  width: 10rem;
+  height: 0.26666667rem;
+  background: #F0F0F0;
+}
+body .wonderful-channel {
+  width: 10rem;
+  height: 4rem;
+}
+body .wonderful-channel .wonderful-recommend {
+  height: 0.8rem;
+  padding: 0 0.26666667rem;
+  line-height: 0.8rem;
+  font-size: 0.48rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+}
+body .wonderful-channel .wonderful-channel-cont {
+  width: 10rem;
+  height: 3.2rem;
+  position: relative;
+  display: flex;
+  overflow-y: auto;
+}
+body .wonderful-channel .wonderful-channel-cont .add-wonderful {
+  /* 立即添加精彩视频Or频道 */
+  position: absolute;
+  width: 10rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  font-size: 0.42666667rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #999999;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+}
+body .wonderful-channel .wonderful-channel-cont .wonderful-channel-list {
+  width: 3.84rem;
+  height: 2.53333333rem;
+  margin-top: 0.34666667rem;
+  margin-left: 0.26666667rem;
+  position: relative;
+}
+body .wonderful-channel .wonderful-channel-cont .wonderful-channel-list img {
+  width: 3.84rem;
+  height: 2.53333333rem;
+}
+body .wonderful-channel .wonderful-channel-cont .wonderful-channel-list .wonderful-channel-list-name {
+  font-size: 0.37333333rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  position: absolute;
+  bottom: 0.26666667rem;
+  left: 0.26666667rem;
+}
+body .wonderful-video {
+  width: 10rem;
+  min-height: 8.13333333rem;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+}
+body .wonderful-video .add-wonderful {
+  /* 立即添加精彩视频Or频道 */
+  position: absolute;
+  width: 10rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  font-size: 0.42666667rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #999999;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+}
+body .wonderful-video .wonderful-video-describe {
+  height: 0.85333333rem;
+  line-height: 0.85333333rem;
+  padding: 0 0.26666667rem;
+  font-size: 0.37333333rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+body .wonderful-video .wonderful-video-cover {
+  width: 9.46666667rem;
+  height: 5.33333333rem;
+  margin: 0 0.26666667rem;
+}
+body .wonderful-video .wonderful-video-info {
+  height: 0.85333333rem;
+  line-height: 0.85333333rem;
+  padding: 0 0.26666667rem;
+  font-size: 0.37333333rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+}
+body .wonderful-video .wonderful-video-info .wonderful-video-view {
+  float: right;
+}
+body .wonderful-video .wonderful-video-info .wonderful-video-view img {
+  width: 0.58666667rem;
+  height: 0.32rem;
+}
+body .wonderful-video .wonderful-video-bg {
+  height: 0.26666667rem;
+  background-color: #F0F0F0;
+}

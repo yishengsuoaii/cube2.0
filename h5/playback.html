@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>回放</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="./css/playback.css">
+    <link rel="stylesheet" href="./../css/video-js.min.css">
+    <script src="./../commonJs/video.min.js"></script>
+    <script src="../commonJs/jquery-3.2.1.min.js"></script>
+    <script src="./../commonJs/flexible.js"></script>
+    <script src="../layui/layui.js"></script>
+</head>
+
+<body>
+    <div id="play">
+        <video id="videoBox" controls preload="auto" class="video-js vjs-big-play-centered vjs-fluid"
+            x5-video-player-fullscreen="true" webkit-playsinline="true" x-webkit-airplay="true" playsinline="true"
+            x5-playsinline>
+        </video>
+        <div class="videoInfo">
+            <p class="describe"></p>
+            <p class="viewNum"></p>
+        </div>
+
+        <div class="comment">
+           评论
+        </div>
+        <div class="commentBox">
+        </div>
+        <div class="sendBox">
+            <input type="text" class="messageInput"><span id="send-btn">发送</span>
+        </div>
+    </div>
+
+    <script>
+        let data = window.location.search.substring(1).split("&")
+        var infoData = []
+        data.forEach(item => {
+            infoData.push(item.split("="))
+        })
+        $(function () {
+            videojs('videoBox', {
+                muted: false,
+                controls: true,
+                preload: 'auto',
+                aspectRatio: '16:9',
+                sources: [{
+                    type: 'application/x-mpegURL',
+                    src: infoData[1][1]
+                }]
+            })
+            $('.describe').text(decodeURI(infoData[3][1]))
+            $('.viewNum').text(infoData[2][1]+'人观看')
+            // 获取评论列表
+            $.ajax({
+                url: 'http://8.131.247.153/commenting/h5_comments_show/',
+                type: 'POST',
+                data: {
+                    video_id: infoData[0][1]
+                },
+                success: function (res) {
+                    if (res.msg === 'success') {
+                        var str = ''
+                        res.data.forEach(item => {
+
+                            str += `<div class="comList" id="${item.commend_id}">
+                                <div class="comImage">
+                                    <img src="${item.wechat_image_url}" alt="">
+                                </div>
+                                <div class="comInfo">
+                                    <p class="comName">${item.viewer }</p>
+                                    <p class="comMessage">${item.comment}</p>
+                                </div>
+                            </div>
+                            `
+                        })
+                        $('.commentBox').html(str)
+                    }
+                }
+            })
+
+            $('#send-btn').on('click', function () {
+                if ($.trim($('.messageInput').val()).length > 0) {
+                    $.ajax({
+                        url: 'http://8.131.247.153/commenting/h5_submit_comments/',
+                        type: 'POST',
+                        data: {
+                            video_id: infoData[0][1],
+                            wechat_nickname: decodeURI(infoData[4][1]),
+                            comment: $('.messageInput').val()
+                        },
+                        success: function (res) {
+                            if (res.msg === 'success') {
+                                getCommentList()
+                            }
+                        }
+                    })
+                }
+                $('.messageInput').val('')
+
+            })
+            $('.messageInput').on('keypress', function (event) { // 监听回车事件
+                if (event.keyCode == "13") {
+                    $.ajax({
+                        url: 'http://8.131.247.153/commenting/h5_submit_comments/',
+                        type: 'POST',
+                        data: {
+                            video_id: infoData[0][1],
+                            wechat_nickname: decodeURI(infoData[4][1]),
+                            comment: $(this).val()
+                        },
+                        success: function (res) {
+                            if (res.msg === 'success') {
+                                getCommentList()
+                            }
+                        }
+                    })
+                    $(this).val('')
+                }
+            })
+
+            function getCommentList() {
+                $.ajax({
+                    url: 'http://8.131.247.153/commenting/h5_comments_show/',
+                    type: 'POST',
+                    data: {
+                        video_id: infoData[0][1]
+                    },
+                    success: function (res) {
+                        if (res.msg === 'success') {
+                            var str = ''
+                            res.data.forEach(item => {
+
+                                str += `<div class="comList" id="${item.commend_id}">
+                                <div class="comImage">
+                                    <img src="${item.wechat_image_url}" alt="">
+                                </div>
+                                <div class="comInfo">
+                                    <p class="comName">${item.viewer }</p>
+                                    <p class="comMessage">${item.comment}</p>
+                                </div>
+                            </div>
+                            `
+                            })
+                            $('.commentBox').html(str)
+                            setTimeout(() => {
+                                $('.commentBox').scrollTop($('.commentBox')[0].scrollHeight)
+                            }, 0)
+                        }
+                    }
+                })
+            }
+
+            $('.commentBox').css({
+                height: 'calc(100vh - 10.158rem - 10px )'
+            })
+        })
+    </script>
+</body>
+
+</html>

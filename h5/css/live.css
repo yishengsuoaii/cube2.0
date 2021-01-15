@@ -1,0 +1,307 @@
+@media screen and (min-width: 750px) {
+  html {
+    font-size: 75px !important;
+  }
+}
+@media screen and (max-width: 320px) {
+  html {
+    font-size: 32px !important;
+  }
+}
+* {
+  margin: 0;
+}
+body {
+  width: 10rem !important;
+  min-width: 320px;
+  margin: 0 auto;
+}
+body #live {
+  width: 10rem !important;
+  height: 100vh;
+}
+body #live #videoContainer {
+  position: relative;
+}
+body #live #videoContainer #videoBox {
+  display: block;
+}
+body #live #videoContainer #topDown {
+  display: none;
+  width: 10rem !important;
+  height: 1.06666667rem !important;
+  background-color: rgba(0, 0, 0, 0.3);
+  text-align: center;
+  line-height: 1.06666667rem !important;
+  color: #fff;
+  font-size: 0.37333333rem !important;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  position: absolute;
+  top: 0;
+}
+body #live #videoContainer #centerDown {
+  display: none;
+  width: 10rem !important;
+  height: 2.93333333rem !important;
+  position: absolute;
+  top: 20%;
+  transform: rotateY(-50%);
+}
+body #live #videoContainer #centerDown #dayClass {
+  width: 4.26666667rem !important;
+  height: 0.53333333rem !important;
+  background: #FF914D;
+  border-radius: 0.13333333rem !important;
+  font-size: 0.37333333rem !important;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-align: center;
+  margin: 0 auto 0.13333333rem !important;
+  padding: 0.18666667rem 0;
+}
+body #live #videoContainer #centerDown .timeClass {
+  width: 202px;
+  height: 66px;
+  background: url('../image/timer.png') no-repeat;
+  background-size: 100% 100%;
+  margin: 0 auto;
+  position: relative;
+  font-size: 24px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+body #live #videoContainer #centerDown .timeClass .hour1 {
+  position: absolute;
+  top: 17px;
+  left: 18px;
+}
+body #live #videoContainer #centerDown .timeClass .hour2 {
+  position: absolute;
+  top: 17px;
+  left: 41px;
+}
+body #live #videoContainer #centerDown .timeClass .minute1 {
+  position: absolute;
+  top: 17px;
+  left: 84px;
+}
+body #live #videoContainer #centerDown .timeClass .minute2 {
+  position: absolute;
+  top: 17px;
+  left: 107px;
+}
+body #live #videoContainer #centerDown .timeClass .second1 {
+  position: absolute;
+  top: 17px;
+  left: 149px;
+}
+body #live #videoContainer #centerDown .timeClass .second2 {
+  position: absolute;
+  top: 17px;
+  left: 172px;
+}
+body #live #videoContainer #showNum {
+  display: none;
+  font-size: 0.32rem !important;
+  color: #FF914C;
+  position: absolute;
+  right: 0.26666667rem !important;
+  top: 1.33333333rem !important;
+}
+body #live #ad-link {
+  display: block;
+  width: 10rem !important;
+  height: 1.17333333rem !important;
+  position: relative;
+}
+body #live #ad-link #ad-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+body #live #ad-link .close {
+  display: inline-block;
+  width: 0.45333333rem !important;
+  height: 0.45333333rem !important;
+  position: absolute;
+  top: 0.13333333rem !important;
+  right: 0.26666667rem !important;
+  color: red;
+  background-color: #ccc;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 0.32rem !important;
+  line-height: 0.45333333rem !important;
+}
+body #live .layui-tab {
+  margin: 0;
+}
+body #live .layui-tab .layui-tab-title {
+  width: 10rem !important;
+}
+body #live .layui-tab .layui-tab-title li {
+  width: 3.33333333rem !important;
+  padding: 0;
+  font-size: 0.4rem !important;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+}
+body #live .layui-tab #chat .chatBox {
+  width: 9.46666667rem !important;
+  overflow: auto;
+}
+body #live .layui-tab #chat .chatBox #giveLike {
+  position: fixed;
+  bottom: 70px;
+  right: 30px;
+  height: 40px;
+  width: 40px;
+  display: block;
+  z-index: 21;
+  cursor: pointer;
+}
+body #live .layui-tab #chat .chatBox canvas {
+  display: block;
+  position: fixed;
+  bottom: 110px;
+  right: 0px;
+  z-index: 20;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+body #live .layui-tab #chat .chatBox .chatList {
+  width: 9.46666667rem !important;
+  min-height: 0.85333333rem !important;
+  margin-bottom: 0.26666667rem !important;
+  display: flex;
+}
+body #live .layui-tab #chat .chatBox .chatList .chatImage {
+  width: 0.85333333rem !important;
+  height: 0.85333333rem !important;
+}
+body #live .layui-tab #chat .chatBox .chatList .chatImage img {
+  display: block;
+  width: 0.74666667rem !important;
+  height: 0.74666667rem !important;
+  border-radius: 50%;
+}
+body #live .layui-tab #chat .chatBox .chatList .chatInfo {
+  width: 8.61333333rem !important;
+}
+body #live .layui-tab #chat .chatBox .chatList .chatInfo .chatName {
+  width: 8.61333333rem !important;
+  height: 0.45333333rem !important;
+  font-size: 0.32rem !important;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  line-height: 0.45333333rem !important;
+  color: #666666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+body #live .layui-tab #chat .chatBox .chatList .chatInfo .chatMessage {
+  width: 8.61333333rem !important;
+  font-size: 0.32rem !important;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  line-height: 0.53333333rem !important;
+  color: #999999;
+  word-wrap: break-word;
+}
+body #live .layui-tab #chat .sendBox {
+  width: 9.46666667rem !important;
+  height: 1.30666667rem !important;
+  border-top: 0.02666667rem solid #ccc;
+}
+body #live .layui-tab #chat .sendBox .messageInput {
+  width: 7.46666667rem !important;
+  height: 0.8rem !important;
+  padding: 0 0.26666667rem !important;
+  background: #F0F0F0;
+  border-radius: 5px;
+  line-height: 0.8rem !important;
+  margin-top: 0.25333333rem !important;
+  border: 0;
+  font-size: 0.32rem !important;
+  color: #666666;
+}
+body #live .layui-tab #chat .sendBox #send-btn {
+  display: inline-block;
+  width: 1.22666667rem !important;
+  height: 0.8rem !important;
+  background: #FF914C;
+  border-radius: 0.08rem !important;
+  font-size: 0.32rem !important;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  line-height: 0.8rem !important;
+  color: #FFFFFF;
+  text-align: center;
+  margin-left: 0.24rem !important;
+}
+body #live .layui-tab .brier {
+  width: 9.46666667rem !important;
+  overflow-y: auto;
+}
+body #live .layui-tab .brier .brierImage {
+  width: 9.46666667rem !important;
+}
+body #live .layui-tab .playBack {
+  width: 9.46666667rem !important;
+  overflow-y: auto;
+}
+body #live .layui-tab .playBack .rec {
+  height: 1.01333333rem !important;
+  font-size: 0.37333333rem !important;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  line-height: 1.01333333rem !important;
+  color: #333333;
+}
+body #live .layui-tab .playBack .backList {
+  display: block;
+  width: 9.46666667rem !important;
+  height: 2.32rem !important;
+}
+body #live .layui-tab .playBack .backList .backContent {
+  width: 9.46666667rem !important;
+  height: 2.29333333rem !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body #live .layui-tab .playBack .backList .backContent .backInfo {
+  width: 5.33333333rem !important;
+  height: 1.76rem !important;
+}
+body #live .layui-tab .playBack .backList .backContent .backInfo .backName {
+  height: 1.06666667rem !important;
+  font-size: 0.34666667rem !important;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  line-height: 0.53333333rem !important;
+  color: #666666;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+body #live .layui-tab .playBack .backList .backContent .backInfo .backShow {
+  height: 0.42666667rem !important;
+  font-size: 0.32rem !important;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  line-height: 0.42666667rem !important;
+  color: #999999;
+}
+body #live .layui-tab .playBack .backList .backContent .backImage {
+  width: 3.12rem !important;
+  height: 1.76rem !important;
+  border-radius: 0.10666667rem !important;
+}

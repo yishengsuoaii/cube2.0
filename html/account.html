@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./../layui/css/layui.css">
+    <link rel="stylesheet" href="./../css/common.css">
+    <link rel="stylesheet" href="./../css/account.css">
+    <script src="./../layui/layui.js"></script>
+    <script src="./../commonJs/jquery-3.2.1.min.js"></script>
+    <script src="./../commonJs/qrcode.js"></script>
+    <script src="./../js/common.js"></script>
+    <script src="./../js/account.js"></script>
+    <title>账户</title>
+    <style>
+        .layui-layer-title {
+			background-color: #FF914D !important;
+			color: #fff !important;
+			font-size: 20px !important;
+			font-family: Source Han Sans CN;
+			font-weight: 300;
+
+        }
+		.layui-layer-btn .layui-layer-btn0 {
+			background-color: #FF914D !important;
+			border: 0;
+        }
+        .layui-tab-title {
+            border: none;
+        }
+        .layui-tab-title  li{
+            font-size: 26px;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: #333333;
+            margin-right: 50px;
+        }
+        .layui-tab-content {
+            padding: 10px 0 !important
+        }
+        .layui-table-view {
+            margin: 0 !important;
+        }
+        .layui-table td, .layui-table th{
+            font-size: 18px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <!--上方标题栏-->
+        <div class="parentTop">
+            <img class="logImage" src="./../image/login-logo.png">
+            <div class="loginNameDiv">
+                <div class="messageBox">
+                    <img src="./../image/message-icon.png" alt="" class="messageIcon">
+                    <span class="layui-badge-dot" id="hot"></span>
+                </div>
+                <div class="nameContent">
+                    <span class="userName"></span>
+                </div>
+                <div id="userExit">退出</div>
+            </div>
+        </div>
+        <div id="mainContent">
+            <!--左侧菜单-->
+            <ul class="leftMenu">
+                <li>
+                    <a href="./../index.html">
+                        <img class="menu-icon" width="35" height="28" src="./../image/channel-icon.png" alt="">频道
+                    </a>
+                </li>
+                <li>
+                    <a href="./portal.html">
+                        <img class="menu-icon" width="32" height="30" src="./../image/video-icon.png">门户
+                    </a>
+                </li>
+                <li>
+                    <a href="./media.html">
+                        <img class="menu-icon" width="32" height="26" src="./../image/media-library-icon.png">媒体库
+                    </a>
+                </li>
+                <li>
+                    <a class="menuActive" href="./account.html">
+                        <img class="menu-icon" width="34" height="26" src="./../image/account-active-icon.png">账户
+                    </a>
+                </li>
+                <li>
+                    <a href="./data.html">
+                        <img class="menu-icon" width="32" height="24" src="./../image/data-icon.png">数据统计
+                    </a>
+                </li>
+                <li>
+                    <a href="./appStore.html">
+                        <img class="menu-icon" width="30" height="30" src="./../image/app-store-icon.png">应用商店
+                    </a>
+                </li>
+                <li>
+                    <a href="./userSet.html">
+                        <img class="menu-icon" width="34" height="29" src="./../image/user-set-icon.png">设置
+                    </a>
+                </li>
+            </ul>
+
+            <!--主要内容区-->
+            <div class="parentMain">
+                <div class="layui-tab layui-tab-brief" lay-filter="operation-tab" id="operation-tab">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">账目统计</li>
+                            <li>充值购买</li>
+                        </ul>
+                        <div class="layui-tab-content">
+                            <div class="layui-tab-item layui-show">
+                                <div class="containerBill">
+                                    <p class="billName">
+                                        <span>账单</span>
+                                        <i class="layui-icon layui-icon-export export" style="font-size: 30px; color: #fff;"></i>  
+                                    </p>
+                                    <div class="billContent">
+                                        <table id="billTable" lay-filter="test"></table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-tab-item">
+                                <div class="containerAccount">
+                                    <div class="tabContent">
+                                        <!-- 充值购买 -->
+                                        <p class="payPurchase">充值购买</p>
+                                        <h1 class="payCenter">充值中心</h1>
+                                        <form class="layui-form form" action="">
+                                            <div class="layui-form-item">
+                                                <input type="text" name="amount" required lay-verify="required" placeholder="请输入充值金额"
+                                                    autocomplete="off" class="layui-input inPay">
+                                            </div>
+                                            <img src="../image/weixinzf.png" class="payment" />
+                                            <button class="layui-btn payBtn" lay-submit lay-filter="formDemo">下一步</button>
+                                        </form>
+                                        <div class="across-line"></div>
+                                        <div class="explain">
+                                            <p class="explainName">温馨提示</p>
+                                            <p class="explainItem">1.支持微信付款方式充值。</p>
+                                            <p class="explainItem">2.如需开取对公发票请先与客户经理联系或者致电客服热线后再进行充值。</p>
+                                            <p class="explainItem">3.充值成功的金额不支持提现。</p>
+                                            <p class="explainItem">4.支持查看所有历史充值记录，点击进入查询。</p>
+                                            <p class="explainItem">5.若充值未到账或有其他疑问可致电客服热线</p>
+                                        </div>
+                                    </div>
+                                    <div id="qrcode" style="display: none"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="messageDialog">
+        <p id="messageDialogName">
+            消息
+        </p>
+        <div id="messageContent">
+        </div>
+    </div>
+</body>
+
+</html>

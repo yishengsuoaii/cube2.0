@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./../layui/css/layui.css">
+    <link rel="stylesheet" href="./../css/common.css">
+    <link rel="stylesheet" href="./../css/live.css">
+    <script src="./../layui/layui.js"></script>
+    <script src="./../commonJs/jquery-3.2.1.min.js"></script>
+    <script src="./../js/common.js"></script>
+    <script src="./../commonJs/clipboard.js"></script>
+    <script src="./../commonJs/html2canvas.js"></script>
+    <script src="./../commonJs/aliyun-rts-sdk.js"></script>
+    <script src="./../commonJs/qrcode.js"></script>
+    <title>直播间</title>
+    <style>
+        .layui-layer-title {
+            font-size: 20px !important;
+            font-family: Source Han Sans CN;
+            font-weight: 400 !important;
+            color: #FEFEFE !important;
+            border-bottom: none !important;
+            background-color: #FF914D !important;
+        }
+        
+        .layui-layer-btn .layui-layer-btn0 {
+            background-color: #FF914D !important;
+            border: 0 !important;
+
+        }
+    /* 设置默认样式 */
+		.layui-form-radio>i:hover,
+		.layui-form-radioed>i {
+			color: #FF914D !important;
+		}
+
+		.layui-form-onswitch {
+			border-color: #FF914D !important;
+			background-color: #FF914D !important;
+		}
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <!--上方标题栏-->
+        <div class="parentTop">
+            <img class="logImage" src="./../image/login-logo.png">
+            <div class="loginNameDiv">
+                <div class="messageBox">
+                    <img src="./../image/message-icon.png" alt="" class="messageIcon">
+                    <span class="layui-badge-dot" id="hot"></span>
+                </div>
+                <div class="nameContent">
+                    <span class="userName"></span>
+                </div>
+                <div id="userExit">退出</div>
+            </div>
+        </div>
+        <div id="mainContent">
+            <!--左侧菜单-->
+            <ul class="leftMenu">
+                <li>
+                    <a href="./../index.html" class="menuActive">
+                        <img class="menu-icon" width="35" height="28" src="./../image/channel-active-icon.png" alt="">频道
+                    </a>
+                </li>
+                <li>
+                    <a href="./portal.html">
+                        <img class="menu-icon" width="32" height="30" src="./../image/video-icon.png">门户
+                    </a>
+                </li>
+                <li>
+                    <a href="./media.html">
+                        <img class="menu-icon" width="32" height="26" src="./../image/media-library-icon.png">媒体库
+                    </a>
+                </li>
+                <li>
+                    <a href="./account.html">
+                        <img class="menu-icon" width="34" height="26" src="./../image/account-icon.png">账户
+                    </a>
+                </li>
+                <li>
+                    <a href="./data.html">
+                        <img class="menu-icon" width="32" height="24" src="./../image/data-icon.png">数据统计
+                    </a>
+                </li>
+                <li>
+                    <a href="./appStore.html">
+                        <img class="menu-icon" width="30" height="30" src="./../image/app-store-icon.png">应用商店
+                    </a>
+                </li>
+                <li>
+                    <a href="./userSet.html">
+                        <img class="menu-icon" width="34" height="29" src="./../image/user-set-icon.png">设置
+                    </a>
+                </li>
+            </ul>
+
+            <!--主要内容区-->
+            <div class="parentMain">
+                    <div class="contentBox">
+                        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                            <ul class="live-tab-title">
+                                <li>频道管理</li>
+                                <li class="active-this">直播控制</li>
+                                <li>导播台</li>
+                            </ul>
+                            <div class="layui-tab-content">
+                                <div class="layui-tab-item live-tab-item" id="channelManage">
+                                    <!-- 频道管理 -->
+                                    <div class="heads">
+                                        <div class="head-title"></div>
+                                        <div class="head-copy">
+                                            <img src="./../image/link-gray-icon.png" alt="">
+                                            观看地址
+                                        </div>
+                                    </div>
+                                    <div class="channel-set">
+                                       <ul class="channel-set-aside">
+                                           <li class="active-aside aside-list">基础设置</li>
+                                           <li class="aside-list">活动简介</li>
+                                           <li class="aside-list">邀请卡分享</li>
+                                           <li class="aside-list">自定义广告</li>
+                                       </ul>
+                                       <div class="channel-set-content">
+                                           <div class="channel-set-item container-basics" style="display: block">
+                                                <div class="layui-tab">
+                                                    <ul class="layui-tab-title" id="preferences">
+                                                        <li class="layui-this">直播引导页</li>
+                                                        <li>直播倒计时</li>
+                                                        <li>观众人数显示</li>
+                                                        <li>直播窗口背景</li>
+                                                        <li>视频LOGO及水印</li>
+                                                        <li>频道设置</li>
+                                                    </ul>
+                                                    <div class="layui-tab-content">
+                                                        <div class="layui-tab-item layui-show">
+                                                            <div class="guidance">
+                                                                <form class="layui-form formUpload" action="">
+                                                                    <div class="tit1">此图片显示在进入直播页面之前，用于展示直播相关介绍内容</div>
+                                                                    <ul class="upList">
+                                                                        <li class="tit2">图片大小4m以内</li>
+                                                                        <li class="tit2">图片分辨率1125*2436像素</li>
+                                                                        <li class="tit2">支持gif,png,jpg,jpeg格式</li>
+                                                                    </ul>
+                                                                    <div class="layui-upload" style="margin-left: 14px;">
+                                                                        <button type="button" class="layui-btn" id="test"><i
+                                                                                class="layui-icon layui-icon-upload-drag"></i>上传</button>
+                                                                    </div>
+                                                                </form>
+                                                                <div class="page-img">
+                                                                    预览:
+                                                                    <img class="upload-page-img" name="event_wallpaper" id="demo-cover">
+                                                                </div>
+                                                            </div>
+                                        
+                                                        </div>
+                                                        <div class="layui-tab-item">
+                                                            <!-- 直播倒计时 -->
+                                                            <div class="countDown">
+                                                                <form class="layui-form countDown-form" action="">
+                                                                    <div class="layui-form-item">
+                                                                        <label class="layui-form-label">功能开关</label>
+                                                                        <div class="layui-input-block">
+                                                                            <input type="checkbox" name="switch" lay-skin="switch" id="count-down-open"
+                                                                                lay-filter="count-down-open" checked>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="layui-form-item">
+                                                                        <label class="layui-form-label" style="width: 120px;">倒计时显示位置</label>
+                                                                        <div class="layui-input-block">
+                                                                            <input type="radio" name="time-orientation" id="time-radio1"
+                                                                                lay-filter="time-orientation" value="0" checked title="顶部">
+                                                                            <input type="radio" name="time-orientation" id="time-radio2"
+                                                                                lay-filter="time-orientation" value="1" title="中部">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="layui-form-item">
+                                                                        <label class="layui-form-label" style="width: 300px;">直播倒计时剩余:
+                                                                            <span class="day">00</span>天
+                                                                            <span class="hour">00</span>时
+                                                                            <span class="minute">00</span>分
+                                                                            <span class="second">00</span>秒
+                                                                        </label>
+                                                                    </div>
+                                                                </form>
+                                        
+                                                                <div class="preview-time">
+                                                                    <p class="preview-time-title">预览:</p>
+                                                                    <div class="preview-time-content">
+                                                                        <div class="top-time">
+                                                                            距离直播开始<span class="day">00</span>天
+                                                                            <span class="hour">00</span>时
+                                                                            <span class="minute">00</span>分
+                                                                            <span class="second">00</span>秒
+                                                                        </div>
+                                                                        <div class="center-time">
+                                                                            距离直播开始<span class="day">00</span>天
+                                                                        </div>
+                                                                        <div class="bottom-time">
+                                                                            <span class="hour1">0</span>
+                                                                            <span class="hour2">0</span>
+                                        
+                                                                            <span class="minute1">0</span>
+                                                                            <span class="minute2">0</span>
+                                                                            <span class="second1">0</span>
+                                                                            <span class="second2">0</span>
+                                                                        </div>
+                                                                    </div>
+                                        
+                                                                </div>
+                                        
+                                                            </div>
+                                                            <div class="save-btn">
+                                                                <span id="down-submit">提交</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="layui-tab-item">
+                                                            <!-- 观众人数显示 -->
+                                                            <div class="people-number">
+                                        
+                                                                <form class="layui-form people-form" action="">
+                                                                    <div class="layui-form-item">
+                                                                        <label class="layui-form-label">显示开关</label>
+                                                                        <div class="layui-input-block">
+                                                                            <input type="checkbox" name="switch" lay-skin="switch" id="number-switch"
+                                                                                lay-filter="number-switch">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="layui-form-item">
+                                                                        <label class="layui-form-label">显示形式</label>
+                                                                        <div class="layui-input-block">
+                                                                            <input type="radio" name="number" lay-filter="number" id="number2" value="2"
+                                                                                title="在线人数">
+                                                                            <input type="radio" name="number" lay-filter="number" id="number1" value="1"
+                                                                                title="累计人数（观看人数)" checked>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="layui-form-item">
+                                                                        <label class="layui-form-label">增加形式</label>
+                                                                        <div class="layui-input-block">
+                                                                            <div class="Add_form">
+                                                                                <input type="radio" name="multiple" lay-filter="multiple" id="multiple1"
+                                                                                    value="1" title="基础人数" checked>
+                                                                                <input id="num" type="text" name="title" required lay-verify="required"
+                                                                                    class="layui-input reality" placeholder="人">
+                                                                            </div>
+                                                                            <div class="Add_form">
+                                                                                <input type="radio" name="multiple" lay-filter="multiple" id="multiple2"
+                                                                                    value="2" title="基础倍数 X ">
+                                                                                <input id="mul" type="text" name="title" required lay-verify="required"
+                                                                                    class="layui-input reality" placeholder="倍">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="layui-form-item">
+                                                                        <p class="hint-info">注：1.显示观众人数=默认基础人数+实际人数</p>
+                                                                        <p class="hint-info hint-padding">2.该数据只为前端用户展现，后台数据以真实数据统计</p>
+                                                                    </div>
+                                                                </form>
+                                                                <div class="people-preview">
+                                                                    <p class="people-preview-title">预览:</p>
+                                                                    <div class="people-preview-content">
+                                                                        <span class="show-num">666万</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="save-btn">
+                                                                <span id="number-submit">提交</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="layui-tab-item">
+                                                            <!-- 直播窗口背景 -->
+                                                            <p class="live-bg-title">
+                                                                预览:
+                                                            </p>
+                                                            <div class="live-bg-image">
+                                                                <img class="layui-upload-img" id="live-bg-cover" src="./../image/mobile-cover.png">
+                                                                <div class="live-bg-hint">
+                                                                    <p class="live-bg-hint-list">
+                                                                        <span class="live-bg-hint-icon"></span>
+                                                                        图片大小2M以内
+                                                                    </p>
+                                                                    <p class="live-bg-hint-list">
+                                                                        <span class="live-bg-hint-icon"></span>
+                                                                        图片分辨率865*486像素
+                                                                    </p>
+                                                                    <p class="live-bg-hint-list">
+                                                                        <span class="live-bg-hint-icon"></span>
+                                                                        支持gif,png,jpg,jpeg格式
+                                                                    </p>
+                                                                    <button type="button" class="layui-btn" id="live-bg-upload">上传</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="layui-tab-item">
+                                                            <!-- 视频LOGO及水印 -->
+                                                            <div class="layui-form" style="margin: 50px 0 0 105px">
+                                                                <label class="layui-form-label open-switch-name">视频窗口LOGO显示</label>
+                                                                <div class="layui-input-block">
+                                                                    <input type="checkbox" name="switch" id="logo-switch" lay-filter="logo-open"
+                                                                        lay-skin="switch" checked>
+                                                                </div>
+                                                            </div>
+                                                            <div class="logo-watermark">
+                                                                <div id="logo-watermark-preview">预览:</div>
+                                                                <div class="logo-watermark-image">
+                                                                    <div class="logo-watermark-upload">
+                                                                        <p class="logo-watermark-hint">
+                                                                            <span></span>
+                                                                            图片大小2M以内
+                                                                        </p>
+                                                                        <p class="logo-watermark-hint">
+                                                                            <span></span>
+                                                                            144*36px,72*18px
+                                                                        </p>
+                                                                        <p class="logo-watermark-hint">
+                                                                            <span></span>
+                                                                            支持gif,png,jpg,jpeg格式
+                                                                        </p>
+                                                                        <button type="button" class="layui-btn" id="logo-upload-btn">上传</button>
+                                                                    </div>
+                                                                    <div class="upload-watermark-image upload-watermark-image-lt">
+                                                                        <img  id="channel-set-logo">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="layui-form">
+                                                                    <label class="layui-form-label">LOGO位置</label>
+                                                                    <input type="radio" name="logo-orientation" id="logo-radio1" value="1"
+                                                                        lay-filter="logo-orientation" title="左上角" checked>
+                                                                    <input type="radio" name="logo-orientation" id="logo-radio2" value="2"
+                                                                    lay-filter="logo-orientation" title="左下角">
+                                                                    <input type="radio" name="logo-orientation" id="logo-radio3" value="3"
+                                                                        lay-filter="logo-orientation" title="右上角">
+                                                                   
+                                                                    <input type="radio" name="logo-orientation" id="logo-radio4" value="4"
+                                                                        lay-filter="logo-orientation" title="右下角">
+                                                                </div>
+                                                                <div class="logo-watermark-submit">
+                                                                    <button type="button" class="layui-btn" id="watermark-submit-btn">提交</button>
+                                                                </div>
+                                        
+                                                            </div>
+                                                        </div>
+                                                        <div class="layui-tab-item">
+                                                            <!-- 频道设置 -->
+                                                            <div class="channel-set-password">
+                                                                <form class="layui-form" action="" id="encryption_left">
+                                                                    <div class="layui-form-item">
+                                                                        <label class="layui-form-label">是否公开</label>
+                                                                        <div class="layui-input-block">
+                                                                            <input type="checkbox" name="switch" id="code-switch" checked
+                                                                                lay-filter="code-switch" lay-text="公开|加密" lay-skin="switch">
+                                                                        </div>
+                                                                    </div>
+                                                                    <p class="encryption-hint">频道加密后进入此频道直播页需输入访问码</p>
+                                        
+                                                                    <div class="code-input">
+                                                                        <input type="text" id="code1" maxlength="1" disabled>
+                                                                        <input type="text" id="code2" maxlength="1" disabled>
+                                                                        <input type="text" id="code3" maxlength="1" disabled>
+                                                                        <input type="text" id="code4" maxlength="1" disabled>
+                                                                        <input type="text" id="code5" maxlength="1" disabled>
+                                                                        <input type="text" id="code6" maxlength="1" disabled>
+                                                                    </div>
+                                                                    <button type="button" class="layui-btn layui-btn-danger" id="code-submit">提交</button>
+                                                                </form>
+                                                                <div class="encryption_right">
+                                                                    <p class="encryption-preview">预览:</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           <div class="channel-set-item">
+                                            <div class="introduce">
+                                                <div class="introduce-bg">
+                                                    <div class="introduce-box">
+                                                        <div id="introduce-cover"></div>
+                                                    </div>
+                                                </div>
+                                                <div id="ai-submit">提交</div>
+                                            </div>
+                                           </div>
+                                           <div class="channel-set-item">
+                                            <div id="inviteBox">
+                                                <div class="inviteLeft">
+                                                    <form class="layui-form" action="" id="form">
+                                                        <div class="layui-form-item">
+                                                            <label class="layui-form-label">邀请卡分享</label>
+                                                            <div class="layui-input-block">
+                                                                <input type="checkbox" name="switch" lay-skin="switch" id="style-switch" checked lay-filter="style-switch">
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                        
+                                                    <p class="default-style">默认样式</p>
+                                                    <div class="different-style">
+                                                    </div>
+                                                    <div class="style-submit">
+                                                        <button type="button" class="layui-btn layui-btn-danger" id="submit">提交</button>
+                                                    </div>
+                                                    <div class="style-url">
+                                                        <input class="copy-url" type="text" readonly/>
+                                                        <span class="copy-btn">复制</span>
+                                                    </div>
+                                                </div>
+                                                <div class="inviteRight">
+                                                   <p class="invitePreview">预览:</p>
+                                                   <img  alt="" class="inviteImg">
+                                                   <img id="user-image" alt="">
+                                                   <p id="user-name"></p>
+                                                   <p id="channel-name"></p>
+                                                   <div id="qr-code"></div>
+                                                </div>
+                                            </div>
+                                           </div>
+                                           <div class="channel-set-item">
+                                            <div class="ad-box">
+                                                <div class="advertising-image">
+                                                    <img class="upload-image" alt="">
+                                                </div>
+                                                <div class="advertising-info">
+                                                    <div class="message-angle"></div>
+                                                    <div class="layui-form">
+                                                        <div class="layui-form-item">
+                                                            <label class="layui-form-label">添加广告</label>
+                                                            <div class="layui-input-block">
+                                                                <input type="checkbox" name="switch" lay-skin="switch" id="ad-switch" checked
+                                                                    lay-filter="ad-switch">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="upload-btn">
+                                                        <p class="upload-text">
+                                                            <i class="layui-icon layui-icon-addition" style="font-size: 18px; color: #FF914D;"></i> 上传图片
+                                                        </p>
+                                                    </div>
+                                                    <input type="text" class="ad-link-input" placeholder="链接地址">
+                                                    <div class="upload-hint">
+                                                        图片尺寸：750*88px;您可上传自定尺寸的图片，内容将居中；图
+                                                        片大小：2m以内；图片格式：PNG,jpg,JPEG,GIF
+                                                    </div>
+                                                    <div class="ad-submit">
+                                                        <button type="button" class="layui-btn layui-btn-danger" id="ad-submit-btn">提交</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           </div>
+                                       </div>
+                                    </div>
+                
+                                </div>
+                                <div class="layui-tab-item live-tab-item layui-show" id="liveControl">
+                                    <div class="heads">
+                                        <div class="head-title"></div>
+                                        <div class="head-copy">
+                                            <img src="./../image/link-gray-icon.png" alt="">
+                                            观看地址
+                                        </div>
+                                    </div>
+                                    <div class="liveContent">
+                                        <div class="liveRoom">
+                                            <video class="videoBox" controls="controls">
+                                            </video>
+                                            <div class="layui-tab layui-tab-brief">
+                                                <ul class="layui-tab-title">
+                                                    <li style="width: 160px;height: 46px;font-size: 20px;" class="layui-this">
+                                                        直播方式一</li>
+                                                    <li style="width: 160px;height: 46px;font-size: 20px;">拉流直播</li>
+                                                </ul>
+                                                <div class="layui-tab-content">
+                                                    <div class="layui-tab-item layui-show">
+                                                        <div class="event_code">
+                
+                                                        </div>
+                                                    </div>
+                                                    <div class="layui-tab-item">
+                                                        <div class="pull_m3u8">
+                
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="chatBox">
+                                            <p class="chatName">聊天互动</p>
+                                            <div class="chatInfo">
+                                                <div class="chat_left">
+                                                    共
+                                                    <span class="chatNum" style="color: #FF924E;">0</span>
+                                                    条聊天
+                                                </div>
+                                                <div class="chat_right">
+                                                    我的昵称 :
+                                                    <span id="username"  style="color: #FF924E;"></span>
+                                                </div>
+                                            </div>
+                                            <div class="chatContent">
+                                            </div>
+                                            <div class="sendBox">
+                                                <input type="text" name="title" class="speak" id="chat-message-input">
+                                                <button type="button" class="layui-btn send" id="chat-message-submit"
+                                                    value="Send">发送</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-tab-item live-tab-item" id="preside_over">
+                                    <div id="liveBox">
+                                        <div id="liveLeft">
+                                            <div id="liveLeft-videoBox">
+                                                <div id="oneBox">
+                                                </div>
+                                                <div id="twoBox">
+                                                    <div id="twoBoxLeft">
+                                                    </div><div id="twoBoxRight">
+                                                    </div>
+                
+                                                </div>
+                                                <div id="threeBox">
+                                                    <div id="threeBoxContent">
+                                                        <div id="threeBoxLeft">
+                                                            <video id="threeVideoLeft" autoplay muted></video>
+                                                        </div>
+                                                        <div id="threeBoxRight">
+                                                            <div id="topBox">
+                                                            </div>
+                                                            <div id="bottomBox">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="scoreBrand"></div>
+                                            </div>
+                                            <p id="liveLeft-name">
+                                                <span>预览窗口</span>
+                                                <span>
+                                                    <img src="./../image/oneMerge.png" class="mergeActive" id="one-merge">
+                                                    <img src="./../image/twoMerge.png" id="two-merge">
+                                                    <img src="./../image/threeMerge.png" id="three-merge">
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div id="switchover">切换</div>
+                                        <div id="liveRight">
+                                            <div id="liveRight-videoBox">
+                                                <video id="liveRight-video"></video>
+                                            </div>
+                                            <p id="liveRight-name">
+                                                <span>直播窗口</span>
+                                                <img src="./../image/headset-close.png" id="live-headset">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div id="cameraBox">
+                                        <div class="cameraList">
+                                            <p class="cameraName">
+                                                <span>机位一</span>
+                                                <span class="cut" id="one-cut">快切</span>
+                                                <img src="./../image/headset-close.png" id="one-headset">
+                                            </p>
+                                            <div class="cameraContent">
+                                                <video id="cameraOne" autoplay></video>
+                                                <div class="slideBox">
+                                                    <div class="slideLine" id="slideOne">
+                                                    </div>
+                                                    <img src="./../image/mute-open.png" id="one-mute">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cameraList">
+                                            <p class="cameraName">
+                                                <span>机位二</span>
+                                                <span class="cut" id="two-cut">快切</span>
+                                                <img src="./../image/headset-close.png" id="two-headset"></p>
+                                            <div class="cameraContent">
+                                                <video id="cameraTwo" autoplay></video>
+                                                <div class="slideBox">
+                                                    <div class="slideLine" id="slideTwo">
+                                                    </div>
+                                                    <img src="./../image/mute-open.png" id="two-mute">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cameraList">
+                                            <p class="cameraName">
+                                                <span>机位三</span>
+                                                <span class="cut" id="three-cut">快切</span>
+                                                <img src="./../image/headset-close.png" id="three-headset"></p>
+                                            <div class="cameraContent">
+                                                <video id="cameraThree" autoplay></video>
+                                                <div class="slideBox">
+                                                    <div class="slideLine" id="slideThree">
+                                                    </div>
+                                                    <img src="./../image/mute-open.png" id="three-mute">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-tab layui-tab-brief" lay-filter="operation-tab" id="operation-tab">
+                                        <ul class="layui-tab-title">
+                                            <li class="layui-this">比分牌</li>
+                                        </ul>
+                                        <div class="layui-tab-content">
+                                            <div class="layui-tab-item layui-show">
+                                                <div id="score-card">
+                                                    <div id="check-model"></div>
+                                                    <div id="select-oper">
+                                                        <div id="select-model">设置模板</div>
+                                                        <div id="reset">复位</div>
+                                                    </div>
+                                                    <div id="team-score-set">
+                                                        <div id="team-score-content">
+                                                            <div class="change-score">
+                                                                <div class="change-list">
+                                                                    <div id="left-three-plus">+</div>
+                                                                    <span>3</span>
+                                                                    <div id="left-three-minus">-</div>
+                                                                </div>
+                                                                <div class="change-list">
+                                                                    <div id="left-two-plus">+</div>
+                                                                    <span>2</span>
+                                                                    <div id="left-two-minus">-</div>
+                                                                </div>
+                                                                <div class="change-list">
+                                                                    <div id="left-one-plus">+</div>
+                                                                    <span>1</span>
+                                                                    <div id="left-one-minus">-</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="team-score">
+                                                                <p class="score-preview">
+                                                                    <span class="score-preview-hot" id="left-subtotal">0</span>
+                                                                    <input class="score-preview-input" id="left-score" type="text" value="0" maxlength="3">
+                                                                </p>
+                                                                <p class="team-name" id="left-name">队名</p>
+                                                                <p class="team-subtotal">
+                                                                    场记分
+                                                                    <span class="add-subtotal" id="left-subtotal-plus">+1</span>
+                                                                    <span id="left-subtotal-minus">-1</span>
+                                                                </p>
+                                                            </div>
+                                                            <div class="team-vs">
+                                                                <p class="vs">VS</p>
+                                                                <p class="scene-name">场次</p>
+                                                                <p class="scene-change">
+                                                                    <span class="scene-icon" style="transform:rotate(180deg)" id="scene-plus">
+                                                                            <i class="layui-icon layui-icon-triangle-d" style="font-size: 16px; color: #DE8148;"></i>
+                                                                    </span>
+                                                                    <span id="scene-num">1</span>
+                                                                    <span class="scene-icon" id="scene-minus">
+                                                                        <i class="layui-icon layui-icon-triangle-d" style="font-size: 16px; color: #DE8148;"></i>
+                                                                    </span>
+                                                                </p>
+                                                            </div>
+                                                            <div class="team-score">
+                                                                <p class="score-preview">
+                                                                    <input type="text" class="score-preview-input" id="right-score" value="0" maxlength="3">
+                                                                    <span class="score-preview-hot" id="right-subtotal">0</span>
+                                                                </p>
+                                                                <p class="team-name" id="right-name">队名</p>
+                                                                <p class="team-subtotal team-right-subtotal">
+                                                                    <span id="right-subtotal-minus">-1</span>
+                                                                    <span class="add-subtotal" id="right-subtotal-plus">+1</span>场记分
+                                                                    
+                                                                </p>
+                                                            </div>
+                                                            <div class="change-score">
+                                                                <div class="change-list">
+                                                                    <div id="right-one-plus">+</div>
+                                                                    <span>1</span>
+                                                                    <div id="right-one-minus">-</div>
+                                                                </div>
+                    
+                                                                <div class="change-list">
+                                                                    <div id="right-two-plus">+</div>
+                                                                    <span>2</span>
+                                                                    <div id="right-two-minus">-</div>
+                                                                </div>
+                                                                <div class="change-list">
+                                                                    <div id="right-three-plus">+</div>
+                                                                    <span>3</span>
+                                                                    <div id="right-three-minus">-</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- 遮罩层 -->
+                                                        <div id="score-shade"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="scoreDialog">
+                            <div class="scoreMain">
+                                <div class="scoreLeft">
+                                    <div class="defaultInfo">
+                                        显示区域
+                                    </div>
+                                    <div id="areaCont" class="leftBottom">
+                                    </div>
+                                </div>
+                                <div class="scoreRight">
+                                    <p class="editName">编辑</p>
+                                    <p class="teamName">队名1</p>
+                                    <input type="text" placeholder="请输入队名" id="teamNameOne" class="teamInputName" maxlength="8">
+                                    <p class="teamName">队名2</p>
+                                    <input type="text" placeholder="请输入队名" id="teamNameTwo" class="teamInputName" maxlength="8">
+                                    <p class="teamLogo" style="margin-top: 10px">LOGO1</p>
+                                    <div class="uploadImg" id="left-uploadImg">
+                                        <img src="./../image/uploadIcon.png" id="left-uploadIcon" class="uploadIcon">
+                                        <img id="left-logo" alt="">
+                                    </div>
+                                    <p class="teamLogo">LOGO2</p>
+                                    <div class="uploadImg" id="right-uploadImg">
+                                        <img src="./../image/uploadIcon.png" id="right-uploadIcon" class="uploadIcon">
+                                        <img id="right-logo" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="selectStyleArea">
+                                <div id="selectLeft">
+                                        <p class="prest-template">
+                                                预设模板
+                                            </p>
+                                            <div class="selectGroup">
+                                                <span class="selectCheck" id="pingpang">羽毛球/乒乓球</span>
+                                                <span>足球/篮球</span>
+                                                <span>其他</span>
+                                            </div>
+                                            <div class="styleGroup">
+                                                <div class="styleClass">
+                                                    <div class="styleTop" data-id="0">
+                                                        <img >
+                                                    </div>
+                                                    <p class="styleName">样式一</p>
+                                                </div>
+                                                <div class="styleClass">
+                                                    <div class="styleTop" data-id="1">
+                                                        <img >
+                                                    </div>
+                                                    <p class="styleName">样式二</p>
+                                                </div>
+                                                <div class="styleClass">
+                                                    <div class="styleTop" data-id="2">
+                                                        <img>
+                                                    </div>
+                                                    <p class="styleName">样式三</p>
+                                                </div>
+                                                <div class="styleClass">
+                                                    <div class="styleTop" data-id="3">
+                                                        <img>
+                                                    </div>
+                                                    <p class="styleName">样式四</p>
+                                                </div>
+                                            </div>
+                                </div> 
+                                <div id="selectRight">
+                                    <div class="showClarity">
+                                        <span class="clarityName">显示透明度</span>
+                                        <div id="claritySlide"></div><span class="clarityPercentage">100%</span>
+                                    </div>
+                                    <div class="showRadio">
+                                        <span class="showRadioName">显示位置</span>
+                
+                                        <p class="selectRadio layui-form">
+                                                <input type="radio" name="areaRadio" id="scoreLocation1" value="leftTop" title="左上方" 
+                                                    lay-filter="areaRadio">
+                                                <input type="radio" name="areaRadio" checked value="leftBottom" id="scoreLocation2" title="左下方"
+                                                    lay-filter="areaRadio">
+                                                <input type="radio" name="areaRadio" value="rightTop" id="scoreLocation3" title="右上方"
+                                                    lay-filter="areaRadio">
+                                                <input type="radio" name="areaRadio" value="rightBottom" id="scoreLocation4" title="右下方"
+                                                    lay-filter="areaRadio">
+                                                <input type="radio" name="areaRadio" value="bottomCenter" id="scoreLocation5" title="底部居中"
+                                                lay-filter="areaRadio">
+                                            </p>
+                                    </div>
+                
+                                    
+                                </div>
+                
+                            </div>
+                            <div class="scoreFoot">
+                                <button id="scoreSave" type="button" class="layui-btn">提交</button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="messageDialog">
+        <p id="messageDialogName">
+            消息
+        </p>
+        <div id="messageContent">
+        </div>
+    </div>
+    <script src="./../js/live.js"></script>
+    <script src="./../js/channel-set.js"></script>
+    
+</body>
+
+</html>

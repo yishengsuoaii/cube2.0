@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>微信登录</title>
+    <script src="../commonJs/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <script>
+        let data = window.location.search.substring(1).split("&")
+        var infoData = []
+            data.forEach(item => {
+                infoData.push(item.split("="))
+            })
+        $(function(){
+            $.ajax({
+			    type:"POST",
+			    dataType:"json",
+				async: false,
+			    url:"http://8.131.247.153/viewer/wx_login/",
+			    data:{"redirect_uri":"http://8.131.247.153/h5/playback.html?id="+infoData[0][1]+'|url='+infoData[1][1]+'|video_number_views='+infoData[2][1]+'|video_profile='+infoData[3][1]},
+			    success:function (result){
+					
+					if (result.msg  == "success") {
+						window.location.href =  result.data;
+					}
+			    },
+			});
+        })
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+.dataContent {
+  width: 1559px;
+}
+.dataContent #selectActive {
+  width: 300px;
+  height: 40px;
+}
+.dataContent #dataInfo {
+  height: 190px;
+  margin: 20px 0;
+}
+.dataContent #dataInfo #infoName {
+  padding: 0 20px;
+  height: 40px;
+  font-size: 16px;
+  color: #666;
+  background-color: #f5f5f5;
+  line-height: 40px;
+}
+.dataContent #dataInfo #infoCont {
+  padding: 25px 0;
+  height: 100px;
+  background-color: #fff;
+  border: 1px solid #f5f5f5;
+  display: flex;
+}
+.dataContent #dataInfo #infoCont .line {
+  width: 1px;
+  height: 100px;
+  background-color: #f0f0f0;
+}
+.dataContent #dataInfo #infoCont .dataArea {
+  flex: 1;
+}
+.dataContent #dataInfo #infoCont .dataArea p {
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 16px;
+  color: #465567;
+}
+.dataContent #dataInfo #infoCont .dataArea .dataNum {
+  color: #f2591a;
+}

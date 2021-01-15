@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./../commonJs/jquery-3.2.1.min.js"></script>
+    <script src="./../commonJs/flexible.js"></script>
+</head>
+<body>
+    <div id="container">
+        <div id="codeInput">
+            <input type="text" maxlength="1" id="code1">
+            <input type="text" maxlength="1" id="code2">
+            <input type="text" maxlength="1" id="code3">
+            <input type="text" maxlength="1" id="code4">
+            <input type="text" maxlength="1" id="code5">
+            <input type="text" maxlength="1" id="code6">
+        </div>
+        <div id="submit">点击进入</div>
+    </div>
+
+    <script>
+        let data=window.location.search.substring(1).split("&")
+        var infoData =[]
+        data.forEach(item=>{
+            infoData.push(item.split("="))
+        })
+        $(function(){
+
+            $.ajax({
+                url:'http://8.131.247.153/event/h5_login_password/',
+                type:'GET',
+                data:{
+                    event_uri_key:infoData[3][1]
+                },
+                success:function(res){
+                 
+                    if(res.msg==='success'){
+                        
+                        $('#container').css('background-image','url('+res.data.event_wallpaper+')')
+                    }
+                }
+            })
+
+
+            if(infoData[2][1]==='False'){
+                    $('#codeInput').show()
+            } else {
+                $('#codeInput').hide()
+            }
+            // 输入密码
+            $('#code1').focus(function () {
+				//第一个input框获得焦点时触发的事件
+				var txts = $("#codeInput input");
+				for (var i = 0; i < txts.length; i++) {
+					var t = txts[i];
+					t.index = i;
+					t.setAttribute("readonly", true);
+					t.onkeyup = function () {
+						
+						this.value = this.value.replace(/[^\d]/g,'');
+						var next = this.index + 1;
+						if (next > txts.length - 1) return;
+						txts[next].removeAttribute("readonly");
+						if (this.value) {
+							txts[next].focus();
+						}
+					}
+				}
+				txts[0].removeAttribute("readonly");
+			});
+
+			$("#codeInput").keydown(function (event) {
+				if (event.keyCode == 8) {
+					$('#codeInput input[type=text]').val("");
+					$('#code1').focus();
+				}
+			});
+
+
+
+
+            //decodeURI(infoData[0][1])
+            $('#submit').on('click',function(){
+
+                if(infoData[2][1]==='False'){
+                    var codeStr=$('#code1').val()
+                    codeStr+=$('#code2').val()
+                    codeStr+=$('#code3').val()
+                    codeStr+=$('#code4').val()
+                    codeStr+=$('#code5').val()
+                    codeStr+=$('#code6').val()
+                    if(codeStr.length<6) {
+                        alert('请输入密码')
+                    } else{
+                        $.ajax({
+                            url:'http://8.131.247.153/event/h5_login_password/',
+                            type:'POST',
+                            data:{
+                                event_uri_key:infoData[3][1],
+                                password: codeStr
+                            },
+                            success:function(res){
+                                if(res.msg==='success'){
+                                   window.location.href='http://8.131.247.153/h5/live.html'+window.location.search
+                                } else{
+                                    alert('密码错误,请重新输入')
+                                }
+                            }
+                        })
+                    }
+                } else {
+                    window.location.href='http://8.131.247.153/h5/live.html'+window.location.search
+                }
+            })
+        })
+    
+    
+    </script>
+</body>
+</html>

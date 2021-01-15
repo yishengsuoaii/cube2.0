@@ -1,0 +1,140 @@
+@media screen and (min-width: 750px) {
+  html {
+    font-size: 75px !important;
+  }
+}
+@media screen and (max-width: 320px) {
+  html {
+    font-size: 32px !important;
+  }
+}
+* {
+  margin: 0;
+}
+body {
+  width: 10rem !important;
+  min-width: 320px;
+  margin: 0 auto;
+}
+body #play {
+  width: 10rem !important;
+}
+body #play #videoBox {
+  display: block;
+}
+body #play .videoInfo {
+  width: 9.46666667rem !important;
+  height: 1.6rem !important;
+  padding: 0.26666667rem !important;
+  box-shadow: 0px 1px 2px #F0F0F0;
+}
+body #play .videoInfo .describe {
+  width: 9.46666667rem !important;
+  height: 1.06666667rem !important;
+  font-size: 0.42666667rem !important;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  line-height: 0.53333333rem !important;
+  color: #666666;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+body #play .videoInfo .viewNum {
+  height: 0.53333333rem !important;
+  font-size: 0.32rem !important;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  line-height: 0.53333333rem !important;
+  color: #999999;
+}
+body #play .comment {
+  width: 9.68rem !important;
+  height: 0.8rem !important;
+  font-size: 0.37333333rem !important;
+  font-family: Source Han Sans CN;
+  font-weight: 700;
+  line-height: 0.8rem !important;
+  color: #333333;
+  padding-left: 0.32rem !important;
+}
+body #play .commentBox {
+  width: 9.46666667rem !important;
+  padding: 10px 10px 0;
+  overflow-y: auto;
+}
+body #play .commentBox .comList {
+  width: 9.46666667rem !important;
+  min-height: 0.85333333rem !important;
+  margin-bottom: 0.26666667rem !important;
+  display: flex;
+}
+body #play .commentBox .comList .comImage {
+  width: 0.85333333rem !important;
+  height: 0.85333333rem !important;
+}
+body #play .commentBox .comList .comImage img {
+  display: block;
+  width: 0.74666667rem !important;
+  height: 0.74666667rem !important;
+  border-radius: 50%;
+}
+body #play .commentBox .comList .comInfo {
+  width: 8.61333333rem !important;
+}
+body #play .commentBox .comList .comInfo .comName {
+  width: 8.61333333rem !important;
+  height: 0.45333333rem !important;
+  font-size: 0.32rem !important;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  line-height: 0.45333333rem !important;
+  color: #666666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+body #play .commentBox .comList .comInfo .comMessage {
+  width: 8.61333333rem !important;
+  font-size: 0.32rem !important;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  line-height: 0.53333333rem !important;
+  color: #999999;
+  word-wrap: break-word;
+}
+body #play .sendBox {
+  width: 9.46666667rem !important;
+  height: 1.30666667rem !important;
+  padding: 0 10px 10px;
+  border-top: 0.02666667rem solid #ccc;
+}
+body #play .sendBox .messageInput {
+  width: 7.46666667rem !important;
+  height: 0.8rem !important;
+  padding: 0 0.26666667rem !important;
+  background: #F0F0F0;
+  border-radius: 5px;
+  line-height: 0.8rem !important;
+  margin-top: 0.25333333rem !important;
+  border: 0;
+  font-size: 0.32rem !important;
+  color: #666666;
+}
+body #play .sendBox #send-btn {
+  display: inline-block;
+  width: 1.22666667rem !important;
+  height: 0.8rem !important;
+  background: #FF914C;
+  border-radius: 0.08rem !important;
+  font-size: 0.32rem !important;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  line-height: 0.8rem !important;
+  color: #FFFFFF;
+  text-align: center;
+  margin-left: 0.24rem !important;
+}

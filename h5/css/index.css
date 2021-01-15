@@ -1,0 +1,60 @@
+@media screen and (min-width: 750px) {
+  html {
+    font-size: 75px!important;
+  }
+}
+@media screen and (max-width: 320px) {
+  html {
+    font-size: 32px!important;
+  }
+}
+* {
+  margin: 0;
+}
+body {
+  width: 10rem !important;
+  min-width: 320px;
+  margin: 0 auto;
+}
+body #container {
+  width: 10rem !important;
+  height: 100vh;
+  background: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+}
+body #container #codeInput {
+  width: 10rem !important;
+  height: 0.96rem !important;
+  position: absolute;
+  top: 40%;
+  text-align: center;
+  display: none;
+}
+body #container #codeInput input {
+  width: 1.28rem !important;
+  height: 0.90666667rem !important;
+  background-color: transparent;
+  border: none;
+  border-bottom: 0.02666667rem solid #FF914C;
+  color: #FF914C;
+  text-align: center;
+  outline: none;
+}
+body #container #submit {
+  width: 2.50666667rem !important;
+  height: 0.8rem !important;
+  line-height: 0.8rem !important;
+  background: #FF914C;
+  border-radius: 0.13333333rem !important;
+  font-size: 0.48rem !important;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+  top: 64%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./../layui/css/layui.css">
+    <link rel="stylesheet" href="./../css/common.css">
+    <link rel="stylesheet" href="./../css/userSet.css">
+    <script src="./../layui/layui.js"></script>
+    <script src="./../commonJs/jquery-3.2.1.min.js"></script>
+    <script src="./../js/common.js"></script>
+    <script src="./../js/userSet.js"></script>
+    <title>设置</title>
+    <style>
+        .layui-layer-title {
+			background-color: #FF914D !important;
+			color: #fff !important;
+			font-size: 20px !important;
+			font-family: Source Han Sans CN;
+			font-weight: 300;
+
+        }
+		.layui-layer-btn .layui-layer-btn0 {
+			background-color: #FF914D !important;
+			border: 0;
+		}
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <!--上方标题栏-->
+        <div class="parentTop">
+            <img class="logImage" src="./../image/login-logo.png">
+            <div class="loginNameDiv">
+                <div class="messageBox">
+                    <img src="./../image/message-icon.png" alt="" class="messageIcon">
+                    <span class="layui-badge-dot" id="hot"></span>
+                </div>
+                <div class="nameContent">
+                    <span class="userName"></span>
+                </div>
+                <div id="userExit">退出</div>
+            </div>
+        </div>
+        <div id="mainContent">
+            <!--左侧菜单-->
+            <ul class="leftMenu">
+                <li>
+                    <a href="./../index.html">
+                        <img class="menu-icon" width="35" height="28" src="./../image/channel-icon.png" alt="">频道
+                    </a>
+                </li>
+                <li>
+                    <a href="./portal.html">
+                        <img class="menu-icon" width="32" height="30" src="./../image/video-icon.png">门户
+                    </a>
+                </li>
+                <li>
+                    <a href="./media.html">
+                        <img class="menu-icon" width="32" height="26" src="./../image/media-library-icon.png">媒体库
+                    </a>
+                </li>
+                <li>
+                    <a href="./account.html">
+                        <img class="menu-icon" width="34" height="26" src="./../image/account-icon.png">账户
+                    </a>
+                </li>
+                <li>
+                    <a href="./data.html">
+                        <img class="menu-icon" width="32" height="24" src="./../image/data-icon.png">数据统计
+                    </a>
+                </li>
+                <li>
+                    <a href="./appStore.html">
+                        <img class="menu-icon" width="30" height="30" src="./../image/app-store-icon.png">应用商店
+                    </a>
+                </li>
+                <li>
+                    <a class="menuActive" href="./userSet.html">
+                        <img class="menu-icon" width="34" height="29" src="./../image/user-set-active-icon.png">设置
+                    </a>
+                </li>
+            </ul>
+
+            <!--主要内容区-->
+            <div class="parentMain">
+                <div id="contentBox">
+                    <p id="header">账号设置</p>
+                    <div id="content">
+                        <div class="imageBox">
+                            <img id="userImage">
+                        </div>
+                        <div id="uploadImage">
+                            上传头像
+                        </div>
+                        <div id="line"></div>
+                        <div class="userNameBox">
+                            <p class="userNameInfo">
+                                用户名:
+                                <span class="userName"></span>
+                            </p>
+                            <p class="editNameBtn">
+                                修改用户名<i class="layui-icon layui-icon-down" id="nameArrows"
+                                    style="font-size: 20px; color: #FF914D;"></i>
+                            </p>
+                        </div>
+                        <div class="editNameBox">
+                            <p class="newName">新用户名:</p>
+                            <input type="text" id="nameInput" maxlength="16">
+                            <div id="name-submit">提交</div>
+                        </div>
+                        <p class="mobile">
+                            手机号:<span></span>
+                        </p>
+                        <p class="userPass">
+                            <span>登录密码</span>
+                            <span id="editPassBtn">修改密码<i class="layui-icon layui-icon-down" id="passArrows"
+                                    style="font-size: 20px; color: #FF914D;"></i></span>
+                        </p>
+                        <div class="editPassBox">
+                            <p class="passName">原始密码:</p>
+                            <input type="password" class="passInput" id="pass1" maxlength="16">
+                            <p class="passName">新密码:</p>
+                            <input type="password" class="passInput" id="pass2" maxlength="16">
+                            <p class="passName">确认密码:</p>
+                            <input type="password" class="passInput" id="pass3" maxlength="16">
+                            <div id="pass-submit">提交</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="messageDialog">
+        <p id="messageDialogName">
+            消息
+        </p>
+        <div id="messageContent">
+        </div>
+    </div>
+</body>
+
+</html>

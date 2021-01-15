@@ -1,0 +1,29 @@
+.parentMain .container-box {
+  width: 1559px;
+  height: 720px;
+  background-color: #FFFFFF;
+}
+.parentMain .container-box .head {
+  height: 60px;
+  box-sizing: border-box;
+  background-color: #FF914D;
+  font-size: 24px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 60px;
+  padding: 0 20px;
+}
+.parentMain .container-box .application-list {
+  box-sizing: border-box;
+  padding: 80px 0 0 99px;
+}
+.parentMain .container-box .application-list img {
+  width: 610px;
+  height: 153px;
+  margin-bottom: 20px;
+  vertical-align: top;
+}
+.parentMain .container-box .application-list .imgRight {
+  margin-right: 140px;
+}

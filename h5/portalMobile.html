@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>门户</title>
+    <link rel="stylesheet" href="./css/portalMobile.css">
+    <script src="../commonJs/jquery-3.2.1.min.js"></script>
+    <script src="./../commonJs/flexible.js"></script>
+</head>
+<body>
+    <div class="header">
+        <a id="coverUrl">
+            <img src="./image/mobile-cover.png" alt="" id="coverImage">
+        </a>
+    </div>
+    <div class="portalInfo">
+        <img src="./image/mobile-cover.png" alt="" id="portalUser">
+        <div class="particularInfo">
+            <p class="portalName">名称</p>
+            <p class="portalDescribe"></p>
+            <p class="portalShow">
+                <img src="./image/mobile-eye.png" alt="">
+                <span class="showNum">访问量:11万</span>
+                <span class="portalBtn">简介</span>
+            </p>
+        </div>
+    </div>
+    <div class="segmentation-line"></div>
+    <div class="wonderful-channel">
+        <p class="wonderful-recommend">精彩推荐
+        </p>
+        <div class="wonderful-channel-cont">
+                <p class="add-wonderful">立即添加精彩频道</p>
+        </div>
+    </div>
+    <div class="segmentation-line"></div>
+    <div class="wonderful-video">
+        <p class="add-wonderful">立即添加精彩视频</p>
+    </div>
+
+    <script>
+    $(function(){
+       let token=window.location.search.substring(1).split("=")[1]
+
+        // 获取门户基本信息
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            async: false,
+            headers: {token:token},
+            url: "http://8.131.247.153/channel/channel_info/",
+            success: function (res) {
+                if(res.msg === 'success') {
+                    if(res.data.channel_wallpaper !=='http://content.changsmart.com/channel_wallpaper/default.jpg') {
+                        $("#coverImage").prop('src',  res.data.channel_wallpaper+'?'+new Date().getTime()) //封面图片
+                    }
+                    $('.portalName').text(res.data.channel_name)
+                    $('.portalDescribe').text(res.data.channel_description)
+                    if(res.data.channel_wallpaper_url!==''&&res.data.channel_wallpaper_url!==null){
+                        $('#coverUrl').prop('href',res.data.channel_wallpaper_url)
+                    }   
+                } 
+            }
+        })
+
+
+        // 获取门户 头像
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            async: false,
+            headers: {token:token},
+            url: "http://8.131.247.153/account/check_account_thundernail/",
+            success: function (res) {
+                if(res.msg === 'success') {
+                    if(res.data.account_thundernail !=='http://content.changsmart.com/account/default.png') {
+                        $('#portalUser').prop('src',res.data.account_thundernail)
+                    }
+                } 
+            }
+        })
+
+
+         // 获取已经添加的频道 和 视频
+         let addedChannelData =[]
+        let addedVideoData = []
+
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            async: false,
+            headers: {token:token},
+            url:'http://8.131.247.153/channel/portal_display/',
+            success:function(res){
+                if(res.msg === 'success') {
+                    addedChannelData = res.data.data.event
+                    addedVideoData = res.data.data.video
+                    renderViewChannel()
+                    renderViewVideo()
+                }
+            }
+        })
+
+       
+            // 渲染已经添加的频道
+        function renderViewChannel(){
+            var str1=''
+            if(addedChannelData.length>0) {
+                addedChannelData.forEach((item,index)=>{
+                    str1+=
+                    `<div class="wonderful-channel-list" data-key="${item.event_uri}">
+                                <img src="${item.event_video_cover_page}" alt="">
+                                <span class="wonderful-channel-list-name">
+                                    ${item.event_title}
+                                </span>
+                            </div>`
+            
+                })
+            }
+            else {
+                str1='<p class="add-wonderful">立即添加精彩频道</p>'
+            }
+            $('.wonderful-channel-cont').html(str1)
+        }
+
+        // 渲染已经添加的视频
+        function renderViewVideo(){
+            var str1 = ''
+                    
+            if(addedVideoData.length>0){
+                addedVideoData.forEach((item,index)=>{
+                    str1+=`
+                        <div class="wonderful-video-list" data-id="${item.video_id}" data-src="${item.video_uri}" data-view="${item.video_number_views}" data-profile="${item.video_profile}">
+                            <p class="wonderful-video-describe">
+                                ${item.video_profile}
+                            </p>
+                            <img src="./../image/mobile-cover.png" alt="" class="wonderful-video-cover">
+                            <p class="wonderful-video-info">
+                                <span>${item.datetime}</span>
+                                <span class="wonderful-video-view">
+                                    <img src="./../image/mobile-eye.png" alt="">
+                                    ${item.video_number_views}次
+                                </span>
+                            </p>
+                            <p class="wonderful-video-bg"></p>
+                        </div>
+                    `
+                })
+                
+            } else {
+                str1 = '<p class="add-wonderful" id="addVideo">立即添加精彩视频</p>'
+            }
+            $('.wonderful-video').html(str1)
+        }
+        $('.portalInfo').on('click',function(event){
+            event.stopPropagation()
+            event.preventDefault()
+        })
+        // 简介展开 收缩
+        $('.portalBtn').on('click',function(){
+            $('.portalDescribe').slideToggle()
+            event.stopPropagation()
+            event.preventDefault()
+        })
+        // 点击频道跳转
+        $('.wonderful-channel-cont').on('click','.wonderful-channel-list',function(){
+            window.location.href='http://8.131.247.153/h5/wxlogin.html?key='+$(this).attr('data-key').substr(20)
+        })
+        $('.wonderful-video').on('click','.wonderful-video-list',function(){
+            window.location.href='http://8.131.247.153/h5/wxminlogin.html?id='+$(this).attr('data-id')+'&src='+$(this).attr('data-src')+'&view='+$(this).attr('data-view')+'&profile='+$(this).attr('data-profile')
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                async: false,
+                headers: {token:token},
+                url: "http://8.131.247.153/video_editing/video_number_clicks/",
+                data:{
+                    video_id:$(this).attr('data-id')
+                }
+            })
+        })
+    })
+    
+    </script>
+</body>
+</html>
