@@ -59,7 +59,11 @@
                     $('.portalName').text(res.data.channel_name)
                     $('.portalDescribe').text(res.data.channel_description)
                     if(res.data.channel_wallpaper_url!==''&&res.data.channel_wallpaper_url!==null){
-                        $('#coverUrl').prop('href',res.data.channel_wallpaper_url)
+                        if(res.data.channel_wallpaper_url.startsWith('http://')||res.data.channel_wallpaper_url.startsWith('https://')){
+                            $('#coverUrl').prop('href',res.data.channel_wallpaper_url)
+                        } else {
+                            $('#coverUrl').prop('href','http://'+res.data.channel_wallpaper_url)
+                        }
                     }   
                 } 
             }
