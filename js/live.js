@@ -21,15 +21,17 @@ $(function () {
     var logoFlag = 'True'
     var logoOrientation = 1
 
-    // 3路实例
+    // 4路实例
     var oneLive = null
     var oneLiveSrc = null //每路src
     var twoLive = null
     var twoLiveSrc = null
     var threeLive = null
     var threeLiveSrc = null
-    // 输出实例
     var fourLive = null
+    var fourLiveSrc = null
+    // 输出实例
+    var outputLive = null
 
     // 比分文件
     var fileScore = null
@@ -57,15 +59,18 @@ $(function () {
         oneHeadFlag: false,
         twoHeadFlag: false,
         threeHeadFlag: false,
+        fourHeadFlag: false,
         liveHeadFlag: false,
         // 一二三机位音量大小
         oneMuteSize: 7,
         twoMuteSize: 7,
         threeMuteSize: 7,
+        fourMuteSize: 7,
         // tab栏切换保存机位一二三耳机状态
         cutOneHeadFlag: false,
         cutTwoHeadFlag: false,
         cutThreeHeadFlag: false,
+        cutFourHeadFlag: false,
         cutLiveHeadFlag: false,
     }
 
@@ -73,10 +78,12 @@ $(function () {
     var oneMuteFlag = true
     var twoMuteFlag = true
     var threeMuteFlag = true
+    var fourMuteFlag = true
     // 机位一二三滑块实例
     var slide_one = null
     var slide_two = null
     var slide_three = null
+    var slide_four = null
 
 
     // 所有样式 比分牌---------------------------------------------------------------------------------------------
@@ -201,8 +208,13 @@ $(function () {
                         threeLiveSrc = res.data[3]
 
                         fourLive = new AliRTS();
-                        fourLive.startLiveStream(res.data[4], document.getElementById("liveRight-video"));
+                        fourLive.startLiveStream(res.data[4], document.getElementById("cameraFour"));
                         fourLive.muteLiveStream(true)
+                        fourLiveSrc = res.data[4]
+
+                        outputLive = new AliRTS();
+                        outputLive.startLiveStream(res.data[5], document.getElementById("liveRight-video"));
+                        outputLive.muteLiveStream(true)
 
                         if (sessionStorage.getItem(event_code)) {
                             allInfo = JSON.parse(sessionStorage.getItem(event_code))
@@ -540,6 +552,43 @@ $(function () {
             }
         })
 
+        slide_four = slider.render({
+            elem: '#slideFour',
+            min: 0,
+            max: 10,
+            step: 1,
+            value: 7,
+            type: 'vertical',
+            theme: '#FF914D',
+            setTips: function (value) { //自定义提示文本
+                return value / 10;
+            },
+            change: function (value) {
+                $('#slideFour .layui-slider-bar').css({
+                    height: value * 100 + '%'
+                })
+                if (value === 0) {
+                    fourMuteFlag = false
+                    $('#four-mute').attr('src', '/image/mute-close.png')
+                } else {
+                    fourMuteFlag = true
+                    $('#four-mute').attr('src', '/image/mute-open.png')
+                }
+                allInfo.fourMuteSize = value * 10
+                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+            }
+        })
+
+        $('#four-mute').on('click', function () {
+            if (fourMuteFlag) {
+                fourMuteFlag = false
+                slide_four.setValue(0)
+            } else {
+                fourMuteFlag = true
+                slide_four.setValue(7)
+            }
+        })
+
         $('.live-tab-title li').on('click', function () {
             $(this).addClass('active-this').siblings('li').removeClass('active-this')
             var index = $(this).index()
@@ -567,14 +616,18 @@ $(function () {
                 if (allInfo.cutThreeHeadFlag) {
                     threeLive.muteLiveStream(false)
                 }
-                if (allInfo.cutLiveHeadFlag) {
+                if (allInfo.cutFourHeadFlag) {
                     fourLive.muteLiveStream(false)
+                }
+                if (allInfo.cutLiveHeadFlag) {
+                    outputLive.muteLiveStream(false)
                 }
             } else {
                 oneLive.muteLiveStream(true) // 静音
                 twoLive.muteLiveStream(true)
                 threeLive.muteLiveStream(true)
                 fourLive.muteLiveStream(true)
+                outputLive.muteLiveStream(true)
             }
         })
 
@@ -659,6 +712,7 @@ $(function () {
             })
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
         })
+
         // 机位一二三切换----------------------------------------------------------------------------------------------------
 
         $('#cameraOne').on('click', function () {
@@ -679,6 +733,12 @@ $(function () {
             cameraCut({
                 src: threeLiveSrc,
                 name: 3
+            })
+        })
+        $('#cameraFour').on('click', function () {
+            cameraCut({
+                src: fourLiveSrc,
+                name: 4
             })
         })
 
@@ -736,6 +796,11 @@ $(function () {
         $('#three-cut').on('click', function () {
             renderOne()
             $('#cameraThree').trigger('click')
+            sendInstruct()
+        })
+        $('#four-cut').on('click', function () {
+            renderOne()
+            $('#cameraFour').trigger('click')
             sendInstruct()
         })
         // 单机位时渲染dom
@@ -808,6 +873,26 @@ $(function () {
             }
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
         })
+        $('#four-headset').on('click', function () {
+            if (allInfo.fourHeadFlag) {
+                $(this).attr('src', './../image/headset-close.png').css({
+                    width: '24px',
+                    height: '22px'
+                })
+                allInfo.fourHeadFlag = false
+                allInfo.cutFourHeadFlag = false
+                fourLive.muteLiveStream(true)
+            } else {
+                allInfo.fourHeadFlag = true
+                allInfo.cutFourHeadFlag = true
+                $(this).attr('src', './../image/headset-open.png').css({
+                    width: '24px',
+                    height: '18px'
+                })
+                fourLive.muteLiveStream(false)
+            }
+            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+        })
         // 直播耳机静音
         $('#live-headset').on('click', function () {
             if (allInfo.liveHeadFlag) {
@@ -817,7 +902,7 @@ $(function () {
                 })
                 allInfo.liveHeadFlag = false
                 allInfo.cutLiveHeadFlag = false
-                fourLive.muteLiveStream(true)
+                outputLive.muteLiveStream(true)
             } else {
                 allInfo.liveHeadFlag = true
                 allInfo.cutLiveHeadFlag = true
@@ -825,7 +910,7 @@ $(function () {
                     width: '24px',
                     height: '18px'
                 })
-                fourLive.muteLiveStream(false)
+                outputLive.muteLiveStream(false)
             }
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
         })
@@ -905,6 +990,20 @@ $(function () {
                 threeLive.muteLiveStream(true)
             }
 
+            if (allInfo.fourHeadFlag) {
+                $('#four-headset').attr('src', './../image/headset-open.png').css({
+                    width: '24px',
+                    height: '18px'
+                })
+                fourLive.muteLiveStream(false)
+            } else {
+                $('#four-headset').attr('src', './../image/headset-close.png').css({
+                    width: '24px',
+                    height: '22px'
+                })
+                fourLive.muteLiveStream(true)
+            }
+
             // 直播耳机静音
 
             if (allInfo.liveHeadFlag) {
@@ -912,13 +1011,13 @@ $(function () {
                     width: '24px',
                     height: '18px'
                 })
-                fourLive.muteLiveStream(false)
+                outputLive.muteLiveStream(false)
             } else {
                 $('#live-headset').attr('src', './../image/headset-close.png').css({
                     width: '24px',
                     height: '22px'
                 })
-                fourLive.muteLiveStream(true)
+                outputLive.muteLiveStream(true)
             }
             // 一二三机位音量
 
@@ -926,6 +1025,7 @@ $(function () {
                 slide_one.setValue(allInfo.oneMuteSize)
                 slide_two.setValue(allInfo.twoMuteSize)
                 slide_three.setValue(allInfo.threeMuteSize)
+                slide_four.setValue(allInfo.fourMuteSize)
             }, 1000)
         }
 
@@ -1876,7 +1976,8 @@ $(function () {
                          // 机位音量
                         oneVolume: allInfo.oneMuteSize / 10,
                         twoVolume: allInfo.twoMuteSize / 10,
-                        threeVolume: allInfo.threeMuteSize / 10
+                        threeVolume: allInfo.threeMuteSize / 10,
+                        fourVolume: allInfo.fourMuteSize / 10
                     }
                 }
             }

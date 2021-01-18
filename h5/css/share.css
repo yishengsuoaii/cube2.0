@@ -19,9 +19,12 @@ body {
 body #shareBox {
   width: 10rem !important;
   height: 100vh;
-  background: transparent no-repeat;
-  background-size: 100% 100%;
   position: relative;
+}
+body #shareBox #shareBg {
+  display: block;
+  width: 10rem !important;
+  height: 100vh;
 }
 body #shareBox #userImage {
   width: 1.44rem !important;

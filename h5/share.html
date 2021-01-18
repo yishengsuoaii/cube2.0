@@ -12,6 +12,7 @@
 </head>
 <body>
     <div id="shareBox">
+        <img  alt="" id="shareBg">
         <img id="userImage" alt="">
         <p id="userName"></p>
         <p id="channelName"></p>
@@ -31,7 +32,7 @@
                 },
                 success:function(res) {
                     if(res.msg==='success') {
-                        $('#shareBox').css('background-image','url('+res.data.card_stytle_url +')')
+                        $('#shareBg').attr('src',res.data.card_stytle_url)
                         $('#userImage').attr('src',res.data.account_thundernail)
                         $('#userName').text(res.data.account_name)
                         $('#channelName').text(res.data.event_title)
