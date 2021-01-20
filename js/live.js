@@ -34,8 +34,8 @@ $(function () {
     var outputLive = null
 
     // 比分文件
-    var fileScore = null
-    var scoreLocation = null
+    var fileScore = 0
+    var scoreLocation = 0
 
     // 直播控制实例
     var aliRts
@@ -1735,8 +1735,8 @@ $(function () {
             $('#check-model').empty('')
             $('#scoreBrand').empty('').hide()
             $('#score-shade').show()
-            fileScore = null
-            scoreLocation = null
+            fileScore = 0
+            scoreLocation = 0
             sessionStorage.removeItem('score' + event_code)
             sessionStorage.removeItem('scoreImage' + event_code)
             $('#logo-radio1').removeAttr('disabled')
