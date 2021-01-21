@@ -1946,13 +1946,21 @@ $(function () {
                 allInfo.twoSrc.forEach(item => {
                     cameraOrder.push(item.name)
                 })
+                if(cameraOrder[0]===cameraOrder[1]){
+                    layer.msg('机位重复,请重新选择!')
+                    return
+                }
+                
             } else if (allInfo.numberFlag === 3) {
                 threeSpell = 1
                 allInfo.threeSrc.forEach(item => {
                     cameraOrder.push(item.name)
                 })
+                if(cameraOrder[0]===cameraOrder[1] || cameraOrder[0]===cameraOrder[2] || cameraOrder[2]===cameraOrder[1]){
+                    layer.msg('机位重复,请重新选择!')
+                    return
+                }
             }
-
             //机位音量
 
 
