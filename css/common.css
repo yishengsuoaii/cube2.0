@@ -81,10 +81,10 @@
   cursor: pointer;
 }
 #container #mainContent .leftMenu li a {
-  display: block;
+  display: flex;
+  align-items: center;
   width: 216px;
   height: 80px;
-  line-height: 80px;
   font-size: 30px;
   font-family: Source Han Sans CN;
   font-weight: 400;
