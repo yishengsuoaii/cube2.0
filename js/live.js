@@ -72,6 +72,9 @@ $(function () {
         cutThreeHeadFlag: false,
         cutFourHeadFlag: false,
         cutLiveHeadFlag: false,
+        gestureFlag: 0,
+        replaceFlag: 0,
+        scoreUpdata: 0
     }
 
     // 机位一二三滑块----------------------------------------------------------------------------------------------
@@ -786,21 +789,25 @@ $(function () {
         $('#one-cut').on('click', function () {
             renderOne()
             $('#cameraOne').trigger('click')
+            allInfo.scoreUpdata = 0
             sendInstruct()
         })
         $('#two-cut').on('click', function () {
             renderOne()
             $('#cameraTwo').trigger('click')
+            allInfo.scoreUpdata = 0
             sendInstruct()
         })
         $('#three-cut').on('click', function () {
             renderOne()
             $('#cameraThree').trigger('click')
+            allInfo.scoreUpdata = 0
             sendInstruct()
         })
         $('#four-cut').on('click', function () {
             renderOne()
             $('#cameraFour').trigger('click')
+            allInfo.scoreUpdata = 0
             sendInstruct()
         })
         // 单机位时渲染dom
@@ -1027,8 +1034,33 @@ $(function () {
                 slide_three.setValue(allInfo.threeMuteSize)
                 slide_four.setValue(allInfo.fourMuteSize)
             }, 1000)
+            // 渲染手势检测
+            if(allInfo.gestureFlag === Number(0)) {
+                $('#gesture-btn').text('开启').css('background-color','#ff914d')
+            } else {
+              $('#gesture-btn').text('关闭').css('background-color','#f2591a')
+            }
+            // 渲染背景替换
+            $('.bg-item').removeClass('bg-active').eq(allInfo.replaceFlag).addClass('bg-active')
         }
-
+        // 手势检测-------------------------------------------------------------------------------------------------
+        $('#gesture-btn').on('click',function(){
+            if(allInfo.gestureFlag === Number(0)) {
+                allInfo.gestureFlag = 1
+                $(this).text('关闭').css('background-color','#f2591a')
+            } else {
+                allInfo.gestureFlag = 0
+                $(this).text('开启').css('background-color','#ff914d')
+            }
+            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+        })
+        // 背景替换------------------------------------------------------------------------------------------------
+        $('.bg-item').on('click',function(){
+            $(this).addClass('bg-active').siblings().removeClass('bg-active')
+            allInfo.replaceFlag = $(this).index()
+              
+            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+        })
 
         // 添加模板--------------------------------------------------------------------------------------------------------------------------------
 
@@ -1754,6 +1786,7 @@ $(function () {
                 onrendered: function (canvas) {
                     fileScore = canvas.toDataURL('image/png', 1.0)
                     sessionStorage.setItem('scoreImage' + event_code, canvas.toDataURL('image/png', 1.0))
+                    allInfo.scoreUpdata = 1
                     sendInstruct()
 
                 },
@@ -1926,6 +1959,7 @@ $(function () {
 
         // 切换往后台发数据
         $('#switchover').on('click', function () {
+            allInfo.scoreUpdata = 0
             sendInstruct()
         })
 
@@ -1950,7 +1984,6 @@ $(function () {
                     layer.msg('机位重复,请重新选择!')
                     return
                 }
-                
             } else if (allInfo.numberFlag === 3) {
                 threeSpell = 1
                 allInfo.threeSrc.forEach(item => {
@@ -1961,6 +1994,7 @@ $(function () {
                     return
                 }
             }
+
             //机位音量
 
 
@@ -1976,6 +2010,7 @@ $(function () {
                         cameraOrder: cameraOrder,
                     },
                     score:{
+                        scoreUpdata: allInfo.scoreUpdata,
                         scoreLocation: scoreLocation
                     }
                 },

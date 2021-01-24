@@ -1620,6 +1620,36 @@
   color: #F2591A;
   line-height: 22px;
 }
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #bg-replace {
+  width: 1000px;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #bg-replace .bg-item {
+  width: 96px;
+  height: 96px;
+  background-color: #fff;
+  margin: 0 20px;
+  border: 2px solid #302f2f;
+  cursor: pointer;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #bg-replace .bg-active {
+  border: 2px solid #FF914D;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #gesture-detection {
+  width: 1000px;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #gesture-detection .layui-btn {
+  width: 100px;
+  font-size: 18px;
+  background-color: #ff914d;
+}
 /* 比分牌弹窗 样式*/
 #scoreDialog {
   display: none;
