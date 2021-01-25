@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./../layui/css/layui.css">
     <link rel="stylesheet" href="./../css/common.css">
     <link rel="stylesheet" href="./../css/live.css">
+    <link rel="stylesheet" href="./../css/video-js.min.css">
     <script src="./../layui/layui.js"></script>
     <script src="./../commonJs/jquery-3.2.1.min.js"></script>
     <script src="./../js/common.js"></script>
@@ -15,6 +16,7 @@
     <script src="./../commonJs/html2canvas.js"></script>
     <script src="./../commonJs/aliyun-rts-sdk.js"></script>
     <script src="./../commonJs/qrcode.js"></script>
+    <script src="./../commonJs/video.min.js"></script>
     <title>直播间</title>
     <style>
         .layui-layer-title {
@@ -122,6 +124,7 @@
                                     <div class="channel-set">
                                        <ul class="channel-set-aside">
                                            <li class="active-aside aside-list">基础设置</li>
+                                           <li class="aside-list">视频预告</li>
                                            <li class="aside-list">活动简介</li>
                                            <li class="aside-list">邀请卡分享</li>
                                            <li class="aside-list">自定义广告</li>
@@ -373,6 +376,54 @@
                                                                     <p class="encryption-preview">预览:</p>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="channel-set-item">
+                                                <div id="videoPreview">
+                                                    <form class="layui-form preview-form">
+                                                        <div class="layui-form-item">
+                                                            <label class="layui-form-label">视频显示</label>
+                                                            <div class="layui-input-block">
+                                                                <input type="checkbox" name="switch" lay-skin="switch" id="preview-open" lay-filter="preview-open">
+                                                                <span class="preview-info">（功能开启后，当您不在直播时，用户可点击播放该视频）</span>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <p class="preview-name">预览:</p>
+                                                    <div class="preview-video">
+                                                        <video id="viewVideos" class="video-js vjs-big-play-centered"></video>
+                                                        <p class="preview_select">选择视频</p>
+                                                    </div>
+                                                    <p class="previewVideo-btn">提交</p>
+
+                                                    <div id="video-dialog">
+                                                        <div class="vd-content">
+                                                            <p class="select-search">
+                                                                已选视频: <span class="check-video-num">0</span>个
+                                                                <span class="search-video">
+                                                                    <input type="text" class="search-video-input" placeholder="输入文件名"><span
+                                                                        class="search-video-btn"><img src="../image/搜索.png" alt=""></span>
+                                                                </span>
+                                                            </p>
+                                                            <hr />
+                                                            <div class="vd-content-main">
+                                                                <div class="vd-content-main-top">
+                                                                </div>
+                                                                <div class="vd-content-main-foot">
+                                                                    <div id="video-page"></div>
+                                                                </div>
+                                                            </div>
+                                                
+                                                        </div>
+                                                        <div class="vd-footer">
+                                                            <span class="mediaUpload">
+                                                                没有合适的视频？
+                                                                <a href="./media.html">去媒体库上传</a>
+                                                            </span>
+                                                            <button type="button" class="layui-btn layui-btn-primary" id="video-cancel">取消</button>
+                                                            <button type="button" class="layui-btn layui-btn-danger" id="video-confirm">确定</button>
                                                         </div>
                                                     </div>
                                                 </div>

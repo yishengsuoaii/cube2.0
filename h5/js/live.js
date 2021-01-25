@@ -6,6 +6,7 @@ data.forEach(item => {
 })
 let event_uri_key = infoData[3][1]
 let timers = null
+let timer2 = null
 let videoPoster = ''
 let videoJs = ''
 var sessionTimers = null
@@ -54,12 +55,7 @@ $(function () {
                 }
                 // 活动简介
                 $('.brierImage').attr('src', res.data.event_description_image)
-                // 是否开启倒计时
-                if (res.data.event_countdown) {
-                    downtime(res.data.event_start_time, res.data.live_countdown)
-                } else {
-                    getVideoUrl()
-                }
+               
                 // 活动封面
                 videoPoster = res.data.event_video_cover_page
                 videoJs = videojs('videoBox', {
@@ -69,6 +65,12 @@ $(function () {
                     aspectRatio: '16:9',
                     poster: videoPoster,
                 })
+                 // 是否开启倒计时
+                if (res.data.event_countdown) {
+                    downtime(res.data.event_start_time, res.data.live_countdown,res.data.event_playback_flag,res.data.event_playback_url)
+                } else {
+                    downtimes(res.data.event_start_time, res.data.live_countdown,res.data.event_playback_flag,res.data.event_playback_url)
+                }
                 //是否在线人数
                 if (res.data.event_number_flag) {
                     if (res.data.event_display_position === 1) {
@@ -174,7 +176,7 @@ $(function () {
         })
     })
     // 定时器
-    function downtime(startTime, value) {
+    function downtime(startTime, value,flag,url) {
         var date1 = new Date(startTime.replace('T', ' ')).getTime()
         var date2 = Date.now()
         var day = 00
@@ -184,14 +186,20 @@ $(function () {
 
         clearInterval(timers)
         if (date1 > date2) {
-            var intDiff = parseInt((date1 - date2) / 1000);
-            timers = setInterval(function () {
-                if (value === 1) {
-                    $('#centerDown').show()
-                } else {
-                    $('#topDown').show()
+            var intDiff = parseInt((date1 - date2) / 1000)
+            if(flag){
+                if(url!==null){
+                    videoJs.src({
+                        type: 'application/x-mpegURL',
+                        src: url
+                    })
+                    videoJs.on('play',function(){
+                        $('#topDown').hide()
+                        $('#centerDown').hide()
+                    })
                 }
-
+            }
+            timers = setInterval(function () {
                 if (Math.floor(intDiff / (60 * 60 * 24)) < 10) {
                     day = '0' + Math.floor(intDiff / (60 * 60 * 24))
                 } else {
@@ -255,10 +263,43 @@ $(function () {
                     $('#centerDown').hide()
                     getVideoUrl()
                 }
-            }, 1000);
+            }, 1000)
+            setTimeout(()=>{
+                if (value === 1) {
+                    $('#centerDown').show()
+                } else {
+                    $('#topDown').show()
+                }
+            },1000)
         } else {
             $('#topDown').hide()
             $('#centerDown').hide()
+            getVideoUrl()
+        }
+
+    }
+    function downtimes(startTime, value,flag,url) {
+        var date1 = new Date(startTime.replace('T', ' ')).getTime()
+        var date2 = Date.now()
+        clearInterval(timer2)
+        if (date1 > date2) {
+            var intDiff = parseInt((date1 - date2) / 1000)
+            if(flag){
+                if(url!==null){
+                    videoJs.src({
+                        type: 'application/x-mpegURL',
+                        src: url
+                    })
+                }
+            }
+            timer2 = setInterval(function () {
+                intDiff--;
+                if (intDiff <= 0) {
+                    clearInterval(timer2)
+                    getVideoUrl()
+                }
+            }, 1000);
+        } else {
             getVideoUrl()
         }
 

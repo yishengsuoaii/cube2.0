@@ -12,6 +12,7 @@ $(function () {
     // 频道设置切换侧边栏
     $('.aside-list').on('click', function () {
         $(this).addClass('active-aside').siblings('li').removeClass('active-aside')
+        videoJs.pause()
         $('.channel-set-item').hide().eq($(this).index()).show()
     })
 
@@ -24,7 +25,7 @@ $(function () {
     var timers = null
     var countDownFlag = 'True'
     var countDownOrientation = 0
-    
+
     // 加密
     var codeFlag = 'True'
 
@@ -35,12 +36,246 @@ $(function () {
     var adFlag = 'True'
     let imageFile = ''
 
+    // 所有视频
+    var previewFlag = 'False'
+    let allVideoData = []
+    // 过滤所有视频
+    let filterVideoData = []
+    // 暂时频道
+    let videoUrl = null
+    let videoCode = null
+    var videoJs = videojs('viewVideos', {
+        muted: false,
+        controls: true,
+        preload: 'auto',
+        width: '750',
+        height: "428",
+    })
+
     layui.use(['form', 'element', 'jquery', 'layer', 'upload'], function () {
         var form = layui.form;
         var element = layui.element;
         var layer = layui.layer;
         var jquery = layui.jquery;
         var upload = layui.upload;
+
+        // 视频预告------------------------------------------------------------------------------------------------------------------
+        form.on('switch(preview-open)', function (data) {
+            if (data.elem.checked) {
+                previewFlag = 'True'
+            } else {
+                previewFlag = 'False'
+            }
+            
+        })
+        // 获取视频预告
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            async: false,
+            headers: {
+                token: sessionStorage.getItem('token')
+            },
+            url: "http://8.131.247.153/video_editing/get_thumbnails/",
+            data: {
+                event_id: event_id
+            },
+            success: function (res) {
+                if (res.msg === 'success') {
+                   if(res.data.event_playback_flag) {
+                    previewFlag = 'True'
+                    $("#preview-open").attr('checked', 'checked');
+                   } else{
+                    previewFlag = 'False'
+                    $("#preview-open").removeAttr('checked');
+                   }
+                   if(res.data.event_playback_uri!==null) {
+                       videoJs.src({
+                        type: 'application/x-mpegURL',
+                        src: res.data.event_playback_uri
+                    })
+                   }
+                    form.render('checkbox')
+                }
+                
+            }
+        })
+        $('.preview_select').on('click', function () {
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                async: false,
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                url: "http://8.131.247.153/video/video_list/",
+                data: {
+                    save_flag: 'media_library'
+                },
+                success: function (res) {
+                    if (res.msg === 'success') {
+                        allVideoData = res.data
+                    } else {
+                        layer.msg('获取视频列表失败,请重试!');
+                    }
+                }
+            })
+            videoCode = null
+            $('.search-video-input').val('')
+            $('.check-video-num').text(0)
+            layer.open({
+                type: 1,
+                area: ['1170px', '753px'],
+                title: ['添加视频', 'color:#fff'],
+                content: $('#video-dialog'),
+                shade: 0.3,
+                shadeClose: true,
+                closeBtn: 0,
+                resize: false,
+                scrollbar: false,
+                shadeClose: false,
+            })
+            videoFiltrate()
+
+        })
+
+        //视频 选中 取消 change
+        form.on('radio(video-checkbox)', function (data) {
+            $('.vd-content-main-list-check').removeProp('checked')
+            form.render('radio')
+            var videoId = Number(data.value)
+            videoCode = data.elem.dataset.value
+            $('.check-video-num').text(1) //选中+1
+            allVideoData.forEach(item => { //选中 添加标记
+                if (item.video_id === videoId) {
+                    item.checked = 'checked'
+                } else {
+                    delete item.checked
+                }
+            })
+        })
+
+
+        // 视频分页
+        function videoPage(pageIndex) {
+            var str = ''
+            var length = filterVideoData.length > pageIndex * 6 ? 6 : filterVideoData.length - (pageIndex - 1) * 6
+            for (var i = 0; i < length; i++) {
+                var index = i + (pageIndex - 1) * 6
+                str += `<div class="vd-content-main-list"><video class="vd-video video-js vjs-default-skin"  preload="auto" controls></video><div class="vd-content-main-list-info">
+				<span class="vd-content-main-list-name">${filterVideoData[index].video_profile}</span>
+				<span class="vd-content-main-list-time">上传时间: <i>${filterVideoData[index].video_create_time}</i></span>
+				<span class="vd-content-main-list-num">观看量: <i>${filterVideoData[index].video_number_views}</i> 次</span>
+			</div>
+			<div class="layui-form video-right-check">
+            <input type="radio" name="preview" lay-filter="video-checkbox" data-value="${filterVideoData[index].video_code}"  class="vd-content-main-list-check" value="${filterVideoData[index].video_id}" ${filterVideoData[index].checked}/></div>
+			</div>
+			`
+            }
+            if (filterVideoData.length > 0) {
+                $('.vd-content-main-top').html(str)
+                $('.mediaUpload').hide()
+                form.render('radio')
+            } else {
+                $('.vd-content-main-top').html(
+                    '<div class="vd-content-main-none"><img src="./../image/video-none.png" alt=""><p>当前没有视频哦</p></div>'
+                )
+                $('.mediaUpload').show()
+            }
+        }
+        // 视频筛选---------
+        $('.search-video-input').on('keypress', function (event) { // 监听回车事件
+            if (event.keyCode == "13") {
+                videoFiltrate()
+            }
+        })
+        $('.search-video-btn').on('click', videoFiltrate) //点击搜索按钮
+        // 视频过滤方法
+        function videoFiltrate() {
+            filterVideoData = allVideoData.filter(item => item.video_profile.search($.trim($('.search-video-input')
+                .val())) !== -1)
+            if (filterVideoData.length > 6) {
+                layui.use(['laypage'], function () {
+                    var laypage = layui.laypage
+                    laypage.render({
+                        elem: 'video-page',
+                        count: filterVideoData.length,
+                        limit: 6,
+                        layout: ['prev', 'next'],
+                        jump: function (obj, first) {
+                            if (!first) {
+                                // layer.msg('第 '+ obj.curr +' 页'+',每页显示'+obj.limit+'条');
+                                videoPage(obj.curr)
+                            }
+                        }
+                    })
+                })
+            } else {
+                $('#video-page').empty()
+            }
+            videoPage(1)
+        }
+
+        //取消视频添加
+        $('#video-cancel').on('click', function () {
+            layer.closeAll()
+        })
+        //确定视频添加
+        $('#video-confirm').on('click', function () {
+            if (videoCode === null) {
+                layer.msg('请选择视频!')
+                return
+            }
+            
+            layer.closeAll()
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                async: false,
+                url: "http://8.131.247.153/video/video_code_to_uri/",
+                data: {
+                    video_code: videoCode
+                },
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                success: res => {
+                    if (res.msg === 'success') {
+                        videoJs.src({
+                            type: 'application/x-mpegURL',
+                            src: res.data.video_rui
+                        })
+                        videoUrl = res.data.video_rui
+                    } else {
+                        layer.msg('获取视频失败,请重试!')
+                    }
+                }
+            })
+        })
+        // 提交
+        $('.previewVideo-btn').on('click',function(){
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                async: false,
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                url: "http://8.131.247.153/video_editing/get_thumbnails/",
+                data: {
+                    event_id: event_id,
+                    event_playback_flag: previewFlag,
+                    video_uri : videoUrl
+                },
+                success: function (res) {
+                    if (res.msg === 'success') {
+                        layer.msg('提交成功!');
+                    } else {
+                        layer.msg('提交失败,请重试!');
+                    }
+                }
+            })
+        })
 
         // 上传直播背景 
         upload.render({
@@ -267,7 +502,7 @@ $(function () {
             },
         });
 
-       
+
 
         // 在线人数 
         form.on('switch(number-switch)', function (data) {
