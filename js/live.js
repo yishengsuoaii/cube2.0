@@ -55,22 +55,14 @@ $(function () {
         threeSrc: [],
         //已经添加几路
         numFlag: 0,
-        // 一二三四机位耳机是否开启
-        oneHeadFlag: false,
-        twoHeadFlag: false,
-        threeHeadFlag: false,
-        fourHeadFlag: false,
+        // 输出机位耳机是否开启
         liveHeadFlag: false,
         // 一二三机位音量大小
         oneMuteSize: 7,
         twoMuteSize: 7,
         threeMuteSize: 7,
         fourMuteSize: 7,
-        // tab栏切换保存机位一二三耳机状态
-        cutOneHeadFlag: false,
-        cutTwoHeadFlag: false,
-        cutThreeHeadFlag: false,
-        cutFourHeadFlag: false,
+        // tab栏切换保存输出机位耳机状态
         cutLiveHeadFlag: false,
         gestureFlag: 0,
         replaceFlag: 0,
@@ -610,26 +602,10 @@ $(function () {
             }
 
             if (index === 2) {
-                if (allInfo.cutOneHeadFlag) {
-                    oneLive.muteLiveStream(false)
-                }
-                if (allInfo.cutTwoHeadFlag) {
-                    twoLive.muteLiveStream(false)
-                }
-                if (allInfo.cutThreeHeadFlag) {
-                    threeLive.muteLiveStream(false)
-                }
-                if (allInfo.cutFourHeadFlag) {
-                    fourLive.muteLiveStream(false)
-                }
                 if (allInfo.cutLiveHeadFlag) {
                     outputLive.muteLiveStream(false)
                 }
             } else {
-                oneLive.muteLiveStream(true) // 静音
-                twoLive.muteLiveStream(true)
-                threeLive.muteLiveStream(true)
-                fourLive.muteLiveStream(true)
                 outputLive.muteLiveStream(true)
             }
         })
@@ -819,88 +795,7 @@ $(function () {
             allInfo.numberFlag = 1
             allInfo.numFlag = 0
         }
-        // 机位一二三耳机静音开启--------------------------------------------------------------------------------------------------
-        $('#one-headset').on('click', function () {
-            if (allInfo.oneHeadFlag) {
-                $(this).attr('src', './../image/headset-close.png').css({
-                    width: '24px',
-                    height: '22px'
-                })
-                allInfo.oneHeadFlag = false
-                allInfo.cutOneHeadFlag = false,
-                    oneLive.muteLiveStream(true)
-            } else {
-                allInfo.oneHeadFlag = true
-                allInfo.cutOneHeadFlag = true
-                $(this).attr('src', './../image/headset-open.png').css({
-                    width: '24px',
-                    height: '18px'
-                })
-                oneLive.muteLiveStream(false)
-            }
-            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-        })
-        $('#two-headset').on('click', function () {
-            if (allInfo.twoHeadFlag) {
-                $(this).attr('src', './../image/headset-close.png').css({
-                    width: '24px',
-                    height: '22px'
-                })
-                allInfo.twoHeadFlag = false
-                allInfo.cutTwoHeadFlag = false
-                twoLive.muteLiveStream(true)
-            } else {
-                allInfo.twoHeadFlag = true
-                allInfo.cutTwoHeadFlag = true
-                $(this).attr('src', './../image/headset-open.png').css({
-                    width: '24px',
-                    height: '18px'
-                })
-                twoLive.muteLiveStream(false)
-            }
-            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-        })
-        $('#three-headset').on('click', function () {
-            if (allInfo.threeHeadFlag) {
-                $(this).attr('src', './../image/headset-close.png').css({
-                    width: '24px',
-                    height: '22px'
-                })
-                allInfo.threeHeadFlag = false
-                allInfo.cutThreeHeadFlag = false
-                threeLive.muteLiveStream(true)
-            } else {
-                allInfo.threeHeadFlag = true
-                allInfo.cutThreeHeadFlag = true
-                $(this).attr('src', './../image/headset-open.png').css({
-                    width: '24px',
-                    height: '18px'
-                })
-                threeLive.muteLiveStream(false)
-            }
-            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-        })
-        $('#four-headset').on('click', function () {
-            if (allInfo.fourHeadFlag) {
-                $(this).attr('src', './../image/headset-close.png').css({
-                    width: '24px',
-                    height: '22px'
-                })
-                allInfo.fourHeadFlag = false
-                allInfo.cutFourHeadFlag = false
-                fourLive.muteLiveStream(true)
-            } else {
-                allInfo.fourHeadFlag = true
-                allInfo.cutFourHeadFlag = true
-                $(this).attr('src', './../image/headset-open.png').css({
-                    width: '24px',
-                    height: '18px'
-                })
-                fourLive.muteLiveStream(false)
-            }
-            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-        })
-        // 直播耳机静音
+        // 直播耳机静音--------------------------------------------------------------------------------------------------
         $('#live-headset').on('click', function () {
             if (allInfo.liveHeadFlag) {
                 $(this).attr('src', './../image/headset-close.png').css({
@@ -949,66 +844,6 @@ $(function () {
                 allInfo.threeSrc.forEach(item => {
                     cameraCut(item)
                 })
-            }
-
-            // 渲染一二三机位耳机静音
-
-            if (allInfo.oneHeadFlag) {
-                $('#one-headset').attr('src', './../image/headset-open.png').css({
-                    width: '24px',
-                    height: '18px'
-                })
-                oneLive.muteLiveStream(false)
-            } else {
-                $('#one-headset').attr('src', './../image/headset-close.png').css({
-                    width: '24px',
-                    height: '22px'
-                })
-                oneLive.muteLiveStream(true)
-            }
-
-
-            if (allInfo.twoHeadFlag) {
-                $('#two-headset').attr('src', './../image/headset-open.png').css({
-                    width: '24px',
-                    height: '18px'
-                })
-                twoLive.muteLiveStream(false)
-            } else {
-                $('#two-headset').attr('src', './../image/headset-close.png').css({
-                    width: '24px',
-                    height: '22px'
-                })
-                twoLive.muteLiveStream(true)
-            }
-
-
-            if (allInfo.threeHeadFlag) {
-                $('#three-headset').attr('src', './../image/headset-open.png').css({
-                    width: '24px',
-                    height: '18px'
-                })
-                threeLive.muteLiveStream(false)
-            } else {
-                $('#three-headset').attr('src', './../image/headset-close.png').css({
-                    width: '24px',
-                    height: '22px'
-                })
-                threeLive.muteLiveStream(true)
-            }
-
-            if (allInfo.fourHeadFlag) {
-                $('#four-headset').attr('src', './../image/headset-open.png').css({
-                    width: '24px',
-                    height: '18px'
-                })
-                fourLive.muteLiveStream(false)
-            } else {
-                $('#four-headset').attr('src', './../image/headset-close.png').css({
-                    width: '24px',
-                    height: '22px'
-                })
-                fourLive.muteLiveStream(true)
             }
 
             // 直播耳机静音
