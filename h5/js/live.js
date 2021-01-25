@@ -278,7 +278,7 @@ $(function () {
         }
 
     }
-    function downtimes(startTime, value,flag,url) {
+    function downtimes(startTime,flag,url) {
         var date1 = new Date(startTime.replace('T', ' ')).getTime()
         var date2 = Date.now()
         clearInterval(timer2)
