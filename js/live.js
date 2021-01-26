@@ -44,6 +44,25 @@ $(function () {
     // 直播控制dom
     var videoDom = document.querySelector('.videoBox')
 
+    const PLAY_EVENT = {
+        CANPLAY: "canplay",
+        WAITING: "waiting",
+        PLAYING: "playing"
+    }
+    var oneTimer = null
+
+    var twoTimer = null
+
+    var threeTimer = null
+
+    var fourTimer = null
+
+    var outputTimer = null
+
+    var outputLiveSrc = null
+
+    var onePreviewFlag = true
+    var onePreviewTimer = null
 
     //所有信息
     var allInfo = {
@@ -188,30 +207,66 @@ $(function () {
                 success: res => {
                     if (res.msg === 'success') {
                         oneLive = new AliRTS();
-                        oneLive.startLiveStream(res.data[1], document.getElementById("cameraOne"));
-                        oneLive.muteLiveStream(true)
+                        oneLive.startLiveStream(res.data[1], document.getElementById("cameraOne"))
                         oneLiveSrc = res.data[1]
+                        oneTime()
+                        oneLive.on('onPlayEvent', (play) => {
+                            if (play.event === PLAY_EVENT.CANPLAY) {
+                                clearInterval(oneTimer)
+                            } 
+                        })
+                        oneLive.muteLiveStream(true)
 
                         twoLive = new AliRTS();
                         twoLive.startLiveStream(res.data[2], document.getElementById("cameraTwo"));
-                        twoLive.muteLiveStream(true)
                         twoLiveSrc = res.data[2]
+                        twoTime()
+                        twoLive.on('onPlayEvent', (play) => {
+                            if (play.event === PLAY_EVENT.CANPLAY) {
+                                clearInterval(twoTimer)
+                            }
+                        })
+                        twoLive.muteLiveStream(true)
+
 
                         threeLive = new AliRTS();
-                        threeLive.startLiveStream(res.data[3], document.getElementById("cameraThree"));
-                        threeLive.muteLiveStream(true)
+                        threeLive.startLiveStream(res.data[3], document.getElementById("cameraThree"))
                         threeLiveSrc = res.data[3]
+                        threeTime()
+                        threeLive.on('onPlayEvent', (play) => {
+                            if (play.event === PLAY_EVENT.CANPLAY) {
+                                clearInterval(threeTimer)
+                            }
+                        })
+                        threeLive.muteLiveStream(true)
+
 
                         fourLive = new AliRTS();
-                        fourLive.startLiveStream(res.data[4], document.getElementById("cameraFour"));
-                        fourLive.muteLiveStream(true)
+                        fourLive.startLiveStream(res.data[4], document.getElementById("cameraFour"))
                         fourLiveSrc = res.data[4]
+                        fourTime()
+                        fourLive.on('onPlayEvent', (play) => {
+                            if (play.event === PLAY_EVENT.CANPLAY) {
+                                clearInterval(fourTimer)
+                            }
+                        })
+                        fourLive.muteLiveStream(true)
+
 
                         outputLive = new AliRTS();
                         outputLive.startLiveStream(res.data[5], document.getElementById("liveRight-video"));
-                        outputLive.muteLiveStream(true)
+                        outputLiveSrc = res.data[5]
 
+                        outputTime()
+                        outputLive.on('onPlayEvent', (play) => {
+                            if (play.event === PLAY_EVENT.CANPLAY) {
+                                clearInterval(outputTimer)
+                            }
+                        })
+                        outputLive.muteLiveStream(true)
+                        
                         if (sessionStorage.getItem(event_code)) {
+                            onePreviewFlag = false
                             allInfo = JSON.parse(sessionStorage.getItem(event_code))
                             renderHistory()
                             renderHistoryScore()
@@ -254,6 +309,36 @@ $(function () {
                     }
                 },
             })
+        }
+
+        function oneTime() {
+            oneTimer = setInterval(() => {
+                oneLive.startLiveStream(oneLiveSrc, document.getElementById("cameraOne"));
+            }, 10000)
+        }
+
+        function twoTime() {
+            twoTimer = setInterval(() => {
+                twoLive.startLiveStream(twoLiveSrc, document.getElementById("cameraTwo"));
+            }, 10000)
+        }
+
+        function threeTime() {
+            threeTimer = setInterval(() => {
+                threeLive.startLiveStream(threeLiveSrc, document.getElementById("cameraThree"));
+            }, 10000)
+        }
+
+        function fourTime() {
+            fourTimer = setInterval(() => {
+                fourLive.startLiveStream(fourLiveSrc, document.getElementById("cameraFour"));
+            }, 10000)
+        }
+
+        function outputTime() {
+            outputTimer = setInterval(() => {
+                outputLive.startLiveStream(outputLiveSrc, document.getElementById("liveRight-video"));
+            }, 10000)
         }
 
         // 比分显示方位
@@ -727,6 +812,17 @@ $(function () {
             if (allInfo.numberFlag === 1) {
                 $('#oneBox').html(`<video id="oneVideo"></video>`)
                 live.startLiveStream(item.src, document.getElementById("oneVideo"))
+                if(item.name===1&&onePreviewFlag) {
+                    onePreviewFlag = false
+                    live.on('onPlayEvent', (play) => {
+                        if (play.event === PLAY_EVENT.CANPLAY) {
+                            clearInterval(onePreviewTimer)
+                        } 
+                    })
+                    onePreviewTimer = setInterval(() => {
+                        live.startLiveStream(item.src, document.getElementById("oneVideo"))
+                    }, 10000)
+                }
                 allInfo.numFlag = 1
                 allInfo.oneSrc.shift()
                 allInfo.oneSrc.push(item)
@@ -870,30 +966,30 @@ $(function () {
                 slide_four.setValue(allInfo.fourMuteSize)
             }, 1000)
             // 渲染手势检测
-            if(allInfo.gestureFlag === Number(0)) {
-                $('#gesture-btn').text('开启').css('background-color','#ff914d')
+            if (allInfo.gestureFlag === Number(0)) {
+                $('#gesture-btn').text('开启').css('background-color', '#ff914d')
             } else {
-              $('#gesture-btn').text('关闭').css('background-color','#f2591a')
+                $('#gesture-btn').text('关闭').css('background-color', '#f2591a')
             }
             // 渲染背景替换
             $('.bg-item').removeClass('bg-active').eq(allInfo.replaceFlag).addClass('bg-active')
         }
         // 手势检测-------------------------------------------------------------------------------------------------
-        $('#gesture-btn').on('click',function(){
-            if(allInfo.gestureFlag === Number(0)) {
+        $('#gesture-btn').on('click', function () {
+            if (allInfo.gestureFlag === Number(0)) {
                 allInfo.gestureFlag = 1
-                $(this).text('关闭').css('background-color','#f2591a')
+                $(this).text('关闭').css('background-color', '#f2591a')
             } else {
                 allInfo.gestureFlag = 0
-                $(this).text('开启').css('background-color','#ff914d')
+                $(this).text('开启').css('background-color', '#ff914d')
             }
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
         })
         // 背景替换------------------------------------------------------------------------------------------------
-        $('.bg-item').on('click',function(){
+        $('.bg-item').on('click', function () {
             $(this).addClass('bg-active').siblings().removeClass('bg-active')
             allInfo.replaceFlag = $(this).index()
-              
+
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
         })
 
@@ -1815,7 +1911,7 @@ $(function () {
                 allInfo.twoSrc.forEach(item => {
                     cameraOrder.push(item.name)
                 })
-                if(cameraOrder[0]===cameraOrder[1]){
+                if (cameraOrder[0] === cameraOrder[1]) {
                     layer.msg('机位重复,请重新选择!')
                     return
                 }
@@ -1824,7 +1920,7 @@ $(function () {
                 allInfo.threeSrc.forEach(item => {
                     cameraOrder.push(item.name)
                 })
-                if(cameraOrder[0]===cameraOrder[1] || cameraOrder[0]===cameraOrder[2] || cameraOrder[2]===cameraOrder[1]){
+                if (cameraOrder[0] === cameraOrder[1] || cameraOrder[0] === cameraOrder[2] || cameraOrder[2] === cameraOrder[1]) {
                     layer.msg('机位重复,请重新选择!')
                     return
                 }
@@ -1836,22 +1932,22 @@ $(function () {
             var info = {
                 code: "FRONT_END_ACTION",
                 // 视频一拼二品三拼标志 true/false
-                video:{
-                    mixer:{
+                video: {
+                    mixer: {
                         oneSpell: oneSpell,
                         twoSpell: twoSpell,
                         threeSpell: threeSpell,
                         // 机位顺序
                         cameraOrder: cameraOrder,
                     },
-                    score:{
+                    score: {
                         scoreUpdata: allInfo.scoreUpdata,
                         scoreLocation: scoreLocation
                     }
                 },
-                audio:{
-                    mixer:{
-                         // 机位音量
+                audio: {
+                    mixer: {
+                        // 机位音量
                         oneVolume: allInfo.oneMuteSize / 10,
                         twoVolume: allInfo.twoMuteSize / 10,
                         threeVolume: allInfo.threeMuteSize / 10,
