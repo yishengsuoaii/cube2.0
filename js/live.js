@@ -266,7 +266,7 @@ $(function () {
                         outputLive.muteLiveStream(true)
                         
                         if (sessionStorage.getItem(event_code)) {
-                            onePreviewFlag = false
+                            // onePreviewFlag = false
                             allInfo = JSON.parse(sessionStorage.getItem(event_code))
                             renderHistory()
                             renderHistoryScore()
