@@ -208,13 +208,15 @@ $(function () {
                         data: formdata,
                         success: function (result) {
                             if (result.msg == "success") {
-                                layer.msg('创建成功!')
+                                layer.msg('创建成功,直播时间以起始时间为准!',{
+                                    time: 2000, 
+                                  })
                                 setTimeout(() => {
                                     layer.closeAll()
                                     getAllChannel()
                                     getUserInfo()
                                     deleteInfo()
-                                }, 500)
+                                }, 2000)
 
                             } else if (result.msg == "error") {
                                 layer.msg('创建失败,请重试!')
@@ -389,13 +391,15 @@ $(function () {
                                 data: formdata,
                                 success: function (result) {
                                     if (result.msg == "success") {
-                                        layer.msg('修改成功!')
+                                        layer.msg('修改成功,直播时间以起始时间为准!',{
+                                            time: 2000,
+                                          })
                                         setTimeout(() => {
                                             layer.closeAll()
                                             getAllChannel()
                                             getUserInfo()
                                             deleteInfo()
-                                        }, 500);
+                                        }, 2000);
 
                                     } else if (result.msg == "error") {
                                         layer.msg('修改失败,请重试!')
