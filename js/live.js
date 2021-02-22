@@ -182,6 +182,7 @@ $(function () {
                         pullFlow(serverIp, domCameraThree, 2)
                         pullFlow(serverIp, domCameraFour, 3)
                         pullFlow(serverIp, domChatVideo, 4)
+                        getIps()
                         if (sessionStorage.getItem(event_code)) {
                             allInfo = JSON.parse(sessionStorage.getItem(event_code))
                             renderHistory()
@@ -231,6 +232,68 @@ $(function () {
                 }
             })
         }
+
+        function getIps() {
+            console.log('第二个定时器')
+            $.get({
+                url: "http://www.cube.vip/event/get_ip/",
+                dataType: "json",
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                async: false,
+                data: {
+                    stream_code: event_code
+                },
+                success: res => {
+                    if (res.msg === 'success') {
+                        setTimeout(()=>{
+                            getIps()
+                        },5000)
+                        
+                    } else {
+                        getIps2()
+                        serverIp = '0.0.0.0'
+                        pullFlow(serverIp, domCameraOne, 0)
+                        pullFlow(serverIp, domCameraTwo, 1)
+                        pullFlow(serverIp, domCameraThree, 2)
+                        pullFlow(serverIp, domCameraFour, 3)
+                        pullFlow(serverIp, domChatVideo, 4)
+                    }
+                }
+            })
+        }
+
+        function getIps2() {
+            console.log('第三个定时器')
+            $.get({
+                url: "http://www.cube.vip/event/get_ip/",
+                dataType: "json",
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                async: false,
+                data: {
+                    stream_code: event_code
+                },
+                success: res => {
+                    if (res.msg === 'success') {
+                        serverIp = res.data.ip
+                        pullFlow(serverIp, domCameraOne, 0)
+                        pullFlow(serverIp, domCameraTwo, 1)
+                        pullFlow(serverIp, domCameraThree, 2)
+                        pullFlow(serverIp, domCameraFour, 3)
+                        pullFlow(serverIp, domChatVideo, 4)
+                        getIps()
+                    } else {
+                        setTimeout(()=>{
+                            getIps2()
+                        },5000)
+                    }
+                }
+            })
+        }
+
         $('.live-tab-title li').on('click', function () {
             $(this).addClass('active-this').siblings('li').removeClass('active-this')
             var index = $(this).index()
@@ -1932,6 +1995,12 @@ $(function () {
                         state: allInfo.state,
                         update: allInfo.update,
                         scoreLocation: scoreLocation
+                    },
+                    auto_selector:{
+                        state: 'on'
+                    },
+                    zoom_in:{
+                        state: 'on'
                     }
                 },
                 audio: {
