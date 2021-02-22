@@ -18,7 +18,7 @@ $(function () {
                 headers: {
                     token: sessionStorage.getItem('token')
                 },
-                url: "http://8.131.247.153/event/event_list/",
+                url: "http://www.cube.vip/event/event_list/",
                 data: {
                     order_by: data.value
                 },
@@ -52,7 +52,7 @@ $(function () {
                     headers: {
                         token: sessionStorage.getItem('token')
                     },
-                    url: "http://8.131.247.153/event/event_list/",
+                    url: "http://www.cube.vip/event/event_list/",
                     data: {
                         start_time1: aa
                     },
@@ -80,7 +80,7 @@ $(function () {
 
     function getUserInfo() {
         $.post({
-            url: "http://8.131.247.153/account/userinfo/",
+            url: "http://www.cube.vip/account/userinfo/",
             dataType: "json",
             async: false,
             headers: {
@@ -102,7 +102,7 @@ $(function () {
 
     function getAllChannel() {
         $.post({
-            url: "http://8.131.247.153/event/event_list/",
+            url: "http://www.cube.vip/event/event_list/",
             dataType: "json",
             headers: {
                 token: sessionStorage.getItem('token')
@@ -204,7 +204,7 @@ $(function () {
                         headers: {
                             token: sessionStorage.getItem('token')
                         },
-                        url: "http://8.131.247.153/event/create_event/",
+                        url: "http://www.cube.vip/event/create_event/",
                         data: formdata,
                         success: function (result) {
                             if (result.msg == "success") {
@@ -252,7 +252,7 @@ $(function () {
             btn1: function () {
                 $.ajax({
                     type: 'POST',
-                    url: 'http://8.131.247.153/event/delete_event/',
+                    url: 'http://www.cube.vip/event/delete_event/',
                     dataType: "json",
                     headers: {
                         token: sessionStorage.getItem('token')
@@ -292,7 +292,7 @@ $(function () {
 
         $.ajax({
             type: 'GET',
-            url: 'http://8.131.247.153/event/check_event/',
+            url: 'http://www.cube.vip/event/check_event/',
             dataType: "json",
             headers: {
                 token: sessionStorage.getItem('token')
@@ -387,7 +387,7 @@ $(function () {
                                 headers: {
                                     token: sessionStorage.getItem('token')
                                 },
-                                url: "http://8.131.247.153/event/check_event/",
+                                url: "http://www.cube.vip/event/check_event/",
                                 data: formdata,
                                 success: function (result) {
                                     if (result.msg == "success") {
@@ -438,7 +438,7 @@ $(function () {
             headers: {
                 token: sessionStorage.getItem('token')
             },
-            url: "http://8.131.247.153/event/event_list/",
+            url: "http://www.cube.vip/event/event_list/",
             data: {
                 order_by: $("#select-order").val()
             },
@@ -460,7 +460,7 @@ $(function () {
                 headers: {
                     token: sessionStorage.getItem('token')
                 },
-                url: "http://8.131.247.153/event/event_list/",
+                url: "http://www.cube.vip/event/event_list/",
                 data: {
                     keyword: $.trim($('.inp').val())
                 },
@@ -480,7 +480,7 @@ $(function () {
             headers: {
                 token: sessionStorage.getItem('token')
             },
-            url: "http://8.131.247.153/event/event_list/",
+            url: "http://www.cube.vip/event/event_list/",
             data: {
                 keyword: $.trim($('.inp').val())
             },

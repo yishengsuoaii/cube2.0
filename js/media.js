@@ -148,7 +148,7 @@ $(function () {
                 if (time) {
                     $.ajax({
                         type: "GET",
-                        url: "http://8.131.247.153/video/search_time_video/",
+                        url: "http://www.cube.vip/video/search_time_video/",
                         dataType: "json",
                         headers: {
                             token: sessionStorage.getItem('token')
@@ -209,7 +209,7 @@ $(function () {
             } else {
                 $.ajax({
                     type: "GET",
-                    url: "http://8.131.247.153/video/search_time_video/",
+                    url: "http://www.cube.vip/video/search_time_video/",
                     dataType: "json",
                     headers: {
                         token: sessionStorage.getItem('token')
@@ -265,7 +265,7 @@ $(function () {
                 } else {
                     $.ajax({
                         type: "GET",
-                        url: "http://8.131.247.153/video/search_time_video/",
+                        url: "http://www.cube.vip/video/search_time_video/",
                         dataType: "json",
                         headers: {
                             token: sessionStorage.getItem('token')
@@ -322,7 +322,7 @@ $(function () {
 
         function getVideo() {
             $.get({
-                url: "http://8.131.247.153/video/video_list/",
+                url: "http://www.cube.vip/video/video_list/",
                 dataType: "json",
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -441,7 +441,7 @@ $(function () {
 
         function getTs() {
             $.get({
-                url: "http://8.131.247.153/video/video_list/",
+                url: "http://www.cube.vip/video/video_list/",
                 dataType: "json",
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -567,7 +567,7 @@ $(function () {
                     videoId.push(item.video_id)
                 })
                 $.post({
-                    url: "http://8.131.247.153/video/save_media_library/",
+                    url: "http://www.cube.vip/video/save_media_library/",
                     dataType: "json",
                     headers: {
                         token: sessionStorage.getItem('token')
@@ -601,7 +601,7 @@ $(function () {
                     videoId.push(item.video_id)
                 })
                 $.post({
-                    url: "http://8.131.247.153/video/save_media_library/",
+                    url: "http://www.cube.vip/video/save_media_library/",
                     dataType: "json",
                     headers: {
                         token: sessionStorage.getItem('token')
@@ -647,7 +647,7 @@ $(function () {
                 btn1: function () {
                     $.ajax({
                         type: 'GET',
-                        url: 'http://8.131.247.153/video/delete_video/',
+                        url: 'http://www.cube.vip/video/delete_video/',
                         dataType: "json",
                         headers: {
                             token: sessionStorage.getItem('token')
@@ -698,7 +698,7 @@ $(function () {
                 btn1: function () {
                     $.ajax({
                         type: 'GET',
-                        url: 'http://8.131.247.153/video/delete_video/',
+                        url: 'http://www.cube.vip/video/delete_video/',
                         dataType: "json",
                         headers: {
                             token: sessionStorage.getItem('token')
@@ -764,7 +764,7 @@ $(function () {
                     $('#uploadVideo').attr('disabled', true)
                     $.ajax({
                         type: 'POST',
-                        url: 'http://8.131.247.153/video_editing/upload_video/',
+                        url: 'http://www.cube.vip/video_editing/upload_video/',
                         headers: {
                             token: sessionStorage.getItem('token')
                         },
@@ -840,7 +840,7 @@ $(function () {
                 $.ajax({
                     type: "GET",
                     dataType: "json",
-                    url: "http://8.131.247.153/video_editing/upload_video_status/",
+                    url: "http://www.cube.vip/video_editing/upload_video_status/",
                     data: {
                         upload_action_id: id
                     },
@@ -912,7 +912,7 @@ $(function () {
                     }
                     $.ajax({
                         type: 'POST',
-                        url: 'http://8.131.247.153/video/update_video_description/',
+                        url: 'http://www.cube.vip/video/update_video_description/',
                         headers: {
                             token: sessionStorage.getItem('token')
                         },
@@ -979,7 +979,7 @@ $(function () {
                     }
                     $.ajax({
                         type: 'POST',
-                        url: 'http://8.131.247.153/video/update_video_description/',
+                        url: 'http://www.cube.vip/video/update_video_description/',
                         headers: {
                             token: sessionStorage.getItem('token')
                         },
@@ -1032,7 +1032,7 @@ $(function () {
                 type: "GET",
                 dataType: "json",
                 async: false,
-                url: "http://8.131.247.153/video/video_code_to_uri/",
+                url: "http://www.cube.vip/video/video_code_to_uri/",
                 data: {
                     video_code: $(this).attr('data-code')
                 },
@@ -1076,7 +1076,7 @@ $(function () {
                 type: "POST",
                 dataType: "json",
                 async: false,
-                url: "http://8.131.247.153/commenting/h5_comments_show/",
+                url: "http://www.cube.vip/commenting/h5_comments_show/",
                 data: {
                     video_id: id
                 },
@@ -1114,7 +1114,7 @@ $(function () {
                 type: "POST",
                 dataType: "json",
                 async: false,
-                url: "http://8.131.247.153/commenting/delete_comments/",
+                url: "http://www.cube.vip/commenting/delete_comments/",
                 data: {
                     commend_id: $(this).attr('data-id')
                 },
@@ -1139,7 +1139,7 @@ $(function () {
                 type: "GET",
                 dataType: "json",
                 async: false,
-                url: "http://8.131.247.153/video/video_code_to_uri/",
+                url: "http://www.cube.vip/video/video_code_to_uri/",
                 data: {
                     video_code: $(this).attr('data-code')
                 },
@@ -1199,7 +1199,7 @@ $(function () {
                 headers: {
                     token: sessionStorage.getItem('token')
                 },
-                url: "http://8.131.247.153/video_editing/download_video/",
+                url: "http://www.cube.vip/video_editing/download_video/",
                 data: {
                     video_code: $(this).attr('data-code')
                 },
@@ -1229,7 +1229,7 @@ $(function () {
                 headers: {
                     token: sessionStorage.getItem('token')
                 },
-                url: "http://8.131.247.153/video_editing/download_video/",
+                url: "http://www.cube.vip/video_editing/download_video/",
                 data: {
                     video_code: $(this).attr('data-code')
                 },
@@ -1256,7 +1256,7 @@ $(function () {
                     headers: {
                         token: sessionStorage.getItem('token')
                     },
-                    url: "http://8.131.247.153/video_editing/download_video_status/",
+                    url: "http://www.cube.vip/video_editing/download_video_status/",
                     data: {
                         video_download_id: id
                     },

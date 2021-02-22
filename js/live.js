@@ -10,6 +10,7 @@ $(function () {
     var event_id = searchData;
     var event_code = ''
     var event_uri_key = ''
+    var serverIp = ''
     // 用户昵称
     var userName
     // 用户头像
@@ -21,49 +22,23 @@ $(function () {
     var logoFlag = 'True'
     var logoOrientation = 1
 
-    // 4路实例
-    var oneLive = null
-    var oneLiveSrc = null //每路src
-    var twoLive = null
-    var twoLiveSrc = null
-    var threeLive = null
-    var threeLiveSrc = null
-    var fourLive = null
-    var fourLiveSrc = null
-    // 输出实例
-    var outputLive = null
 
     // 比分文件
     var fileScore = 0
     var scoreLocation = 0
 
-    // 直播控制实例
-    var aliRts
-    // 直播控制src
-    var aliRtsSrc
-    // 直播控制dom
-    var videoDom = document.querySelector('.videoBox')
+    // video dom
+    var domChatVideo= document.getElementById('chatVideo')
+    var domCameraOne= document.getElementById('cameraOne')
+    var domCameraTwo= document.getElementById('cameraTwo')
+    var domCameraThree = document.getElementById('cameraThree')
+    var domCameraFour=  document.getElementById('cameraFour')
+    var domLiveRight = document.getElementById('liveRight-video')
 
-    const PLAY_EVENT = {
-        CANPLAY: "canplay",
-        WAITING: "waiting",
-        PLAYING: "playing"
-    }
-    var oneTimer = null
-
-    var twoTimer = null
-
-    var threeTimer = null
-
-    var fourTimer = null
-
-    var outputTimer = null
-
-    var outputLiveSrc = null
-
-    var onePreviewFlag = true
-    var onePreviewTimer = null
-
+    domCameraOne.volume = 0
+    domCameraTwo.volume =0
+    domCameraThree.volume =0
+    domCameraFour.volume =0
     //所有信息
     var allInfo = {
         // 几拼标志
@@ -75,24 +50,27 @@ $(function () {
         //已经添加几路
         numFlag: 0,
         // 输出机位耳机是否开启
-        liveHeadFlag: false,
+        liveHeadFlag: true,
         // 一二三机位音量大小
-        oneMuteSize: 7,
-        twoMuteSize: 7,
-        threeMuteSize: 7,
-        fourMuteSize: 7,
+        oneMuteSize: 0,
+        twoMuteSize: 0,
+        threeMuteSize: 0,
+        fourMuteSize: 0,
         // tab栏切换保存输出机位耳机状态
-        cutLiveHeadFlag: false,
         gestureFlag: 0,
         replaceFlag: 0,
-        scoreUpdata: 0
+        // 比分牌更新状态及是否开启
+        update: 0,
+        state: 'off'
     }
+    // 绘制canvas 定时器
+    var timerDraw = null
 
     // 机位一二三滑块----------------------------------------------------------------------------------------------
-    var oneMuteFlag = true
-    var twoMuteFlag = true
-    var threeMuteFlag = true
-    var fourMuteFlag = true
+    var oneMuteFlag = false
+    var twoMuteFlag = false
+    var threeMuteFlag = false
+    var fourMuteFlag = false
     // 机位一二三滑块实例
     var slide_one = null
     var slide_two = null
@@ -143,7 +121,7 @@ $(function () {
             headers: {
                 token: sessionStorage.getItem('token')
             },
-            url: "http://8.131.247.153/account/check_account_thundernail/",
+            url: "http://www.cube.vip/account/check_account_thundernail/",
             success: function (res) {
                 if (res.msg === 'success') {
                     userImage = res.data.account_thundernail
@@ -153,7 +131,7 @@ $(function () {
 
         // 获取直播信息
         $.get({
-            url: "http://8.131.247.153/event/live_control/",
+            url: "http://www.cube.vip/event/live_control/",
             dataType: "json",
             headers: {
                 token: sessionStorage.getItem('token')
@@ -173,172 +151,226 @@ $(function () {
                     userName = result.data.account_name
                     event_uri_key = result.data.event_uri_key
                     $('.head-copy').attr('data-clipboard-text',
-                        'http://8.131.247.153/h5/wxlogin.html?key=' + result.data
+                        'http://www.cube.vip/h5/wxlogin.html?key=' + result.data
                         .event_uri_key)
-                    aliRtsSrc = result.data.pull_stream_artc_url
-                    aliRts = new AliRTS();
-                    aliRts.startLiveStream(result.data.pull_stream_artc_url, videoDom);
-                    videoDom.addEventListener('play', () => {
-                        aliRts.muteLiveStream(false)
-
-                    })
-                    videoDom.addEventListener('pause', () => {
-                        aliRts.muteLiveStream(true)
-                    })
-                    getFourLive()
+                    setVideoMuted()
+                    getIp()
                     getScoreStyle()
+
                 }
 
             },
         })
 
-        // 获取4四机位
-        function getFourLive() {
+        // 获取IP地址
+        function getIp() {
             $.get({
-                url: "http://8.131.247.153/event/get_pull_stream_artc/",
+                url: "http://www.cube.vip/event/get_ip/",
                 dataType: "json",
                 headers: {
                     token: sessionStorage.getItem('token')
                 },
                 async: false,
                 data: {
-                    event_id: event_id
+                    stream_code: event_code
                 },
                 success: res => {
                     if (res.msg === 'success') {
-                        oneLive = new AliRTS();
-                        oneLive.startLiveStream(res.data[1], document.getElementById("cameraOne"))
-                        oneLiveSrc = res.data[1]
-                        oneTime()
-                        oneLive.on('onPlayEvent', (play) => {
-                            if (play.event === PLAY_EVENT.CANPLAY) {
-                                clearInterval(oneTimer)
-                            } 
-                        })
-                        oneLive.muteLiveStream(true)
-
-                        twoLive = new AliRTS();
-                        twoLive.startLiveStream(res.data[2], document.getElementById("cameraTwo"));
-                        twoLiveSrc = res.data[2]
-                        twoTime()
-                        twoLive.on('onPlayEvent', (play) => {
-                            if (play.event === PLAY_EVENT.CANPLAY) {
-                                clearInterval(twoTimer)
-                            }
-                        })
-                        twoLive.muteLiveStream(true)
-
-
-                        threeLive = new AliRTS();
-                        threeLive.startLiveStream(res.data[3], document.getElementById("cameraThree"))
-                        threeLiveSrc = res.data[3]
-                        threeTime()
-                        threeLive.on('onPlayEvent', (play) => {
-                            if (play.event === PLAY_EVENT.CANPLAY) {
-                                clearInterval(threeTimer)
-                            }
-                        })
-                        threeLive.muteLiveStream(true)
-
-
-                        fourLive = new AliRTS();
-                        fourLive.startLiveStream(res.data[4], document.getElementById("cameraFour"))
-                        fourLiveSrc = res.data[4]
-                        fourTime()
-                        fourLive.on('onPlayEvent', (play) => {
-                            if (play.event === PLAY_EVENT.CANPLAY) {
-                                clearInterval(fourTimer)
-                            }
-                        })
-                        fourLive.muteLiveStream(true)
-
-
-                        outputLive = new AliRTS();
-                        outputLive.startLiveStream(res.data[5], document.getElementById("liveRight-video"));
-                        outputLiveSrc = res.data[5]
-
-                        outputTime()
-                        outputLive.on('onPlayEvent', (play) => {
-                            if (play.event === PLAY_EVENT.CANPLAY) {
-                                clearInterval(outputTimer)
-                            }
-                        })
-                        outputLive.muteLiveStream(true)
-                        
+                        serverIp = res.data.ip
+                        pullFlow(serverIp, domCameraOne, 0)
+                        pullFlow(serverIp, domCameraTwo, 1)
+                        pullFlow(serverIp, domCameraThree, 2)
+                        pullFlow(serverIp, domCameraFour, 3)
+                        pullFlow(serverIp, domChatVideo, 4)
                         if (sessionStorage.getItem(event_code)) {
-                            // onePreviewFlag = false
                             allInfo = JSON.parse(sessionStorage.getItem(event_code))
                             renderHistory()
                             renderHistoryScore()
-                            if (sessionStorage.getItem('scoreImage' + event_code)) {
-                                fileScore = sessionStorage.getItem('scoreImage' + event_code)
+                            if (sessionStorage.getItem('imageBase64' + event_code)) {
+                                fileScore = sessionStorage.getItem('imageBase64' + event_code)
                             }
                         } else {
                             allInfo.oneSrc[0] = {
-                                src: res.data[1],
+                                dom: 'cameraOne',
                                 name: 1
                             }
 
                             allInfo.twoSrc[0] = {
-                                src: res.data[1],
+                                dom: 'cameraOne',
                                 name: 1
                             }
                             allInfo.twoSrc[1] = {
-                                src: res.data[2],
+                                dom: 'cameraTwo',
                                 name: 2
                             }
 
                             allInfo.threeSrc[0] = {
-                                src: res.data[1],
+                                dom: 'cameraOne',
                                 name: 1
                             }
                             allInfo.threeSrc[1] = {
-                                src: res.data[2],
+                                dom: 'cameraTwo',
                                 name: 2
                             }
                             allInfo.threeSrc[2] = {
-                                src: res.data[3],
+                                dom: 'cameraThree',
                                 name: 3
                             }
                             cameraCut({
-                                src: oneLiveSrc,
+                                dom: 'cameraOne',
                                 name: 1
                             })
                             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
                         }
+                    } else {
+                        setTimeout(()=>{
+                            getIp()
+                        },5000)
                     }
-                },
+
+                }
             })
         }
+        $('.live-tab-title li').on('click', function () {
+            $(this).addClass('active-this').siblings('li').removeClass('active-this')
+            var index = $(this).index()
+            $('.live-tab-item').each((ins, item) => {
+                if (ins === index) {
+                    $(item).addClass('layui-show')
+                } else {
+                    $(item).removeClass('layui-show')
+                }
+            })
+            if(index===1){
+                domChatVideo.muted = false
+            } else {
+                domChatVideo.muted = true
+            } 
+             if(index ===2){
+                domCameraOne.muted = false
+                domCameraTwo.muted = false
+                domCameraThree.muted = false
+                domCameraFour.muted = false
+                domLiveRight.muted = false
 
-        function oneTime() {
-            oneTimer = setInterval(() => {
-                oneLive.startLiveStream(oneLiveSrc, document.getElementById("cameraOne"));
-            }, 10000)
+                domCameraOne.play()
+                domCameraTwo.play()
+                domCameraThree.play()
+                domCameraFour.play()
+                domLiveRight.play()
+             } else {
+                setVideoMuted()
+             }
+        })
+        // 静音
+        function setVideoMuted(){
+            domCameraOne.muted = true
+            domCameraTwo.muted = true
+            domCameraThree.muted = true
+            domCameraFour.muted = true
+            domLiveRight.muted = true
         }
+        var errorNum=0
+        // 拉流
+        function pullFlow(ip, dom, index) {
+            var server = 'http://' + ip + ':8088/janus'
+            var janus = null;
+            var streaming = null;
+            var opaqueId = "streamingtest-" + Janus.randomString(12);
 
-        function twoTime() {
-            twoTimer = setInterval(() => {
-                twoLive.startLiveStream(twoLiveSrc, document.getElementById("cameraTwo"));
-            }, 10000)
-        }
+            Janus.init({
+                debug: "all",
+                callback: function () {
+                    if (!Janus.isWebrtcSupported()) {
+                        return;
+                    }
+                    janus = new Janus({
+                        server: server,
+                        success: function () {
+                            janus.attach({
+                                plugin: "janus.plugin.streaming",
+                                opaqueId: opaqueId,
+                                success: function (pluginHandle) {
+                                    streaming = pluginHandle;
+                                    updateStreamsList();
+                                },
+                                onmessage: function (msg, jsep) {
+                                    if (msg["error"]) {
+                                        return;
+                                    }
+                                    if (jsep) {
+                                        var stereo = (jsep.sdp.indexOf("stereo=1") !== -1);
+                                        streaming.createAnswer({
+                                            jsep: jsep,
+                                            media: {
+                                                audioSend: false,
+                                                videoSend: false,
+                                                data: true
+                                            },
+                                            customizeSdp: function (jsep) {
+                                                if (stereo && jsep.sdp.indexOf("stereo=1") == -1) {
+                                                    jsep.sdp = jsep.sdp.replace("useinbandfec=1", "useinbandfec=1;stereo=1");
+                                                }
+                                            },
+                                            success: function (jsep) {
+                                                Janus.debug("Got SDP!", jsep);
+                                                var body = {
+                                                    request: "start"
+                                                };
+                                                streaming.send({
+                                                    message: body,
+                                                    jsep: jsep
+                                                });
+                                            },
+                                            error: function (error) {
+                                                Janus.error("WebRTC error:", error);
+                                            }
+                                        });
+                                    }
+                                },
+                                onremotestream: function (stream) {
+                                    Janus.attachMediaStream(dom, stream);
+                                    if (index === 4) {
+                                        Janus.attachMediaStream(domLiveRight, stream);
+                                    }
+                                }
+                            });
+                        },
+                        error: function (error) {
+                            errorNum++ 
+                            if(errorNum==5){
+                                pullFlow(serverIp, domCameraOne, 0)
+                                pullFlow(serverIp, domCameraTwo, 1)
+                                pullFlow(serverIp, domCameraThree, 2)
+                                pullFlow(serverIp, domCameraFour, 3)
+                                pullFlow(serverIp, domChatVideo, 4)
+                                errorNum = 0
+                            }
+                        },
+                        destroyed: function () {
+                            window.location.reload();
+                        }
+                    })
+                }
+            })
 
-        function threeTime() {
-            threeTimer = setInterval(() => {
-                threeLive.startLiveStream(threeLiveSrc, document.getElementById("cameraThree"));
-            }, 10000)
-        }
-
-        function fourTime() {
-            fourTimer = setInterval(() => {
-                fourLive.startLiveStream(fourLiveSrc, document.getElementById("cameraFour"));
-            }, 10000)
-        }
-
-        function outputTime() {
-            outputTimer = setInterval(() => {
-                outputLive.startLiveStream(outputLiveSrc, document.getElementById("liveRight-video"));
-            }, 10000)
+            function updateStreamsList() {
+                streaming.send({
+                    message: {
+                        request: "list"
+                    },
+                    success: function (result) {
+                        if (result["list"]) {
+                            streaming.send({
+                                message: {
+                                    request: "watch",
+                                    id: parseInt(result["list"][index].id) || result["list"][index].id
+                                }
+                            });
+                        }
+                    }
+                });
+            }
         }
 
         // 比分显示方位
@@ -417,7 +449,7 @@ $(function () {
 
         // 获取logo信息
         $.get({
-            url: "http://8.131.247.153/event/logo_page_setup/",
+            url: "http://www.cube.vip/event/logo_page_setup/",
             dataType: "json",
             headers: {
                 token: sessionStorage.getItem('token')
@@ -496,7 +528,7 @@ $(function () {
         $('#watermark-submit-btn').on('click', function () {
             $.ajax({
                 type: 'POST',
-                url: "http://8.131.247.153/event/logo_page_setup/",
+                url: "http://www.cube.vip/event/logo_page_setup/",
                 dataType: "json",
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -526,7 +558,7 @@ $(function () {
             min: 0,
             max: 10,
             step: 1,
-            value: 7,
+            value: 0,
             type: 'vertical',
             theme: '#FF914D',
             setTips: function (value) { //自定义提示文本
@@ -544,6 +576,7 @@ $(function () {
                     $('#one-mute').attr('src', '/image/mute-open.png')
                 }
                 allInfo.oneMuteSize = value * 10
+                domCameraOne.volume = value
                 sessionStorage.setItem(event_code, JSON.stringify(allInfo))
             }
         })
@@ -554,7 +587,7 @@ $(function () {
                 slide_one.setValue(0)
             } else {
                 oneMuteFlag = true
-                slide_one.setValue(7)
+                slide_one.setValue(5)
             }
         })
 
@@ -563,7 +596,7 @@ $(function () {
             min: 0,
             max: 10,
             step: 1,
-            value: 7,
+            value: 0,
             type: 'vertical',
             theme: '#FF914D',
             setTips: function (value) { //自定义提示文本
@@ -581,6 +614,7 @@ $(function () {
                     $('#two-mute').attr('src', '/image/mute-open.png')
                 }
                 allInfo.twoMuteSize = value * 10
+                domCameraTwo.volume = value
                 sessionStorage.setItem(event_code, JSON.stringify(allInfo))
             }
         })
@@ -591,7 +625,7 @@ $(function () {
                 slide_two.setValue(0)
             } else {
                 twoMuteFlag = true
-                slide_two.setValue(7)
+                slide_two.setValue(5)
             }
         })
 
@@ -600,7 +634,7 @@ $(function () {
             min: 0,
             max: 10,
             step: 1,
-            value: 7,
+            value: 0,
             type: 'vertical',
             theme: '#FF914D',
             setTips: function (value) { //自定义提示文本
@@ -618,6 +652,7 @@ $(function () {
                     $('#three-mute').attr('src', '/image/mute-open.png')
                 }
                 allInfo.threeMuteSize = value * 10
+                domCameraThree.volume = value 
                 sessionStorage.setItem(event_code, JSON.stringify(allInfo))
             }
         })
@@ -628,7 +663,7 @@ $(function () {
                 slide_three.setValue(0)
             } else {
                 threeMuteFlag = true
-                slide_three.setValue(7)
+                slide_three.setValue(5)
             }
         })
 
@@ -637,7 +672,7 @@ $(function () {
             min: 0,
             max: 10,
             step: 1,
-            value: 7,
+            value: 0,
             type: 'vertical',
             theme: '#FF914D',
             setTips: function (value) { //自定义提示文本
@@ -655,6 +690,7 @@ $(function () {
                     $('#four-mute').attr('src', '/image/mute-open.png')
                 }
                 allInfo.fourMuteSize = value * 10
+                domCameraFour.volume = value
                 sessionStorage.setItem(event_code, JSON.stringify(allInfo))
             }
         })
@@ -665,35 +701,10 @@ $(function () {
                 slide_four.setValue(0)
             } else {
                 fourMuteFlag = true
-                slide_four.setValue(7)
+                slide_four.setValue(5)
             }
         })
 
-        $('.live-tab-title li').on('click', function () {
-            $(this).addClass('active-this').siblings('li').removeClass('active-this')
-            var index = $(this).index()
-            $('.live-tab-item').each((ins, item) => {
-                if (ins === index) {
-                    $(item).addClass('layui-show')
-                } else {
-                    $(item).removeClass('layui-show')
-                }
-            })
-
-            if (index === 1) {
-                aliRts.startLiveStream(aliRtsSrc, videoDom)
-            } else {
-                aliRts.stopLiveStream()
-            }
-
-            if (index === 2) {
-                if (allInfo.cutLiveHeadFlag) {
-                    outputLive.muteLiveStream(false)
-                }
-            } else {
-                outputLive.muteLiveStream(true)
-            }
-        })
 
         // 上传队伍logo
         upload.render({
@@ -747,33 +758,21 @@ $(function () {
         //一拼二拼三拼--------------------------------------------------------------------------------------------------------------
         $('#one-merge').on('click', function () {
             renderOne()
-            allInfo.oneSrc.forEach(item => {
-                cameraCut(item)
-            })
+            drawCanvas(allInfo.numberFlag)
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
         })
         $('#two-merge').on('click', function () {
             $(this).addClass('mergeActive').siblings('img').removeClass('mergeActive')
-            $('#oneBox').hide().html('')
-            $('#twoBox').show()
-            $('#threeBox').hide().children('#threeBoxContent').find('#threeBoxLeft').html('').siblings('#threeBoxRight').find('div').html('')
             allInfo.numberFlag = 2
             allInfo.numFlag = 0
-            allInfo.twoSrc.forEach(item => {
-                cameraCut(item)
-            })
+            drawCanvas(allInfo.numberFlag)
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
         })
         $('#three-merge').on('click', function () {
             $(this).addClass('mergeActive').siblings('img').removeClass('mergeActive')
-            $('#oneBox').hide().html('')
-            $('#twoBox').hide().find('div').html('')
-            $('#threeBox').show()
             allInfo.numberFlag = 3
             allInfo.numFlag = 0
-            allInfo.threeSrc.forEach(item => {
-                cameraCut(item)
-            })
+            drawCanvas(allInfo.numberFlag)
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
         })
 
@@ -781,113 +780,120 @@ $(function () {
 
         $('#cameraOne').on('click', function () {
             cameraCut({
-                src: oneLiveSrc,
+                dom: 'cameraOne',
                 name: 1
             })
         })
 
         $('#cameraTwo').on('click', function () {
             cameraCut({
-                src: twoLiveSrc,
+                dom: 'cameraTwo',
                 name: 2
             })
         })
 
         $('#cameraThree').on('click', function () {
             cameraCut({
-                src: threeLiveSrc,
+                dom: 'cameraThree',
                 name: 3
             })
         })
         $('#cameraFour').on('click', function () {
             cameraCut({
-                src: fourLiveSrc,
+                dom: 'cameraFour',
                 name: 4
             })
         })
 
         // 机位切换渲染dom 
         function cameraCut(item) {
-            var live = new AliRTS()
             if (allInfo.numberFlag === 1) {
-                $('#oneBox').html(`<video id="oneVideo"></video>`)
-                live.startLiveStream(item.src, document.getElementById("oneVideo"))
-                if(item.name===1&&onePreviewFlag) {
-                    onePreviewFlag = false
-                    live.on('onPlayEvent', (play) => {
-                        if (play.event === PLAY_EVENT.CANPLAY) {
-                            clearInterval(onePreviewTimer)
-                        } 
-                    })
-                    onePreviewTimer = setInterval(() => {
-                        live.startLiveStream(item.src, document.getElementById("oneVideo"))
-                    }, 10000)
-                }
                 allInfo.numFlag = 1
-                allInfo.oneSrc.shift()
-                allInfo.oneSrc.push(item)
+                allInfo.oneSrc[0]= item
             } else if (allInfo.numberFlag === 2) {
                 if (allInfo.numFlag % 2 === 0) {
-                    $('#twoBoxLeft').html(`<video id="twoVideoLeft"></video>`)
-                    live.startLiveStream(item.src, document.getElementById("twoVideoLeft"))
                     allInfo.twoSrc[0] = item
                 } else {
-                    $('#twoBoxRight').html(`<video id="twoVideoRight"></video>`)
-                    live.startLiveStream(item.src, document.getElementById("twoVideoRight"))
                     allInfo.twoSrc[1] = item
                 }
                 allInfo.numFlag++
             } else if (allInfo.numberFlag === 3) {
                 if (allInfo.numFlag % 3 === 0) {
-                    $('#threeBoxLeft').html(`<video id="threeVideoLeft"></video>`)
-                    live.startLiveStream(item.src, document.getElementById("threeVideoLeft"))
+                   
                     allInfo.threeSrc[0] = item
                 } else if (allInfo.numFlag % 3 === 1) {
-                    $('#topBox').html(`<video id="threeVideoTop"></video>`)
-                    live.startLiveStream(item.src, document.getElementById("threeVideoTop"))
+                   
                     allInfo.threeSrc[1] = item
                 } else if (allInfo.numFlag % 3 === 2) {
-                    $('#bottomBox').html(`<video id="threeVideoBottom"></video>`)
-                    live.startLiveStream(item.src, document.getElementById("threeVideoBottom"))
                     allInfo.threeSrc[2] = item
                 }
                 allInfo.numFlag++
             }
-            live.muteLiveStream(true)
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+            drawCanvas(allInfo.numberFlag )
+        }
+
+        //  绘制canvas
+        function drawCanvas(num) {
+            var v1 = null
+            var v2 = null
+            var v3 = null
+            var canvas = document.getElementById("myCanvas")
+            var ctx_canvas = canvas.getContext('2d')
+            if(num === 1){
+                v1 = document.getElementById(allInfo.oneSrc[0].dom)
+            } else if(num === 2){
+                v1 = document.getElementById(allInfo.twoSrc[0].dom)
+                v2 = document.getElementById(allInfo.twoSrc[1].dom)
+            } else {
+                v1 = document.getElementById(allInfo.threeSrc[0].dom)
+                v2 = document.getElementById(allInfo.threeSrc[1].dom)
+                v3 = document.getElementById(allInfo.threeSrc[2].dom)
+            }
+            clearInterval(timerDraw)
+            timerDraw = window.setInterval(() =>{
+                if(num === 1){
+                    ctx_canvas.drawImage(v1,0,0, canvas.width, canvas.height)
+                } else if(num === 2){
+                    ctx_canvas.drawImage(v1,v1.videoWidth/4,0,v1.videoWidth/2,v1.videoHeight,0,0, canvas.width/2, canvas.height)
+                    ctx_canvas.drawImage(v2,v2.videoWidth/4,0,v2.videoWidth/2,v2.videoHeight,canvas.width/2,0, canvas.width/2, canvas.height)
+                } else {
+                    ctx_canvas.drawImage(v1,v1.videoWidth/4,0,v1.videoWidth/2,v1.videoHeight,0,0, canvas.width/2, canvas.height)
+                    ctx_canvas.drawImage(v2,0,0,v2.videoWidth,v2.videoHeight,canvas.width/2,0, canvas.width/2, canvas.height/2)
+                    ctx_canvas.drawImage(v3,0,0,v3.videoWidth,v3.videoHeight,canvas.width/2,canvas.height/2, canvas.width/2, canvas.height/2)
+                }
+            }, 20);
+
         }
 
         // 机位一二三快切-----------------------------------------------------------------------------------------------------
         $('#one-cut').on('click', function () {
             renderOne()
             $('#cameraOne').trigger('click')
-            allInfo.scoreUpdata = 0
+            allInfo.update = 0
             sendInstruct()
         })
         $('#two-cut').on('click', function () {
             renderOne()
             $('#cameraTwo').trigger('click')
-            allInfo.scoreUpdata = 0
+            allInfo.update = 0
             sendInstruct()
         })
         $('#three-cut').on('click', function () {
             renderOne()
             $('#cameraThree').trigger('click')
-            allInfo.scoreUpdata = 0
+            allInfo.update = 0
             sendInstruct()
         })
         $('#four-cut').on('click', function () {
             renderOne()
             $('#cameraFour').trigger('click')
-            allInfo.scoreUpdata = 0
+            allInfo.update = 0
             sendInstruct()
         })
         // 单机位时渲染dom
         function renderOne() {
             $('#one-merge').addClass('mergeActive').siblings('img').removeClass('mergeActive')
-            $('#oneBox').show()
-            $('#twoBox').hide().find('div').html('')
-            $('#threeBox').hide().children('#threeBoxContent').find('#threeBoxLeft').html('').siblings('#threeBoxRight').find('div').html('')
             allInfo.numberFlag = 1
             allInfo.numFlag = 0
         }
@@ -899,16 +905,15 @@ $(function () {
                     height: '22px'
                 })
                 allInfo.liveHeadFlag = false
-                allInfo.cutLiveHeadFlag = false
-                outputLive.muteLiveStream(true)
+                domLiveRight.volume = 0 
+    
             } else {
                 allInfo.liveHeadFlag = true
-                allInfo.cutLiveHeadFlag = true
                 $(this).attr('src', './../image/headset-open.png').css({
                     width: '24px',
                     height: '18px'
                 })
-                outputLive.muteLiveStream(false)
+                domLiveRight.volume = 1
             }
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
         })
@@ -918,44 +923,26 @@ $(function () {
             // 渲染一二三拼
             if (allInfo.numberFlag === 1) {
                 $('#one-merge').addClass('mergeActive').siblings('img').removeClass('mergeActive')
-                $('#oneBox').show()
-                $('#twoBox').hide().find('div').html('')
-                $('#threeBox').hide().children('#threeBoxContent').find('#threeBoxLeft').html('').siblings('#threeBoxRight').find('div').html('')
-                allInfo.oneSrc.forEach(item => {
-                    cameraCut(item)
-                })
             } else if (allInfo.numberFlag === 2) {
                 $('#two-merge').addClass('mergeActive').siblings('img').removeClass('mergeActive')
-                $('#oneBox').hide().html('')
-                $('#twoBox').show()
-                $('#threeBox').hide().children('#threeBoxContent').find('#threeBoxLeft').html('').siblings('#threeBoxRight').find('div').html('')
-                allInfo.twoSrc.forEach(item => {
-                    cameraCut(item)
-                })
             } else if (allInfo.numberFlag === 3) {
                 $('#three-merge').addClass('mergeActive').siblings('img').removeClass('mergeActive')
-                $('#oneBox').hide().html('')
-                $('#twoBox').hide().find('div').html('')
-                $('#threeBox').show()
-                allInfo.threeSrc.forEach(item => {
-                    cameraCut(item)
-                })
             }
+            drawCanvas(allInfo.numberFlag )
 
             // 直播耳机静音
-
             if (allInfo.liveHeadFlag) {
                 $('#live-headset').attr('src', './../image/headset-open.png').css({
                     width: '24px',
                     height: '18px'
                 })
-                outputLive.muteLiveStream(false)
+                domLiveRight.volume = 1
             } else {
                 $('#live-headset').attr('src', './../image/headset-close.png').css({
                     width: '24px',
                     height: '22px'
                 })
-                outputLive.muteLiveStream(true)
+                domLiveRight.volume = 0
             }
             // 一二三机位音量
 
@@ -964,7 +951,7 @@ $(function () {
                 slide_two.setValue(allInfo.twoMuteSize)
                 slide_three.setValue(allInfo.threeMuteSize)
                 slide_four.setValue(allInfo.fourMuteSize)
-            }, 1000)
+            }, 100)
             // 渲染手势检测
             if (allInfo.gestureFlag === Number(0)) {
                 $('#gesture-btn').text('开启').css('background-color', '#ff914d')
@@ -989,7 +976,6 @@ $(function () {
         $('.bg-item').on('click', function () {
             $(this).addClass('bg-active').siblings().removeClass('bg-active')
             allInfo.replaceFlag = $(this).index()
-
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
         })
 
@@ -999,7 +985,7 @@ $(function () {
         function getScoreStyle() {
             $.ajax({
                 type: 'GET',
-                url: "http://8.131.247.153/event/score_card_style/",
+                url: "http://www.cube.vip/event/score_card_style/",
                 dataType: "json",
                 async: false,
                 headers: {
@@ -1699,9 +1685,10 @@ $(function () {
             $('#scoreBrand').empty('').hide()
             $('#score-shade').show()
             fileScore = 0
+            allInfo.state = 'off'
             scoreLocation = 0
             sessionStorage.removeItem('score' + event_code)
-            sessionStorage.removeItem('scoreImage' + event_code)
+            sessionStorage.removeItem('imageBase64' + event_code)
             $('#logo-radio1').removeAttr('disabled')
             $('#logo-radio2').removeAttr('disabled')
             $('#logo-radio3').removeAttr('disabled')
@@ -1716,8 +1703,9 @@ $(function () {
                 backgroundColor: "transparent",
                 onrendered: function (canvas) {
                     fileScore = canvas.toDataURL('image/png', 1.0)
-                    sessionStorage.setItem('scoreImage' + event_code, canvas.toDataURL('image/png', 1.0))
-                    allInfo.scoreUpdata = 1
+                    allInfo.state = 'on'
+                    sessionStorage.setItem('imageBase64' + event_code, canvas.toDataURL('image/png', 1.0))
+                    allInfo.update = 1
                     sendInstruct()
 
                 },
@@ -1890,7 +1878,7 @@ $(function () {
 
         // 切换往后台发数据
         $('#switchover').on('click', function () {
-            allInfo.scoreUpdata = 0
+            allInfo.update = 0
             sendInstruct()
         })
 
@@ -1941,7 +1929,8 @@ $(function () {
                         cameraOrder: cameraOrder,
                     },
                     score: {
-                        scoreUpdata: allInfo.scoreUpdata,
+                        state: allInfo.state,
+                        update: allInfo.update,
                         scoreLocation: scoreLocation
                     }
                 },
@@ -1961,7 +1950,7 @@ $(function () {
             formData.append('json_data', JSON.stringify(info))
             $.ajax({
                 type: "POST",
-                url: 'http://8.131.247.153/director/director_instruct/',
+                url: 'http://www.cube.vip/director/director_instruct/',
                 dataType: "json",
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -1975,7 +1964,7 @@ $(function () {
         // WebSocket聊天室--------------------------------------------------------------------------------------------------
         const chatSocket = new WebSocket(
             'ws://' +
-            '8.131.247.153' +
+            'www.cube.vip' +
             '/ws/chat/' +
             event_uri_key +
             '/'
@@ -2042,7 +2031,7 @@ $(function () {
         $('.chatContent').on('click', '.deleteChat', function () {
             $.ajax({
                 type: 'POST',
-                url: "http://8.131.247.153/chatting/delete_chat/",
+                url: "http://www.cube.vip/chatting/delete_chat/",
                 dataType: "json",
                 headers: {
                     token: sessionStorage.getItem('token')

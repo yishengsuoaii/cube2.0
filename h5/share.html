@@ -26,7 +26,7 @@
                 type: "GET",
                 dataType: "json",
                 async: false,
-                url: "http://8.131.247.153/event/h5_card_message/",
+                url: "http://www.cube.vip/event/h5_card_message/",
                 data:{
                     event_uri_key:event_uri_key
                 },
@@ -37,7 +37,7 @@
                         $('#userName').text(res.data.account_name)
                         $('#channelName').text(res.data.event_title)
                         new QRCode(document.getElementById("qrCode"), {
-                            text: "http://8.131.247.153/h5/wxlogin.html?key="+event_uri_key,
+                            text: "http://www.cube.vip/h5/wxlogin.html?key="+event_uri_key,
                             width: 64,
                             height: 64,
                         });

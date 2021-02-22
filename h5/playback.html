@@ -57,7 +57,7 @@
             $('.viewNum').text(infoData[2][1]+'人观看')
             // 获取评论列表
             $.ajax({
-                url: 'http://8.131.247.153/commenting/h5_comments_show/',
+                url: 'http://www.cube.vip/commenting/h5_comments_show/',
                 type: 'POST',
                 data: {
                     video_id: infoData[0][1]
@@ -86,7 +86,7 @@
             $('#send-btn').on('click', function () {
                 if ($.trim($('.messageInput').val()).length > 0) {
                     $.ajax({
-                        url: 'http://8.131.247.153/commenting/h5_submit_comments/',
+                        url: 'http://www.cube.vip/commenting/h5_submit_comments/',
                         type: 'POST',
                         data: {
                             video_id: infoData[0][1],
@@ -106,7 +106,7 @@
             $('.messageInput').on('keypress', function (event) { // 监听回车事件
                 if (event.keyCode == "13") {
                     $.ajax({
-                        url: 'http://8.131.247.153/commenting/h5_submit_comments/',
+                        url: 'http://www.cube.vip/commenting/h5_submit_comments/',
                         type: 'POST',
                         data: {
                             video_id: infoData[0][1],
@@ -125,7 +125,7 @@
 
             function getCommentList() {
                 $.ajax({
-                    url: 'http://8.131.247.153/commenting/h5_comments_show/',
+                    url: 'http://www.cube.vip/commenting/h5_comments_show/',
                     type: 'POST',
                     data: {
                         video_id: infoData[0][1]

@@ -20,7 +20,7 @@ $(function () {
     });
     // 获取基本信息
     $.ajax({
-        url: 'http://8.131.247.153/event/h5_broadcasting_room/',
+        url: 'http://www.cube.vip/event/h5_broadcasting_room/',
         type: 'GET',
         data: {
             event_uri_key: event_uri_key
@@ -91,7 +91,7 @@ $(function () {
    function getNumber(){
         setInterval(()=>{
         $.ajax({
-            url: 'http://8.131.247.153/event/h5_get_online/',
+            url: 'http://www.cube.vip/event/h5_get_online/',
             type: 'GET',
             data: {
                 event_uri_key: event_uri_key
@@ -122,7 +122,7 @@ $(function () {
 
     //获取回放视频
     $.ajax({
-        url: 'http://8.131.247.153/event/h5_get_video/',
+        url: 'http://www.cube.vip/event/h5_get_video/',
         type: 'GET',
         data: {
             event_uri_key: event_uri_key
@@ -131,7 +131,7 @@ $(function () {
             if (res.msg === 'success') {
                 var str = '<p class="rec">精彩推荐</p>'
                 res.data.forEach(item => {
-                    str += `<a class="backList" data-id="${item.video_id}" href="http://8.131.247.153/h5/playback.html?id=${item.video_id}&src=${item.video_uri}&views=${item.video_number_views}&profile=${item.video_profile}&${ window.location.search.substring(1)}">
+                    str += `<a class="backList" data-id="${item.video_id}" href="http://www.cube.vip/h5/playback.html?id=${item.video_id}&src=${item.video_uri}&views=${item.video_number_views}&profile=${item.video_profile}&${ window.location.search.substring(1)}">
                         <div class="backContent">
                             <div class="backInfo">
                                 <div class="backName">
@@ -153,7 +153,7 @@ $(function () {
     // 增加广告点击量
     $('#ad-link').on('click', function () {
         $.ajax({
-            url: 'http://8.131.247.153/event/h5_ads_number_clicks/',
+            url: 'http://www.cube.vip/event/h5_ads_number_clicks/',
             type: 'POST',
             data: {
                 event_uri_key: event_uri_key
@@ -307,7 +307,7 @@ $(function () {
     // 获取视频url
     function getVideoUrl() {
         $.ajax({
-            url: 'http://8.131.247.153/event/h5_artc_url/',
+            url: 'http://www.cube.vip/event/h5_artc_url/',
             type: 'GET',
             data: {
                 event_uri_key: event_uri_key
@@ -326,7 +326,7 @@ $(function () {
     // WebSocket聊天室
     const chatSocket = new WebSocket(
         'ws://' +
-        '8.131.247.153' +
+        'www.cube.vip' +
         '/ws/chat/' +
         event_uri_key +
         '/'
@@ -399,7 +399,7 @@ $(function () {
             type: "POST",
             dataType: "json",
             async: false,
-            url: "http://8.131.247.153/video_editing/h5_video_number_clicks/",
+            url: "http://www.cube.vip/video_editing/h5_video_number_clicks/",
             data:{
                 video_id:$(this).attr('data-id')
             }
@@ -409,7 +409,7 @@ $(function () {
    getSessionCode()
    function getSessionCode(){
     $.ajax({
-            url: 'http://8.131.247.153/event/h5_get_session_code/',
+            url: 'http://www.cube.vip/event/h5_get_session_code/',
             type: 'GET',
             data: {
                 event_uri_key: event_uri_key
@@ -425,7 +425,7 @@ $(function () {
         })
         sessionTimers = setInterval(()=>{
             $.ajax({
-                url: 'http://8.131.247.153/event/h5_get_session_code/',
+                url: 'http://www.cube.vip/event/h5_get_session_code/',
                 type: 'GET',
                 data: {
                     event_uri_key: event_uri_key
@@ -580,7 +580,7 @@ Promise.all(assets).then(function (images) {
     document.getElementById('giveLike').addEventListener('click', function () {
         stage.bubble(images[random.uniformDiscrete(0, images.length - 1)]);
         $.ajax({
-            url: 'http://8.131.247.153/event/h5_event_number_clicks/',
+            url: 'http://www.cube.vip/event/h5_event_number_clicks/',
             type: 'POST',
             data: {
                 event_uri_key: event_uri_key

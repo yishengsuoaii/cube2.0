@@ -33,7 +33,7 @@ $(function () {
             type: "POST",
             dataType: "json",
             async: false,
-            url: "http://8.131.247.153/account/login/",
+            url: "http://www.cube.vip/account/login/",
             data: $("#login-form").serialize(),
             success: function (result) {
                 sessionStorage.setItem('token', result.token)
@@ -54,7 +54,7 @@ $(function () {
         } else {
             $.ajax({
                 type: "GET",
-                url: "http://8.131.247.153/account/exist_account_name/",
+                url: "http://www.cube.vip/account/exist_account_name/",
                 dataType: "json",
                 data: $(".name_1").serialize(),
                 success: function (res) {
@@ -79,7 +79,7 @@ $(function () {
         } else {
             $.ajax({
                 type: "GET",
-                url: "http://8.131.247.153/account/exist_telphone/",
+                url: "http://www.cube.vip/account/exist_telphone/",
                 dataType: "json",
                 data: $(".mobile").serialize(),
                 success: function (result) {
@@ -125,7 +125,7 @@ $(function () {
                 type: "GET",
                 dataType: "json",
                 async: false,
-                url: "http://8.131.247.153/account/send_phone_sms/",
+                url: "http://www.cube.vip/account/send_phone_sms/",
                 data: $(".mobile").serialize(),
                 success: function (result) {
                     if (result.msg === 'success') {
@@ -182,7 +182,7 @@ $(function () {
                 type: "POST",
                 dataType: "json",
                 async: false,
-                url: "http://8.131.247.153/account/register/",
+                url: "http://www.cube.vip/account/register/",
                 data: $("#form").serialize(),
                 success: function (result) {
                     if(result.msg==='error') {
@@ -194,7 +194,7 @@ $(function () {
                                 type: "POST",
                                 dataType: "json",
                                 async: false,
-                                url: "http://8.131.247.153/account/login/",
+                                url: "http://www.cube.vip/account/login/",
                                 data: {
                                     account_name:$.trim($('.name_1').val()),
                                     account_password:$.trim($('.txtPwd').val())

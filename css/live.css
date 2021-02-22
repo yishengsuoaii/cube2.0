@@ -1224,78 +1224,9 @@
   left: 176px;
   bottom: 20px;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox #oneBox {
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox #myCanvas {
   width: 580px;
   height: 328px;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox #oneBox #oneVideo {
-  width: 580px;
-  height: 328px;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox #twoBox {
-  display: none;
-  width: 580px;
-  height: 328px;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox #twoBox #twoBoxLeft {
-  display: inline-block;
-  width: 290px;
-  height: 328px;
-  overflow: hidden;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox #twoBox #twoBoxLeft #twoVideoLeft {
-  width: 580px;
-  height: 328px;
-  margin-left: -145px;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox #twoBox #twoBoxRight {
-  display: inline-block;
-  width: 290px;
-  height: 328px;
-  overflow: hidden;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox #twoBox #twoBoxRight #twoVideoRight {
-  width: 580px;
-  height: 328px;
-  margin-left: -145px;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox #threeBox {
-  display: none;
-  width: 580px;
-  height: 328px;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox #threeBox #threeBoxContent {
-  width: 580px;
-  height: 328px;
-  display: flex;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox #threeBox #threeBoxContent #threeBoxLeft {
-  width: 290px;
-  height: 328px;
-  overflow: hidden;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox #threeBox #threeBoxContent #threeBoxLeft #threeVideoLeft {
-  width: 580px;
-  height: 328px;
-  margin-left: -145px;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox #threeBox #threeBoxContent #threeBoxRight {
-  width: 290px;
-  height: 328px;
-  display: flex;
-  flex-wrap: wrap;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox #threeBox #threeBoxContent #threeBoxRight div {
-  width: 290px;
-  height: 164px;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox #threeBox #threeBoxContent #threeBoxRight div #threeVideoTop {
-  width: 290px;
-  height: 164px;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox #threeBox #threeBoxContent #threeBoxRight div #threeVideoBottom {
-  width: 290px;
-  height: 164px;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-name {
   display: flex;
@@ -1412,26 +1343,34 @@
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #cameraBox .cameraList .cameraContent .slideBox {
   width: 22px;
-  height: 100px;
+  height: 116px;
   position: absolute;
   right: 10px;
-  bottom: 10px;
+  bottom: 2px;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #cameraBox .cameraList .cameraContent .slideBox .slideLine {
-  height: 70px;
+  height: 90px;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #cameraBox .cameraList .cameraContent .slideBox .slideLine .layui-slider {
-  height: 70px !important;
+  height: 90px !important;
   margin-left: 8px;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #cameraBox .cameraList .cameraContent .slideBox .slideLine .layui-slider .layui-slider-wrap-btn {
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #cameraBox .cameraList .cameraContent .slideBox .slideLine .layui-slider .layui-slider-bar {
+  height: 0%;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #cameraBox .cameraList .cameraContent .slideBox .slideLine .layui-slider .layui-slider-wrap {
+  width: 24px;
+  height: 24px;
+  left: -10px;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #cameraBox .cameraList .cameraContent .slideBox .slideLine .layui-slider .layui-slider-wrap .layui-slider-wrap-btn {
   width: 8px;
   height: 8px;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #cameraBox .cameraList .cameraContent .slideBox img {
   width: 22px;
   height: 18px;
-  margin-top: 10px;
+  margin-top: 6px;
   cursor: pointer;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab {
@@ -1716,6 +1655,68 @@
   width: 100px;
   font-size: 18px;
   background-color: #ff914d;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #cloudPlug {
+  width: 1559;
+  height: 760px;
+  background-color: #fff;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #cloudPlug .cloudTitle {
+  width: 1539;
+  height: 60px;
+  line-height: 60px;
+  padding-left: 20px;
+  background: #FF914D;
+  font-size: 24px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #cloudPlug .cloudContent {
+  width: 978px;
+  height: 600px;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #cloudPlug .cloudContent .pushList {
+  width: 978px;
+  height: 78px;
+  margin-bottom: 20px;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #cloudPlug .cloudContent .pushList .pushTitle {
+  height: 30px;
+  font-size: 20px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  line-height: 30px;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #cloudPlug .cloudContent .pushList .pushInputBox {
+  display: flex;
+  width: 978px;
+  height: 48px;
+  justify-content: space-between;
+  align-items: center;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #cloudPlug .cloudContent .pushList .pushInputBox .pushInputs {
+  width: 866px;
+  padding: 0 10px;
+  height: 46px;
+  border: 1px solid #FF914D;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #cloudPlug .cloudContent .pushList .pushInputBox .pushBtn {
+  width: 78px;
+  height: 38px;
+  background-color: #fff;
+  border: 1px solid #FF914D;
+  border-radius: 5px;
+  line-height: 38px;
+  text-align: center;
+  font-size: 24px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #F2591A;
+  cursor: pointer;
 }
 /* 比分牌弹窗 样式*/
 #scoreDialog {

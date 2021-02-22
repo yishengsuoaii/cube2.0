@@ -110,7 +110,7 @@ $(function () {
 		// 上传门户头像
 		var userImage = upload.render({
 			elem: '#userLayer', //绑定元素
-			url: 'http://8.131.247.153/account/check_account_thundernail/', //上传接口
+			url: 'http://www.cube.vip/account/check_account_thundernail/', //上传接口
 			headers: {
 				token: sessionStorage.getItem('token')
 			},
@@ -129,7 +129,7 @@ $(function () {
 		// 上传封面图片
 		var coverImage = upload.render({
 			elem: '#coverLayer', //绑定元素
-			url: 'http://8.131.247.153/channel/upload_channnel_wallpaper/', //上传接口
+			url: 'http://www.cube.vip/channel/upload_channnel_wallpaper/', //上传接口
 			headers: {
 				token: sessionStorage.getItem('token')
 			},
@@ -155,7 +155,7 @@ $(function () {
 				headers: {
 					token: sessionStorage.getItem('token')
 				},
-				url: "http://8.131.247.153/event/event_list/",
+				url: "http://www.cube.vip/event/event_list/",
 				data: {},
 				success: function (res) {
 					if (res.msg === 'success') {
@@ -231,7 +231,7 @@ $(function () {
 				headers: {
 					token: sessionStorage.getItem('token')
 				},
-				url: "http://8.131.247.153/video/video_list/",
+				url: "http://www.cube.vip/video/video_list/",
 				data: {
 					save_flag: 'media_library'
 				},
@@ -314,7 +314,7 @@ $(function () {
 		headers: {
 			token: sessionStorage.getItem('token')
 		},
-		url: "http://8.131.247.153/channel/channel_info/",
+		url: "http://www.cube.vip/channel/channel_info/",
 		success: function (res) {
 			if (res.msg === 'success') {
 				$('.portal-info-name').text(res.data.channel_name)
@@ -349,7 +349,7 @@ $(function () {
 		headers: {
 			token: sessionStorage.getItem('token')
 		},
-		url: "http://8.131.247.153/account/check_account_thundernail/",
+		url: "http://www.cube.vip/account/check_account_thundernail/",
 		success: function (res) {
 			if (res.msg === 'success') {
 				if (res.data.account_thundernail !==
@@ -369,7 +369,7 @@ $(function () {
 		headers: {
 			token: sessionStorage.getItem('token')
 		},
-		url: 'http://8.131.247.153/channel/portal_display/',
+		url: 'http://www.cube.vip/channel/portal_display/',
 		success: function (res) {
 			if (res.msg === 'success') {
 				addedChannelData = res.data.data.event
@@ -396,7 +396,7 @@ $(function () {
 
 	// 手机预览
 	new QRCode(document.getElementById("qrcode"), {
-		text: 'http://8.131.247.153/h5/portalMobile.html?token=' + sessionStorage.getItem('token'),
+		text: 'http://www.cube.vip/h5/portalMobile.html?token=' + sessionStorage.getItem('token'),
 		width: 256,
 		height: 256,
 	});
@@ -404,7 +404,7 @@ $(function () {
 		$('#qrcode').toggle()
 	})
 	// 复制链接
-	$('#copyUrl').attr('data-clipboard-text', 'http://8.131.247.153/h5/portalMobile.html?token=' +
+	$('#copyUrl').attr('data-clipboard-text', 'http://www.cube.vip/h5/portalMobile.html?token=' +
 		sessionStorage.getItem('token'))
 	var btn = document.getElementById('copyUrl');
 
@@ -439,7 +439,7 @@ $(function () {
 			headers: {
 				token: sessionStorage.getItem('token')
 			},
-			url: "http://8.131.247.153/channel/channel_info/",
+			url: "http://www.cube.vip/channel/channel_info/",
 			data: {
 				channel_name: $('.portalTop-right-title-input').val(),
 				channel_description: $('.portalTop-right-textarea').val(),
@@ -482,7 +482,7 @@ $(function () {
 			headers: {
 				token: sessionStorage.getItem('token')
 			},
-			url: "http://8.131.247.153/channel/portal_display/",
+			url: "http://www.cube.vip/channel/portal_display/",
 			data: {
 				event_id: JSON.stringify(event_id),
 				video_id: JSON.stringify(video_id)

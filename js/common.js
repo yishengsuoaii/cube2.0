@@ -26,7 +26,7 @@ $(function () {
 
 
     $.post({
-        url: "http://8.131.247.153/account/userinfo/",
+        url: "http://www.cube.vip/account/userinfo/",
         dataType: "json",
         async: false,
         headers: {
@@ -39,7 +39,7 @@ $(function () {
     // 获取消息
     $.ajax({
         type: 'GET',
-        url: "http://8.131.247.153/account/message/",
+        url: "http://www.cube.vip/account/message/",
         dataType: "json",
         async: false,
         headers: {
@@ -72,7 +72,7 @@ $(function () {
 
     // 查看消息
     $('#messageContent').on('click', '.messageList', function () {
-        window.open('http://8.131.247.153/html/message.html?id=' + $(this).attr('data-id') +
+        window.open('http://www.cube.vip/html/message.html?id=' + $(this).attr('data-id') +
             '&key=' + sessionStorage.getItem('token'))
     })
 

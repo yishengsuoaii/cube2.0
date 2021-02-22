@@ -7,7 +7,7 @@ $(function () {
      var myChart = echarts.init(document.getElementById('echarts'));
     // 获取所有频道
     $.post({
-        url: "http://8.131.247.153/event/event_list/",
+        url: "http://www.cube.vip/event/event_list/",
         dataType: "json",
         headers: {
             token: sessionStorage.getItem('token')
@@ -35,7 +35,7 @@ $(function () {
 
     function selectId(id) {
         $.ajax({
-            url: "http://8.131.247.153/event/get_data_view/",
+            url: "http://www.cube.vip/event/get_data_view/",
             dataType: "json",
             type: 'GET',
             headers: {

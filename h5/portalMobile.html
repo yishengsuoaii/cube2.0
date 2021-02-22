@@ -50,7 +50,7 @@
             dataType: "json",
             async: false,
             headers: {token:token},
-            url: "http://8.131.247.153/channel/channel_info/",
+            url: "http://www.cube.vip/channel/channel_info/",
             success: function (res) {
                 if(res.msg === 'success') {
                     if(res.data.channel_wallpaper !=='http://content.changsmart.com/channel_wallpaper/default.jpg') {
@@ -76,7 +76,7 @@
             dataType: "json",
             async: false,
             headers: {token:token},
-            url: "http://8.131.247.153/account/check_account_thundernail/",
+            url: "http://www.cube.vip/account/check_account_thundernail/",
             success: function (res) {
                 if(res.msg === 'success') {
                     if(res.data.account_thundernail !=='http://content.changsmart.com/account/default.png') {
@@ -96,7 +96,7 @@
             dataType: "json",
             async: false,
             headers: {token:token},
-            url:'http://8.131.247.153/channel/portal_display/',
+            url:'http://www.cube.vip/channel/portal_display/',
             success:function(res){
                 if(res.msg === 'success') {
                     addedChannelData = res.data.data.event
@@ -170,16 +170,16 @@
         })
         // 点击频道跳转
         $('.wonderful-channel-cont').on('click','.wonderful-channel-list',function(){
-            window.location.href='http://8.131.247.153/h5/wxlogin.html?key='+$(this).attr('data-key').substr(20)
+            window.location.href='http://www.cube.vip/h5/wxlogin.html?key='+$(this).attr('data-key').substr(19)
         })
         $('.wonderful-video').on('click','.wonderful-video-list',function(){
-            window.location.href='http://8.131.247.153/h5/wxminlogin.html?id='+$(this).attr('data-id')+'&src='+$(this).attr('data-src')+'&view='+$(this).attr('data-view')+'&profile='+$(this).attr('data-profile')
+            window.location.href='http://www.cube.vip/h5/wxminlogin.html?id='+$(this).attr('data-id')+'&src='+$(this).attr('data-src')+'&view='+$(this).attr('data-view')+'&profile='+$(this).attr('data-profile')
             $.ajax({
                 type: "POST",
                 dataType: "json",
                 async: false,
                 headers: {token:token},
-                url: "http://8.131.247.153/video_editing/video_number_clicks/",
+                url: "http://www.cube.vip/video_editing/video_number_clicks/",
                 data:{
                     video_id:$(this).attr('data-id')
                 }

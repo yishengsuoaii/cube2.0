@@ -76,7 +76,7 @@ $(function () {
             headers: {
                 token: sessionStorage.getItem('token')
             },
-            url: "http://8.131.247.153/video_editing/get_thumbnails/",
+            url: "http://www.cube.vip/video_editing/get_thumbnails/",
             data: {
                 event_id: event_id
             },
@@ -108,7 +108,7 @@ $(function () {
                 headers: {
                     token: sessionStorage.getItem('token')
                 },
-                url: "http://8.131.247.153/video/video_list/",
+                url: "http://www.cube.vip/video/video_list/",
                 data: {
                     save_flag: 'media_library'
                 },
@@ -232,7 +232,7 @@ $(function () {
                 type: "GET",
                 dataType: "json",
                 async: false,
-                url: "http://8.131.247.153/video/video_code_to_uri/",
+                url: "http://www.cube.vip/video/video_code_to_uri/",
                 data: {
                     video_code: videoCode
                 },
@@ -261,7 +261,7 @@ $(function () {
                 headers: {
                     token: sessionStorage.getItem('token')
                 },
-                url: "http://8.131.247.153/video_editing/get_thumbnails/",
+                url: "http://www.cube.vip/video_editing/get_thumbnails/",
                 data: {
                     event_id: event_id,
                     event_playback_flag: previewFlag,
@@ -281,7 +281,7 @@ $(function () {
         upload.render({
             elem: '#live-bg-upload',
             type: "POST",
-            url: 'http://8.131.247.153/event/event_video_cover_page/',
+            url: 'http://www.cube.vip/event/event_video_cover_page/',
             data: {
                 event_id: event_id
             },
@@ -313,7 +313,7 @@ $(function () {
                 event_id: event_id
             },
             size: 1024 * 4,
-            url: 'http://8.131.247.153/event/event_wallpaper/',
+            url: 'http://www.cube.vip/event/event_wallpaper/',
             done: function (result) {
                 if (result.msg === 'success') {
                     layer.msg('上传成功!');
@@ -337,7 +337,7 @@ $(function () {
                 event_id: event_id
             },
             size: 1024 * 2,
-            url: 'http://8.131.247.153/event/upload_logo_image/',
+            url: 'http://www.cube.vip/event/upload_logo_image/',
             done: function (result) {
                 if (result.msg === 'success') {
                     layer.msg('上传成功!');
@@ -378,7 +378,7 @@ $(function () {
 
         //获取倒计时
         $.get({
-            url: "http://8.131.247.153/event/live_countdown_settings/",
+            url: "http://www.cube.vip/event/live_countdown_settings/",
             dataType: "json",
             headers: {
                 token: sessionStorage.getItem('token')
@@ -536,7 +536,7 @@ $(function () {
         //获取在线人数信息
         $.ajax({
             type: 'GET',
-            url: "http://8.131.247.153/event/event_number/",
+            url: "http://www.cube.vip/event/event_number/",
             dataType: "json",
             headers: {
                 token: sessionStorage.getItem('token')
@@ -603,7 +603,7 @@ $(function () {
         // 获取公开状态及密码
         $.ajax({
             type: 'GET',
-            url: 'http://8.131.247.153/event/check_event/',
+            url: 'http://www.cube.vip/event/check_event/',
             dataType: "json",
             headers: {
                 token: sessionStorage.getItem('token')
@@ -648,7 +648,7 @@ $(function () {
                 data: {
                     event_id: event_id,
                 },
-                url: 'http://8.131.247.153/event/introduction_activities/',
+                url: 'http://www.cube.vip/event/introduction_activities/',
                 choose: function (obj) {
                     obj.preview(function (index, file, result) {
                         $(".introduce-box").css('background-image', 'url(' + window.URL.createObjectURL(file) + ')')
@@ -666,7 +666,7 @@ $(function () {
         });
 
         $.get({
-            url: "http://8.131.247.153/event/introduction_activities/",
+            url: "http://www.cube.vip/event/introduction_activities/",
             dataType: "json",
             headers: {
                 token: sessionStorage.getItem('token')
@@ -696,7 +696,7 @@ $(function () {
         });
         // 获取邀请卡
         $.get({
-            url: "http://8.131.247.153/event/card_stytle/",
+            url: "http://www.cube.vip/event/card_stytle/",
             dataType: "json",
             headers: {
                 token: sessionStorage.getItem('token')
@@ -718,10 +718,10 @@ $(function () {
                     $('#user-image').attr('src', res.data.account_thundernail)
                     $('#user-name').text(res.data.account_name)
                     $('#channel-name').text(res.data.event_title)
-                    $('.copy-url').val('分享地址:http://8.131.247.153/h5/share.html?key=' + res.data.event_uri_key)
-                    $('.copy-btn').attr('data-clipboard-text', 'http://8.131.247.153/h5/share.html?key=' + res.data.event_uri_key)
+                    $('.copy-url').val('分享地址:http://www.cube.vip/h5/share.html?key=' + res.data.event_uri_key)
+                    $('.copy-btn').attr('data-clipboard-text', 'http://www.cube.vip/h5/share.html?key=' + res.data.event_uri_key)
                     new QRCode(document.getElementById("qr-code"), {
-                        text: "http://8.131.247.153/h5/wxlogin.html?key=" + res.data.event_uri_key,
+                        text: "http://www.cube.vip/h5/wxlogin.html?key=" + res.data.event_uri_key,
                         width: 64,
                         height: 64,
                     });
@@ -774,7 +774,7 @@ $(function () {
                 event_ads_external_uri: $('.ad-link-input').val(),
                 event_ads_flag: adFlag
             },
-            url: 'http://8.131.247.153/event/event_ads/',
+            url: 'http://www.cube.vip/event/event_ads/',
             choose: function (obj) {
                 obj.preview(function (index, file, result) {
                     $(".upload-image").attr("src", window.URL.createObjectURL(
@@ -797,7 +797,7 @@ $(function () {
             formData.append('event_ads_flag', adFlag)
             $.ajax({
                 type: "POST",
-                url: 'http://8.131.247.153/event/event_ads/',
+                url: 'http://www.cube.vip/event/event_ads/',
                 dataType: "json",
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -819,7 +819,7 @@ $(function () {
 
         // 获取广告
         $.get({
-            url: "http://8.131.247.153/event/event_ads/",
+            url: "http://www.cube.vip/event/event_ads/",
             dataType: "json",
             headers: {
                 token: sessionStorage.getItem('token')
@@ -849,7 +849,7 @@ $(function () {
 
     // 获取直播导引页图片
     $.get({
-        url: "http://8.131.247.153/event/event_wallpaper/",
+        url: "http://www.cube.vip/event/event_wallpaper/",
         dataType: "json",
         headers: {
             token: sessionStorage.getItem('token')
@@ -866,7 +866,7 @@ $(function () {
 
     // 获取直播背景
     $.get({
-        url: "http://8.131.247.153/event/event_video_cover_page/",
+        url: "http://www.cube.vip/event/event_video_cover_page/",
         dataType: "json",
         headers: {
             token: sessionStorage.getItem('token')
@@ -883,7 +883,7 @@ $(function () {
     $('#down-submit').on('click', function () {
         $.ajax({
             type: 'POST',
-            url: "http://8.131.247.153/event/live_countdown_settings/",
+            url: "http://www.cube.vip/event/live_countdown_settings/",
             dataType: "json",
             headers: {
                 token: sessionStorage.getItem('token')
@@ -918,7 +918,7 @@ $(function () {
         if (multipleFlag === 1) {
             $.ajax({
                 type: 'POST',
-                url: "http://8.131.247.153/event/event_number/",
+                url: "http://www.cube.vip/event/event_number/",
                 dataType: "json",
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -941,7 +941,7 @@ $(function () {
         } else {
             $.ajax({
                 type: 'POST',
-                url: "http://8.131.247.153/event/event_number/",
+                url: "http://www.cube.vip/event/event_number/",
                 dataType: "json",
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -1017,7 +1017,7 @@ $(function () {
         }
         $.ajax({
             type: 'POST',
-            url: "http://8.131.247.153/event/update_event_private/",
+            url: "http://www.cube.vip/event/update_event_private/",
             dataType: "json",
             headers: {
                 token: sessionStorage.getItem('token')
@@ -1071,7 +1071,7 @@ $(function () {
             headers: {
                 token: sessionStorage.getItem('token')
             },
-            url: "http://8.131.247.153/event/card_stytle/",
+            url: "http://www.cube.vip/event/card_stytle/",
             data: {
                 event_id: event_id,
                 id: checkId,

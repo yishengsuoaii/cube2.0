@@ -1405,95 +1405,9 @@
                                     left: 176px;
                                     bottom: 20px;
                                 }
-
-                                #oneBox {
+                                #myCanvas {
                                     width: 580px;
                                     height: 328px;
-
-                                    #oneVideo {
-                                        width: 580px;
-                                        height: 328px;
-                                    }
-                                }
-
-                                #twoBox {
-                                    display: none;
-                                    width: 580px;
-                                    height: 328px;
-
-                                    #twoBoxLeft {
-                                        display: inline-block;
-                                        width: 290px;
-                                        height: 328px;
-                                        overflow: hidden;
-
-                                        #twoVideoLeft {
-                                            width: 580px;
-                                            height: 328px;
-                                            margin-left: -145px
-                                        }
-                                    }
-
-                                    #twoBoxRight {
-                                        display: inline-block;
-                                        width: 290px;
-                                        height: 328px;
-                                        overflow: hidden;
-
-                                        #twoVideoRight {
-                                            width: 580px;
-                                            height: 328px;
-                                            margin-left: -145px;
-                                        }
-                                    }
-                                }
-
-                                #threeBox {
-                                    display: none;
-                                    width: 580px;
-                                    height: 328px;
-
-                                    #threeBoxContent {
-                                        width: 580px;
-                                        height: 328px;
-                                        display: flex;
-
-                                        #threeBoxLeft {
-                                            width: 290px;
-                                            height: 328px;
-                                            overflow: hidden;
-
-                                            #threeVideoLeft {
-                                                width: 580px;
-                                                height: 328px;
-                                                margin-left: -145px;
-                                            }
-                                        }
-
-                                        #threeBoxRight {
-                                            width: 290px;
-                                            height: 328px;
-                                            display: flex;
-                                            flex-wrap: wrap;
-
-                                            div {
-                                                width: 290px;
-                                                height: 164px;
-
-                                                #threeVideoTop {
-                                                    width: 290px;
-                                                    height: 164px;
-                                                }
-
-                                                #threeVideoBottom {
-                                                    width: 290px;
-                                                    height: 164px;
-                                                }
-                                            }
-
-
-                                        }
-                                    }
                                 }
                             }
 
@@ -1628,21 +1542,29 @@
 
                                 .slideBox {
                                     width: 22px;
-                                    height: 100px;
+                                    height: 116px;
                                     position: absolute;
                                     right: 10px;
-                                    bottom: 10px;
+                                    bottom: 2px;
 
                                     .slideLine {
-                                        height: 70px;
+                                        height: 90px;
 
                                         .layui-slider {
-                                            height: 70px !important;
+                                            height: 90px !important;
                                             margin-left: 8px;
-
-                                            .layui-slider-wrap-btn {
-                                                width: 8px;
-                                                height: 8px;
+                                            .layui-slider-bar {
+                                                height: 0%;
+                                            }
+                                            
+                                            .layui-slider-wrap {
+                                                width: 24px;
+                                                height: 24px;
+                                                left: -10px;
+                                                .layui-slider-wrap-btn {
+                                                    width: 8px;
+                                                    height: 8px;
+                                                }
                                             }
                                         }
                                     }
@@ -1650,7 +1572,7 @@
                                     img {
                                         width: 22px;
                                         height: 18px;
-                                        margin-top: 10px;
+                                        margin-top: 6px;
                                         cursor: pointer;
                                     }
                                 }
@@ -1983,6 +1905,70 @@
                                 }
                             }
 
+                        }
+                    }
+                }
+
+                // 云推流-----------------------------------------------------------------------------------
+                #cloudPlug {
+                    width: 1559;
+                    height: 760px;
+                    background-color: #fff;
+                    .cloudTitle {
+                        width: 1539;    
+                        height: 60px;
+                        line-height: 60px;
+                        padding-left: 20px;
+                        background: #FF914D;
+                        font-size: 24px;
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #FFFFFF;
+                    }
+                    .cloudContent {
+                        width: 978px;
+                        height: 600px;
+                        margin:  0 auto;
+                        padding-top: 100px;
+                        .pushList {
+                            width: 978px;
+                            height: 78px;
+                            margin-bottom: 20px;
+                            .pushTitle {
+                                height: 30px;
+                                font-size: 20px;
+                                font-family: Source Han Sans CN;
+                                font-weight: 400;
+                                color: #666666;
+                                line-height: 30px;
+                            }
+                            .pushInputBox {
+                                display: flex;
+                                width: 978px;
+                                height: 48px;
+                                justify-content: space-between;
+                                align-items: center;
+                                .pushInputs{
+                                    width: 866px;
+                                    padding: 0 10px;
+                                    height: 46px;
+                                    border: 1px solid #FF914D;
+                                }
+                                .pushBtn {
+                                    width: 78px;
+                                    height: 38px;
+                                    background-color: #fff;
+                                    border: 1px solid #FF914D;
+                                    border-radius: 5px;
+                                    line-height: 38px;
+                                    text-align: center;
+                                    font-size: 24px;
+                                    font-family: Source Han Sans CN;
+                                    font-weight: 400;
+                                    color: #F2591A;
+                                    cursor: pointer;
+                                }
+                            }
                         }
                     }
                 }

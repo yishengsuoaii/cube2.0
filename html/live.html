@@ -10,11 +10,12 @@
     <link rel="stylesheet" href="./../css/live.css">
     <link rel="stylesheet" href="./../css/video-js.min.css">
     <script src="./../layui/layui.js"></script>
+    <script src="./../commonJs/adapter.min.js"></script>
     <script src="./../commonJs/jquery-3.2.1.min.js"></script>
+    <script src="./../commonJs/janus.js"></script>
     <script src="./../js/common.js"></script>
     <script src="./../commonJs/clipboard.js"></script>
     <script src="./../commonJs/html2canvas.js"></script>
-    <script src="./../commonJs/aliyun-rts-sdk.js"></script>
     <script src="./../commonJs/qrcode.js"></script>
     <script src="./../commonJs/video.min.js"></script>
     <title>直播间</title>
@@ -110,6 +111,7 @@
                                 <li>频道管理</li>
                                 <li class="active-this">直播控制</li>
                                 <li>导播台</li>
+                                <li>云推流</li>
                             </ul>
                             <div class="layui-tab-content">
                                 <div class="layui-tab-item live-tab-item" id="channelManage">
@@ -137,7 +139,7 @@
                                                         <li>直播倒计时</li>
                                                         <li>观众人数显示</li>
                                                         <li>直播窗口背景</li>
-                                                        <li>视频LOGO及水印</li>
+                                                        <li>视频LOGO</li>
                                                         <li>频道设置</li>
                                                     </ul>
                                                     <div class="layui-tab-content">
@@ -517,13 +519,13 @@
                                     </div>
                                     <div class="liveContent">
                                         <div class="liveRoom">
-                                            <video class="videoBox" controls="controls">
+                                            <video class="videoBox" id="chatVideo" poster="./../image/video-page.png"   controls="controls" autoplay>
                                             </video>
                                             <div class="layui-tab layui-tab-brief">
                                                 <ul class="layui-tab-title">
                                                     <li style="width: 160px;height: 46px;font-size: 20px;" class="layui-this">
                                                         直播方式一</li>
-                                                    <li style="width: 160px;height: 46px;font-size: 20px;">拉流直播</li>
+                                                    <li style="width: 160px;height: 46px;font-size: 20px;">拉流播放</li>
                                                 </ul>
                                                 <div class="layui-tab-content">
                                                     <div class="layui-tab-item layui-show">
@@ -566,27 +568,7 @@
                                     <div id="liveBox">
                                         <div id="liveLeft">
                                             <div id="liveLeft-videoBox">
-                                                <div id="oneBox">
-                                                </div>
-                                                <div id="twoBox">
-                                                    <div id="twoBoxLeft">
-                                                    </div><div id="twoBoxRight">
-                                                    </div>
-                
-                                                </div>
-                                                <div id="threeBox">
-                                                    <div id="threeBoxContent">
-                                                        <div id="threeBoxLeft">
-                                                            <video id="threeVideoLeft" autoplay muted></video>
-                                                        </div>
-                                                        <div id="threeBoxRight">
-                                                            <div id="topBox">
-                                                            </div>
-                                                            <div id="bottomBox">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                               <canvas id="myCanvas" width="580" height="328"></canvas>
                                                 <div id="scoreBrand"></div>
                                             </div>
                                             <p id="liveLeft-name">
@@ -601,11 +583,11 @@
                                         <div id="switchover">切换</div>
                                         <div id="liveRight">
                                             <div id="liveRight-videoBox">
-                                                <video id="liveRight-video"></video>
+                                                <video id="liveRight-video" muted autoplay></video>
                                             </div>
                                             <p id="liveRight-name">
                                                 <span>直播窗口</span>
-                                                <img src="./../image/headset-close.png" id="live-headset">
+                                                <img src="./../image/headset-open.png" id="live-headset">
                                             </p>
                                         </div>
                                     </div>
@@ -616,11 +598,11 @@
                                                 <span class="cut" id="one-cut">快切</span>
                                             </p>
                                             <div class="cameraContent">
-                                                <video id="cameraOne" autoplay></video>
+                                                <video id="cameraOne" autoplay  muted></video>
                                                 <div class="slideBox">
                                                     <div class="slideLine" id="slideOne">
                                                     </div>
-                                                    <img src="./../image/mute-open.png" id="one-mute">
+                                                    <img src="./../image/mute-close.png" id="one-mute">
                                                 </div>
                                             </div>
                                         </div>
@@ -630,11 +612,11 @@
                                                 <span class="cut" id="two-cut">快切</span>
                                             </p>
                                             <div class="cameraContent">
-                                                <video id="cameraTwo" autoplay></video>
+                                                <video id="cameraTwo"  autoplay muted></video>
                                                 <div class="slideBox">
                                                     <div class="slideLine" id="slideTwo">
                                                     </div>
-                                                    <img src="./../image/mute-open.png" id="two-mute">
+                                                    <img src="./../image/mute-close.png" id="two-mute">
                                                 </div>
                                             </div>
                                         </div>
@@ -644,11 +626,11 @@
                                                 <span class="cut" id="three-cut">快切</span>
                                             </p>
                                             <div class="cameraContent">
-                                                <video id="cameraThree" autoplay></video>
+                                                <video id="cameraThree" autoplay muted></video>
                                                 <div class="slideBox">
                                                     <div class="slideLine" id="slideThree">
                                                     </div>
-                                                    <img src="./../image/mute-open.png" id="three-mute">
+                                                    <img src="./../image/mute-close.png" id="three-mute">
                                                 </div>
                                             </div>
                                         </div>
@@ -658,11 +640,11 @@
                                                 <span class="cut" id="four-cut">快切</span>
                                             </p>
                                             <div class="cameraContent">
-                                                <video id="cameraFour" autoplay></video>
+                                                <video id="cameraFour"  autoplay muted></video>
                                                 <div class="slideBox">
                                                     <div class="slideLine" id="slideFour">
                                                     </div>
-                                                    <img src="./../image/mute-open.png" id="four-mute">
+                                                    <img src="./../image/mute-close.png" id="four-mute">
                                                 </div>
                                             </div>
                                         </div>
@@ -776,6 +758,46 @@
                                                     <button type="button" class="layui-btn" id="gesture-btn">开启</button>
                                                 </div>
                                              </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-tab-item live-tab-item" id="cloudPlug">
+                                    <p class="cloudTitle">云推流</p>
+                                    <div class="cloudContent">
+                                        <div class="pushList">
+                                            <p class="pushTitle">推流1</p>
+                                            <div class="pushInputBox">
+                                                <input type="text" class="pushInputs">
+                                                <div class="pushBtn">开始</div>
+                                            </div>
+                                        </div>
+                                        <div class="pushList">
+                                            <p class="pushTitle">推流2</p>
+                                            <div class="pushInputBox">
+                                                <input type="text" class="pushInputs">
+                                                <div class="pushBtn">开始</div>
+                                            </div>
+                                        </div>
+                                        <div class="pushList">
+                                            <p class="pushTitle">推流3</p>
+                                            <div class="pushInputBox">
+                                                <input type="text" class="pushInputs">
+                                                <div class="pushBtn">开始</div>
+                                            </div>
+                                        </div>
+                                        <div class="pushList">
+                                            <p class="pushTitle">推流4</p>
+                                            <div class="pushInputBox">
+                                                <input type="text" class="pushInputs">
+                                                <div class="pushBtn">开始</div>
+                                            </div>
+                                        </div>
+                                        <div class="pushList">
+                                            <p class="pushTitle">推流5</p>
+                                            <div class="pushInputBox">
+                                                <input type="text" class="pushInputs">
+                                                <div class="pushBtn">开始</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -9,7 +9,7 @@ $(function () {
         // 上传门户头像
         var userImage = upload.render({
             elem: '#uploadImage', //绑定元素
-            url: 'http://8.131.247.153/account/check_account_thundernail/', //上传接口
+            url: 'http://www.cube.vip/account/check_account_thundernail/', //上传接口
             headers: {
                 token: sessionStorage.getItem('token')
             },
@@ -36,7 +36,7 @@ $(function () {
         headers: {
             token: sessionStorage.getItem('token')
         },
-        url: "http://8.131.247.153/account/check_account_thundernail/",
+        url: "http://www.cube.vip/account/check_account_thundernail/",
         success: function (res) {
             if (res.msg === 'success') {
                 $('#userImage').attr('src', res.data.account_thundernail)
@@ -53,7 +53,7 @@ $(function () {
         headers: {
             token: sessionStorage.getItem('token')
         },
-        url: "http://8.131.247.153/account/check_info/",
+        url: "http://www.cube.vip/account/check_info/",
         success: function (res) {
             if (res.msg === 'success') {
                 $('.userName').text(res.data.account_name)
@@ -78,7 +78,7 @@ $(function () {
             headers: {
                 token: sessionStorage.getItem('token')
             },
-            url: "http://8.131.247.153/account/check_info/",
+            url: "http://www.cube.vip/account/check_info/",
             data: {
                 update_account_name: $.trim($('#nameInput').val())
             },
@@ -119,7 +119,7 @@ $(function () {
             headers: {
                 token: sessionStorage.getItem('token')
             },
-            url: "http://8.131.247.153/account/change_password/",
+            url: "http://www.cube.vip/account/change_password/",
             data: {
                 account_old_password: $.trim($('#pass1').val()),
                 account_new_password: $.trim($('#pass2').val()),

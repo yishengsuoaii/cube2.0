@@ -31,7 +31,7 @@
         $(function(){
 
             $.ajax({
-                url:'http://8.131.247.153/event/h5_login_password/',
+                url:'http://www.cube.vip/event/h5_login_password/',
                 type:'GET',
                 data:{
                     event_uri_key:infoData[3][1]
@@ -97,7 +97,7 @@
                         alert('请输入密码')
                     } else{
                         $.ajax({
-                            url:'http://8.131.247.153/event/h5_login_password/',
+                            url:'http://www.cube.vip/event/h5_login_password/',
                             type:'POST',
                             data:{
                                 event_uri_key:infoData[3][1],
@@ -105,7 +105,7 @@
                             },
                             success:function(res){
                                 if(res.msg==='success'){
-                                   window.location.href='http://8.131.247.153/h5/live.html'+window.location.search
+                                   window.location.href='http://www.cube.vip/h5/live.html'+window.location.search
                                 } else{
                                     alert('密码错误,请重新输入')
                                 }
@@ -113,7 +113,7 @@
                         })
                     }
                 } else {
-                    window.location.href='http://8.131.247.153/h5/live.html'+window.location.search
+                    window.location.href='http://www.cube.vip/h5/live.html'+window.location.search
                 }
             })
         })
