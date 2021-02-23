@@ -10,6 +10,9 @@ $(function () {
     var event_id = searchData;
     var event_code = ''
     var event_uri_key = ''
+    // 频道分类
+    var channel_type = ''
+    // 拉流IP
     var serverIp = ''
     // 用户昵称
     var userName
@@ -17,6 +20,118 @@ $(function () {
     var userImage
     // 聊天记录条数
     var chatNum = 0
+
+    // 动态创建dom
+    // 比分dom
+    var scoreHtml =`<div id="score-card">
+    <div id="check-model"></div>
+    <div id="select-oper">
+        <div id="select-model">设置模板</div>
+        <div id="reset">复位</div>
+    </div>
+    <div id="team-score-set">
+        <div id="team-score-content">
+            <div class="change-score">
+                <div class="change-list">
+                    <div id="left-three-plus">+</div>
+                    <span>3</span>
+                    <div id="left-three-minus">-</div>
+                </div>
+                <div class="change-list">
+                    <div id="left-two-plus">+</div>
+                    <span>2</span>
+                    <div id="left-two-minus">-</div>
+                </div>
+                <div class="change-list">
+                    <div id="left-one-plus">+</div>
+                    <span>1</span>
+                    <div id="left-one-minus">-</div>
+                </div>
+            </div>
+            <div class="team-score">
+                <p class="score-preview">
+                    <span class="score-preview-hot" id="left-subtotal">0</span>
+                    <input class="score-preview-input" id="left-score" type="text" value="0" maxlength="3">
+                </p>
+                <p class="team-name" id="left-name">队名</p>
+                <p class="team-subtotal">
+                    场记分
+                    <span class="add-subtotal" id="left-subtotal-plus">+1</span>
+                    <span id="left-subtotal-minus">-1</span>
+                </p>
+            </div>
+            <div class="team-vs">
+                <p class="vs">VS</p>
+                <p class="scene-name">场次</p>
+                <p class="scene-change">
+                    <span class="scene-icon" style="transform:rotate(180deg)" id="scene-plus">
+                            <i class="layui-icon layui-icon-triangle-d" style="font-size: 16px; color: #DE8148;"></i>
+                    </span>
+                    <span id="scene-num">1</span>
+                    <span class="scene-icon" id="scene-minus">
+                        <i class="layui-icon layui-icon-triangle-d" style="font-size: 16px; color: #DE8148;"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="team-score">
+                <p class="score-preview">
+                    <input type="text" class="score-preview-input" id="right-score" value="0" maxlength="3">
+                    <span class="score-preview-hot" id="right-subtotal">0</span>
+                </p>
+                <p class="team-name" id="right-name">队名</p>
+                <p class="team-subtotal team-right-subtotal">
+                    <span id="right-subtotal-minus">-1</span>
+                    <span class="add-subtotal" id="right-subtotal-plus">+1</span>场记分
+                    
+                </p>
+            </div>
+            <div class="change-score">
+                <div class="change-list">
+                    <div id="right-one-plus">+</div>
+                    <span>1</span>
+                    <div id="right-one-minus">-</div>
+                </div>
+
+                <div class="change-list">
+                    <div id="right-two-plus">+</div>
+                    <span>2</span>
+                    <div id="right-two-minus">-</div>
+                </div>
+                <div class="change-list">
+                    <div id="right-three-plus">+</div>
+                    <span>3</span>
+                    <div id="right-three-minus">-</div>
+                </div>
+            </div>
+            </div>
+            <!-- 遮罩层 -->
+            <div id="score-shade"></div>
+        </div>
+    </div>`
+
+    // 背景替换dom
+    var bgReplaceHtml=`<div id="bg-replace">
+        <div class="bg-item bg-active"></div>
+        <div class="bg-item"></div>
+        <div class="bg-item"></div>
+        <div class="bg-item"></div>
+        <div class="bg-item"></div>
+    </div>`
+
+    // 手势检测dom
+    var gestureHtml = `<div id="gesture-detection">
+        <button type="button" class="layui-btn" id="gesture-btn">开启</button>
+    </div>`
+    // 自动导切dom
+    var autoHtml = `<div id="auto-cut">
+        <button type="button" class="layui-btn" id="auto-btn">开启</button>
+    </div>`
+
+    // 拉近镜头dom
+    var zoomHtml = `<div id="zoom-in">
+        <button type="button" class="layui-btn" id="zoom-btn">开启</button>
+    </div>`
+
 
     // logo
     var logoFlag = 'True'
@@ -28,17 +143,17 @@ $(function () {
     var scoreLocation = 0
 
     // video dom
-    var domChatVideo= document.getElementById('chatVideo')
-    var domCameraOne= document.getElementById('cameraOne')
-    var domCameraTwo= document.getElementById('cameraTwo')
+    var domChatVideo = document.getElementById('chatVideo')
+    var domCameraOne = document.getElementById('cameraOne')
+    var domCameraTwo = document.getElementById('cameraTwo')
     var domCameraThree = document.getElementById('cameraThree')
-    var domCameraFour=  document.getElementById('cameraFour')
+    var domCameraFour = document.getElementById('cameraFour')
     var domLiveRight = document.getElementById('liveRight-video')
 
     domCameraOne.volume = 0
-    domCameraTwo.volume =0
-    domCameraThree.volume =0
-    domCameraFour.volume =0
+    domCameraTwo.volume = 0
+    domCameraThree.volume = 0
+    domCameraFour.volume = 0
     //所有信息
     var allInfo = {
         // 几拼标志
@@ -56,12 +171,18 @@ $(function () {
         twoMuteSize: 0,
         threeMuteSize: 0,
         fourMuteSize: 0,
-        // tab栏切换保存输出机位耳机状态
+        // 手势检测标志
         gestureFlag: 0,
+        // 背景替换标志
         replaceFlag: 0,
-        // 比分牌更新状态及是否开启
+        // 比分牌是否更新标志
         update: 0,
-        state: 'off'
+        // 比分牌是否开启标志
+        state: 'off',
+        // 自动切换
+        autoState:'off',
+        // zoomIn
+        zoomState: 'off',
     }
     // 绘制canvas 定时器
     var timerDraw = null
@@ -78,7 +199,7 @@ $(function () {
     var slide_four = null
 
 
-    // 所有样式 比分牌---------------------------------------------------------------------------------------------
+    //比分牌---------------------------------------------------------------------------------------------
 
     // 比分牌透明度实例
     var clarity = null
@@ -100,7 +221,7 @@ $(function () {
     var styleFlag = null
     // 记录位置
     var styleLocation = 2
-
+    // 比分信息
     var scoreData = null
 
     layui.use(['form', 'element', 'jquery', 'layer', 'upload', 'slider'], function () {
@@ -142,21 +263,94 @@ $(function () {
             },
             success: function (result) {
                 if (result.msg === 'success') {
+                    event_code = result.data.event_code
+                    userName = result.data.account_name
+                    event_uri_key = result.data.event_uri_key
+                    channel_type = result.data.event_category_id
                     $(".head-title").text(result.data.event_title);
                     $(".event_code").text(result.data.event_code);
-                    event_code = result.data.event_code
 
                     $(".pull_m3u8").html('<span>HLS:</span><p>' + result.data.pull_stream_m3u8_url + '</p><span>RTMP:</span><p>' + result.data.pull_stream_rtmp_url + '</p>');
                     $("#username").text(result.data.account_name);
-                    userName = result.data.account_name
-                    event_uri_key = result.data.event_uri_key
+
                     $('.head-copy').attr('data-clipboard-text',
                         'http://www.cube.vip/h5/wxlogin.html?key=' + result.data
                         .event_uri_key)
                     setVideoMuted()
                     getIp()
                     getScoreStyle()
-
+                    var functionTitleSrc = ''
+                    var functionContentSrc = ''
+                    result.data.app.forEach((item, index) => {
+                        if (index === 0) {
+                            if (item.appname == '比分牌') {
+                                functionTitleSrc += `<li class="layui-this">比分牌</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item layui-show">
+                                ${scoreHtml}
+                                </div>`
+                            } else if (item.appname == '背景替换') {
+                                functionTitleSrc += `<li class="layui-this">背景替换</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item layui-show">
+                                    ${bgReplaceHtml}
+                                </div>`
+                            } else if (item.appname == '手势检测') {
+                                functionTitleSrc += `<li class="layui-this">手势检测</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item layui-show">
+                                   ${gestureHtml}
+                                </div>`
+                            } else if (item.appname == '自动导切') {
+                                functionTitleSrc += `<li class="layui-this">自动导切</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item layui-show">
+                                   ${autoHtml}
+                                </div>`
+                            }else if (item.appname == 'zoomin') {
+                                functionTitleSrc += `<li class="layui-this">zoom-in</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item layui-show">
+                                   ${zoomHtml}
+                                </div>`
+                            }
+                        } else {
+                            if (item.appname == '比分牌') {
+                                functionTitleSrc += `<li>比分牌</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item">
+                                    ${scoreHtml}
+                                </div>`
+                                
+                            } else if (item.appname == '背景替换') {
+                                functionTitleSrc += `<li>背景替换</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item">
+                                    ${bgReplaceHtml}
+                                </div>`
+                            } else if (item.appname == '手势检测') {
+                                functionTitleSrc += `<li>手势检测</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item">
+                                    ${gestureHtml}
+                                </div>`
+                            } else if (item.appname == '自动导切') {
+                                functionTitleSrc += `<li>自动导切</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item">
+                                    ${autoHtml}
+                                </div>`
+                            }else if (item.appname == 'zoomin') {
+                                functionTitleSrc += `<li>zoom-in</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item">
+                                   ${zoomHtml}
+                                </div>`
+                            }
+                        }
+                    })
+                    $('#function-title').html(functionTitleSrc)
+                    $('#function-content').html(functionContentSrc)
                 }
 
             },
@@ -224,9 +418,9 @@ $(function () {
                             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
                         }
                     } else {
-                        setTimeout(()=>{
+                        setTimeout(() => {
                             getIp()
-                        },5000)
+                        }, 5000)
                     }
 
                 }
@@ -246,10 +440,10 @@ $(function () {
                 },
                 success: res => {
                     if (res.msg === 'success') {
-                        setTimeout(()=>{
+                        setTimeout(() => {
                             getIps()
-                        },5000)
-                        
+                        }, 5000)
+
                     } else {
                         getIps2()
                         serverIp = '0.0.0.0'
@@ -284,9 +478,9 @@ $(function () {
                         pullFlow(serverIp, domChatVideo, 4)
                         getIps()
                     } else {
-                        setTimeout(()=>{
+                        setTimeout(() => {
                             getIps2()
-                        },5000)
+                        }, 5000)
                     }
                 }
             })
@@ -302,12 +496,12 @@ $(function () {
                     $(item).removeClass('layui-show')
                 }
             })
-            if(index===1){
+            if (index === 1) {
                 domChatVideo.muted = false
             } else {
                 domChatVideo.muted = true
-            } 
-             if(index ===2){
+            }
+            if (index === 2) {
                 domCameraOne.muted = false
                 domCameraTwo.muted = false
                 domCameraThree.muted = false
@@ -319,19 +513,19 @@ $(function () {
                 domCameraThree.play()
                 domCameraFour.play()
                 domLiveRight.play()
-             } else {
+            } else {
                 setVideoMuted()
-             }
+            }
         })
         // 静音
-        function setVideoMuted(){
+        function setVideoMuted() {
             domCameraOne.muted = true
             domCameraTwo.muted = true
             domCameraThree.muted = true
             domCameraFour.muted = true
             domLiveRight.muted = true
         }
-        var errorNum=0
+        var errorNum = 0
         // 拉流
         function pullFlow(ip, dom, index) {
             var server = 'http://' + ip + ':8088/janus'
@@ -398,8 +592,8 @@ $(function () {
                             });
                         },
                         error: function (error) {
-                            errorNum++ 
-                            if(errorNum==5){
+                            errorNum++
+                            if (errorNum == 5) {
                                 pullFlow(serverIp, domCameraOne, 0)
                                 pullFlow(serverIp, domCameraTwo, 1)
                                 pullFlow(serverIp, domCameraThree, 2)
@@ -713,7 +907,7 @@ $(function () {
                     $('#three-mute').attr('src', '/image/mute-open.png')
                 }
                 allInfo.threeMuteSize = value * 10
-                domCameraThree.volume = value 
+                domCameraThree.volume = value
                 sessionStorage.setItem(event_code, JSON.stringify(allInfo))
             }
         })
@@ -870,7 +1064,7 @@ $(function () {
         function cameraCut(item) {
             if (allInfo.numberFlag === 1) {
                 allInfo.numFlag = 1
-                allInfo.oneSrc[0]= item
+                allInfo.oneSrc[0] = item
             } else if (allInfo.numberFlag === 2) {
                 if (allInfo.numFlag % 2 === 0) {
                     allInfo.twoSrc[0] = item
@@ -880,10 +1074,10 @@ $(function () {
                 allInfo.numFlag++
             } else if (allInfo.numberFlag === 3) {
                 if (allInfo.numFlag % 3 === 0) {
-                   
+
                     allInfo.threeSrc[0] = item
                 } else if (allInfo.numFlag % 3 === 1) {
-                   
+
                     allInfo.threeSrc[1] = item
                 } else if (allInfo.numFlag % 3 === 2) {
                     allInfo.threeSrc[2] = item
@@ -891,7 +1085,7 @@ $(function () {
                 allInfo.numFlag++
             }
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-            drawCanvas(allInfo.numberFlag )
+            drawCanvas(allInfo.numberFlag)
         }
 
         //  绘制canvas
@@ -901,9 +1095,9 @@ $(function () {
             var v3 = null
             var canvas = document.getElementById("myCanvas")
             var ctx_canvas = canvas.getContext('2d')
-            if(num === 1){
+            if (num === 1) {
                 v1 = document.getElementById(allInfo.oneSrc[0].dom)
-            } else if(num === 2){
+            } else if (num === 2) {
                 v1 = document.getElementById(allInfo.twoSrc[0].dom)
                 v2 = document.getElementById(allInfo.twoSrc[1].dom)
             } else {
@@ -912,16 +1106,16 @@ $(function () {
                 v3 = document.getElementById(allInfo.threeSrc[2].dom)
             }
             clearInterval(timerDraw)
-            timerDraw = window.setInterval(() =>{
-                if(num === 1){
-                    ctx_canvas.drawImage(v1,0,0, canvas.width, canvas.height)
-                } else if(num === 2){
-                    ctx_canvas.drawImage(v1,v1.videoWidth/4,0,v1.videoWidth/2,v1.videoHeight,0,0, canvas.width/2, canvas.height)
-                    ctx_canvas.drawImage(v2,v2.videoWidth/4,0,v2.videoWidth/2,v2.videoHeight,canvas.width/2,0, canvas.width/2, canvas.height)
+            timerDraw = window.setInterval(() => {
+                if (num === 1) {
+                    ctx_canvas.drawImage(v1, 0, 0, canvas.width, canvas.height)
+                } else if (num === 2) {
+                    ctx_canvas.drawImage(v1, v1.videoWidth / 4, 0, v1.videoWidth / 2, v1.videoHeight, 0, 0, canvas.width / 2, canvas.height)
+                    ctx_canvas.drawImage(v2, v2.videoWidth / 4, 0, v2.videoWidth / 2, v2.videoHeight, canvas.width / 2, 0, canvas.width / 2, canvas.height)
                 } else {
-                    ctx_canvas.drawImage(v1,v1.videoWidth/4,0,v1.videoWidth/2,v1.videoHeight,0,0, canvas.width/2, canvas.height)
-                    ctx_canvas.drawImage(v2,0,0,v2.videoWidth,v2.videoHeight,canvas.width/2,0, canvas.width/2, canvas.height/2)
-                    ctx_canvas.drawImage(v3,0,0,v3.videoWidth,v3.videoHeight,canvas.width/2,canvas.height/2, canvas.width/2, canvas.height/2)
+                    ctx_canvas.drawImage(v1, v1.videoWidth / 4, 0, v1.videoWidth / 2, v1.videoHeight, 0, 0, canvas.width / 2, canvas.height)
+                    ctx_canvas.drawImage(v2, 0, 0, v2.videoWidth, v2.videoHeight, canvas.width / 2, 0, canvas.width / 2, canvas.height / 2)
+                    ctx_canvas.drawImage(v3, 0, 0, v3.videoWidth, v3.videoHeight, canvas.width / 2, canvas.height / 2, canvas.width / 2, canvas.height / 2)
                 }
             }, 20);
 
@@ -966,8 +1160,8 @@ $(function () {
                     height: '22px'
                 })
                 allInfo.liveHeadFlag = false
-                domLiveRight.volume = 0 
-    
+                domLiveRight.volume = 0
+
             } else {
                 allInfo.liveHeadFlag = true
                 $(this).attr('src', './../image/headset-open.png').css({
@@ -989,7 +1183,7 @@ $(function () {
             } else if (allInfo.numberFlag === 3) {
                 $('#three-merge').addClass('mergeActive').siblings('img').removeClass('mergeActive')
             }
-            drawCanvas(allInfo.numberFlag )
+            drawCanvas(allInfo.numberFlag)
 
             // 直播耳机静音
             if (allInfo.liveHeadFlag) {
@@ -1019,6 +1213,18 @@ $(function () {
             } else {
                 $('#gesture-btn').text('关闭').css('background-color', '#f2591a')
             }
+            // 自动切换
+            if (allInfo.autoState === 'off') {
+                $('#auto-btn').text('开启').css('background-color', '#ff914d')
+            } else {
+                $('#auto-btn').text('关闭').css('background-color', '#f2591a')
+            }
+            // zoom-in 
+            if (allInfo.zoomState === 'off') {
+                $('#zoom-btn').text('开启').css('background-color', '#ff914d')
+            } else {
+                $('#zoom-btn').text('关闭').css('background-color', '#f2591a')
+            }
             // 渲染背景替换
             $('.bg-item').removeClass('bg-active').eq(allInfo.replaceFlag).addClass('bg-active')
         }
@@ -1032,6 +1238,34 @@ $(function () {
                 $(this).text('开启').css('background-color', '#ff914d')
             }
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+            allInfo.update = 0
+            sendInstruct()
+        })
+        // 自动导切-------------------------------------------------------------------------------------------------
+        $('#auto-btn').on('click', function () {
+            if (allInfo.autoState === 'off') {
+                allInfo.autoState = 'on'
+                $(this).text('关闭').css('background-color', '#f2591a')
+            } else {
+                allInfo.autoState = 'off'
+                $(this).text('开启').css('background-color', '#ff914d')
+            }
+            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+            allInfo.update = 0
+            sendInstruct()
+        })
+         // zoom-in-------------------------------------------------------------------------------------------------
+         $('#zoom-btn').on('click', function () {
+            if (allInfo.zoomState === 'off') {
+                allInfo.zoomState = 'on'
+                $(this).text('关闭').css('background-color', '#f2591a')
+            } else {
+                allInfo.zoomState = 'off'
+                $(this).text('开启').css('background-color', '#ff914d')
+            }
+            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+            allInfo.update = 0
+            sendInstruct()
         })
         // 背景替换------------------------------------------------------------------------------------------------
         $('.bg-item').on('click', function () {
@@ -1939,7 +2173,7 @@ $(function () {
             }
         })
 
-        // 切换往后台发数据
+        // 切换往后台发数据--------------------------------------------------------------------------------------------------
         $('#switchover').on('click', function () {
             allInfo.update = 0
             sendInstruct()
@@ -1996,11 +2230,11 @@ $(function () {
                         update: allInfo.update,
                         scoreLocation: scoreLocation
                     },
-                    auto_selector:{
-                        state: 'off'
+                    auto_selector: {
+                        state: allInfo.autoState
                     },
-                    zoom_in:{
-                        state: 'on'
+                    zoom_in: {
+                        state: allInfo.zoomState
                     }
                 },
                 audio: {

@@ -1656,6 +1656,30 @@
   font-size: 18px;
   background-color: #ff914d;
 }
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #auto-cut {
+  width: 1000px;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #auto-cut .layui-btn {
+  width: 100px;
+  font-size: 18px;
+  background-color: #ff914d;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #zoom-in {
+  width: 1000px;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #zoom-in .layui-btn {
+  width: 100px;
+  font-size: 18px;
+  background-color: #ff914d;
+}
 .parentMain .contentBox .layui-tab .layui-tab-content #cloudPlug {
   width: 1559;
   height: 760px;
