@@ -203,6 +203,12 @@
   width: 414px;
   margin-left: 160px;
 }
+#addDialog #select-type .layui-form-select {
+  width: 330px;
+}
+#addDialog #select-type .layui-form-select .layui-input {
+  border: 1px solid #e6e6e6 !important;
+}
 #addDialog #username {
   width: 330px;
 }

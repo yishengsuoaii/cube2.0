@@ -234,7 +234,6 @@ $(function () {
         }
 
         function getIps() {
-            console.log('第二个定时器')
             $.get({
                 url: "http://www.cube.vip/event/get_ip/",
                 dataType: "json",
@@ -265,7 +264,6 @@ $(function () {
         }
 
         function getIps2() {
-            console.log('第三个定时器')
             $.get({
                 url: "http://www.cube.vip/event/get_ip/",
                 dataType: "json",
@@ -1750,6 +1748,7 @@ $(function () {
             fileScore = 0
             allInfo.state = 'off'
             scoreLocation = 0
+            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
             sessionStorage.removeItem('score' + event_code)
             sessionStorage.removeItem('imageBase64' + event_code)
             $('#logo-radio1').removeAttr('disabled')
@@ -1769,6 +1768,7 @@ $(function () {
                     allInfo.state = 'on'
                     sessionStorage.setItem('imageBase64' + event_code, canvas.toDataURL('image/png', 1.0))
                     allInfo.update = 1
+                    sessionStorage.setItem(event_code, JSON.stringify(allInfo))
                     sendInstruct()
 
                 },
@@ -1997,7 +1997,7 @@ $(function () {
                         scoreLocation: scoreLocation
                     },
                     auto_selector:{
-                        state: 'on'
+                        state: 'off'
                     },
                     zoom_in:{
                         state: 'on'

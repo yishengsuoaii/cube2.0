@@ -582,14 +582,6 @@ $(function () {
 
         form.on('switch(code-switch)', function (data) {
             if (data.elem.checked) {
-                codeFlag = 'True'
-                $('#code1').val('').attr('disabled', true)
-                $('#code2').val('').attr('disabled', true)
-                $('#code3').val('').attr('disabled', true)
-                $('#code4').val('').attr('disabled', true)
-                $('#code5').val('').attr('disabled', true)
-                $('#code6').val('').attr('disabled', true)
-            } else {
                 codeFlag = 'False'
                 $('#code1').removeAttr('disabled')
                 $('#code2').removeAttr('disabled')
@@ -597,6 +589,15 @@ $(function () {
                 $('#code4').removeAttr('disabled')
                 $('#code5').removeAttr('disabled')
                 $('#code6').removeAttr('disabled')
+
+            } else {
+                codeFlag = 'True'
+                $('#code1').val('').attr('disabled', true)
+                $('#code2').val('').attr('disabled', true)
+                $('#code3').val('').attr('disabled', true)
+                $('#code4').val('').attr('disabled', true)
+                $('#code5').val('').attr('disabled', true)
+                $('#code6').val('').attr('disabled', true)
             }
 
         });
@@ -615,10 +616,11 @@ $(function () {
                 if (res.msg === 'success') {
                     if (res.data.event_private) {
                         codeFlag = 'True'
-                        $("#code-switch").attr('checked', 'checked');
+                        $("#code-switch").removeAttr('checked');
+                        
                     } else {
                         codeFlag = 'False'
-                        $("#code-switch").removeAttr('checked');
+                        $("#code-switch").attr('checked', 'checked');
                         var codeArray = res.data.event_access_code.split('')
                         $('#code1').val(codeArray[0]).removeAttr('disabled')
                         $('#code2').val(codeArray[1]).removeAttr('disabled')

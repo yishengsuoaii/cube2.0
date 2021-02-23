@@ -3,6 +3,7 @@ if(!sessionStorage.getItem('token')){
 }
 $(function () {
     var switchValue = "True";
+    // true 公开  false加密
     var form
     layui.use(['form', 'layer', 'jquery', 'laydate'], function () {
         form = layui.form;
@@ -29,15 +30,33 @@ $(function () {
                 }
             })
         });
+        $.get({
+            url: "http://www.cube.vip/event/get_event_Category/",
+            dataType: "json",
+            headers: {
+                token: sessionStorage.getItem('token')
+            },
+            success: function (res) {
+              if(res.msg==='success'){
+                  var str = '<option value="">请选择分类</option>'
+                  res.data.forEach(item=>{
+                    str+=`<option name="${item.event_category_id}" value="${item.event_category_id}">${item.event_category}</option>`
+                  })
+                  $('#channel-type').html(str)
+                  form.render('select');
+              }
+            }
+        })
 
         form.on('switch(switchTest)', function (data) {
             if (data.elem.checked) {
+                switchValue = "False";
+                $('#roomCode').removeAttr('disabled')
+                
+            } else {
                 switchValue = "True";
                 $('#roomCode').attr('disabled',true)
                 $('#roomCode').val('')
-            } else {
-                switchValue = "False";
-                $('#roomCode').removeAttr('disabled')
             }
         });
         laydate.render({
@@ -114,7 +133,7 @@ $(function () {
             }
         })
     }
-    // 绘制频道dom
+
     function drawDom(data) {
         var divStr =
             `<button class="layui-btn" id="newAdd"><img src="../image/add.png" /><p>新建直播频道</p></button>`;
@@ -150,7 +169,7 @@ $(function () {
     $('.channelContent').on('click', '#newAdd', function () {
         layer.open({
             type: 1,
-            area: ['654px', '546px'],
+            area: ['654px', '576px'],
             title: ['新建直播频道', 'color:#fff'],
             content: $("#addDialog"),
             shade: 0.3,
@@ -165,7 +184,12 @@ $(function () {
                     layer.msg('请输入频道名称!')
                     $("#username").focus()
                     return;
-                } else if ($.trim($(".layui-textarea").val()).length <= 0) {
+                } else if ($('#channel-type').val()==='') {
+                    layer.msg('请选择频道分类!')
+                    $("#channel-type").focus()
+                    return;
+                }
+                else if ($.trim($(".layui-textarea").val()).length <= 0) {
                     layer.msg('请输入活动简介!')
                     $(".layui-textarea").focus()
                     return;
@@ -192,6 +216,7 @@ $(function () {
                         .val());
 
                     formdata.append("event_private", switchValue);
+                    formdata.append("event_category_id", $('#channel-type').val());
                     formdata.append("event_access_code", $(
                         "input[name='event_access_code']").val());
                     $.ajax({
@@ -306,10 +331,11 @@ $(function () {
                 $("#test6").val(result.data.event_start_time.replace('T', ' '))
                 $("#test7").val(result.data.event_end_time.replace('T', ' '))
                 $("#roomCode").val(result.data.event_access_code)
-
+                $('#channel-type').val(result.data.event_category_id)
+                form.render('select');
                 if (result.data.event_private) {
                     setTimeout(() => {
-                        $("#showType").attr('checked', 'checked');
+                        $("#showType").removeAttr('checked');
                         $('#roomCode').attr('disabled',true)
                         switchValue= 'True'
                         form.render('checkbox');
@@ -317,20 +343,20 @@ $(function () {
 
                 } else {
                     setTimeout(() => {
-                        $("#showType").removeAttr('checked');
+                        $("#showType").attr('checked', 'checked');
                         $('#roomCode').removeAttr('disabled')
                         switchValue= 'False'
                         form.render('checkbox');
                     }, 10)
 
                 }
-                $('#switchDom').empty('').html(` <label class="layui-form-label">是否公开:</label>
+                $('#switchDom').empty('').html(`<label class="layui-form-label">是否加密:</label>
                 <div class="layui-input-block">
-                    <input id="showType" type="checkbox" name="event_private" checked="checked" lay-skin="switch" lay-text="公开|加密" lay-filter="switchTest">
+                    <input id="showType" type="checkbox" name="event_private"  lay-skin="switch" lay-text="加密|公开" lay-filter="switchTest">
                 </div>`)
                 layer.open({
                     type: 1,
-                    area: ['654px', '546px'],
+                    area: ['654px', '576px'],
                     title: ['修改直播频道', 'color:#fff'],
                     content: $("#addDialog"),
                     shade: 0.3,
@@ -345,7 +371,11 @@ $(function () {
                             layer.msg('请输入频道名称!')
                             $("#username").focus()
                             return;
-                        } else if ($.trim($(".layui-textarea").val()).length <= 0) {
+                        } else if ($('#channel-type').val()==='') {
+                            layer.msg('请选择频道分类!')
+                            $("#channel-type").focus()
+                            return;
+                        }else if ($.trim($(".layui-textarea").val()).length <= 0) {
                             layer.msg('请输入活动简介!')
                             $(".layui-textarea").focus()
                             return;
@@ -373,7 +403,7 @@ $(function () {
                             formdata.append("event_end_time", $(
                                     "input[name='event_end_time']")
                                 .val());
-
+                            formdata.append("event_category_id", $('#channel-type').val());
                             formdata.append("event_private", switchValue);
                             formdata.append("event_access_code", $(
                                 "input[name='event_access_code']").val());
@@ -507,5 +537,7 @@ $(function () {
         $("#test6").val('')
         $("#test7").val('')
         $("#roomCode").val('')
+        $('#channel-type').val('')
+        form.render('select');
     }
 })
