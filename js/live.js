@@ -172,7 +172,7 @@ $(function () {
         threeMuteSize: 0,
         fourMuteSize: 0,
         // 手势检测标志
-        gestureFlag: 0,
+        gestureFlag: 'off',
         // 背景替换标志
         replaceFlag: 0,
         // 比分牌是否更新标志
@@ -276,9 +276,7 @@ $(function () {
                     $('.head-copy').attr('data-clipboard-text',
                         'http://www.cube.vip/h5/wxlogin.html?key=' + result.data
                         .event_uri_key)
-                    setVideoMuted()
-                    getIp()
-                    getScoreStyle()
+                    
                     var functionTitleSrc = ''
                     var functionContentSrc = ''
                     result.data.app.forEach((item, index) => {
@@ -351,6 +349,8 @@ $(function () {
                     })
                     $('#function-title').html(functionTitleSrc)
                     $('#function-content').html(functionContentSrc)
+                    setVideoMuted()
+                    getIp()
                 }
 
             },
@@ -380,7 +380,10 @@ $(function () {
                         if (sessionStorage.getItem(event_code)) {
                             allInfo = JSON.parse(sessionStorage.getItem(event_code))
                             renderHistory()
-                            renderHistoryScore()
+                            if(Number(channel_type) ===1){
+                                getScoreStyle()
+                                renderHistoryScore()
+                            }
                             if (sessionStorage.getItem('imageBase64' + event_code)) {
                                 fileScore = sessionStorage.getItem('imageBase64' + event_code)
                             }
@@ -1208,7 +1211,7 @@ $(function () {
                 slide_four.setValue(allInfo.fourMuteSize)
             }, 100)
             // 渲染手势检测
-            if (allInfo.gestureFlag === Number(0)) {
+            if (allInfo.gestureFlag === 'off') {
                 $('#gesture-btn').text('开启').css('background-color', '#ff914d')
             } else {
                 $('#gesture-btn').text('关闭').css('background-color', '#f2591a')
@@ -1230,11 +1233,11 @@ $(function () {
         }
         // 手势检测-------------------------------------------------------------------------------------------------
         $('#gesture-btn').on('click', function () {
-            if (allInfo.gestureFlag === Number(0)) {
-                allInfo.gestureFlag = 1
+            if (allInfo.gestureFlag === 'off') {
+                allInfo.gestureFlag = 'on'
                 $(this).text('关闭').css('background-color', '#f2591a')
             } else {
-                allInfo.gestureFlag = 0
+                allInfo.gestureFlag = 'off'
                 $(this).text('开启').css('background-color', '#ff914d')
             }
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
@@ -2235,6 +2238,9 @@ $(function () {
                     },
                     zoom_in: {
                         state: allInfo.zoomState
+                    },
+                    gesture_selector:{
+                        state:allInfo.gestureFlag
                     }
                 },
                 audio: {
