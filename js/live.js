@@ -449,12 +449,6 @@ $(function () {
 
                     } else {
                         getIps2()
-                        serverIp = '0.0.0.0'
-                        pullFlow(serverIp, domCameraOne, 0)
-                        pullFlow(serverIp, domCameraTwo, 1)
-                        pullFlow(serverIp, domCameraThree, 2)
-                        pullFlow(serverIp, domCameraFour, 3)
-                        pullFlow(serverIp, domChatVideo, 4)
                     }
                 }
             })
