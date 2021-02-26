@@ -5,7 +5,7 @@ $(function () {
     let searchData = window.location.search.substring(1).split("=")[1]
 
     if (searchData === '' || searchData === undefined) {
-        window.location.href = "./../index.html"
+        window.location.href = "./../html/home.html"
     }
     var event_id = searchData;
 

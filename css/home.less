@@ -1,0 +1,272 @@
+.parentMain {
+    .containerBox {
+        width: 1559px;
+
+        .wallet {
+            background-color: #FFFFFF;
+            width: 1559px;
+            height: 82px;
+            padding-top: 53px;
+            border-radius: 10px;
+
+            .wallet-top {
+                height: 50px;
+
+                li {
+                    list-style: none;
+                    height: 50px;
+                    font-size: 20px;
+                    float: left;
+                    color: #666666;
+                }
+
+                .at {
+                    width: 198px;
+                    margin-left: 29px;
+
+                    .account_category {
+                        color: #f2591a;
+                    }
+                }
+
+                .event_n {
+                    width: 198px;
+                    margin-left: 300px;
+                }
+
+                .boa {
+                    width: 198px;
+                }
+
+            }
+        }
+
+        .chang-sx {
+            width: 1559px;
+            height: 38px;
+            margin: 33px 0 20px;
+            display: flex;
+            justify-content: space-between;
+
+            .lab {
+                width: 179px;
+                box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
+                position: relative;
+
+                #order-icon {
+                    width: 55px;
+                    height: 55px;
+                    position: absolute;
+                    top: -7px;
+                    right: -55px;
+                    cursor: pointer;
+                }
+            }
+
+            #from {
+                width: 1200px;
+                display: flex;
+                justify-content: space-between;
+
+                #chang-bt {
+                    width: 214px;
+                    box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
+
+                    .inp {
+                        width: 150px;
+                        display: inline-block;
+                        vertical-align: top;
+                    }
+
+                    .danger {
+                        display: inline-block;
+                        width: 64px;
+                        height: 38px;
+                        background-color: #f2591a;
+                        box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
+                        text-align: center;
+                        line-height: 38px;
+                        cursor: pointer;
+
+                        img {
+                            width: 28px;
+                            height: 28px;
+                        }
+                    }
+                }
+                #test5 {
+                    width: 361px;
+                    border: none;
+                    box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
+                }
+            }
+            
+        }
+
+        .channelContent {
+            width: 1559px;
+            display: flex;
+            justify-content: flex-start;
+            align-content: flex-start;
+            flex-wrap: wrap;
+
+            #newAdd {
+                width: 494px;
+                height: 262px;
+                background-color: #FFFFFF;
+                color: #999999;
+                font-size: 28px;
+                box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
+                border-radius: 10px;
+                position: relative;
+                margin-bottom: 20px;
+
+                img {
+                    width: 80px;
+                    height: 80px;
+                }
+            }
+
+            .chanMargin {
+                margin: 0 38px;
+            }
+
+            .chan {
+                width: 494px;
+                height: 120px;
+                padding: 71px 0;
+                background-color: #fff;
+                box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
+                border-radius: 10px;
+                margin-bottom: 20px;
+                position: relative;
+                cursor: pointer;
+
+                .channel-cover {
+                    width: 104px;
+                    height: 120px;
+                    margin: 0 20px 0 50px;
+                    vertical-align: top;
+                }
+
+                .channelInfo {
+                    display: inline-block;
+                    width: 300px;
+                    height: 120px;
+                    padding-right: 20px;
+
+                    .channel-name {
+                        height: 30px;
+                        font-size: 26px;
+                        font-family: Source Han Sans CN;
+                        font-weight: 500;
+                        color: #666666;
+                        line-height: 30px;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                    }
+
+                    .channel-time {
+                        height: 30px;
+                        font-size: 20px;
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #666666;
+                        line-height: 30px;
+                        margin: 15px 0;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                    }
+
+                    .channel-intro {
+                        height: 30px;
+                        font-size: 20px;
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #999999;
+                        line-height: 30px;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                    }
+                }
+
+                .setChannel {
+                    position: absolute;
+                    width: 22px;
+                    height: 22px;
+                    top: 20px;
+                    right: 52px;
+                    cursor: pointer;
+                }
+
+                .deleteChannel {
+                    position: absolute;
+                    width: 20px;
+                    height: 22px;
+                    top: 20px;
+                    right: 20px;
+                    cursor: pointer;
+                }
+            }
+
+        }
+
+    }
+}
+
+
+#addDialog {
+    width: 574px;
+    padding: 40px 40px 0;
+    display: none;
+    .layui-form-onswitch {
+        border-color: #f2591a;
+        background-color: #f2591a;
+    }
+    .layui-form-label {
+        width: 130px;
+        font-size: 18px;
+        font-family: Source Han Sans CN;
+        font-weight: 300;
+        color: #666666;
+    }
+    .layui-input-block {
+        width: 414px;
+        margin-left: 160px;
+    }
+    #select-type {
+        .layui-form-select {
+            width: 330px;
+            .layui-input {
+                border:1px solid #e6e6e6 !important;
+            }
+        }
+    }
+    #username {
+        width: 330px;
+    }
+
+    .layui-textarea {
+        width: 330px;
+        resize: none;
+    }
+    
+    #test6 {
+        width: 330px;
+    }
+    
+    #test7 {
+        width: 330px;
+    }
+    
+    #roomCode {
+        width: 330px;
+    }
+}
+
+
+
+

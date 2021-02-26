@@ -1,227 +1,612 @@
-.parentMain .containerBox {
-  width: 1559px;
+* {
+  margin: 0;
 }
-.parentMain .containerBox .wallet {
-  background-color: #FFFFFF;
-  width: 1559px;
-  height: 82px;
-  padding-top: 53px;
-  border-radius: 10px;
+.container {
+  width: 100%;
+  min-width: 1200px;
+  background: url('../image/logo-bg.png') no-repeat;
+  background-size: 100% 1080px;
 }
-.parentMain .containerBox .wallet .wallet-top {
-  height: 50px;
-}
-.parentMain .containerBox .wallet .wallet-top li {
-  list-style: none;
-  height: 50px;
-  font-size: 20px;
-  float: left;
-  color: #666666;
-}
-.parentMain .containerBox .wallet .wallet-top .at {
-  width: 198px;
-  margin-left: 29px;
-}
-.parentMain .containerBox .wallet .wallet-top .at .account_category {
-  color: #f2591a;
-}
-.parentMain .containerBox .wallet .wallet-top .event_n {
-  width: 198px;
-  margin-left: 300px;
-}
-.parentMain .containerBox .wallet .wallet-top .boa {
-  width: 198px;
-}
-.parentMain .containerBox .chang-sx {
-  width: 1559px;
-  height: 38px;
-  margin: 33px 0 20px;
-  display: flex;
-  justify-content: space-between;
-}
-.parentMain .containerBox .chang-sx .lab {
-  width: 179px;
-  box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
-  position: relative;
-}
-.parentMain .containerBox .chang-sx .lab #order-icon {
-  width: 55px;
-  height: 55px;
-  position: absolute;
-  top: -7px;
-  right: -55px;
-  cursor: pointer;
-}
-.parentMain .containerBox .chang-sx #from {
-  width: 1200px;
-  display: flex;
-  justify-content: space-between;
-}
-.parentMain .containerBox .chang-sx #from #chang-bt {
-  width: 214px;
-  box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
-}
-.parentMain .containerBox .chang-sx #from #chang-bt .inp {
-  width: 150px;
-  display: inline-block;
-  vertical-align: top;
-}
-.parentMain .containerBox .chang-sx #from #chang-bt .danger {
-  display: inline-block;
-  width: 64px;
-  height: 38px;
-  background-color: #f2591a;
-  box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
-  text-align: center;
-  line-height: 38px;
-  cursor: pointer;
-}
-.parentMain .containerBox .chang-sx #from #chang-bt .danger img {
-  width: 28px;
-  height: 28px;
-}
-.parentMain .containerBox .chang-sx #from #test5 {
-  width: 361px;
-  border: none;
-  box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
-}
-.parentMain .containerBox .channelContent {
-  width: 1559px;
-  display: flex;
-  justify-content: flex-start;
-  align-content: flex-start;
-  flex-wrap: wrap;
-}
-.parentMain .containerBox .channelContent #newAdd {
-  width: 494px;
-  height: 262px;
-  background-color: #FFFFFF;
-  color: #999999;
-  font-size: 28px;
-  box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
-  border-radius: 10px;
-  position: relative;
-  margin-bottom: 20px;
-}
-.parentMain .containerBox .channelContent #newAdd img {
-  width: 80px;
-  height: 80px;
-}
-.parentMain .containerBox .channelContent .chanMargin {
-  margin: 0 38px;
-}
-.parentMain .containerBox .channelContent .chan {
-  width: 494px;
-  height: 120px;
-  padding: 71px 0;
+.container .topBox {
+  width: 100%;
+  height: 130px;
   background-color: #fff;
-  box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
-  border-radius: 10px;
-  margin-bottom: 20px;
-  position: relative;
-  cursor: pointer;
 }
-.parentMain .containerBox .channelContent .chan .channel-cover {
-  width: 104px;
-  height: 120px;
-  margin: 0 20px 0 50px;
-  vertical-align: top;
+.container .topBox .topContent {
+  width: 1200px;
+  height: 64px;
+  padding: 33px 0;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
 }
-.parentMain .containerBox .channelContent .chan .channelInfo {
+.container .topBox .topContent .logo {
+  width: 186px;
+  height: 64px;
+}
+.container .topBox .topContent .navBox {
+  width: 460px;
+  height: 64px;
+  line-height: 64px;
+}
+.container .topBox .topContent .navBox a {
+  font-size: 20px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #F2591A;
+  text-decoration: none;
+  margin-right: 60px;
+}
+.container .topBox .topContent .loginBox {
+  width: 276px;
+  height: 64px;
+  line-height: 64px;
+}
+.container .topBox .topContent .loginBox .login {
   display: inline-block;
-  width: 300px;
-  height: 120px;
-  padding-right: 20px;
-}
-.parentMain .containerBox .channelContent .chan .channelInfo .channel-name {
-  height: 30px;
-  font-size: 26px;
-  font-family: Source Han Sans CN;
-  font-weight: 500;
-  color: #666666;
-  line-height: 30px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.parentMain .containerBox .channelContent .chan .channelInfo .channel-time {
-  height: 30px;
+  text-decoration: none;
+  width: 126px;
+  height: 36px;
+  border: 1px solid #F2591A;
+  border-radius: 19px;
   font-size: 20px;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #666666;
-  line-height: 30px;
-  margin: 15px 0;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  color: #F2591A;
+  line-height: 36px;
+  text-align: center;
 }
-.parentMain .containerBox .channelContent .chan .channelInfo .channel-intro {
-  height: 30px;
+.container .topBox .topContent .loginBox .signIn {
+  display: inline-block;
+  text-decoration: none;
+  width: 128px;
+  height: 38px;
+  background: #F2591A;
+  border-radius: 19px;
   font-size: 20px;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #999999;
+  color: #FFF;
+  line-height: 36px;
+  text-align: center;
+  margin-left: 20px;
+}
+.container .logoBox {
+  width: 1200px;
+  margin: 0 auto;
+  height: 950px;
+  position: relative;
+}
+.container .logoBox .logoTitle {
+  height: 67px;
+  font-size: 72px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #F2591A;
   line-height: 30px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  margin: 165px 0 39px;
 }
-.parentMain .containerBox .channelContent .chan .setChannel {
+.container .logoBox .logoInfo {
+  height: 96px;
+  font-size: 30px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FF914D;
+  line-height: 48px;
+  letter-spacing: 5px;
+}
+.container .logoBox .logoBtn {
+  width: 348px;
+  height: 72px;
+  margin-top: 240px;
+}
+.container .logoBox .logoBtn a {
+  display: block;
+  width: 348px;
+  height: 72px;
+  background: linear-gradient(180deg, #FFBE58, #FF914D, #F2591A);
+  border-radius: 36px;
+  line-height: 72px;
+  text-align: center;
+  font-size: 24px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+.container .logoBox .mobile {
   position: absolute;
-  width: 22px;
-  height: 22px;
-  top: 20px;
-  right: 52px;
-  cursor: pointer;
+  right: 0px;
+  bottom: 158px;
 }
-.parentMain .containerBox .channelContent .chan .deleteChannel {
-  position: absolute;
-  width: 20px;
-  height: 22px;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
+.container .establishBox {
+  width: 1200px;
+  height: 200px;
+  margin: 120px auto 192px;
+  display: flex;
+  justify-content: space-between;
 }
-#addDialog {
-  width: 574px;
-  padding: 40px 40px 0;
-  display: none;
+.container .establishBox .establishLeft {
+  width: 545px;
+  height: 200px;
+  font-size: 48px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+  line-height: 48px;
 }
-#addDialog .layui-form-onswitch {
-  border-color: #f2591a;
-  background-color: #f2591a;
+.container .establishBox .establishRight {
+  height: 200px;
 }
-#addDialog .layui-form-label {
-  width: 130px;
+.container .establishBox .establishRight .establishInfo {
+  width: 570px;
+  height: 98px;
+  font-size: 22px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+  margin-bottom: 60px;
+  text-align: justify;
+}
+.container .establishBox .establishRight .establishLink {
+  font-size: 36px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #F2591A;
+  text-decoration: none;
+}
+.container .majorBox {
+  width: 1200px;
+  height: 508px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.container .majorBox .majorLeft {
+  height: 508px;
+}
+.container .majorBox .majorLeft .majorLeftTitle {
+  height: 105px;
+  font-size: 48px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+  line-height: 60px;
+}
+.container .majorBox .majorLeft .majorLeftInfo {
+  width: 350px;
+  height: 50px;
   font-size: 18px;
   font-family: Source Han Sans CN;
-  font-weight: 300;
+  font-weight: 400;
+  color: #333333;
+  margin: 40px 0 100px;
+}
+.container .majorBox .majorLeft .majorLeftLink {
+  font-size: 30px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #F2591A;
+  text-decoration: none;
+}
+.container .majorBox .majorRight {
+  width: 685px;
+  height: 508px;
+}
+.container .exclusiveBox {
+  width: 1200px;
+  height: 504px;
+  margin: 156px auto 159px;
+  display: flex;
+  justify-content: space-between;
+}
+.container .exclusiveBox .exclusiveLeft {
+  width: 682px;
+  height: 504px;
+}
+.container .exclusiveBox .exclusiveRight {
+  width: 420px;
+  height: 504px;
+}
+.container .exclusiveBox .exclusiveRight .exclusiveRightTitle {
+  height: 105px;
+  font-size: 48px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+  line-height: 60px;
+  margin-top: 25px;
+}
+.container .exclusiveBox .exclusiveRight .exclusiveRightInfo {
+  width: 420px;
+  height: 50px;
+  font-size: 18px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+  margin: 40px 0 100px;
+  text-align: justify;
+}
+.container .exclusiveBox .exclusiveRight .exclusiveRightLink {
+  font-size: 30px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #F2591A;
+  text-decoration: none;
+}
+.container .domainBox {
+  width: 1200px;
+  height: 633px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.container .domainBox .domainLeft {
+  height: 633px;
+}
+.container .domainBox .domainLeft .domainLeftTitle {
+  height: 105px;
+  font-size: 48px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+  line-height: 60px;
+}
+.container .domainBox .domainLeft .domainLeftInfo {
+  width: 323px;
+  height: 50px;
+  font-size: 18px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+  margin: 40px 0 100px;
+  text-align: justify;
+}
+.container .domainBox .domainLeft .domainLeftLink {
+  font-size: 30px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #F2591A;
+  text-decoration: none;
+}
+.container .domainBox .domainRight {
+  width: 712px;
+  height: 633px;
+}
+.container .shopBox {
+  width: 1200px;
+  height: 588px;
+  margin: 220px auto 200px;
+}
+.container .shopBox .shopTitle {
+  height: 50px;
+  font-size: 48px;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #333333;
+  line-height: 50px;
+  text-align: center;
+}
+.container .shopBox .shopTop {
+  width: 1200px;
+  height: 174px;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 95px 0;
+}
+.container .shopBox .shopTop .shopItem {
+  width: 140px;
+  height: 174px;
+}
+.container .shopBox .shopTop .shopItem img {
+  width: 120px;
+  height: 120px;
+  margin: 0 10px 20px;
+}
+.container .shopBox .shopTop .shopItem p {
+  width: 140px;
+  height: 34px;
+  font-size: 34px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+  line-height: 30px;
+  text-align: center;
+}
+.container .shopBox .shopBottom {
+  width: 1200px;
+  height: 174px;
+  display: flex;
+  justify-content: space-between;
+}
+.container .shopBox .shopBottom .shopItem {
+  width: 140px;
+  height: 174px;
+}
+.container .shopBox .shopBottom .shopItem img {
+  width: 120px;
+  height: 120px;
+  margin: 0 10px 20px;
+}
+.container .shopBox .shopBottom .shopItem p {
+  width: 140px;
+  height: 34px;
+  font-size: 34px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+  line-height: 30px;
+  text-align: center;
+}
+.container .caseBox {
+  width: 100%;
+  min-width: 1200px;
+  height: 525px;
+}
+.container .caseBox .caseTitle {
+  width: 1200px;
+  height: 45px;
+  margin: 0 auto;
+  font-size: 48px;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #333333;
+  line-height: 30px;
+  text-align: center;
+  margin-bottom: 100px;
+}
+.container .caseBox #certify {
+  position: relative;
+  width: 1200px;
+  margin: 0 auto;
+}
+.container .caseBox #certify .swiper-container {
+  padding-bottom: 60px;
+}
+.container .caseBox #certify .swiper-container .swiper-slide {
+  width: 520px;
+  height: 408px;
+  background: #fff;
+  box-shadow: 0 8px 30px #ddd;
+}
+.container .caseBox #certify .swiper-container .swiper-slide img {
+  width: 520px;
+  height: 310px;
+  display: block;
+}
+.container .caseBox #certify .swiper-container .swiper-slide p {
+  line-height: 98px;
+  padding-top: 0;
+  text-align: center;
+  color: #636363;
+  font-size: 1.1em;
+  margin: 0;
+}
+.container .caseBox #certify .swiper-pagination {
+  width: 100%;
+  bottom: 20px;
+}
+.container .caseBox #certify .swiper-pagination-bullets .swiper-pagination-bullet {
+  margin: 0 5px;
+  border: 3px solid #fff;
+  background-color: #d5d5d5;
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+}
+.container .caseBox #certify .swiper-pagination-bullets .swiper-pagination-bullet-active {
+  border: 3px solid #F46932;
+  background-color: #fff;
+}
+.container .caseBox #certify .swiper-button-prev {
+  left: 0px;
+  width: 45px;
+  height: 45px;
+  background: url(../image/wm_button_icon.png) no-repeat;
+  background-position: 0 0;
+  background-size: 100%;
+}
+.container .caseBox #certify .swiper-button-prev:hover {
+  background-position: 0 -46px;
+  background-size: 100%;
+}
+.container .caseBox #certify .swiper-button-next {
+  right: 0px;
+  width: 45px;
+  height: 45px;
+  background: url(../image/wm_button_icon.png) no-repeat;
+  background-position: 0 -93px;
+  background-size: 100%;
+}
+.container .caseBox #certify .swiper-button-next:hover {
+  background-position: 0 -139px;
+  background-size: 100%;
+}
+.container .causeBox {
+  width: 1200px;
+  height: 810px;
+  margin: 200px auto 124px;
+}
+.container .causeBox .causeTitle {
+  height: 34px;
+  font-size: 36px;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #333333;
+  line-height: 30px;
+}
+.container .causeBox .causeInfo {
+  width: 700px;
+  height: 234px;
+  font-size: 24px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+  margin: 47px 0 20px;
+  text-align: justify;
+}
+.container .causeBox .causeContent {
+  width: 1200px;
+  height: 475px;
+  display: flex;
+  justify-content: space-between;
+}
+.container .causeBox .causeContent a {
+  display: block;
+  font-size: 30px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #F46932;
+  text-decoration: none;
+  margin-top: 80px;
+}
+.container .causeBox .causeContent img {
+  width: 645px;
+  height: 475px;
+}
+.container .cooperationBox {
+  width: 1200px;
+  height: 226px;
+  margin: 0 auto;
+}
+.container .cooperationBox .cooperationContent {
+  width: 1200px;
+  height: 146px;
+  display: flex;
+  justify-content: space-between;
+}
+.container .cooperationBox .cooperationContent img {
+  width: 278px;
+  height: 146px;
+}
+.container .cooperationBox .cooperationTitle {
+  width: 1200px;
+  height: 34px;
+  font-size: 36px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #F46932;
+  text-align: center;
+  margin-top: 46px;
+  line-height: 30px;
+}
+.container .stepBox {
+  width: 100%;
+  min-width: 1200px;
+  height: 698px;
+  background: #122A3E;
+  margin: 95px 0 50px;
+}
+.container .stepBox .stepContent {
+  width: 1200px;
+  height: 598px;
+  margin: 0 auto;
+  position: relative;
+  padding-top: 100px;
+}
+.container .stepBox .stepContent .stepTitle {
+  font-size: 48px;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 30px;
+  margin-bottom: 56px;
+}
+.container .stepBox .stepContent p {
+  height: 24px;
+  font-size: 24px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 30px;
+  margin-bottom: 30px;
+}
+.container .stepBox .stepContent .stepLink {
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 100px;
+  font-size: 36px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #F57145;
+  line-height: 30px;
+  text-decoration: none;
+}
+.container .infoBox {
+  width: 100%;
+  min-width: 1200px;
+  height: 138px;
+}
+.container .infoBox .infoContent {
+  width: 1200px;
+  height: 84px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.container .infoBox .infoContent .mobile {
+  width: 140px;
+  height: 84px;
+  text-align: center;
+}
+.container .infoBox .infoContent .mobile img {
+  width: 24px;
+  height: 24px;
+}
+.container .infoBox .infoContent .mobile .title {
+  height: 30px;
+  line-height: 30px;
+  font-size: 16px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+}
+.container .infoBox .infoContent .mobile .number {
+  height: 30px;
+  font-size: 14px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
   color: #666666;
+  line-height: 30px;
 }
-#addDialog .layui-input-block {
-  width: 414px;
-  margin-left: 160px;
+.container .infoBox .infoContent .location {
+  width: 240px;
+  height: 84px;
+  text-align: center;
 }
-#addDialog #select-type .layui-form-select {
-  width: 330px;
+.container .infoBox .infoContent .location img {
+  width: 24px;
+  height: 24px;
 }
-#addDialog #select-type .layui-form-select .layui-input {
-  border: 1px solid #e6e6e6 !important;
+.container .infoBox .infoContent .location .title {
+  height: 30px;
+  line-height: 30px;
+  font-size: 16px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
 }
-#addDialog #username {
-  width: 330px;
+.container .infoBox .infoContent .location .number {
+  height: 30px;
+  font-size: 14px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  line-height: 30px;
 }
-#addDialog .layui-textarea {
-  width: 330px;
-  resize: none;
+.container .infoBox .beian {
+  width: 1200px;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 auto;
+  text-align: center;
 }
-#addDialog #test6 {
-  width: 330px;
+.container .infoBox .beian a {
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
 }
-#addDialog #test7 {
-  width: 330px;
-}
-#addDialog #roomCode {
-  width: 330px;
+.container .infoBox .beian a:hover {
+  color: #666;
 }

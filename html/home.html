@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./../layui/css/layui.css">
+    <link rel="stylesheet" href="./../css/common.css">
+    <link rel="stylesheet" href="./../css/home.css">
+    <script src="./../layui/layui.js"></script>
+    <script src="./../commonJs/jquery-3.2.1.min.js"></script>
+    <script src="./../js/common.js"></script>
+    <title>畅世界直播平台</title>
+    <style>
+        .layui-layer-title {
+            background-color: #FF914D !important;
+            color: #fff !important;
+            font-size: 20px !important;
+            font-family: Source Han Sans CN !important;
+            font-weight: 300 !important;
+
+        }
+        .layui-layer-btn .layui-layer-btn0 {
+            background-color: #FF914D !important;
+            border: 0 !important;
+        }
+        .layui-form-select dl dd.layui-this {
+            background-color: #FF914D;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <!--上方标题栏-->
+        <div class="parentTop">
+            <img class="logImage" src="./../image/login-logo.png">
+            <div class="loginNameDiv">
+                <div class="messageBox">
+                    <img src="./../image/message-icon.png" alt="" class="messageIcon">
+                    <span class="layui-badge-dot" id="hot"></span>
+                </div>
+                <div class="nameContent">
+                    <span class="userName"></span>
+                </div>
+                <div id="userExit">退出</div>
+            </div>
+        </div>
+        <div id="mainContent">
+            <!--左侧菜单-->
+            <ul class="leftMenu">
+                <li>
+                    <a class="menuActive" href="./home.html">
+                        <img class="menu-icon" width="35" height="28" src="./../image/channel-active-icon.png" alt="">频道
+                    </a>
+                </li>
+                <li>
+                    <a href="./portal.html">
+                        <img class="menu-icon" width="32" height="30" src="./../image/video-icon.png">门户
+                    </a>
+                </li>
+                <li>
+                    <a href="./media.html">
+                        <img class="menu-icon" width="32" height="26" src="./../image/media-library-icon.png">媒体库
+                    </a>
+                </li>
+                <li>
+                    <a href="./account.html">
+                        <img class="menu-icon" width="34" height="26" src="./../image/account-icon.png">账户
+                    </a>
+                </li>
+                <li>
+                    <a href="./data.html">
+                        <img class="menu-icon" width="32" height="24" src="./../image/data-icon.png">数据统计
+                    </a>
+                </li>
+                <li>
+                    <a href="./appStore.html">
+                        <img class="menu-icon" width="30" height="30" src="./../image/app-store-icon.png">应用商店
+                    </a>
+                </li>
+                <li>
+                    <a href="./userSet.html">
+                        <img class="menu-icon" width="34" height="29" src="./../image/user-set-icon.png">设置
+                    </a>
+                </li>
+            </ul>
+
+            <!--主要内容区-->
+            <div class="parentMain">
+                <div class="containerBox">
+                    <div class="wallet">
+                        <ul class="wallet-top">
+                            <li class="at">账户类型: <span class="account_category">体验版</span></li>
+                            <li class="boa">账户余额: <span class="account_amount">￥0.00</span></li>
+                            <li class="event_n">已建频道数:&nbsp;<span class="event_number">00</span>个</li>
+                            <li>累计消费金额: <span class="account_total_payment">￥0.00</span></li>
+                        </ul>
+                    </div>
+                    <div class="chang-sx">
+                        <div class="layui-form lab">
+                            <select id="select-order" name="order_by" lay-filter="select-order">
+                                <option name="event_start_time" value="event_start_time">直播开始时间</option>
+                                <option name="-event_start_time" value="-event_start_time">直播最后时间</option>
+                            </select>
+                            <img src="../image/排序.png" id="order-icon" />
+                        </div>
+                        <form class="layui-form form" id="from">
+                            <div class="layui-inline">
+                                <div class="layui-input-inline" name="start_time1" style="position: relative;">
+                                    <input type="text" name="start_time1" class="layui-input" id="test5"
+                                        placeholder=" 开 始 直 播 时 间 范 围  ~  开 始 直 播 时 间 范 围">
+                                    <img style="position: absolute;right: 10px;top: 9px;" src="../image/日历.png" />
+                                </div>
+                            </div>
+                            <div id="chang-bt">
+                                <input type="text" name="keyword" placeholder="请输入频道关键字" autocomplete="off"
+                                    class="layui-input inp"><span class="danger"><img src="../image/搜索.png" /></span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="channelContent">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="messageDialog">
+        <p id="messageDialogName">
+            消息
+        </p>
+        <div id="messageContent">
+        </div>
+    </div>
+    <div id="addDialog">
+        <form class="layui-form" id="test">
+            <div class="layui-form-item">
+                <label class="layui-form-label">*频道名称:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="event_title" required lay-verify="required" placeholder="请输入频道名称"
+                        autocomplete="on" class="layui-input" id="username">
+                </div>
+            </div>
+           
+            <div class="layui-form-item" id="select-type">
+                <label class="layui-form-label" >频道分类:</label>
+                <div class="layui-input-block">
+                    <select id="channel-type" name="event_category_id" lay-filter="channel-type">
+                    </select>
+                </div>
+                
+            </div>
+         
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">活动简介:</label>
+                <div class="layui-input-block">
+                    <textarea name="event_description" placeholder="请输入内容" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">起始时间:</label>
+                <div class="layui-input-block">
+                    <input type="datetime" name="event_start_time" class="layui-input" id="test6" placeholder="活动开始时间">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">结束时间:</label>
+                <div class="layui-input-block">
+                    <input type="datetime" name="event_end_time" class="layui-input" id="test7" placeholder="活动结束时间">
+                </div>
+            </div>
+            <div class="layui-form-item" id="switchDom">
+                <label class="layui-form-label">是否加密:</label>
+                <div class="layui-input-block">
+                    <input id="showType" type="checkbox" name="event_private"  lay-skin="switch"
+                        lay-text="加密|公开" lay-filter="switchTest">
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">房间密码:</label>
+                <div class="layui-input-block"><input type="text" id="roomCode" maxlength="6" name="event_access_code"
+                        disabled placeholder="请输入六位数字密码" class="layui-input">
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="./../js/home.js"></script>
+</body>
+
+
+</html>

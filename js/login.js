@@ -38,7 +38,7 @@ $(function () {
             success: function (result) {
                 sessionStorage.setItem('token', result.token)
                 if (result.msg == "success") {
-                    window.location.href = "index.html"
+                    window.location.href = "./../html/home.html"
                 } else if (result.msg == "error") {
                     layer.msg("账户名或密码错误，请重新输入!")
                 }
@@ -202,7 +202,7 @@ $(function () {
                                 success: function (result) {
                                     sessionStorage.setItem('token', result.token)
                                     if (result.msg == "success") {
-                                        window.location.href = "index.html"
+                                        window.location.href = "./../html/home.html"
                                     } else if (result.msg == "error") {
                                         layer.msg("账户名或密码错误，请重新输入!")
                                     }
