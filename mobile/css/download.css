@@ -1,0 +1,162 @@
+@media screen and (min-width: 750px) {
+  html {
+    font-size: 75px !important;
+  }
+}
+@media screen and (max-width: 320px) {
+  html {
+    font-size: 32px !important;
+  }
+}
+* {
+  margin: 0;
+}
+body {
+  width: 10rem;
+  min-width: 4.26666667rem;
+  margin: 0 auto;
+}
+body a {
+  text-decoration: none;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+}
+body #container {
+  width: 100%;
+}
+body #container #navBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 10rem;
+  height: 1.38666667rem;
+  box-sizing: border-box;
+  padding: 0.26666667rem 0.66666667rem;
+  box-shadow: 0px 3px 7px 0px rgba(102, 102, 102, 0.1);
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
+body #container #navBox .logo {
+  width: 2.48rem;
+  height: 0.85333333rem;
+}
+body #container #navBox #menu {
+  width: 0.64rem;
+  height: 0.64rem;
+}
+body #container #footBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 8.93333333rem;
+  height: 1.86666667rem;
+  background-color: #fff;
+  box-shadow: 0px -3px 7px 0px rgba(102, 102, 102, 0.1);
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+  padding: 0 0.53333333rem;
+}
+body #container #footBar .cell-phone {
+  width: 5.4rem;
+  height: 1.33333333rem;
+  background: #ffeee7;
+  border-radius: 0.10666667rem;
+  font-size: 0.4rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #F2591A;
+  text-align: center;
+  line-height: 1.33333333rem;
+}
+body #container #footBar .signUp {
+  width: 3.14666667rem;
+  height: 1.33333333rem;
+  background: #F2591A;
+  border-radius: 0.10666667rem;
+  font-size: 0.4rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFF;
+  text-align: center;
+  line-height: 1.33333333rem;
+}
+body #container #asideBox {
+  width: 5.86666667rem;
+  height: 100vh;
+  padding: 0 0.53333333rem;
+  background-color: #fff;
+  box-shadow: 20px 0px 10px 0px rgba(102, 102, 102, 0.4);
+  position: fixed;
+  right: -6.93333333rem;
+  z-index: 2;
+}
+body #container #asideBox a {
+  display: block;
+  width: 5.86666667rem;
+  height: 1.54666667rem;
+  line-height: 1.54666667rem;
+  border-bottom: 0.02666667rem solid #DDDDDD;
+  font-size: 0.4rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+}
+body #container #asideShade {
+  display: none;
+  width: 10rem;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+body #container #asideShade img {
+  width: 0.74666667rem;
+  height: 0.96rem;
+  position: absolute;
+  top: 50%;
+  left: 18%;
+}
+body #container #contentBox {
+  width: 10rem;
+  height: 100vh;
+  box-sizing: border-box;
+  padding-top: 1.38666667rem;
+  padding-bottom: 1.86666667rem;
+  background: #F9F9F9;
+}
+body #container #contentBox .miniLogo {
+  display: block;
+  width: 2.48rem;
+  height: 2.48rem;
+  margin: 1.54666667rem auto 0.29333333rem;
+}
+body #container #contentBox .helperTitle {
+  height: 0.8rem;
+  font-size: 0.48rem;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #333333;
+  text-align: center;
+  line-height: 0.8rem;
+}
+body #container #contentBox .screenImg {
+  display: block;
+  width: 8.13333333rem;
+  height: 4.01333333rem;
+  margin: 1.86666667rem auto 0.56rem;
+}
+body #container #contentBox .helperInfo {
+  width: 8.26666667rem;
+  height: 0.69333333rem;
+  text-align: justify;
+  font-size: 0.42666667rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  margin: 0 auto;
+  line-height: 0.69333333rem;
+}

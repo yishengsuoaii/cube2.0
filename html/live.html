@@ -18,7 +18,7 @@
     <script src="./../commonJs/html2canvas.js"></script>
     <script src="./../commonJs/qrcode.js"></script>
     <script src="./../commonJs/video.min.js"></script>
-    <title>直播间</title>
+    <title>部落</title>
     <style>
         .layui-layer-title {
             font-size: 20px !important;
@@ -399,35 +399,6 @@
                                                         <p class="preview_select">选择视频</p>
                                                     </div>
                                                     <p class="previewVideo-btn">提交</p>
-
-                                                    <div id="video-dialog">
-                                                        <div class="vd-content">
-                                                            <p class="select-search">
-                                                                已选视频: <span class="check-video-num">0</span>个
-                                                                <span class="search-video">
-                                                                    <input type="text" class="search-video-input" placeholder="输入文件名"><span
-                                                                        class="search-video-btn"><img src="../image/搜索.png" alt=""></span>
-                                                                </span>
-                                                            </p>
-                                                            <hr />
-                                                            <div class="vd-content-main">
-                                                                <div class="vd-content-main-top">
-                                                                </div>
-                                                                <div class="vd-content-main-foot">
-                                                                    <div id="video-page"></div>
-                                                                </div>
-                                                            </div>
-                                                
-                                                        </div>
-                                                        <div class="vd-footer">
-                                                            <span class="mediaUpload">
-                                                                没有合适的视频？
-                                                                <a href="./media.html">去媒体库上传</a>
-                                                            </span>
-                                                            <button type="button" class="layui-btn layui-btn-primary" id="video-cancel">取消</button>
-                                                            <button type="button" class="layui-btn layui-btn-danger" id="video-confirm">确定</button>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                            <div class="channel-set-item">
@@ -524,7 +495,7 @@
                                             <div class="layui-tab layui-tab-brief">
                                                 <ul class="layui-tab-title">
                                                     <li style="width: 160px;height: 46px;font-size: 20px;" class="layui-this">
-                                                        直播方式一</li>
+                                                        手机推流码</li>
                                                     <li style="width: 160px;height: 46px;font-size: 20px;">拉流播放</li>
                                                 </ul>
                                                 <div class="layui-tab-content">
@@ -646,6 +617,29 @@
                                                     </div>
                                                     <img src="./../image/mute-close.png" id="four-mute">
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div class="cameraList">
+                                            <p class="cameraName">
+                                                <img src="./../image/pull-link-icon.png" id="pullUrlCopy" alt="">
+                                                <span class="cut" id="five-cut">快切</span>
+                                            </p>
+                                            <div class="cameraContent">
+                                                <video id="cameraFive"  autoplay muted></video>
+                                                <div class="slideBox">
+                                                    <div class="slideLine" id="slideFive">
+                                                    </div>
+                                                    <img src="./../image/mute-close.png" id="five-mute">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cameraList">
+                                            <p class="cameraName">
+                                                <img src="./../image/add-video-icon.png" id="addChangeVideo" alt="">
+                                                <span class="cut" id="six-cut">快切</span>
+                                            </p>
+                                            <div class="cameraContent">
+                                                <video id="cameraSix" class="video-js vjs-big-play-centered"></video>
                                             </div>
                                         </div>
                                     </div>
@@ -791,6 +785,38 @@
                             <div class="scoreFoot">
                                 <button id="scoreSave" type="button" class="layui-btn">提交</button>
                             </div>
+                        </div>
+                        <div id="video-dialog">
+                            <div class="vd-content">
+                                <p class="select-search">
+                                    已选视频: <span class="check-video-num">0</span>个
+                                    <span class="search-video">
+                                        <input type="text" class="search-video-input" placeholder="输入文件名"><span
+                                            class="search-video-btn"><img src="../image/搜索.png" alt=""></span>
+                                    </span>
+                                </p>
+                                <hr />
+                                <div class="vd-content-main">
+                                    <div class="vd-content-main-top">
+                                    </div>
+                                    <div class="vd-content-main-foot">
+                                        <div id="video-page"></div>
+                                    </div>
+                                </div>
+                    
+                            </div>
+                            <div class="vd-footer">
+                                <span class="mediaUpload">
+                                    没有合适的视频？
+                                    <a href="./media.html">去媒体库上传</a>
+                                </span>
+                                <button type="button" class="layui-btn layui-btn-primary" id="video-cancel">取消</button>
+                                <button type="button" class="layui-btn layui-btn-danger" id="video-confirm">确定</button>
+                            </div>
+                        </div>
+                        <div id="copy-dialog">
+                            <input type="text" id="pull-src-input" readonly value="12315645">
+                            <div id="copyPullSrcBtn" data-clipboard-action="copy" data-clipboard-target="#pull-src-input">复制</div>
                         </div>
                     </div>
             </div>

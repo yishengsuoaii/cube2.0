@@ -41,7 +41,7 @@ $(function () {
     let allVideoData = []
     // 过滤所有视频
     let filterVideoData = []
-    // 暂时频道
+    // 暂时频道添加视频预告
     let videoUrl = null
     let videoCode = null
     var videoJs = videojs('viewVideos', {
@@ -50,6 +50,26 @@ $(function () {
         preload: 'auto',
         width: '750',
         height: "428",
+    })
+
+    
+
+    // 1 是添加视频预告,2是添加转场视频
+    var differenceFlag = 1
+    // 转场视频
+    var addVideoSrc = ''
+    var addVideoJs = videojs('cameraSix', {
+        muted: false,
+        controls: true,
+        // controlBar: false, 
+        controlBar: {
+            fullscreenToggle: false,
+            pictureInPictureToggle: false,
+            remainingTimeDisplay: false,//隐藏剩余时间
+          },
+        preload: 'auto',
+        width: '224',
+        height: "126",
     })
 
     layui.use(['form', 'element', 'jquery', 'layer', 'upload'], function () {
@@ -101,6 +121,7 @@ $(function () {
             }
         })
         $('.preview_select').on('click', function () {
+            differenceFlag = 1
             $.ajax({
                 type: "GET",
                 dataType: "json",
@@ -129,11 +150,49 @@ $(function () {
                 title: ['添加视频', 'color:#fff'],
                 content: $('#video-dialog'),
                 shade: 0.3,
-                shadeClose: true,
+                shadeClose: false,
                 closeBtn: 0,
                 resize: false,
                 scrollbar: false,
+            })
+            videoFiltrate()
+
+        })
+
+        $('#addChangeVideo').on('click', function () {
+            differenceFlag = 2
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                async: false,
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                url: "http://www.cube.vip/video/video_list/",
+                data: {
+                    save_flag: 'media_library'
+                },
+                success: function (res) {
+                    if (res.msg === 'success') {
+                        allVideoData = res.data
+                    } else {
+                        layer.msg('获取视频列表失败,请重试!');
+                    }
+                }
+            })
+            videoCode = null
+            $('.search-video-input').val('')
+            $('.check-video-num').text(0)
+            layer.open({
+                type: 1,
+                area: ['1170px', '753px'],
+                title: ['添加视频', 'color:#fff'],
+                content: $('#video-dialog'),
+                shade: 0.3,
                 shadeClose: false,
+                closeBtn: 0,
+                resize: false,
+                scrollbar: false,
             })
             videoFiltrate()
 
@@ -241,11 +300,21 @@ $(function () {
                 },
                 success: res => {
                     if (res.msg === 'success') {
-                        videoJs.src({
-                            type: 'application/x-mpegURL',
-                            src: res.data.video_rui
-                        })
-                        videoUrl = res.data.video_rui
+                       
+                        if(differenceFlag  === 1) {
+                            videoJs.src({
+                                type: 'application/x-mpegURL',
+                                src: res.data.video_rui
+                            })
+                            videoUrl = res.data.video_rui
+                        } else {
+                            addVideoJs.src({
+                                type: 'application/x-mpegURL',
+                                src: res.data.video_rui
+                            })
+                            addVideoSrc = res.data.video_rui
+                        }
+                        
                     } else {
                         layer.msg('获取视频失败,请重试!')
                     }

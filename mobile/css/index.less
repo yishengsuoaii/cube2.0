@@ -1,0 +1,725 @@
+@media screen and (min-width:750px) {
+    html {
+        font-size: 75px !important;
+    }
+}
+
+
+@media screen and (max-width:320px) {
+    html {
+        font-size: 32px !important;
+    }
+}
+
+@base_fontsize: 75;
+
+* {
+    margin: 0;
+}
+
+
+body {
+    width: (750rem/@base_fontsize);
+    min-width: (320rem/@base_fontsize);
+    margin: 0 auto;
+    a {
+        text-decoration: none;
+        outline: none;
+        -webkit-tap-highlight-color:rgba(255,0,0,0)
+    }
+
+    #container {
+        width: 100%;
+        #navBox {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: (750rem/@base_fontsize);
+            height: (104rem/@base_fontsize);
+            box-sizing: border-box;
+            padding: (20rem/@base_fontsize) (50rem/@base_fontsize);
+            box-shadow: 0px 3px 7px 0px rgba(102, 102, 102, 0.1);
+            background-color: #fff;
+            position: fixed;
+            top: 0;
+            z-index: 1;
+            .logo {
+                width: (186rem/@base_fontsize);
+                height: (64rem/@base_fontsize);
+            }
+            #menu {
+                width: (48rem/@base_fontsize);
+                height: (48rem/@base_fontsize);
+            }
+        }
+        #footBar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: (670rem/@base_fontsize);
+            height: (140rem/@base_fontsize);
+            background-color: #fff;
+            box-shadow: 0px -3px 7px 0px rgba(102, 102, 102, 0.1);
+            position: fixed;
+            bottom: 0;
+            z-index: 1;
+            padding: 0 (40rem/@base_fontsize);
+            .cell-phone {
+                width: (405rem/@base_fontsize);
+                height: (100rem/@base_fontsize);
+                background: #ffeee7;
+                border-radius: (8rem/@base_fontsize);
+                font-size: (30rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #F2591A;
+                text-align: center;
+                line-height: (100rem/@base_fontsize);
+            }
+            .signUp {
+                width: (236rem/@base_fontsize);
+                height: (100rem/@base_fontsize);
+                background: #F2591A;
+                border-radius: (8rem/@base_fontsize);
+                font-size: (30rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #FFF;
+                text-align: center;
+                line-height: (100rem/@base_fontsize);
+
+            }
+        }
+        #asideBox {
+            width: (440rem/@base_fontsize);
+            height: 100vh;
+            padding: 0 (40rem/@base_fontsize);
+            background-color: #fff;
+            box-shadow: 20px 0px 10px 0px rgba(102, 102, 102, 0.4);
+            position: fixed;
+            right: -(520rem/@base_fontsize);
+            z-index: 2; 
+            a {
+                display: block;
+                width: (440rem/@base_fontsize);
+                height: (116rem/@base_fontsize);
+                line-height: (116rem/@base_fontsize);
+                border-bottom: (2rem/@base_fontsize) solid #DDDDDD;
+                font-size: (30rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #333333;
+            }
+        }
+        #asideShade {
+            display: none;
+            width: (750rem/@base_fontsize);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            z-index: 1; 
+            background-color: rgba(0,0,0,0.3);
+            img {
+                width: (56rem/@base_fontsize);
+                height: (72rem/@base_fontsize);
+                position: absolute;
+                top: 50%;
+                left: 18%;
+            }
+        }
+
+        #logoBox {
+            box-sizing: border-box;
+            width: (750rem/@base_fontsize);
+            height: (1198rem/@base_fontsize);
+            background: url('./../image/logo-bg.png') no-repeat;
+            background-size: 100% 100%;
+            position: relative;
+            padding-top: (35rem/@base_fontsize);
+
+            .logoTitle {
+                width: (750rem/@base_fontsize);
+                height: (200rem/@base_fontsize);
+                font-size: (72rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #F2591A;
+                line-height: (100rem/@base_fontsize);
+                text-align: center;
+                margin-top: (241rem/@base_fontsize);
+            }
+
+            .logoInfo {
+                width: (750rem/@base_fontsize);
+                height: (72rem/@base_fontsize);
+                font-size: (24rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #FF914D;
+                line-height: (36rem/@base_fontsize);
+                text-align: center;
+                margin-top: (23rem/@base_fontsize);
+            }
+
+            .logoLink {
+                display: block;
+                width: (348rem/@base_fontsize);
+                height: (72rem/@base_fontsize);
+                background: linear-gradient(180deg, #FFBE58, #FF914D, #F2591A);
+                border-radius: (36rem/@base_fontsize);
+                font-size: (30rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #FFFFFF;
+                text-align: center;
+                line-height: (72rem/@base_fontsize);
+                margin: (102rem/@base_fontsize) auto 0;
+            }
+
+            .mobile {
+                width: (750rem/@base_fontsize);
+                height: (481rem/@base_fontsize);
+                margin-top: (156rem/@base_fontsize);
+            }
+        }
+
+        #establishBox {
+            width: (750rem/@base_fontsize);
+            margin-top: (200rem/@base_fontsize);
+
+            .establishTitle {
+                height: (48rem/@base_fontsize);
+                font-size: (48rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #333333;
+                line-height: (48rem/@base_fontsize);
+                text-align: center;
+            }
+
+            .establishInfo {
+                width: (622rem/@base_fontsize);
+                height: (108rem/@base_fontsize);
+                font-size: (24rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #333333;
+                margin: (40rem/@base_fontsize) auto (72rem/@base_fontsize);
+                text-align: justify;
+            }
+
+            .establishLinkBox {
+                height: (36rem/@base_fontsize);
+                text-align: right;
+
+                .establishLink {
+                    display: inline-block;
+                    width: (240rem/@base_fontsize);
+                    height: (36rem/@base_fontsize);
+                    font-size: (36rem/@base_fontsize);
+                    line-height: (36rem/@base_fontsize);
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #F2591A;
+                    margin-right: (20rem/@base_fontsize);
+                    vertical-align: top;
+                }
+            }
+
+        }
+
+        #majorBox {
+            width: (750rem/@base_fontsize);
+            margin: (197rem/@base_fontsize) 0 (186rem/@base_fontsize);
+
+            .majorTitle {
+                padding-left: (20rem/@base_fontsize);
+                height: (48rem/@base_fontsize);
+                font-size: (48rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #333333;
+                line-height: (48rem/@base_fontsize);
+            }
+
+            .majorInfo {
+                width: (730rem/@base_fontsize);
+                height: (66rem/@base_fontsize);
+                font-size: (24rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #333333;
+                line-height: (33rem/@base_fontsize);
+                margin: (35rem/@base_fontsize) 0 (27rem/@base_fontsize) (20rem/@base_fontsize);
+            }
+
+            .majorLinkBox {
+                height: (30rem/@base_fontsize);
+                text-align: right;
+
+                .majorLink {
+                    display: inline-block;
+                    width: (240rem/@base_fontsize);
+                    height: (30rem/@base_fontsize);
+                    font-size: (30rem/@base_fontsize);
+                    line-height: (30rem/@base_fontsize);
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #F2591A;
+                    margin-right: (20rem/@base_fontsize);
+                    vertical-align: top;
+                }
+            }
+
+            .running {
+                display: block;
+                width: (727rem/@base_fontsize);
+                height: (430rem/@base_fontsize);
+                margin: (52rem/@base_fontsize) auto 0;
+            }
+        }
+
+        #libertyBox {
+            width: (750rem/@base_fontsize);
+
+            .libertyTitle {
+                padding-left: (20rem/@base_fontsize);
+                height: (48rem/@base_fontsize);
+                font-size: (48rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #333333;
+                line-height: (48rem/@base_fontsize);
+            }
+
+            .libertyInfo {
+                width: (730rem/@base_fontsize);
+                height: (66rem/@base_fontsize);
+                font-size: (24rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #333333;
+                margin: (35rem/@base_fontsize) 0 (27rem/@base_fontsize) (20rem/@base_fontsize);
+                line-height: (33rem/@base_fontsize);
+            }
+
+            .libertyLinkBox {
+                height: (30rem/@base_fontsize);
+                text-align: right;
+
+                .libertyLink {
+                    display: inline-block;
+                    width: (240rem/@base_fontsize);
+                    height: (30rem/@base_fontsize);
+                    font-size: (30rem/@base_fontsize);
+                    line-height: (30rem/@base_fontsize);
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #F2591A;
+                    margin-right: (20rem/@base_fontsize);
+                    vertical-align: top;
+                }
+            }
+
+            .leiKe {
+                display: block;
+                width: (694rem/@base_fontsize);
+                height: (775rem/@base_fontsize);
+                margin: (32rem/@base_fontsize) auto 0;
+            }
+        }
+
+        #supportBox {
+            width: (750rem/@base_fontsize);
+            margin: (160rem/@base_fontsize) 0 (200rem/@base_fontsize);
+
+            .supportTitle {
+                padding-left: (20rem/@base_fontsize);
+                height: (48rem/@base_fontsize);
+                font-size: (48rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #333333;
+                line-height: (48rem/@base_fontsize);
+            }
+
+            .supportInfo {
+                width: (730rem/@base_fontsize);
+                height: (66rem/@base_fontsize);
+                font-size: (24rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #333333;
+                margin: (35rem/@base_fontsize) 0 (40rem/@base_fontsize) (20rem/@base_fontsize);
+                line-height: (33rem/@base_fontsize);
+            }
+
+            .supportLinkBox {
+                height: (30rem/@base_fontsize);
+                text-align: right;
+
+                .supportLink {
+                    display: inline-block;
+                    width: (240rem/@base_fontsize);
+                    height: (30rem/@base_fontsize);
+                    font-size: (30rem/@base_fontsize);
+                    line-height: (30rem/@base_fontsize);
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #F2591A;
+                    margin-right: (20rem/@base_fontsize);
+                    vertical-align: top;
+                }
+            }
+
+            .sportsImage {
+                display: block;
+                width: (572rem/@base_fontsize);
+                height: (776rem/@base_fontsize);
+                margin: (44rem/@base_fontsize) auto 0;
+            }
+
+            .listTitle {
+                height: (30rem/@base_fontsize);
+                font-size: (30rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #F2591A;
+                line-height: (30rem/@base_fontsize);
+                text-align: center;
+                margin: (20rem/@base_fontsize) 0 (40rem/@base_fontsize);
+            }
+
+            .imageBox {
+                width: (572rem/@base_fontsize);
+                height: (470rem/@base_fontsize);
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+
+                img {
+                    display: block;
+                    width: (272rem/@base_fontsize);
+                    height: (380rem/@base_fontsize);
+                }
+            }
+
+            .meetingImage {
+                display: block;
+                width: (570rem/@base_fontsize);
+                height: (380rem/@base_fontsize);
+                margin: 0 auto;
+            }
+
+            .eduImage {
+                display: block;
+                width: (570rem/@base_fontsize);
+                height: (380rem/@base_fontsize);
+                margin: 0 auto;
+            }
+
+            .more {
+                width: (750rem/@base_fontsize);
+                height: (252rem/@base_fontsize);
+                background: #F35F1F;
+                font-size: (30rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #FFFFFF;
+                text-align: center;
+                line-height: (252rem/@base_fontsize);
+            }
+        }
+
+        #shopBox {
+            width: (750rem/@base_fontsize);
+
+            .shopTitle {
+                height: (50rem/@base_fontsize);
+                font-size: (48rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 500;
+                color: #333333;
+                line-height: (50rem/@base_fontsize);
+                text-align: center;
+            }
+
+            .shopTop {
+                display: flex;
+                width: (750rem/@base_fontsize);
+                height: (174rem/@base_fontsize);
+                margin: (96rem/@base_fontsize) 0 (84rem/@base_fontsize);
+                justify-content: space-evenly;
+            }
+
+            .shopItem {
+                width: (140rem/@base_fontsize);
+                height: (174rem/@base_fontsize);
+
+                img {
+                    width: (120rem/@base_fontsize);
+                    height: (120rem/@base_fontsize);
+                    margin: 0 (10rem/@base_fontsize) (20rem/@base_fontsize);
+                }
+
+                p {
+                    width: (140rem/@base_fontsize);
+                    height: (34rem/@base_fontsize);
+                    font-size: (34rem/@base_fontsize);
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #333333;
+                    line-height: (30rem/@base_fontsize);
+                    text-align: center;
+                }
+            }
+
+            .shopBottom {
+                display: flex;
+                width: (710rem/@base_fontsize);
+                height: (174rem/@base_fontsize);
+                justify-content: space-between;
+                margin: 0 auto;
+            }
+        }
+
+        #caseBox {
+            width: (750rem/@base_fontsize);
+            margin: (200rem/@base_fontsize) 0;
+
+            .caseTitle {
+                height: (48rem/@base_fontsize);
+                text-align: center;
+                font-size: (48rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 500;
+                color: #333333;
+                line-height: (48rem/@base_fontsize);
+                margin-bottom: (80rem/@base_fontsize);
+            }
+
+            img {
+                display: block;
+                width: (712rem/@base_fontsize);
+                margin: 0 auto;
+            }
+
+            p {
+                height: (30rem/@base_fontsize);
+                font-size: (30rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 500;
+                color: #F2591A;
+                line-height: (30rem/@base_fontsize);
+                text-align: center;
+                margin: (20rem/@base_fontsize) 0 (40rem/@base_fontsize);
+            }
+        }
+
+        #causeBox {
+            width: (750rem/@base_fontsize);
+
+            .causeTitle {
+                padding-left: (20rem/@base_fontsize);
+                height: (90rem/@base_fontsize);
+                font-size: (36rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 500;
+                color: #333333;
+                line-height: (45rem/@base_fontsize);
+            }
+
+            .causeInfo {
+                width: (710rem/@base_fontsize);
+                height: (234rem/@base_fontsize);
+                font-size: (24rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #333333;
+                margin: (40rem/@base_fontsize) (20rem/@base_fontsize) (37rem/@base_fontsize);
+                line-height: (39rem/@base_fontsize);
+                text-align: justify;
+            }
+
+            .causeLinkBox {
+                height: (30rem/@base_fontsize);
+                text-align: right;
+
+                .causeLink {
+                    display: inline-block;
+                    width: (240rem/@base_fontsize);
+                    height: (30rem/@base_fontsize);
+                    font-size: (30rem/@base_fontsize);
+                    line-height: (30rem/@base_fontsize);
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #F2591A;
+                    margin-right: (20rem/@base_fontsize);
+                    vertical-align: top;
+                }
+            }
+
+            .channelImage {
+                display: block;
+                width: (750rem/@base_fontsize);
+                height: (603rem/@base_fontsize);
+                margin: (36rem/@base_fontsize) auto 0;
+            }
+        }
+
+        #cooperationBox {
+            width: (750rem/@base_fontsize);
+            margin: (160rem/@base_fontsize) 0 (192rem/@base_fontsize);
+
+            .cooperationTitle {
+                text-align: center;
+                height: (36rem/@base_fontsize);
+                font-size: (36rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #F46932;
+                line-height: (36rem/@base_fontsize);
+            }
+
+            .cooperationImage {
+                width: (580rem/@base_fontsize);
+                height: (326rem/@base_fontsize);
+                display: flex;
+                justify-content: space-between;
+                align-content: space-between;
+                flex-wrap: wrap;
+                margin: (45rem/@base_fontsize) auto 0;
+
+                img {
+                    width: (270rem/@base_fontsize);
+                    height: (138rem/@base_fontsize);
+                }
+            }
+        }
+
+        #operationBox {
+            box-sizing: border-box;
+            width: (750rem/@base_fontsize);
+            height: (545rem/@base_fontsize);
+            padding: (80rem/@base_fontsize) 0 0 (92rem/@base_fontsize);
+            background: #122A3E;
+
+            .operationTitle {
+                height: (36rem/@base_fontsize);
+                font-size: (36rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 500;
+                color: #FFFFFF;
+                line-height: (36rem/@base_fontsize);
+                margin-bottom: (40rem/@base_fontsize);
+            }
+
+            .operationList {
+                height: (24rem/@base_fontsize);
+                font-size: (24rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #FFFFFF;
+                line-height: (24rem/@base_fontsize);
+                margin-bottom: (30rem/@base_fontsize);
+
+            }
+
+            .operationLinkBox {
+                text-align: right;
+                height: (34rem/@base_fontsize);
+                margin-top: (60rem/@base_fontsize);
+
+                .operationLink {
+                    display: inline-block;
+                    width: (240rem/@base_fontsize);
+                    height: (34rem/@base_fontsize);
+                    font-size: (34rem/@base_fontsize);
+                    line-height: (34rem/@base_fontsize);
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #F2591A;
+                    margin-right: (20rem/@base_fontsize);
+                    vertical-align: top;
+                }
+            }
+        }
+
+        #infoBox {
+            width: (750rem/@base_fontsize);
+            height: (240rem/@base_fontsize);
+            padding: (20rem/@base_fontsize) 0;
+            margin-bottom: (140rem/@base_fontsize);
+
+            .infoContent {
+                display: flex;
+                justify-content: space-around;
+                height: (200rem/@base_fontsize);
+                .mobile {
+                    text-align: center;
+                    img {
+                        width: (32rem/@base_fontsize);
+                        height: (32rem/@base_fontsize);
+                    }
+
+                    .title {
+                        height: (60rem/@base_fontsize);
+                        line-height: (60rem/@base_fontsize);
+                        font-size: (24rem/@base_fontsize);
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #333333;
+                    }
+
+                    .number {
+                        height: (60rem/@base_fontsize);
+                        font-size: (24rem/@base_fontsize);
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #666666;
+                        line-height: (60rem/@base_fontsize);
+
+                    }
+                }
+
+                .location {
+                    text-align: center;
+                    img {
+                        width: (32rem/@base_fontsize);
+                        height: (32rem/@base_fontsize);
+                    }
+
+                    .title {
+                        height: (60rem/@base_fontsize);
+                        line-height: (60rem/@base_fontsize);
+                        font-size: (24rem/@base_fontsize);
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #333333;
+                    }
+
+                    .number {
+                        height: (60rem/@base_fontsize);
+                        font-size: (24rem/@base_fontsize);
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #666666;
+                    }
+                }
+            }
+            .beian {
+                width: (750rem/@base_fontsize);
+                height: (40rem/@base_fontsize);
+                line-height: (40rem/@base_fontsize);
+                text-align: center;
+                a {
+                    font-size: (24rem/@base_fontsize);
+                    color: #333;
+                    &:hover{
+                        color: #666;
+                    }
+                }
+            }
+        }
+    }
+}

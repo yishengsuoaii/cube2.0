@@ -1,0 +1,172 @@
+@media screen and (min-width:750px) {
+    html {
+        font-size: 75px !important;
+    }
+}
+
+
+@media screen and (max-width:320px) {
+    html {
+        font-size: 32px !important;
+    }
+}
+
+@base_fontsize: 75;
+
+* {
+    margin: 0;
+}
+
+
+body {
+    width: (750rem/@base_fontsize);
+    min-width: (320rem/@base_fontsize);
+    margin: 0 auto;
+    a {
+        text-decoration: none;
+        outline: none;
+        -webkit-tap-highlight-color:rgba(255,0,0,0)
+    }
+    #container {
+        width: 100%;
+        #navBox {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: (750rem/@base_fontsize);
+            height: (104rem/@base_fontsize);
+            box-sizing: border-box;
+            padding: (20rem/@base_fontsize) (50rem/@base_fontsize);
+            box-shadow: 0px 3px 7px 0px rgba(102, 102, 102, 0.1);
+            background-color: #fff;
+            position: fixed;
+            top: 0;
+            z-index: 1;
+            .logo {
+                width: (186rem/@base_fontsize);
+                height: (64rem/@base_fontsize);
+            }
+            #menu {
+                width: (48rem/@base_fontsize);
+                height: (48rem/@base_fontsize);
+            }
+        }
+        #footBar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: (670rem/@base_fontsize);
+            height: (140rem/@base_fontsize);
+            background-color: #fff;
+            box-shadow: 0px -3px 7px 0px rgba(102, 102, 102, 0.1);
+            position: fixed;
+            bottom: 0;
+            z-index: 1;
+            padding: 0 (40rem/@base_fontsize);
+            .cell-phone {
+                width: (405rem/@base_fontsize);
+                height: (100rem/@base_fontsize);
+                background: #ffeee7;
+                border-radius: (8rem/@base_fontsize);
+                font-size: (30rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #F2591A;
+                text-align: center;
+                line-height: (100rem/@base_fontsize);
+            }
+            .signUp {
+                width: (236rem/@base_fontsize);
+                height: (100rem/@base_fontsize);
+                background: #F2591A;
+                border-radius: (8rem/@base_fontsize);
+                font-size: (30rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #FFF;
+                text-align: center;
+                line-height: (100rem/@base_fontsize);
+
+            }
+        }
+        #asideBox {
+            width: (440rem/@base_fontsize);
+            height: 100vh;
+            padding: 0 (40rem/@base_fontsize);
+            background-color: #fff;
+            box-shadow: 20px 0px 10px 0px rgba(102, 102, 102, 0.4);
+            position: fixed;
+            right: -(520rem/@base_fontsize);
+            z-index: 2; 
+            a {
+                display: block;
+                width: (440rem/@base_fontsize);
+                height: (116rem/@base_fontsize);
+                line-height: (116rem/@base_fontsize);
+                border-bottom: (2rem/@base_fontsize) solid #DDDDDD;
+                font-size: (30rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #333333;
+            }
+        }
+        #asideShade {
+            display: none;
+            width: (750rem/@base_fontsize);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            z-index: 1; 
+            background-color: rgba(0,0,0,0.3);
+            img {
+                width: (56rem/@base_fontsize);
+                height: (72rem/@base_fontsize);
+                position: absolute;
+                top: 50%;
+                left: 18%;
+            }
+        }
+        #contentBox {
+            width: (750rem/@base_fontsize);
+            height: 100vh;
+            box-sizing: border-box;
+            padding-top: (104rem/@base_fontsize);
+            padding-bottom: (140rem/@base_fontsize);
+            background: #F9F9F9;
+            .miniLogo {
+                display: block;
+                width: (186rem/@base_fontsize);
+                height: (186rem/@base_fontsize);
+                margin: (116rem/@base_fontsize) auto (22rem/@base_fontsize);
+            }
+            .helperTitle {
+                height: (60rem/@base_fontsize);
+                font-size: (36rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 500;
+                color: #333333;
+                text-align: center;
+                line-height: (60rem/@base_fontsize);
+            }
+            
+            .screenImg {
+                display: block;
+                width: (610rem/@base_fontsize);
+                height: (301rem/@base_fontsize);
+                margin: (140rem/@base_fontsize) auto (42rem/@base_fontsize);
+            }
+            .helperInfo {
+                width: (620rem/@base_fontsize);
+                height: (52rem/@base_fontsize);
+                text-align: justify;
+                font-size: (32rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #666666;
+                margin: 0 auto;
+                line-height: (52rem/@base_fontsize);
+            }
+            
+        }
+    }
+}

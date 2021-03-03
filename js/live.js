@@ -270,7 +270,7 @@ $(function () {
                     $(".head-title").text(result.data.event_title);
                     $(".event_code").text(result.data.event_code);
 
-                    $(".pull_m3u8").html('<span>HLS:</span><p>' + result.data.pull_stream_m3u8_url + '</p><span>RTMP:</span><p>' + result.data.pull_stream_rtmp_url + '</p>');
+                    $(".pull_m3u8").html('<span>HLS:</span><p>' + result.data.pull_stream_m3u8_url + '</p>');
                     $("#username").text(result.data.account_name);
 
                     $('.head-copy').attr('data-clipboard-text',
@@ -482,6 +482,19 @@ $(function () {
                 }
             })
         }
+        $('#pullUrlCopy').on('click',function(){
+            layer.open({
+                type: 1,
+                area: ['426px', '160px'],
+                title: ['推流地址', 'color:#fff'],
+                content: $('#copy-dialog'),
+                shade: 0.3,
+                shadeClose: true,
+                closeBtn: 1,
+                resize: false,
+                scrollbar: false,
+            })
+        })
 
         $('.live-tab-title li').on('click', function () {
             $(this).addClass('active-this').siblings('li').removeClass('active-this')
@@ -522,7 +535,6 @@ $(function () {
             domCameraFour.muted = true
             domLiveRight.muted = true
         }
-        var errorNum = 0
         // 拉流
         function pullFlow(ip, dom, index) {
             var server = 'http://' + ip + ':8088/janus'
@@ -589,15 +601,7 @@ $(function () {
                             });
                         },
                         error: function (error) {
-                            errorNum++
-                            if (errorNum == 5) {
-                                pullFlow(serverIp, domCameraOne, 0)
-                                pullFlow(serverIp, domCameraTwo, 1)
-                                pullFlow(serverIp, domCameraThree, 2)
-                                pullFlow(serverIp, domCameraFour, 3)
-                                pullFlow(serverIp, domChatVideo, 4)
-                                errorNum = 0
-                            }
+                           
                         },
                         destroyed: function () {
                             window.location.reload();
@@ -2369,6 +2373,15 @@ $(function () {
     });
 
     clipboard.on('error', function (e) {
+        layer.msg('复制失败,请重试!');
+    });
+    var clipboard2 = new ClipboardJS('#copyPullSrcBtn');
+
+    clipboard2.on('success', function(e) {
+        layer.msg('复制成功!');
+    });
+
+    clipboard2.on('error', function(e) {
         layer.msg('复制失败,请重试!');
     });
 })

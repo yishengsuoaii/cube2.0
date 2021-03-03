@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/sign.css">
+    <link rel="stylesheet" href="./../layui/css/layui.css">
+    <script src="./../layui/layui.js"></script>
+    <script src="./js/flexible.js"></script>
+    <script src="./js/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <div class="logo">
+            <img src="./image/logo.png" alt="">
+        </div>
+        <div class="content">
+            <p class="signName">注册</p>
+            <form class="layui-form" action="" id="form">
+                <div class="layui-form-item">
+                    <div class="inputBox">
+                        <i class="layui-icon layui-icon-username"></i>
+                        <input class="layui-input" lay-verify="required" lay-reqtext="请输入用户名" name="account_name"
+                            placeholder="请输入用户名" maxlength="16" value="">
+                    </div>
+                </div>
+                <div class="inputBox">
+                    <i class="layui-icon layui-icon-cellphone"></i>
+                    <input class="layui-input mobile" lay-verify="mobile" name="mobile" placeholder="请输入手机号"
+                        maxlength="11" value="">
+                </div>
+                <div class="login-form-item">
+                    <div class="inputBox">
+                        <i class="layui-icon layui-icon-password"></i>
+                        <input class="layui-input" lay-verify="pass" name="account_password" type="password"
+                            maxlength="16" placeholder="请输入密码" value="">
+                    </div>
+                </div>
+                <div class="login-form-item">
+                    <div class="inputBox">
+                        <i class="layui-icon layui-icon-vercode"></i>
+                        <input class="layui-input" id="verification" lay-verify="code" name="mobile_code"
+                            placeholder="验证码" value="" maxlength="6">
+                        <button id="getCode" type="button" class="layui-btn">获取手机验证码</button>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="submitBtn">
+                        <button type="submit" class="layui-btn submit" lay-submit="" lay-filter="submit">立即提交</button>
+                    </div>
+                </div>
+            </form>
+            <p class="info">温馨提示：此应用需要在pc端操作，注册成功后需前去PC端使用。</p>
+        </div>
+    </div>
+
+    <script>
+        layui.use(['form', 'layedit', 'laydate'], function () {
+            var form = layui.form
+            var layer = layui.layer
+            var layedit = layui.layedit
+
+
+
+            //创建一个编辑器
+            var editIndex = layedit.build('LAY_demo_editor');
+
+            //自定义验证规则
+            form.verify({
+                mobile: [
+                    /^1\d{10}$/, '请输入11位手机号'
+                ],
+                pass: [
+                    /^[\S]{6,16}$/, '请输入6到16位密码，且不能出现空格'
+                ],
+                code: [
+                    /\d{6}$/, '请输入6位数字验证码'
+                ]
+            });
+
+
+            // 获取验证码
+            $("#getCode").on('click', function () {
+                if ($.trim($('.mobile').val()).length <= 0) {
+                    layer.msg("请输入手机号!");
+                } else if (!/^1\d{10}$/.test($.trim($('.mobile').val()))) {
+                    layer.msg("手机号格式不正确!");
+                } else {
+                    $.ajax({
+                        type: "GET",
+                        url: "http://www.cube.vip/account/exist_telphone/",
+                        dataType: "json",
+                        data: $(".mobile").serialize(),
+                        success: function (result) {
+                            if (result.msg == "error") {
+                                layer.msg("手机号重复,请更换手机号!");
+                            } else {
+                                $.ajax({
+                                    type: "GET",
+                                    dataType: "json",
+                                    async: false,
+                                    url: "http://www.cube.vip/account/send_phone_sms/",
+                                    data: $(".mobile").serialize(),
+                                    success: function (result) {
+                                        if (result.msg === 'success') {
+                                            layer.msg('验证码已发送,请注意查收!')
+                                            let count = 59;
+                                            const countDown = setInterval(() => {
+                                                if (count === 0) {
+                                                    $('#getCode').text(
+                                                            '重新发送')
+                                                        .removeAttr(
+                                                            'disabled');
+                                                    $('#getCode').css({
+                                                        background: '#ff9400',
+                                                        color: '#fff',
+                                                    });
+                                                    clearInterval(
+                                                        countDown);
+                                                } else {
+                                                    $('#getCode').attr(
+                                                        'disabled',
+                                                        true);
+                                                    $('#getCode').css({
+                                                        background: '#d8d8d8',
+                                                        color: '#707070',
+                                                    });
+                                                    $('#getCode').text(
+                                                        count +
+                                                        '秒后可重新获取');
+                                                }
+                                                count--;
+                                            }, 1000);
+
+                                        } else if (result.msg === 'error') {
+                                            layer.msg('发送太频繁,请稍等一会再发送!')
+                                        }
+                                    }
+                                })
+                            }
+                        }
+                    })
+                }
+
+            });
+
+
+            //监听提交
+            form.on('submit(submit)', function (data) {
+                $.ajax({
+                type: "POST",
+                dataType: "json",
+                async: false,
+                url: "http://www.cube.vip/account/register/",
+                data: $("#form").serialize(),
+                success: function (result) {
+                    if(result.data === 'account exist') {
+                        layer.msg('用户名重复,请更换用户名!')
+                    } else if(result.data === 'Verification code error'){
+                        layer.msg('验证码错误!')
+                    }else if(result.data === 'telphone exist'){
+                        layer.msg('该手机号已注册,请在电脑端登录!')
+                    }else if(result.msg==='success') {
+                        layer.msg('注册成功,为了更好地用户体验,请在电脑端登录!')
+                    } else if(result.msg==='error') {
+                        layer.msg('注册失败,请重新注册!')
+                    } 
+                },
+            })
+                return false;
+            });
+
+
+        });
+    </script>
+</body>
+
+</html>

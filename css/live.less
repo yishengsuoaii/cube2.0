@@ -1526,6 +1526,11 @@
                                     text-align: center;
                                     cursor: pointer;
                                 }
+                                img {
+                                    width: 24px;
+                                    height: 18px;
+                                    cursor: pointer;
+                                }
                             }
 
                             .cameraContent {
@@ -2532,5 +2537,36 @@
                 color: #F2591A;
             }
         }
+    }
+}
+
+// 复制推流地址弹窗
+#copy-dialog {
+    display: none;
+    width: 386px;
+    height: 60px;
+    padding:  20px;
+    #pull-src-input {
+        width: 364px;
+        height: 30px;
+        background: #FFFFFF;
+        border: 1px solid #F6B37F;
+        border-radius: 3px;
+        padding: 0 10px;
+        color: #666;
+    }
+    #copyPullSrcBtn {
+        width: 68px;
+        height: 30px;
+        background: #FF914D;
+        border-radius: 3px;
+        font-size: 16px;
+        font-family: Source Han Sans CN;
+        font-weight: 400;
+        color: #FEFEFE;
+        line-height: 30px;
+        text-align: center;
+        margin: 20px auto 0;
+        cursor: pointer;
     }
 }
