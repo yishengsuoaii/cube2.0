@@ -812,7 +812,7 @@ Vue.component("child-video", {
             }).then(res => {
                 this.isSendingCrop = false
                 if (res.data.msg === 'success') {
-                    this.monitor(res.data.data.video_edit_id)
+                    this.monitor(res.data.editing_action_id)
                 } else {
                     layer.msg('剪辑失败,请稍后重试...')
                 }

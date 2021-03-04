@@ -173,7 +173,6 @@
             window.location.href='http://www.cube.vip/h5/wxlogin.html?key='+$(this).attr('data-key').substr(19)
         })
         $('.wonderful-video').on('click','.wonderful-video-list',function(){
-            window.location.href='http://www.cube.vip/h5/wxminlogin.html?id='+$(this).attr('data-id')+'&src='+$(this).attr('data-src')+'&view='+$(this).attr('data-view')+'&profile='+$(this).attr('data-profile')
             $.ajax({
                 type: "POST",
                 dataType: "json",
@@ -183,6 +182,8 @@
                     video_id:$(this).attr('data-id')
                 }
             })
+            window.location.href='http://www.cube.vip/h5/wxminlogin.html?id='+$(this).attr('data-id')+'&src='+$(this).attr('data-src')+'&view='+$(this).attr('data-view')+'&profile='+$(this).attr('data-profile')
+           
         })
     })
     
