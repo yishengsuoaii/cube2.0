@@ -29,7 +29,7 @@ $(function () {
     // 加密
     var codeFlag = 'True'
 
-    var styleFlag = 'True'
+
     var allData = []
     var checkId = 3
 
@@ -759,13 +759,6 @@ $(function () {
             layer.msg(JSON.stringify(data.field));
             return false;
         });
-        form.on('switch(style-switch)', function (data) {
-            if (data.elem.checked) {
-                styleFlag = 'True'
-            } else {
-                styleFlag = 'False'
-            }
-        });
         // 获取邀请卡
         $.get({
             url: "http://www.cube.vip/event/card_stytle/",
@@ -778,13 +771,6 @@ $(function () {
             },
             success: function (res) {
                 if (res.msg === 'success') {
-                    if (res.data.invi_flag) {
-                        styleFlag = 'True'
-                        $("#style-switch").attr('checked', 'checked')
-                    } else {
-                        styleFlag = 'False'
-                        $("#style-switch").removeAttr('checked')
-                    }
                     checkId = res.data.id
                     allData = res.data.invi_data
                     $('#user-image').attr('src', res.data.account_thundernail)
@@ -1147,7 +1133,7 @@ $(function () {
             data: {
                 event_id: event_id,
                 id: checkId,
-                invi_flag: styleFlag
+                invi_flag: 'True'
             },
             success: function (res) {
                 if (res.msg === 'success') {

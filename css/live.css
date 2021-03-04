@@ -41,6 +41,7 @@
   background: #FF914D;
   box-shadow: 0px 2px 5px 0px rgba(102, 102, 102, 0.2);
   display: flex;
+  position: relative;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .heads .head-title {
   width: 230px;
@@ -54,6 +55,34 @@
   color: #666666;
   line-height: 40px;
   padding-left: 20px;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .heads .liveScan {
+  width: 110px;
+  height: 30px;
+  margin: 5px 0 0 20px;
+  background: #fff;
+  box-shadow: 0px 2px 5px 0px rgba(102, 102, 102, 0.1);
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .heads .liveScan img {
+  width: 15px;
+  height: 15px;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .heads #liveQrcode {
+  display: none;
+  width: 128px;
+  height: 128px;
+  position: absolute;
+  top: 60px;
+  left: 280px;
+  z-index: 1;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .heads .head-copy {
   width: 110px;
@@ -696,14 +725,6 @@
   margin-top: 80px;
   margin-left: 100px;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteLeft .layui-form-label {
-  width: 90px;
-  text-align: center;
-  font-size: 18px;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #666666;
-}
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteLeft .default-style {
   height: 30px;
   font-size: 16px;
@@ -978,6 +999,7 @@
   background: #FF914D;
   box-shadow: 0px 2px 5px 0px rgba(102, 102, 102, 0.2);
   display: flex;
+  position: relative;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #liveControl .heads .head-title {
   width: 230px;
@@ -991,6 +1013,34 @@
   color: #666666;
   line-height: 40px;
   padding-left: 20px;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .heads .liveScan1 {
+  width: 110px;
+  height: 30px;
+  margin: 5px 0 0 20px;
+  background: #fff;
+  box-shadow: 0px 2px 5px 0px rgba(102, 102, 102, 0.1);
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .heads .liveScan1 img {
+  width: 15px;
+  height: 15px;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .heads #liveQrcode1 {
+  display: none;
+  width: 128px;
+  height: 128px;
+  position: absolute;
+  top: 60px;
+  left: 280px;
+  z-index: 1;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #liveControl .heads .head-copy {
   width: 110px;

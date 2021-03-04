@@ -141,7 +141,6 @@ $(function () {
         height: "387",
     })
     // video dom
-    var domChatVideo = document.getElementById('chatVideo')
     var domCameraOne = document.getElementById('cameraOne')
     var domCameraTwo = document.getElementById('cameraTwo')
     var domCameraThree = document.getElementById('cameraThree')
@@ -277,7 +276,16 @@ $(function () {
                     $('.head-copy').attr('data-clipboard-text',
                         'http://www.cube.vip/h5/wxlogin.html?key=' + result.data
                         .event_uri_key)
-                    
+                        new QRCode(document.getElementById("liveQrcode1"), {
+                            text: 'http://www.cube.vip/h5/wxlogin.html?key=' +  result.data.event_uri_key,
+                            width: 128,
+                            height: 128,
+                        });
+                        new QRCode(document.getElementById("liveQrcode"), {
+                            text: 'http://www.cube.vip/h5/wxlogin.html?key=' +  result.data.event_uri_key,
+                            width: 128,
+                            height: 128,
+                        });
                     var functionTitleSrc = ''
                     var functionContentSrc = ''
                     result.data.app.forEach((item, index) => {
@@ -356,7 +364,16 @@ $(function () {
 
             },
         })
-
+        $(".liveScan1").hover(function(){
+            $('#liveQrcode1').show()
+        },function(){
+            $('#liveQrcode1').hide()
+        });
+        $(".liveScan").hover(function(){
+            $('#liveQrcode').show()
+        },function(){
+            $('#liveQrcode').hide()
+        });
         // 获取IP地址
         function getIp() {
             $.get({
@@ -2386,4 +2403,5 @@ $(function () {
     clipboard5.on('error', function(e) {
         layer.msg('复制失败,请重试!');
     });
+
 })

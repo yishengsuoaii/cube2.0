@@ -69,7 +69,7 @@ $(function () {
                 if (res.data.event_countdown) {
                     downtime(res.data.event_start_time, res.data.live_countdown,res.data.event_playback_flag,res.data.event_playback_url)
                 } else {
-                    downtimes(res.data.event_start_time, res.data.live_countdown,res.data.event_playback_flag,res.data.event_playback_url)
+                    downtimes(res.data.event_start_time,res.data.event_playback_flag,res.data.event_playback_url)
                 }
                 //是否在线人数
                 if (res.data.event_number_flag) {
@@ -192,6 +192,10 @@ $(function () {
                     videoJs.src({
                         type: 'application/x-mpegURL',
                         src: url
+                    })
+                    $('#centerDown').on('click',function(){
+                        $('#centerDown').hide()
+                        videoJs.play()
                     })
                     videoJs.on('play',function(){
                         $('#topDown').hide()
