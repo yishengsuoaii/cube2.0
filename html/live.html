@@ -489,8 +489,9 @@
                                         </div>
                                     </div>
                                     <div class="liveContent">
+                                        <!-- poster="./../image/loding.png" -->
                                         <div class="liveRoom">
-                                            <video class="videoBox" id="chatVideo" poster="./../image/loding.png"   controls="controls" autoplay>
+                                            <video class="videoBox video-js vjs-big-play-centered" id="chatVideo"   controls="controls" autoplay>
                                             </video>
                                             <div class="layui-tab layui-tab-brief">
                                                 <ul class="layui-tab-title">
@@ -501,12 +502,25 @@
                                                 <div class="layui-tab-content">
                                                     <div class="layui-tab-item layui-show">
                                                         <div class="event_code">
-                
+                                                            <div class="codeCopy">
+                                                                <span>推流码:</span>
+                                                                <input type="text" readonly id="codeInput">
+                                                                <div id="copyCodeBtn" data-clipboard-action="copy" data-clipboard-target="#codeInput">复制</div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="layui-tab-item">
                                                         <div class="pull_m3u8">
-                
+                                                            <div class="hlsBox">
+                                                                <span>HLS:</span>
+                                                                <input type="text" readonly id="hlsInput">
+                                                                <div id="copyHlsBtn" data-clipboard-action="copy" data-clipboard-target="#hlsInput">复制</div>
+                                                            </div>
+                                                            <div class="rtmpBox">
+                                                                <span>RTMP:</span>
+                                                                <input type="text" readonly id="rtmpInput">
+                                                                <div id="copyRtmpBtn" data-clipboard-action="copy" data-clipboard-target="#rtmpInput">复制</div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -619,7 +633,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="cameraList">
+                                        <!-- <div class="cameraList">
                                             <p class="cameraName">
                                                 <img src="./../image/pull-link-icon.png" id="pullUrlCopy" alt="">
                                                 <span class="cut" id="five-cut">快切</span>
@@ -641,7 +655,7 @@
                                             <div class="cameraContent">
                                                 <video id="cameraSix" class="video-js vjs-big-play-centered"></video>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="layui-tab layui-tab-brief" lay-filter="operation-tab" id="operation-tab">
                                         <ul class="layui-tab-title" id="function-title">

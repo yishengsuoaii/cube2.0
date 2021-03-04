@@ -45,15 +45,14 @@
 .container .topBox .topContent .loginBox .login {
   display: inline-block;
   text-decoration: none;
-  width: 126px;
-  height: 36px;
-  border: 1px solid #F2591A;
+  width: 128px;
+  height: 38px;
   border-radius: 19px;
   font-size: 20px;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #F2591A;
-  line-height: 36px;
+  line-height: 38px;
   text-align: center;
 }
 .container .topBox .topContent .loginBox .signIn {

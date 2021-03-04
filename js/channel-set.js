@@ -57,20 +57,20 @@ $(function () {
     // 1 是添加视频预告,2是添加转场视频
     var differenceFlag = 1
     // 转场视频
-    var addVideoSrc = ''
-    var addVideoJs = videojs('cameraSix', {
-        muted: false,
-        controls: true,
-        // controlBar: false, 
-        controlBar: {
-            fullscreenToggle: false,
-            pictureInPictureToggle: false,
-            remainingTimeDisplay: false,//隐藏剩余时间
-          },
-        preload: 'auto',
-        width: '224',
-        height: "126",
-    })
+    // var addVideoSrc = ''
+    // var addVideoJs = videojs('cameraSix', {
+    //     muted: false,
+    //     controls: true,
+    //     // controlBar: false, 
+    //     controlBar: {
+    //         fullscreenToggle: false,
+    //         pictureInPictureToggle: false,
+    //         remainingTimeDisplay: false,//隐藏剩余时间
+    //       },
+    //     preload: 'auto',
+    //     width: '224',
+    //     height: "126",
+    // })
 
     layui.use(['form', 'element', 'jquery', 'layer', 'upload'], function () {
         var form = layui.form;
@@ -307,13 +307,14 @@ $(function () {
                                 src: res.data.video_rui
                             })
                             videoUrl = res.data.video_rui
-                        } else {
-                            addVideoJs.src({
-                                type: 'application/x-mpegURL',
-                                src: res.data.video_rui
-                            })
-                            addVideoSrc = res.data.video_rui
                         }
+                        // else {
+                        //     addVideoJs.src({
+                        //         type: 'application/x-mpegURL',
+                        //         src: res.data.video_rui
+                        //     })
+                        //     addVideoSrc = res.data.video_rui
+                        // }
                         
                     } else {
                         layer.msg('获取视频失败,请重试!')

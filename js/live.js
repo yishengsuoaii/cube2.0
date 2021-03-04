@@ -141,7 +141,14 @@ $(function () {
     // 比分文件
     var fileScore = 0
     var scoreLocation = 0
-
+    // 聊天VideoJs
+    var chatM3u8 = ''
+    var chatVideoJs = videojs('chatVideo', {
+        controls: true,
+        preload: 'auto',
+        width: '748',
+        height: "387",
+    })
     // video dom
     var domChatVideo = document.getElementById('chatVideo')
     var domCameraOne = document.getElementById('cameraOne')
@@ -224,6 +231,7 @@ $(function () {
     // 比分信息
     var scoreData = null
 
+
     layui.use(['form', 'element', 'jquery', 'layer', 'upload', 'slider'], function () {
 
 
@@ -268,9 +276,11 @@ $(function () {
                     event_uri_key = result.data.event_uri_key
                     channel_type = result.data.event_category_id
                     $(".head-title").text(result.data.event_title);
-                    $(".event_code").text(result.data.event_code);
+                    $("#codeInput").val(result.data.event_code);
 
-                    $(".pull_m3u8").html('<span>HLS:</span><p>' + result.data.pull_stream_m3u8_url + '</p>');
+                    $("#hlsInput").val(result.data.pull_stream_m3u8_url);
+                    chatM3u8 = result.data.pull_stream_m3u8_url
+                    $("#rtmpInput").val(result.data.pull_stream_rtmp_url);
                     $("#username").text(result.data.account_name);
 
                     $('.head-copy').attr('data-clipboard-text',
@@ -371,11 +381,15 @@ $(function () {
                 success: res => {
                     if (res.msg === 'success') {
                         serverIp = res.data.ip
+                        chatVideoJs.src({
+                            type: 'application/x-mpegURL',
+                            src: chatM3u8
+                        })
                         pullFlow(serverIp, domCameraOne, 0)
                         pullFlow(serverIp, domCameraTwo, 1)
                         pullFlow(serverIp, domCameraThree, 2)
                         pullFlow(serverIp, domCameraFour, 3)
-                        pullFlow(serverIp, domChatVideo, 4)
+                        pullFlow(serverIp, domLiveRight, 4)
                         getIps()
                         if (sessionStorage.getItem(event_code)) {
                             allInfo = JSON.parse(sessionStorage.getItem(event_code))
@@ -448,6 +462,7 @@ $(function () {
                         }, 5000)
 
                     } else {
+                        serverIp = ''
                         getIps2()
                     }
                 }
@@ -472,7 +487,7 @@ $(function () {
                         pullFlow(serverIp, domCameraTwo, 1)
                         pullFlow(serverIp, domCameraThree, 2)
                         pullFlow(serverIp, domCameraFour, 3)
-                        pullFlow(serverIp, domChatVideo, 4)
+                        pullFlow(serverIp, domLiveRight, 4)
                         getIps()
                     } else {
                         setTimeout(() => {
@@ -506,11 +521,15 @@ $(function () {
                     $(item).removeClass('layui-show')
                 }
             })
-            if (index === 1) {
-                domChatVideo.muted = false
-            } else {
-                domChatVideo.muted = true
+            if(serverIp !== ''){
+                if (index === 1) {
+                    chatVideoJs.play()
+    
+                } else {
+                    chatVideoJs.pause()
+                }
             }
+           
             if (index === 2) {
                 domCameraOne.muted = false
                 domCameraTwo.muted = false
@@ -594,9 +613,6 @@ $(function () {
                                 },
                                 onremotestream: function (stream) {
                                     Janus.attachMediaStream(dom, stream);
-                                    if (index === 4) {
-                                        Janus.attachMediaStream(domLiveRight, stream);
-                                    }
                                 }
                             });
                         },
@@ -2382,6 +2398,33 @@ $(function () {
     });
 
     clipboard2.on('error', function(e) {
+        layer.msg('复制失败,请重试!');
+    });
+    var clipboard3 = new ClipboardJS('#copyCodeBtn');
+
+    clipboard3.on('success', function(e) {
+        layer.msg('复制成功!');
+    });
+
+    clipboard3.on('error', function(e) {
+        layer.msg('复制失败,请重试!');
+    });
+    var clipboard4 = new ClipboardJS('#copyHlsBtn');
+
+    clipboard4.on('success', function(e) {
+        layer.msg('复制成功!');
+    });
+
+    clipboard4.on('error', function(e) {
+        layer.msg('复制失败,请重试!');
+    });
+    var clipboard5 = new ClipboardJS('#copyRtmpBtn');
+
+    clipboard5.on('success', function(e) {
+        layer.msg('复制成功!');
+    });
+
+    clipboard5.on('error', function(e) {
         layer.msg('复制失败,请重试!');
     });
 })

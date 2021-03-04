@@ -1030,15 +1030,125 @@
   outline: none;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom .event_code {
+  width: 748px;
+  height: 180px;
+  padding-top: 142px;
   font-size: 16px;
-  padding: 20px;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom .event_code .codeCopy {
+  display: flex;
+  justify-content: space-between;
+  width: 680px;
+  height: 36px;
+  margin: 0 auto;
+  font-size: 16px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  line-height: 36px;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom .event_code .codeCopy span {
+  width: 60px;
+  text-align: right;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom .event_code .codeCopy #codeInput {
+  width: 500px;
+  padding: 0 10px;
+  height: 34px;
+  border: 1px solid #CCCCCC;
+  color: #666666;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom .event_code .codeCopy #copyCodeBtn {
+  width: 60px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  border: 1px solid #F96332;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #F2591A;
+  cursor: pointer;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom .pull_m3u8 {
+  width: 748px;
+  height: 207px;
+  padding-top: 115px;
   font-size: 16px;
-  padding: 20px;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom .pull_m3u8 p {
-  padding-left: 20px;
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom .pull_m3u8 .hlsBox {
+  display: flex;
+  justify-content: space-between;
+  width: 680px;
+  height: 36px;
+  margin: 0 auto;
+  font-size: 16px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  line-height: 36px;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom .pull_m3u8 .hlsBox span {
+  width: 60px;
+  text-align: right;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom .pull_m3u8 .hlsBox #hlsInput {
+  width: 500px;
+  padding: 0 10px;
+  height: 34px;
+  border: 1px solid #CCCCCC;
+  color: #666666;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom .pull_m3u8 .hlsBox #copyHlsBtn {
+  width: 60px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  border: 1px solid #F96332;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #F2591A;
+  cursor: pointer;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom .pull_m3u8 .rtmpBox {
+  display: flex;
+  justify-content: space-between;
+  width: 680px;
+  height: 36px;
+  margin: 0 auto;
+  font-size: 16px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  line-height: 36px;
+  margin-top: 20px;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom .pull_m3u8 .rtmpBox span {
+  width: 60px;
+  text-align: right;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom .pull_m3u8 .rtmpBox #rtmpInput {
+  width: 500px;
+  padding: 0 10px;
+  height: 34px;
+  border: 1px solid #CCCCCC;
+  color: #666666;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom .pull_m3u8 .rtmpBox #copyRtmpBtn {
+  width: 60px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  border: 1px solid #F96332;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #F2591A;
+  cursor: pointer;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .chatBox {
   width: 748px;
