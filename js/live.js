@@ -63,15 +63,6 @@ $(function () {
             <div class="team-vs">
                 <p class="vs">VS</p>
                 <p class="scene-name">场次</p>
-                <p class="scene-change">
-                    <span class="scene-icon" style="transform:rotate(180deg)" id="scene-plus">
-                            <i class="layui-icon layui-icon-triangle-d" style="font-size: 16px; color: #DE8148;"></i>
-                    </span>
-                    <span id="scene-num">1</span>
-                    <span class="scene-icon" id="scene-minus">
-                        <i class="layui-icon layui-icon-triangle-d" style="font-size: 16px; color: #DE8148;"></i>
-                    </span>
-                </p>
             </div>
             <div class="team-score">
                 <p class="score-preview">
@@ -1583,9 +1574,6 @@ $(function () {
                         smallRightScore: 0,
                         bigLeftScore: 0,
                         bigRightScore: 0,
-                        session: 1,
-                        sessionFlag: false
-
                     }))
                     recoverStyle()
                     renderScore()
@@ -1602,15 +1590,10 @@ $(function () {
                 scoreData = JSON.parse(sessionStorage.getItem('score' + event_code))
                 $('#left-name').text(scoreData.nameLeft)
                 $('#right-name').text(scoreData.nameRight)
-                $('#scene-num').text(scoreData.session)
                 // 比分
-                if (Number(scoreData.session) === 1) {
-                    $('#left-score').val(scoreData.smallLeftScore)
-                    $('#right-score').val(scoreData.smallRightScore)
-                } else {
-                    $('#left-score').val(scoreData.bigLeftScore)
-                    $('#right-score').val(scoreData.bigRightScore)
-                }
+                $('#left-score').val(scoreData.smallLeftScore)
+                $('#right-score').val(scoreData.smallRightScore)
+               
                 var image = new Image()
                 image.setAttribute('src', scoreData.src)
                 image.setAttribute('id', 'model')
@@ -1724,7 +1707,6 @@ $(function () {
                     liveBigScoreLeft.setAttribute('id', 'liveBigScoreLeft')
                     $('#scoreBrand').append(liveBigScoreLeft)
                     $('#liveBigScoreLeft').css({
-                        display: 'none',
                         width: '30px',
                         height: '14px',
                         lineHeight: '10px',
@@ -1741,7 +1723,6 @@ $(function () {
                     liveBigScoreRight.setAttribute('id', 'liveBigScoreRight')
                     $('#scoreBrand').append(liveBigScoreRight)
                     $('#liveBigScoreRight').css({
-                        display: 'none',
                         width: '30px',
                         height: '14px',
                         lineHeight: '10px',
@@ -1753,11 +1734,6 @@ $(function () {
                         fontFamily: 'Source Han Sans CN',
                         fontWeight: 400,
                     }).text(scoreData.bigRightScore)
-
-                    if (scoreData.sessionFlag) {
-                        $('#liveBigScoreRight').show()
-                        $('#liveBigScoreLeft').show()
-                    }
                 }
                 setTimeout(() => {
                     saveScoreBrand()
@@ -1771,15 +1747,11 @@ $(function () {
                 scoreData = JSON.parse(sessionStorage.getItem('score' + event_code))
                 $('#left-name').text(scoreData.nameLeft)
                 $('#right-name').text(scoreData.nameRight)
-                $('#scene-num').text(scoreData.session)
                 // 比分
-                if (Number(scoreData.session) === 1) {
-                    $('#left-score').val(scoreData.smallLeftScore)
-                    $('#right-score').val(scoreData.smallRightScore)
-                } else {
-                    $('#left-score').val(scoreData.bigLeftScore)
-                    $('#right-score').val(scoreData.bigRightScore)
-                }
+               
+                $('#left-score').val(scoreData.smallLeftScore)
+                $('#right-score').val(scoreData.smallRightScore)
+                
                 var image = new Image()
                 image.setAttribute('src', scoreData.src)
                 image.setAttribute('id', 'model')
@@ -1893,7 +1865,6 @@ $(function () {
                     liveBigScoreLeft.setAttribute('id', 'liveBigScoreLeft')
                     $('#scoreBrand').append(liveBigScoreLeft)
                     $('#liveBigScoreLeft').css({
-                        display: 'none',
                         width: '30px',
                         height: '14px',
                         lineHeight: '10px',
@@ -1905,12 +1876,11 @@ $(function () {
                         fontFamily: 'Source Han Sans CN',
                         fontWeight: 400,
                     }).text(scoreData.bigLeftScore)
-
+                    $('#left-subtotal').text(scoreData.bigLeftScore)
                     var liveBigScoreRight = document.createElement('p')
                     liveBigScoreRight.setAttribute('id', 'liveBigScoreRight')
                     $('#scoreBrand').append(liveBigScoreRight)
                     $('#liveBigScoreRight').css({
-                        display: 'none',
                         width: '30px',
                         height: '14px',
                         lineHeight: '10px',
@@ -1922,11 +1892,7 @@ $(function () {
                         fontFamily: 'Source Han Sans CN',
                         fontWeight: 400,
                     }).text(scoreData.bigRightScore)
-
-                    if (scoreData.sessionFlag) {
-                        $('#liveBigScoreRight').show()
-                        $('#liveBigScoreLeft').show()
-                    }
+                    $('#right-subtotal').text(scoreData.bigRightScore)
                 }
             }
         }
@@ -2027,31 +1993,6 @@ $(function () {
                 height: $("#scoreBrand").height()
             })
         }
-        // 场记加减-----------------------------------------------------------------------------------------------------------------------
-        $('#scene-plus').on('click', function () {
-            if (scoreData.info.classify === 1) {
-                $('#scene-num').text(1)
-            } else {
-                $('#scene-num').text(2)
-                $('#liveBigScoreLeft').show()
-                $('#liveBigScoreRight').show()
-                $('#left-score').val($('#liveBigScoreLeft').text())
-                $('#right-score').val($('#liveBigScoreRight').text())
-                scoreData.session = 2
-                scoreData.sessionFlag = true
-                saveScoreLocal()
-
-            }
-            saveScoreBrand()
-        })
-        $('#scene-minus').on('click', function () {
-            $('#left-score').val($('#liveScoreLeft').text())
-            $('#right-score').val($('#liveScoreRight').text())
-            $('#scene-num').text(1)
-            scoreData.session = 1
-            saveScoreLocal()
-        })
-
         // 左边队伍加减比分---------------------------------------------------------------------------------------------------
 
         // 比分输入框限制只能输入数字
@@ -2098,27 +2039,37 @@ $(function () {
             }
 
             $('#left-score').val(num)
-            if (scoreData.session === 1) {
-                $('#liveScoreLeft').text(num)
-                scoreData.smallLeftScore = num
-            } else {
-                $('#liveBigScoreLeft').text(num)
-                scoreData.bigLeftScore = num
-            }
+           
+            $('#liveScoreLeft').text(num)
+            scoreData.smallLeftScore = num
+            
             saveScoreLocal()
             saveScoreBrand()
         }
 
         // 左边队伍加减小计
         $('#left-subtotal-plus').on('click', function () {
-            $('#left-subtotal').text(Number($('#left-subtotal').text()) + 1)
+            if(scoreData.info.classify !== 1){
+                scoreData.bigLeftScore = scoreData.bigLeftScore + 1
+                $('#left-subtotal').text(scoreData.bigLeftScore)
+                $('#liveBigScoreLeft').text(scoreData.bigLeftScore)
+                saveScoreLocal()
+                saveScoreBrand()
+            }
+            
         })
         $('#left-subtotal-minus').on('click', function () {
-            if (Number($('#left-subtotal').text()) - 1 <= 0) {
-                $('#left-subtotal').text(0)
-            } else {
-                $('#left-subtotal').text(Number($('#left-subtotal').text()) - 1)
+            if(scoreData.info.classify !== 1){
+                scoreData.bigLeftScore = scoreData.bigLeftScore -1
+                if(scoreData.bigLeftScore <= 0) {
+                    scoreData.bigLeftScore = 0
+                }
+                $('#left-subtotal').text(scoreData.bigLeftScore)
+                $('#liveBigScoreLeft').text(scoreData.bigLeftScore)
+                saveScoreLocal()
+                saveScoreBrand()
             }
+            
         })
 
 
@@ -2167,27 +2118,35 @@ $(function () {
             }
             $('#right-score').val(num)
 
-            if (scoreData.session === 1) {
-                $('#liveScoreRight').text(num)
-                scoreData.smallRightScore = num
-            } else {
-                $('#liveBigScoreRight').text(num)
-                scoreData.bigRightScore = num
-            }
+            $('#liveScoreRight').text(num)
+            scoreData.smallRightScore = num
             saveScoreLocal()
             saveScoreBrand()
         }
 
         // 右边队伍加减小计
         $('#right-subtotal-plus').on('click', function () {
-            $('#right-subtotal').text(Number($('#right-subtotal').text()) + 1)
+            if(scoreData.info.classify !== 1) {
+                 scoreData.bigRightScore = scoreData.bigRightScore + 1
+                $('#right-subtotal').text(scoreData.bigRightScore)
+                $('#liveBigScoreRight').text(scoreData.bigRightScore)
+                saveScoreLocal()
+                saveScoreBrand()
+            }
+           
         })
         $('#right-subtotal-minus').on('click', function () {
-            if (Number($('#right-subtotal').text()) - 1 <= 0) {
-                $('#right-subtotal').text(0)
-            } else {
-                $('#right-subtotal').text(Number($('#right-subtotal').text()) - 1)
+            if(scoreData.info.classify !== 1) { 
+                scoreData.bigRightScore = scoreData.bigRightScore - 1
+                if(scoreData.bigRightScore <= 0) {
+                    scoreData.bigRightScore = 0
+                }
+                $('#right-subtotal').text(scoreData.bigRightScore)
+                $('#liveBigScoreRight').text(scoreData.bigRightScore)
+                saveScoreLocal()
+                saveScoreBrand()
             }
+            
         })
 
         // 切换往后台发数据--------------------------------------------------------------------------------------------------
