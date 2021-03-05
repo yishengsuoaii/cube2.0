@@ -107,7 +107,7 @@ $(function () {
 
 		var upload = layui.upload;
 		form = layui.form;
-		// 上传门户头像
+		// 上传部落头像
 		var userImage = upload.render({
 			elem: '#userLayer', //绑定元素
 			url: 'http://www.cube.vip/account/check_account_thundernail/', //上传接口
@@ -306,7 +306,7 @@ $(function () {
 
 	})
 
-	// 获取门户基本信息
+	// 获取部落基本信息
 	$.ajax({
 		type: "GET",
 		dataType: "json",
@@ -341,7 +341,7 @@ $(function () {
 			}
 		}
 	})
-	// 获取门户 头像
+	// 获取部落 头像
 	$.ajax({
 		type: "GET",
 		dataType: "json",
@@ -383,13 +383,13 @@ $(function () {
 	})
 
 
-	// 门户名称输入事件
+	// 部落名称输入事件
 	$('.portalTop-right-title-input').on('input', function () {
 		$('.portalTop-right-title-length').text($(this).val().length + '/16')
 		$('.portal-info-name').text($(this).val())
 	})
 
-	// 门户简介输入事件
+	// 部落简介输入事件
 	$('.portalTop-right-textarea').on('input', function () {
 		$('.portalTop-right-textarea-length').text($(this).val().length + '/140')
 	})
@@ -421,14 +421,14 @@ $(function () {
 
 
 
-	// 门户基本信息保存
+	// 部落基本信息保存
 	$('.portalSave').on('click', function () {
 		if ($('.portalTop-right-title-input').val() === '') {
-			layer.msg('请输入门户名称!')
+			layer.msg('请输入部落名称!')
 			$('.portalTop-right-title-input').focus()
 			return
 		} else if ($('.portalTop-right-textarea').val() === '') {
-			layer.msg('请输入门户简介!')
+			layer.msg('请输入部落简介!')
 			$('.portalTop-right-textarea').focus()
 			return
 		}
@@ -455,7 +455,7 @@ $(function () {
 		});
 	})
 
-	// 编辑门户 和编辑推荐切换
+	// 编辑部落 和编辑推荐切换
 	$('.mainLeft-top-layer').on('click', function () {
 		$('.main-right-portal').show()
 		$('.main-right-recommend').hide()

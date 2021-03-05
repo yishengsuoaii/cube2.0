@@ -49,7 +49,7 @@ body .portalInfo #portalUser {
 body .portalInfo .particularInfo {
   box-sizing: border-box;
   width: 8rem;
-  padding-left: 0.32rem;
+  padding: 0 0.32rem;
   padding-top: 0.53333333rem;
 }
 body .portalInfo .particularInfo .portalName {
