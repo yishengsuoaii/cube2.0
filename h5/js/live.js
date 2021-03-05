@@ -187,22 +187,6 @@ $(function () {
         clearInterval(timers)
         if (date1 > date2) {
             var intDiff = parseInt((date1 - date2) / 1000)
-            if(flag){
-                if(url!==null){
-                    videoJs.src({
-                        type: 'application/x-mpegURL',
-                        src: url
-                    })
-                    $('#centerDown').on('click',function(){
-                        $('#centerDown').hide()
-                        videoJs.play()
-                    })
-                    videoJs.on('play',function(){
-                        $('#topDown').hide()
-                        $('#centerDown').hide()
-                    })
-                }
-            }
             timers = setInterval(function () {
                 if (Math.floor(intDiff / (60 * 60 * 24)) < 10) {
                     day = '0' + Math.floor(intDiff / (60 * 60 * 24))
@@ -275,6 +259,24 @@ $(function () {
                     $('#topDown').show()
                 }
             },1000)
+            if(flag){
+                if(url!==null){
+                    
+                    videoJs.src({
+                        type: 'application/x-mpegURL',
+                        src: url
+                    })
+                    $('#centerDown').on('click',function(){
+                        $('#centerDown').hide()
+                        videoJs.play()
+                    })
+                    videoJs.on('play',function(){
+                        $('#topDown').hide()
+                        $('#centerDown').hide()
+                    })
+                    
+                }
+            }
         } else {
             $('#topDown').hide()
             $('#centerDown').hide()
