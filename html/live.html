@@ -253,21 +253,19 @@
                                                                         <label class="layui-form-label">增加形式</label>
                                                                         <div class="layui-input-block">
                                                                             <div class="Add_form">
-                                                                                <input type="radio" name="multiple" lay-filter="multiple" id="multiple1"
-                                                                                    value="1" title="基础人数" checked>
+                                                                                <span>基础人数</span>
                                                                                 <input id="num" type="text" name="title" required lay-verify="required"
                                                                                     class="layui-input reality" placeholder="人">
                                                                             </div>
                                                                             <div class="Add_form">
-                                                                                <input type="radio" name="multiple" lay-filter="multiple" id="multiple2"
-                                                                                    value="2" title="基础倍数 X ">
+                                                                                <span>基础倍数</span>
                                                                                 <input id="mul" type="text" name="title" required lay-verify="required"
                                                                                     class="layui-input reality" placeholder="倍">
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="layui-form-item">
-                                                                        <p class="hint-info">注：1.显示观众人数=默认基础人数+实际人数</p>
+                                                                        <p class="hint-info">注：1.显示观众人数=(显示形式+基础人数)*基础倍数</p>
                                                                         <p class="hint-info hint-padding">2.该数据只为前端用户展现，后台数据以真实数据统计</p>
                                                                     </div>
                                                                 </form>
@@ -418,15 +416,6 @@
                                            <div class="channel-set-item">
                                             <div id="inviteBox">
                                                 <div class="inviteLeft">
-                                                    <!-- <form class="layui-form" action="" id="form">
-                                                        <div class="layui-form-item">
-                                                            <label class="layui-form-label">邀请卡分享</label>
-                                                            <div class="layui-input-block">
-                                                                <input type="checkbox" name="switch" lay-skin="switch" id="style-switch" checked lay-filter="style-switch">
-                                                            </div>
-                                                        </div>
-                                                    </form> -->
-                                        
                                                     <p class="default-style">默认样式</p>
                                                     <div class="different-style">
                                                     </div>

@@ -19,7 +19,6 @@ $(function () {
     // 在线人数
     var numberFlag = 'True'
     var onLine = 1
-    var multipleFlag = 1
 
     // 定时器
     var timers = null
@@ -592,17 +591,7 @@ $(function () {
                 onLine = 2
             }
         })
-        form.on('radio(multiple)', function (data) {
-            if (data.value === '1') {
-                multipleFlag = 1
-
-            } else if (data.value === '2') {
-                multipleFlag = 2
-
-            }
-        })
-
-
+      
         //获取在线人数信息
         $.ajax({
             type: 'GET',
@@ -631,14 +620,6 @@ $(function () {
                     } else {
                         onLine = 2
                         $('#number2').prop('checked', true)
-                    }
-                    if (res.data.event_number_online_number > 0) {
-                        $('#multiple1').prop('checked', true)
-                        multipleFlag = 1
-                    } else {
-                        $('#multiple2').prop('checked', true)
-                        multipleFlag = 2
-
                     }
                     $('#num').val(res.data.event_number_online_number)
                     $('#mul').val(res.data.event_number_online_multiple)
@@ -848,6 +829,7 @@ $(function () {
                 layer.msg('请输入合法地址!')
                 return
             }
+
             var formData = new FormData()
             formData.append('file', imageFile)
             formData.append('event_id', event_id)
@@ -965,15 +947,14 @@ $(function () {
 
     //提交在线人数
     $('#number-submit').on('click', function () {
-        if (multipleFlag === 1 && $.trim($('#num').val()).length <= 0) {
+        if ($.trim($('#num').val()).length <= 0) {
             layer.msg('请输入默认基础人数!')
             return
         }
-        if (multipleFlag === 2 && $.trim($('#mul').val()) <= 0) {
-            layer.msg('请输入默认基础倍数且倍数大于0!')
+        if ($.trim($('#mul').val()) <= 0|| Number($('#mul').val())<1) {
+            layer.msg('请输入默认基础倍数且倍数大于1!')
             return
         }
-        if (multipleFlag === 1) {
             $.ajax({
                 type: 'POST',
                 url: "http://www.cube.vip/event/event_number/",
@@ -985,29 +966,7 @@ $(function () {
                     event_id: event_id,
                     event_number_flag: numberFlag,
                     event_display_position: onLine,
-                    event_number_online_number: $('#num').val()
-                },
-
-                success: function (res) {
-                    if (res.msg === 'success') {
-                        layer.msg('提交成功!')
-                    } else {
-                        layer.msg('提交失败,请重试!')
-                    }
-                }
-            })
-        } else {
-            $.ajax({
-                type: 'POST',
-                url: "http://www.cube.vip/event/event_number/",
-                dataType: "json",
-                headers: {
-                    token: sessionStorage.getItem('token')
-                },
-                data: {
-                    event_id: event_id,
-                    event_number_flag: numberFlag,
-                    event_display_position: onLine,
+                    event_number_online_number: $('#num').val(),
                     event_number_online_multiple: $('#mul').val()
                 },
 
@@ -1019,7 +978,6 @@ $(function () {
                     }
                 }
             })
-        }
 
     })
 

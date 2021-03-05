@@ -258,25 +258,25 @@ $(function () {
                 } else {
                     $('#topDown').show()
                 }
-            },1000)
-            if(flag){
-                if(url!==null){
-                    
-                    videoJs.src({
-                        type: 'application/x-mpegURL',
-                        src: url
-                    })
-                    $('#centerDown').on('click',function(){
-                        $('#centerDown').hide()
-                        videoJs.play()
-                    })
-                    videoJs.on('play',function(){
-                        $('#topDown').hide()
-                        $('#centerDown').hide()
-                    })
-                    
+                if(flag){
+                    if(url!==null){
+                        videoJs.src({
+                            type: 'application/x-mpegURL',
+                            src: url
+                        })
+                        $('#centerDown').on('click',function(){
+                            $('#centerDown').hide()
+                            videoJs.play()
+                        })
+                        videoJs.on('play',function(){
+                            $('#topDown').hide()
+                            $('#centerDown').hide()
+                        })
+                        
+                    }
                 }
-            }
+            },1000)
+            
         } else {
             $('#topDown').hide()
             $('#centerDown').hide()

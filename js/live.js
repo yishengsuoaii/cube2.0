@@ -358,6 +358,10 @@ $(function () {
                     })
                     $('#function-title').html(functionTitleSrc)
                     $('#function-content').html(functionContentSrc)
+                    if(Number(channel_type) ===1){
+                        getScoreStyle()
+                        renderHistoryScore()
+                    }
                     setVideoMuted()
                     getIp()
                 }
@@ -402,10 +406,6 @@ $(function () {
                         if (sessionStorage.getItem(event_code)) {
                             allInfo = JSON.parse(sessionStorage.getItem(event_code))
                             renderHistory()
-                            if(Number(channel_type) ===1){
-                                getScoreStyle()
-                                renderHistoryScore()
-                            }
                             if (sessionStorage.getItem('imageBase64' + event_code)) {
                                 fileScore = sessionStorage.getItem('imageBase64' + event_code)
                             }

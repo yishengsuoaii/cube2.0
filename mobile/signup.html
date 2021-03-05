@@ -25,7 +25,7 @@
                 <div class="layui-form-item">
                     <div class="inputBox">
                         <i class="layui-icon layui-icon-username"></i>
-                        <input class="layui-input" lay-verify="required" lay-reqtext="请输入用户名" name="account_name"
+                        <input class="layui-input"  lay-verify="required" lay-reqtext="请输入用户名" name="account_name"
                             placeholder="请输入用户名" maxlength="16" value="">
                     </div>
                 </div>
@@ -154,25 +154,25 @@
             //监听提交
             form.on('submit(submit)', function (data) {
                 $.ajax({
-                type: "POST",
-                dataType: "json",
-                async: false,
-                url: "http://www.cube.vip/account/register/",
-                data: $("#form").serialize(),
-                success: function (result) {
-                    if(result.data === 'account exist') {
-                        layer.msg('用户名重复,请更换用户名!')
-                    } else if(result.data === 'Verification code error'){
-                        layer.msg('验证码错误!')
-                    }else if(result.data === 'telphone exist'){
-                        layer.msg('该手机号已注册,请在电脑端登录!')
-                    }else if(result.msg==='success') {
-                        layer.msg('注册成功,为了更好地用户体验,请在电脑端登录!')
-                    } else if(result.msg==='error') {
-                        layer.msg('注册失败,请重新注册!')
-                    } 
-                },
-            })
+                    type: "POST",
+                    dataType: "json",
+                    async: false,
+                    url: "http://www.cube.vip/account/register/",
+                    data: $("#form").serialize(),
+                    success: function (result) {
+                        if(result.data === 'account exist') {
+                            layer.msg('用户名重复,请更换用户名!')
+                        } else if(result.data === 'Verification code error'){
+                            layer.msg('验证码错误!')
+                        }else if(result.data === 'telphone exist'){
+                            layer.msg('该手机号已注册,请在电脑端登录!')
+                        }else if(result.msg==='success') {
+                            layer.msg('注册成功,为了更好地用户体验,请在电脑端登录!')
+                        } else if(result.msg==='error') {
+                            layer.msg('注册失败,请重新注册!')
+                        } 
+                    },
+                })
                 return false;
             });
 

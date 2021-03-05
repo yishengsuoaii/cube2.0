@@ -344,7 +344,8 @@
   color: #666666;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .people-number .people-form .Add_form {
-  position: relative;
+  display: flex;
+  height: 30px;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .people-number .people-form .Add_form .reality {
   width: 80px;
@@ -352,9 +353,7 @@
   background: #FFFFFF;
   border: 1px solid #999999;
   border-radius: 5px;
-  position: absolute;
-  left: 135px;
-  top: 7px;
+  margin-left: 20px;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .people-number .people-form .hint-info {
   font-size: 16px;
