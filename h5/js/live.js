@@ -2,6 +2,7 @@ let data = ''
 var infoData = []
 let event_uri_key = ''
 if(localStorage.getItem('cubeInfo')){
+    alert(localStorage.getItem('cubeInfo'),3)
    data = localStorage.getItem('cubeInfo').substring(1).split("&")
     data.forEach(item => {
         infoData.push(item.split("="))
@@ -9,6 +10,7 @@ if(localStorage.getItem('cubeInfo')){
     event_uri_key = infoData[3][1]
    
 }else {
+    alert(4)
     window.location.href='http://www.cube.vip/h5/wxlogin.html?key=' + window.location.search.substring(1).split("=")[1]
     return
 }
