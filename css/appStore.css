@@ -16,13 +16,43 @@
 }
 .parentMain .container-box .application-list {
   box-sizing: border-box;
-  padding: 80px 0 0 99px;
+  padding: 80px 99px 0 99px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
-.parentMain .container-box .application-list img {
+.parentMain .container-box .application-list .list_item {
   width: 610px;
   height: 153px;
   margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.parentMain .container-box .application-list .list_item img {
+  width: 610px;
+  height: 153px;
   vertical-align: top;
+}
+.parentMain .container-box .application-list .list_item .item_introduce {
+  position: absolute;
+  left: 180px;
+  bottom: 18px;
+  font-size: 22px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #F35E1F;
+  cursor: pointer;
+}
+.parentMain .container-box .application-list .list_item .item_Info {
+  width: 588px;
+  height: 131px;
+  padding: 10px;
+  border: 1px solid #FF914D;
+  border-radius: 10px;
+  background-color: #fff;
+  position: absolute;
+  left: 0;
+  top: 153px;
 }
 .parentMain .container-box .application-list .imgRight {
   margin-right: 140px;

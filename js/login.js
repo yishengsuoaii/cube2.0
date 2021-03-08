@@ -1,4 +1,6 @@
 $(function () {
+    
+    var register = window.location.search.substring(1).split("=")[1]
     layui.use(['layer', 'form', 'element'], function () {
         var layer = layui.layer
         var form = layui.form;
@@ -7,6 +9,14 @@ $(function () {
             return false;
         })
     })
+    if(register === 'true') {
+        $('#register').addClass('layui-this')
+        $('#registerCont').addClass('layui-show')
+    } else {
+        $('#log').addClass('layui-this')
+        $('#logCont').addClass('layui-show')
+    }
+
 
     //登录---------------------------------------------------------------------------------------------------------------
     $(".name").blur(function () {

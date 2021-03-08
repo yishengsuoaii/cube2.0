@@ -20,11 +20,11 @@
         <div class="login-div">
             <div class="layui-tab layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
                 <ul class="layui-tab-title">
-                    <li class="layui-this log" style="padding: 0;">登录</li>
-                    <li class="post" style="padding: 0;">注册</li>
+                    <li class="log" id="log" style="padding: 0;">登录</li>
+                    <li class="post" id="register" style="padding: 0;">注册</li>
                 </ul>
                 <div class="layui-tab-content">
-                    <div class="layui-tab-item layui-show">
+                    <div class="layui-tab-item" id="logCont">
                         <h1></h1>
                         <form id="login-form" action="#">
                             <div class="login-form-item">
@@ -47,7 +47,7 @@
                         </form>
                     </div>
 
-                    <div class="layui-tab-item">
+                    <div class="layui-tab-item" id="registerCont">
                         <h1></h1>
                         <form id="form" action="#">
                             <div class="login-form-item">

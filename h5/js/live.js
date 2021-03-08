@@ -1,16 +1,14 @@
 let data = ''
 var infoData = []
 let event_uri_key = ''
-if(localStorage.getItem('cubeInfo')){
-    alert(4)
-   data = localStorage.getItem('cubeInfo').substring(1).split("&")
+if(sessionStorage.getItem('cubeInfo')){
+   data = sessionStorage.getItem('cubeInfo').substring(1).split("&")
     data.forEach(item => {
         infoData.push(item.split("="))
     })
-    event_uri_key = infoData[3][1]
+    event_uri_key = window.location.search.substring(1).split("=")[1]
    
 }else {
-    alert(5)
     window.location.href='http://www.cube.vip/h5/wxlogin.html?key=' + window.location.search.substring(1).split("=")[1]
 }
 
@@ -486,7 +484,7 @@ $(function () {
         success:function(res){
             if(res.msg==='success'){
 
-            shaStr = sha1('jsapi_ticket='+res.data+'&noncestr='+srcShare+'&timestamp='+timeShare+'&url=http://www.cube.vip/h5/live.html?key'+ event_uri_key)
+            shaStr = sha1('jsapi_ticket='+res.data+'&noncestr='+srcShare+'&timestamp='+timeShare+'&url=http://www.cube.vip/h5/live.html?key='+ event_uri_key)
             wx.config({
                     debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                     appId: 'wxfeb6dd6cbf5a390b', // 必填，公众号的唯一标识
@@ -500,7 +498,7 @@ $(function () {
                     // 分享到朋友圈
                     wx.updateTimelineShareData({
                         title: userName, // 分享标题
-                        link: 'http://www.cube.vip/h5/live.html?key'+ event_uri_key, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                        link: 'http://www.cube.vip/h5/live.html?key='+ event_uri_key, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                         imgUrl: userImg, // 分享图标
                     });
                     
@@ -508,7 +506,7 @@ $(function () {
                     wx.updateAppMessageShareData({
                         title: userName, // 分享标题
                         desc: describe, // 分享描述
-                        link: 'http://www.cube.vip/h5/live.html?key'+ event_uri_key, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                        link: 'http://www.cube.vip/h5/live.html?key='+ event_uri_key, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                         imgUrl: userImg, // 分享图标
                     });
                 })

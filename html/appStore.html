@@ -91,13 +91,41 @@
                         所有应用
                     </div>
                     <div class="application-list">
-                        <img src="./../image/appStore1.png" alt="" class="imgRight">
-                        <img src="./../image/appStore2.png" alt="">
-                        <img src="./../image/appStore3.png" alt="" class="imgRight">
-                        <img src="./../image/appStore4.png" alt="">
-                        <img src="./../image/appStore5.png" alt="" class="imgRight">
-                        <img src="./../image/auto.png" alt="">
-                        <img src="./../image/zoom_in.png" alt="" class="imgRight">
+                        <div class="list_item">
+                            <img src="./../image/appStore1.png" alt="">
+                            <p class="item_introduce">应用详情</p>
+                            <div class="item_Info">这里是应用详情</div>
+                        </div>
+                        <div class="list_item">
+                            <img src="./../image/appStore2.png" alt="">
+                            <p class="item_introduce">应用详情</p>
+                            <div class="item_Info">这里是应用详情</div>
+                        </div>
+                        <div class="list_item">
+                            <img src="./../image/appStore3.png" alt="">
+                            <p class="item_introduce">应用详情</p>
+                            <div class="item_Info">这里是应用详情</div>
+                        </div>
+                        <div class="list_item">
+                            <img src="./../image/appStore4.png" alt="">
+                            <p class="item_introduce">应用详情</p>
+                            <div class="item_Info">这里是应用详情</div>
+                        </div>
+                        <div class="list_item">
+                            <img src="./../image/appStore5.png" alt="">
+                            <p class="item_introduce">应用详情</p>
+                            <div class="item_Info">这里是应用详情</div>
+                        </div>
+                        <div class="list_item">
+                            <img src="./../image/auto.png" alt="">
+                            <p class="item_introduce">应用详情</p>
+                            <div class="item_Info">这里是应用详情</div>
+                        </div>
+                        <div class="list_item">
+                            <img src="./../image/zoom_in.png" alt="">
+                            <p class="item_introduce">应用详情</p>
+                            <div class="item_Info">这里是应用详情</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -115,6 +143,21 @@
         if (!sessionStorage.getItem('token')) {
             window.location.href = "./../login.html"
         }
+        $(function(){
+            $('.item_introduce').hover(function(){
+                $(this).siblings('.item_Info').show().animate({
+                    top:0,
+                },300)
+            })
+        })
+        $('.list_item').mouseleave(function(){
+            $(this).find('.item_Info').animate({
+                    top:'153px',
+                },300,()=>{
+                    $(this).find('.item_Info').hide()
+            })
+        })
+        
     </script>
 </body>
 

@@ -5,8 +5,6 @@
 .container {
     width: 100%;
     min-width: 1200px;
-    background: url('./../image/logo-bg.png') no-repeat;
-    background-size: 100% 1080px;
 
     .topBox {
         width: 100%;
@@ -83,58 +81,71 @@
     }
 
     .logoBox {
-        width: 1200px;
-        margin: 0 auto;
-        height: 950px;
-        position: relative;
-        padding-top: 295px;
-
-        .logoTitle {
-            height: 67px;
-            font-size: 72px;
-            font-family: Source Han Sans CN;
-            font-weight: 400;
-            color: #F2591A;
-            line-height: 30px;
-            margin: 0 0 39px;
-        }
-
-        .logoInfo {
-            height: 96px;
-            font-size: 30px;
-            font-family: Source Han Sans CN;
-            font-weight: 400;
-            color: #FF914D;
-            line-height: 48px;
-            letter-spacing: 5px;
-        }
-
-        .logoBtn {
-            width: 348px;
-            height: 72px;
-            margin-top: 240px;
-
-            a {
-                display: block;
-                width: 348px;
-                height: 72px;
-                background: linear-gradient(180deg, #FFBE58, #FF914D, #F2591A);
-                border-radius: 36px;
-                line-height: 72px;
-                text-align: center;
-                font-size: 24px;
+        width: 100%;
+        min-width: 1200px;
+        height: 660px;
+        margin-top: 130px;
+        background: url('./../image/logo-bg.png') no-repeat;
+        background-size: 100% 100%;
+        
+        .logoContent {
+            width: 1200px;
+            height: 660px;
+            margin: 0 auto;
+            position: relative;
+            .logoTitle {
+                height: 60px;
+                line-height: 60px;
+                font-size: 60px;
                 font-family: Source Han Sans CN;
                 font-weight: 400;
                 color: #FFFFFF;
-                text-decoration: none;
+                padding: 139px 0 36px;
             }
+            .logoInfo {
+                height: 96px;
+                font-size: 30px;
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #FFFFFF;
+                line-height: 48px;
+                letter-spacing: 5px;
+            }
+            .logoBtn {
+                width: 260px;
+                height: 62px;
+                margin-top: 66px;
+                a {
+                    display: block;
+                    width: 258px;
+                    height: 60px;
+                    border: 1px solid #FFFFFF;
+                    border-radius: 31px;
+                    line-height: 60px;
+                    text-align: center;
+                    font-size: 24px;
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #FFFFFF;
+                    text-decoration: none;
+                }
+            }
+            .mobile {
+                width: 558px;
+                height: 501;
+                position: absolute;
+                right: 0px;
+                top: 107px;
+            }
+    
         }
 
-        .mobile {
-            position: absolute;
-            right: 0px;
-            bottom: 158px;
-        }
+        
+
+        
+
+        
+       
     }
 
     .establishBox {
@@ -571,46 +582,60 @@
         width: 100%;
         min-width: 1200px;
         height: 698px;
-        background: #122A3E;
-        margin: 95px 0 50px;
+        background: #FFF4F1;
+        margin-top: 95px;
 
         .stepContent {
             width: 1200px;
-            height: 598px;
+            height: 518px;
             margin: 0 auto;
             position: relative;
-            padding-top: 100px;
+            padding-top: 180px;
 
             .stepTitle {
-                font-size: 48px;
+                width: 600px;
+                font-size: 36px;
                 font-family: Source Han Sans CN;
                 font-weight: 500;
-                color: #FFFFFF;
+                color: #F3591B;
                 line-height: 30px;
-                margin-bottom: 56px;
+                margin-bottom: 70px;
             }
 
-            p {
-                height: 24px;
+            .stepItem {
+                width: 600px;
+                height: 30px;
                 font-size: 24px;
                 font-family: Source Han Sans CN;
                 font-weight: 400;
-                color: #FFFFFF;
+                color: #F3591B;
                 line-height: 30px;
                 margin-bottom: 30px;
             }
-
-            .stepLink {
-                display: block;
+            .infoData {
+                width: 520px;
+                height: 518px;
                 position: absolute;
                 right: 0;
-                bottom: 100px;
-                font-size: 36px;
-                font-family: Source Han Sans CN;
-                font-weight: 400;
-                color: #F57145;
-                line-height: 30px;
-                text-decoration: none;
+                top:180px;
+                .infoTitle {
+                    margin-bottom: 70px;
+                    height: 34px;
+                    font-size: 36px;
+                    font-family: Source Han Sans CN;
+                    font-weight: 500;
+                    color: #F3591B;
+                }
+                .infoItem { 
+                    height: 30px;
+                    font-size: 24px;
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #F3591B;
+                    line-height: 30px;
+                    margin-bottom: 30px;
+
+                }
             }
         }
     }
@@ -618,80 +643,13 @@
     .infoBox {
         width: 100%;
         min-width: 1200px;
-        height: 138px;
-
-        .infoContent {
-            width: 1200px;
-            height: 84px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-
-            .mobile {
-                width: 140px;
-                height: 84px;
-                text-align: center;
-
-                img {
-                    width: 24px;
-                    height: 24px;
-                }
-
-                .title {
-                    height: 30px;
-                    line-height: 30px;
-                    font-size: 16px;
-                    font-family: Source Han Sans CN;
-                    font-weight: 400;
-                    color: #333333;
-                }
-
-                .number {
-                    height: 30px;
-                    font-size: 14px;
-                    font-family: Source Han Sans CN;
-                    font-weight: 400;
-                    color: #666666;
-                    line-height: 30px;
-
-                }
-            }
-
-            .location {
-                width: 250px;
-                height: 84px;
-                text-align: center;
-
-                img {
-                    width: 24px;
-                    height: 24px;
-                }
-
-                .title {
-                    height: 30px;
-                    line-height: 30px;
-                    font-size: 16px;
-                    font-family: Source Han Sans CN;
-                    font-weight: 400;
-                    color: #333333;
-                }
-
-                .number {
-                    height: 30px;
-                    font-size: 14px;
-                    font-family: Source Han Sans CN;
-                    font-weight: 400;
-                    color: #666666;
-                    line-height: 30px;
-
-                }
-            }
-        }
+        height: 30px;
+        padding: 10px 0;
 
         .beian {
             width: 1200px;
-            height: 40px;
-            line-height: 40px;
+            height: 30px;
+            line-height: 30px;
             margin: 0 auto;
             text-align: center;
 
