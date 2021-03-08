@@ -1,8 +1,8 @@
 let data = ''
 var infoData = []
 let event_uri_key = ''
-if(sessionCode.getItem('cubeInfo')){
-    let data = JSON.parse(sessionCode.getItem('cubeInfo')).substring(1).split("&")
+if(sessionStorage.getItem('cubeInfo')){
+   data = sessionStorage.getItem('cubeInfo').substring(1).split("&")
     data.forEach(item => {
         infoData.push(item.split("="))
     })
