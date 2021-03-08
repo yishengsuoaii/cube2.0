@@ -102,7 +102,7 @@
                             success:function(res){
                                 if(res.msg==='success'){
                                     localStorage.setItem('cubeInfo',window.location.search)
-                                    alert(window.location.search,1)
+                                    alert(1)
                                     window.location.href='http://www.cube.vip/h5/live.html?key='+infoData[3][1]
                                 } else{
                                     alert('密码错误,请重新输入')
@@ -112,7 +112,7 @@
                     }
                 } else {
                     localStorage.setItem('cubeInfo',window.location.search)
-                    alert(window.location.search,2)
+                    alert(2)
                     window.location.href='http://www.cube.vip/h5/live.html?key='+infoData[3][1]
                 }
             })
