@@ -80,10 +80,6 @@
 				}
 			});
 
-
-
-
-            //decodeURI(infoData[0][1])
             $('#submit').on('click',function(){
 
                 if(infoData[2][1]==='False'){
@@ -105,7 +101,8 @@
                             },
                             success:function(res){
                                 if(res.msg==='success'){
-                                   window.location.href='http://www.cube.vip/h5/live.html'+window.location.search
+                                   window.location.href='http://www.cube.vip/h5/live.html?key='+infoData[3][1]
+                                   sessionStorage.setItem('cubeInfo',window.location.search)
                                 } else{
                                     alert('密码错误,请重新输入')
                                 }
@@ -113,7 +110,8 @@
                         })
                     }
                 } else {
-                    window.location.href='http://www.cube.vip/h5/live.html'+window.location.search
+                    window.location.href='http://www.cube.vip/h5/live.html?key='+infoData[3][1]
+                    sessionStorage.setItem('cubeInfo',window.location.search)
                 }
             })
         })
