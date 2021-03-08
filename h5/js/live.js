@@ -1,8 +1,8 @@
 let data = ''
 var infoData = []
 let event_uri_key = ''
-if(sessionStorage.getItem('cubeInfo')){
-   data = sessionStorage.getItem('cubeInfo').substring(1).split("&")
+if(localStorage.getItem('cubeInfo')){
+   data = localStorage.getItem('cubeInfo').substring(1).split("&")
     data.forEach(item => {
         infoData.push(item.split("="))
     })
