@@ -13,8 +13,8 @@
     <script src="../commonJs/jquery-3.2.1.min.js"></script>
     <script src="./../commonJs/flexible.js"></script>
     <script src="../layui/layui.js"></script>
-    <script src="./js/jweixin-1.6.0.js"></script>
     <script src="./js/sha.js"></script>
+    <script src="./js/jweixin-1.6.0.js"></script>
 </head>
 
 <body>
@@ -204,7 +204,7 @@
                             wx.updateTimelineShareData({
                                 title: decodeURI(infoData[3][1]), // 分享标题
                                 link: 'http://www.cube.vip/h5/playback.html'+ window.location.search, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                                imgUrl: userImg, // 分享图标
+                                imgUrl: infoData[4][1], // 分享图标
                             });
                             
                             // 分享给朋友
@@ -212,7 +212,7 @@
                                 title: decodeURI(infoData[3][1]), // 分享标题
                                 desc: decodeURI(infoData[3][1]), // 分享描述
                                 link: 'http://www.cube.vip/h5/playback.html'+ window.location.search, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                                imgUrl: userImg, // 分享图标
+                                imgUrl: infoData[4][1], // 分享图标
                             });
                         })
                     }

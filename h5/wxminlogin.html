@@ -20,7 +20,7 @@
 			    dataType:"json",
 				async: false,
 			    url:"http://www.cube.vip/viewer/wx_login/",
-			    data:{"redirect_uri":"http://www.cube.vip/h5/blank.html?id="+infoData[0][1]+'|url='+infoData[1][1]+'|video_number_views='+infoData[2][1]+'|video_profile='+infoData[3][1]},
+			    data:{"redirect_uri":"http://www.cube.vip/h5/blank.html?id="+infoData[0][1]+'|url='+infoData[1][1]+'|video_number_views='+infoData[2][1]+'|video_profile='+infoData[3][1]+'|cover='+infoData[4][1]},
 			    success:function (result){
 					
 					if (result.msg  == "success") {

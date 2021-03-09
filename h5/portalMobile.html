@@ -193,7 +193,7 @@
                             <p class="wonderful-video-describe">
                                 ${item.video_profile}
                             </p>
-                            <img  src="${item.video_description_image}" onerror="this.src='./../image/mobile-cover.png'" alt="" class="wonderful-video-cover">
+                            <img src="${item.video_description_image}" onerror="this.src='./../image/mobile-cover.png'" alt="" class="wonderful-video-cover">
                             <p class="wonderful-video-info">
                                 <span>${item.datetime}</span>
                                 <span class="wonderful-video-view">
@@ -226,7 +226,7 @@
             window.location.href='http://www.cube.vip/h5/wxlogin.html?key='+$(this).attr('data-key').substr(19)
         })
         $('.wonderful-video').on('click','.wonderful-video-list',function(){
-            window.location.href='http://www.cube.vip/h5/wxminlogin.html?id='+$(this).attr('data-id')+'&src='+$(this).attr('data-src')+'&view='+$(this).attr('data-view')+'&profile='+$(this).attr('data-profile')
+            window.location.href='http://www.cube.vip/h5/wxminlogin.html?id='+$(this).attr('data-id')+'&src='+$(this).attr('data-src')+'&view='+$(this).attr('data-view')+'&profile='+$(this).attr('data-profile')+'&cover='+$(this).find('.wonderful-video-cover').attr('src')
         })
     })
     
