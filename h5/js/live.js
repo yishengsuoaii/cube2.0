@@ -415,17 +415,6 @@ $(function () {
         }
     })
 
-    $('.playBack').on('click','.backList',function(){
-         $.ajax({
-            type: "POST",
-            dataType: "json",
-            async: false,
-            url: "http://www.cube.vip/video_editing/h5_video_number_clicks/",
-            data:{
-                video_id:$(this).attr('data-id')
-            }
-        })
-    })
    // 发送心跳-------------------------------------
    getSessionCode()
    function getSessionCode(){
