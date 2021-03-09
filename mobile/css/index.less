@@ -647,65 +647,30 @@ body {
 
         #infoBox {
             width: (750rem/@base_fontsize);
-            height: (240rem/@base_fontsize);
+            height: (280rem/@base_fontsize);
             padding: (20rem/@base_fontsize) 0;
+            margin-top: (20rem/@base_fontsize);
             margin-bottom: (140rem/@base_fontsize);
+            .infoTitle {
+                height: (36rem/@base_fontsize);
+                font-size: (36rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #333;
+                line-height: (36rem/@base_fontsize);
+                margin-bottom: (30rem/@base_fontsize);
+                padding-left: (92rem/@base_fontsize);
+            }
+            .infoItem {
+                height: (24rem/@base_fontsize);
+                font-size: (24rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #666;
+                line-height: (24rem/@base_fontsize);
+                margin-bottom: (30rem/@base_fontsize);
+                padding-left: (92rem/@base_fontsize);
 
-            .infoContent {
-                display: flex;
-                justify-content: space-around;
-                height: (200rem/@base_fontsize);
-                .mobile {
-                    text-align: center;
-                    img {
-                        width: (32rem/@base_fontsize);
-                        height: (32rem/@base_fontsize);
-                    }
-
-                    .title {
-                        height: (60rem/@base_fontsize);
-                        line-height: (60rem/@base_fontsize);
-                        font-size: (24rem/@base_fontsize);
-                        font-family: Source Han Sans CN;
-                        font-weight: 400;
-                        color: #333333;
-                    }
-
-                    .number {
-                        height: (60rem/@base_fontsize);
-                        font-size: (24rem/@base_fontsize);
-                        font-family: Source Han Sans CN;
-                        font-weight: 400;
-                        color: #666666;
-                        line-height: (60rem/@base_fontsize);
-
-                    }
-                }
-
-                .location {
-                    text-align: center;
-                    img {
-                        width: (32rem/@base_fontsize);
-                        height: (32rem/@base_fontsize);
-                    }
-
-                    .title {
-                        height: (60rem/@base_fontsize);
-                        line-height: (60rem/@base_fontsize);
-                        font-size: (24rem/@base_fontsize);
-                        font-family: Source Han Sans CN;
-                        font-weight: 400;
-                        color: #333333;
-                    }
-
-                    .number {
-                        height: (60rem/@base_fontsize);
-                        font-size: (24rem/@base_fontsize);
-                        font-family: Source Han Sans CN;
-                        font-weight: 400;
-                        color: #666666;
-                    }
-                }
             }
             .beian {
                 width: (750rem/@base_fontsize);
@@ -714,10 +679,11 @@ body {
                 text-align: center;
                 a {
                     font-size: (24rem/@base_fontsize);
-                    color: #333;
-                    &:hover{
-                        color: #666;
-                    }
+                    color: #999;
+                }
+                img {
+                    width: (24rem/@base_fontsize);
+                    height: (24rem/@base_fontsize);
                 }
             }
         }

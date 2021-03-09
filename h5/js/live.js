@@ -146,7 +146,7 @@ $(function () {
             if (res.msg === 'success') {
                 var str = '<p class="rec">精彩推荐</p>'
                 res.data.forEach(item => {
-                    str += `<a class="backList" data-id="${item.video_id}" href="http://www.cube.vip/h5/playback.html?id=${item.video_id}&src=${item.video_uri}&views=${item.video_number_views}&profile=${item.video_profile}&${ window.location.search.substring(1)}">
+                    str += `<a class="backList" data-id="${item.video_id}" href="http://www.cube.vip/h5/playback.html?id=${item.video_id}&src=${item.video_uri}&views=${item.video_number_views}&profile=${item.video_profile}">
                         <div class="backContent">
                             <div class="backInfo">
                                 <div class="backName">
@@ -156,7 +156,7 @@ $(function () {
                                     ${item.video_number_views}人观看量
                                 </p>
                             </div>
-                            <img src="./image/back-image.png" class="backImage">
+                            <img src="${item.video_description_image}" onerror="this.src='./../image/back-image.png'" src="./" class="backImage">
                         </div>
                     </a>
                     `

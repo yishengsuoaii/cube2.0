@@ -4,6 +4,8 @@
 .container {
   width: 100%;
   min-width: 1200px;
+  background: url('../image/logo-bg.jpeg') no-repeat;
+  background-size: 100% 1080px;
 }
 .container .topBox {
   width: 100%;
@@ -73,62 +75,54 @@
   margin-left: 20px;
 }
 .container .logoBox {
-  width: 100%;
-  min-width: 1200px;
-  height: 660px;
-  margin-top: 130px;
-  background: url('../image/logo-bg.png') no-repeat;
-  background-size: 100% 100%;
-}
-.container .logoBox .logoContent {
   width: 1200px;
-  height: 660px;
   margin: 0 auto;
+  height: 810px;
+  padding-top: 270px;
   position: relative;
 }
-.container .logoBox .logoContent .logoTitle {
-  height: 60px;
-  line-height: 60px;
-  font-size: 60px;
+.container .logoBox .logoTitle {
+  height: 67px;
+  font-size: 72px;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #FFFFFF;
-  padding: 139px 0 36px;
+  color: #F2591A;
+  line-height: 30px;
+  margin: 0 0 39px;
+  text-decoration: none;
 }
-.container .logoBox .logoContent .logoInfo {
+.container .logoBox .logoInfo {
   height: 96px;
   font-size: 30px;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #FFFFFF;
+  color: #FF914D;
   line-height: 48px;
   letter-spacing: 5px;
 }
-.container .logoBox .logoContent .logoBtn {
-  width: 260px;
-  height: 62px;
-  margin-top: 66px;
+.container .logoBox .logoBtn {
+  width: 348px;
+  height: 72px;
+  margin-top: 240px;
 }
-.container .logoBox .logoContent .logoBtn a {
+.container .logoBox .logoBtn a {
   display: block;
-  width: 258px;
-  height: 60px;
-  border: 1px solid #FFFFFF;
-  border-radius: 31px;
-  line-height: 60px;
+  width: 348px;
+  height: 72px;
+  background: linear-gradient(180deg, #FFBE58, #FF914D, #F2591A);
+  border-radius: 36px;
+  line-height: 72px;
   text-align: center;
   font-size: 24px;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #FFFFFF;
   text-decoration: none;
+  color: #fff;
 }
-.container .logoBox .logoContent .mobile {
-  width: 558px;
-  height: 501;
+.container .logoBox .mobile {
+  width: 727px;
+  height: 442px;
   position: absolute;
   right: 0px;
-  top: 107px;
+  bottom: 158px;
 }
 .container .establishBox {
   width: 1200px;
@@ -505,7 +499,7 @@
   width: 100%;
   min-width: 1200px;
   height: 698px;
-  background: #FFF4F1;
+  background: #122a3e;
   margin-top: 95px;
 }
 .container .stepBox .stepContent {
@@ -520,7 +514,7 @@
   font-size: 36px;
   font-family: Source Han Sans CN;
   font-weight: 500;
-  color: #F3591B;
+  color: #FFF;
   line-height: 30px;
   margin-bottom: 70px;
 }
@@ -530,7 +524,7 @@
   font-size: 24px;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #F3591B;
+  color: #FFF;
   line-height: 30px;
   margin-bottom: 30px;
 }
@@ -547,14 +541,14 @@
   font-size: 36px;
   font-family: Source Han Sans CN;
   font-weight: 500;
-  color: #F3591B;
+  color: #FFF;
 }
 .container .stepBox .stepContent .infoData .infoItem {
   height: 30px;
   font-size: 24px;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #F3591B;
+  color: #FFF;
   line-height: 30px;
   margin-bottom: 30px;
 }
@@ -569,13 +563,20 @@
   height: 30px;
   line-height: 30px;
   margin: 0 auto;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .container .infoBox .beian a {
   color: #333;
   text-decoration: none;
   font-size: 14px;
+  margin: 0 5px;
 }
 .container .infoBox .beian a:hover {
   color: #666;
+}
+.container .infoBox .beian img {
+  width: 18px;
+  height: 18px;
 }

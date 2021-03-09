@@ -577,59 +577,30 @@ body #container #operationBox .operationLinkBox .operationLink {
 }
 body #container #infoBox {
   width: 10rem;
-  height: 3.2rem;
+  height: 3.73333333rem;
   padding: 0.26666667rem 0;
+  margin-top: 0.26666667rem;
   margin-bottom: 1.86666667rem;
 }
-body #container #infoBox .infoContent {
-  display: flex;
-  justify-content: space-around;
-  height: 2.66666667rem;
+body #container #infoBox .infoTitle {
+  height: 0.48rem;
+  font-size: 0.48rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333;
+  line-height: 0.48rem;
+  margin-bottom: 0.4rem;
+  padding-left: 1.22666667rem;
 }
-body #container #infoBox .infoContent .mobile {
-  text-align: center;
-}
-body #container #infoBox .infoContent .mobile img {
-  width: 0.42666667rem;
-  height: 0.42666667rem;
-}
-body #container #infoBox .infoContent .mobile .title {
-  height: 0.8rem;
-  line-height: 0.8rem;
+body #container #infoBox .infoItem {
+  height: 0.32rem;
   font-size: 0.32rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #333333;
-}
-body #container #infoBox .infoContent .mobile .number {
-  height: 0.8rem;
-  font-size: 0.32rem;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #666666;
-  line-height: 0.8rem;
-}
-body #container #infoBox .infoContent .location {
-  text-align: center;
-}
-body #container #infoBox .infoContent .location img {
-  width: 0.42666667rem;
-  height: 0.42666667rem;
-}
-body #container #infoBox .infoContent .location .title {
-  height: 0.8rem;
-  line-height: 0.8rem;
-  font-size: 0.32rem;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #333333;
-}
-body #container #infoBox .infoContent .location .number {
-  height: 0.8rem;
-  font-size: 0.32rem;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #666666;
+  color: #666;
+  line-height: 0.32rem;
+  margin-bottom: 0.4rem;
+  padding-left: 1.22666667rem;
 }
 body #container #infoBox .beian {
   width: 10rem;
@@ -639,8 +610,9 @@ body #container #infoBox .beian {
 }
 body #container #infoBox .beian a {
   font-size: 0.32rem;
-  color: #333;
+  color: #999;
 }
-body #container #infoBox .beian a:hover {
-  color: #666;
+body #container #infoBox .beian img {
+  width: 0.32rem;
+  height: 0.32rem;
 }

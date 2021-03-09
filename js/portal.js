@@ -16,7 +16,7 @@ let addedVideoData = []
 let allVideoData = []
 // 过滤所有视频
 let filterVideoData = []
-// 暂时频道
+// 暂时视频
 let momentVideoData = []
 var form = null
 
@@ -70,7 +70,7 @@ function renderViewVideo() {
 							<p class="wonderful-video-describe">
 								${item.video_profile}
 							</p>
-							<img src="./../image/mobile-cover.png" alt="" class="wonderful-video-cover">
+							<img src="${item.video_description_image}" onerror="this.src='./../image/video-page.png'" alt="" class="wonderful-video-cover">
 							<p class="wonderful-video-info">
 								<span>${item.datetime}</span>
 								<span class="wonderful-video-view">
@@ -85,7 +85,7 @@ function renderViewVideo() {
 			str2 += `
 						<div class="add-video-list">
 							<div class="add-video-list-info">
-								<img src="./../image/mobile-cover.png" alt="">
+								<img src="${item.video_description_image}" onerror="this.src='./../image/video-page.png'" alt="">
 								<span class="video-name">${item.video_profile}</span>
 							</div>
 							<i class="layui-icon layui-icon-delete recommend-delete videoDelete" data-id="${index}"></i>   
@@ -100,11 +100,11 @@ function renderViewVideo() {
 	$('.wonderful-video').html(str1)
 	$('.video-cont-add').html(str2)
 }
-
+var layer = null
 $(function () {
 
 	layui.use(['upload', 'layer', 'form'], function () {
-
+		layer = layui.layer
 		var upload = layui.upload;
 		form = layui.form;
 		// 上传部落头像
@@ -287,6 +287,7 @@ $(function () {
 						'.vd-content-main-list-num i').text(),
 					datetime: $(data.elem).parent().siblings('.vd-content-main-list-info').find(
 						'.vd-content-main-list-time i').text(),
+					video_description_image:  $(data.elem).parent().siblings('.vd-video').attr("src")
 				})
 			} else {
 				$('.check-video-num').text(Number($('.check-video-num').text()) - 1) // 取消-1
@@ -579,14 +580,16 @@ $(function () {
 		var length = filterVideoData.length > pageIndex * 6 ? 6 : filterVideoData.length - (pageIndex - 1) * 6
 		for (var i = 0; i < length; i++) {
 			var index = i + (pageIndex - 1) * 6
-			str += `<div class="vd-content-main-list"><video class="vd-video video-js vjs-default-skin"  preload="auto" controls></video><div class="vd-content-main-list-info">
-				<span class="vd-content-main-list-name">${filterVideoData[index].video_profile}</span>
-				<span class="vd-content-main-list-time">上传时间: <i>${filterVideoData[index].video_create_time}</i></span>
-				<span class="vd-content-main-list-num">观看量: <i>${filterVideoData[index].video_number_views}</i> 次</span>
-			</div>
-			<div class="layui-form video-right-check">
-				<input type="checkbox" lay-filter="video-checkbox" lay-skin="primary" class="vd-content-main-list-check" value="${filterVideoData[index].video_id}" ${filterVideoData[index].checked} /></div>
-			</div>
+			str += `<div class="vd-content-main-list">
+				<img class="vd-video" src="${filterVideoData[index].video_description_image}" onerror="this.src='./../image/video-page.png'"></img>
+				<div class="vd-content-main-list-info">
+					<span class="vd-content-main-list-name">${filterVideoData[index].video_profile}</span>
+					<span class="vd-content-main-list-time">上传时间: <i>${filterVideoData[index].video_create_time}</i></span>
+					<span class="vd-content-main-list-num">观看量: <i>${filterVideoData[index].video_number_views}</i> 次</span>
+				</div>
+				<div class="layui-form video-right-check">
+					<input type="checkbox" lay-filter="video-checkbox" lay-skin="primary" class="vd-content-main-list-check" value="${filterVideoData[index].video_id}" ${filterVideoData[index].checked} /></div>
+				</div>
 			`
 		}
 		if (filterVideoData.length > 0) {

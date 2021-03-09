@@ -17,6 +17,7 @@
 }
 .recordsBox a {
     color: #999;
+    margin: 0 5px;
 }
 .recordsBox a:hover {
     color: #333;

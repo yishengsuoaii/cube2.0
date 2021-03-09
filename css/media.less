@@ -165,10 +165,12 @@
                 .videoBox {
                     width: 300px;
                     height: 130px;
-                    background: url('./../image/video-page.png') no-repeat;
-                    background-size: 100% 100%;
                     margin-right: 20px;
                     cursor: pointer;
+                    img {
+                        width: 300px;
+                        height: 130px;
+                    }
                 }
 
                 .videoInfo {
@@ -462,12 +464,48 @@
 /* 编辑视频弹窗 */
 #describeDialog {
     display: none;
-    width: 654px;
-    height: 240px;
+    width: 790px;
+    height: 552px;
     padding-top: 50px;
+    .coverBox {
+        width: 558px;
+        height: 268px;
+        border: 1px solid #CCCCCC;
+        border-radius: 5px;
+        margin: 0 auto 30px;
+        position: relative;
+        cursor: pointer;
+        #uploadCover {
+            width: 48px;
+            height: 48px;
+            position: absolute;
+            top: 36%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #coverName {
+            height: 30px;
+            font-size: 20px;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: #FF914D;
+            line-height: 30px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .coverImg {
+            display: none;
+            width: 558px;
+            height: 268px;
+        }
+
+    }
 
     .editDesName {
-        width: 400px;
+        width: 560px;
         height: 30px;
         font-size: 18px;
         font-family: Source Han Sans CN;
@@ -479,8 +517,8 @@
 
     #editDesText {
         display: block;
-        width: 378px;
-        height: 118px;
+        width: 538px;
+        height: 138px;
         border: 1px solid #CCCCCC;
         border-radius: 5px;
         padding: 10px;
@@ -493,7 +531,7 @@
     }
 
     #editTextLength {
-        width: 400px;
+        width: 560px;
         height: 30px;
         font-size: 16px;
         font-family: Source Han Sans CN;

@@ -2,6 +2,7 @@ if(!sessionStorage.getItem('token')){
     window.location.href="./../login.html"
 }
 var videoFile = null
+var imgFile = null
 var number = 0
 var downLoadNum = 0
 $(function () {
@@ -385,7 +386,9 @@ $(function () {
                 })
                 if (flag) {
                     str += `<div class="videoList">
-                        <div class="videoBox" data-id="${allVideoLibrary[index].video_id}" data-code="${allVideoLibrary[index].video_code}"></div>
+                        <div class="videoBox" data-id="${allVideoLibrary[index].video_id}" data-code="${allVideoLibrary[index].video_code}">
+                            <img src="${allVideoLibrary[index].video_description_image}" onerror="this.src='./../image/video-page.png'" alt="">
+                        </div>
                         <div class="videoInfo">
                             <p class="videoDescribe">${allVideoLibrary[index].video_profile}</p>
                             <p class="common">评论:<span>${allVideoLibrary[index].count}</span>条</p>
@@ -404,7 +407,9 @@ $(function () {
                     </div>`
                 } else {
                     str += `<div class="videoList">
-                        <div class="videoBox" data-id="${allVideoLibrary[index].video_id}" data-code="${allVideoLibrary[index].video_code}"></div>
+                        <div class="videoBox" data-id="${allVideoLibrary[index].video_id}" data-code="${allVideoLibrary[index].video_code}">
+                            <img src="${allVideoLibrary[index].video_description_image}" onerror="this.src='./../image/video-page.png'" alt="">
+                        </div>
                         <div class="videoInfo">
                             <p class="videoDescribe">${allVideoLibrary[index].video_profile}</p>
                             <p class="common">评论:<span>${allVideoLibrary[index].count}</span>条</p>
@@ -505,7 +510,9 @@ $(function () {
                 })
                 if (flag) {
                     str += `<div class="videoList" style="background:#ddd">
-                                <div class="videoBox" data-id="${allTsLibrary[index].video_id}" data-code="${allTsLibrary[index].video_code}"></div>
+                                <div class="videoBox" data-id="${allTsLibrary[index].video_id}" data-code="${allTsLibrary[index].video_code}">
+                                    <img src="${allTsLibrary[index].video_description_image}" onerror="this.src='./../image/video-page.png'" alt="">
+                                </div>
                                 <div class="videoInfo">
                                     <p class="videoDescribe">${allTsLibrary[index].video_profile}</p>
                                     <p class="common">评论:<span>${allTsLibrary[index].count}</span>条</p>
@@ -524,7 +531,9 @@ $(function () {
                             </div>`
                 } else {
                     str += `<div class="videoList" style="background:#ddd">
-                                <div class="videoBox" data-id="${allTsLibrary[index].video_id}" data-code="${allTsLibrary[index].video_code}"></div>
+                                <div class="videoBox" data-id="${allTsLibrary[index].video_id}" data-code="${allTsLibrary[index].video_code}">
+                                <img src="${allTsLibrary[index].video_description_image}" onerror="this.src='./../image/video-page.png'" alt="">
+                                </div>
                                 <div class="videoInfo">
                                     <p class="videoDescribe">${allTsLibrary[index].video_profile}</p>
                                     <p class="common">评论:<span>${allTsLibrary[index].count}</span>条</p>
@@ -828,6 +837,25 @@ $(function () {
             }
         })
 
+        // 上传视频封面
+        upload.render({
+            elem: '.coverBox',
+            url: '/',
+            headers: {
+                token: sessionStorage.getItem('token')
+            },
+            auto: false,
+            bindAction: '.aaa',
+            choose: function (obj) {
+                obj.preview(function (index, file, result) {
+                    imgFile = file
+                    $('#uploadCover').hide()
+                    $('#coverName').hide()
+                    $('.coverImg').show().prop('src', result)
+                })
+            }
+        })
+
         // 监听历史上传状态
         if (sessionStorage.getItem('taskId')) {
             monitorState(sessionStorage.getItem('taskId'))
@@ -895,8 +923,8 @@ $(function () {
                 .text().length + '/140')
             layer.open({
                 type: 1,
-                area: ['654px', '396px'],
-                title: ['设置', 'color:#fff'],
+                area: ['790px', '708px'],
+                title: ['编辑', 'color:#fff'],
                 content: $("#describeDialog"),
                 shade: 0.3,
                 shadeClose: true,
@@ -910,29 +938,28 @@ $(function () {
                         layer.msg('请输入视频描述!')
                         return
                     }
+                    var formData = new FormData()
+                    formData.append('file', imgFile)
+                    formData.append('video_description', $('#editDesText').val())
+                    formData.append('video_id',video_id)
                     $.ajax({
                         type: 'POST',
                         url: 'http://www.cube.vip/video/update_video_description/',
                         headers: {
                             token: sessionStorage.getItem('token')
                         },
-                        dataType: "json",
-                        data: {
-                            video_description: $('#editDesText').val(),
-                            video_id: video_id
-                        },
+                        processData: false,
+                        contentType: false,
+                        data:formData,
                         success: res => {
                             if (res.msg === 'success') {
                                 layer.msg('修改成功!')
                                 setTimeout(() => {
                                     layer.closeAll();
-                                    _that.parents('.videoList')
-                                        .find('.videoDescribe')
-                                        .text($('#editDesText')
-                                            .val())
+                                    _that.parents('.videoList').find('.videoDescribe').text($('#editDesText').val())
+                                    _that.parents('.videoList').find('.videoBox img').attr('src',window.URL.createObjectURL(imgFile))
                                     $('#editDesText').val('')
-                                    $('#editTextLength').text(
-                                        '0/140')
+                                    $('#editTextLength').text('0/140')
                                 }, 500)
                             } else {
                                 layer.msg('修改失败,请重试!')
@@ -940,15 +967,14 @@ $(function () {
                         }
                     })
                 },
-                btn2: function () {
+                end:function(){
                     layer.closeAll();
                     $('#editDesText').val('')
                     $('#editTextLength').text('0/140')
-                },
-                cancel: function () {
-                    layer.closeAll();
-                    $('#editDesText').val('')
-                    $('#editTextLength').text('0/140')
+                    imgFile = null
+                    $('#uploadCover').show()
+                    $('#coverName').show()
+                    $('.coverImg').hide()
                 }
 
             })
@@ -962,8 +988,8 @@ $(function () {
                 .text().length + '/140')
             layer.open({
                 type: 1,
-                area: ['654px', '396px'],
-                title: ['设置', 'color:#fff'],
+                area: ['790px', '708px'],
+                title: ['编辑', 'color:#fff'],
                 content: $("#describeDialog"),
                 shade: 0.3,
                 shadeClose: true,
@@ -977,29 +1003,29 @@ $(function () {
                         layer.msg('请输入视频描述!')
                         return
                     }
+                    var formData = new FormData()
+                    formData.append('file', imgFile)
+                    formData.append('video_description', $('#editDesText').val())
+                    formData.append('video_id',video_id)
+
                     $.ajax({
                         type: 'POST',
                         url: 'http://www.cube.vip/video/update_video_description/',
                         headers: {
                             token: sessionStorage.getItem('token')
                         },
-                        dataType: "json",
-                        data: {
-                            video_description: $('#editDesText').val(),
-                            video_id: video_id
-                        },
+                        processData: false,
+                        contentType: false,
+                        data:formData,
                         success: res => {
                             if (res.msg === 'success') {
                                 layer.msg('修改成功!')
                                 setTimeout(() => {
                                     layer.closeAll();
-                                    _that.parents('.videoList')
-                                        .find('.videoDescribe')
-                                        .text($('#editDesText')
-                                            .val())
+                                    _that.parents('.videoList').find('.videoDescribe').text($('#editDesText').val())
+                                    _that.parents('.videoList').find('.videoBox img').attr('src',window.URL.createObjectURL(imgFile))
                                     $('#editDesText').val('')
-                                    $('#editTextLength').text(
-                                        '0/140')
+                                    $('#editTextLength').text('0/140')
                                 }, 500)
                             } else {
                                 layer.msg('修改失败,请重试!')
@@ -1007,15 +1033,14 @@ $(function () {
                         }
                     })
                 },
-                btn2: function () {
+                end:function(){
                     layer.closeAll();
                     $('#editDesText').val('')
                     $('#editTextLength').text('0/140')
-                },
-                cancel: function () {
-                    layer.closeAll();
-                    $('#editDesText').val('')
-                    $('#editTextLength').text('0/140')
+                    imgFile = null
+                    $('#uploadCover').show()
+                    $('#coverName').show()
+                    $('.coverImg').hide()
                 }
 
             })

@@ -37,11 +37,25 @@
     </div>
 
     <script>
-        let data = window.location.search.substring(1).split("&")
+
+        let data = ''
         var infoData = []
-        data.forEach(item => {
-            infoData.push(item.split("="))
-        })
+
+        var userInfoSrc= ''
+        var userInfo = []
+        if(sessionStorage.getItem('cubeInfo')){
+            userInfoSrc= sessionStorage.getItem('cubeInfo').split("&")
+            userInfoSrc.forEach(item => {
+                userInfo.push(item.split("="))
+            })
+
+            data = window.location.search.substring(1).split("&")
+            data.forEach(item => {
+                infoData.push(item.split("="))
+            })
+        }else {
+            window.location.href='http://www.cube.vip/h5/wxminlogin.html' + window.location.search
+        }
         $(function () {
             videojs('videoBox', {
                 muted: false,
@@ -90,7 +104,7 @@
                         type: 'POST',
                         data: {
                             video_id: infoData[0][1],
-                            wechat_nickname: decodeURI(infoData[4][1]),
+                            wechat_nickname: decodeURI(userInfo[0][1]),
                             comment: $('.messageInput').val()
                         },
                         success: function (res) {
@@ -110,7 +124,7 @@
                         type: 'POST',
                         data: {
                             video_id: infoData[0][1],
-                            wechat_nickname: decodeURI(infoData[4][1]),
+                            wechat_nickname: decodeURI(userInfo[0][1]),
                             comment: $(this).val()
                         },
                         success: function (res) {
