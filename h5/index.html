@@ -28,13 +28,16 @@
         data.forEach(item=>{
             infoData.push(item.split("="))
         })
+        if(!sessionStorage.getItem('cubeInfo')){
+            window.location.href='http://www.cube.vip/h5/wxlogin.html?key=' +infoData[1][1]
+        }
         $(function(){
 
             $.ajax({
                 url:'http://www.cube.vip/event/h5_login_password/',
                 type:'GET',
                 data:{
-                    event_uri_key:infoData[3][1]
+                    event_uri_key:infoData[1][1]
                 },
                 success:function(res){
                  
@@ -46,7 +49,7 @@
             })
 
 
-            if(infoData[2][1]==='False'){
+            if(infoData[0][1]==='False'){
                     $('#codeInput').show()
             } else {
                 $('#codeInput').hide()
@@ -82,7 +85,7 @@
 
             $('#submit').on('click',function(){
 
-                if(infoData[2][1]==='False'){
+                if(infoData[0][1]==='False'){
                     var codeStr=$('#code1').val()
                     codeStr+=$('#code2').val()
                     codeStr+=$('#code3').val()
@@ -96,13 +99,12 @@
                             url:'http://www.cube.vip/event/h5_login_password/',
                             type:'POST',
                             data:{
-                                event_uri_key:infoData[3][1],
+                                event_uri_key:infoData[1][1],
                                 password: codeStr
                             },
                             success:function(res){
                                 if(res.msg==='success'){
-                                    sessionStorage.setItem('cubeInfo',window.location.search)
-                                    window.location.href='http://www.cube.vip/h5/live.html?key='+infoData[3][1]
+                                    window.location.href='http://www.cube.vip/h5/live.html?key='+infoData[1][1]
                                 } else{
                                     alert('密码错误,请重新输入')
                                 }
@@ -110,8 +112,7 @@
                         })
                     }
                 } else {
-                    sessionStorage.setItem('cubeInfo',window.location.search)
-                    window.location.href='http://www.cube.vip/h5/live.html?key='+infoData[3][1]
+                    window.location.href='http://www.cube.vip/h5/live.html?key='+infoData[1][1]
                 }
             })
         })

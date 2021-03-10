@@ -70,7 +70,21 @@
                 }]
             })
             $('.describe').text(decodeURI(infoData[3][1]))
-            $('.viewNum').text(infoData[2][1]+'人观看')
+
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                async: false,
+                url: "http://www.cube.vip/video_editing/h5_video_number_clicks/",
+                data:{
+                    video_id:infoData[0][1]
+                },
+                success:function(res){
+                    if(res.msg==='success'){
+                        $('.viewNum').text(res.data.video_views+'人观看')
+                    }
+                }
+            })
             // 获取评论列表
             $.ajax({
                 url: 'http://www.cube.vip/commenting/h5_comments_show/',
@@ -216,16 +230,6 @@
                             });
                         })
                     }
-                }
-            })
-
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                async: false,
-                url: "http://www.cube.vip/video_editing/h5_video_number_clicks/",
-                data:{
-                    video_id:infoData[0][1]
                 }
             })
         })
