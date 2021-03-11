@@ -8,7 +8,7 @@
     <title>回放</title>
     <link rel="stylesheet" href="../layui/css/layui.css">
     <link rel="stylesheet" href="./css/playback.css">
-    <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.9.3/skins/default/aliplayer-min.css" />
+    <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.9.3/skins/default/aliplayer-min.css"/>
     <script src="./../commonJs/aliplayer-h5-min.js"></script>
     <script src="../commonJs/jquery-3.2.1.min.js"></script>
     <script src="./../commonJs/flexible.js"></script>
@@ -19,8 +19,8 @@
 
 <body>
     <div id="play">
-        <video id="videoBox" class="prism-player">
-        </video>
+        <div id="videoBox" class="prism-player">
+        </div>
         <div class="videoInfo">
             <p class="describe"></p>
             <p class="viewNum"></p>
@@ -40,8 +40,6 @@
 
         let data = ''
         var infoData = []
-
-
         var userInfoSrc= ''
         var userInfo = []
         if(sessionStorage.getItem('cubeInfo')){
@@ -68,7 +66,7 @@
                 "rePlay": false,
                 "playsinline": true,
                 "preload": true,
-                "controlBarVisibility": "hover",
+                "controlBarVisibility": "click",
                 "useH5Prism": true,
             })
             $('.describe').text(decodeURI(infoData[3][1]))

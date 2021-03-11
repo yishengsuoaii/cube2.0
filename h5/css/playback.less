@@ -19,6 +19,7 @@
 
 body {
   width: (750rem/@base_fontsize)  !important;
+  overflow-y: hidden;
   min-width: 320px;
   margin: 0 auto;
 
@@ -26,9 +27,10 @@ body {
     width: (750rem/@base_fontsize)  !important;
 
     #videoBox {
+      display: block;
       width: (750rem/@base_fontsize)  !important;
       height: (421.875rem/@base_fontsize);
-      display: block;
+      
     }
     .videoInfo {
       width: (710rem/@base_fontsize)  !important;
@@ -73,7 +75,7 @@ body {
 
     .commentBox {
       width: (710rem/@base_fontsize)  !important;
-      padding: 10px 10px 0;
+      padding: (20rem/@base_fontsize) (20rem/@base_fontsize) 0;
       overflow-y: auto;
 
       .comList {
@@ -127,7 +129,7 @@ body {
     .sendBox {
       width: (710rem/@base_fontsize)  !important;
       height:(98rem/@base_fontsize)  !important;
-      padding: 0 10px 10px;
+      padding: 0 (20rem/@base_fontsize) (20rem/@base_fontsize);
       border-top: (2rem/@base_fontsize) solid #ccc;
 
       .messageInput {

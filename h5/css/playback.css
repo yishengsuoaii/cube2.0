@@ -13,6 +13,7 @@
 }
 body {
   width: 10rem !important;
+  overflow-y: hidden;
   min-width: 320px;
   margin: 0 auto;
 }
@@ -20,9 +21,9 @@ body #play {
   width: 10rem !important;
 }
 body #play #videoBox {
+  display: block;
   width: 10rem !important;
   height: 5.625rem;
-  display: block;
 }
 body #play .videoInfo {
   width: 9.46666667rem !important;
@@ -65,7 +66,7 @@ body #play .comment {
 }
 body #play .commentBox {
   width: 9.46666667rem !important;
-  padding: 10px 10px 0;
+  padding: 0.26666667rem 0.26666667rem 0;
   overflow-y: auto;
 }
 body #play .commentBox .comList {
@@ -111,7 +112,7 @@ body #play .commentBox .comList .comInfo .comMessage {
 body #play .sendBox {
   width: 9.46666667rem !important;
   height: 1.30666667rem !important;
-  padding: 0 10px 10px;
+  padding: 0 0.26666667rem 0.26666667rem;
   border-top: 0.02666667rem solid #ccc;
 }
 body #play .sendBox .messageInput {
