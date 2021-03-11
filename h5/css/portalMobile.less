@@ -201,11 +201,27 @@
 				text-overflow:ellipsis;
 				white-space: nowrap;
       }
-      .wonderful-video-cover {
-				width: (710rem/@base_fontsize);
-				height: (400rem/@base_fontsize);
-				margin: 0 (20rem/@base_fontsize);
+      .coverImg {
+        width: (710rem/@base_fontsize);
+        height: (400rem/@base_fontsize);
+        padding: 0 (20rem/@base_fontsize);
+        position: relative;
+        .wonderful-video-cover {
+          width: (710rem/@base_fontsize);
+          height: (400rem/@base_fontsize);
+          // margin: 0 (20rem/@base_fontsize);
+        }
+        .playIcon {
+          width: (96rem/@base_fontsize);
+          height: (96rem/@base_fontsize);
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+          z-index: 1;
+        }
       }
+      
       .wonderful-video-info {
 				height: (64rem/@base_fontsize);
 				line-height: (64rem/@base_fontsize);

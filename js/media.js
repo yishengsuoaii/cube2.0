@@ -15,20 +15,6 @@ $(function () {
     var allTsLibrary = []
     var checkTsLibrary = []
 
-    // 观看视频
-    var videoJs = videojs('viewVideos', {
-        muted: false,
-        controls: true,
-        preload: 'auto',
-        playbackRates: [0.5, 0.75, 1, 1.25, 1.5, 2, ],
-        width: '750',
-        height: "396",
-        autoplay:true,
-        // plugins: {
-        // 	foo: {bar: true},
-        // 	boo: {baz: false}
-        // }
-    })
 
     layui.use(['form', 'laydate', 'upload', 'laypage'], function () {
         var form = layui.form;
@@ -387,8 +373,9 @@ $(function () {
                 if (flag) {
                     str += `<div class="videoList">
                         <div class="videoBox" data-id="${allVideoLibrary[index].video_id}" data-code="${allVideoLibrary[index].video_code}">
-                            <img src="${allVideoLibrary[index].video_description_image}" onerror="this.src='./../image/video-page.png'" alt="">
-                        </div>
+                            <img class="videoImg" src="${allVideoLibrary[index].video_description_image}" onerror="this.src='./../image/video-page.png'" alt="">
+                            <img class="playIcon" src="./../image/play.png">
+                            </div>
                         <div class="videoInfo">
                             <p class="videoDescribe">${allVideoLibrary[index].video_profile}</p>
                             <p class="common">评论:<span>${allVideoLibrary[index].count}</span>条</p>
@@ -408,7 +395,8 @@ $(function () {
                 } else {
                     str += `<div class="videoList">
                         <div class="videoBox" data-id="${allVideoLibrary[index].video_id}" data-code="${allVideoLibrary[index].video_code}">
-                            <img src="${allVideoLibrary[index].video_description_image}" onerror="this.src='./../image/video-page.png'" alt="">
+                            <img class="videoImg" src="${allVideoLibrary[index].video_description_image}" onerror="this.src='./../image/video-page.png'" alt="">
+                            <img class="playIcon" src="./../image/play.png">
                         </div>
                         <div class="videoInfo">
                             <p class="videoDescribe">${allVideoLibrary[index].video_profile}</p>
@@ -511,7 +499,8 @@ $(function () {
                 if (flag) {
                     str += `<div class="videoList" style="background:#ddd">
                                 <div class="videoBox" data-id="${allTsLibrary[index].video_id}" data-code="${allTsLibrary[index].video_code}">
-                                    <img src="${allTsLibrary[index].video_description_image}" onerror="this.src='./../image/video-page.png'" alt="">
+                                    <img class="videoImg" src="${allTsLibrary[index].video_description_image}" onerror="this.src='./../image/video-page.png'" alt="">
+                                    <img class="playIcon" src="./../image/play.png">
                                 </div>
                                 <div class="videoInfo">
                                     <p class="videoDescribe">${allTsLibrary[index].video_profile}</p>
@@ -532,7 +521,8 @@ $(function () {
                 } else {
                     str += `<div class="videoList" style="background:#ddd">
                                 <div class="videoBox" data-id="${allTsLibrary[index].video_id}" data-code="${allTsLibrary[index].video_code}">
-                                <img src="${allTsLibrary[index].video_description_image}" onerror="this.src='./../image/video-page.png'" alt="">
+                                <img class="videoImg" src="${allTsLibrary[index].video_description_image}" onerror="this.src='./../image/video-page.png'" alt="">
+                                <img class="playIcon" src="./../image/play.png">
                                 </div>
                                 <div class="videoInfo">
                                     <p class="videoDescribe">${allTsLibrary[index].video_profile}</p>
@@ -1067,10 +1057,19 @@ $(function () {
                 success: res => {
                     if (res.msg === 'success') {
                         getComment($(this).attr('data-id'))
-                        videoJs.src({
-                            type: 'application/x-mpegURL',
-                            src: res.data.video_rui
-                        })
+                        var player = new Aliplayer({
+                            "id": "player-con",
+                            "source": res.data.video_rui,
+                            "width": "750px",
+                            "height": "396px",
+                            "autoplay": true,
+                            "isLive": false,
+                            "rePlay": false,
+                            "playsinline": true,
+                            "preload": true,
+                            "controlBarVisibility": "hover",
+                            "useH5Prism": true,
+                          })
 
                         layer.open({
                             type: 1,
@@ -1083,9 +1082,9 @@ $(function () {
                             btnAlign: 'c',
                             resize: false,
                             scrollbar: false,
-                            cancel: function () {
+                            end: function () {
                                 layer.closeAll();
-                                videoJs.pause()
+                                player.dispose()
                             }
                         });
 
@@ -1174,10 +1173,19 @@ $(function () {
                 success: res => {
                     if (res.msg === 'success') {
                         getComment($(this).attr('data-id'))
-                        videoJs.src({
-                            type: 'application/x-mpegURL',
-                            src: res.data.video_rui
-                        })
+                        var player = new Aliplayer({
+                            "id": "player-con",
+                            "source": res.data.video_rui,
+                            "width": "750px",
+                            "height": "396px",
+                            "autoplay": true,
+                            "isLive": false,
+                            "rePlay": false,
+                            "playsinline": true,
+                            "preload": true,
+                            "controlBarVisibility": "hover",
+                            "useH5Prism": true,
+                          })
 
                         layer.open({
                             type: 1,
@@ -1190,9 +1198,9 @@ $(function () {
                             btnAlign: 'c',
                             resize: false,
                             scrollbar: false,
-                            cancel: function () {
+                            end: function () {
                                 layer.closeAll();
-                                videoJs.pause()
+                                player.dispose()
                             }
                         });
 

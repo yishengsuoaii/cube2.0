@@ -8,8 +8,8 @@
     <title>回放</title>
     <link rel="stylesheet" href="../layui/css/layui.css">
     <link rel="stylesheet" href="./css/playback.css">
-    <link rel="stylesheet" href="./../css/video-js.min.css">
-    <script src="./../commonJs/video.min.js"></script>
+    <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.9.3/skins/default/aliplayer-min.css" />
+    <script src="./../commonJs/aliplayer-h5-min.js"></script>
     <script src="../commonJs/jquery-3.2.1.min.js"></script>
     <script src="./../commonJs/flexible.js"></script>
     <script src="../layui/layui.js"></script>
@@ -19,9 +19,7 @@
 
 <body>
     <div id="play">
-        <video id="videoBox" controls preload="auto" class="video-js vjs-big-play-centered vjs-fluid"
-            x5-video-player-fullscreen="true" webkit-playsinline="true" x-webkit-airplay="true" playsinline="true"
-            x5-playsinline>
+        <video id="videoBox" class="prism-player">
         </video>
         <div class="videoInfo">
             <p class="describe"></p>
@@ -43,6 +41,7 @@
         let data = ''
         var infoData = []
 
+
         var userInfoSrc= ''
         var userInfo = []
         if(sessionStorage.getItem('cubeInfo')){
@@ -59,15 +58,18 @@
             window.location.href='http://www.cube.vip/h5/wxminlogin.html' + window.location.search
         }
         $(function () {
-            videojs('videoBox', {
-                muted: false,
-                controls: true,
-                preload: 'auto',
-                aspectRatio: '16:9',
-                sources: [{
-                    type: 'application/x-mpegURL',
-                    src: infoData[1][1]
-                }]
+            new Aliplayer({
+                "id": "videoBox",
+                "source": infoData[1][1],
+                "width":'10rem',
+                "height":'5.625rem',
+                "autoplay": true,
+                "isLive": false,
+                "rePlay": false,
+                "playsinline": true,
+                "preload": true,
+                "controlBarVisibility": "hover",
+                "useH5Prism": true,
             })
             $('.describe').text(decodeURI(infoData[3][1]))
 

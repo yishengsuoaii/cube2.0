@@ -579,7 +579,7 @@
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .channel-set-password .encryption_right {
   width: 375px;
   height: 667px;
-  margin-left: 232px;
+  margin-left: 243px;
   margin-top: 50px;
   background: url('../image/visit-code.png') no-repeat;
   background-size: 100% 100%;
@@ -592,7 +592,7 @@
   color: #666666;
   position: absolute;
   top: 0;
-  left: -42px;
+  left: -45px;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #videoPreview {
   box-sizing: border-box;
@@ -630,16 +630,20 @@
   margin-bottom: 20px;
   padding-left: 22px;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #videoPreview .preview-video {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #videoPreview #viewVideos {
   width: 750px;
-  height: 428px;
-  margin: 20px 22px 20px;
-  position: relative;
+  height: 422px;
+  background-color: #000;
+  margin-left: 20px;
+  margin-bottom: 20px;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #videoPreview .preview-video .preview_select {
-  position: absolute;
-  bottom: 0;
-  right: -140px;
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #videoPreview .selectBox {
+  display: flex;
+  justify-content: center;
+  width: 770px;
+  height: 36px;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #videoPreview .selectBox .preview_select {
   width: 120px;
   height: 36px;
   background: #FF914D;
@@ -651,8 +655,9 @@
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #FFFFFF;
+  margin-right: 20px;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #videoPreview .previewVideo-btn {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #videoPreview .selectBox .previewVideo-btn {
   width: 90px;
   height: 36px;
   line-height: 36px;
@@ -663,7 +668,6 @@
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #FFFFFF;
-  margin-left: 340px;
   cursor: pointer;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .introduce {
@@ -1072,11 +1076,9 @@
   height: 764px;
   border: 1px solid #CCCCCC;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom .videoBox {
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom #chatVideo {
   width: 748px;
   height: 387px;
-  border: none;
-  outline: none;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom .event_code {
   width: 748px;

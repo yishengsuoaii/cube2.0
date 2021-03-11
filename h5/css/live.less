@@ -18,32 +18,39 @@
 }
 
 body {
-  width: 750rem/@base_fontsize  !important;
+  width: (750rem/@base_fontsize)  !important;
   min-width: 320px;
   margin: 0 auto;
 
   #live {
-    width: 750rem/@base_fontsize  !important;
+    width: (750rem/@base_fontsize)  !important;
     height: 100vh;
 
     #videoContainer {
       position: relative;
+      .errorImg {
+          display: none;
+          width: (750rem/@base_fontsize);
+          position: absolute;
+          left: 0;
+          top: 0;
+      }
 
       #videoBox {
-        // width: 750rem/@base_fontsize  !important;
+        // width: (750rem/@base_fontsize)  !important;
         display: block;
       }
 
       //顶部倒计时
       #topDown {
         display: none;
-        width: 750rem/@base_fontsize  !important;
-        height: 80rem/@base_fontsize  !important;
+        width: (750rem/@base_fontsize)  !important;
+        height: (80rem/@base_fontsize)  !important;
         background-color: rgba(0, 0, 0, .3);
         text-align: center;
-        line-height: 80rem/@base_fontsize  !important;
+        line-height: (80rem/@base_fontsize)  !important;
         color: #fff;
-        font-size: 28rem/@base_fontsize  !important;
+        font-size: (28rem/@base_fontsize)  !important;
         font-family: Source Han Sans CN;
         font-weight: 400;
         position: absolute;
@@ -53,25 +60,25 @@ body {
       // 中部倒计时
       #centerDown {
         display: none;
-        width: 750rem/@base_fontsize  !important;
-        height: 220rem/@base_fontsize  !important;
+        width: (750rem/@base_fontsize)  !important;
+        height: (220rem/@base_fontsize)  !important;
         position: absolute;
         top: 20%;
         transform: rotateY(-50%);
 
         #dayClass {
-          width: 320rem/@base_fontsize  !important;
-          height: 40rem/@base_fontsize  !important;
+          width: (320rem/@base_fontsize)  !important;
+          height: (40rem/@base_fontsize)  !important;
           background: #FF914D;
-          border-radius: 10rem/@base_fontsize  !important;
-          font-size: 28rem/@base_fontsize  !important;
+          border-radius: (10rem/@base_fontsize)  !important;
+          font-size: (28rem/@base_fontsize)  !important;
           font-family: Source Han Sans CN;
           font-weight: 400;
           color: #FFFFFF;
-          // line-height: 68rem/@base_fontsize  !important;
+          // line-height: (68rem/@base_fontsize)  !important;
           text-align: center;
-          margin: 0 auto 10rem/@base_fontsize  !important;
-          padding: 14rem/@base_fontsize  0;
+          margin: 0 auto (10rem/@base_fontsize)  !important;
+          padding: (14rem/@base_fontsize)  0;
           // vertical-align: bottom;
         }
 
@@ -127,19 +134,19 @@ body {
       // 观众人数
       #showNum {
         display: none;
-        font-size: 24rem/@base_fontsize  !important;
+        font-size: (24rem/@base_fontsize)  !important;
         color: #FF914C;
         position: absolute;
-        left: 20rem/@base_fontsize  !important;
-        bottom: 0rem/@base_fontsize  !important;
+        left: (20rem/@base_fontsize)  !important;
+        bottom: (0rem/@base_fontsize)  !important;
       }
     }
 
 
     #ad-link {
       display: block;
-      width: 750rem/@base_fontsize  !important;
-      height: 88rem/@base_fontsize  !important;
+      width: (750rem/@base_fontsize)  !important;
+      height: (88rem/@base_fontsize)  !important;
       position: relative;
       #ad-image {
         width: 100%;
@@ -149,17 +156,17 @@ body {
 
       .close {
         display: inline-block;
-        width: 34rem/@base_fontsize  !important;
-        height: 34rem/@base_fontsize  !important;
+        width: (34rem/@base_fontsize)  !important;
+        height: (34rem/@base_fontsize)  !important;
         position: absolute;
-        top: 10rem/@base_fontsize  !important;
-        right: 20rem/@base_fontsize  !important;
+        top: (10rem/@base_fontsize)  !important;
+        right: (20rem/@base_fontsize)  !important;
         color: red;
         background-color: #ccc;
         border-radius: 50%;
         text-align: center;
-        font-size: 24rem/@base_fontsize  !important;
-        line-height: 34rem/@base_fontsize  !important;
+        font-size: (24rem/@base_fontsize)  !important;
+        line-height: (34rem/@base_fontsize)  !important;
       }
     }
 
@@ -168,12 +175,12 @@ body {
       margin: 0;
 
       .layui-tab-title {
-        width: 750rem/@base_fontsize  !important;
+        width: (750rem/@base_fontsize)  !important;
 
         li {
-          width: 250rem/@base_fontsize  !important;
+          width: (250rem/@base_fontsize)  !important;
           padding: 0;
-          font-size: 30rem/@base_fontsize  !important;
+          font-size: (30rem/@base_fontsize)  !important;
           font-family: Source Han Sans CN;
           font-weight: 400;
         }
@@ -182,8 +189,8 @@ body {
       //聊天室
       #chat {
         .chatBox {
-          width: 710rem/@base_fontsize  !important;
-          // height: 600rem/@base_fontsize  !important;
+          width: (710rem/@base_fontsize)  !important;
+          // height: (600rem/@base_fontsize)  !important;
           overflow: auto;
           #giveLike {
             position: fixed;
@@ -206,34 +213,34 @@ body {
         }
 
           .chatList {
-            width: 710rem/@base_fontsize  !important;
-            min-height: 64rem/@base_fontsize  !important;
-            margin-bottom: 20rem/@base_fontsize  !important;
+            width: (710rem/@base_fontsize)  !important;
+            min-height: (64rem/@base_fontsize)  !important;
+            margin-bottom: (20rem/@base_fontsize)  !important;
             display: flex;
 
             .chatImage {
-              width: 64rem/@base_fontsize  !important;
-              height: 64rem/@base_fontsize  !important;
+              width: (64rem/@base_fontsize)  !important;
+              height: (64rem/@base_fontsize)  !important;
 
               img {
                 display: block;
-                width: 56rem/@base_fontsize  !important;
-                height: 56rem/@base_fontsize  !important;
+                width: (56rem/@base_fontsize)  !important;
+                height: (56rem/@base_fontsize)  !important;
                 border-radius: 50%;
                 // margin: 0 auto;
               }
             }
 
             .chatInfo {
-              width: 646rem/@base_fontsize  !important;
+              width: (646rem/@base_fontsize)  !important;
 
               .chatName {
-                width: 646rem/@base_fontsize  !important;
-                height: 34rem/@base_fontsize  !important;
-                font-size: 24rem/@base_fontsize  !important;
+                width: (646rem/@base_fontsize)  !important;
+                height: (34rem/@base_fontsize)  !important;
+                font-size: (24rem/@base_fontsize)  !important;
                 font-family: Source Han Sans CN;
                 font-weight: 400;
-                line-height: 34rem/@base_fontsize  !important;
+                line-height: (34rem/@base_fontsize)  !important;
                 color: #666666;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -241,11 +248,11 @@ body {
               }
 
               .chatMessage {
-                width: 646rem/@base_fontsize  !important;
-                font-size: 24rem/@base_fontsize  !important;
+                width: (646rem/@base_fontsize)  !important;
+                font-size: (24rem/@base_fontsize)  !important;
                 font-family: Source Han Sans CN;
                 font-weight: 400;
-                line-height: 40rem/@base_fontsize  !important;
+                line-height: (40rem/@base_fontsize)  !important;
                 color: #999999;
                 word-wrap:break-word;
               }
@@ -254,88 +261,88 @@ body {
         }
 
         .sendBox {
-          width: 710rem/@base_fontsize  !important;
-          height: 98rem/@base_fontsize  !important;
-          border-top: 2rem/@base_fontsize solid #ccc;
+          width: (710rem/@base_fontsize)  !important;
+          height: (98rem/@base_fontsize)  !important;
+          border-top: (2rem/@base_fontsize) solid #ccc;
 
           .messageInput {
-            width: 560rem/@base_fontsize  !important;
-            height: 60rem/@base_fontsize  !important;
-            padding: 0 20rem/@base_fontsize  !important;
+            width: (560rem/@base_fontsize)  !important;
+            height: (60rem/@base_fontsize)  !important;
+            padding: 0 (20rem/@base_fontsize)  !important;
             background: #F0F0F0;
             border-radius: 5px;
-            line-height: 60rem/@base_fontsize  !important;
-            margin-top: 19rem/@base_fontsize  !important;
+            line-height: (60rem/@base_fontsize)  !important;
+            margin-top: (19rem/@base_fontsize)  !important;
             border: 0;
-            font-size: 24rem/@base_fontsize  !important;
+            font-size: (24rem/@base_fontsize)  !important;
             color: #666666;
           }
 
           #send-btn {
             display: inline-block;
-            width: 92rem/@base_fontsize  !important;
-            height: 60rem/@base_fontsize  !important;
-            line-height: 60rem/@base_fontsize  !important;
+            width: (92rem/@base_fontsize)  !important;
+            height: (60rem/@base_fontsize)  !important;
+            line-height: (60rem/@base_fontsize)  !important;
             background: #FF914C;
-            border-radius: 6rem/@base_fontsize  !important;
-            font-size: 24rem/@base_fontsize  !important;
+            border-radius: (6rem/@base_fontsize)  !important;
+            font-size: (24rem/@base_fontsize)  !important;
             font-family: Source Han Sans CN;
             font-weight: 400;
-            line-height: 60rem/@base_fontsize  !important;
+            line-height: (60rem/@base_fontsize)  !important;
             color: #FFFFFF;
             text-align: center;
-            margin-left: 18rem/@base_fontsize  !important;
+            margin-left: (18rem/@base_fontsize)  !important;
           }
         }
       }
 
       // 活动简介
       .brier {
-        width: 710rem/@base_fontsize  !important;
+        width: (710rem/@base_fontsize)  !important;
         overflow-y: auto;
         .brierImage {
-          width: 710rem/@base_fontsize  !important;
+          width: (710rem/@base_fontsize)  !important;
         }
       }
       
 
       // 回放
       .playBack {
-        width: 710rem/@base_fontsize  !important;
+        width: (710rem/@base_fontsize)  !important;
         overflow-y: auto;
         .rec {
-          height: 76rem/@base_fontsize  !important;
-          line-height: 76rem/@base_fontsize  !important;
-          font-size: 28rem/@base_fontsize  !important;
+          height: (76rem/@base_fontsize)  !important;
+          line-height: (76rem/@base_fontsize)  !important;
+          font-size: (28rem/@base_fontsize)  !important;
           font-family: Source Han Sans CN;
           font-weight: 500;
-          line-height: 76rem/@base_fontsize  !important;
+          line-height: (76rem/@base_fontsize)  !important;
           color: #333333;
         }
 
         .backList {
           display: block;
-          width: 710rem/@base_fontsize  !important;
-          height: 174rem/@base_fontsize  !important;
-          // border-top: 2rem/@base_fontsize solid #f1f1f1;
+          width: (710rem/@base_fontsize)  !important;
+          height: (174rem/@base_fontsize)  !important;
+          // border-top: (2rem/@base_fontsize) solid #f1f1f1;
 
           .backContent {
-            width: 710rem/@base_fontsize  !important;
-            height: 172rem/@base_fontsize  !important;
+            width: (710rem/@base_fontsize)  !important;
+            height: (172rem/@base_fontsize)  !important;
             display: flex;
             justify-content: space-between;
             align-items: center;
 
             .backInfo {
-              width: 400rem/@base_fontsize  !important;
-              height: 132rem/@base_fontsize  !important;
+              width: (400rem/@base_fontsize)  !important;
+              height: (132rem/@base_fontsize)  !important;
 
               .backName {
-                height: 80rem/@base_fontsize  !important;
-                font-size: 26rem/@base_fontsize  !important;
+                height: (80rem/@base_fontsize)  !important;
+                font-size: (26rem/@base_fontsize)  !important;
                 font-family: Source Han Sans CN;
                 font-weight: 400;
-                line-height: 40rem/@base_fontsize  !important;
+                line-height: (40rem/@base_fontsize)  !important;
                 color: #666666;
                 text-overflow: -o-ellipsis-lastline;
                 overflow: hidden;
@@ -346,19 +353,19 @@ body {
               }
 
               .backShow {
-                height: 32rem/@base_fontsize  !important;
-                font-size: 24rem/@base_fontsize  !important;
+                height: (32rem/@base_fontsize)  !important;
+                font-size: (24rem/@base_fontsize)  !important;
                 font-family: Source Han Sans CN;
                 font-weight: 400;
-                line-height: 32rem/@base_fontsize  !important;
+                line-height: (32rem/@base_fontsize)  !important;
                 color: #999999;
               }
             }
 
             .backImage {
-              width: 234rem/@base_fontsize  !important;
-              height: 132rem/@base_fontsize  !important;
-              border-radius: 8rem/@base_fontsize  !important;
+              width: (234rem/@base_fontsize)  !important;
+              height: (132rem/@base_fontsize)  !important;
+              border-radius: (8rem/@base_fontsize)  !important;
             }
           }
         }

@@ -9,55 +9,11 @@ searchData.forEach(item => {
 if(infoData.length<2){
     window.location.href = "./../html/media.html"
 }
-var allVideo = videojs('myVideo', {
-    muted: false,
-    controls: true,
-    preload: 'auto',
-    width: '700',
-    height: '328',
-}, function () {
-    this.on("playing", function () {
-        singleTwo.pause()
-        singleOne.pause()
-    })
-    this.on('loadedmetadata', function () {
-        // console.log(this.duration())
-
-    })
-})
-var singleOne = videojs('mergeOne', {
-    muted: false,
-    controls: true,
-    preload: 'auto',
-    width: '300',
-    height: '170',
-}, function () {
-    this.on("playing", function () {
-        singleTwo.pause()
-        allVideo.pause()
-    })
-    this.on('loadedmetadata', function () {
-        // console.log(this.duration())
-
-    })
-})
-var singleTwo = videojs('mergeTwo', {
-    muted: false,
-    controls: true,
-    preload: 'auto',
-    width: '300',
-    height: '170'
-}, function () {
-    this.on("playing", function () {
-        singleOne.pause()
-        allVideo.pause()
-    })
-    this.on('loadedmetadata', function () {
-        // console.log(this.duration())
-
-    })
-})
+var allVideo = ''
+var singleOne = ''
+var singleTwo = ''
 var mergeTimer = null
+var mergeFlag = false
 $(function () {
 
     $.ajax({
@@ -73,11 +29,26 @@ $(function () {
         },
         success: res => {
             if (res.msg === 'success') {
-
-                singleOne.src({
-                    type: 'application/x-mpegURL',
-                    src: res.data.video_rui
-                })
+                singleOne = new Aliplayer({
+                    "id": "mergeOne",
+                    "source": res.data.video_rui,
+                    "width": "300px",
+                    "height": "170px",
+                    "autoplay": false,
+                    "isLive": false,
+                    "rePlay": false,
+                    "playsinline": true,
+                    "preload": true,
+                    "controlBarVisibility": "hover",
+                    "useH5Prism": true,
+                  })
+                  singleOne.on('play',function(e) {
+                    singleTwo.pause()
+                    if(mergeFlag){
+                        allVideo.pause()
+                    }
+                    
+                 })
             } else {
                 layer.msg('获取视频失败,请重试!')
             }
@@ -96,11 +67,25 @@ $(function () {
         },
         success: res => {
             if (res.msg === 'success') {
-
-                singleTwo.src({
-                    type: 'application/x-mpegURL',
-                    src: res.data.video_rui
-                })
+                singleTwo = new Aliplayer({
+                    "id": "mergeTwo",
+                    "source":res.data.video_rui,
+                    "width": "300px",
+                    "height": "170px",
+                    "autoplay": false,
+                    "isLive": false,
+                    "rePlay": false,
+                    "playsinline": true,
+                    "preload": true,
+                    "controlBarVisibility": "hover",
+                    "useH5Prism": true,
+                  })
+                  singleTwo.on('play',function(e) {
+                    singleOne.pause()
+                    if(mergeFlag){
+                        allVideo.pause()
+                    }
+                 })
             } else {
                 layer.msg('获取视频失败,请重试!')
             }
@@ -185,10 +170,24 @@ $(function () {
                 success: res => {
                     if (res.msg === 'sucess') {
                         $('#showDialog').show()
-                        allVideo.src({
-                            type: 'application/x-mpegURL',
-                            src: res.data.video_uri
-                        })
+                        allVideo = new Aliplayer({
+                            "id": "myVideo",
+                            "source": res.data.video_uri,
+                            "width": "700px",
+                            "height": "328px",
+                            "autoplay": false,
+                            "isLive": false,
+                            "rePlay": false,
+                            "playsinline": true,
+                            "preload": true,
+                            "controlBarVisibility": "hover",
+                            "useH5Prism": true,
+                          })
+                          allVideo.on('play',function(e) {
+                            singleTwo.pause()
+                            singleOne.pause()
+                         })
+                        mergeFlag = true
                         clearInterval(mergeTimer)
                     } else if (res.msg === 'assigned') {
                         layer.msg('等待合并....')

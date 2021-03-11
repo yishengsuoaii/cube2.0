@@ -17,6 +17,9 @@ let timers = null
 let timer2 = null
 let videoPoster = ''
 let videoJs = ''
+let videoSrc = ''
+let playSrc = ''
+var videoFlag = 1
 var sessionTimers = null
 var sessionCode = null
 var streamCode = null
@@ -41,6 +44,7 @@ $(function () {
             if (res.msg === 'success') {
                 userName = res.data.event_title
                 describe = res.data.event_description
+                $('title').text(userName)
                 // 是否开启广告
                 if (res.data.event_ads_flag) {
                     $('#ad-link').show()
@@ -79,7 +83,13 @@ $(function () {
                     preload: 'auto',
                     aspectRatio: '16:9',
                     poster: videoPoster,
-                })
+                },function(){
+                    this.on('error', function(){
+                        this.errorDisplay.close()
+                        $('.errorImg').show()
+                    })
+                  })
+                playSrc = res.data.event_playback_url
                  // 是否开启倒计时
                 if (res.data.event_countdown) {
                     downtime(res.data.event_start_time, res.data.live_countdown,res.data.event_playback_flag,res.data.event_playback_url)
@@ -100,6 +110,20 @@ $(function () {
                     getNumber()
                 }
             }
+        }
+    })
+    $('.errorImg').on('click',function(){
+        $(this).hide()
+        if(videoFlag === 1) {
+            videoJs.src({
+                type: 'application/x-mpegURL',
+                src: playSrc
+            })
+        } else {
+            videoJs.src({
+                type: 'application/x-mpegURL',
+                src: videoSrc
+            })
         }
     })
     //在限人数
@@ -192,6 +216,7 @@ $(function () {
     })
     // 定时器
     function downtime(startTime, value,flag,url) {
+        videoFlag = 1
         var date1 = new Date(startTime.replace('T', ' ')).getTime()
         var date2 = Date.now()
         var day = 00
@@ -300,6 +325,7 @@ $(function () {
 
     }
     function downtimes(startTime,flag,url) {
+        videoFlag = 1
         var date1 = new Date(startTime.replace('T', ' ')).getTime()
         var date2 = Date.now()
         clearInterval(timer2)
@@ -335,11 +361,12 @@ $(function () {
             },
             success: function (res) {
                 if (res.msg === 'success') {
+                    videoFlag = 2
                     videoJs.src({
                         type: 'application/x-mpegURL',
-                        src: res.data
-                            .pull_stream_m3u8_url
+                        src: res.data.pull_stream_m3u8_url
                     })
+                    videoSrc = res.data.pull_stream_m3u8_url
                 }
             }
         })
@@ -355,7 +382,7 @@ $(function () {
     chatSocket.onmessage = function (e) {
         const data = JSON.parse(e.data);
         // 管理员-彬-www.baidu.com-精彩-90
-        var message = data.message.split('-')
+        var message = data.message.split('%-%')
         if(message[0]==='admin') {
             var str = `
         <div class="chatList" id="${message[4]}">
@@ -395,9 +422,9 @@ $(function () {
     $('#send-btn').on('click', function () {
         if ($.trim($('.messageInput').val()).length > 0) {
             chatSocket.send(JSON.stringify({
-                'message': 'user-' + decodeURI(infoData[0][1]) + '-' + infoData[1][
+                'message': 'user%-%' + decodeURI(infoData[0][1]) + '%-%' + infoData[1][
                     1
-                ] + '-' + $('.messageInput').val()
+                ] + '%-%' + $('.messageInput').val()
             }))
         }
         $('.messageInput').val('')
@@ -407,8 +434,8 @@ $(function () {
         if (event.keyCode == "13") {
             if ($.trim($(this).val()).length > 0) {
                 chatSocket.send(JSON.stringify({
-                    'message': 'user-' + decodeURI(infoData[0][1]) + '-' + infoData[
-                        1][1] + '-' + $(this).val()
+                    'message': 'user%-%' + decodeURI(infoData[0][1]) + '%-%' + infoData[
+                        1][1] + '%-%' + $(this).val()
                 }))
             }
             $(this).val('')
@@ -453,7 +480,7 @@ $(function () {
    }
    function sendHeartbeat(){
     setInterval(function() { 
-            $.post("http://8.131.240.119/kafka/live", 
+            $.post("http://heartbeat.cube.vip/kafka/live", 
             {"plugin_name":"H5","sessions_code":sessionCode,"stream_code":streamCode,"info":""})
         },1000*60) 
    }

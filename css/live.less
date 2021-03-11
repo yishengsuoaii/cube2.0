@@ -670,7 +670,7 @@
                                     .encryption_right {
                                         width: 375px;
                                         height: 667px;
-                                        margin-left: 232px;
+                                        margin-left: 243px;
                                         margin-top: 50px;
 
                                         background: url('./../image/visit-code.png') no-repeat;
@@ -684,7 +684,7 @@
                                             color: #666666;
                                             position: absolute;
                                             top: 0;
-                                            left: -42px;
+                                            left: -45px;
                                         }
                                     }
                                 }
@@ -729,15 +729,19 @@
                                     margin-bottom: 20px;
                                     padding-left: 22px;
                                 }
-                                .preview-video {
+                                #viewVideos {
                                     width: 750px;
-                                    height: 428px;
-                                    margin: 20px 22px 20px;
-                                    position: relative;
+                                    height: 422px;
+                                    background-color: #000;
+                                    margin-left: 20px;
+                                    margin-bottom: 20px;
+                                }
+                                .selectBox {
+                                    display: flex;
+                                    justify-content: center;
+                                    width: 770px;
+                                    height: 36px;
                                     .preview_select {
-                                        position: absolute;
-                                        bottom: 0;
-                                        right: -140px;
                                         width: 120px;
                                         height: 36px;
                                         background: #FF914D;
@@ -749,22 +753,23 @@
                                         font-family: Source Han Sans CN;
                                         font-weight: 400;
                                         color: #FFFFFF;
+                                        margin-right: 20px;
+                                    }
+                                    .previewVideo-btn {
+                                        width: 90px;
+                                        height: 36px;
+                                        line-height: 36px;
+                                        text-align: center;
+                                        background: #F2591A;
+                                        border-radius: 5px;
+                                        font-size: 20px;
+                                        font-family: Source Han Sans CN;
+                                        font-weight: 400;
+                                        color: #FFFFFF;
+                                        cursor: pointer;
                                     }
                                 }
-                                .previewVideo-btn {
-                                    width: 90px;
-                                    height: 36px;
-                                    line-height: 36px;
-                                    text-align: center;
-                                    background: #F2591A;
-                                    border-radius: 5px;
-                                    font-size: 20px;
-                                    font-family: Source Han Sans CN;
-                                    font-weight: 400;
-                                    color: #FFFFFF;
-                                    margin-left: 340px;
-                                    cursor: pointer;
-                                }
+                                
                             }
 
                             // 活动简介
@@ -1218,11 +1223,9 @@
                             height: 764px;
                             border: 1px solid #CCCCCC;
 
-                            .videoBox {
+                            #chatVideo {
                                 width: 748px;
                                 height: 387px;
-                                border: none;
-                                outline: none;
                             }
 
                             .event_code {

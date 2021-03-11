@@ -134,12 +134,7 @@ $(function () {
     var scoreLocation = 0
     // 聊天VideoJs
     var chatM3u8 = ''
-    var chatVideoJs = videojs('chatVideo', {
-        controls: true,
-        preload: 'auto',
-        width: '748',
-        height: "387",
-    })
+    var chatVideoJs = ''
     // video dom
     var domCameraOne = document.getElementById('cameraOne')
     var domCameraTwo = document.getElementById('cameraTwo')
@@ -393,15 +388,25 @@ $(function () {
                 success: res => {
                     if (res.msg === 'success') {
                         serverIp = res.data.ip
-                        chatVideoJs.src({
-                            type: 'application/x-mpegURL',
-                            src: chatM3u8
-                        })
                         pullFlow(serverIp, domCameraOne, 0)
                         pullFlow(serverIp, domCameraTwo, 1)
                         pullFlow(serverIp, domCameraThree, 2)
                         pullFlow(serverIp, domCameraFour, 3)
                         pullFlow(serverIp, domLiveRight, 4)
+                        chatVideoJs = new Aliplayer({
+                            "id": "chatVideo",
+                            "source": chatM3u8,
+                            "width": "748px",
+                            "height": "387px",
+                            "autoplay": true,
+                            "isLive": true,
+                            "rePlay": false,
+                            "playsinline": true,
+                            "preload": true,
+                            "controlBarVisibility": "hover",
+                            "useH5Prism": true,
+                            "waitingTimeout":20
+                          })
                         getIps()
                         if (sessionStorage.getItem(event_code)) {
                             allInfo = JSON.parse(sessionStorage.getItem(event_code))
@@ -532,7 +537,6 @@ $(function () {
             if(serverIp !== ''){
                 if (index === 1) {
                     chatVideoJs.play()
-    
                 } else {
                     chatVideoJs.pause()
                 }
@@ -2272,7 +2276,7 @@ $(function () {
             chatNum++
             $('.chatNum').text(chatNum)
             const data = JSON.parse(e.data);
-            var message = data.message.split("-")
+            var message = data.message.split("%-%")
             if (message[0] === 'admin') {
                 var str = `
 				<div class="chatList">
@@ -2308,7 +2312,7 @@ $(function () {
         $('#chat-message-submit').on('click', function () {
             if ($.trim($('#chat-message-input').val()).length > 0) {
                 chatSocket.send(JSON.stringify({
-                    'message': 'admin-' + userName + '-' + userImage + '-' + $(
+                    'message': 'admin%-%' + userName + '%-%' + userImage + '%-%' + $(
                         '#chat-message-input').val()
                 }))
             }
@@ -2319,7 +2323,7 @@ $(function () {
             if (event.keyCode == "13") {
                 if ($.trim($(this).val()).length > 0) {
                     chatSocket.send(JSON.stringify({
-                        'message': 'admin-' + userName + '-' + userImage + '-' + $(this).val()
+                        'message': 'admin%-%' + userName + '%-%' + userImage + '%-%' + $(this).val()
                     }))
                 }
                 $(this).val('')

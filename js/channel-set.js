@@ -12,7 +12,6 @@ $(function () {
     // 频道设置切换侧边栏
     $('.aside-list').on('click', function () {
         $(this).addClass('active-aside').siblings('li').removeClass('active-aside')
-        videoJs.pause()
         $('.channel-set-item').hide().eq($(this).index()).show()
     })
 
@@ -43,14 +42,9 @@ $(function () {
     // 暂时频道添加视频预告
     let videoUrl = null
     let videoCode = null
-    var videoJs = videojs('viewVideos', {
-        muted: false,
-        controls: true,
-        preload: 'auto',
-        width: '750',
-        height: "428",
-    })
-
+    var videoJs = ''
+    // 是否已经添加过预览视频标志
+    var previewNull = true
     
 
     // 1 是添加视频预告,2是添加转场视频
@@ -109,10 +103,20 @@ $(function () {
                     $("#preview-open").removeAttr('checked');
                    }
                    if(res.data.event_playback_uri!==null) {
-                       videoJs.src({
-                        type: 'application/x-mpegURL',
-                        src: res.data.event_playback_uri
-                    })
+                    previewNull = false
+                    videoJs = new Aliplayer({
+                        "id": "viewVideos",
+                        "source": res.data.event_playback_uri,
+                        "width": "750px",
+                        "height": "422px",
+                        "autoplay": false,
+                        "isLive": false,
+                        "rePlay": false,
+                        "playsinline": true,
+                        "preload": true,
+                        "controlBarVisibility": "hover",
+                        "useH5Prism": true,
+                      })
                    }
                     form.render('checkbox')
                 }
@@ -220,15 +224,15 @@ $(function () {
             var length = filterVideoData.length > pageIndex * 6 ? 6 : filterVideoData.length - (pageIndex - 1) * 6
             for (var i = 0; i < length; i++) {
                 var index = i + (pageIndex - 1) * 6
-                str += `<div class="vd-content-main-list"><video class="vd-video video-js vjs-default-skin"  preload="auto" controls></video><div class="vd-content-main-list-info">
+                str += `<div class="vd-content-main-list"><img src="${filterVideoData[index].video_description_image}" onerror="this.src='./../image/video-page.png'" class="vd-video"><div class="vd-content-main-list-info">
 				<span class="vd-content-main-list-name">${filterVideoData[index].video_profile}</span>
 				<span class="vd-content-main-list-time">上传时间: <i>${filterVideoData[index].video_create_time}</i></span>
 				<span class="vd-content-main-list-num">观看量: <i>${filterVideoData[index].video_number_views}</i> 次</span>
-			</div>
-			<div class="layui-form video-right-check">
-            <input type="radio" name="preview" lay-filter="video-checkbox" data-value="${filterVideoData[index].video_code}"  class="vd-content-main-list-check" value="${filterVideoData[index].video_id}" ${filterVideoData[index].checked}/></div>
-			</div>
-			`
+                </div>
+                <div class="layui-form video-right-check">
+                <input type="radio" name="preview" lay-filter="video-checkbox" data-value="${filterVideoData[index].video_code}"  class="vd-content-main-list-check" value="${filterVideoData[index].video_id}" ${filterVideoData[index].checked}/></div>
+                </div>
+			    `
             }
             if (filterVideoData.length > 0) {
                 $('.vd-content-main-top').html(str)
@@ -301,10 +305,24 @@ $(function () {
                     if (res.msg === 'success') {
                        
                         if(differenceFlag  === 1) {
-                            videoJs.src({
-                                type: 'application/x-mpegURL',
-                                src: res.data.video_rui
-                            })
+                            if(previewNull){
+                                previewNull = false
+                                videoJs = new Aliplayer({
+                                    "id": "viewVideos",
+                                    "source": res.data.video_rui,
+                                    "width": "750px",
+                                    "height": "422px",
+                                    "autoplay": false,
+                                    "isLive": false,
+                                    "rePlay": false,
+                                    "playsinline": true,
+                                    "preload": true,
+                                    "controlBarVisibility": "hover",
+                                    "useH5Prism": true,
+                                })
+                            } else {
+                                videoJs.loadByUrl(res.data.video_rui)
+                            }
                             videoUrl = res.data.video_rui
                         }
                         // else {

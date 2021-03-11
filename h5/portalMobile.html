@@ -193,7 +193,10 @@
                             <p class="wonderful-video-describe">
                                 ${item.video_profile}
                             </p>
-                            <img src="${item.video_description_image}" onerror="this.src='./../image/mobile-cover.png'" alt="" class="wonderful-video-cover">
+                            <div class="coverImg">
+                                <img src="${item.video_description_image}" onerror="this.src='./../image/mobile-cover.png'" alt="" class="wonderful-video-cover">
+                                <img src="./image/play.png" class="playIcon">
+                            </div>
                             <p class="wonderful-video-info">
                                 <span>${item.datetime}</span>
                                 <span class="wonderful-video-view">

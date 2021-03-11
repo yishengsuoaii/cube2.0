@@ -859,7 +859,7 @@ let vm = new Vue({
         duration: 0,
         playing: false,
         currentTime: 0,
-        showDialogFlag: false
+        showDialogFlag: false,
     },
     created() {
         this.getVideoUrl()
@@ -914,17 +914,19 @@ let vm = new Vue({
                 }
             }).then(res => {
                 if (res.data.msg = 'success') {
-                    videojs('myVideo', {
-                        muted: false,
-                        controls: true,
-                        preload: 'auto',
-                        width: '700',
-                        height: "328",
-                        sources: [{
-                            type: 'application/x-mpegURL',
-                            src: res.data.data.video_rui
-                        }]
-                    })
+                    var player = new Aliplayer({
+                        "id": "myVideo",
+                        "source": res.data.data.video_rui,
+                        "width": "700px",
+                        "height": "328px",
+                        "autoplay": false,
+                        "isLive": false,
+                        "rePlay": false,
+                        "playsinline": true,
+                        "preload": true,
+                        "controlBarVisibility": "hover",
+                        "useH5Prism": true,
+                      })
                 }
             }).catch(err => {
                 console.log(err)

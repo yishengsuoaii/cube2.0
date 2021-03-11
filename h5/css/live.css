@@ -23,6 +23,13 @@ body #live {
 body #live #videoContainer {
   position: relative;
 }
+body #live #videoContainer .errorImg {
+  display: none;
+  width: 10rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 body #live #videoContainer #videoBox {
   display: block;
 }

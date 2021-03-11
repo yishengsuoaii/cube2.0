@@ -194,10 +194,24 @@ body .wonderful-video .wonderful-video-describe {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-body .wonderful-video .wonderful-video-cover {
+body .wonderful-video .coverImg {
   width: 9.46666667rem;
   height: 5.33333333rem;
-  margin: 0 0.26666667rem;
+  padding: 0 0.26666667rem;
+  position: relative;
+}
+body .wonderful-video .coverImg .wonderful-video-cover {
+  width: 9.46666667rem;
+  height: 5.33333333rem;
+}
+body .wonderful-video .coverImg .playIcon {
+  width: 1.28rem;
+  height: 1.28rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 body .wonderful-video .wonderful-video-info {
   height: 0.85333333rem;
