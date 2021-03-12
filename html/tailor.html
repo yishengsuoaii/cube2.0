@@ -20,18 +20,20 @@
     <title>裁剪</title>
     <style>
             .layui-layer-title {
-                    background-color: #FF914D !important;
-                    color: #fff !important;
-                    font-size: 20px !important;
-                    font-family: Source Han Sans CN;
-                    font-weight: 300;
-        
-                }
-                .layui-layer-btn .layui-layer-btn0 {
-                    background-color: #FF914D !important;
-                    border: 0;
-                }
-            </style>
+                background-color: #FF914D !important;
+                color: #fff !important;
+                font-size: 20px !important;
+                font-family: Source Han Sans CN;
+                font-weight: 300;
+            }
+            .layui-layer-btn .layui-layer-btn0 {
+                background-color: #FF914D !important;
+                border: 0;
+            }
+            [v-cloak] {
+                display: none;
+            }
+    </style>
 </head>
 
 <body>
@@ -102,7 +104,7 @@
                             <child-video :duration="duration" :playing="playing" :currentplayingtime="currentTime" @play="playVideo"
                                 @pause="pauseVideo" @stop="stopVideo" @success="showDialogFlag=true"></child-video>
                             <!-- 弹窗 -->
-                            <div v-if="showDialogFlag" id="showDialog">
+                            <div v-cloak v-if="showDialogFlag" id="showDialog" >
                                 <p class="hintName">提示</p>
                                 <div class="hintCont">
                                     <p class="saveSuccess"><i class="layui-icon layui-icon-ok-circle"

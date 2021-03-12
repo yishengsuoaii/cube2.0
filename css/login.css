@@ -6,14 +6,11 @@
     position: relative;
 }
 .recordsBox {
-    width: 1200px;
+    width: 100%;
     height: 20px;
-    margin: 0 auto;
     text-align: center;
     position: absolute;
     bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%)
 }
 .recordsBox a {
     color: #999;
@@ -101,10 +98,11 @@
 }
 
 #verification {
+
     border: none;
 }
 
-.vebtn {
+#getCode {
     height: 41px;
     margin-right: -20px;
     padding: 0 6px;

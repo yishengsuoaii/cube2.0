@@ -761,6 +761,8 @@ $(function () {
                     clearDefault()
                     layer.msg('视频正在上传,请耐心等待!')
                     $('#uploadVideo').attr('disabled', true)
+                    $('.loadingBox').show()
+                    $('.loadingText').text('视频上传中...')
                     $.ajax({
                         type: 'POST',
                         url: 'http://www.cube.vip/video_editing/upload_video/',
@@ -772,12 +774,12 @@ $(function () {
                         contentType: false,
                         success: function (res) {
                             if (res.msg === "success") {
-
                                 monitorState(res.data.upload_action_id)
                                 sessionStorage.setItem('taskId', res.data
                                     .upload_action_id)
 
                             } else{
+                                $('.loadingBox').hide()
                                 layer.msg('视频上传失败,请稍后重试!')
                                 $('#uploadVideo').removeAttr('disabled')
                             }

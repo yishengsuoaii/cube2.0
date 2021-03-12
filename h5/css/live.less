@@ -28,17 +28,11 @@ body {
 
     #videoContainer {
       position: relative;
-      .errorImg {
-          display: none;
-          width: (750rem/@base_fontsize);
-          position: absolute;
-          left: 0;
-          top: 0;
-      }
-
+  
       #videoBox {
-        // width: (750rem/@base_fontsize)  !important;
-        display: block;
+        width: (750rem/@base_fontsize)  !important;
+        height: (421.875rem/@base_fontsize);
+        overflow: hidden;
       }
 
       //顶部倒计时
@@ -65,6 +59,7 @@ body {
         position: absolute;
         top: 20%;
         transform: rotateY(-50%);
+        z-index: 999;
 
         #dayClass {
           width: (320rem/@base_fontsize)  !important;
@@ -138,7 +133,7 @@ body {
         color: #FF914C;
         position: absolute;
         left: (20rem/@base_fontsize)  !important;
-        bottom: (0rem/@base_fontsize)  !important;
+        bottom: (90rem/@base_fontsize)  !important;
       }
     }
 

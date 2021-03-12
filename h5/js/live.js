@@ -17,9 +17,7 @@ let timers = null
 let timer2 = null
 let videoPoster = ''
 let videoJs = ''
-let videoSrc = ''
-let playSrc = ''
-var videoFlag = 1
+let playFlay = false
 var sessionTimers = null
 var sessionCode = null
 var streamCode = null
@@ -77,19 +75,6 @@ $(function () {
                 // 活动封面
                 videoPoster = res.data.event_video_cover_page
                 userImg = res.data.event_video_cover_page
-                videoJs = videojs('videoBox', {
-                    muted: false,
-                    controls: true,
-                    preload: 'auto',
-                    aspectRatio: '16:9',
-                    poster: videoPoster,
-                },function(){
-                    this.on('error', function(){
-                        this.errorDisplay.close()
-                        $('.errorImg').show()
-                    })
-                  })
-                playSrc = res.data.event_playback_url
                  // 是否开启倒计时
                 if (res.data.event_countdown) {
                     downtime(res.data.event_start_time, res.data.live_countdown,res.data.event_playback_flag,res.data.event_playback_url)
@@ -110,20 +95,6 @@ $(function () {
                     getNumber()
                 }
             }
-        }
-    })
-    $('.errorImg').on('click',function(){
-        $(this).hide()
-        if(videoFlag === 1) {
-            videoJs.src({
-                type: 'application/x-mpegURL',
-                src: playSrc
-            })
-        } else {
-            videoJs.src({
-                type: 'application/x-mpegURL',
-                src: videoSrc
-            })
         }
     })
     //在限人数
@@ -216,7 +187,6 @@ $(function () {
     })
     // 定时器
     function downtime(startTime, value,flag,url) {
-        videoFlag = 1
         var date1 = new Date(startTime.replace('T', ' ')).getTime()
         var date2 = Date.now()
         var day = 00
@@ -300,9 +270,19 @@ $(function () {
                 }
                 if(flag){
                     if(url!==null){
-                        videoJs.src({
-                            type: 'application/x-mpegURL',
-                            src: url
+                        playFlay = true
+                        videoJs =  new Aliplayer({
+                            "id": "videoBox",
+                            "source": url,
+                            "width":'10rem',
+                            "height":'5.625rem',
+                            "autoplay": false,
+                            "isLive": false,
+                            "rePlay": false,
+                            "playsinline": true,
+                            "preload": true,
+                            "controlBarVisibility": "click",
+                            "useH5Prism": true,
                         })
                         $('#centerDown').on('click',function(){
                             $('#centerDown').hide()
@@ -311,8 +291,8 @@ $(function () {
                         videoJs.on('play',function(){
                             $('#topDown').hide()
                             $('#centerDown').hide()
+                            
                         })
-                        
                     }
                 }
             },1000)
@@ -325,7 +305,6 @@ $(function () {
 
     }
     function downtimes(startTime,flag,url) {
-        videoFlag = 1
         var date1 = new Date(startTime.replace('T', ' ')).getTime()
         var date2 = Date.now()
         clearInterval(timer2)
@@ -333,9 +312,19 @@ $(function () {
             var intDiff = parseInt((date1 - date2) / 1000)
             if(flag){
                 if(url!==null){
-                    videoJs.src({
-                        type: 'application/x-mpegURL',
-                        src: url
+                    playFlay = true
+                    videoJs =  new Aliplayer({
+                        "id": "videoBox",
+                        "source": url,
+                        "width":'10rem',
+                        "height":'5.625rem',
+                        "autoplay": false,
+                        "isLive": false,
+                        "rePlay": false,
+                        "playsinline": true,
+                        "preload": true,
+                        "controlBarVisibility": "click",
+                        "useH5Prism": true,
                     })
                 }
             }
@@ -361,12 +350,24 @@ $(function () {
             },
             success: function (res) {
                 if (res.msg === 'success') {
-                    videoFlag = 2
-                    videoJs.src({
-                        type: 'application/x-mpegURL',
-                        src: res.data.pull_stream_m3u8_url
+                    if(playFlay){
+                        videoJs.dispose()
+                    }
+                    
+                    videoJs =  new Aliplayer({
+                        "id": "videoBox",
+                        "source": res.data.pull_stream_m3u8_url,
+                        "width":'10rem',
+                        "height":'5.625rem',
+                        "autoplay": false,
+                        "isLive": true,
+                        "rePlay": false,
+                        "playsinline": true,
+                        "preload": true,
+                        "controlBarVisibility": "click",
+                        "useH5Prism": true,
+                        "waitingTimeout":10
                     })
-                    videoSrc = res.data.pull_stream_m3u8_url
                 }
             }
         })

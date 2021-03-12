@@ -8,8 +8,8 @@
     <title>直播间</title>
     <link rel="stylesheet" href="../layui/css/layui.css">
     <link rel="stylesheet" href="./css/live.css">
-    <link rel="stylesheet" href="./../css/video-js.min.css">
-    <script src="./../commonJs/video.min.js"></script>
+    <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.9.3/skins/default/aliplayer-min.css"/>
+    <script src="./../commonJs/aliplayer-h5-min.js"></script>
     <script src="../commonJs/jquery-3.2.1.min.js"></script>
     <script src="./../commonJs/flexible.js"></script>
     <script src="../layui/layui.js"></script>
@@ -21,10 +21,8 @@
     <div id="live">
         <div id="videoContainer">
             <!-- " -->
-            <video id="videoBox" controls preload="auto" class="video-js vjs-big-play-centered vjs-fluid"
-                x5-video-player-fullscreen="true" webkit-playsinline="true" x-webkit-airplay="true" playsinline="true"
-                x5-playsinline>
-            </video>
+            <div id="videoBox" class="prism-player">
+            </div>
             <p id="topDown"></p>
             <div id="centerDown">
                 <p id="dayClass"></p>
@@ -39,7 +37,6 @@
                 </div>
             </div>
             <span id="showNum"></span>
-            <img src="" alt="" class="errorImg">
         </div>
         <a id="ad-link">
             <img id="ad-image" alt="">

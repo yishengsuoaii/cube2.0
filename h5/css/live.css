@@ -23,15 +23,10 @@ body #live {
 body #live #videoContainer {
   position: relative;
 }
-body #live #videoContainer .errorImg {
-  display: none;
-  width: 10rem;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
 body #live #videoContainer #videoBox {
-  display: block;
+  width: 10rem !important;
+  height: 5.625rem;
+  overflow: hidden;
 }
 body #live #videoContainer #topDown {
   display: none;
@@ -54,6 +49,7 @@ body #live #videoContainer #centerDown {
   position: absolute;
   top: 20%;
   transform: rotateY(-50%);
+  z-index: 999;
 }
 body #live #videoContainer #centerDown #dayClass {
   width: 4.26666667rem !important;
@@ -116,7 +112,7 @@ body #live #videoContainer #showNum {
   color: #FF914C;
   position: absolute;
   left: 0.26666667rem !important;
-  bottom: 0rem !important;
+  bottom: 1.2rem !important;
 }
 body #live #ad-link {
   display: block;
