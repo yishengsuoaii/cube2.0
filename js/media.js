@@ -949,7 +949,7 @@ $(function () {
                                 setTimeout(() => {
                                     layer.closeAll();
                                     _that.parents('.videoList').find('.videoDescribe').text($('#editDesText').val())
-                                    _that.parents('.videoList').find('.videoBox img').attr('src',window.URL.createObjectURL(imgFile))
+                                    _that.parents('.videoList').find('.videoBox .videoImg').attr('src',window.URL.createObjectURL(imgFile))
                                     $('#editDesText').val('')
                                     $('#editTextLength').text('0/140')
                                 }, 500)
@@ -1015,7 +1015,7 @@ $(function () {
                                 setTimeout(() => {
                                     layer.closeAll();
                                     _that.parents('.videoList').find('.videoDescribe').text($('#editDesText').val())
-                                    _that.parents('.videoList').find('.videoBox img').attr('src',window.URL.createObjectURL(imgFile))
+                                    _that.parents('.videoList').find('.videoBox .videoImg').attr('src',window.URL.createObjectURL(imgFile))
                                     $('#editDesText').val('')
                                     $('#editTextLength').text('0/140')
                                 }, 500)
