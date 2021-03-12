@@ -11,8 +11,6 @@ if(sessionStorage.getItem('cubeInfo')){
 }else {
     window.location.href='http://www.cube.vip/h5/wxlogin.html?key=' + window.location.search.substring(1).split("=")[1]
 }
-
-
 let timers = null
 let timer2 = null
 let videoPoster = ''
@@ -362,6 +360,7 @@ $(function () {
                         "autoplay": false,
                         "isLive": true,
                         "rePlay": false,
+                        "cover": videoPoster,
                         "playsinline": true,
                         "preload": true,
                         "controlBarVisibility": "click",
