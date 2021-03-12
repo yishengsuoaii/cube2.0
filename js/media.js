@@ -762,7 +762,7 @@ $(function () {
                     layer.msg('视频正在上传,请耐心等待!')
                     $('#uploadVideo').attr('disabled', true)
                     $('.loadingBox').show()
-                    $('.loadingText').text('视频上传中...')
+                    $('.loadingText').text('视频上传中,请勿刷新页面...')
                     $.ajax({
                         type: 'POST',
                         url: 'http://www.cube.vip/video_editing/upload_video/',
