@@ -1,0 +1,200 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+#container {
+    width: 100%;
+    min-width: 1200px;
+    height: 100vh;
+    background: #F9F9F9;
+
+    .parentTop {
+        width: 100%;
+        height:0.8rem;
+        box-sizing: border-box;
+        background-color: #FFFFFF;
+        padding: 0 0.5rem 0 0.37rem;
+        display: flex;
+        justify-content: space-between;
+
+        .logImage {
+            width: (186/100rem);
+            height: (64/100rem);
+            margin-top: (8/100rem);
+        }
+
+        .loginNameDiv {
+            min-width: (350/100rem);
+            height: (30/100rem);
+            margin-top: (25/100rem);
+            display: flex;
+            justify-content: space-between;
+
+            .messageBox {
+                width: (26/100rem);
+                height: (30/100rem);
+                position: relative;
+
+                .messageIcon {
+                    width: (26/100rem);
+                    height: (22/100rem);
+                    margin-top: (4/100rem);
+                    cursor: pointer;
+                }
+
+                #hot {
+                    display: none;
+                    position: absolute;
+                    top: 0;
+                    right: -(4/100rem);
+                }
+            }
+
+            .nameContent {
+                min-width: (100/100rem);
+                text-align: center;
+
+                .userName {
+                    height: (22/100rem) !important;
+                    font-size: (22/100rem);
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #999999;
+                }
+            }
+
+            #userExit {
+                cursor: pointer;
+                font-size: (22/100rem);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #999999;
+            }
+        }
+    }
+
+    #mainContent {
+        width: 100%;
+        min-height: calc(100vh - 0.8rem);
+        display: flex;
+
+        .leftMenu {
+            width: (220/100rem);
+            min-height: calc(100vh - 0.8rem);
+            background-color: #FFFFFF;
+            box-shadow: (1/100rem) (2/100rem) (10/100rem) (0/100rem) rgba(102, 102, 102, 0.1);
+
+            li {
+                width: (220/100rem);
+                height: (80/100rem);
+                cursor: pointer;
+
+                a {
+                    display: flex;
+                    align-items: center;
+                    width: (216/100rem);
+                    height: (80/100rem);
+                    font-size: (30/100rem);
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #666666;
+                    border-left:(4/100rem) solid #fff;
+                    .menu-icon {
+                        margin: 0 (10/100rem) 0 (30/100rem);
+                    }
+                }
+
+                .menuActive {
+                    color: #F2591A;
+                    background: #F9F9F9;
+                    border-left: (4/100rem) solid #F2591A;
+                }
+            }
+
+        }
+
+        .parentMain {
+            flex: 1;
+            padding: (30/100rem) 0 0 (50/100rem);
+            background: #F9F9F9;
+        }
+    }
+
+}
+
+/* 消息弹窗 */
+#messageDialog {
+    display: none;
+    width: (540/100rem);
+    position: absolute;
+    top: (100/100rem);
+    right: (90/100rem);
+    background-color: #fff;
+    box-shadow: (0/100rem) (1/100rem) (6/100rem) (0/100rem) rgba(51, 51, 51, 0.1);
+    #messageDialogName {
+        height: (40/100rem);
+        border-bottom: (1/100rem) solid rgba(153, 153, 153, 0.2);
+        line-height: (40/100rem);
+        padding-left: (20/100rem);
+        font-size: (18/100rem);
+        font-family: Source Han Sans CN;
+        font-weight: 400;
+        color: #999999;
+    }
+    #messageContent {
+        width: (540/100rem);
+        height: (365/100rem);
+        position: relative;
+        overflow: auto;
+
+        .notMessage {
+            width: (540/100rem);
+            height: (30/100rem);
+            font-size: (24/100rem);
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: #999999;
+            line-height: (30/100rem);
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .messageList {
+            height: (70/100rem);
+            width: (500/100rem);
+            padding: 0 (20/100rem);
+            cursor: pointer;
+            border-bottom: (1/100rem) solid rgba(153, 153, 153, 0.2);
+
+            &:hover {
+                background-color: #f0f0f0;
+            }
+
+            .messageName {
+                height: (40/100rem);
+                line-height: (40/100rem);
+                font-size: (18/100rem);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #666;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .messageTime {
+                height: (30/100rem);
+                line-height: (30/100rem);
+                font-size: (16/100rem);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #999;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+    }
+}

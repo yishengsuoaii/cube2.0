@@ -396,8 +396,8 @@ $(function () {
                         chatVideoJs = new Aliplayer({
                             "id": "chatVideo",
                             "source": chatM3u8,
-                            "width": "748px",
-                            "height": "387px",
+                            "width": "7.48rem",
+                            "height": "3.87rem",
                             "autoplay": true,
                             "isLive": true,
                             "rePlay": false,
@@ -513,7 +513,7 @@ $(function () {
         $('#pullUrlCopy').on('click',function(){
             layer.open({
                 type: 1,
-                area: ['426px', '160px'],
+                area: ['4.26rem', '1.60rem'],
                 title: ['推流地址', 'color:#fff'],
                 content: $('#copy-dialog'),
                 shade: 0.3,
@@ -1185,8 +1185,8 @@ $(function () {
         $('#live-headset').on('click', function () {
             if (allInfo.liveHeadFlag) {
                 $(this).attr('src', './../image/headset-close.png').css({
-                    width: '24px',
-                    height: '22px'
+                    width: '0.24rem',
+                    height: '0.22rem'
                 })
                 allInfo.liveHeadFlag = false
                 domLiveRight.volume = 0
@@ -1194,8 +1194,8 @@ $(function () {
             } else {
                 allInfo.liveHeadFlag = true
                 $(this).attr('src', './../image/headset-open.png').css({
-                    width: '24px',
-                    height: '18px'
+                    width: '0.24rem',
+                    height: '0.18rem'
                 })
                 domLiveRight.volume = 1
             }
@@ -1217,14 +1217,14 @@ $(function () {
             // 直播耳机静音
             if (allInfo.liveHeadFlag) {
                 $('#live-headset').attr('src', './../image/headset-open.png').css({
-                    width: '24px',
-                    height: '18px'
+                    width: '0.24rem',
+                    height: '0.18rem'
                 })
                 domLiveRight.volume = 1
             } else {
                 $('#live-headset').attr('src', './../image/headset-close.png').css({
-                    width: '24px',
-                    height: '22px'
+                    width: '0.24rem',
+                    height: '0.22rem'
                 })
                 domLiveRight.volume = 0
             }
@@ -1340,8 +1340,8 @@ $(function () {
 
             layer.open({
                 type: 1,
-                area: ['1170px', '722px'],
-                title: ['比分牌设置', 'color:#fff;background-color:#FF914D;font-size: 20px;'],
+                area: ['11.70rem', '7.22rem'],
+                title: ['比分牌设置', 'color:#fff;background-color:#FF914D;font-size: 0.2rem;height:0.42rem;line-height:0.42rem'],
                 content: $('#scoreDialog'),
                 shade: 0.3,
                 shadeClose: false,
@@ -1386,6 +1386,7 @@ $(function () {
             checkIndex = Number($(this).attr('data-id'))
             renderStyle()
         })
+        
 
         // 渲染比分牌样式
         function renderStyle() {
@@ -1394,7 +1395,10 @@ $(function () {
             ossImg.setAttribute('display', 'block')
             ossImg.setAttribute('id', 'ossImg')
             ossImg.setAttribute('src', styleArr[selectTypeIndex][checkIndex].scorecardurl)
+            
             $('#areaCont').empty().show().append(ossImg)
+             
+            
             var img = new Image();
             var canvas2 = document.createElement('canvas');
             var ctx = canvas2.getContext('2d');
@@ -1618,7 +1622,7 @@ $(function () {
                 var image = new Image()
                 image.setAttribute('src', scoreData.src)
                 image.setAttribute('id', 'model')
-                image.style.width = '130px'
+                image.style.width = '1.3rem'
                 $('#check-model').html(image)
 
                 var imgs = new Image()
@@ -1776,7 +1780,7 @@ $(function () {
                 var image = new Image()
                 image.setAttribute('src', scoreData.src)
                 image.setAttribute('id', 'model')
-                image.style.width = '130px'
+                image.style.width = '1.3rem'
                 $('#check-model').html(image)
 
                 var imgs = new Image()

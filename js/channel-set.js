@@ -107,8 +107,8 @@ $(function () {
                     videoJs = new Aliplayer({
                         "id": "viewVideos",
                         "source": res.data.event_playback_uri,
-                        "width": "750px",
-                        "height": "422px",
+                        "width": "7.5rem",
+                        "height": "4.22rem",
                         "autoplay": false,
                         "isLive": false,
                         "rePlay": false,
@@ -149,7 +149,7 @@ $(function () {
             $('.check-video-num').text(0)
             layer.open({
                 type: 1,
-                area: ['1170px', '753px'],
+                area: ['11.7rem', '7.69rem'],
                 title: ['添加视频', 'color:#fff'],
                 content: $('#video-dialog'),
                 shade: 0.3,
@@ -188,7 +188,7 @@ $(function () {
             $('.check-video-num').text(0)
             layer.open({
                 type: 1,
-                area: ['1170px', '753px'],
+                area: ['11.7rem', '7.69rem'],
                 title: ['添加视频', 'color:#fff'],
                 content: $('#video-dialog'),
                 shade: 0.3,
@@ -310,8 +310,8 @@ $(function () {
                                 videoJs = new Aliplayer({
                                     "id": "viewVideos",
                                     "source": res.data.video_rui,
-                                    "width": "750px",
-                                    "height": "422px",
+                                    "width": "7.5rem",
+                                    "height": "4.22rem",
                                     "autoplay": false,
                                     "isLive": false,
                                     "rePlay": false,
@@ -420,6 +420,8 @@ $(function () {
             headers: {
                 token: sessionStorage.getItem('token')
             },
+            acceptMime:'image/png',
+            exts:'png',
             data: {
                 event_id: event_id
             },
