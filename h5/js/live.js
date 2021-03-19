@@ -286,6 +286,85 @@ $(function () {
                             "preload": true,
                             "controlBarVisibility": "click",
                             "useH5Prism": true,
+                            "skinLayout": [
+                                {
+                                  "name": "bigPlayButton",
+                                  "align": "cc",
+                                },
+                                {
+                                  "name": "H5Loading",
+                                  "align": "cc"
+                                },
+                                {
+                                  "name": "errorDisplay",
+                                  "align": "tlabs",
+                                  "x": 0,
+                                  "y": 0
+                                },
+                                {
+                                  "name": "infoDisplay"
+                                },
+                                {
+                                  "name": "tooltip",
+                                  "align": "blabs",
+                                  "x": 0,
+                                  "y": 56
+                                },
+                                {
+                                  "name": "thumbnail"
+                                },
+                                {
+                                  "name": "controlBar",
+                                  "align": "blabs",
+                                  "x": 0,
+                                  "y": 0,
+                                  "children": [
+                                    {
+                                      "name": "progress",
+                                      "align": "blabs",
+                                      "x": 0,
+                                      "y": 44
+                                    },
+                                    {
+                                      "name": "playButton",
+                                      "align": "tl",
+                                      "x": 15,
+                                      "y": 12
+                                    },
+                                    {
+                                      "name": "timeDisplay",
+                                      "align": "tl",
+                                      "x": 10,
+                                      "y": 7
+                                    },
+                                    {
+                                      "name": "fullScreenButton",
+                                      "align": "tr",
+                                      "x": 10,
+                                      "y": 12
+                                    },
+                                    {
+                                      "name": "subtitle",
+                                      "align": "tr",
+                                      "x": 15,
+                                      "y": 12
+                                    },
+                                    {
+                                      "name": "setting",
+                                      "align": "tr",
+                                      "x": 15,
+                                      "y": 12
+                                    },
+                                    {
+                                      "name": "volume",
+                                      "align": "tr",
+                                      "x": 5,
+                                      "y": 10
+                                    }
+                                  ]
+                                }
+                              ]
+
                         })
                         $('#centerDown').on('click',function(){
                             $('#centerDown').hide()
@@ -331,6 +410,84 @@ $(function () {
                         "preload": true,
                         "controlBarVisibility": "click",
                         "useH5Prism": true,
+                        "skinLayout": [
+                            {
+                              "name": "bigPlayButton",
+                              "align": "cc",
+                            },
+                            {
+                              "name": "H5Loading",
+                              "align": "cc"
+                            },
+                            {
+                              "name": "errorDisplay",
+                              "align": "tlabs",
+                              "x": 0,
+                              "y": 0
+                            },
+                            {
+                              "name": "infoDisplay"
+                            },
+                            {
+                              "name": "tooltip",
+                              "align": "blabs",
+                              "x": 0,
+                              "y": 56
+                            },
+                            {
+                              "name": "thumbnail"
+                            },
+                            {
+                              "name": "controlBar",
+                              "align": "blabs",
+                              "x": 0,
+                              "y": 0,
+                              "children": [
+                                {
+                                  "name": "progress",
+                                  "align": "blabs",
+                                  "x": 0,
+                                  "y": 44
+                                },
+                                {
+                                  "name": "playButton",
+                                  "align": "tl",
+                                  "x": 15,
+                                  "y": 12
+                                },
+                                {
+                                  "name": "timeDisplay",
+                                  "align": "tl",
+                                  "x": 10,
+                                  "y": 7
+                                },
+                                {
+                                  "name": "fullScreenButton",
+                                  "align": "tr",
+                                  "x": 10,
+                                  "y": 12
+                                },
+                                {
+                                  "name": "subtitle",
+                                  "align": "tr",
+                                  "x": 15,
+                                  "y": 12
+                                },
+                                {
+                                  "name": "setting",
+                                  "align": "tr",
+                                  "x": 15,
+                                  "y": 12
+                                },
+                                {
+                                  "name": "volume",
+                                  "align": "tr",
+                                  "x": 5,
+                                  "y": 10
+                                }
+                              ]
+                            }
+                          ]
                     })
                 }
             }
@@ -422,7 +579,85 @@ $(function () {
                         "preload": true,
                         "controlBarVisibility": "click",
                         "useH5Prism": true,
-                        "waitingTimeout":10
+                        "waitingTimeout":10,
+                        "skinLayout": [
+                            {
+                              "name": "bigPlayButton",
+                              "align": "cc",
+                            },
+                            {
+                              "name": "H5Loading",
+                              "align": "cc"
+                            },
+                            {
+                              "name": "errorDisplay",
+                              "align": "tlabs",
+                              "x": 0,
+                              "y": 0
+                            },
+                            {
+                              "name": "infoDisplay"
+                            },
+                            {
+                              "name": "tooltip",
+                              "align": "blabs",
+                              "x": 0,
+                              "y": 56
+                            },
+                            {
+                              "name": "thumbnail"
+                            },
+                            {
+                              "name": "controlBar",
+                              "align": "blabs",
+                              "x": 0,
+                              "y": 0,
+                              "children": [
+                                {
+                                  "name": "progress",
+                                  "align": "blabs",
+                                  "x": 0,
+                                  "y": 44
+                                },
+                                {
+                                  "name": "playButton",
+                                  "align": "tl",
+                                  "x": 15,
+                                  "y": 12
+                                },
+                                {
+                                  "name": "timeDisplay",
+                                  "align": "tl",
+                                  "x": 10,
+                                  "y": 7
+                                },
+                                {
+                                  "name": "fullScreenButton",
+                                  "align": "tr",
+                                  "x": 10,
+                                  "y": 12
+                                },
+                                {
+                                  "name": "subtitle",
+                                  "align": "tr",
+                                  "x": 15,
+                                  "y": 12
+                                },
+                                {
+                                  "name": "setting",
+                                  "align": "tr",
+                                  "x": 15,
+                                  "y": 12
+                                },
+                                {
+                                  "name": "volume",
+                                  "align": "tr",
+                                  "x": 5,
+                                  "y": 10
+                                }
+                              ]
+                            }
+                          ]
                     })
                     videoJs.on('play',function(){
                         $('#topDown').hide()
