@@ -13,12 +13,12 @@ if(sessionStorage.getItem('cubeInfo')){
 }
 let timers = null
 let timer2 = null
-let videoPoster = ''
 let videoJs = ''
 let playFlay = false
 var sessionTimers = null
 var sessionCode = null
 var streamCode = null
+var stateTimer = null
 
 var userName = ''
 var describe = ''
@@ -69,9 +69,11 @@ $(function () {
                 }
                 // 活动简介
                 $('.brierImage').attr('src', res.data.event_description_image)
-               
+               $('#videoBox').css({
+                   background:'url('+res.data.event_video_cover_page+')',
+                   backgroundSize:'100% 100%'
+               })
                 // 活动封面
-                videoPoster = res.data.event_video_cover_page
                 userImg = res.data.event_video_cover_page
                  // 是否开启倒计时
                 if (res.data.event_countdown) {
@@ -260,7 +262,7 @@ $(function () {
                     getVideoUrl()
                 }
             }, 1000)
-            setTimeout(()=>{
+            // setTimeout(()=>{
                 if (value === 1) {
                     $('#centerDown').show()
                 } else {
@@ -269,6 +271,9 @@ $(function () {
                 if(flag){
                     if(url!==null){
                         playFlay = true
+                        $('#videoBox').css({
+                            background:'',
+                        })
                         videoJs =  new Aliplayer({
                             "id": "videoBox",
                             "source": url,
@@ -293,7 +298,7 @@ $(function () {
                         })
                     }
                 }
-            },1000)
+            // },1000)
             
         } else {
             $('#topDown').hide()
@@ -311,6 +316,9 @@ $(function () {
             if(flag){
                 if(url!==null){
                     playFlay = true
+                    $('#videoBox').css({
+                        background:'',
+                    })
                     videoJs =  new Aliplayer({
                         "id": "videoBox",
                         "source": url,
@@ -338,6 +346,52 @@ $(function () {
         }
 
     }
+    // 获取直播状态
+    getState()
+    function getState() {
+         stateTimer = setInterval(()=>{
+            $.ajax({
+                url: 'http://www.cube.vip/event/h5_get_ip/',
+                type: 'GET',
+                data: {
+                    event_uri_key: event_uri_key
+                },
+                success: function (res) {
+                    if (res.msg === 'success') {
+                        setTimeout(()=>{
+                            clearInterval(stateTimer)
+                            clearInterval(timers)
+                            clearInterval(timer2)
+                            $('#topDown').hide()
+                            $('#centerDown').hide()
+                            getVideoUrl()
+                        },300)
+                        
+                    }
+                }
+            })
+         },1000*60)
+         $.ajax({
+            url: 'http://www.cube.vip/event/h5_get_ip/',
+            type: 'GET',
+            data: {
+                event_uri_key: event_uri_key
+            },
+            success: function (res) {
+                if (res.msg === 'success') {
+                    setTimeout(()=>{
+                        clearInterval(stateTimer)
+                        clearInterval(timers)
+                        clearInterval(timer2)
+                        $('#topDown').hide()
+                        $('#centerDown').hide()
+                        getVideoUrl()
+                    },300)
+                }
+            }
+        })
+
+    }
     // 获取视频url
     function getVideoUrl() {
         $.ajax({
@@ -351,6 +405,10 @@ $(function () {
                     if(playFlay){
                         videoJs.dispose()
                     }
+                    $('#videoBox').css({
+                        background:'',
+                    })
+                     // 活动封面
                     
                     videoJs =  new Aliplayer({
                         "id": "videoBox",
@@ -360,12 +418,15 @@ $(function () {
                         "autoplay": false,
                         "isLive": true,
                         "rePlay": false,
-                        "cover": videoPoster,
                         "playsinline": true,
                         "preload": true,
                         "controlBarVisibility": "click",
                         "useH5Prism": true,
                         "waitingTimeout":10
+                    })
+                    videoJs.on('play',function(){
+                        $('#topDown').hide()
+                        $('#centerDown').hide()
                     })
                 }
             }

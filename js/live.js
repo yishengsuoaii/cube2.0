@@ -2267,7 +2267,48 @@ $(function () {
                 data: formData
             })
         }
+        // 文档操作开始---------------------------------------------------------------------------------------------------------
 
+        // 打开文档弹窗
+        $('#selectDoc').on('click',function(){
+            layer.open({
+                type: 1,
+                area: ['11.70rem', '7.22rem'],
+                title: ['幻灯片设置', 'color:#fff;background-color:#FF914D;font-size: 0.2rem;height:0.42rem;line-height:0.42rem'],
+                content: $('#docDialog'),
+                shade: 0.3,
+                shadeClose: true,
+                scrollbar: false,
+                move: false,
+                end: function () {
+                    console.log(123)
+                }
+            })
+        })
+        // 选中当前幻灯片样式
+        $('.docSItem').on('click',function() {
+            $(this).addClass('docActiveItem').siblings('.docSItem').removeClass('docActiveItem')
+        })
+        // 上传文档
+        upload.render({
+            elem: '#addDoc', //绑定元素
+            url: '/upload/', //上传接口
+            accept: 'file',
+            acceptMime:'application/pdf',
+            exts:'pdf',
+            done: function(res){
+              //上传完毕回调
+            },
+            error: function(){
+              //请求异常回调
+            }
+          });
+
+        // 保存幻灯片
+        $('#docSave').on('click',function(){
+            layer.closeAll()
+        })
+        // 文档操作结束---------------------------------------------------------------------------------------------------------
         // WebSocket聊天室--------------------------------------------------------------------------------------------------
         const chatSocket = new WebSocket(
             'ws://' +

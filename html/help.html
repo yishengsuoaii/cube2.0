@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>帮助</title>
+    <link href="./../favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="./../css/help.css">
+    <script src="./../commonJs/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="topBox">
+            <div class="topContent">
+                <img src="./../image/logo.png" class="logo" alt="">
+                <div class="navBox">
+                    <a href="./../index.html">首页</a>
+                    <a href="./download.html">下载</a>
+                    <a href="./help.html">帮助</a>
+                    <a href="#">产品定价</a>
+                </div>
+                <div class="loginBox">
+                    <a href="./../login.html" class="login">登录</a><a href="./../login.html?register=true" class="signIn">免费注册</a>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <div class="helpCenter">
+                <span class="helpTitle">帮助中心</span>
+                <div class="searchBox">
+                    <input type="text" class="searchInput" placeholder="关键字搜索"><span class="searchBtn">搜索</span>
+                </div>
+            </div>
+            <div class="helpCont">
+                <ul class="navbar">
+                    <li class="navItem">
+                        <div class="navTitle" data-id="0">
+                            <a class="link">
+                                <span class="linkTitle">新手入门</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="navItem">
+                        <div class="menuTitle" data-id="1">
+                            <a class="link">
+                                <span class="linkTitle">使用手册</span>
+                                <img class="icon-down" src="./../image/arrows.png" alt="">
+                            </a>
+                        </div>
+                        <ul class="submenu">
+                            <li class="menuItem"><a>频道</a></li>
+                            <li class="menuItem"><a>部落</a></li>
+                            <li class="menuItem"><a>媒体库</a></li>
+                            <li class="menuItem"><a>账户</a></li>
+                            <li class="menuItem"><a>个人设置</a></li>
+                        </ul>
+                    </li>
+                    <li class="navItem">
+                        <div class="navTitle" data-id="2">
+                            <a class="link">
+                                <span class="linkTitle">问题汇总</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="navItem">
+                        <div class="menuTitle" data-id="3">
+                            <a class="link">
+                                <span class="linkTitle">视频教程</span>
+                                <img class="icon-down" src="./../image/arrows.png" alt="">
+                            </a>
+                        </div>
+                        <ul class="submenu">
+                            <li class="menuItem"><a>频道</a></li>
+                            <li class="menuItem"><a>部落</a></li>
+                            <li class="menuItem"><a>媒体库</a></li>
+                            <li class="menuItem"><a>账户</a></li>
+                            <li class="menuItem"><a>个人设置</a></li>
+                        </ul>
+                    </li>
+                    <li class="navItem">
+                        <div class="navTitle" data-id="4">
+                            <a class="link">
+                                <span class="linkTitle">常规操作</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="navItem">
+                        <div class="menuTitle" data-id="5">
+                            <a class="link">
+                                <span  class="linkTitle">直播方案</span>
+                                <img class="icon-down" src="./../image/arrows.png" alt="">
+                            </a>
+                        </div>
+                        <ul class="submenu">
+                            <li class="menuItem"><a>频道</a></li>
+                            <li class="menuItem"><a>部落</a></li>
+                            <li class="menuItem"><a>媒体库</a></li>
+                            <li class="menuItem"><a>账户</a></li>
+                            <li class="menuItem"><a>个人设置</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="navCont">
+                    <div class="currentPosition ">
+                       当前位置/<span class="currentParent">新手入门</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    <script>
+        $(function(){
+            // 有菜单
+            $('.menuTitle').on('click',function () {
+                if(!$(this).hasClass('open')){
+                    $(this).addClass('open')
+                    $(this).siblings('.submenu').slideToggle()
+                    $(this).find('.icon-down').toggleClass('unfold')
+                    $(this).parent().siblings('.navItem')
+                    .find('.menuTitle').removeClass('open').find('.icon-down').removeClass('unfold').parents('.menuTitle').siblings('.submenu').slideUp()
+                    $('.currentParent').attr('data-id',$(this).attr('data-id')).html($(this).find('.linkTitle').html())
+                } else {
+                    $(this).removeClass('open')
+                    $(this).siblings('.submenu').slideToggle()
+                    $(this).find('.icon-down').toggleClass('unfold')
+                    console.log(2)
+                }
+            })
+
+            // 无菜单
+            $('.navTitle').on('click',function () {
+                $(this).addClass('navTActive').parent().siblings('.navItem').find('.navTitle').removeClass('navTActive')
+                $('.currentParent').attr('data-id',$(this).attr('data-id')).html($(this).find('.linkTitle').html())
+            })
+
+
+        })
+
+        
+    </script>
+</body>
+</html>
