@@ -125,7 +125,6 @@
 }
 .container #content .helpCont {
   width: 1200px;
-  height: 820px;
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
@@ -140,7 +139,7 @@
 .container #content .helpCont .navbar .navItem .navTitle {
   width: 236px;
   height: 59px;
-  border-left: 4px solid #F9F9F9;
+  border-left: 4px solid #FFF;
   border-bottom: 1px solid #F9F9F9;
   font-size: 24px;
   font-family: Source Han Sans CN;
@@ -202,12 +201,13 @@
 .container #content .helpCont .navbar .navItem .submenu .menuItem {
   height: 59px;
   line-height: 59px;
-  border-left: 4px solid #F9F9F9;
+  border-left: 4px solid #FFF;
   border-bottom: 1px solid #F9F9F9;
   font-size: 20px;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #444444;
+  cursor: pointer;
 }
 .container #content .helpCont .navbar .navItem .submenu .menuItem:hover {
   background-color: #F9F9F9;
@@ -216,11 +216,15 @@
 }
 .container #content .helpCont .navbar .navItem .submenu .menuItem a {
   text-decoration: none;
-  padding: 0 20px;
+  padding: 0 40px;
+}
+.container #content .helpCont .navbar .navItem .submenu .menuActive {
+  background-color: #F9F9F9;
+  border-left: 4px solid #F2591A;
+  color: #F2591A;
 }
 .container #content .helpCont .navCont {
   width: 930px;
-  height: 820px;
   background-color: #fff;
 }
 .container #content .helpCont .navCont .currentPosition {
@@ -234,5 +238,74 @@
   border-bottom: 2px solid #F9F9F9;
 }
 .container #content .helpCont .navCont .currentPosition .currentParent {
+  cursor: pointer;
   color: #F2591A;
+}
+.container #content .helpCont .navCont .currentPosition .text {
+  color: #444444;
+}
+.container #content .helpCont .navCont .issue {
+  width: 850px;
+  min-height: 668px;
+  padding: 30px 40px;
+}
+.container #content .helpCont .navCont .issue .issueContent {
+  width: 850px;
+  min-height: 668px;
+}
+.container #content .helpCont .navCont .issue .issueContent .issueTBox .issueTitle {
+  height: 30px;
+  font-size: 20px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  line-height: 30px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+.container #content .helpCont .navCont .issue .issueContent .issueTBox .issueTitle:hover {
+  color: #F2591A;
+}
+.container #content .helpCont .navCont .issue .issueContent .issueTCont {
+  display: none;
+}
+.container #content .helpCont .navCont .issue .issueContent .issueTCont .textTitle {
+  height: 30px;
+  font-size: 30px;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #333333;
+  line-height: 30px;
+  margin-bottom: 20px;
+}
+.container #content .helpCont .navCont .issue .issueContent .issueTCont .subtitle {
+  height: 30px;
+  font-size: 24px;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #444444;
+  line-height: 30px;
+  margin-bottom: 30px;
+}
+.container #content .helpCont .navCont .issue .issueContent .issueTCont .straightMatter {
+  font-size: 20px;
+  font-weight: 400;
+  font-family: Source Han Sans CN;
+  color: #666;
+  line-height: 30px;
+  margin-bottom: 20px;
+}
+.container #content .helpCont .navCont .issue .issueContent .issueTCont .videos {
+  width: 783px;
+  height: 440px;
+  outline: none;
+}
+.container #content .helpCont .navCont .issue .issue2 {
+  display: none;
+}
+.container #content .helpCont .navCont .issue .issue4 {
+  display: none;
+}
+.container #content .helpCont .navCont .issue .issue7 {
+  display: none;
 }

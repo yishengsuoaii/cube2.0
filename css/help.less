@@ -125,7 +125,7 @@
        }
        .helpCont {
            width: 1200px;
-           height: 820px;
+        //    height: 820px;
            margin-top: 10px;
            display: flex;
            justify-content: space-between;
@@ -139,7 +139,7 @@
                    .navTitle {
                        width: 236px;
                        height: 59px;
-                       border-left: 4px solid #F9F9F9;
+                       border-left: 4px solid #FFF;
                        border-bottom: 1px solid #F9F9F9;
                         font-size: 24px;
                         font-family: Source Han Sans CN;
@@ -203,12 +203,13 @@
                         .menuItem {
                             height: 59px;
                             line-height: 59px;
-                            border-left: 4px solid #F9F9F9;
+                            border-left: 4px solid #FFF;
                             border-bottom: 1px solid #F9F9F9;
                             font-size: 20px;
                             font-family: Source Han Sans CN;
                             font-weight: 400;
                             color: #444444;
+                            cursor: pointer;
                             &:hover {
                                 background-color: #F9F9F9;
                                 border-left: 4px solid #F2591A;
@@ -216,15 +217,20 @@
                                }
                             a {
                                 text-decoration: none;
-                                padding: 0 20px;
+                                padding: 0 40px;
                             }
+                        }
+                        .menuActive {
+                            background-color: #F9F9F9;
+                            border-left: 4px solid #F2591A;
+                            color: #F2591A;
                         }
                    }
                }
            }
            .navCont {
                width: 930px;
-               height: 820px;
+            //    height: 820px;
                background-color: #fff;
                .currentPosition {
                     height: 90px;
@@ -236,8 +242,83 @@
                     color: #444444;
                     border-bottom: 2px solid #F9F9F9;;
                     .currentParent {
+                        cursor: pointer;
                         color: #F2591A;
                     }
+                    .text {
+                        color: #444444;
+                    }
+               }
+               .issue {
+                width: 850px;
+                min-height: 668px;
+                padding: 30px 40px;
+                .issueContent { // 所有问题总样式
+                    width: 850px;
+                    min-height: 668px;
+                    .issueTBox {// 所有问题标题box
+                        .issueTitle { // 所有问题标题样式
+                            height: 30px;
+                            font-size: 20px;
+                            font-family: Source Han Sans CN;
+                            font-weight: 400;
+                            color: #666666;
+                            line-height: 30px;
+                            margin-bottom: 30px;
+                            cursor: pointer;
+                            &:hover{
+                                color: #F2591A;
+                            }
+                        }
+                    }
+                    
+                    .issueTCont { // 所有问题内容box
+                        display: none;
+
+                        .textTitle {// 正文标题
+                            height: 30px;
+                            font-size: 30px;
+                            font-family: Source Han Sans CN;
+                            font-weight: 500;
+                            color: #333333;
+                            line-height: 30px;
+                            margin-bottom: 20px;
+                        }
+                        .subtitle{ // 正文小标题
+                            height: 30px;
+                            font-size: 24px;
+                            font-family: Source Han Sans CN;
+                            font-weight: 500;
+                            color: #444444;
+                            line-height: 30px;
+                            margin-bottom: 30px;
+                        }
+                        .straightMatter { // 正文
+                            font-size: 20px;
+                            font-weight: 400;
+                            font-family: Source Han Sans CN;
+                            color: #666;
+                            line-height: 30px;
+                            margin-bottom: 20px;
+
+                        }
+                        .videos {
+                            width: 783px;
+                            height: 440px;
+                            outline:none;
+                        }
+                    }
+                }
+                .issue2 { // 单个问题样式
+                    display: none;
+                }
+                .issue4 { // 单个问题样式
+                    display: none;
+                }
+                .issue7 { // 单个问题样式
+                    display: none;
+                }
+                
                }
            }
        }

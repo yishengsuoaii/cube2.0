@@ -1567,15 +1567,15 @@ $(function () {
                 $('#teamNameTwo').focus()
                 return
             }
-            if (teamInfo[3] === null || teamInfo[2] === null) {
-                layer.msg('请上传队伍logo!')
-                return
-            }
+            // if (teamInfo[3] === null || teamInfo[2] === null) {
+            //     layer.msg('请上传队伍logo!')
+            //     return
+            // }
 
-            if (selectTypeIndex === null && checkIndex === null) {
-                layer.msg('请选择比分牌样式!')
-                return
-            }
+            // if (selectTypeIndex === null && checkIndex === null) {
+            //     layer.msg('请选择比分牌样式!')
+            //     return
+            // }
 
             takeScreenshot()
             layer.closeAll()
@@ -1588,6 +1588,7 @@ $(function () {
                 allowTaint: true,
                 useCORS: true,
                 backgroundColor: "transparent",
+                scale: 2,
                 onrendered: function (canvas) {
                     sessionStorage.setItem('score' + event_code, JSON.stringify({
                         src: canvas.toDataURL('image/png', 1.0),
