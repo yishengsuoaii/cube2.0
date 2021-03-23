@@ -53,7 +53,6 @@
                             <li class="menuItem" data-id="7"><a>部落</a></li>
                             <li class="menuItem" data-id="8"><a>媒体库</a></li>
                             <li class="menuItem" data-id="9"><a>账户</a></li>
-                            <li class="menuItem" data-id="10"><a>个人设置</a></li>
                         </ul>
                     </li>
                     <li class="navItem">
@@ -371,14 +370,53 @@
                                 
                             </div> 
                         </div>
+                        <div class="issueContent issue8">
+                            <div class="issueTBox">
+                                <p class="issueTitle">视频库介绍</p>
+                                <p class="issueTitle">暂存库介绍</p>
+                            </div>
+                            <div class="issueTCont">
+                                <p class="textTitle">视频库介绍</p>
+                                <p class="subtitle">视频库里的视频内容可以永久保存，视频可以剪辑、合并、上传、下载、编辑预览内容。但请勿保存或上传违规视频，否则将会被删除，严重者将会做封号处理。</p>
+                                <img src="./../image/help_img32.png" width="798" height="452" style="margin-bottom: 30px;">
+                                <P class="subtitle">剪辑</P>
+                                <p class="straightMatter">勾选想要进行剪辑的视频，点击剪辑按钮，进入视频剪辑界面。视频可以预览，然后鼠标拖动视频进度条选择想要截取的视频起始时间点击，再选择需要结束的视频时间进行点击，就可以剪出一段自己想要的视频。点击播放按钮，可以对截取视频进行预览，如果想重新截取视频，想重新点击删除，即可清除当前操作，可以重新选择时间。选取好时间，对视频输入描述，点击裁剪按钮保存视频，完成剪辑视频操作。</p>
+                                <img src="./../image/help_img33.png" width="801" height="387" style="margin-bottom: 30px;">
+
+                                <P class="subtitle">合并</P>
+                                <p class="straightMatter">勾选两个想要进行合并拼接的视频，点击合并按钮，进入视频合并界面。视频可以进行拖拽排列先后顺序，然后输入视频描述，点击提交合并完成可以去视频库查看合并好的视频，也可以留在当前页面预览合并好的视频。</p>
+                                <img src="./../image/help_img34.png" width="790" height="406" style="margin-bottom: 30px;">
+
+                                <P class="subtitle">编辑和下载</P>
+                                <p class="straightMatter">点击编辑按钮，可以上传更改视频封面，也可以更改视频描述。点击下载按钮，可以对当前视频进行下载。</p>
+                                <img src="./../image/help_img35.png" width="633" height="248" style="margin-bottom: 30px;">
+                            </div> 
+                            <div class="issueTCont">
+                                <p class="textTitle">暂存库介绍</p>
+                                <p class="straightMatter">直播后视频内容会实时存储到媒体库直播暂存库里，视频可以进行下载、编辑、删除等操作。但是暂存库存储时间只有三天，三天到期会自动删除视频，如需要永久保存，直播后需及时将要保存的视频移至视频库保存。</p>
+                                <img src="./../image/help_img36.png" width="788" height="443" style="margin-bottom: 30px;">
+                                
+                            </div> 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-       
+       <div id="gotop_btn" onclick="window.scroll(0, 0)">
+        <img src="./../image/goTop.png" alt="">
+       </div>
     </div>
     <script>
         $(function(){
+            window.addEventListener('scroll', function() {
+            
+            var top = document.documentElement.scrollTop || document.body.scrollTop;
+            if(top>=200) {
+                $('#gotop_btn').show()
+             } else {
+                $('#gotop_btn').hide()
+             }
+        })
             // 有菜单---------
             $('.menuTitle').on('click',function () {
                 if(!$(this).hasClass('open')){// 初始状态时没展开  点击一次展开  

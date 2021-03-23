@@ -1299,7 +1299,6 @@ $(function () {
                         if (res.msg === 'success') {
                             downLoadNum = 0
                             clearInterval(downTimer)
-                            // downLoadVideo(res.data.video_mp4_uri, "video", "mp4")
                             window.open(res.data.video_mp4_uri,'_self')
                             sessionStorage.removeItem('uploadflag')
                             $('.layui-tab-item .video-upload').removeClass('video-upload-wait')
@@ -1329,32 +1328,6 @@ $(function () {
             }
         }
 
-        // 下载视频
-        function downLoadVideo(url, strFileName, strMimeType) {
-            var xmlHttp = null;
-            if (window.ActiveXObject) {
-                // IE6, IE5 浏览器执行代码
-                xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-            } else if (window.XMLHttpRequest) {
-                // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-                xmlHttp = new XMLHttpRequest();
-            }
-            //2.如果实例化成功，就调用open（）方法：
-            if (xmlHttp != null) {
-                xmlHttp.open("get", url, true);
-                xmlHttp.responseType = 'blob'; //关键
-                xmlHttp.send();
-                xmlHttp.onreadystatechange = doResult; //设置回调函数
-            }
-
-            function doResult() {
-                if (xmlHttp.readyState == 4) { //4表示执行完成
-                    if (xmlHttp.status == 200) { //200表示执行成功
-                        download(xmlHttp.response, strFileName, strMimeType);
-                    }
-                }
-            }
-        }
 
         // 视频合并
         $('#merge').on('click', function (e) {
