@@ -123,6 +123,33 @@ $(function () {
         <button type="button" class="layui-btn" id="zoom-btn">开启</button>
     </div>`
 
+    // 云幻灯片dom
+    var slidesHtml =   `
+    <div id="lanternSlide">
+            <div id="lanternStart" class="defaultStyle">文档切出</div>
+            <div id="lanternPreview" class="activeStyle">
+                <img  alt="" id="lanternImage">
+            </div> 
+            <div class="lanternOperation">
+                <p class="operationTop">
+                    <span class="pageNum activeStyle">0/0</span>
+                    <span class="pageFirst activeStyle">首页</span>
+                    <span class="pageEnd activeStyle">尾页</span>
+                </p>
+                <p class="operationBottom">
+                    <span class="selectPage">
+                        <span>第</span>
+                        <input type="text" class="pageInput activeStyle">
+                        <span>页</span>
+                    </span>
+                    <span class="pagePre activeStyle">上一页</span>
+                    <span class="pageNext activeStyle">下一页</span>
+                </p>
+            </div>
+            <div id="selectDoc" class="activeStyle">选择文档</div>
+        </div>
+    `
+
 
     // logo
     var logoFlag = 'True'
@@ -175,6 +202,25 @@ $(function () {
         autoState:'off',
         // zoomIn
         zoomState: 'off',
+        // ppt 
+        pptInfo: {
+            state: 'off',
+            data:[],
+            style: 0,
+            id: '',
+            num:0,
+            total: 0,
+            update: 0,
+        }
+    }
+    var pptData ={
+        state: 'off',
+        data:[],
+        style: 0,
+        id: '',
+        num:0,
+        total: 0,
+        update: 1,
     }
     // 绘制canvas 定时器
     var timerDraw = null
@@ -315,6 +361,12 @@ $(function () {
                                 <div class="layui-tab-item layui-show">
                                    ${zoomHtml}
                                 </div>`
+                            }else if (item.appname == '云幻灯片') {
+                                functionTitleSrc += `<li class="layui-this">云幻灯片</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item layui-show">
+                                   ${slidesHtml}
+                                </div>`
                             }
                         } else {
                             if (item.appname == '比分牌') {
@@ -347,6 +399,12 @@ $(function () {
                                 functionContentSrc += `
                                 <div class="layui-tab-item">
                                    ${zoomHtml}
+                                </div>`
+                            }else if (item.appname == '云幻灯片') {
+                                functionTitleSrc += `<li>云幻灯片</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item">
+                                   ${slidesHtml}
                                 </div>`
                             }
                         }
@@ -410,6 +468,7 @@ $(function () {
                         getIps()
                         if (sessionStorage.getItem(event_code)) {
                             allInfo = JSON.parse(sessionStorage.getItem(event_code))
+                            pptData.state = allInfo.pptInfo.state
                             renderHistory()
                             if (sessionStorage.getItem('imageBase64' + event_code)) {
                                 fileScore = sessionStorage.getItem('imageBase64' + event_code)
@@ -1256,6 +1315,20 @@ $(function () {
             }
             // 渲染背景替换
             $('.bg-item').removeClass('bg-active').eq(allInfo.replaceFlag).addClass('bg-active')
+
+            // 渲染文档历史记录
+            if(allInfo.pptInfo.data.length>0){
+                $('#lanternImage').show().attr('src',allInfo.pptInfo.data[allInfo.pptInfo.num-1])
+            }
+
+            $('.pageNum').html(allInfo.pptInfo.num+'/'+allInfo.pptInfo.total)
+             
+            if(allInfo.pptInfo.state === 'off') {
+                $('#lanternStart').addClass('defaultStyle').removeClass('startStyle').html('文档切出')
+                
+            } else {
+                $('#lanternStart').addClass('startStyle').removeClass('defaultStyle').html('关闭文档')
+            }
         }
         // 手势检测-------------------------------------------------------------------------------------------------
         $('#gesture-btn').on('click', function () {
@@ -1454,7 +1527,7 @@ $(function () {
                     })
 
                 } else if (selectTypeIndex === 2 && checkIndex === 0 || selectTypeIndex === 2 && checkIndex === 1) {
-                    console.log(123)
+                    console.log('')
                 } else {
                     $('#logoLeft').css({
                         borderTopLeftRadius: '18px',
@@ -2240,6 +2313,12 @@ $(function () {
                     },
                     gesture_selector:{
                         state:allInfo.gestureFlag
+                    },
+                    slides:{
+                        state:allInfo.pptInfo.state,
+                        slidesFormat:allInfo.pptInfo.style,
+                        slide_oss:allInfo.pptInfo.data[allInfo.pptInfo.num-1],
+                        update:allInfo.pptInfo.update
                     }
                 },
                 audio: {
@@ -2267,6 +2346,7 @@ $(function () {
                 contentType: false,
                 data: formData
             })
+            allInfo.pptInfo.update = 0
         }
         // 文档操作开始---------------------------------------------------------------------------------------------------------
 
@@ -2282,33 +2362,301 @@ $(function () {
                 scrollbar: false,
                 move: false,
                 end: function () {
-                    console.log(123)
+                    $('#addDoc').html('+添加文档')
                 }
             })
         })
+        // 获取文档列表
+        getAllPdf()
+        function getAllPdf(){
+            $.ajax({
+                type: 'GET',
+                url: "http://www.cube.vip/event/get_pdf/",
+                dataType: "json",
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                success: res => {
+                    if(res.msg==='success'){
+                        if(res.data.length>0) {
+                            $('.docNone').hide()
+                            var src = ''
+                            res.data.forEach(item=>{
+                                src+=`<div class="docItem" data-id="${item.pdf_id}">
+                                    <span class="docITitle">${item.pdf_name.replace('.pdf','')}</span>
+                                    <span class="docIDelete">删除</span>
+                                </div>
+                                `
+                            })
+                            $('.docListCont').html(src)
+                        } else {
+                            $('.docListCont').html(`<div class="docNone">
+                            <p class="noneTitle">当前列表为空</p>
+                            <p class="noneTitle">请添加文档</p>
+                            <p class="noneInfo">文件支持类型</p>
+                            <p class="noneInfo">目前仅支持pdf格式</p>
+                        </div>`)
+                        }
+                    }
+                }
+            })
+        }
         // 选中当前幻灯片样式
         $('.docSItem').on('click',function() {
+            if($(this).index() === 3) {
+                layer.msg('当前模式暂停使用,敬请谅解!')
+                return false
+            }
+            pptData.style = $(this).index()+1
             $(this).addClass('docActiveItem').siblings('.docSItem').removeClass('docActiveItem')
+            $('#docPreview').attr('src',`./../image/pattern${$(this).index()+1}.png`)
         })
         // 上传文档
         upload.render({
             elem: '#addDoc', //绑定元素
-            url: '/upload/', //上传接口
+            url: 'http://www.cube.vip/event/pdf_drawing_create/', //上传接口
             accept: 'file',
             acceptMime:'application/pdf',
             exts:'pdf',
+            headers:{token: sessionStorage.getItem('token')},
+            progress: function(n, elem){
+                $(elem).text('上传中,请勿重复上传'+'('+n+'%)')
+            },
             done: function(res){
-              //上传完毕回调
+              if(res.msg==="success"){
+                  layer.msg('上传成功!')
+                  getAllPdf()
+              } else {
+                layer.msg('上传失败,请重试!')
+              }
+              $('#addDoc').html('+添加文档')
             },
             error: function(){
               //请求异常回调
+              $('#addDoc').html('+添加文档')
             }
           });
+        // 删除文档
+        $('.docListCont').on('click','.docIDelete',function(){
+            layer.open({
+                type: 1,
+                title: ['删除提示', 'color:#fff;background-color:#FF914D;font-size: 0.2rem;height:0.42rem;line-height:0.42rem'],
+                content: `<div style="padding: 20px 20px 0;">是否删除?</div>`,
+                btn: ["删除", "取消"],
+                yes: index=> {
+                    layer.close(index)
+                    if($(this).parent().attr('data-id') ==allInfo.pptInfo.id) {
+                        if(allInfo.pptInfo.state === 'on'){
+                            layer.msg('请先关闭文档切除!')
+                            return
+                        }
+                    }
+                    $.ajax({
+                        type: 'GET',
+                        url: "http://www.cube.vip/event/delete_pdf/",
+                        dataType: "json",
+                        headers: {
+                            token: sessionStorage.getItem('token')
+                        },
+                        data: {
+                            pdf_id:$(this).parent().attr('data-id')
+                        },
+                        success: res => {
+                            if(res.msg==='success'){
+                                layer.msg('删除成功!')
+                                
+                                pptData.id = ''
+                                pptData.data = []
+                                pptData.num = 0
+                                pptData.total = 0
+                          
+                                if($(this).parent().attr('data-id') ==allInfo.pptInfo.id){
+                                    allInfo.pptInfo.id = ''
+                                    allInfo.pptInfo.data = []
+                                    allInfo.pptInfo.num = 0
+                                    allInfo.pptInfo.total = 0
+
+                                   $('#lanternImage').hide()
+                                   $('.pageNum').html(0+'/'+0)
+                                }
+                                getAllPdf()
+                            } else {
+                                layer.msg('删除失败,请稍后重试!')
+                            }
+                        }
+                    })
+                },
+                btn2: function () {
+                }
+            })
+            return false
+        })
+        // 选中某个文档
+        $('.docListCont').on('click','.docItem',function(){
+            $(this).css({
+                backgroundColor:'#FF914D',
+                color:'#fff'
+            }).siblings().css({
+                backgroundColor:'',
+                color:'#FF914D'
+            })
+            $.ajax({
+                type: 'GET',
+                url: "http://www.cube.vip/event/get_pdf/",
+                dataType: "json",
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                data: {
+                    pdf_id:$(this).attr('data-id')
+                },
+                success: res => {
+                    if(res.msg==='success'){
+                        pptData.data =JSON.parse(res.data[0].pdf_description)
+                        pptData.id =res.data[0].pdf_id
+                        pptData.num = 1
+                        pptData.total = JSON.parse(res.data[0].pdf_description).length
+                    }
+                }
+            })
+        })
+
 
         // 保存幻灯片
         $('#docSave').on('click',function(){
-            layer.closeAll()
+            if(pptData.data.length<=0){
+                layer.msg('请选择文档!')
+            } else if(pptData.style === 0) {
+                layer.msg('请选择样式!')
+            } else {
+                pptData.num = 1
+                allInfo.pptInfo = JSON.parse(JSON.stringify(pptData))
+                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                $('#lanternImage').show().attr('src',pptData.data[0])
+                $('.pageNum').html(pptData.num+'/'+pptData.total)
+                layer.closeAll()
+            }
+            
         })
+
+        // 操作幻灯片
+        // 开始幻灯片
+        $('#lanternStart').on('click',function(){
+            if(allInfo.pptInfo.data.length<=0){
+                layer.msg('请先选择文档!')
+                return 
+            }
+            if(allInfo.pptInfo.state === 'off') {
+                allInfo.pptInfo.state = 'on'
+                pptData.state = 'on'
+                $(this).addClass('startStyle').removeClass('defaultStyle').html('关闭文档')
+            } else {
+                allInfo.pptInfo.state = 'off'
+                pptData.state = 'off'
+                $(this).addClass('defaultStyle').removeClass('startStyle').html('文档切出')
+            }
+            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+            allInfo.update = 0
+            sendInstruct()
+        })
+        //首页
+        $('.pageFirst').on('click',function(){
+            if(allInfo.pptInfo.data.length<=0){
+                layer.msg('请先选择文档!')
+                return 
+            }
+            allInfo.pptInfo.num = 1
+            changePPTPage()
+        })
+        // 尾页
+        $('.pageEnd').on('click',function(){
+            if(allInfo.pptInfo.data.length<=0){
+                layer.msg('请先选择文档!')
+                return 
+            }
+            allInfo.pptInfo.num = allInfo.pptInfo.total
+            changePPTPage()
+        })
+        // 上一页
+        $('.pagePre').on('click',function(){
+            if(allInfo.pptInfo.data.length<=0){
+                layer.msg('请先选择文档!')
+                return 
+            }
+            if(allInfo.pptInfo.num  === 1) {
+                layer.msg('已经是第一页了!')
+                return
+            }
+            allInfo.pptInfo.num = Number(allInfo.pptInfo.num) - 1
+            changePPTPage()
+        })
+        // 下一页
+        $('.pageNext').on('click',function(){
+            if(allInfo.pptInfo.data.length<=0){
+                layer.msg('请先选择文档!')
+                return 
+            }
+            if(allInfo.pptInfo.num  === allInfo.pptInfo.total) {
+                layer.msg('已经是最后一页了!')
+                return
+            }
+            allInfo.pptInfo.num = Number(allInfo.pptInfo.num) + 1
+            changePPTPage()
+        })
+        // $('.pageInput').on('blur',function(){
+        //     if(allInfo.pptInfo.data.length<=0){
+        //         layer.msg('请先选择文档!')
+        //         return 
+        //     }
+        //     if(!/\d/.test($.trim(Number($(this).val())))){
+        //         layer.msg('请正确输入页码!')
+        //         return
+        //     }
+        //     if($.trim(Number($(this).val())) > allInfo.pptInfo.total){
+        //         allInfo.pptInfo.num = allInfo.pptInfo.total
+        //         $(this).val(allInfo.pptInfo.total)
+        //     } else if($.trim(Number($(this).val()))<1){
+        //         allInfo.pptInfo.num = 1
+        //         $(this).val(1)
+        //     } else {
+        //         allInfo.pptInfo.num =$.trim(Number($(this).val()))
+        //     }
+        //     changePPTPage()
+        // })
+        $('.pageInput').keyup(function(event){
+            if(event.keyCode ==13){
+                if(allInfo.pptInfo.data.length<=0){
+                    layer.msg('请先选择文档!')
+                    return 
+                }
+                if(!/\d/.test($.trim(Number($(this).val())))){
+                    layer.msg('请正确输入页码!')
+                    return
+                }
+                if($.trim(Number($(this).val())) > allInfo.pptInfo.total){
+                    allInfo.pptInfo.num = allInfo.pptInfo.total
+                    $(this).val(allInfo.pptInfo.total)
+                } else if($.trim(Number($(this).val()))<1){
+                    allInfo.pptInfo.num = 1
+                    $(this).val(1)
+                } else {
+                    allInfo.pptInfo.num =$.trim(Number($(this).val()))
+                }
+                changePPTPage()
+            }
+        })
+
+        // 改变页码
+        function changePPTPage(){
+            $('#lanternImage').attr('src',allInfo.pptInfo.data[allInfo.pptInfo.num-1])
+            $('.pageNum').html(allInfo.pptInfo.num+'/'+allInfo.pptInfo.total)
+            allInfo.pptInfo.update = 1
+            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+            if(allInfo.pptInfo.state==='on'){
+                allInfo.update = 0
+                sendInstruct()
+            }
+        }
         // 文档操作结束---------------------------------------------------------------------------------------------------------
         // WebSocket聊天室--------------------------------------------------------------------------------------------------
         const chatSocket = new WebSocket(
