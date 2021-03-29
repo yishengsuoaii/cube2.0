@@ -338,12 +338,6 @@ $(function () {
                                       "y": 7
                                     },
                                     {
-                                      "name": "fullScreenButton",
-                                      "align": "tr",
-                                      "x": 10,
-                                      "y": 12
-                                    },
-                                    {
                                       "name": "subtitle",
                                       "align": "tr",
                                       "x": 15,
@@ -354,6 +348,12 @@ $(function () {
                                       "align": "tr",
                                       "x": 15,
                                       "y": 12
+                                    },
+                                    {
+                                        "name": "fullScreenButton",
+                                        "align": "tr",
+                                        "x": 10,
+                                        "y": 12
                                     },
                                     {
                                       "name": "volume",
@@ -462,12 +462,6 @@ $(function () {
                                   "y": 7
                                 },
                                 {
-                                  "name": "fullScreenButton",
-                                  "align": "tr",
-                                  "x": 10,
-                                  "y": 12
-                                },
-                                {
                                   "name": "subtitle",
                                   "align": "tr",
                                   "x": 15,
@@ -478,6 +472,12 @@ $(function () {
                                   "align": "tr",
                                   "x": 15,
                                   "y": 12
+                                },
+                                {
+                                    "name": "fullScreenButton",
+                                    "align": "tr",
+                                    "x": 10,
+                                    "y": 12
                                 },
                                 {
                                   "name": "volume",
@@ -632,12 +632,6 @@ $(function () {
                                   "y": 7
                                 },
                                 {
-                                  "name": "fullScreenButton",
-                                  "align": "tr",
-                                  "x": 10,
-                                  "y": 12
-                                },
-                                {
                                   "name": "subtitle",
                                   "align": "tr",
                                   "x": 15,
@@ -650,11 +644,18 @@ $(function () {
                                   "y": 12
                                 },
                                 {
+                                    "name": "fullScreenButton",
+                                    "align": "tr",
+                                    "x": 10,
+                                    "y": 12
+                                },
+                                {
                                   "name": "volume",
                                   "align": "tr",
                                   "x": 5,
                                   "y": 10
                                 }
+                                
                               ]
                             }
                           ]
