@@ -2287,7 +2287,12 @@ $(function () {
             }
 
             //机位音量
-
+             var pptImg = ''
+             if(allInfo.pptInfo.state ==='on') {
+                 pptImg = allInfo.pptInfo.data[allInfo.pptInfo.num-1]
+             } else {
+                 pptImg = ''
+             }
 
             var info = {
                 code: "FRONT_END_ACTION",
@@ -2317,7 +2322,7 @@ $(function () {
                     slides:{
                         state:allInfo.pptInfo.state,
                         slidesFormat:allInfo.pptInfo.style,
-                        slide_oss:allInfo.pptInfo.data[allInfo.pptInfo.num-1],
+                        slide_oss:pptImg,
                         update:allInfo.pptInfo.update
                     }
                 },
