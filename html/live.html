@@ -145,7 +145,6 @@
                                                     <li>直播倒计时</li>
                                                     <li>观众人数显示</li>
                                                     <li>直播窗口背景</li>
-                                                    <li>视频LOGO</li>
                                                     <li>频道设置</li>
                                                 </ul>
                                                 <div class="layui-tab-content">
@@ -304,55 +303,6 @@
                                                                 </p>
                                                                 <button type="button" class="layui-btn" id="live-bg-upload">上传</button>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="layui-tab-item">
-                                                        <!-- 视频LOGO及水印 -->
-                                                        <div class="layui-form" style="margin: 0.5rem 0 0 1.05rem">
-                                                            <label class="layui-form-label open-switch-name">视频窗口LOGO显示</label>
-                                                            <div class="layui-input-block">
-                                                                <input type="checkbox" name="switch" id="logo-switch" lay-filter="logo-open"
-                                                                    lay-skin="switch" checked>
-                                                            </div>
-                                                        </div>
-                                                        <div class="logo-watermark">
-                                                            <div id="logo-watermark-preview">预览:</div>
-                                                            <div class="logo-watermark-image">
-                                                                <div class="logo-watermark-upload">
-                                                                    <p class="logo-watermark-hint">
-                                                                        <span></span>
-                                                                        图片大小2M以内
-                                                                    </p>
-                                                                    <p class="logo-watermark-hint">
-                                                                        <span></span>
-                                                                        144*36px,72*18px
-                                                                    </p>
-                                                                    <p class="logo-watermark-hint">
-                                                                        <span></span>
-                                                                        支持png格式
-                                                                    </p>
-                                                                    <button type="button" class="layui-btn" id="logo-upload-btn">上传</button>
-                                                                </div>
-                                                                <div class="upload-watermark-image upload-watermark-image-lt">
-                                                                    <img  id="channel-set-logo">
-                                                                </div>
-                                                            </div>
-                                                            <div class="layui-form">
-                                                                <label class="layui-form-label">LOGO位置</label>
-                                                                <input type="radio" name="logo-orientation" id="logo-radio1" value="1"
-                                                                    lay-filter="logo-orientation" title="左上角" checked>
-                                                                <input type="radio" name="logo-orientation" id="logo-radio2" value="2"
-                                                                lay-filter="logo-orientation" title="左下角">
-                                                                <input type="radio" name="logo-orientation" id="logo-radio3" value="3"
-                                                                    lay-filter="logo-orientation" title="右上角">
-                                                               
-                                                                <input type="radio" name="logo-orientation" id="logo-radio4" value="4"
-                                                                    lay-filter="logo-orientation" title="右下角">
-                                                            </div>
-                                                            <div class="logo-watermark-submit">
-                                                                <button type="button" class="layui-btn" id="watermark-submit-btn">提交</button>
-                                                            </div>
-                                    
                                                         </div>
                                                     </div>
                                                     <div class="layui-tab-item">
@@ -865,6 +815,41 @@
                             </span>
                             <button type="button" class="layui-btn layui-btn-primary" id="video-cancel">取消</button>
                             <button type="button" class="layui-btn layui-btn-danger" id="video-confirm">确定</button>
+                        </div>
+                    </div>
+                    <div id="logoDialog">
+                        <div id="logoContent">
+                           <div class="logoPreview">
+                            <div class="logo-watermark-upload">
+                                <p class="logo-watermark-hint">
+                                    <span></span>
+                                    图片大小2M以内
+                                </p>
+                                <p class="logo-watermark-hint">
+                                    <span></span>
+                                    支持png格式
+                                </p>
+                                <button type="button" class="layui-btn" id="logo-upload-btn">上传</button>
+                            </div>
+                                <div class="upload-watermark-image upload-watermark-image-lt">
+                                    <img  id="channel-set-logo">
+                                </div>
+                           </div>
+                           <div class="layui-form logoSelect">
+                                <label class="layui-form-label">LOGO位置</label>
+                                <input type="radio" name="logo-orientation" id="logo-radio1" value="1"
+                                    lay-filter="logo-orientation" title="左上角" checked>
+                                <input type="radio" name="logo-orientation" id="logo-radio2" value="2"
+                                lay-filter="logo-orientation" title="左下角">
+                                <input type="radio" name="logo-orientation" id="logo-radio3" value="3"
+                                    lay-filter="logo-orientation" title="右上角">
+                            
+                                <input type="radio" name="logo-orientation" id="logo-radio4" value="4"
+                                    lay-filter="logo-orientation" title="右下角">
+                            </div>
+                        </div>
+                        <div id="logoFoot">
+                            <button id="logoSave" type="button" class="layui-btn">提交</button>
                         </div>
                     </div>
                     <div id="copy-dialog">

@@ -149,6 +149,11 @@ $(function () {
             <div id="selectDoc" class="activeStyle">选择文档</div>
         </div>
     `
+    // logoDom
+    var logoHtml =`<div id="logoBox">
+        <div  class="watermark-submit-btn">开启</div>
+        <div  id="addLogoDialog">添加LOGO</div>
+    </div>`
 
 
     // logo
@@ -331,7 +336,13 @@ $(function () {
                     var functionContentSrc = ''
                     result.data.app.forEach((item, index) => {
                         if (index === 0) {
-                            if (item.appname == '比分牌') {
+                            if (item.appname == 'logo') {
+                                functionTitleSrc += `<li class="layui-this">LOGO</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item layui-show">
+                                   ${logoHtml}
+                                </div>`
+                            } else if (item.appname == '比分牌') {
                                 functionTitleSrc += `<li class="layui-this">比分牌</li>`
                                 functionContentSrc += `
                                 <div class="layui-tab-item layui-show">
@@ -369,7 +380,13 @@ $(function () {
                                 </div>`
                             }
                         } else {
-                            if (item.appname == '比分牌') {
+                            if (item.appname == 'logo') {
+                                functionTitleSrc += `<li>LOGO</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item">
+                                   ${logoHtml}
+                                </div>`
+                            } else if (item.appname == '比分牌') {
                                 functionTitleSrc += `<li>比分牌</li>`
                                 functionContentSrc += `
                                 <div class="layui-tab-item">
@@ -779,16 +796,6 @@ $(function () {
                 logoOrientation = 4
             }
         })
-        //logo开关
-        form.on('switch(logo-open)', function (data) {
-            if (data.elem.checked) {
-                logoFlag = 'True'
-                $('.upload-watermark-image').show()
-            } else {
-                logoFlag = 'False'
-                $('.upload-watermark-image').hide()
-            }
-        });
 
         // 获取logo信息
         $.get({
@@ -835,18 +842,14 @@ $(function () {
                         $('#logo-radio4').prop('checked', true);
                     }
                     if (res.data.event_logo_countdown) {
-                        logoFlag = 'True'
-                        $("#logo-switch").attr('checked', 'checked');
-                        $('.upload-watermark-image').show()
+                        $('.watermark-submit-btn').html('关闭').addClass('logoStart')
                         setLogoLocation(logoOrientation)
                     } else {
-                        logoFlag = 'False'
-                        $("#logo-switch").removeAttr('checked');
-                        $('.upload-watermark-image').hide()
+                        
+                        $('.watermark-submit-btn').html('开启').removeClass('logoStart')
                     }
 
                     form.render('radio');
-                    form.render('checkbox');
                 }
             }
         })
@@ -867,8 +870,31 @@ $(function () {
             }
             form.render('radio')
         }
+        // 打开logo弹窗
+        $('#addLogoDialog').on('click',function(){
+            layer.open({
+                type: 1,
+                area: ['11.70rem', '7.22rem'],
+                title: ['LOGO设置', 'color:#fff;background-color:#FF914D;font-size: 0.2rem;height:0.42rem;line-height:0.42rem'],
+                content: $('#logoDialog'),
+                shade: 0.3,
+                shadeClose: true,
+                scrollbar: false,
+                move: false,
+            })
+        })
+        $('#logoSave').on('click',function(){
+            layer.closeAll()
+        })
         // logo位置 开关提交
-        $('#watermark-submit-btn').on('click', function () {
+        $('.watermark-submit-btn').on('click', function () {
+            if($(this).hasClass('logoStart')) {
+                logoFlag = 'False'
+                $('.watermark-submit-btn').html('开启').removeClass('logoStart')
+            } else {
+                logoFlag = 'True'
+                $('.watermark-submit-btn').html('关闭').addClass('logoStart')
+            }
             $.ajax({
                 type: 'POST',
                 url: "http://www.cube.vip/event/logo_page_setup/",
@@ -883,11 +909,11 @@ $(function () {
                 },
                 success: function (res) {
                     if (res.msg === 'success') {
-                        layer.msg('提交成功!')
                         if (logoFlag === 'True') {
                             setLogoLocation(logoOrientation)
                         }
-
+                        allInfo.update = 0
+                        sendInstruct()
                     } else {
                         layer.msg('提交失败,请重试!')
                     }
