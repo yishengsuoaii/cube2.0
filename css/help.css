@@ -28,7 +28,7 @@
   height: 64px;
 }
 .container .topBox .topContent .navBox {
-  width: 460px;
+  width: 500px;
   height: 64px;
   line-height: 64px;
 }
@@ -38,7 +38,7 @@
   font-weight: 400;
   color: #F2591A;
   text-decoration: none;
-  margin-right: 60px;
+  margin-right: 50px;
 }
 .container .topBox .topContent .loginBox {
   width: 276px;

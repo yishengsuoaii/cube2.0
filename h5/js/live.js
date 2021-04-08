@@ -23,6 +23,7 @@ var stateTimer = null
 var userName = ''
 var describe = ''
 var userImg = ''
+var liveSrc = ''
 $(function () {
     layui.use(['form', 'element'], function () {
         var element = layui.element;
@@ -565,8 +566,8 @@ $(function () {
                     $('#videoBox').css({
                         background:'',
                     })
-                     // 活动封面
-                    
+                     // 直播地址
+                    liveSrc = res.data.pull_stream_m3u8_url
                     videoJs =  new Aliplayer({
                         "id": "videoBox",
                         "source": res.data.pull_stream_m3u8_url,
@@ -590,11 +591,11 @@ $(function () {
                               "align": "cc"
                             },
                             {
-                              "name": "errorDisplay",
-                              "align": "tlabs",
-                              "x": 0,
-                              "y": 0
-                            },
+                                "name": "errorDisplay",
+                                "align": "tlabs",
+                                "x": 0,
+                                "y": 0
+                              },
                             {
                               "name": "infoDisplay"
                             },
@@ -660,14 +661,117 @@ $(function () {
                             }
                           ]
                     })
+
+                    
                     videoJs.on('play',function(){
                         $('#topDown').hide()
                         $('#centerDown').hide()
+                    })
+                    videoJs.on('error',function(err){
+                        videoJs.dispose()
+                        
+                        $('#videoBox').removeClass('prism-player').html(`<img id="refresh" src="./image/404.png">`)
                     })
                 }
             }
         })
     }
+
+    $('#videoBox').on('click','#refresh',function () {
+        $(this).hide()
+        $('#videoBox').addClass('prism-player')
+        videoJs =  new Aliplayer({
+            "id": "videoBox",
+            "source": liveSrc,
+            "width":'10rem',
+            "height":'5.625rem',
+            "autoplay": false,
+            "isLive": true,
+            "rePlay": false,
+            "playsinline": true,
+            "preload": true,
+            "controlBarVisibility": "click",
+            "useH5Prism": true,
+            "waitingTimeout":10,
+            "skinLayout": [
+                {
+                  "name": "bigPlayButton",
+                  "align": "cc",
+                },
+                {
+                  "name": "H5Loading",
+                  "align": "cc"
+                },
+                {
+                  "name": "infoDisplay"
+                },
+                {
+                  "name": "tooltip",
+                  "align": "blabs",
+                  "x": 0,
+                  "y": 56
+                },
+                {
+                  "name": "thumbnail"
+                },
+                {
+                  "name": "controlBar",
+                  "align": "blabs",
+                  "x": 0,
+                  "y": 0,
+                  "children": [
+                    {
+                      "name": "progress",
+                      "align": "blabs",
+                      "x": 0,
+                      "y": 44
+                    },
+                    {
+                      "name": "playButton",
+                      "align": "tl",
+                      "x": 15,
+                      "y": 12
+                    },
+                    {
+                      "name": "timeDisplay",
+                      "align": "tl",
+                      "x": 10,
+                      "y": 7
+                    },
+                    {
+                      "name": "subtitle",
+                      "align": "tr",
+                      "x": 15,
+                      "y": 12
+                    },
+                    {
+                      "name": "setting",
+                      "align": "tr",
+                      "x": 15,
+                      "y": 12
+                    },
+                    {
+                        "name": "fullScreenButton",
+                        "align": "tr",
+                        "x": 10,
+                        "y": 12
+                    },
+                    {
+                      "name": "volume",
+                      "align": "tr",
+                      "x": 5,
+                      "y": 10
+                    }
+                    
+                  ]
+                }
+              ]
+        })
+        videoJs.on('error',function(err){
+           videoJs.dispose()
+           $('#videoBox').removeClass('prism-player').html(`<img id="refresh" src="./image/404.png">`)
+        })
+    })
     // WebSocket聊天室
     const chatSocket = new WebSocket(
         'ws://' +

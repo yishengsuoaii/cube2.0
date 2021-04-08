@@ -22,27 +22,18 @@ Vue.component("child-video", {
           <div ref="timeLineContainer" class="crop-time-line-container">
             <div class="crop-time-line"></div>
             <div v-for="(item, index) in cropItemList"
-                 :class="getCropRangeClass(index)"
+                 class="crop-range crop-range-hover"
                  :style="computedRangeStyle(item)"
                  :key="index">
-              <div :class="getTimeHintClass(index)">
+              <div class="cursor-time-hint  crop-moving-cursor">
                 <div class="cursor-line"></div>
                 <div class="cursor-time">{{getFormatTime(item.startTime)}}</div>
               </div>
-              <div :class="getTimeHintClass(index)"
+              <div class="cursor-time-hint  crop-moving-cursor"
                    :style="computedEndTimeIndicatorStyle(item)">
                 <div class="cursor-line"></div>
                 <div class="cursor-time">{{getFormatTime(item.endTime)}}</div>
               </div>
-            </div>
-    
-            <div :class="['cursor-time-hint', {'moving-cursor': showNormalCursorTimeHint}]"
-            :style="{
-                transform:'translateX('+currentCursorOffsetX+'px)'
-            }"
-            >
-              <div class="cursor-line"></div>
-              <div class="cursor-time">{{getFormatTime(currentCursorTime)}}</div>
             </div>
           </div>
           <div class="media-duration">{{durationText}}</div>
@@ -244,33 +235,6 @@ Vue.component("child-video", {
     },
 
     methods: {
-
-
-        getCropRangeClass(index) {
-            let className = 'crop-range'
-
-            if (this.cropItemHoverIndex === index) {
-                className += ' crop-range-hover'
-
-                if (this.isCropping) {
-                    className += ' crop-range-dragging'
-                }
-            }
-
-            return className
-        },
-
-        getTimeHintClass(index) {
-            let className = 'cursor-time-hint'
-
-            if (this.isTimeIndicatorHovered(index)) {
-                className += ' crop-moving-cursor'
-            } else {
-                className += this.currentEditingIndex === index ? ' cropping' : ''
-            }
-
-            return className
-        },
 
         /**
          * 界面重新布局后需重新计算offsetX数据

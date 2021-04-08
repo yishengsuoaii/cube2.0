@@ -28,6 +28,11 @@ body #live #videoContainer #videoBox {
   height: 5.625rem;
   overflow: hidden;
 }
+body #live #videoContainer #videoBox #refresh {
+  display: block;
+  width: 10rem !important;
+  height: 5.625rem;
+}
 body #live #videoContainer #topDown {
   display: none;
   width: 10rem !important;
