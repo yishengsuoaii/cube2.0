@@ -2,8 +2,6 @@ if(!sessionStorage.getItem('token')){
     window.location.href="./../login.html"
 }
 $(function () {
-    var switchValue = "True";
-    // true 公开  false加密
     var form
     layui.use(['form', 'layer', 'jquery', 'laydate'], function () {
         form = layui.form;
@@ -48,17 +46,6 @@ $(function () {
             }
         })
 
-        form.on('switch(switchTest)', function (data) {
-            if (data.elem.checked) {
-                switchValue = "False";
-                $('#roomCode').removeAttr('disabled')
-                
-            } else {
-                switchValue = "True";
-                $('#roomCode').attr('disabled',true)
-                $('#roomCode').val('')
-            }
-        });
         laydate.render({
             elem: '#test5',
             type: 'datetime',
@@ -83,15 +70,6 @@ $(function () {
                 })
             }
         });
-        laydate.render({
-            elem: '#test6',
-            type: 'datetime'
-        });
-        laydate.render({
-            elem: '#test7',
-            type: 'datetime'
-        });
-
     });
 
     // 获取账户信息
@@ -169,7 +147,7 @@ $(function () {
     $('.channelContent').on('click', '#newAdd', function () {
         layer.open({
             type: 1,
-            area: ['654px', '576px'],
+            area: ['654px', '426px'],
             title: ['新建直播频道', 'color:#fff'],
             content: $("#addDialog"),
             shade: 0.3,
@@ -193,32 +171,14 @@ $(function () {
                     layer.msg('请输入活动简介!')
                     $(".layui-textarea").focus()
                     return;
-                } else if ($.trim($("#test6").val()).length <= 0) {
-                    layer.msg('请输入活动开始时间!')
-                    return;
-                } else if ($.trim($("#test7").val()).length <= 0) {
-                    layer.msg('请输入活动结束时间!')
-                    return;
-                }else if(switchValue==='False' && $('#roomCode').val().length<6) {
-                    layer.msg('请输入六位密码!')
-                    $("#roomCode").focus()
-                    return
                 } else {
                     var formdata = new FormData();
                     formdata.append("event_title", $("input[name='event_title']")
                         .val());
                     formdata.append("event_description", $(
                         "textarea[name='event_description']").val());
-                    formdata.append("event_start_time", $(
-                            "input[name='event_start_time']")
-                        .val());
-                    formdata.append("event_end_time", $("input[name='event_end_time']")
-                        .val());
-
-                    formdata.append("event_private", switchValue);
                     formdata.append("event_category_id", $('#channel-type').val());
-                    formdata.append("event_access_code", $(
-                        "input[name='event_access_code']").val());
+                    
                     $.ajax({
                         type: "POST",
                         dataType: "json",
@@ -233,15 +193,15 @@ $(function () {
                         data: formdata,
                         success: function (result) {
                             if (result.msg == "success") {
-                                layer.msg('创建成功,直播时间以起始时间为准!',{
-                                    time: 2000, 
+                                layer.msg('创建成功!',{
+                                    time: 300, 
                                   })
                                 setTimeout(() => {
                                     layer.closeAll()
                                     getAllChannel()
                                     getUserInfo()
                                     deleteInfo()
-                                }, 2000)
+                                }, 300)
 
                             } else if (result.msg == "error") {
                                 layer.msg('创建失败,请重试!')
@@ -328,35 +288,11 @@ $(function () {
             success: function (result) {
                 $("#username").val(result.data.event_title)
                 $(".layui-textarea").val(result.data.event_description)
-                $("#test6").val(result.data.event_start_time.replace('T', ' '))
-                $("#test7").val(result.data.event_end_time.replace('T', ' '))
-                $("#roomCode").val(result.data.event_access_code)
                 $('#channel-type').val(result.data.event_category_id)
                 form.render('select');
-                if (result.data.event_private) {
-                    setTimeout(() => {
-                        $("#showType").removeAttr('checked');
-                        $('#roomCode').attr('disabled',true)
-                        switchValue= 'True'
-                        form.render('checkbox');
-                    }, 10)
-
-                } else {
-                    setTimeout(() => {
-                        $("#showType").attr('checked', 'checked');
-                        $('#roomCode').removeAttr('disabled')
-                        switchValue= 'False'
-                        form.render('checkbox');
-                    }, 10)
-
-                }
-                $('#switchDom').empty('').html(`<label class="layui-form-label">是否加密:</label>
-                <div class="layui-input-block">
-                    <input id="showType" type="checkbox" name="event_private"  lay-skin="switch" lay-text="加密|公开" lay-filter="switchTest">
-                </div>`)
                 layer.open({
                     type: 1,
-                    area: ['654px', '576px'],
+                    area: ['654px', '426px'],
                     title: ['修改直播频道', 'color:#fff'],
                     content: $("#addDialog"),
                     shade: 0.3,
@@ -379,16 +315,6 @@ $(function () {
                             layer.msg('请输入活动简介!')
                             $(".layui-textarea").focus()
                             return;
-                        } else if ($.trim($("#test6").val()).length <= 0) {
-                            layer.msg('请输入活动开始时间!')
-                            return;
-                        } else if ($.trim($("#test7").val()).length <= 0) {
-                            layer.msg('请输入活动结束时间!')
-                            return;
-                        } else if(switchValue==='False' && $('#roomCode').val().length<6) {
-                            layer.msg('请输入六位密码!')
-                            $("#roomCode").focus()
-                            return
                         } else {
                             var formdata = new FormData();
                             formdata.append("event_id", id);
@@ -397,16 +323,7 @@ $(function () {
                                 .val());
                             formdata.append("event_description", $(
                                 "textarea[name='event_description']").val());
-                            formdata.append("event_start_time", $(
-                                    "input[name='event_start_time']")
-                                .val());
-                            formdata.append("event_end_time", $(
-                                    "input[name='event_end_time']")
-                                .val());
                             formdata.append("event_category_id", $('#channel-type').val());
-                            formdata.append("event_private", switchValue);
-                            formdata.append("event_access_code", $(
-                                "input[name='event_access_code']").val());
                             $.ajax({
                                 type: "POST",
                                 dataType: "json",
@@ -421,15 +338,15 @@ $(function () {
                                 data: formdata,
                                 success: function (result) {
                                     if (result.msg == "success") {
-                                        layer.msg('修改成功,直播时间以起始时间为准!',{
-                                            time: 2000,
+                                        layer.msg('修改成功!',{
+                                            time: 300,
                                           })
                                         setTimeout(() => {
                                             layer.closeAll()
                                             getAllChannel()
                                             getUserInfo()
                                             deleteInfo()
-                                        }, 2000);
+                                        }, 300);
 
                                     } else if (result.msg == "error") {
                                         layer.msg('修改失败,请重试!')
@@ -526,17 +443,10 @@ $(function () {
         window.location.href = "./../html/live.html?id="+$(this).attr('id')
     })
 
-    // 限制只能输入数字
-    $('#roomCode').keyup(function(){
-        $(this).val($(this).val().replace(/[^\d]/g,''))
-    })
     // 删除默认信息
     function deleteInfo(){
         $("#username").val('')
         $(".layui-textarea").val('')
-        $("#test6").val('')
-        $("#test7").val('')
-        $("#roomCode").val('')
         $('#channel-type').val('')
         form.render('select');
     }

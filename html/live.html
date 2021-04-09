@@ -44,6 +44,9 @@
 			border-color: #FF914D !important;
 			background-color: #FF914D !important;
 		}
+        .laydate-btns-time {
+            color: #009688 !important;
+        }
     </style>
 </head>
 
@@ -190,12 +193,10 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="layui-form-item">
-                                                                    <label class="layui-form-label" style="width: 300px;">直播倒计时剩余:
-                                                                        <span class="day">00</span>天
-                                                                        <span class="hour">00</span>时
-                                                                        <span class="minute">00</span>分
-                                                                        <span class="second">00</span>秒
-                                                                    </label>
+                                                                    <label class="layui-form-label" style="width: 120px;">直播开始时间:</label>
+                                                                    <div class="layui-input-block">
+                                                                        <input type="datetime" name="event_start_time" class="layui-input" id="timetest" placeholder="直播开始时间">
+                                                                    </div>
                                                                 </div>
                                                             </form>
                                     
@@ -203,7 +204,7 @@
                                                                 <p class="preview-time-title">预览:</p>
                                                                 <div class="preview-time-content">
                                                                     <div class="top-time">
-                                                                        距离直播开始<span class="day">00</span>天
+                                                                        距离直播开始 <span class="day">00</span>天
                                                                         <span class="hour">00</span>时
                                                                         <span class="minute">00</span>分
                                                                         <span class="second">00</span>秒
@@ -313,7 +314,7 @@
                                                                     <label class="layui-form-label">是否加密</label>
                                                                     <div class="layui-input-block">
                                                                         <input type="checkbox" name="switch" id="code-switch" 
-                                                                            lay-filter="code-switch" lay-text="加密|公开" lay-skin="switch">
+                                                                            lay-filter="code-switch"  lay-skin="switch">
                                                                     </div>
                                                                 </div>
                                                                 <p class="encryption-hint">频道加密后进入此频道直播页需输入访问码</p>

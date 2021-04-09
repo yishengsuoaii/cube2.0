@@ -65,13 +65,13 @@ $(function () {
     //     height: "126",
     // })
 
-    layui.use(['form', 'element', 'jquery', 'layer', 'upload'], function () {
+    layui.use(['form', 'element', 'jquery', 'layer', 'upload','laydate'], function () {
         var form = layui.form;
         var element = layui.element;
         var layer = layui.layer;
         var jquery = layui.jquery;
         var upload = layui.upload;
-
+        var laydate = layui.laydate;
         // 视频预告------------------------------------------------------------------------------------------------------------------
         form.on('switch(preview-open)', function (data) {
             if (data.elem.checked) {
@@ -464,6 +464,13 @@ $(function () {
                 countDownFlag = 'False'
             }
         });
+        laydate.render({
+            elem: '#timetest',
+            type: 'datetime',
+            done: function(value){
+                changeTimer(value)
+            }
+        });
 
         //获取倒计时
         $.get({
@@ -498,99 +505,105 @@ $(function () {
                     }
                     form.render('checkbox');
                     form.render('radio');
-                    var date1 = new Date(res.data.event_start_time.replace('T', ' '))
-                        .getTime()
-                    var date2 = Date.now()
-                    var day = 00
-                    var hour = 00
-                    var minute = 00
-                    var second = 00; //时间默认值
-
-                    clearInterval(timers)
-                    if (date1 > date2) {
-                        var intDiff = parseInt((date1 - date2) / 1000);
-                        timers = setInterval(function () {
-
-                            if (Math.floor(intDiff / (60 * 60 * 24)) < 10) {
-                                day = '0' + Math.floor(intDiff / (60 * 60 * 24))
-                            } else {
-                                day = Math.floor(intDiff / (60 * 60 * 24))
-                            }
-
-                            if (Math.floor(intDiff / (60 * 60)) - (day * 24) <
-                                10) {
-
-                                hour = '0' + (Math.floor(intDiff / (60 * 60)) - (
-                                    day *
-                                    24))
-
-                            } else {
-                                hour = Math.floor(intDiff / (60 * 60)) - (day *
-                                    24)
-
-                            }
-
-                            if (Math.floor(intDiff / 60) - (day * 24 * 60) - (
-                                    hour *
-                                    60) < 10) {
-                                minute = '0' + (Math.floor(intDiff / 60) - (day *
-                                    24 *
-                                    60) - (hour * 60))
-                            } else {
-                                minute = Math.floor(intDiff / 60) - (day * 24 *
-                                        60) -
-                                    (hour * 60)
-                            }
-
-                            if (Math.floor(intDiff) - (day * 24 * 60 * 60) - (
-                                    hour *
-                                    60 * 60) - (minute * 60) <
-                                10) {
-                                second = '0' + (Math.floor(intDiff) - (day * 24 *
-                                    60 *
-                                    60) - (hour * 60 * 60) - (
-                                    minute * 60))
-                            } else {
-                                second = Math.floor(intDiff) - (day * 24 * 60 *
-                                        60) -
-                                    (hour * 60 * 60) - (minute *
-                                        60)
-                            }
-
-                            $('.day').text(day);
-                            $('.hour').text(hour);
-                            $('.minute').text(minute);
-                            $('.second').text(second);
-
-                            $('.hour1').text(hour.toString().substring(0, 1));
-                            $('.minute1').text(minute.toString().substring(0, 1));
-                            $('.second1').text(second.toString().substring(0, 1));
-                            $('.hour2').text(hour.toString().substring(1, 2));
-                            $('.minute2').text(minute.toString().substring(1, 2));
-                            $('.second2').text(second.toString().substring(1, 2));
-                            intDiff--;
-                            if (intDiff <= 0) {
-                                clearInterval(timers)
-                            }
-                        }, 1000);
-                    } else {
-                        $('.day').text('00');
-                        $('.hour').text('00');
-                        $('.minute').text('00');
-                        $('.second').text('00');
-
-                        $('.hour1').text('0');
-                        $('.minute1').text('0');
-                        $('.second1').text('0');
-                        $('.hour2').text('0');
-                        $('.minute2').text('0');
-                        $('.second2').text('0');
-                    }
+                    $('#timetest').val(res.data.event_start_time)
+                    changeTimer(res.data.event_start_time.replace('T', ' '))
 
                 }
             },
         });
+        function changeTimer(time) {
+            
+            var date1 = new Date(time).getTime()
+            if(isNaN(date1)){
+                date1 = 0
+            }
+            var date2 = Date.now()
+            var day = 00
+            var hour = 00
+            var minute = 00
+            var second = 00; //时间默认值
 
+            clearInterval(timers)
+            if (date1 > date2) {
+                var intDiff = parseInt((date1 - date2) / 1000);
+                timers = setInterval(function () {
+
+                    if (Math.floor(intDiff / (60 * 60 * 24)) < 10) {
+                        day = '0' + Math.floor(intDiff / (60 * 60 * 24))
+                    } else {
+                        day = Math.floor(intDiff / (60 * 60 * 24))
+                    }
+
+                    if (Math.floor(intDiff / (60 * 60)) - (day * 24) <
+                        10) {
+
+                        hour = '0' + (Math.floor(intDiff / (60 * 60)) - (
+                            day *
+                            24))
+
+                    } else {
+                        hour = Math.floor(intDiff / (60 * 60)) - (day *
+                            24)
+
+                    }
+
+                    if (Math.floor(intDiff / 60) - (day * 24 * 60) - (
+                            hour *
+                            60) < 10) {
+                        minute = '0' + (Math.floor(intDiff / 60) - (day *
+                            24 *
+                            60) - (hour * 60))
+                    } else {
+                        minute = Math.floor(intDiff / 60) - (day * 24 *
+                                60) -
+                            (hour * 60)
+                    }
+
+                    if (Math.floor(intDiff) - (day * 24 * 60 * 60) - (
+                            hour *
+                            60 * 60) - (minute * 60) <
+                        10) {
+                        second = '0' + (Math.floor(intDiff) - (day * 24 *
+                            60 *
+                            60) - (hour * 60 * 60) - (
+                            minute * 60))
+                    } else {
+                        second = Math.floor(intDiff) - (day * 24 * 60 *
+                                60) -
+                            (hour * 60 * 60) - (minute *
+                                60)
+                    }
+
+                    $('.day').text(day);
+                    $('.hour').text(hour);
+                    $('.minute').text(minute);
+                    $('.second').text(second);
+
+                    $('.hour1').text(hour.toString().substring(0, 1));
+                    $('.minute1').text(minute.toString().substring(0, 1));
+                    $('.second1').text(second.toString().substring(0, 1));
+                    $('.hour2').text(hour.toString().substring(1, 2));
+                    $('.minute2').text(minute.toString().substring(1, 2));
+                    $('.second2').text(second.toString().substring(1, 2));
+                    intDiff--;
+                    if (intDiff <= 0) {
+                        clearInterval(timers)
+                    }
+                }, 1000);
+            } else {
+                $('.day').text('00');
+                $('.hour').text('00');
+                $('.minute').text('00');
+                $('.second').text('00');
+
+                $('.hour1').text('0');
+                $('.minute1').text('0');
+                $('.second1').text('0');
+                $('.hour2').text('0');
+                $('.minute2').text('0');
+                $('.second2').text('0');
+            }
+        }
 
 
         // 在线人数 
@@ -941,6 +954,10 @@ $(function () {
 
     // 倒计时提交
     $('#down-submit').on('click', function () {
+        if($('#timetest').val().length<=0){
+            layer.msg('请输入直播开始时间!')
+            return
+        }
         $.ajax({
             type: 'POST',
             url: "http://www.cube.vip/event/live_countdown_settings/",
@@ -951,7 +968,8 @@ $(function () {
             data: {
                 event_id: event_id,
                 event_countdown: countDownFlag,
-                live_countdown: countDownOrientation
+                live_countdown: countDownOrientation,
+                event_start_time:$('#timetest').val()
             },
             success: function (res) {
                 if (res.msg === 'success') {

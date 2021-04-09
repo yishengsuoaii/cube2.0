@@ -224,7 +224,7 @@
   display: flex;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .countDown-form {
-  width: 3.1rem;
+  width: 5.1rem;
   height: 4.1rem;
   margin: 0.5rem 0.3rem 0 1.2rem;
   font-size: 0.17rem;
@@ -235,10 +235,14 @@
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .countDown-form .layui-input-block {
   margin-left: 0;
 }
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .countDown-form #timetest {
+  width: 3rem;
+  color: #656565;
+}
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .preview-time {
   width: 5.08rem;
   margin-top: 0.5rem;
-  margin-left: 2.12rem;
+  margin-left: 0.12rem;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .preview-time .preview-time-title {
   font-size: 0.18rem;

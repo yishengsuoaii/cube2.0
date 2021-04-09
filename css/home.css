@@ -188,10 +188,6 @@
   padding: 40px 40px 0;
   display: none;
 }
-#addDialog .layui-form-onswitch {
-  border-color: #f2591a;
-  background-color: #f2591a;
-}
 #addDialog .layui-form-label {
   width: 130px;
   font-size: 18px;
@@ -215,13 +211,4 @@
 #addDialog .layui-textarea {
   width: 330px;
   resize: none;
-}
-#addDialog #test6 {
-  width: 330px;
-}
-#addDialog #test7 {
-  width: 330px;
-}
-#addDialog #roomCode {
-  width: 330px;
 }
