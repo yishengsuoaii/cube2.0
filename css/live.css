@@ -56,6 +56,9 @@
   color: #666666;
   line-height: 0.4rem;
   padding-left: 0.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .heads .liveScan {
   width: 1.1rem;
@@ -947,6 +950,9 @@
   color: #666666;
   line-height: 0.4rem;
   padding-left: 0.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #liveControl .heads .liveScan1 {
   width: 1.1rem;

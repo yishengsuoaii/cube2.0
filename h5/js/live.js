@@ -12,7 +12,6 @@ if(sessionStorage.getItem('cubeInfo')){
     window.location.href='http://www.cube.vip/h5/wxlogin.html?key=' + window.location.search.substring(1).split("=")[1]
 }
 let timers = null
-let timer2 = null
 let videoJs = ''
 let playFlay = false
 var sessionTimers = null
@@ -80,7 +79,7 @@ $(function () {
                 if (res.data.event_countdown) {
                     downtime(res.data.event_start_time, res.data.live_countdown,res.data.event_playback_flag,res.data.event_playback_url)
                 } else {
-                    downtimes(res.data.event_start_time,res.data.event_playback_flag,res.data.event_playback_url)
+                    downtimes(res.data.event_playback_flag,res.data.event_playback_url)
                 }
                 //是否在线人数
                 if (res.data.event_number_flag) {
@@ -260,249 +259,131 @@ $(function () {
                     clearInterval(timers)
                     $('#topDown').hide()
                     $('#centerDown').hide()
-                    getVideoUrl()
                 }
             }, 1000)
-            // setTimeout(()=>{
                 if (value === 1) {
                     $('#centerDown').show()
                 } else {
                     $('#topDown').show()
                 }
-                if(flag){
-                    if(url!==null){
-                        playFlay = true
-                        $('#videoBox').css({
-                            background:'',
-                        })
-                        videoJs =  new Aliplayer({
-                            "id": "videoBox",
-                            "source": url,
-                            "width":'10rem',
-                            "height":'5.625rem',
-                            "autoplay": false,
-                            "isLive": false,
-                            "rePlay": false,
-                            "playsinline": true,
-                            "preload": true,
-                            "controlBarVisibility": "click",
-                            "useH5Prism": true,
-                            "skinLayout": [
-                                {
-                                  "name": "bigPlayButton",
-                                  "align": "cc",
-                                },
-                                {
-                                  "name": "H5Loading",
-                                  "align": "cc"
-                                },
-                                {
-                                  "name": "errorDisplay",
-                                  "align": "tlabs",
-                                  "x": 0,
-                                  "y": 0
-                                },
-                                {
-                                  "name": "infoDisplay"
-                                },
-                                {
-                                  "name": "tooltip",
-                                  "align": "blabs",
-                                  "x": 0,
-                                  "y": 56
-                                },
-                                {
-                                  "name": "thumbnail"
-                                },
-                                {
-                                  "name": "controlBar",
-                                  "align": "blabs",
-                                  "x": 0,
-                                  "y": 0,
-                                  "children": [
-                                    {
-                                      "name": "progress",
-                                      "align": "blabs",
-                                      "x": 0,
-                                      "y": 44
-                                    },
-                                    {
-                                      "name": "playButton",
-                                      "align": "tl",
-                                      "x": 15,
-                                      "y": 12
-                                    },
-                                    {
-                                      "name": "timeDisplay",
-                                      "align": "tl",
-                                      "x": 10,
-                                      "y": 7
-                                    },
-                                    {
-                                      "name": "subtitle",
-                                      "align": "tr",
-                                      "x": 15,
-                                      "y": 12
-                                    },
-                                    {
-                                      "name": "setting",
-                                      "align": "tr",
-                                      "x": 15,
-                                      "y": 12
-                                    },
-                                    {
-                                        "name": "fullScreenButton",
-                                        "align": "tr",
-                                        "x": 10,
-                                        "y": 12
-                                    },
-                                    {
-                                      "name": "volume",
-                                      "align": "tr",
-                                      "x": 5,
-                                      "y": 10
-                                    }
-                                  ]
-                                }
-                              ]
-
-                        })
-                        $('#centerDown').on('click',function(){
-                            $('#centerDown').hide()
-                            videoJs.play()
-                        })
-                        videoJs.on('play',function(){
-                            $('#topDown').hide()
-                            $('#centerDown').hide()
-                            
-                        })
-                    }
-                }
-            // },1000)
-            
         } else {
             $('#topDown').hide()
             $('#centerDown').hide()
-            getVideoUrl()
         }
+        downtimes(flag,url)
 
     }
-    function downtimes(startTime,flag,url) {
-        var date1 = new Date(startTime.replace('T', ' ')).getTime()
-        var date2 = Date.now()
-        clearInterval(timer2)
-        if (date1 > date2) {
-            var intDiff = parseInt((date1 - date2) / 1000)
-            if(flag){
-                if(url!==null){
-                    playFlay = true
-                    $('#videoBox').css({
-                        background:'',
-                    })
-                    videoJs =  new Aliplayer({
-                        "id": "videoBox",
-                        "source": url,
-                        "width":'10rem',
-                        "height":'5.625rem',
-                        "autoplay": false,
-                        "isLive": false,
-                        "rePlay": false,
-                        "playsinline": true,
-                        "preload": true,
-                        "controlBarVisibility": "click",
-                        "useH5Prism": true,
-                        "skinLayout": [
+    function downtimes(flag,url) {
+
+        if(flag){
+            if(url!==null){
+                playFlay = true
+                $('#videoBox').css({
+                    background:'',
+                })
+                videoJs =  new Aliplayer({
+                    "id": "videoBox",
+                    "source": url,
+                    "width":'10rem',
+                    "height":'5.625rem',
+                    "autoplay": false,
+                    "isLive": false,
+                    "rePlay": false,
+                    "playsinline": true,
+                    "preload": true,
+                    "controlBarVisibility": "click",
+                    "useH5Prism": true,
+                    "skinLayout": [
+                        {
+                          "name": "bigPlayButton",
+                          "align": "cc",
+                        },
+                        {
+                          "name": "H5Loading",
+                          "align": "cc"
+                        },
+                        {
+                          "name": "errorDisplay",
+                          "align": "tlabs",
+                          "x": 0,
+                          "y": 0
+                        },
+                        {
+                          "name": "infoDisplay"
+                        },
+                        {
+                          "name": "tooltip",
+                          "align": "blabs",
+                          "x": 0,
+                          "y": 56
+                        },
+                        {
+                          "name": "thumbnail"
+                        },
+                        {
+                          "name": "controlBar",
+                          "align": "blabs",
+                          "x": 0,
+                          "y": 0,
+                          "children": [
                             {
-                              "name": "bigPlayButton",
-                              "align": "cc",
-                            },
-                            {
-                              "name": "H5Loading",
-                              "align": "cc"
-                            },
-                            {
-                              "name": "errorDisplay",
-                              "align": "tlabs",
-                              "x": 0,
-                              "y": 0
-                            },
-                            {
-                              "name": "infoDisplay"
-                            },
-                            {
-                              "name": "tooltip",
+                              "name": "progress",
                               "align": "blabs",
                               "x": 0,
-                              "y": 56
+                              "y": 44
                             },
                             {
-                              "name": "thumbnail"
+                              "name": "playButton",
+                              "align": "tl",
+                              "x": 15,
+                              "y": 12
                             },
                             {
-                              "name": "controlBar",
-                              "align": "blabs",
-                              "x": 0,
-                              "y": 0,
-                              "children": [
-                                {
-                                  "name": "progress",
-                                  "align": "blabs",
-                                  "x": 0,
-                                  "y": 44
-                                },
-                                {
-                                  "name": "playButton",
-                                  "align": "tl",
-                                  "x": 15,
-                                  "y": 12
-                                },
-                                {
-                                  "name": "timeDisplay",
-                                  "align": "tl",
-                                  "x": 10,
-                                  "y": 7
-                                },
-                                {
-                                  "name": "subtitle",
-                                  "align": "tr",
-                                  "x": 15,
-                                  "y": 12
-                                },
-                                {
-                                  "name": "setting",
-                                  "align": "tr",
-                                  "x": 15,
-                                  "y": 12
-                                },
-                                {
-                                    "name": "fullScreenButton",
-                                    "align": "tr",
-                                    "x": 10,
-                                    "y": 12
-                                },
-                                {
-                                  "name": "volume",
-                                  "align": "tr",
-                                  "x": 5,
-                                  "y": 10
-                                }
-                              ]
+                              "name": "timeDisplay",
+                              "align": "tl",
+                              "x": 10,
+                              "y": 7
+                            },
+                            {
+                              "name": "subtitle",
+                              "align": "tr",
+                              "x": 15,
+                              "y": 12
+                            },
+                            {
+                              "name": "setting",
+                              "align": "tr",
+                              "x": 15,
+                              "y": 12
+                            },
+                            {
+                                "name": "fullScreenButton",
+                                "align": "tr",
+                                "x": 10,
+                                "y": 12
+                            },
+                            {
+                              "name": "volume",
+                              "align": "tr",
+                              "x": 5,
+                              "y": 10
                             }
                           ]
-                    })
-                }
-            }
-            timer2 = setInterval(function () {
-                intDiff--;
-                if (intDiff <= 0) {
-                    clearInterval(timer2)
-                    getVideoUrl()
-                }
-            }, 1000);
-        } else {
-            getVideoUrl()
-        }
+                        }
+                      ]
 
+                })
+                $('#centerDown').on('click',function(){
+                    $('#centerDown').hide()
+                    videoJs.play()
+                })
+                videoJs.on('play',function(){
+                    $('#topDown').hide()
+                    $('#centerDown').hide()
+                    
+                })
+            }
+        }
     }
     // 获取直播状态
     getState()
@@ -519,7 +400,6 @@ $(function () {
                         setTimeout(()=>{
                             clearInterval(stateTimer)
                             clearInterval(timers)
-                            clearInterval(timer2)
                             $('#topDown').hide()
                             $('#centerDown').hide()
                             getVideoUrl()
@@ -540,7 +420,6 @@ $(function () {
                     setTimeout(()=>{
                         clearInterval(stateTimer)
                         clearInterval(timers)
-                        clearInterval(timer2)
                         $('#topDown').hide()
                         $('#centerDown').hide()
                         getVideoUrl()
