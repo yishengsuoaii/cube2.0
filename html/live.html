@@ -34,7 +34,7 @@
             border: 0 !important;
 
         }
-    /* 设置默认样式 */
+        /* 设置默认样式 */
 		.layui-form-radio>i:hover,
 		.layui-form-radioed>i {
 			color: #FF914D !important;
@@ -535,9 +535,10 @@
                                         <div class="cameraContent">
                                             <video id="cameraOne" autoplay  muted></video>
                                             <div class="slideBox">
+                                                <img src="./../image/mute-close.png" id="one-mute">
                                                 <div class="slideLine" id="slideOne">
                                                 </div>
-                                                <img src="./../image/mute-close.png" id="one-mute">
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -549,9 +550,10 @@
                                         <div class="cameraContent">
                                             <video id="cameraTwo"  autoplay muted></video>
                                             <div class="slideBox">
+                                                <img src="./../image/mute-close.png" id="two-mute">
                                                 <div class="slideLine" id="slideTwo">
                                                 </div>
-                                                <img src="./../image/mute-close.png" id="two-mute">
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -563,9 +565,10 @@
                                         <div class="cameraContent">
                                             <video id="cameraThree" autoplay muted></video>
                                             <div class="slideBox">
+                                                <img src="./../image/mute-close.png" id="three-mute">
                                                 <div class="slideLine" id="slideThree">
                                                 </div>
-                                                <img src="./../image/mute-close.png" id="three-mute">
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -577,9 +580,10 @@
                                         <div class="cameraContent">
                                             <video id="cameraFour"  autoplay muted></video>
                                             <div class="slideBox">
+                                                <img src="./../image/mute-close.png" id="four-mute">
                                                 <div class="slideLine" id="slideFour">
                                                 </div>
-                                                <img src="./../image/mute-close.png" id="four-mute">
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -618,39 +622,29 @@
                                 <p class="cloudTitle">云推流</p>
                                 <div class="cloudContent">
                                     <div class="pushList">
-                                        <p class="pushTitle">推流1</p>
-                                        <div class="pushInputBox">
-                                            <input type="text" class="pushInputs">
-                                            <div class="pushBtn">开始</div>
-                                        </div>
+                                        <span class="pushTitle">直播推流1:</span>
+                                        <input type="text" class="pushInputs">
+                                        <div class="pushBtn">开始</div>
                                     </div>
                                     <div class="pushList">
-                                        <p class="pushTitle">推流2</p>
-                                        <div class="pushInputBox">
-                                            <input type="text" class="pushInputs">
-                                            <div class="pushBtn">开始</div>
-                                        </div>
+                                        <span class="pushTitle">直播推流2:</span>
+                                        <input type="text" class="pushInputs">
+                                        <div class="pushBtn">开始</div>
                                     </div>
                                     <div class="pushList">
-                                        <p class="pushTitle">推流3</p>
-                                        <div class="pushInputBox">
-                                            <input type="text" class="pushInputs">
-                                            <div class="pushBtn">开始</div>
-                                        </div>
+                                        <span class="pushTitle">直播推流3:</span>
+                                        <input type="text" class="pushInputs">
+                                        <div class="pushBtn">开始</div>
                                     </div>
                                     <div class="pushList">
-                                        <p class="pushTitle">推流4</p>
-                                        <div class="pushInputBox">
-                                            <input type="text" class="pushInputs">
-                                            <div class="pushBtn">开始</div>
-                                        </div>
+                                        <span class="pushTitle">直播推流4:</span>
+                                        <input type="text" class="pushInputs">
+                                        <div class="pushBtn">开始</div>
                                     </div>
                                     <div class="pushList">
-                                        <p class="pushTitle">推流5</p>
-                                        <div class="pushInputBox">
-                                            <input type="text" class="pushInputs">
-                                            <div class="pushBtn">开始</div>
-                                        </div>
+                                        <span class="pushTitle">直播推流5:</span>
+                                        <input type="text" class="pushInputs">
+                                        <div class="pushBtn">开始</div>
                                     </div>
                                 </div>
                             </div>
@@ -788,6 +782,38 @@
                         </div>
                         <div id="docFoot">
                             <button id="docSave" type="button" class="layui-btn">提交</button>
+                        </div>
+                    </div>
+                    <div id="musicDialog">
+                        <div id="musicContent">
+                            <div id="addMusic">+添加音乐</div>
+                            <div class="musicList">
+                            </div>
+                        </div>
+                        <div id="musicFoot">
+                            <button id="musicSave" type="button" class="layui-btn">提交</button>
+                        </div>
+                    </div>
+
+                    <div id="kvDialog">
+                        <div id="kvContent">
+                           <div class="kvPreview">
+                               <img id="kvImage" class="classOne">
+                           </div>
+                           <div class="kvRadio layui-form">
+                            <input type="radio" name="kv" value="1" title="底部居中" checked lay-filter="kvForm">
+                            <input type="radio" name="kv" value="2" title="居中" lay-filter="kvForm">
+                            <input type="radio" name="kv" value="3" title="全屏" lay-filter="kvForm">
+                           </div>
+                           <div id="kvList">
+                            <div id="kvLeft"></div>
+                            <div id="addKv">
+                                <img src="./../image/upload-video-icon.png" alt="">
+                            </div>
+                           </div>
+                        </div>
+                        <div id="kvFoot">
+                            <button id="kvSave" type="button" class="layui-btn">提交</button>
                         </div>
                     </div>
                     <div id="video-dialog">

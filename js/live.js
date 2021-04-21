@@ -155,6 +155,31 @@ $(function () {
         <div  id="addLogoDialog">添加LOGO</div>
     </div>`
 
+    // 背景音乐dom
+    var musicHtml = `
+    <div id="musicBox">
+    <div class="musicLeft">
+         <div id="musicStart" class="defaultStyle">开启</div>
+         <div id="musicSelect">选择音乐</div>
+            </div>
+        <div id="musicName"></div>
+            <div id="music_box">
+                <div class="musicInfo">
+                    <div class="slideBox">
+                        <img src="./../image/mute-close.png" id="music-mute">
+                        <div class="slideLine" id="slideMusic"></div>
+                        <span class="slideInfo">背景音量</span>
+                    </div>
+                    <div class="slideBox">
+                        <img src="./../image/mute-close.png" id="audio-mute">
+                        <div class="slideLine" id="slideAudio"></div>
+                        <span class="slideInfo">混音音量</span>
+                    </div>
+                </div>
+            </div>
+    </div>
+    `
+
 
     // logo
     var logoFlag = 'True'
@@ -216,6 +241,31 @@ $(function () {
             num:0,
             total: 0,
             update: 0,
+        },
+        // music 
+        musicInfo:{
+            state: 'off',
+            oss: '',
+            audio_volume: 0,
+            volume:0,
+            name:'',
+            update: 0
+        },
+        // gif
+        gifInfo:{
+            state:'off',
+            update: 0,
+            oss:'',
+            x:0,
+            y:0,
+            width:0,
+            height:0
+        },
+        kvInfo:{
+            state: 'off',
+            oss: '',
+            update: 0,
+            location: 1
         }
     }
     var pptData ={
@@ -227,6 +277,12 @@ $(function () {
         total: 0,
         update: 1,
     }
+    var musicData = {
+        oss: '',
+        name:''
+    }
+    // 云推流定时器
+    var pushTimer = null
     // 绘制canvas 定时器
     var timerDraw = null
 
@@ -240,6 +296,10 @@ $(function () {
     var slide_two = null
     var slide_three = null
     var slide_four = null
+    // 背景音乐滑块
+    var slide_music = null
+
+    var audio_music = null
 
 
     //比分牌---------------------------------------------------------------------------------------------
@@ -378,6 +438,28 @@ $(function () {
                                 <div class="layui-tab-item layui-show">
                                    ${slidesHtml}
                                 </div>`
+                            }else if (item.appname == '背景音乐') {
+                                functionTitleSrc += `<li class="layui-this">背景音乐</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item layui-show">
+                                   ${musicHtml}
+                                </div>`
+                            }else if (item.appname == '动态特效') {
+                                functionTitleSrc += `<li class="layui-this">动态特效</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item layui-show">
+                                    <div id="dynamicBox">
+                                    </div>
+                                </div>`
+                            }else if (item.appname == '图片素材') {
+                                functionTitleSrc += `<li class="layui-this">图片素材</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item layui-show">
+                                    <div id="kvBox">
+                                        <div id="kvStart" class="defaultStyle">开启</div>
+                                        <div id="kvSelect">选择图片</div>
+                                    </div>
+                                </div>`
                             }
                         } else {
                             if (item.appname == 'logo') {
@@ -422,6 +504,28 @@ $(function () {
                                 functionContentSrc += `
                                 <div class="layui-tab-item">
                                    ${slidesHtml}
+                                </div>`
+                            }else if (item.appname == '背景音乐') {
+                                functionTitleSrc += `<li>背景音乐</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item">
+                                   ${musicHtml}
+                                </div>`
+                            }else if (item.appname == '动态特效') {
+                                functionTitleSrc += `<li>动态特效</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item">
+                                    <div id="dynamicBox">
+                                    </div>
+                                </div>`
+                            }else if (item.appname == '图片素材') {
+                                functionTitleSrc += `<li>图片素材</li>`
+                                functionContentSrc += `
+                                <div class="layui-tab-item">
+                                    <div id="kvBox">
+                                        <div id="kvStart" class="defaultStyle">开启</div>
+                                        <div id="kvSelect">选择图片</div>
+                                    </div>
                                 </div>`
                             }
                         }
@@ -733,6 +837,20 @@ $(function () {
             }
         }
 
+        // KV图位置 切换选中状态 
+        form.on('radio(kvForm)', function(data){
+            if(Number(data.value)===1){
+                $('#kvImage').addClass('classOne').removeClass('classTwo classThree')
+            }
+            else if(Number(data.value)===2){
+                $('#kvImage').addClass('classTwo').removeClass('classOne classThree')
+            }
+            else if(Number(data.value)===3){
+                $('#kvImage').addClass('classThree').removeClass('classTwo classOne')
+            }
+            allInfo.kvInfo.location = Number(data.value)
+        });  
+
         // 比分显示方位
         form.on('radio(areaRadio)', function (data) {
             if (data.value === 'leftTop') {
@@ -928,14 +1046,14 @@ $(function () {
             max: 10,
             step: 1,
             value: 0,
-            type: 'vertical',
+            type: 'default',
             theme: '#FF914D',
             setTips: function (value) { //自定义提示文本
                 return value / 10;
             },
             change: function (value) {
                 $('#slideOne .layui-slider-bar').css({
-                    height: value * 100 + '%'
+                   width: value * 100 + '%'
                 })
                 if (value === 0) {
                     oneMuteFlag = false
@@ -966,14 +1084,14 @@ $(function () {
             max: 10,
             step: 1,
             value: 0,
-            type: 'vertical',
+           type: 'default',
             theme: '#FF914D',
             setTips: function (value) { //自定义提示文本
                 return value / 10;
             },
             change: function (value) {
                 $('#slideTwo .layui-slider-bar').css({
-                    height: value * 100 + '%'
+                   width: value * 100 + '%'
                 })
                 if (value === 0) {
                     twoMuteFlag = false
@@ -1004,14 +1122,14 @@ $(function () {
             max: 10,
             step: 1,
             value: 0,
-            type: 'vertical',
+           type: 'default',
             theme: '#FF914D',
             setTips: function (value) { //自定义提示文本
                 return value / 10;
             },
             change: function (value) {
                 $('#slideThree .layui-slider-bar').css({
-                    height: value * 100 + '%'
+                   width: value * 100 + '%'
                 })
                 if (value === 0) {
                     threeMuteFlag = false
@@ -1042,14 +1160,14 @@ $(function () {
             max: 10,
             step: 1,
             value: 0,
-            type: 'vertical',
+           type: 'default',
             theme: '#FF914D',
             setTips: function (value) { //自定义提示文本
                 return value / 10;
             },
             change: function (value) {
                 $('#slideFour .layui-slider-bar').css({
-                    height: value * 100 + '%'
+                   width: value * 100 + '%'
                 })
                 if (value === 0) {
                     fourMuteFlag = false
@@ -1071,6 +1189,65 @@ $(function () {
             } else {
                 fourMuteFlag = true
                 slide_four.setValue(5)
+            }
+        })
+
+        // 背景音乐滑块
+        slide_music = slider.render({
+            elem: '#slideMusic',
+            min: 0,
+            max: 10,
+            step: 1,
+            value: 0,
+            type: 'default',
+            theme: '#FF914D',
+            setTips: function (value) { //自定义提示文本
+                return value / 10;
+            },
+            change: function (value) {
+                $('#slideMusic .layui-slider-bar').css({
+                    width: value * 100 + '%'
+                })
+                if (value === 0) {
+                    $('#music-mute').attr('src', '/image/mute-close.png')
+                } else {
+                    $('#music-mute').attr('src', '/image/mute-open.png')
+                }
+                allInfo.musicInfo.volume = value
+                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                if(allInfo.musicInfo.state === 'on') {
+                    allInfo.update = 0
+                    sendInstruct()
+                }
+            }
+        })
+
+        audio_music = slider.render({
+            elem: '#slideAudio',
+            min: 0,
+            max: 10,
+            step: 1,
+            value: 0,
+            type: 'deslideAudiofault',
+            theme: '#FF914D',
+            setTips: function (value) { //自定义提示文本
+                return value / 10;
+            },
+            change: function (value) {
+                $('#slideAudio .layui-slider-bar').css({
+                    width: value * 100 + '%'
+                })
+                if (value === 0) {
+                    $('#audio-mute').attr('src', '/image/mute-close.png')
+                } else {
+                    $('#audio-mute').attr('src', '/image/mute-open.png')
+                }
+                allInfo.musicInfo.audio_volume = value
+                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                if(allInfo.musicInfo.state === 'on') {
+                    allInfo.update = 0
+                    sendInstruct()
+                }
             }
         })
 
@@ -1354,6 +1531,23 @@ $(function () {
                 
             } else {
                 $('#lanternStart').addClass('startStyle').removeClass('defaultStyle').html('关闭文档')
+            }
+
+             // 渲染音乐
+             if(allInfo.musicInfo.state === 'off') {
+                $('#musicStart').addClass('defaultStyle').removeClass('startStyle').html('开启')
+            } else {
+                $('#musicStart').addClass('startStyle').removeClass('defaultStyle').html('关闭')
+            }
+            if(allInfo.musicInfo.name !=='' && allInfo.musicInfo.oss !=='') {
+                $('#musicName').show().html(allInfo.musicInfo.name)
+                $('#music_box').show()
+            }
+
+            if(allInfo.kvInfo.state === 'off') {
+                $('#kvStart').addClass('defaultStyle').removeClass('startStyle').html('开启')
+            } else {
+                $('#kvStart').addClass('startStyle').removeClass('defaultStyle').html('关闭')
             }
         }
         // 手势检测-------------------------------------------------------------------------------------------------
@@ -2350,6 +2544,22 @@ $(function () {
                         slidesFormat:allInfo.pptInfo.style,
                         slide_oss:pptImg,
                         update:allInfo.pptInfo.update
+                    },
+                    gif:{
+                        state:allInfo.gifInfo.state,
+                        x:allInfo.gifInfo.x,
+                        y:allInfo.gifInfo.y,
+                        width:allInfo.gifInfo.width,
+                        height:allInfo.gifInfo.height,
+                        gif_oss:allInfo.gifInfo.oss,
+                        update:allInfo.gifInfo.update
+                    },
+                    image:{
+                        state:allInfo.kvInfo.state,
+                        imageLocation:allInfo.kvInfo.location,
+                        type:'static',
+                        image_oss:allInfo.kvInfo.oss,
+                        update:allInfo.kvInfo.update
                     }
                 },
                 audio: {
@@ -2359,6 +2569,13 @@ $(function () {
                         twoVolume: allInfo.twoMuteSize / 10,
                         threeVolume: allInfo.threeMuteSize / 10,
                         fourVolume: allInfo.fourMuteSize / 10
+                    },
+                    music: {
+                        state: allInfo.musicInfo.state,
+                        music_volume: allInfo.musicInfo.volume,
+                        audio_volume:allInfo.musicInfo.audio_volume,
+                        music_oss:allInfo.musicInfo.oss,
+                        update:allInfo.musicInfo.update
                     }
                 }
             }
@@ -2377,7 +2594,10 @@ $(function () {
                 contentType: false,
                 data: formData
             })
-            allInfo.pptInfo.update = 0
+            allInfo.pptInfo.update = 0 
+            allInfo.musicInfo.update = 0
+            allInfo.kvInfo.update = 0
+            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
         }
         // 文档操作开始---------------------------------------------------------------------------------------------------------
 
@@ -2689,6 +2909,607 @@ $(function () {
             }
         }
         // 文档操作结束---------------------------------------------------------------------------------------------------------
+        
+         // 云推流开始---------------------------------------------------------------------------------------------------------
+        // 点击开始推流
+        $('.pushList').on('click',function(e){
+
+            // 未推流状态
+            if(e.target.className === 'pushBtn') {
+                if($.trim($(this).find('.pushInputs').val()).length<=0||!/^rtmp:\/\/([\w.]+\/?)\S*/.test($.trim($(this).find('.pushInputs').val()))　){
+                    $(this).find('.pushInputs').focus()
+                    layer.msg('请正确输入推流地址!')
+                }else {
+                    $.ajax({
+                        type: 'POST',
+                        url: "http://www.cube.vip/event/push_rtmp/",
+                        headers: {
+                            token: sessionStorage.getItem('token')
+                        },
+                        data: {
+                            event_code:event_code,
+                            message:JSON.stringify({
+                                code:'FRONT_END_ACTION',
+                                cloud_rtmp:{
+                                    action:'on',
+                                    index:$(this).index() + 1,
+                                    url:$.trim($(this).find('.pushInputs').val())
+                                }
+                            })
+                           
+                        },
+                        success: res => {
+                            if (res.msg === 'success') {
+                                inquirePushState()
+                                startPushTimer()
+                            } else if(res.msg === 'error') {
+                                layer.msg('直播未开始!')
+                            }
+                        }
+                    })
+                }
+            }
+            // 关闭推流
+           else if(e.target.className === 'pushBtn pushNormal'){
+                if($.trim($(this).find('.pushInputs').val()).length<=0||!/^rtmp:\/\/([\w.]+\/?)\S*/.test($.trim($(this).find('.pushInputs').val()))　){
+                    $(this).find('.pushInputs').focus()
+                    layer.msg('请正确输入推流地址!')
+                }else {
+                    $.ajax({
+                        type: 'POST',
+                        url: "http://www.cube.vip/event/push_rtmp/",
+                        headers: {
+                            token: sessionStorage.getItem('token')
+                        },
+                        data: {
+                            event_code:event_code,
+                            message:JSON.stringify({
+                                code:'FRONT_END_ACTION',
+                                cloud_rtmp:{
+                                    action:'off',
+                                    index:$(this).index() + 1,
+                                    url:$.trim($(this).find('.pushInputs').val())
+                                }
+                            })
+                           
+                        },
+                        success: res => {
+                            if (res.msg === 'success') {
+                                inquirePushState()
+                                startPushTimer()
+                            } else if(res.msg === 'error') {
+                                layer.msg('直播未开始!')
+                            }
+                        }
+                    })
+                }
+            } 
+            // 异常重新退
+            else if(e.target.className === 'pushBtn pushError'){
+                if($.trim($(this).find('.pushInputs').val()).length<=0||!/^rtmp:\/\/([\w.]+\/?)\S*/.test($.trim($(this).find('.pushInputs').val()))　){
+                    $(this).find('.pushInputs').focus()
+                    layer.msg('请正确输入推流地址!')
+                }else {
+                    $.ajax({
+                        type: 'POST',
+                        url: "http://www.cube.vip/event/push_rtmp/",
+                        headers: {
+                            token: sessionStorage.getItem('token')
+                        },
+                        data: {
+                            event_code:event_code,
+                            message:JSON.stringify({
+                                code:'FRONT_END_ACTION',
+                                cloud_rtmp:{
+                                    action:'off',
+                                    index:$(this).index() + 1,
+                                    url:$.trim($(this).find('.pushInputs').val())
+                                }
+                            })
+                           
+                        },
+                        success: res => {
+                            if (res.msg === 'success') {
+                                $.ajax({
+                                    type: 'POST',
+                                    url: "http://www.cube.vip/event/push_rtmp/",
+                                    headers: {
+                                        token: sessionStorage.getItem('token')
+                                    },
+                                    data: {
+                                        event_code:event_code,
+                                        message:JSON.stringify({
+                                            code:'FRONT_END_ACTION',
+                                            cloud_rtmp:{
+                                                action:'on',
+                                                index:$(this).index() + 1,
+                                                url:$.trim($(this).find('.pushInputs').val())
+                                            }
+                                        })
+                                       
+                                    },
+                                    success: res => {
+                                        if (res.msg === 'success') {
+                                            inquirePushState()
+                                            startPushTimer()
+                                        } else if(res.msg === 'error') {
+                                            layer.msg('直播未开始!')
+                                        }
+                                    }
+                                })
+                            } else if(res.msg === 'error') {
+                                layer.msg('直播未开始!')
+                            }
+                        }
+                    })
+                    
+                }
+            }
+            
+        })
+        // 查询云推流状态
+        inquirePushState()
+        function inquirePushState(){
+            $.ajax({
+                type: 'POST',
+                url: "http://www.cube.vip/event/get_push_status/",
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                data: {
+                    index: JSON.stringify([1,2,3,4,5]),
+                    event_code:event_code,
+                },
+                success: res => {
+                    if (res.msg === 'success') {
+                       $.each(res.data,function(key,value){
+                        if(value !== null){
+                            $('.pushList').eq(value.cloud_rtmp.index - 1).find('.pushInputs').val(value.cloud_rtmp.url)
+                            if(value.cloud_rtmp.action==='on'){
+                                $('.pushList').eq(value.cloud_rtmp.index - 1).find('.pushBtn').html('正在推流').removeClass('pushNormal pushError').addClass('pushConnect')
+                            } else if(value.cloud_rtmp.action==='normal'){
+                                 $('.pushList').eq(value.cloud_rtmp.index - 1).find('.pushBtn').html('推流正常').removeClass('pushConnect pushError').addClass('pushNormal')
+                            }else if(value.cloud_rtmp.action==='error') {
+                                $('.pushList').eq(value.cloud_rtmp.index - 1).find('.pushBtn').html('推流异常,点击重试').removeClass('pushConnect pushNormal').addClass('pushError')
+                            } else {
+                                $('.pushList').eq(value.cloud_rtmp.index - 1).find('.pushBtn').html('开始').removeClass('pushConnect pushNormal pushError')
+                            }
+                        }
+                       })
+                    }
+                }
+            })
+        }
+        startPushTimer()
+        function startPushTimer(){
+            clearInterval(pushTimer)
+            pushTimer=setInterval(()=>{
+                inquirePushState()
+            },10000)
+        }
+
+
+       // 云推流结束---------------------------------------------------------------------------------------------------------
+
+         // 背景音乐开始-------------------------------------------------------------------------------------------------------
+
+       // 打开背景音乐弹窗
+       $('#musicSelect').on('click',function(){
+        layer.open({
+            type: 1,
+            area: ['11.70rem', '7.22rem'],
+            title: ['背景音乐设置', 'color:#fff;background-color:#FF914D;font-size: 0.2rem;height:0.42rem;line-height:0.42rem'],
+            content: $('#musicDialog'),
+            shade: 0.3,
+            shadeClose: true,
+            scrollbar: false,
+            move: false,
+            end: function () {
+               $.each($('.musicAudio'),function(index,ele){
+                   ele.load()
+               })
+            }
+        })
+   })
+    // 获取所有音乐
+    getAllMusic()
+    function getAllMusic() {
+        $.ajax({
+              url:'http://www.cube.vip/event/upload_music/',
+              type: 'GET',
+              headers: {
+                  token: sessionStorage.getItem('token')
+              },
+              success:res =>{
+                  if(res.msg==='success'){
+                      var str= ''
+                      if(res.data.length>0){
+                          res.data.forEach(item=>{
+                              str+=`<div class="musicItem">
+                              <span class="musicTitle">${item.music_name.replace('.mp3','')}</span>
+                              <audio class="musicAudio" src="${item.oss_file}" controlslist="nodownload" controls preload="auto"></audio>
+                              <span class="musicDelete" data-id="${item.music_code}">删除</span>
+                              </div>`
+                          })
+                      }else {
+                          str+=`<div class="musicNone">
+                          <p class="maxMusic">
+                              当前列表为空<br />
+                              请添加音乐
+                          </p>
+                          <p class="minMusic">
+                              文件支持类型<br />
+                              目前仅支持MP3格式
+                          </p>
+                      </div>`
+                      }
+                      
+                        $('.musicList').html(str)
+                        // 播放某首音乐
+                        $.each($('.musicAudio'),function(index,ele){
+                            ele.addEventListener("playing", function(){		//播放状态Doing
+                                $.each($('.musicAudio'),function(inx,dom){
+                                    if(inx!==index){
+                                        dom.pause()
+                                    }
+                                })
+                            })
+                        })
+                  }
+              }
+
+        })
+    }
+    // 上传音乐
+    upload.render({
+        elem: '#addMusic',
+        url: 'http://www.cube.vip/event/upload_music/', //上传接口
+        accept: 'audio',
+        acceptMime:'audio/mpeg',
+        exts:'mp3',
+        headers:{token: sessionStorage.getItem('token')},
+        progress: function(n, elem){
+            $(elem).text('上传中,请勿重复上传'+'('+n+'%)')
+        },
+        done: function(res){
+          if(res.msg==="success"){
+              layer.msg('上传成功!')
+              getAllMusic()
+          } else {
+            layer.msg('上传失败,请重试!')
+          }
+          $('#addMusic').html('+添加音乐')
+        },
+        error: function(){
+          //请求异常回调
+          $('#addMusic').html('+添加音乐')
+        }
+    });
+    // 删除音乐
+    $('.musicList').on('click','.musicDelete',function(){
+        layer.open({
+            type: 1,
+            title: ['删除提示', 'color:#fff;background-color:#FF914D;font-size: 0.2rem;height:0.42rem;line-height:0.42rem'],
+            content: `<div style="padding: 20px 20px 0;">是否删除?</div>`,
+            btn: ["删除", "取消"],
+            yes: index=> {
+                
+                musicData.oss = ''
+                musicData.name = ''
+                if($(this).siblings('.musicAudio').attr('src').replace('beijing','beijing-internal')===allInfo.musicInfo.oss && $(this).siblings('.musicTitle').html()===allInfo.musicInfo.name){
+                    if(allInfo.musicInfo.state === 'on') {
+                        layer.close(index)
+                        layer.msg('请先关闭背景音乐!')
+                        return
+                    }
+                    allInfo.musicInfo.oss = ''
+                    allInfo.musicInfo.name = ''
+                    $('#music_box').hide()
+                    $('#musicName').hide().html('')
+                }
+                layer.close(index)
+                $.ajax({
+                    type: 'GET',
+                    url: "http://www.cube.vip/event/delete_music/",
+                    dataType: "json",
+                    headers: {
+                        token: sessionStorage.getItem('token')
+                    },
+                    data: {
+                        music_code:$(this).attr('data-id')
+                    },
+                    success: res => {
+                        if(res.msg==='success'){
+                            layer.msg('删除成功!')
+                            getAllMusic()
+                        } else {
+                            layer.msg('删除失败,请稍后重试!')
+                        }
+                    }
+                })
+            },
+            btn2: function () {
+            }
+        })
+        return false
+    })
+    //  选中某个音乐
+    $('.musicList').on('click','.musicItem',function(){
+        $(this).css({
+            backgroundColor:'#FF914D',
+            color:'#fff'
+        }).siblings().css({
+            backgroundColor:'',
+            color:'#FF914D'
+        })
+        musicData.oss = $(this).find('.musicAudio').attr('src').replace('beijing','beijing-internal')
+        musicData.name = $(this).find('.musicTitle').html()
+    })
+    // 音乐提交
+    $('#musicSave').on('click',function(){
+        if(musicData.oss === '' && musicData.name === ''){
+            layer.msg('请先选择音乐!')
+            return
+        } 
+        if(allInfo.musicInfo.state === 'on') {
+            layer.msg('请先关闭背景音乐!')
+            return
+        }
+        layer.closeAll()
+        allInfo.musicInfo.oss = musicData.oss
+        allInfo.musicInfo.name = musicData.name
+        sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+        $('#music_box').show()
+        $('#musicName').show().html(musicData.name)
+    })
+    // 开启关闭音乐
+    $('#musicStart').on('click',function(){
+        if(allInfo.musicInfo.name ==='' || allInfo.musicInfo.oss ===''){
+            layer.msg('请先选择音乐!')
+            return
+        }
+        
+        if($(this).hasClass('defaultStyle')){
+            $(this).removeClass('defaultStyle').addClass('startStyle').html('关闭')
+            allInfo.musicInfo.update = 1
+            allInfo.musicInfo.state = 'on'
+            
+        } else {
+            $(this).removeClass('startStyle').addClass('defaultStyle').html('开启')
+            allInfo.musicInfo.update = 0
+            allInfo.musicInfo.state = 'off'
+        }   
+        allInfo.update = 0
+        sendInstruct()
+        sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+            
+    })
+
+   // 背景音乐结束-------------------------------------------------------------------------------------------------------
+
+
+   // 动态特效开始 ------------------------------------------------------------------------------------------------------
+    // 获取所有动态gif
+    getAllGif()
+    function getAllGif(){
+        $.ajax({
+            url:'http://www.cube.vip/event/get_all_gif/',
+            type: 'GET',
+            headers: {
+                token: sessionStorage.getItem('token')
+            },
+            success:res=>{
+                if(res.msg==='success'){
+                    var str=''
+                    if( allInfo.gifInfo.state === 'off'){
+                        str+=`<div class="itemBox">
+                            <div class="dynamicItem active-dynamicItem" data-id="-1"  data-x="0" data-y="0" data-width="0" data-height="0">
+                                <img src="./../image/active_img.png" id="default-img">
+                            </div>
+                            <p class="itemName">无</p>
+                        </div>`
+                    } else {
+                        str+=`<div class="itemBox">
+                            <div class="dynamicItem" data-id="-1"  data-x="0" data-y="0" data-width="0" data-height="0">
+                                <img src="./../image/default_img.png" id="default-img">
+                            </div>
+                            <p class="itemName">无</p>
+                        </div>`
+                    }
+                    res.data.forEach((item,index)=>{
+                        var itm = JSON.parse(item.gif_description)
+                        if(allInfo.gifInfo.oss === itm.gif_oss.replace('beijing','beijing-internal')) {
+                             str+=`<div class="itemBox">
+                                <div class="dynamicItem active-dynamicItem" data-id="${index}" data-width="${itm.width}" data-height="${itm.height}" data-x="${itm.x}" data-y="${itm.y}">
+                                    <img src="${itm.gif_oss}" id="default-img">
+                                </div>
+                                <p class="itemName">${item.gif_name}</p>
+                            </div>`
+                        } else {
+                            str+=`<div class="itemBox">
+                                <div class="dynamicItem" data-id="${index}" data-x="${itm.x}" data-y="${itm.y}" data-width="${itm.width}" data-height="${itm.height}">
+                                    <img src="${itm.gif_oss}" id="default-img">
+                                </div>
+                                <p class="itemName">${item.gif_name}</p>
+                            </div>`
+                        }
+                    })
+                    $('#dynamicBox').html(str)
+                }
+            }
+        })
+    }
+   // 动态特效选取
+    $('#dynamicBox').on('click','.dynamicItem',function(e){
+       
+        if($(this).attr('data-id')!=='-1') {
+            $('#default-img').attr('src','./../image/default_img.png')
+           allInfo.gifInfo.state = 'on'
+        }
+        if($(this).attr('data-id')==='-1') {
+            $('#default-img').attr('src','./../image/active_img.png')
+            allInfo.gifInfo.state = 'off'
+        }
+        // 
+        allInfo.gifInfo.oss = $(this).find('img').attr('src').replace('beijing','beijing-internal')
+        allInfo.gifInfo.x = Number($(this).attr('data-x'))
+        allInfo.gifInfo.y = Number($(this).attr('data-y'))
+        allInfo.gifInfo.width = Number($(this).attr('data-width'))
+        allInfo.gifInfo.height = Number($(this).attr('data-height'))
+        allInfo.gifInfo.update = 1
+        $(this).addClass('active-dynamicItem').parent().siblings('.itemBox').find('.dynamicItem').removeClass('active-dynamicItem')
+
+        allInfo.update = 0
+        sendInstruct()
+        sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+    })
+    // 动态特效结束 -----------------------------------------------------------------------------------------------------
+
+
+    // kv图开始----------------------------------------------------------------------------------------------------------
+    // 打开kv图弹窗
+    $('#kvSelect').on('click',function(){
+        layer.open({
+            type: 1,
+            area: ['7.9rem', '7.22rem'],
+            title: ['素材设置', 'color:#fff;background-color:#FF914D;font-size: 0.2rem;height:0.42rem;line-height:0.42rem'],
+            content: $('#kvDialog'),
+            shade: 0.3,
+            shadeClose: true,
+            scrollbar: false,
+            move: false,
+            end: function () {
+            //    $.each($('.musicAudio'),function(index,ele){
+            //        ele.load()
+            //    })
+            }
+        })
+    })
+
+    // 上传kv图
+    upload.render({
+        elem: '#addKv',
+        url: 'http://www.cube.vip/event/notice_board_style/', //上传接口
+        accept: 'images',
+        acceptMime: 'image/png',
+        exts:'png',
+        headers:{token: sessionStorage.getItem('token')},
+        done: function(res){
+        if(res.msg==="success"){
+            layer.msg('上传成功!')
+            getALlKvImage()
+        } else {
+            layer.msg('上传失败,请重试!')
+        }
+        },
+        error: function(){
+        //请求异常回调
+        }
+    });
+   
+    getALlKvImage()
+    // 获取所有kv图
+    function getALlKvImage(){
+        $.ajax({
+            url:'http://www.cube.vip/event/notice_board_style/',
+            type: 'GET',
+            headers: {
+                token: sessionStorage.getItem('token')
+            },
+            success:res=>{
+                if(res.msg==='success'){
+                    var str = ''
+                    res.data.forEach(item=>{
+                        str+=`<div class="kvItem">
+                                    <img src="${item.scorecardurl}" alt="">
+                                    <i class="layui-icon layui-icon-delete kvDelete" data-id="${item.id}"></i>
+                                </div>`
+                        
+                    })
+                    if(res.data.length>=6){
+                        $('#addKv').hide()
+                    } else {
+                        $('#addKv').show()
+                    }
+                    
+                    $('#kvLeft').html(str)
+                }
+            }
+        })
+    }
+
+    //删除kv图
+    $('#kvLeft').on('click','.kvDelete',function(){
+        $.ajax({
+            url:'http://www.cube.vip/event/delete_notice_board/',
+            type: 'GET',
+            headers: {
+                token: sessionStorage.getItem('token')
+            },
+            data:{
+                id:$(this).attr('data-id')
+            },
+            success:res=>{
+                if(res.msg==='success'){
+                    layer.msg('删除成功!')
+                    $('#kvImage').hide().attr('src','')
+                    allInfo.kvInfo.oss = ''
+                    getALlKvImage()
+                } else {
+                    layer.msg('删除失败,请重试!')
+                }
+            }
+        })
+        return false
+    })
+
+    // 选中kv图
+    $('#kvLeft').on('click','.kvItem',function(){
+        $(this).addClass('kvAcItem')
+        $(this).siblings('.kvItem').removeClass('kvAcItem')
+        $('#kvImage').show().attr('src',$(this).find('img').attr('src'))
+        allInfo.kvInfo.oss = $(this).find('img').attr('src').replace('beijing','beijing-internal')
+        allInfo.kvInfo.update = 1 
+    })
+
+    // 提交
+    $('#kvSave').on('click',function () {
+        if(allInfo.kvInfo.oss === ''){
+            layer.msg('请选择图片!')
+            return
+        }
+        if(allInfo.kvInfo.state === 'on'){
+            layer.msg('请先关闭图片!')
+            return
+        }
+        layer.closeAll()
+    })
+
+    // 开启
+    $('#kvStart').on('click',function(){
+        if(allInfo.kvInfo.oss === ''){
+            layer.msg('请先选择图片!')
+            return
+        }
+        
+        if($(this).hasClass('defaultStyle')){
+            $(this).removeClass('defaultStyle').addClass('startStyle').html('关闭')
+            allInfo.kvInfo.update = 1
+            allInfo.kvInfo.state = 'on'
+            
+        } else {
+            $(this).removeClass('startStyle').addClass('defaultStyle').html('开启')
+            allInfo.kvInfo.update = 0
+            allInfo.kvInfo.state = 'off'
+        }   
+        allInfo.update = 0
+        sendInstruct()
+        sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+    })
+  
+      
+
+    // kv图关闭----------------------------------------------------------------------------------------------------------
         // WebSocket聊天室--------------------------------------------------------------------------------------------------
         const chatSocket = new WebSocket(
             'ws://' +

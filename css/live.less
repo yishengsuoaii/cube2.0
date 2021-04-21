@@ -1630,39 +1630,21 @@
                                 }
 
                                 .slideBox {
-                                    width: (22/100rem);
-                                    height: (116/100rem);
+                                    width: 1.5rem;
+                                    display: flex;
+                                    align-items: center;
+                                    color: #FF914D;
                                     position: absolute;
-                                    right: (10/100rem);
-                                    bottom: (2/100rem);
-
-                                    .slideLine {
-                                        height: (90/100rem);
-
-                                        .layui-slider {
-                                            height: (90/100rem) !important;
-                                            margin-left: (8/100rem);
-                                            .layui-slider-bar {
-                                                height: 0%;
-                                            }
-                                            
-                                            .layui-slider-wrap {
-                                                width: (24/100rem);
-                                                height: (24/100rem);
-                                                left: -(10/100rem);
-                                                .layui-slider-wrap-btn {
-                                                    width: (8/100rem);
-                                                    height: (8/100rem);
-                                                }
-                                            }
-                                        }
-                                    }
-
+                                    right: 0.1rem;
+                                    bottom: 0.1rem;
                                     img {
+                                        cursor: pointer;
                                         width: (22/100rem);
                                         height: (18/100rem);
-                                        margin-top: (6/100rem);
-                                        cursor: pointer;
+                                    }
+                                    .slideLine {
+                                        width: 1rem;
+                                        margin-left: 0.15rem;
                                     }
                                 }
                             }
@@ -2174,6 +2156,186 @@
                                         margin-left: 0.6rem;
                                    }
                                 }
+
+                                // 背景音乐
+                                #musicBox {
+                                    display: flex;
+                                    width: 100%;
+                                    height: 1.4rem;
+                                    align-items: center;
+                                    justify-content: center;
+                                   
+                                    // 开启按钮
+                                    .musicLeft {
+                                        display: flex;
+                                        height: 1.4rem;
+                                        flex-direction: column;
+                                        justify-content: space-around;
+                                        #musicStart {
+                                            width: 1.28rem;
+                                            height: 0.38rem;
+                                            border-radius: 0.05rem;
+                                            font-size: 0.2rem;
+                                            line-height: 0.38rem;
+                                            cursor: pointer;
+                                        }
+                                        .defaultStyle {
+                                            background: #444444;
+                                            color: #666666;
+                                            font-family: Source Han Sans CN;
+                                            font-weight: 400;
+                                            text-align: center;
+                                        }
+                                        .startStyle {
+                                            background: #FF914D;
+                                            color: #fff;
+                                            font-family: Source Han Sans CN;
+                                            font-weight: 400;
+                                            text-align: center;
+                                        }
+                                        // 选择音乐
+                                        #musicSelect {
+                                            width: 1.26rem;
+                                            height: 0.36rem;
+                                            line-height: 0.36rem;
+                                            font-size: 0.2rem;
+                                            border: 0.01rem solid #FF914D;
+                                            border-radius: 0.05rem;
+                                            cursor: pointer;
+                                            background: #444444;
+                                            color: #FF914D;
+                                            font-family: Source Han Sans CN;
+                                            font-weight: 400;
+                                            text-align: center;
+                                        }
+                                    }
+                                    #musicName {
+                                        display: none;
+                                        height: 0.38rem;
+                                        padding:0 0.2rem;
+                                        line-height: 0.38rem;
+                                        font-size: 0.2rem;
+                                        color: #FF914D;
+                                        max-width: 2rem;
+                                        overflow: hidden;
+                                        text-overflow:ellipsis;
+                                        white-space: nowrap;
+                                    }
+                                    #music_box {
+                                        display: none;
+                                        
+                                        .musicInfo {
+                                            height: 1.4rem;
+                                            display: flex;
+                                            flex-direction: column;
+                                            justify-content: space-around;
+                                           .slideBox {
+                                                width: 2.2rem;
+                                                display: flex;
+                                                align-items: center;
+                                                justify-content: space-between;
+                                                color: #FF914D;
+                                                img {
+                                                    width: (22/100rem);
+                                                    height: (18/100rem);
+                                                }
+                                                .slideLine {
+                                                    width: 1rem;
+                                                }
+                                                .slideInfo {
+                                                    font-size: 0.14rem;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    
+                                }
+                                // gif动态特效
+                                #dynamicBox {
+                                    display: flex;
+                                    width: 100%;
+                                    height: 1.4rem;
+                                    align-items: center;
+                                    justify-content: center;
+                                    .itemBox {
+                                        width: 1.22rem;
+                                        height: 1rem;
+                                        margin:0 0.1rem ;
+                                        .dynamicItem {
+                                            width: 1.2rem;
+                                            height: 0.6rem;
+                                            border-radius: 0.05rem;
+                                            cursor: pointer;
+                                            border: 0.01rem solid rgba(255, 255, 255, 0.1);
+                                        }
+                                        .active-dynamicItem {
+                                            border: 0.01rem solid #FF914D;
+                                        }
+                                        .itemName {
+                                            width: 1.22rem;
+                                            height: 0.3rem;
+                                            line-height: 0.3rem;
+                                            text-align: center;
+                                            font-size: 0.2rem;
+                                            font-family: Source Han Sans CN;
+                                            font-weight: 400;
+                                            margin-top: 0.1rem;
+                                            color: #FF914D;
+                                        }
+                                        img {
+                                            width: 1.2rem;
+                                            height: 0.6rem;
+                                            border-radius: 0.05rem;
+                                        }
+                                    }
+                                    
+                                }
+                                // kv图层
+                                #kvBox {
+                                    display: flex;
+                                    width: 100%;
+                                    height: 1.4rem;
+                                    align-items: center;
+                                    justify-content: center;
+                                    #kvStart {
+                                        width: 1.28rem;
+                                        height: 0.38rem;
+                                        border-radius: 0.05rem;
+                                        font-size: 0.2rem;
+                                        line-height: 0.38rem;
+                                        cursor: pointer;
+                                    }
+                                    .defaultStyle {
+                                        background: #444444;
+                                        color: #666666;
+                                        font-family: Source Han Sans CN;
+                                        font-weight: 400;
+                                        text-align: center;
+                                    }
+                                    .startStyle {
+                                        background: #FF914D;
+                                        color: #fff;
+                                        font-family: Source Han Sans CN;
+                                        font-weight: 400;
+                                        text-align: center;
+                                    }
+                                    // 选择图片
+                                    #kvSelect {
+                                        width: 1.26rem;
+                                        height: 0.36rem;
+                                        line-height: 0.36rem;
+                                        font-size: 0.2rem;
+                                        border: 0.01rem solid #FF914D;
+                                        border-radius: 0.05rem;
+                                        cursor: pointer;
+                                        background: #444444;
+                                        color: #FF914D;
+                                        font-family: Source Han Sans CN;
+                                        font-weight: 400;
+                                        text-align: center;
+                                        margin-left: 0.2rem;
+                                    }
+                                }
                             }
 
                         }
@@ -2182,11 +2344,10 @@
 
                 // 云推流-----------------------------------------------------------------------------------
                 #cloudPlug {
-                    width: 1559;
-                    height: (760/100rem);
+                    width: (1559/100rem);
                     background-color: #fff;
                     .cloudTitle {
-                        width: 1539;    
+                        width: (1539/100rem); 
                         height: (60/100rem);
                         line-height: (60/100rem);
                         padding-left: (20/100rem);
@@ -2197,49 +2358,65 @@
                         color: #FFFFFF;
                     }
                     .cloudContent {
-                        width: (978/100rem);
-                        height: (600/100rem);
-                        margin:  0 auto;
-                        padding-top: (100/100rem);
+                        width: (1559/100rem);
+                        height: (706/100rem);
+                        background: url('./../image/push_img.png') no-repeat;
+                        background-size: 100% 100%;
+                        padding-top: 1rem;
                         .pushList {
-                            width: (978/100rem);
-                            height: (78/100rem);
-                            margin-bottom: (20/100rem);
+                            width: (938/100rem);
+                            height: (96/100rem);
+                            margin:0 auto 0.2rem;
+                            display: flex;
+                            justify-content: space-between;
+                            padding: 0 0.3rem;
+                            background-color: #fff;
+                            align-items: center;
                             .pushTitle {
-                                height: (30/100rem);
-                                font-size: (20/100rem);
+                                font-size: 0.2rem;
+                                font-family: Source Han Sans CN;
+                                font-weight: 500;
+                                color: #F2591A;
+                            }
+                           
+                            .pushInputs{
+                                width: (616/100rem);
+                                padding: 0 (10/100rem);
+                                height: (46/100rem);
+                                border: (1/100rem) solid #9C9C9C;
+                                background: #EEEEEE;
+                                outline: none;
+                                font-size: 0.16rem;
+                            }
+                            .pushBtn {
+                                width:1.6rem;
+                                height: 0.48rem;
+                                background: #EEEEEE;
+                                border-radius: 0.05rem;
+                                font-size: 0.16rem;
                                 font-family: Source Han Sans CN;
                                 font-weight: 400;
                                 color: #666666;
-                                line-height: (30/100rem);
+                                line-height: 0.48rem;
+                                text-align: center;
+                                cursor: pointer;
                             }
-                            .pushInputBox {
-                                display: flex;
-                                width: (978/100rem);
-                                height: (48/100rem);
-                                justify-content: space-between;
-                                align-items: center;
-                                .pushInputs{
-                                    width: (866/100rem);
-                                    padding: 0 (10/100rem);
-                                    height: (46/100rem);
-                                    border: (1/100rem) solid #FF914D;
-                                }
-                                .pushBtn {
-                                    width: (78/100rem);
-                                    height: (38/100rem);
-                                    background-color: #fff;
-                                    border: (1/100rem) solid #FF914D;
-                                    border-radius: (5/100rem);
-                                    line-height: (38/100rem);
-                                    text-align: center;
-                                    font-size: (24/100rem);
-                                    font-family: Source Han Sans CN;
-                                    font-weight: 400;
-                                    color: #F2591A;
-                                    cursor: pointer;
-                                }
+                            // 连接状态
+                            .pushConnect {
+                                background: #666;
+                                color: #fff;
                             }
+                            // 正常状态
+                            .pushNormal {
+                                background: #FF914D;
+                                color: #fff;
+                            }
+                            // 错误状态
+                            .pushError {
+                                background: red;
+                                color: #fff;
+                            }
+                            
                         }
                     }
                 }
@@ -2760,6 +2937,251 @@
     }
 
 }
+// 音乐弹窗
+#musicDialog {
+    display: none;
+    width: (1170/100rem);
+    height: (680/100rem);
+    box-shadow: (0/100rem) (2/100rem) (10/100rem) (0/100rem) rgba(102, 102, 102, 0.1);
+    #musicContent {
+        width: 11.3rem;
+        height: 5.98rem;
+        padding: 0.1rem 0.2rem;
+        background: #333333;
+        #addMusic {
+            width: 11.3rem;
+            height: 0.65rem;
+            text-align: center;
+            line-height: 0.65rem;
+            border-bottom: 0.01rem solid #666666;
+            font-size: 0.18rem;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: #FF914D;
+            background: #564F4F;
+            cursor: pointer;
+        }
+        .musicList {
+            width: 11.3rem;
+            height: 5.32rem;
+            background: #564F4F;
+            position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
+            .musicItem {
+                width: 10.9rem;
+                height: 0.4rem;
+                border-bottom: 0.01rem solid #666666;
+                padding: 0 0.2rem;
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.16rem;
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #FF914D;
+                line-height: 0.4rem;
+                cursor: pointer;
+               .musicTitle {
+                    width: 2rem;
+                    overflow: hidden;
+                    text-overflow:ellipsis;
+                    white-space: nowrap;
+               }
+                audio {
+                    width: 3rem;
+                    height: 0.3rem;
+                    margin-top: 0.05rem;
+                    outline: none;
+                }
+                 .musicDelete {
+                    cursor: pointer;
+                 }
+            }
+            
+            
+            .musicNone {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                text-align: center;
+                .maxMusic {
+                    font-size: 0.24rem;
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    line-height: 0.4rem;
+                    color: #ccc;
+                    margin-bottom: 0.2rem;
+                }
+                .minMusic {
+                    font-size: 0.16rem;
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    line-height: 0.3rem;
+                    color: #ccc;
+                }
+            }
+        }
+    }
+    #musicFoot {
+        height: (50/100rem);
+        padding-top: (12/100rem);
+        background: #181818;
+        box-shadow: (0/100rem) (1/100rem) (0/100rem) (0/100rem) rgba(85, 85, 85, 0.1);
+        text-align: center;
+
+        #musicSave {
+            width: (72/100rem);
+            height: 0.38rem;
+            line-height: 0.38rem;
+            padding: 0;
+            background: #FF914D;
+            border-radius: (5/100rem);
+            font-size: (16/100rem);
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: #FEFEFE;
+        }
+    }
+
+}
+
+// kv弹窗
+#kvDialog {
+    display: none;
+    width: 7.9rem;
+    height: (680/100rem);
+    box-shadow: (0/100rem) (2/100rem) (10/100rem) (0/100rem) rgba(102, 102, 102, 0.1);
+    #kvContent {
+        width: 7.5rem;
+        height: 5.78rem;
+        padding: 0.2rem;
+        background: #333333;
+        .kvPreview {
+            width: 7.5rem;
+            height: 4.28rem;
+            background: #564F4F;
+            position: relative;
+            #kvImage {
+                display: none;
+                position: absolute;
+            }
+            .classOne {
+                height:0.6rem;
+                top:76%;
+                
+                left:50%;
+                transform: translate(-50%,0)
+            }
+            .classTwo {
+                width:2.5rem;
+                // height:2rem;
+                left:50%;
+                top:50%;
+                transform: translate(-50%,-50%)
+            }
+            .classThree {
+                width:100%;
+                height:100%;
+                left:0;
+                top:0;
+                transform: translate(0,0)
+            }
+        }
+        .kvRadio {
+            width: 7.5rem;
+            height: 0.6rem;
+            line-height: 0.6rem;
+            color: #fff;
+            text-align: center;
+        }
+        #kvList {
+            width: 7.5rem;
+            height: 0.7rem;
+            display: flex;
+            // justify-content: space-evenly;
+            align-items: center;
+            #addKv {
+                width: 1.1rem;
+                height: 0.68rem;
+                background-color: #fff;
+                border-radius: 0.05rem;
+                border: 0.01rem solid #CCCCCC;
+                cursor: pointer;
+                position: relative;
+                img {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    width: 0.24rem;
+                    height: 0.24rem;
+                }
+            }
+            #kvLeft {
+                height: 0.7rem;
+                display: flex;
+                align-items: center;
+                .kvItem {
+                    width: 1.1rem;
+                    height: 0.68rem;
+                    background-color: #fff;
+                    border-radius: 0.05rem;
+                    margin-right: 0.16rem;
+                    cursor: pointer;
+                    position: relative;
+                    border: 0.01rem solid transparent;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 0.05rem;
+                    }
+                    .kvDelete {
+                        display: none;
+                        position: absolute;
+                        bottom: 0.05rem;
+                        right: 0.05rem;
+                        cursor: pointer;
+                        color: #FF914D;
+                        font-size: 0.28rem;
+                    }
+                    &:hover {
+                        .kvDelete  {
+                            display: block;
+                        }
+                    }
+                }
+                .kvAcItem {
+                    border: 0.01rem solid #FF914D;
+                }
+            }
+            
+        }
+      
+    }
+    #kvFoot {
+        height: (50/100rem);
+        padding-top: (12/100rem);
+        background: #181818;
+        box-shadow: (0/100rem) (1/100rem) (0/100rem) (0/100rem) rgba(85, 85, 85, 0.1);
+        text-align: center;
+
+        #kvSave {
+            width: (72/100rem);
+            height: 0.38rem;
+            line-height: 0.38rem;
+            padding: 0;
+            background: #FF914D;
+            border-radius: (5/100rem);
+            font-size: (16/100rem);
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: #FEFEFE;
+        }
+    }
+
+}
+
 
 // logo弹窗
 #logoDialog {
