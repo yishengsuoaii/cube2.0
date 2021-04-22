@@ -2802,9 +2802,14 @@ $(function () {
                 return 
             }
             if(allInfo.pptInfo.state === 'off') {
+                if(allInfo.gifInfo.state==='on'){
+                    layer.msg('不允许在动态特效上加PDF!')
+                    return
+                }
                 allInfo.pptInfo.state = 'on'
                 pptData.state = 'on'
                 $(this).addClass('startStyle').removeClass('defaultStyle').html('关闭文档')
+                
             } else {
                 allInfo.pptInfo.state = 'off'
                 pptData.state = 'off'
@@ -3353,6 +3358,13 @@ $(function () {
                 layer.msg('不允许在全屏图层上加动态特效!')
                 return
             }
+            if( allInfo.pptInfo.state === 'on'){
+                layer.msg('不允许在PDF上加动态特效!')
+                return
+            }
+           
+
+
             $('#default-img').attr('src','./../image/default_img.png')
             allInfo.gifInfo.state = 'on'
         }
