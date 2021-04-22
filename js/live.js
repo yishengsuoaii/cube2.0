@@ -2763,10 +2763,14 @@ $(function () {
                 },
                 success: res => {
                     if(res.msg==='success'){
-                        pptData.data =JSON.parse(res.data[0].pdf_description)
+
+                        pptData.data = []
+                        for(var i=0;i<res.data[0].pdf_count;i++){
+                            pptData.data.push(res.data[0].url+(i+1)+'.png')
+                        }
                         pptData.id =res.data[0].pdf_id
                         pptData.num = 1
-                        pptData.total = JSON.parse(res.data[0].pdf_description).length
+                        pptData.total = res.data[0].pdf_count
                     }
                 }
             })
