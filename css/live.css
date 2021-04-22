@@ -1451,7 +1451,7 @@
   cursor: pointer;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #cameraBox .cameraList .cameraContent .slideBox {
-  width: 1.5rem;
+  width: 2rem;
   display: flex;
   align-items: center;
   color: #FF914D;
@@ -1465,7 +1465,7 @@
   height: 0.18rem;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #cameraBox .cameraList .cameraContent .slideBox .slideLine {
-  width: 1rem;
+  width: 1.5rem;
   margin-left: 0.15rem;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab {

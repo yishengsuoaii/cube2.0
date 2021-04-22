@@ -3251,16 +3251,17 @@ $(function () {
             layer.msg('请先选择音乐!')
             return
         } 
-        if(allInfo.musicInfo.state === 'on') {
-            layer.msg('请先关闭背景音乐!')
-            return
-        }
         layer.closeAll()
         allInfo.musicInfo.oss = musicData.oss
         allInfo.musicInfo.name = musicData.name
         sessionStorage.setItem(event_code, JSON.stringify(allInfo))
         $('#music_box').show()
         $('#musicName').show().html(musicData.name)
+        if(allInfo.musicInfo.state === 'on') {
+            allInfo.update = 0
+            allInfo.musicInfo.update = 1
+            sendInstruct()
+        }
     })
     // 开启关闭音乐
     $('#musicStart').on('click',function(){
@@ -3343,8 +3344,13 @@ $(function () {
     $('#dynamicBox').on('click','.dynamicItem',function(e){
        
         if($(this).attr('data-id')!=='-1') {
+
+            if(allInfo.kvInfo.state==='on'&&allInfo.kvInfo.location===3) {
+                layer.msg('不允许在全屏图层上加动态特效!')
+                return
+            }
             $('#default-img').attr('src','./../image/default_img.png')
-           allInfo.gifInfo.state = 'on'
+            allInfo.gifInfo.state = 'on'
         }
         if($(this).attr('data-id')==='-1') {
             $('#default-img').attr('src','./../image/active_img.png')
@@ -3478,9 +3484,15 @@ $(function () {
             layer.msg('请选择图片!')
             return
         }
+        
         if(allInfo.kvInfo.state === 'on'){
-            layer.msg('请先关闭图片!')
-            return
+            if(allInfo.gifInfo.state==='on'&&allInfo.kvInfo.location===3){
+                layer.msg('不允许在动态特效上加全屏图层!')
+                return
+            }
+            allInfo.kvInfo.update = 1
+            allInfo.update = 0
+            sendInstruct()
         }
         layer.closeAll()
     })
@@ -3493,6 +3505,11 @@ $(function () {
         }
         
         if($(this).hasClass('defaultStyle')){
+
+            if(allInfo.gifInfo.state==='on'&&allInfo.kvInfo.location===3){
+                layer.msg('不允许在动态特效上加全屏图层!')
+                return
+            }
             $(this).removeClass('defaultStyle').addClass('startStyle').html('关闭')
             allInfo.kvInfo.update = 1
             allInfo.kvInfo.state = 'on'
