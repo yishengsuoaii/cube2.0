@@ -1573,8 +1573,36 @@ $(function () {
                 $(this).text('开启').css('background-color', '#ff914d')
             }
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-            allInfo.update = 0
-            sendInstruct()
+            var info = {
+                code: "FRONT_END_ACTION",
+                // 视频一拼二品三拼标志 true/false
+                video: {
+                    score: {
+                        state: allInfo.state,
+                        update:0,
+                        scoreLocation: scoreLocation
+                    },
+                    auto_selector: {
+                        state: allInfo.autoState
+                    }
+                    
+                }
+            }
+            var formData = new FormData()
+            formData.append('file', fileScore)
+            formData.append('stream_code', event_code)
+            formData.append('json_data', JSON.stringify(info))
+            $.ajax({
+                type: "POST",
+                url: 'http://www.cube.vip/director/director_instruct/',
+                dataType: "json",
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                processData: false,
+                contentType: false,
+                data: formData
+            })
         })
          // zoom-in-------------------------------------------------------------------------------------------------
          $('#zoom-btn').on('click', function () {
@@ -1586,8 +1614,38 @@ $(function () {
                 $(this).text('开启').css('background-color', '#ff914d')
             }
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-            allInfo.update = 0
-            sendInstruct()
+            var info = {
+                 code: "FRONT_END_ACTION",
+                 // 视频一拼二品三拼标志 true/false
+                 video: {
+                     
+                    score: {
+                        state: allInfo.state,
+                        update:0,
+                        scoreLocation: scoreLocation
+                    },
+                     zoom_in: {
+                         state: allInfo.zoomState
+                     }
+                     
+                 }
+             }
+             var formData = new FormData()
+             formData.append('file', fileScore)
+             formData.append('stream_code', event_code)
+             formData.append('json_data', JSON.stringify(info))
+             $.ajax({
+                 type: "POST",
+                 url: 'http://www.cube.vip/director/director_instruct/',
+                 dataType: "json",
+                 headers: {
+                     token: sessionStorage.getItem('token')
+                 },
+                 processData: false,
+                 contentType: false,
+                 data: formData
+             })
+            
         })
         // 背景替换------------------------------------------------------------------------------------------------
         $('.bg-item').on('click', function () {
