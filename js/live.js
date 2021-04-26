@@ -328,6 +328,98 @@ $(function () {
     var scoreData = null
 
 
+      // 精彩推荐
+    // 已经添加视频
+    let rec_addedVideoData = []
+    // 所有视频
+    let rec_allVideoData = []
+    // 过滤所有视频
+    let rec_filterVideoData = []
+    // 暂时视频
+    let rec_momentVideoData = []
+
+    // 渲染已经添加的视频
+    function renderViewVideo() {
+        var str1 = ''
+        var str2 = ''
+
+
+        if (rec_addedVideoData.length > 0) {
+            rec_addedVideoData.forEach((item, index) => {
+                str1 += `
+                    <a class="backList">
+                        <div class="backContent">
+                            <div class="backInfo">
+                                <div class="backName">
+                                ${item.video_profile}               
+                                </div>
+                                <p class="backShow">
+                                    ${item.video_number_views}人观看
+                                </p>
+                            </div>
+                            <img src="${item.video_description_image}" onerror="this.src='./../image/video-page.png'"  class="backImage">
+                        </div>
+                    </a>
+                    `
+                str2 += `
+                        <div class="rec-video-item"" data-id="${item.video_id}">
+                            <div class="rec-video-item-info">
+                                <img src="${item.video_description_image}" onerror="this.src='./../image/video-page.png'" alt="">
+                                <span class="rec-video-item-name">${item.video_profile}</span>
+                            </div>
+                            <i class="layui-icon layui-icon-delete recommend-delete videoDelete"></i>   
+                        </div>
+                        `
+            })
+
+        } else {
+            str2 = '<p class="rec-video-none">视频</p>'
+        }
+        $('#recLCont').html(str1)
+        $('.recList').html(str2)
+        $('.recList').dad({
+            draggable: '.rec-video-item-info',
+            callback: function () {
+			    moveEnd()
+            }
+        })
+    }
+
+    function moveEnd(){
+        var data = []
+        $('.rec-video-item').each((index,dom)=>{
+            
+            rec_addedVideoData.forEach(item=>{
+                if(Number($(dom).attr('data-id'))===Number(item.video_id)){
+                    data.push(item)
+                }
+            })
+            
+        })
+        data.pop()
+        var str1 = ''
+        data.forEach(item=>{
+            str1 += `
+                <a class="backList">
+                    <div class="backContent">
+                        <div class="backInfo">
+                            <div class="backName">
+                            ${item.video_profile}               
+                            </div>
+                            <p class="backShow">
+                                ${item.video_number_views}人观看
+                            </p>
+                        </div>
+                        <img src="${item.video_description_image}" onerror="this.src='./../image/video-page.png'"  class="backImage">
+                    </div>
+                </a>
+            `
+        })
+        $('#recLCont').html(str1)
+        rec_addedVideoData=JSON.parse(JSON.stringify(data))
+    }
+
+
     layui.use(['form', 'element', 'jquery', 'layer', 'upload', 'slider'], function () {
 
 
@@ -542,6 +634,231 @@ $(function () {
 
             },
         })
+
+        
+        // 精彩推荐开始------------------------------------------------------------------------------------
+        // 获取已经添加的推荐视频
+        getRecVideo()
+        function getRecVideo(){
+            $.ajax({
+                type: "GET",
+				headers: {
+					token: sessionStorage.getItem('token')
+				},
+				url: "http://www.cube.vip/video/get_event_video/",
+				data: {
+					stream_code: event_code
+				},
+				success: function (res) {
+					if (res.msg === 'success') {
+						rec_addedVideoData = res.data
+                        renderViewVideo()
+                        
+					} else {
+						layer.msg('获取视频列表失败,请重试!');
+					}
+				}
+            })
+        }
+        // 打开添视频弹窗
+		$('.addRecName-span').on('click', function () {
+			$.ajax({
+				type: "GET",
+				dataType: "json",
+				async: false,
+				headers: {
+					token: sessionStorage.getItem('token')
+				},
+				url: "http://www.cube.vip/video/video_list/",
+				data: {
+					save_flag: 'media_library'
+				},
+				success: function (res) {
+					if (res.msg === 'success') {
+						rec_allVideoData = res.data
+					} else {
+						layer.msg('获取视频列表失败,请重试!');
+					}
+				}
+			})
+			rec_momentVideoData = []
+			rec_addedVideoData.forEach(item => {
+				rec_momentVideoData.push(item)
+				rec_allVideoData.forEach(its => {
+					if (Number(item.video_id) === Number(its.video_id)) {
+						its.checked = 'checked'
+					}
+				})
+			})
+
+			$('.rec-video-num').text(rec_addedVideoData.length)
+			layer.open({
+				type: 1,
+				area: ['1170px', '753px'],
+				title: ['添加视频', 'color:#fff'],
+				content: $('#rec-dialog'),
+				shade: 0.3,
+				shadeClose: true,
+				closeBtn: 0,
+				resize: false,
+				scrollbar: false,
+				shadeClose: false,
+			})
+			rec_videoFiltrate()
+
+		})
+		//视频 选中 取消 change
+		form.on('checkbox(rec-checkbox)', function (data) {
+			var videoId = Number(data.value)
+			if (data.elem.checked) {
+				$('.rec-video-num').text(Number($('.rec-video-num').text()) + 1) //选中+1
+				rec_allVideoData.forEach(item => { //选中 添加标记
+					if (item.video_id === videoId) {
+						item.checked = 'checked'
+					}
+				})
+				rec_momentVideoData.push({ // 选中 添加记录
+					video_id: videoId,
+					video_profile: $(data.elem).parent().siblings('.rec-content-main-list-info').find(
+						'.rec-content-main-list-name').text(),
+					video_number_views: $(data.elem).parent().siblings('.rec-content-main-list-info').find(
+						'.rec-content-main-list-num i').text(),
+					datetime: $(data.elem).parent().siblings('.rec-content-main-list-info').find(
+						'.rec-content-main-list-time i').text(),
+					video_description_image:  $(data.elem).parent().siblings('.vd-video').attr("src")
+				})
+			} else {
+				$('.rec-video-num').text(Number($('.rec-video-num').text()) - 1) // 取消-1
+				rec_allVideoData.forEach(item => { // 取消 删除标记
+					if (item.video_id === videoId) {
+						delete item.checked
+					}
+				})
+				rec_momentVideoData.forEach((item, index) => { // 取消  删除记录
+					if (item.video_id === videoId) {
+						rec_momentVideoData.splice(index, 1)
+					}
+				})
+			}
+
+		})
+
+
+        // 删除视频-------------------------------------------------------------------------------------------------------------------
+        $('.recList').on('click', '.videoDelete', function () {
+            rec_addedVideoData.splice(Number($(this).parent().attr('data-dad-position'))-1, 1)
+            renderViewVideo()
+        })
+
+        // 视频分页
+        function rec_videoPage(pageIndex) {
+            var str = ''
+            var length = rec_filterVideoData.length > pageIndex * 6 ? 6 : rec_filterVideoData.length - (pageIndex - 1) * 6
+            for (var i = 0; i < length; i++) {
+                var index = i + (pageIndex - 1) * 6
+                str += `<div class="rec-content-main-list">
+                    <img class="vd-video" src="${rec_filterVideoData[index].video_description_image}" onerror="this.src='./../image/video-page.png'"></img>
+                    <div class="rec-content-main-list-info">
+                        <span class="rec-content-main-list-name">${rec_filterVideoData[index].video_profile}</span>
+                        <span class="rec-content-main-list-time">上传时间: <i>${rec_filterVideoData[index].video_create_time}</i></span>
+                        <span class="rec-content-main-list-num">观看量: <i>${rec_filterVideoData[index].video_number_views}</i> 次</span>
+                    </div>
+                    <div class="layui-form video-right-check">
+                        <input type="checkbox" lay-filter="rec-checkbox" lay-skin="primary" class="rec-content-main-list-check" value="${rec_filterVideoData[index].video_id}" ${rec_filterVideoData[index].checked} /></div>
+                    </div>
+                `
+            }
+            if (rec_filterVideoData.length > 0) {
+                $('.rec-content-main-top').html(str)
+                $('.rec-mediaUpload').hide()
+                form.render('checkbox')
+            } else {
+                $('.rec-content-main-top').html(
+                    '<div class="rec-content-main-none"><img src="./../image/video-none.png" alt=""><p>当前没有视频哦</p></div>'
+                )
+                $('.rec-mediaUpload').show()
+            }
+        }
+        // 视频筛选---------
+        $('.rec-search-video-input').on('keypress', function (event) { // 监听回车事件
+            if (event.keyCode == "13") {
+                rec_videoFiltrate()
+            }
+        })
+        $('.rec-search-video-btn').on('click', rec_videoFiltrate) //点击搜索按钮
+        // 视频过滤方法
+        function rec_videoFiltrate() {
+            rec_filterVideoData = rec_allVideoData.filter(item => item.video_profile.search($.trim($('.rec-search-video-input')
+                .val())) !== -1)
+            if (rec_filterVideoData.length > 6) {
+                layui.use(['laypage'], function () {
+                    var laypage = layui.laypage
+                    laypage.render({
+                        elem: 'rec-page',
+                        count: rec_filterVideoData.length,
+                        limit: 6,
+                        layout: ['prev', 'next'],
+                        jump: function (obj, first) {
+                            if (!first) {
+                                // layer.msg('第 '+ obj.curr +' 页'+',每页显示'+obj.limit+'条');
+                                rec_videoPage(obj.curr)
+                            }
+                        }
+                    })
+                })
+            } else {
+                $('#rec-page').empty()
+            }
+            rec_videoPage(1)
+        }
+
+        //取消视频添加
+        $('#rec-cancel').on('click', function () {
+            $('.rec-search-video-input').val('')
+            layer.closeAll()
+
+        })
+        //确定视频添加
+        $('#rec-confirm').on('click', function () {
+            $('.rec-search-video-input').val('')
+            layer.closeAll()
+            rec_addedVideoData = []
+            rec_momentVideoData.forEach(item => { // 取消  删除记录
+                rec_addedVideoData.push(item)
+            })
+            renderViewVideo()
+        })
+
+        // 提交精彩推荐视频
+        $('#saveAddRecVideo').on('click',function(){
+            var video_id = []
+            rec_addedVideoData.forEach(item => {
+                video_id.push(item.video_id)
+            })
+            $.ajax({
+                type: "POST",
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                url: "http://www.cube.vip/video/get_event_video/",
+                data: {
+                    stream_code: event_code,
+                    video_id: JSON.stringify(video_id)
+                },
+                success: function (res) {
+                    if (res.msg === 'success') {
+                        layer.msg('保存成功!');
+                    } else {
+                        layer.msg('保存失败,请重试!');
+                    }
+                }
+            });
+        })
+
+        // 精彩推荐结束------------------------------------------------------------------------------------
+
+
+
         $(".liveScan1").hover(function(){
             $('#liveQrcode1').show()
         },function(){

@@ -132,7 +132,7 @@ $(function () {
 
     //获取回放视频
     $.ajax({
-        url: 'http://www.cube.vip/event/h5_get_video/',
+        url: 'http://www.cube.vip/video/h5_get_event_video/',
         type: 'GET',
         data: {
             event_uri_key: event_uri_key
@@ -148,10 +148,10 @@ $(function () {
                                    ${item.video_profile}               
                                 </div>
                                 <p class="backShow">
-                                    ${item.video_number_views}人观看量
+                                    ${item.video_number_views}人观看
                                 </p>
                             </div>
-                            <img src="${item.video_description_image}" onerror="this.src='./../image/back-image.png'" src="./" class="backImage">
+                            <img src="${item.video_description_image}" onerror="this.src='./image/back-image.png'"  class="backImage">
                         </div>
                     </a>
                     `

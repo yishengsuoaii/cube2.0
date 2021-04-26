@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./../css/common1.css">
     <link rel="stylesheet" href="./../css/live.css">
     <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.9.3/skins/default/aliplayer-min.css" />
+    <link rel="stylesheet" href="./../css/jquery.dad.css">
     <script src="./../layui/layui.js"></script>
     <script src="./../commonJs/adapter.min.js"></script>
     <script src="./../commonJs/jquery-3.2.1.min.js"></script>
@@ -18,6 +19,7 @@
     <script src="./../commonJs/html2canvas.js"></script>
     <script src="./../commonJs/qrcode.js"></script>
     <script src="./../commonJs/aliplayer-h5-min.js"></script>
+    <script src="./../js/jquery.dad.min.js"></script>
     <title>直播间</title>
     <style>
         .layui-layer-title {
@@ -46,6 +48,11 @@
 		}
         .laydate-btns-time {
             color: #009688 !important;
+        }
+        .layui-form-checked[lay-skin=primary] i {
+            border-color: #F2591A !important;
+            background-color: #F2591A;
+            color: #fff;
         }
     </style>
 </head>
@@ -135,10 +142,11 @@
                                 <div class="channel-set">
                                    <ul class="channel-set-aside">
                                        <li class="active-aside aside-list">基础设置</li>
-                                       <li class="aside-list">视频预告</li>
+                                       <li class="aside-list">预告/回放</li>
                                        <li class="aside-list">活动简介</li>
                                        <li class="aside-list">邀请卡分享</li>
                                        <li class="aside-list">自定义广告</li>
+                                       <li class="aside-list">精彩推荐</li>
                                    </ul>
                                    <div class="channel-set-content">
                                        <div class="channel-set-item container-basics" style="display: block">
@@ -423,6 +431,29 @@
                                             </div>
                                         </div>
                                        </div>
+                                       <div class="channel-set-item">
+                                        <div id="recomBox">
+                                          
+                                            <div id="recomLeft">  
+                                               
+                                                <div id="recLCont"></div>
+                                            </div>
+                                            <div id="recomRight">
+                                                <div class="recomRTop">
+                                                    <p class="addRecName">
+                                                        <span class="dorpIndex">鼠标点击拖动可排序</span>
+                                                        <span class="addRecName-span">添加视频</span>
+                                                    </p>
+                                                    <div class="recList">
+                                                        
+                                                    </div>
+                                                    
+                                                    <div class="recommend-angle"></div>
+                                                </div>
+                                               <div id="saveAddRecVideo">提交</div>
+                                            </div>
+                                        </div>
+                                   </div>
                                    </div>
                                 </div>
             
@@ -882,6 +913,35 @@
                     <div id="copy-dialog">
                         <input type="text" id="pull-src-input" readonly value="12315645">
                         <div id="copyPullSrcBtn" data-clipboard-action="copy" data-clipboard-target="#pull-src-input">复制</div>
+                    </div>
+                    <!-- 精彩推荐 -->
+                    <div id="rec-dialog">
+                        <div class="rec-content">
+                            <p class="rec-search">
+                                已选视频: <span class="rec-video-num">0</span>个
+                                <span class="rec-search-video">
+                                    <input type="text" class="rec-search-video-input" placeholder="输入文件名"><span
+                                        class="rec-search-video-btn"><img src="../image/搜索.png" alt=""></span>
+                                </span>
+                            </p>
+                            <hr />
+                            <div class="rec-content-main">
+                                <div class="rec-content-main-top">
+                                </div>
+                                <div class="rec-content-main-foot">
+                                    <div id="rec-page"></div>
+                                </div>
+                            </div>
+                
+                        </div>
+                        <div class="rec-footer">
+                            <span class="rec-mediaUpload">
+                                没有合适的视频？
+                                <a href="./media.html">去媒体库上传</a>
+                            </span>
+                            <button type="button" class="layui-btn layui-btn-primary" id="rec-cancel">取消</button>
+                            <button type="button" class="layui-btn layui-btn-danger" id="rec-confirm">确定</button>
+                        </div>
                     </div>
                 </div>
 
