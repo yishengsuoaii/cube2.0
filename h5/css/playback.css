@@ -57,7 +57,7 @@ body #play .videoInfo .viewNum {
 body #play .comment {
   width: 9.68rem !important;
   height: 0.8rem !important;
-  font-size: 0.37333333rem !important;
+  font-size: 0.42666667rem !important;
   font-family: Source Han Sans CN;
   font-weight: 700;
   line-height: 0.8rem !important;
@@ -102,7 +102,7 @@ body #play .commentBox .comList .comInfo .comName {
 }
 body #play .commentBox .comList .comInfo .comMessage {
   width: 8.61333333rem !important;
-  font-size: 0.32rem !important;
+  font-size: 0.37333333rem !important;
   font-family: Source Han Sans CN;
   font-weight: 400;
   line-height: 0.53333333rem !important;
@@ -133,7 +133,7 @@ body #play .sendBox #send-btn {
   height: 0.8rem !important;
   background: #FF914C;
   border-radius: 0.08rem !important;
-  font-size: 0.32rem !important;
+  font-size: 0.4rem !important;
   font-family: Source Han Sans CN;
   font-weight: 400;
   line-height: 0.8rem !important;
