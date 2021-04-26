@@ -132,7 +132,7 @@
                                         <h1 class="payCenter">充值中心</h1>
                                         <form class="layui-form form" action="">
                                             <div class="layui-form-item">
-                                                <input type="text" name="amount" required lay-verify="required" placeholder="请输入充值金额"
+                                                <input type="text" name="amount" required lay-verify="required|number" placeholder="请输入充值金额"
                                                     autocomplete="off" class="layui-input inPay">
                                             </div>
                                             <img src="../image/weixinzf.png" class="payment" />
@@ -148,7 +148,11 @@
                                             <p class="explainItem">5.若充值未到账或有其他疑问可致电客服热线</p>
                                         </div>
                                     </div>
-                                    <div id="qrcode" style="display: none"></div>
+                                    <div id="qrcodeBox" style="display: none">
+                                        <div id="qrcode"></div>
+                                        <p class="scanName">微信扫码支付</p>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>

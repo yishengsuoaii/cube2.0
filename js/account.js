@@ -57,22 +57,24 @@
                 }
             })
         });
-        // 限制只能输入数字
-        $('.inPay').keyup(function(){
-            $(this).val($(this).val().replace(/[^\d.]/g,''))
-        })
         var out_trade_no = ''
+        var wxTimer = ''
         $('.payBtn').on('click', function () {
-            if ($('.inPay').val().length > 0) {
+            // /^\d+(\.\d{2})?$/
+             // /^\d+(\.\d+)?$/.test(Number($.trim($('.inPay').val())))
+            if ($('.inPay').val().length > 0 &&Number($.trim($('.inPay').val()))>0) {
+               
                 layer.open({
                     type: 1,
                     title: '扫码支付',
-                    skin: 'layui-ext-yourskin' //只对该层采用myskin皮肤
-                        ,
-                    content: $('#qrcode')
+                    skin: 'layui-ext-yourskin', //只对该层采用myskin皮肤
+                    content: $('#qrcodeBox')
                 });
                 $('#qrcode').empty()
-                var qrcode = new QRCode(document.getElementById("qrcode"));
+                var qrcode = new QRCode(document.getElementById("qrcode"),{
+                    width: 240,
+                    height: 240,
+                });
                 $.ajax({
                     type: "POST",
                     dataType: "json",
@@ -90,11 +92,16 @@
                         }
                     },
                 });
+            } else if($('.inPay').val().length > 0 &&Number($.trim($('.inPay').val()))<=0) {
+                layer.msg('只能填写大于0的数字',{
+                    icon:5
+                })
             }
         })
 
         function monitorState() {
             // 监听支付状态
+            clearInterval(wxTimer)
             wxTimer = setInterval(() => {
                 $.ajax({
                     type: "POST",
@@ -108,8 +115,8 @@
                     success: function (result) {
                         if (result.msg == "success" && result.data.trade_state == "SUCCESS") {
                             if (wxTimer) { // 支付成功！钱收到了！就不用在监听了
-                                clearInterval(wxTimer);
-                                wxTimer = null;
+                                clearInterval(wxTimer)
+                                wxTimer = null
                                 layer.msg("支付成功")
                                 setTimeout(()=>{
                                     layer.closeAll()
@@ -117,16 +124,17 @@
                             }
                         } else if (result.msg == "error") {
                             layer.msg("支付失败")
+                            clearInterval(wxTimer)
+                            wxTimer = null
                             setTimeout(()=>{
                                 layer.closeAll()
                             },1000)
                         }
                     }
                 })
-            }, 1000);
+            }, 3000);
         }
         // 账单导出
-
         $('.export').click(function(){
             window.location.href = 'http://www.cube.vip/usage_and_billing/export_billing_table/?token='+sessionStorage.getItem('token')
         })

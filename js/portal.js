@@ -398,11 +398,11 @@ $(function () {
 	// 手机预览
 	new QRCode(document.getElementById("qrcode"), {
 		text: 'http://www.cube.vip/h5/portalMobile.html?token=' + sessionStorage.getItem('token'),
-		width: 256,
-		height: 256,
+		width: 240,
+		height: 240,
 	});
 	$('.preview').hover(function () {
-		$('#qrcode').toggle()
+		$('#qrcodeBox').toggle()
 	})
 	// 复制链接
 	$('#copyUrl').attr('data-clipboard-text', 'http://www.cube.vip/h5/portalMobile.html?token=' +

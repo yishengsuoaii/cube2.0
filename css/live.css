@@ -79,14 +79,34 @@
   width: 0.15rem;
   height: 0.15rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .heads #liveQrcode {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .heads #liveQrcodeBox {
   display: none;
-  width: 1.28rem;
-  height: 1.28rem;
+  width: 240px;
+  height: 280px;
   position: absolute;
-  top: 0.6rem;
-  left: 2.8rem;
+  top: 0.9rem;
+  left: 2.2rem;
   z-index: 1;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.1);
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .heads #liveQrcodeBox #liveQrcode {
+  width: 240px;
+  height: 240px;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .heads #liveQrcodeBox .scanName {
+  width: 240px;
+  height: 20px;
+  margin-top: 20px;
+  line-height: 20px;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 3px;
+  font-weight: 700;
+  color: #333;
+  font-family: Source Han Sans CN;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .heads .head-copy {
   width: 1.1rem;
@@ -1157,14 +1177,34 @@
   width: 0.15rem;
   height: 0.15rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .heads #liveQrcode1 {
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .heads #liveQrcode1Box {
   display: none;
-  width: 1.28rem;
-  height: 1.28rem;
+  width: 240px;
+  height: 280px;
   position: absolute;
-  top: 0.6rem;
-  left: 2.8rem;
+  top: 0.9rem;
+  left: 2.2rem;
   z-index: 1;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.1);
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .heads #liveQrcode1Box #liveQrcode1 {
+  width: 240px;
+  height: 240px;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .heads #liveQrcode1Box .scanName {
+  width: 240px;
+  height: 20px;
+  margin-top: 20px;
+  line-height: 20px;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 3px;
+  font-weight: 700;
+  color: #333;
+  font-family: Source Han Sans CN;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #liveControl .heads .head-copy {
   width: 1.1rem;

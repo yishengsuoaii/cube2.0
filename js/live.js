@@ -476,13 +476,13 @@ $(function () {
                         .event_uri_key)
                         new QRCode(document.getElementById("liveQrcode1"), {
                             text: 'http://www.cube.vip/h5/wxlogin.html?key=' +  result.data.event_uri_key,
-                            width: 128,
-                            height: 128,
+                            width: 240,
+                            height: 240,
                         });
                         new QRCode(document.getElementById("liveQrcode"), {
                             text: 'http://www.cube.vip/h5/wxlogin.html?key=' +  result.data.event_uri_key,
-                            width: 128,
-                            height: 128,
+                            width: 240,
+                            height: 240,
                         });
                     var functionTitleSrc = ''
                     var functionContentSrc = ''
@@ -860,14 +860,14 @@ $(function () {
 
 
         $(".liveScan1").hover(function(){
-            $('#liveQrcode1').show()
+            $('#liveQrcode1Box').show()
         },function(){
-            $('#liveQrcode1').hide()
+            $('#liveQrcode1Box').hide()
         });
         $(".liveScan").hover(function(){
-            $('#liveQrcode').show()
+            $('#liveQrcodeBox').show()
         },function(){
-            $('#liveQrcode').hide()
+            $('#liveQrcodeBox').hide()
         });
         // 获取IP地址
         function getIp() {
