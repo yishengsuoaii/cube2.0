@@ -127,6 +127,27 @@
   width: 0.14rem;
   height: 0.15rem;
 }
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .heads #hintBox {
+  display: none;
+  position: absolute;
+  left: 5.4rem;
+  top: 0.1rem;
+  font-size: 0.14rem;
+  padding: 0.1rem 0.16rem;
+  color: #fff;
+  background-color: #2D2D2D;
+  opacity: 0.8;
+  border-radius: 0.04rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .heads #hintBox .hintAngle {
+  position: absolute;
+  left: -0.06rem;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 0.12rem;
+  height: 0.12rem;
+  background-color: #2D2D2D;
+}
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set {
   width: 100%;
   height: 8.16rem;
@@ -1225,6 +1246,27 @@
   width: 0.14rem;
   height: 0.15rem;
 }
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .heads #hintBox1 {
+  display: none;
+  position: absolute;
+  left: 5.4rem;
+  top: 0.1rem;
+  font-size: 0.14rem;
+  padding: 0.1rem 0.16rem;
+  color: #fff;
+  background-color: #2D2D2D;
+  opacity: 0.8;
+  border-radius: 0.04rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .heads #hintBox1 .hintAngle {
+  position: absolute;
+  left: -0.06rem;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 0.12rem;
+  height: 0.12rem;
+  background-color: #2D2D2D;
+}
 .parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent {
   height: 7.66rem;
   padding: 0.2rem;
@@ -1941,9 +1983,7 @@
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #gesture-detection {
   width: 10rem;
   height: 1.3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #gesture-detection .layui-btn {
   width: 1rem;
@@ -1951,6 +1991,10 @@
   line-height: 0.38rem;
   font-size: 0.18rem;
   background-color: #ff914d;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #auto-cut {
   width: 10rem;
@@ -2219,11 +2263,12 @@
   justify-content: space-around;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox {
-  width: 2.2rem;
+  width: 2.4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: #FF914D;
+  position: relative;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox img {
   width: 0.22rem;
@@ -2234,6 +2279,62 @@
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox .slideInfo {
   font-size: 0.14rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox .wenhao {
+  width: 0.2rem;
+  height: 0.2rem;
+  line-height: 0.2rem;
+  text-align: center;
+  font-size: 0.14rem;
+  border-radius: 50%;
+  background-color: #666;
+  cursor: pointer;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox .wenhao:hover + #wenInfo {
+  display: block;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox .wenhao1:hover + #wenInfo1 {
+  display: block;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox #wenInfo {
+  display: none;
+  position: absolute;
+  top: 0.3rem;
+  right: -0.7rem;
+  font-size: 0.14rem;
+  padding: 0.1rem 0.16rem;
+  color: #999;
+  background-color: #666;
+  border-radius: 0.04rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox #wenInfo .hintAngle {
+  position: absolute;
+  left: 50%;
+  top: -0.06rem;
+  transform: translateX(-50%) rotate(45deg);
+  width: 0.12rem;
+  height: 0.12rem;
+  background-color: #666;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox #wenInfo1 {
+  display: none;
+  position: absolute;
+  bottom: 0.3rem;
+  right: -0.7rem;
+  font-size: 0.14rem;
+  padding: 0.1rem 0.16rem;
+  color: #999;
+  background-color: #666;
+  border-radius: 0.04rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox #wenInfo1 .hintAngle {
+  position: absolute;
+  left: 50%;
+  bottom: -0.06rem;
+  transform: translateX(-50%) rotate(45deg);
+  width: 0.12rem;
+  height: 0.12rem;
+  background-color: #666;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #dynamicBox {
   display: flex;

@@ -404,6 +404,9 @@ $(function () {
 	$('.preview').hover(function () {
 		$('#qrcodeBox').toggle()
 	})
+	$('.copyUrl').hover(function(){
+		$('#hintBox').toggle()
+	})
 	// 复制链接
 	$('#copyUrl').attr('data-clipboard-text', 'http://www.cube.vip/h5/portalMobile.html?token=' +
 		sessionStorage.getItem('token'))

@@ -134,6 +134,29 @@
                                 height: (15/100rem);
                             }
                         }
+                        #hintBox {
+                            display: none;
+                            position: absolute;
+                            left: 5.4rem;
+                            top: 0.1rem;
+                            font-size: 0.14rem;
+                            padding: 0.1rem 0.16rem;
+                            color: #fff;
+                            background-color: #2D2D2D;
+                            opacity: 0.8;
+                            border-radius: 0.04rem;
+                            .hintAngle {
+                                position: absolute;
+                                left: -0.06rem;
+                                top: 50%;
+                                transform: translateY(-50%)  rotate(45deg);
+                                width: 0.12rem;
+                                height: 0.12rem;
+                                background-color: #2D2D2D;
+                                
+                            }
+                            
+                        }
                     }
 
                     .channel-set {
@@ -1362,6 +1385,29 @@
                                 height: (15/100rem);
                             }
                         }
+                        #hintBox1 {
+                            display: none;
+                            position: absolute;
+                            left: 5.4rem;
+                            top: 0.1rem;
+                            font-size: 0.14rem;
+                            padding: 0.1rem 0.16rem;
+                            color: #fff;
+                            background-color: #2D2D2D;
+                            opacity: 0.8;
+                            border-radius: 0.04rem;
+                            .hintAngle {
+                                position: absolute;
+                                left: -0.06rem;
+                                top: 50%;
+                                transform: translateY(-50%)  rotate(45deg);
+                                width: 0.12rem;
+                                height: 0.12rem;
+                                background-color: #2D2D2D;
+                                
+                            }
+                            
+                        }
                     }
 
                     .liveContent {
@@ -2151,6 +2197,7 @@
 
 
                                 }
+                                // 背景替换
                                 #bg-replace {
                                     width: (1000/100rem);
                                     height: (130/100rem);
@@ -2169,20 +2216,24 @@
                                         border: (2/100rem) solid #FF914D;
                                     }
                                 }
+                                // 手势监测
                                 #gesture-detection {
                                     width: (1000/100rem);
                                     height: (130/100rem);
-                                    display: flex;
-                                    justify-content: center;
-                                    align-items: center;
+                                    position: relative;
                                     .layui-btn  {
                                         width: (100/100rem);
                                         height: 0.38rem;
                                         line-height: 0.38rem;
                                         font-size: (18/100rem);
                                         background-color: #ff914d;
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 50%;
+                                        transform: translate(-50%,-50%);
                                     }
                                 }
+                                // 自动导切
                                 #auto-cut {
                                     width: (1000/100rem);
                                     height: (130/100rem);
@@ -2463,11 +2514,12 @@
                                             flex-direction: column;
                                             justify-content: space-around;
                                            .slideBox {
-                                                width: 2.2rem;
+                                                width: 2.4rem;
                                                 display: flex;
                                                 align-items: center;
                                                 justify-content: space-between;
                                                 color: #FF914D;
+                                                position: relative;
                                                 img {
                                                     width: (22/100rem);
                                                     height: (18/100rem);
@@ -2477,6 +2529,66 @@
                                                 }
                                                 .slideInfo {
                                                     font-size: 0.14rem;
+                                                }
+                                                .wenhao {
+                                                    width: 0.2rem;
+                                                    height: 0.2rem;
+                                                    line-height: 0.2rem;
+                                                    text-align: center;
+                                                    font-size: 0.14rem;
+                                                    border-radius: 50%;
+                                                    background-color: #666;
+                                                    cursor: pointer;
+                                                    &:hover + #wenInfo {
+                                                        display: block;
+                                                    }
+                                                }
+                                                .wenhao1 {
+                                                    &:hover + #wenInfo1 {
+                                                        display: block;
+                                                    }
+                                                }
+                                                #wenInfo{
+                                                    display: none;
+                                                    position: absolute;
+                                                    top: 0.3rem;
+                                                    right: -0.7rem;
+                                                    font-size: 0.14rem;
+                                                    padding: 0.1rem 0.16rem;
+                                                    color: #999;
+                                                    background-color: #666;
+                                                    border-radius: 0.04rem;
+                                                    .hintAngle {
+                                                        position: absolute;
+                                                        left: 50%;
+                                                        top: -0.06rem;
+                                                        transform: translateX(-50%)  rotate(45deg);
+                                                        width: 0.12rem;
+                                                        height: 0.12rem;
+                                                        background-color: #666;
+                                                        
+                                                    }
+                                                }
+                                                #wenInfo1 {
+                                                    display: none;
+                                                    position: absolute;
+                                                    bottom: 0.3rem;
+                                                    right: -0.7rem;
+                                                    font-size: 0.14rem;
+                                                    padding: 0.1rem 0.16rem;
+                                                    color: #999;
+                                                    background-color: #666;
+                                                    border-radius: 0.04rem;
+                                                    .hintAngle {
+                                                        position: absolute;
+                                                        left: 50%;
+                                                        bottom: -0.06rem;
+                                                        transform: translateX(-50%)  rotate(45deg);
+                                                        width: 0.12rem;
+                                                        height: 0.12rem;
+                                                        background-color: #666;
+                                                        
+                                                    }
                                                 }
                                             }
                                         }

@@ -1,16 +1,16 @@
 let data = ''
-var infoData = []
-let event_uri_key = ''
-if(sessionStorage.getItem('cubeInfo')){
-   data = sessionStorage.getItem('cubeInfo').substring(1).split("&")
-    data.forEach(item => {
-        infoData.push(item.split("="))
-    })
-    event_uri_key = window.location.search.substring(1).split("=")[1]
+var infoData = [1,2]
+let event_uri_key = 'UlzoiFB2Vt6bHJX'
+// if(sessionStorage.getItem('cubeInfo')){
+//    data = sessionStorage.getItem('cubeInfo').substring(1).split("&")
+//     data.forEach(item => {
+//         infoData.push(item.split("="))
+//     })
+//     event_uri_key = window.location.search.substring(1).split("=")[1]
    
-}else {
-    window.location.href='http://www.cube.vip/h5/wxlogin.html?key=' + window.location.search.substring(1).split("=")[1]
-}
+// }else {
+//     window.location.href='http://www.cube.vip/h5/wxlogin.html?key=' + window.location.search.substring(1).split("=")[1]
+// }
 let timers = null
 let videoJs = ''
 let playFlay = false
@@ -761,7 +761,7 @@ $(function () {
    function sendHeartbeat(){
     setInterval(function() { 
             $.post("http://heartbeat.cube.vip/kafka/live", 
-            {"plugin_name":"H5","sessions_code":sessionCode,"stream_code":streamCode,"info":""})
+            {"plugin_name":"H5","sessions_code":sessionCode,"stream_code":streamCode,"datatime":Date.now(),"info":""})
         },1000*60) 
    }
 

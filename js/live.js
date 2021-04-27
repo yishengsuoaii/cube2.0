@@ -126,7 +126,7 @@ $(function () {
     // 云幻灯片dom
     var slidesHtml =   `
     <div id="lanternSlide">
-            <div id="lanternStart" class="defaultStyle">文档切出</div>
+            <div id="lanternStart" class="defaultStyle">开启</div>
             <div id="lanternPreview" class="activeStyle">
                 <img  alt="" id="lanternImage">
             </div> 
@@ -165,15 +165,24 @@ $(function () {
         <div id="musicName"></div>
             <div id="music_box">
                 <div class="musicInfo">
+                    
                     <div class="slideBox">
                         <img src="./../image/mute-close.png" id="music-mute">
                         <div class="slideLine" id="slideMusic"></div>
-                        <span class="slideInfo">背景音量</span>
+                        <span class="slideInfo">背景音量</span> 
+                        <span class="wenhao">?</span>
+                        <div id="wenInfo">
+                            调节背景音乐的音量<div class="hintAngle"></div>
+                        </div>
                     </div>
                     <div class="slideBox">
                         <img src="./../image/mute-close.png" id="audio-mute">
                         <div class="slideLine" id="slideAudio"></div>
                         <span class="slideInfo">混音音量</span>
+                        <span class="wenhao wenhao1">?</span>
+                        <div id="wenInfo1">
+                            调节机位混音的音量<div class="hintAngle"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -860,15 +869,17 @@ $(function () {
 
 
         $(".liveScan1").hover(function(){
-            $('#liveQrcode1Box').show()
-        },function(){
-            $('#liveQrcode1Box').hide()
+            $('#liveQrcode1Box').toggle()
         });
         $(".liveScan").hover(function(){
-            $('#liveQrcodeBox').show()
-        },function(){
-            $('#liveQrcodeBox').hide()
+            $('#liveQrcodeBox').toggle()
         });
+        $('.head-copy').hover(function(){
+            $('#hintBox').toggle()
+        })
+        $('.head-copy1').hover(function(){
+            $('#hintBox1').toggle()
+        })
         // 获取IP地址
         function getIp() {
             $.get({
@@ -1844,10 +1855,10 @@ $(function () {
             $('.pageNum').html(allInfo.pptInfo.num+'/'+allInfo.pptInfo.total)
              
             if(allInfo.pptInfo.state === 'off') {
-                $('#lanternStart').addClass('defaultStyle').removeClass('startStyle').html('文档切出')
+                $('#lanternStart').addClass('defaultStyle').removeClass('startStyle').html('开启')
                 
             } else {
-                $('#lanternStart').addClass('startStyle').removeClass('defaultStyle').html('关闭文档')
+                $('#lanternStart').addClass('startStyle').removeClass('defaultStyle').html('关闭')
             }
 
              // 渲染音乐
@@ -3073,7 +3084,7 @@ $(function () {
                     layer.close(index)
                     if($(this).parent().attr('data-id') ==allInfo.pptInfo.id) {
                         if(allInfo.pptInfo.state === 'on'){
-                            layer.msg('请先关闭文档切除!')
+                            layer.msg('请先关闭切除!')
                             return
                         }
                     }
@@ -3183,12 +3194,12 @@ $(function () {
                 }
                 allInfo.pptInfo.state = 'on'
                 pptData.state = 'on'
-                $(this).addClass('startStyle').removeClass('defaultStyle').html('关闭文档')
+                $(this).addClass('startStyle').removeClass('defaultStyle').html('关闭')
                 
             } else {
                 allInfo.pptInfo.state = 'off'
                 pptData.state = 'off'
-                $(this).addClass('defaultStyle').removeClass('startStyle').html('文档切出')
+                $(this).addClass('defaultStyle').removeClass('startStyle').html('开启')
             }
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
             allInfo.update = 0
@@ -4034,6 +4045,7 @@ $(function () {
     clipboard2.on('error', function(e) {
         layer.msg('复制失败,请重试!');
     });
+    // 复制推流码
     var clipboard3 = new ClipboardJS('#copyCodeBtn');
 
     clipboard3.on('success', function(e) {
@@ -4043,23 +4055,24 @@ $(function () {
     clipboard3.on('error', function(e) {
         layer.msg('复制失败,请重试!');
     });
-    var clipboard4 = new ClipboardJS('#copyHlsBtn');
+    // 复制拉流地址
+    // var clipboard4 = new ClipboardJS('#copyHlsBtn');
 
-    clipboard4.on('success', function(e) {
-        layer.msg('复制成功!');
-    });
+    // clipboard4.on('success', function(e) {
+    //     layer.msg('复制成功!');
+    // });
 
-    clipboard4.on('error', function(e) {
-        layer.msg('复制失败,请重试!');
-    });
-    var clipboard5 = new ClipboardJS('#copyRtmpBtn');
+    // clipboard4.on('error', function(e) {
+    //     layer.msg('复制失败,请重试!');
+    // });
+    // var clipboard5 = new ClipboardJS('#copyRtmpBtn');
 
-    clipboard5.on('success', function(e) {
-        layer.msg('复制成功!');
-    });
+    // clipboard5.on('success', function(e) {
+    //     layer.msg('复制成功!');
+    // });
 
-    clipboard5.on('error', function(e) {
-        layer.msg('复制失败,请重试!');
-    });
+    // clipboard5.on('error', function(e) {
+    //     layer.msg('复制失败,请重试!');
+    // });
 
 })

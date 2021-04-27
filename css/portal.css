@@ -761,6 +761,27 @@
   color: #333;
   font-family: Source Han Sans CN;
 }
+.parentMain .containerBox .mainCont #hintBox {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  font-size: 14px;
+  padding: 10px 16px;
+  color: #fff;
+  background-color: #2D2D2D;
+  opacity: 0.8;
+  border-radius: 4px;
+}
+.parentMain .containerBox .mainCont #hintBox #hintAngle {
+  position: absolute;
+  left: 50%;
+  top: -6px;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background-color: #2D2D2D;
+}
 /* 添加频道弹窗 */
 #channel-dialog {
   display: none;

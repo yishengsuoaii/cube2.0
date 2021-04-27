@@ -167,6 +167,27 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+.parentMain .containerBox .channelContent .chan #hintBox {
+  display: none;
+  position: absolute;
+  right: 32px;
+  top: 50px;
+  font-size: 14px;
+  padding: 10px 16px;
+  color: #fff;
+  background-color: #2D2D2D;
+  opacity: 0.8;
+  border-radius: 4px;
+}
+.parentMain .containerBox .channelContent .chan #hintBox #hintAngle {
+  position: absolute;
+  left: 50%;
+  top: -6px;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background-color: #2D2D2D;
+}
 .parentMain .containerBox .channelContent .chan .setChannel {
   position: absolute;
   width: 22px;
@@ -175,6 +196,30 @@
   right: 52px;
   cursor: pointer;
 }
+.parentMain .containerBox .channelContent .chan .setChannel:hover + #hintBox {
+  display: block;
+}
+.parentMain .containerBox .channelContent .chan #hintBox1 {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  font-size: 14px;
+  padding: 10px 16px;
+  color: #fff;
+  background-color: #2D2D2D;
+  opacity: 0.8;
+  border-radius: 4px;
+}
+.parentMain .containerBox .channelContent .chan #hintBox1 #hintAngle {
+  position: absolute;
+  left: 50%;
+  top: -6px;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background-color: #2D2D2D;
+}
 .parentMain .containerBox .channelContent .chan .deleteChannel {
   position: absolute;
   width: 20px;
@@ -182,6 +227,9 @@
   top: 20px;
   right: 20px;
   cursor: pointer;
+}
+.parentMain .containerBox .channelContent .chan .deleteChannel:hover + #hintBox1 {
+  display: block;
 }
 #addDialog {
   width: 574px;

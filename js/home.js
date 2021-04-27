@@ -123,8 +123,14 @@ $(function () {
                                 <p class="channel-time">${item.event_start_time.replace('T',' ')}</p>
                                 <p class="channel-intro">${item.event_description}</p>
                             </div>
-                            <img src="./../image/set-icon.png" alt="" class="setChannel">
+                            <img src="./../image/set-icon.png" alt="设置" class="setChannel">
+                            <div id="hintBox">
+                                设置<div id="hintAngle"></div>
+                            </div>
                             <img src="./../image/delete-icon.png" alt="" class="deleteChannel">
+                            <div id="hintBox1">
+                                删除<div id="hintAngle"></div>
+                            </div>
                         </div>
                     `
             } else {
@@ -135,7 +141,13 @@ $(function () {
                                 <p class="channel-intro">${item.event_description}</p>
                             </div>
                             <img src="./../image/set-icon.png" alt="" class="setChannel">
+                            <div id="hintBox">
+                                设置<div id="hintAngle"></div>
+                            </div>
                             <img src="./../image/delete-icon.png" alt="" class="deleteChannel">
+                            <div id="hintBox1">
+                                删除<div id="hintAngle"></div>
+                            </div>
                         </div>
                     `
             }
@@ -143,6 +155,18 @@ $(function () {
         })
         $(".channelContent").html(divStr)
     }
+
+    // // 提示
+    // $('.channelContent').on('hover','.setChannel',function(){
+    //     alert(1)
+    //     $(this).siblings('#hintBox').toggle()
+    // })
+
+    // $('.channelContent').on('hover','.deleteChannel',function(){
+    //     alert(2)
+    //     $(this).siblings('#hintBox1').toggle()
+    // })
+
     // 创建频道
     $('.channelContent').on('click', '#newAdd', function () {
         layer.open({
