@@ -179,15 +179,27 @@ $(function () {
 			$('.check-channel-num').text(addedChannelData.length)
 			layer.open({
 				type: 1,
-				area: ['1170px', '753px'],
-				title: ['添加频道', 'color:#fff'],
+				area: ['1000px', '730px'],
+				title: '添加频道',
 				content: $('#channel-dialog'),
 				shade: 0.3,
 				shadeClose: true,
-				closeBtn: 0,
+				closeBtn: 1,
 				resize: false,
 				scrollbar: false,
-				shadeClose: false,
+				move:false,
+				btn: ['确认', '取消'],
+				btn1: function () {
+					layer.closeAll()
+					addedChannelData = []
+					momentChannelData.forEach(item => {
+						addedChannelData.push(item)
+					})
+					renderViewChannel()
+				},
+				end:function(){
+					$('.search-channel-input').val('')
+				}
 			})
 			channelFiltrate()
 		})
@@ -256,15 +268,27 @@ $(function () {
 			$('.check-video-num').text(addedVideoData.length)
 			layer.open({
 				type: 1,
-				area: ['1170px', '753px'],
-				title: ['添加视频', 'color:#fff'],
+				area: ['1000px', '730px'],
+				title: '添加视频',
 				content: $('#video-dialog'),
 				shade: 0.3,
 				shadeClose: true,
 				closeBtn: 0,
 				resize: false,
 				scrollbar: false,
-				shadeClose: false,
+				move:false,
+				btn: ['确认', '取消'],
+				btn1: function () {
+					layer.closeAll()
+					addedVideoData = []
+					momentVideoData.forEach(item => { // 取消  删除记录
+						addedVideoData.push(item)
+					})
+					renderViewVideo()
+				},
+				end:function(){
+					$('.search-video-input').val('')
+				}
 			})
 			videoFiltrate()
 
@@ -555,21 +579,6 @@ $(function () {
 		channelPage(1)
 	}
 
-	//取消频道添加
-	$('#channel-cancel').on('click', function () {
-		$('.search-channel-input').val('')
-		layer.closeAll()
-	})
-	//确定频道添加
-	$('#channel-confirm').on('click', function () {
-		$('.search-channel-input').val('')
-		layer.closeAll()
-		addedChannelData = []
-		momentChannelData.forEach(item => {
-			addedChannelData.push(item)
-		})
-		renderViewChannel()
-	})
 
 	// 删除视频-------------------------------------------------------------------------------------------------------------------
 	$('.video-cont-add').on('click', '.videoDelete', function () {
@@ -597,13 +606,16 @@ $(function () {
 		}
 		if (filterVideoData.length > 0) {
 			$('.vd-content-main-top').html(str)
-			$('.mediaUpload').hide()
 			form.render('checkbox')
 		} else {
 			$('.vd-content-main-top').html(
-				'<div class="vd-content-main-none"><img src="./../image/video-none.png" alt=""><p>当前没有视频哦</p></div>'
+				`<div class="vd-content-main-none"><img src="./../image/video-none.png" alt=""><p>当前没有视频哦</p></div>
+				<span class="mediaUpload">
+					没有合适的视频？
+					<a href="./media.html">去媒体库上传</a>
+				</span>
+				`
 			)
-			$('.mediaUpload').show()
 		}
 	}
 	// 视频筛选---------
@@ -638,21 +650,4 @@ $(function () {
 		}
 		videoPage(1)
 	}
-
-	//取消视频添加
-	$('#video-cancel').on('click', function () {
-		$('.search-video-input').val('')
-		layer.closeAll()
-
-	})
-	//确定视频添加
-	$('#video-confirm').on('click', function () {
-		$('.search-video-input').val('')
-		layer.closeAll()
-		addedVideoData = []
-		momentVideoData.forEach(item => { // 取消  删除记录
-			addedVideoData.push(item)
-		})
-		renderViewVideo()
-	})
 })

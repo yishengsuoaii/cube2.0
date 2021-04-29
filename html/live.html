@@ -22,20 +22,6 @@
     <script src="./../js/jquery.dad.min.js"></script>
     <title>直播间</title>
     <style>
-        .layui-layer-title {
-            font-size: 0.2rem !important;
-            font-family: Source Han Sans CN;
-            font-weight: 400 !important;
-            color: #FEFEFE !important;
-            border-bottom: none !important;
-            background-color: #FF914D !important;
-        }
-        
-        .layui-layer-btn .layui-layer-btn0 {
-            background-color: #FF914D !important;
-            border: 0 !important;
-
-        }
         /* 设置默认样式 */
 		.layui-form-radio>i:hover,
 		.layui-form-radioed>i {
@@ -46,9 +32,6 @@
 			border-color: #FF914D !important;
 			background-color: #FF914D !important;
 		}
-        .laydate-btns-time {
-            color: #009688 !important;
-        }
         .layui-form-checked[lay-skin=primary] i {
             border-color: #F2591A !important;
             background-color: #F2591A;
@@ -864,31 +847,20 @@
                         </div>
                     </div>
                     <div id="video-dialog">
-                        <div class="vd-content">
-                            <p class="select-search">
-                                已选视频: <span class="check-video-num">0</span>个
-                                <span class="search-video">
-                                    <input type="text" class="search-video-input" placeholder="输入文件名"><span
-                                        class="search-video-btn"><img src="../image/搜索.png" alt=""></span>
-                                </span>
-                            </p>
-                            <hr />
-                            <div class="vd-content-main">
-                                <div class="vd-content-main-top">
-                                </div>
-                                <div class="vd-content-main-foot">
-                                    <div id="video-page"></div>
-                                </div>
-                            </div>
-                
-                        </div>
-                        <div class="vd-footer">
-                            <span class="mediaUpload">
-                                没有合适的视频？
-                                <a href="./media.html">去媒体库上传</a>
+                        <p class="select-search">
+                            已选视频: <span class="check-video-num">0</span>个
+                            <span class="search-video">
+                                <input type="text" class="search-video-input" placeholder="输入文件名"><span
+                                    class="search-video-btn"><img src="../image/搜索.png" alt=""></span>
                             </span>
-                            <button type="button" class="layui-btn layui-btn-primary" id="video-cancel">取消</button>
-                            <button type="button" class="layui-btn layui-btn-danger" id="video-confirm">确定</button>
+                        </p>
+                        <hr />
+                        <div class="vd-content-main">
+                            <div class="vd-content-main-top">
+                            </div>
+                            <div class="vd-content-main-foot">
+                                <div id="video-page"></div>
+                            </div>
                         </div>
                     </div>
                     <div id="logoDialog">
@@ -932,31 +904,21 @@
                     </div>
                     <!-- 精彩推荐 -->
                     <div id="rec-dialog">
-                        <div class="rec-content">
-                            <p class="rec-search">
-                                已选视频: <span class="rec-video-num">0</span>个
-                                <span class="rec-search-video">
-                                    <input type="text" class="rec-search-video-input" placeholder="输入文件名"><span
-                                        class="rec-search-video-btn"><img src="../image/搜索.png" alt=""></span>
-                                </span>
-                            </p>
-                            <hr />
-                            <div class="rec-content-main">
-                                <div class="rec-content-main-top">
-                                </div>
-                                <div class="rec-content-main-foot">
-                                    <div id="rec-page"></div>
-                                </div>
-                            </div>
-                
-                        </div>
-                        <div class="rec-footer">
-                            <span class="rec-mediaUpload">
-                                没有合适的视频？
-                                <a href="./media.html">去媒体库上传</a>
+                       
+                        <p class="rec-search">
+                            已选视频: <span class="rec-video-num">0</span>个
+                            <span class="rec-search-video">
+                                <input type="text" class="rec-search-video-input" placeholder="输入文件名"><span
+                                    class="rec-search-video-btn"><img src="../image/搜索.png" alt=""></span>
                             </span>
-                            <button type="button" class="layui-btn layui-btn-primary" id="rec-cancel">取消</button>
-                            <button type="button" class="layui-btn layui-btn-danger" id="rec-confirm">确定</button>
+                        </p>
+                        <hr />
+                        <div class="rec-content-main">
+                            <div class="rec-content-main-top">
+                            </div>
+                            <div class="rec-content-main-foot">
+                                <div id="rec-page"></div>
+                            </div>
                         </div>
                     </div>
                 </div>

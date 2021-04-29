@@ -13,6 +13,7 @@ $(function () {
     $('.aside-list').on('click', function () {
         $(this).addClass('active-aside').siblings('li').removeClass('active-aside')
         $('.channel-set-item').hide().eq($(this).index()).show()
+        videoJs.pause()
     })
 
     // 在线人数
@@ -145,18 +146,71 @@ $(function () {
                 }
             })
             videoCode = null
-            $('.search-video-input').val('')
             $('.check-video-num').text(0)
             layer.open({
                 type: 1,
-                area: ['11.7rem', '7.69rem'],
-                title: ['添加视频', 'color:#fff'],
+                area: ['10rem', '7.3rem'],
+                title: '添加视频',
                 content: $('#video-dialog'),
                 shade: 0.3,
-                shadeClose: false,
-                closeBtn: 0,
+                shadeClose: true,
+                closeBtn: 1,
                 resize: false,
                 scrollbar: false,
+                move:false,
+                btn: ['确认', '取消'],
+				btn1: function () {
+                    if (videoCode === null) {
+                        layer.msg('请选择视频!')
+                        return
+                    }
+                    
+                    layer.closeAll()
+                    $.ajax({
+                        type: "GET",
+                        dataType: "json",
+                        async: false,
+                        url: "http://www.cube.vip/video/video_code_to_uri/",
+                        data: {
+                            video_code: videoCode
+                        },
+                        headers: {
+                            token: sessionStorage.getItem('token')
+                        },
+                        success: res => {
+                            if (res.msg === 'success') {
+                               
+                                if(differenceFlag  === 1) {
+                                    if(previewNull){
+                                        previewNull = false
+                                        videoJs = new Aliplayer({
+                                            "id": "viewVideos",
+                                            "source": res.data.video_rui,
+                                            "width": "7.5rem",
+                                            "height": "4.22rem",
+                                            "autoplay": false,
+                                            "isLive": false,
+                                            "rePlay": false,
+                                            "playsinline": true,
+                                            "preload": true,
+                                            "controlBarVisibility": "hover",
+                                            "useH5Prism": true,
+                                        })
+                                    } else {
+                                        videoJs.loadByUrl(res.data.video_rui)
+                                    }
+                                    videoUrl = res.data.video_rui
+                                }
+                                
+                            } else {
+                                layer.msg('获取视频失败,请重试!')
+                            }
+                        }
+                    })
+				},
+				end:function(){
+					$('.search-video-input').val('')
+				}
             })
             videoFiltrate()
 
@@ -184,18 +238,71 @@ $(function () {
                 }
             })
             videoCode = null
-            $('.search-video-input').val('')
             $('.check-video-num').text(0)
             layer.open({
                 type: 1,
-                area: ['11.7rem', '7.69rem'],
-                title: ['添加视频', 'color:#fff'],
+                area: ['10rem', '7.3rem'],
+                title: '添加视频',
                 content: $('#video-dialog'),
                 shade: 0.3,
-                shadeClose: false,
-                closeBtn: 0,
+                shadeClose: true,
+                closeBtn: 1,
                 resize: false,
                 scrollbar: false,
+                move:false,
+                btn: ['确认', '取消'],
+				btn1: function () {
+                    if (videoCode === null) {
+                        layer.msg('请选择视频!')
+                        return
+                    }
+                    
+                    layer.closeAll()
+                    $.ajax({
+                        type: "GET",
+                        dataType: "json",
+                        async: false,
+                        url: "http://www.cube.vip/video/video_code_to_uri/",
+                        data: {
+                            video_code: videoCode
+                        },
+                        headers: {
+                            token: sessionStorage.getItem('token')
+                        },
+                        success: res => {
+                            if (res.msg === 'success') {
+                               
+                                if(differenceFlag  === 1) {
+                                    if(previewNull){
+                                        previewNull = false
+                                        videoJs = new Aliplayer({
+                                            "id": "viewVideos",
+                                            "source": res.data.video_rui,
+                                            "width": "7.5rem",
+                                            "height": "4.22rem",
+                                            "autoplay": false,
+                                            "isLive": false,
+                                            "rePlay": false,
+                                            "playsinline": true,
+                                            "preload": true,
+                                            "controlBarVisibility": "hover",
+                                            "useH5Prism": true,
+                                        })
+                                    } else {
+                                        videoJs.loadByUrl(res.data.video_rui)
+                                    }
+                                    videoUrl = res.data.video_rui
+                                }
+                                
+                            } else {
+                                layer.msg('获取视频失败,请重试!')
+                            }
+                        }
+                    })
+				},
+				end:function(){
+					$('.search-video-input').val('')
+				}
             })
             videoFiltrate()
 
@@ -236,13 +343,18 @@ $(function () {
             }
             if (filterVideoData.length > 0) {
                 $('.vd-content-main-top').html(str)
-                $('.mediaUpload').hide()
+                
                 form.render('radio')
             } else {
                 $('.vd-content-main-top').html(
-                    '<div class="vd-content-main-none"><img src="./../image/video-none.png" alt=""><p>当前没有视频哦</p></div>'
+                    `<div class="vd-content-main-none"><img src="./../image/video-none.png" alt=""><p>当前没有视频哦</p></div>
+                    <span class="mediaUpload">
+                        没有合适的视频？
+                        <a href="./media.html">去媒体库上传</a>
+                    </span>
+                    `
                 )
-                $('.mediaUpload').show()
+               
             }
         }
         // 视频筛选---------
@@ -278,67 +390,6 @@ $(function () {
             videoPage(1)
         }
 
-        //取消视频添加
-        $('#video-cancel').on('click', function () {
-            layer.closeAll()
-        })
-        //确定视频添加
-        $('#video-confirm').on('click', function () {
-            if (videoCode === null) {
-                layer.msg('请选择视频!')
-                return
-            }
-            
-            layer.closeAll()
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                async: false,
-                url: "http://www.cube.vip/video/video_code_to_uri/",
-                data: {
-                    video_code: videoCode
-                },
-                headers: {
-                    token: sessionStorage.getItem('token')
-                },
-                success: res => {
-                    if (res.msg === 'success') {
-                       
-                        if(differenceFlag  === 1) {
-                            if(previewNull){
-                                previewNull = false
-                                videoJs = new Aliplayer({
-                                    "id": "viewVideos",
-                                    "source": res.data.video_rui,
-                                    "width": "7.5rem",
-                                    "height": "4.22rem",
-                                    "autoplay": false,
-                                    "isLive": false,
-                                    "rePlay": false,
-                                    "playsinline": true,
-                                    "preload": true,
-                                    "controlBarVisibility": "hover",
-                                    "useH5Prism": true,
-                                })
-                            } else {
-                                videoJs.loadByUrl(res.data.video_rui)
-                            }
-                            videoUrl = res.data.video_rui
-                        }
-                        // else {
-                        //     addVideoJs.src({
-                        //         type: 'application/x-mpegURL',
-                        //         src: res.data.video_rui
-                        //     })
-                        //     addVideoSrc = res.data.video_rui
-                        // }
-                        
-                    } else {
-                        layer.msg('获取视频失败,请重试!')
-                    }
-                }
-            })
-        })
         // 提交
         $('.previewVideo-btn').on('click',function(){
             $.ajax({

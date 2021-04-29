@@ -12,27 +12,6 @@
     <script src="./../commonJs/jquery-3.2.1.min.js"></script>
     <script src="./../js/common.js"></script>
     <title>频道</title>
-    <style>
-        .layui-layer-title {
-            background-color: #FF914D !important;
-            color: #fff !important;
-            font-size: 20px !important;
-            font-family: Source Han Sans CN !important;
-            font-weight: 300 !important;
-
-        }
-        .layui-layer-btn .layui-layer-btn0 {
-            background-color: #FF914D !important;
-            border: 0 !important;
-        }
-        .layui-form-select dl dd.layui-this {
-            background-color: #FF914D;
-            color: #fff;
-        }
-        .laydate-btns-time {
-            color: #009688 !important;
-        }
-    </style>
 </head>
 
 <body>
@@ -148,7 +127,7 @@
             </div>
            
             <div class="layui-form-item" id="select-type">
-                <label class="layui-form-label" >频道分类:</label>
+                <label class="layui-form-label">*频道分类:</label>
                 <div class="layui-input-block">
                     <select id="channel-type" name="event_category_id" lay-filter="channel-type">
                     </select>
@@ -157,7 +136,7 @@
             </div>
          
             <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">活动简介:</label>
+                <label class="layui-form-label">*活动简介:</label>
                 <div class="layui-input-block">
                     <textarea name="event_description" placeholder="请输入内容" class="layui-textarea"></textarea>
                 </div>

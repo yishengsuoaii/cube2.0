@@ -169,7 +169,21 @@ $(function () {
                 },
                 success: res => {
                     if (res.msg === 'sucess') {
-                        $('#showDialog').show()
+                        layer.open({
+                            type: 1,
+                            title: '提示',
+                            area: ['640px', '268px'],
+                            content: $('#showDialog'),
+                            shade: 0.3,
+                            shadeClose: true,
+                            closeBtn: 1,
+                            resize: false,
+                            move:false,
+                            btn: ['去媒体库', '留在此页'],
+                            btn1: function () {
+                                window.location.href = './media.html'
+                            }
+                        })
                         allVideo = new Aliplayer({
                             "id": "myVideo",
                             "source": res.data.video_uri,
@@ -201,17 +215,6 @@ $(function () {
             })
         }, 1000)
     }
-
-
-
-    $('.goMedia-btn').on('click', function () {
-        $('#showDialog').hide()
-        window.location.href = './media.html'
-    })
-
-    $('.current-btn').on('click', function () {
-        $('#showDialog').hide()
-    })
 
     function Pointer(x, y) {
         this.x = x;

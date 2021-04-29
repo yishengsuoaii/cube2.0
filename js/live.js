@@ -703,15 +703,28 @@ $(function () {
 			$('.rec-video-num').text(rec_addedVideoData.length)
 			layer.open({
 				type: 1,
-				area: ['1170px', '753px'],
-				title: ['添加视频', 'color:#fff'],
+				area: ['10rem', '7.3rem'],
+				title: '添加视频',
 				content: $('#rec-dialog'),
 				shade: 0.3,
 				shadeClose: true,
-				closeBtn: 0,
+				closeBtn: 1,
 				resize: false,
 				scrollbar: false,
-				shadeClose: false,
+                move:false,
+                btn: ['确认', '取消'],
+				btn1: function () {
+                    layer.closeAll()
+                    rec_addedVideoData = []
+                    rec_momentVideoData.forEach(item => { // 取消  删除记录
+                        rec_addedVideoData.push(item)
+                    })
+                    renderViewVideo()
+                },
+                end: function(){
+                    $('.rec-search-video-input').val('')
+                }
+
 			})
 			rec_videoFiltrate()
 
@@ -779,13 +792,16 @@ $(function () {
             }
             if (rec_filterVideoData.length > 0) {
                 $('.rec-content-main-top').html(str)
-                $('.rec-mediaUpload').hide()
                 form.render('checkbox')
             } else {
                 $('.rec-content-main-top').html(
-                    '<div class="rec-content-main-none"><img src="./../image/video-none.png" alt=""><p>当前没有视频哦</p></div>'
+                    `<div class="rec-content-main-none"><img src="./../image/video-none.png" alt=""><p>当前没有视频哦</p></div>
+                    <span class="rec-mediaUpload">
+                        没有合适的视频？
+                        <a href="./media.html">去媒体库上传</a>
+                    </span>
+                    `
                 )
-                $('.rec-mediaUpload').show()
             }
         }
         // 视频筛选---------
@@ -820,23 +836,6 @@ $(function () {
             }
             rec_videoPage(1)
         }
-
-        //取消视频添加
-        $('#rec-cancel').on('click', function () {
-            $('.rec-search-video-input').val('')
-            layer.closeAll()
-
-        })
-        //确定视频添加
-        $('#rec-confirm').on('click', function () {
-            $('.rec-search-video-input').val('')
-            layer.closeAll()
-            rec_addedVideoData = []
-            rec_momentVideoData.forEach(item => { // 取消  删除记录
-                rec_addedVideoData.push(item)
-            })
-            renderViewVideo()
-        })
 
         // 提交精彩推荐视频
         $('#saveAddRecVideo').on('click',function(){
@@ -1022,7 +1021,7 @@ $(function () {
             layer.open({
                 type: 1,
                 area: ['4.26rem', '1.60rem'],
-                title: ['推流地址', 'color:#fff'],
+                title:'推流地址',
                 content: $('#copy-dialog'),
                 shade: 0.3,
                 shadeClose: true,
@@ -1321,7 +1320,7 @@ $(function () {
             layer.open({
                 type: 1,
                 area: ['11.70rem', '7.22rem'],
-                title: ['LOGO设置', 'color:#fff;background-color:#FF914D;font-size: 0.2rem;height:0.42rem;line-height:0.42rem'],
+                title: 'LOGO设置',
                 content: $('#logoDialog'),
                 shade: 0.3,
                 shadeClose: true,
@@ -2020,7 +2019,7 @@ $(function () {
             layer.open({
                 type: 1,
                 area: ['11.70rem', '7.22rem'],
-                title: ['比分牌设置', 'color:#fff;background-color:#FF914D;font-size: 0.2rem;height:0.42rem;line-height:0.42rem'],
+                title: '比分牌设置',
                 content: $('#scoreDialog'),
                 shade: 0.3,
                 shadeClose: false,
@@ -2992,7 +2991,7 @@ $(function () {
             layer.open({
                 type: 1,
                 area: ['11.70rem', '7.22rem'],
-                title: ['幻灯片设置', 'color:#fff;background-color:#FF914D;font-size: 0.2rem;height:0.42rem;line-height:0.42rem'],
+                title: '幻灯片设置',
                 content: $('#docDialog'),
                 shade: 0.3,
                 shadeClose: true,
@@ -3493,7 +3492,7 @@ $(function () {
         layer.open({
             type: 1,
             area: ['11.70rem', '7.22rem'],
-            title: ['背景音乐设置', 'color:#fff;background-color:#FF914D;font-size: 0.2rem;height:0.42rem;line-height:0.42rem'],
+            title: '背景音乐设置',
             content: $('#musicDialog'),
             shade: 0.3,
             shadeClose: true,
@@ -3780,7 +3779,7 @@ $(function () {
         layer.open({
             type: 1,
             area: ['7.9rem', '7.22rem'],
-            title: ['素材设置', 'color:#fff;background-color:#FF914D;font-size: 0.2rem;height:0.42rem;line-height:0.42rem'],
+            title: '素材设置',
             content: $('#kvDialog'),
             shade: 0.3,
             shadeClose: true,

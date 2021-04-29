@@ -538,12 +538,18 @@
   border: 1px solid rgba(255, 145, 77, 0.3);
 }
 .parentMain .containerBox .mainCont .main-right-portal .portalSave {
-  width: 74px;
+  width: 106px;
   height: 40px;
   position: absolute;
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
+  color: #fff;
+  font-size: 16px;
+  background-color: #FF914D;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
 }
 .parentMain .containerBox .mainCont .main-right-recommend {
   width: 610px;
@@ -725,12 +731,18 @@
   background-color: #fff;
 }
 .parentMain .containerBox .mainCont .main-right-recommend .recommendSave {
-  width: 74px;
+  width: 106px;
   height: 40px;
   position: absolute;
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
+  color: #fff;
+  font-size: 16px;
+  background-color: #FF914D;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
 }
 .parentMain .containerBox .mainCont #qrcodeBox {
   display: none;
@@ -785,17 +797,10 @@
 /* 添加频道弹窗 */
 #channel-dialog {
   display: none;
-  width: 1170px;
-  height: 707px;
-  background-color: #FFF;
-  box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
+  width: 908px;
+  padding: 20px 46px 0;
 }
-#channel-dialog .cd-content {
-  width: 1090px;
-  height: 623px;
-  padding: 20px 40px 0;
-}
-#channel-dialog .cd-content .select-search {
+#channel-dialog .select-search {
   height: 34px;
   line-height: 34px;
   font-size: 18px;
@@ -804,13 +809,13 @@
   color: #666666;
   margin-bottom: 20px;
 }
-#channel-dialog .cd-content .select-search .search-channel {
+#channel-dialog .select-search .search-channel {
   float: right;
-  width: 250px;
+  width: 294px;
   height: 34px;
 }
-#channel-dialog .cd-content .select-search .search-channel .search-channel-input {
-  width: 201px;
+#channel-dialog .select-search .search-channel .search-channel-input {
+  width: 244px;
   height: 32px;
   padding: 0 7px;
   background: #FFFFFF;
@@ -819,33 +824,34 @@
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
-#channel-dialog .cd-content .select-search .search-channel .search-channel-btn {
+#channel-dialog .select-search .search-channel .search-channel-btn {
   display: inline-block;
   width: 34px;
   height: 34px;
+  line-height: 34px;
+  text-align: center;
   background: #FF914D;
   border-radius: 0px 5px 5px 0px;
-  vertical-align: top;
+  vertical-align: bottom;
   cursor: pointer;
 }
-#channel-dialog .cd-content .select-search .search-channel .search-channel-btn img {
+#channel-dialog .select-search .search-channel .search-channel-btn img {
   width: 24px;
   height: 24px;
-  margin: 5px;
 }
-#channel-dialog .cd-content .cd-content-main {
-  height: 548px;
+#channel-dialog .cd-content-main {
+  height: 530px;
   margin-top: 20px;
 }
-#channel-dialog .cd-content .cd-content-main .cd-content-main-top {
+#channel-dialog .cd-content-main .cd-content-main-top {
   height: 474px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   align-content: flex-start;
 }
-#channel-dialog .cd-content .cd-content-main .cd-content-main-top .cd-content-main-list {
-  width: 493px;
+#channel-dialog .cd-content-main .cd-content-main-top .cd-content-main-list {
+  width: 402px;
   height: 96px;
   padding: 20px;
   border: 1px solid #CCCCCC;
@@ -856,63 +862,40 @@
   color: #333333;
   position: relative;
 }
-#channel-dialog .cd-content .cd-content-main .cd-content-main-top .cd-content-main-list img {
+#channel-dialog .cd-content-main .cd-content-main-top .cd-content-main-list img {
   width: 96px;
   height: 96px;
   vertical-align: bottom;
 }
-#channel-dialog .cd-content .cd-content-main .cd-content-main-top .cd-content-main-list .cd-content-main-list-name {
+#channel-dialog .cd-content-main .cd-content-main-top .cd-content-main-list .cd-content-main-list-name {
   display: inline-block;
-  width: 392px;
-  padding-left: 5px;
+  width: 300px;
+  padding-left: 6px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-#channel-dialog .cd-content .cd-content-main .cd-content-main-top .cd-content-main-list .channel-right-check {
+#channel-dialog .cd-content-main .cd-content-main-top .cd-content-main-list .channel-right-check {
   width: 20px;
   height: 20px;
   position: absolute;
   top: 20px;
   right: 20px;
 }
-#channel-dialog .cd-content .cd-content-main .cd-content-main-top .cd-content-main-list .channel-right-check .cd-content-main-list-check {
+#channel-dialog .cd-content-main .cd-content-main-top .cd-content-main-list .channel-right-check .cd-content-main-list-check {
   width: 20px;
   height: 20px;
 }
-#channel-dialog .cd-content .cd-content-main .cd-content-main-foot {
-  height: 64px;
-  padding-top: 10px;
+#channel-dialog .cd-content-main .cd-content-main-foot {
   text-align: center;
-}
-#channel-dialog .cd-footer {
-  height: 50px;
-  padding-top: 12px;
-  padding-right: 40px;
-  background: #FAFAFA;
-  box-shadow: 0px 1px 0px 0px rgba(85, 85, 85, 0.1);
-  text-align: right;
-}
-#channel-dialog .cd-footer button {
-  width: 72px;
-  margin-left: 20px !important;
-  border-radius: 5px;
 }
 /* 添加视频弹窗 */
 #video-dialog {
   display: none;
-  width: 1170px;
-  height: 707px;
-  background-color: #FFF;
-  box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
-  border-radius: 10px 10px 0px 0px;
+  width: 908px;
+  padding: 20px 46px 0;
 }
-#video-dialog .vd-content {
-  width: 1090px;
-  height: 623px;
-  padding: 20px 40px 0;
-}
-#video-dialog .vd-content .select-search {
+#video-dialog .select-search {
   height: 34px;
   line-height: 34px;
   font-size: 18px;
@@ -921,13 +904,13 @@
   color: #666666;
   margin-bottom: 20px;
 }
-#video-dialog .vd-content .select-search .search-video {
+#video-dialog .select-search .search-video {
   float: right;
-  width: 250px;
+  width: 294px;
   height: 34px;
 }
-#video-dialog .vd-content .select-search .search-video .search-video-input {
-  width: 201px;
+#video-dialog .select-search .search-video .search-video-input {
+  width: 244px;
   height: 32px;
   padding: 0 7px;
   background: #FFFFFF;
@@ -936,25 +919,26 @@
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
-#video-dialog .vd-content .select-search .search-video .search-video-btn {
+#video-dialog .select-search .search-video .search-video-btn {
   display: inline-block;
   width: 34px;
   height: 34px;
+  line-height: 34px;
+  text-align: center;
   background: #FF914D;
   border-radius: 0px 5px 5px 0px;
-  vertical-align: top;
+  vertical-align: bottom;
   cursor: pointer;
 }
-#video-dialog .vd-content .select-search .search-video .search-video-btn img {
+#video-dialog .select-search .search-video .search-video-btn img {
   width: 24px;
   height: 24px;
-  margin: 5px;
 }
-#video-dialog .vd-content .vd-content-main {
-  height: 548px;
+#video-dialog .vd-content-main {
+  height: 530px;
   margin-top: 20px;
 }
-#video-dialog .vd-content .vd-content-main .vd-content-main-top {
+#video-dialog .vd-content-main .vd-content-main-top {
   height: 474px;
   display: flex;
   justify-content: space-between;
@@ -962,8 +946,8 @@
   align-content: flex-start;
   position: relative;
 }
-#video-dialog .vd-content .vd-content-main .vd-content-main-top .vd-content-main-list {
-  width: 493px;
+#video-dialog .vd-content-main .vd-content-main-top .vd-content-main-list {
+  width: 402px;
   height: 96px;
   padding: 20px;
   border: 1px solid #CCCCCC;
@@ -974,62 +958,61 @@
   color: #333333;
   position: relative;
 }
-#video-dialog .vd-content .vd-content-main .vd-content-main-top .vd-content-main-list .vd-video {
+#video-dialog .vd-content-main .vd-content-main-top .vd-content-main-list .vd-video {
   display: inline-block !important;
   width: 180px;
   height: 96px;
   vertical-align: top;
   pointer-events: auto !important;
 }
-#video-dialog .vd-content .vd-content-main .vd-content-main-top .vd-content-main-list .vd-content-main-list-info {
+#video-dialog .vd-content-main .vd-content-main-top .vd-content-main-list .vd-content-main-list-info {
   display: inline-block;
-  width: 290px;
+  width: 202px;
   height: 96px;
 }
-#video-dialog .vd-content .vd-content-main .vd-content-main-top .vd-content-main-list .vd-content-main-list-info span {
+#video-dialog .vd-content-main .vd-content-main-top .vd-content-main-list .vd-content-main-list-info span {
   display: inline-block;
-  width: 285px;
+  width: 200px;
   height: 32px;
   line-height: 32px;
-  padding-left: 5px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-#video-dialog .vd-content .vd-content-main .vd-content-main-top .vd-content-main-list .vd-content-main-list-info .vd-content-main-list-name {
+#video-dialog .vd-content-main .vd-content-main-top .vd-content-main-list .vd-content-main-list-info .vd-content-main-list-name {
   font-size: 18px;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #333333;
 }
-#video-dialog .vd-content .vd-content-main .vd-content-main-top .vd-content-main-list .vd-content-main-list-info .vd-content-main-list-time {
+#video-dialog .vd-content-main .vd-content-main-top .vd-content-main-list .vd-content-main-list-info .vd-content-main-list-time {
   font-size: 16px;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #666666;
 }
-#video-dialog .vd-content .vd-content-main .vd-content-main-top .vd-content-main-list .vd-content-main-list-info .vd-content-main-list-num {
+#video-dialog .vd-content-main .vd-content-main-top .vd-content-main-list .vd-content-main-list-info .vd-content-main-list-num {
   font-size: 16px;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #666666;
   vertical-align: top;
 }
-#video-dialog .vd-content .vd-content-main .vd-content-main-top .vd-content-main-list .vd-content-main-list-info i {
+#video-dialog .vd-content-main .vd-content-main-top .vd-content-main-list .vd-content-main-list-info i {
   font-style: normal;
 }
-#video-dialog .vd-content .vd-content-main .vd-content-main-top .vd-content-main-list .video-right-check {
+#video-dialog .vd-content-main .vd-content-main-top .vd-content-main-list .video-right-check {
   width: 20px;
   height: 20px;
   position: absolute;
   top: 20px;
   right: 20px;
 }
-#video-dialog .vd-content .vd-content-main .vd-content-main-top .vd-content-main-list .video-right-check .vd-content-main-list-check {
+#video-dialog .vd-content-main .vd-content-main-top .vd-content-main-list .video-right-check .vd-content-main-list-check {
   width: 20px;
   height: 20px;
 }
-#video-dialog .vd-content .vd-content-main .vd-content-main-top .vd-content-main-none {
+#video-dialog .vd-content-main .vd-content-main-top .vd-content-main-none {
   width: 142px;
   height: 147px;
   position: absolute;
@@ -1037,11 +1020,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-#video-dialog .vd-content .vd-content-main .vd-content-main-top .vd-content-main-none img {
+#video-dialog .vd-content-main .vd-content-main-top .vd-content-main-none img {
   width: 142px;
   height: 107px;
 }
-#video-dialog .vd-content .vd-content-main .vd-content-main-top .vd-content-main-none p {
+#video-dialog .vd-content-main .vd-content-main-top .vd-content-main-none p {
   height: 40px;
   line-height: 40px;
   font-size: 20px;
@@ -1049,32 +1032,19 @@
   font-weight: 400;
   color: #CCCCCC;
 }
-#video-dialog .vd-content .vd-content-main .vd-content-main-foot {
-  height: 10px;
-  padding-top: 10px;
-  text-align: center;
-}
-#video-dialog .vd-footer {
-  height: 50px;
-  padding: 12px 40px 0 40px;
-  background: #FAFAFA;
-  box-shadow: 0px 1px 0px 0px rgba(85, 85, 85, 0.1);
-  text-align: right;
-}
-#video-dialog .vd-footer button {
-  width: 72px;
-  margin-left: 20px !important;
-  border-radius: 5px;
-}
-#video-dialog .vd-footer .mediaUpload {
-  float: left;
+#video-dialog .vd-content-main .vd-content-main-top .mediaUpload {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   line-height: 50px;
   font-size: 16px;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #666666;
-  display: none;
 }
-#video-dialog .vd-footer .mediaUpload a {
+#video-dialog .vd-content-main .vd-content-main-top .mediaUpload a {
   color: #F2591A;
+}
+#video-dialog .vd-content-main .vd-content-main-foot {
+  text-align: center;
 }

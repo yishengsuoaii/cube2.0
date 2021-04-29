@@ -2,6 +2,39 @@
   padding: 0;
   margin: 0;
 }
+.layui-form-select dl dd.layui-this {
+  background-color: #FF914D !important;
+  color: #fff !important;
+}
+.laydate-btns-time {
+  color: #009688 !important;
+}
+.layui-layer-title {
+  background-color: #FF914D !important;
+  color: #fff !important;
+  font-size: 20px !important;
+  font-family: Source Han Sans CN !important;
+  font-weight: 300 !important;
+  border: 0 !important;
+}
+.layui-layer-btn- {
+  padding: 0 0 24px !important;
+}
+.layui-layer-btn .layui-layer-btn0 {
+  height: 36px !important;
+  line-height: 36px !important;
+  font-size: 16px !important;
+  margin: 0 46px 0 24px !important;
+  float: right !important;
+  background-color: #FF914D !important;
+  border: 0 !important;
+}
+.layui-layer-btn .layui-layer-btn1 {
+  height: 36px !important;
+  line-height: 36px !important;
+  font-size: 16px !important;
+  margin: 0 !important;
+}
 #container {
   width: 100%;
   min-width: 1200px;

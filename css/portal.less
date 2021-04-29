@@ -621,12 +621,18 @@
 
                 /* 门户信息保存 */
                 .portalSave {
-                    width: 74px;
+                    width: 106px;
                     height: 40px;
                     position: absolute;
                     left: 50%;
                     bottom: 0;
-                    transform: translateX(-50%)
+                    transform: translateX(-50%);
+                    color: #fff;
+                    font-size: 16px;
+                    background-color: #FF914D;
+                    border: 0;
+                    border-radius: 2px;
+                    cursor: pointer;
                 }
             }
 
@@ -836,12 +842,18 @@
 
                 /* 精彩推荐设置 保存 */
                 .recommendSave {
-                    width: 74px;
+                    width: 106px;
                     height: 40px;
                     position: absolute;
                     left: 50%;
                     bottom: 0;
-                    transform: translateX(-50%)
+                    transform: translateX(-50%);
+                    color: #fff;
+                    font-size: 16px;
+                    background-color: #FF914D;
+                    border: 0;
+                    border-radius: 2px;
+                    cursor: pointer;
                 }
             }
 
@@ -908,132 +920,105 @@
 /* 添加频道弹窗 */
 #channel-dialog {
     display: none;
-    width: 1170px;
-    height: 707px;
-    background-color: #FFF;
-    box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
-    .cd-content {
-        width: 1090px;
-        height: 623px;
-        padding: 20px 40px 0;
-
-        .select-search {
+    width: 908px;
+    padding: 20px 46px 0;
+    .select-search {
+        height: 34px;
+        line-height: 34px;
+        font-size: 18px;
+        font-family: Source Han Sans CN;
+        font-weight: 400;
+        color: #666666;
+        margin-bottom: 20px;
+        .search-channel {
+            float: right;
+            width: 294px;
             height: 34px;
-            line-height: 34px;
-            font-size: 18px;
-            font-family: Source Han Sans CN;
-            font-weight: 400;
-            color: #666666;
-            margin-bottom: 20px;
 
-            .search-channel {
-                float: right;
-                width: 250px;
+            .search-channel-input {
+                width: 244px;
+                height: 32px;
+                padding: 0 7px;
+                background: #FFFFFF;
+                border: 1px solid #CCCCCC;
+                border-right: 0;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+            }
+
+            .search-channel-btn {
+                display: inline-block;
+                width: 34px;
                 height: 34px;
-
-                .search-channel-input {
-                    width: 201px;
-                    height: 32px;
-                    padding: 0 7px;
-                    background: #FFFFFF;
-                    border: 1px solid #CCCCCC;
-                    border-right: 0;
-                    border-top-left-radius: 5px;
-                    border-bottom-left-radius: 5px;
-                }
-
-                .search-channel-btn {
-                    display: inline-block;
-                    width: 34px;
-                    height: 34px;
-                    background: #FF914D;
-                    border-radius: 0px 5px 5px 0px;
-                    vertical-align: top;
-                    cursor: pointer;
-
-                    img {
-                        width: 24px;
-                        height: 24px;
-                        margin: 5px;
-                    }
-                }
-            }
-        }
-
-        .cd-content-main {
-            height: 548px;
-            margin-top: 20px;
-
-            .cd-content-main-top {
-                height: 474px;
-                display: flex;
-                justify-content: space-between;
-                flex-wrap: wrap;
-                align-content: flex-start;
-
-                .cd-content-main-list {
-                    width: 493px;
-                    height: 96px;
-                    padding: 20px;
-                    border: 1px solid #CCCCCC;
-                    margin-bottom: 20px;
-                    font-size: 16px;
-                    font-family: Source Han Sans CN;
-                    font-weight: 400;
-                    color: #333333;
-                    position: relative;
-
-                    img {
-                        width: 96px;
-                        height: 96px;
-                        vertical-align: bottom;
-                    }
-
-                    .cd-content-main-list-name {
-                        display: inline-block;
-                        width: 392px;
-                        padding-left: 5px;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-                    }
-                    .channel-right-check {
-                        width: 20px;
-                        height: 20px;
-                        position: absolute;
-                        top: 20px;
-                        right: 20px;
-                        .cd-content-main-list-check {
-                            width: 20px;
-                            height: 20px;
-                        }
-                    }
-
-                    
-                }
-            }
-
-            .cd-content-main-foot {
-                height: 64px;
-                padding-top: 10px;
+                line-height: 34px;
                 text-align: center;
+                background: #FF914D;
+                border-radius: 0px 5px 5px 0px;
+                vertical-align: bottom;
+                cursor: pointer;
+
+                img {
+                    width: 24px;
+                    height: 24px;
+                }
             }
         }
-
     }
 
-    .cd-footer {
-        height: 50px;
-        padding-top: 12px;
-        padding-right: 40px;
-        background: #FAFAFA;
-        box-shadow: 0px 1px 0px 0px rgba(85, 85, 85, 0.1);
-        text-align: right;
+    .cd-content-main {
+        height: 530px;
+        margin-top: 20px;
+        .cd-content-main-top {
+            height: 474px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-content: flex-start;
 
-        button {
-            width: 72px;
-            margin-left: 20px !important;
-            border-radius: 5px;
+            .cd-content-main-list {
+                width:402px;
+                height: 96px;
+                padding: 20px;
+                border: 1px solid #CCCCCC;
+                margin-bottom: 20px;
+                font-size: 16px;
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #333333;
+                position: relative;
+
+                img {
+                    width: 96px;
+                    height: 96px;
+                    vertical-align: bottom;
+                }
+
+                .cd-content-main-list-name {
+                    display: inline-block;
+                    width: 300px;
+                    padding-left: 6px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                .channel-right-check {
+                    width: 20px;
+                    height: 20px;
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    .cd-content-main-list-check {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+
+                
+            }
+        }
+
+        .cd-content-main-foot {
+            text-align: center;
         }
     }
 }
@@ -1045,193 +1030,170 @@
 /* 添加视频弹窗 */
 #video-dialog {
     display: none;
-    width: 1170px;
-    height: 707px;
-    background-color: #FFF;
-    box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
-    border-radius: 10px 10px 0px 0px;
-    .vd-content {
-        width: 1090px;
-        height: 623px;
-        padding: 20px 40px 0;
+    width: 908px;
+    padding: 20px 46px 0;
+    .select-search {
+        height: 34px;
+        line-height: 34px;
+        font-size: 18px;
+        font-family: Source Han Sans CN;
+        font-weight: 400;
+        color: #666666;
+        margin-bottom: 20px;
 
-        .select-search {
+        .search-video {
+            float: right;
+            width: 294px;
             height: 34px;
-            line-height: 34px;
-            font-size: 18px;
-            font-family: Source Han Sans CN;
-            font-weight: 400;
-            color: #666666;
-            margin-bottom: 20px;
 
-            .search-video {
-                float: right;
-                width: 250px;
-                height: 34px;
-
-                .search-video-input {
-                    width: 201px;
-                    height: 32px;
-                    padding: 0 7px;
-                    background: #FFFFFF;
-                    border: 1px solid #CCCCCC;
-                    border-right: 0;
-                    border-top-left-radius: 5px;
-                    border-bottom-left-radius: 5px;
-                }
-
-                .search-video-btn {
-                    display: inline-block;
-                    width: 34px;
-                    height: 34px;
-                    background: #FF914D;
-                    border-radius: 0px 5px 5px 0px;
-                    vertical-align: top;
-                    cursor: pointer;
-
-                    img {
-                        width: 24px;
-                        height: 24px;
-                        margin: 5px;
-                    }
-                }
-
+            .search-video-input {
+                width: 244px;
+                height: 32px;
+                padding: 0 7px;
+                background: #FFFFFF;
+                border: 1px solid #CCCCCC;
+                border-right: 0;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
             }
-        }
 
-        .vd-content-main {
-            height: 548px;
-            margin-top: 20px;
-            .vd-content-main-top {
-                height: 474px;
-                display: flex;
-                justify-content: space-between;
-                flex-wrap: wrap;
-                align-content: flex-start;
-                position: relative;
-                .vd-content-main-list {
-                    width: 493px;
-                    height: 96px;
-                    padding: 20px;
-                    border: 1px solid #CCCCCC;
-                    margin-bottom: 20px;
-                    font-size: 16px;
-                    font-family: Source Han Sans CN;
-                    font-weight: 400;
-                    color: #333333;
-                    position: relative;
-                    .vd-video {
-                        display: inline-block !important;
-                        width: 180px;
-                        height: 96px;
-                        vertical-align: top;
-                        pointer-events: auto !important;
-                    }
-                    .vd-content-main-list-info {
-                        display: inline-block;
-                        width: 290px;
-                        height: 96px;
-                        span {
-                            display: inline-block;
-                            width: 285px;
-                            height: 32px;
-                            line-height: 32px;
-                            padding-left: 5px;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            white-space: nowrap;
-                        }
-                        .vd-content-main-list-name {
-                            font-size: 18px;
-                            font-family: Source Han Sans CN;
-                            font-weight: 400;
-                            color: #333333;
-                        }
-                        
-                         .vd-content-main-list-time {
-                            font-size: 16px;
-                            font-family: Source Han Sans CN;
-                            font-weight: 400;
-                            color: #666666;
-                        }
-                        
-                         .vd-content-main-list-num {
-                            font-size: 16px;
-                            font-family: Source Han Sans CN;
-                            font-weight: 400;
-                            color: #666666;
-                            vertical-align: top;
-                        }
-                        i{
-                            font-style:normal
-                        }
-                    }
-                    .video-right-check{
-                        width: 20px;
-                        height: 20px;
-                        position: absolute;
-                        top: 20px;
-                        right: 20px;
-                        .vd-content-main-list-check {
-                            width: 20px;
-                            height: 20px;
-                        }
-                    }
-                    
+            .search-video-btn {
+                display: inline-block;
+                width: 34px;
+                height: 34px;
+                line-height: 34px;
+                text-align: center;
+                background: #FF914D;
+                border-radius: 0px 5px 5px 0px;
+                vertical-align: bottom;
+                cursor: pointer;
+
+                img {
+                    width: 24px;
+                    height: 24px;
                 }
-                .vd-content-main-none {
-                    width: 142px;
-                    height: 147px;
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    img {
-                        width: 142px;
-                        height: 107px;
+            }
+
+        }
+    }
+
+    .vd-content-main {
+        height: 530px;
+        margin-top: 20px;
+        .vd-content-main-top {
+            height: 474px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            position: relative;
+            .vd-content-main-list {
+                width:402px;
+                height: 96px;
+                padding: 20px;
+                border: 1px solid #CCCCCC;
+                margin-bottom: 20px;
+                font-size: 16px;
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #333333;
+                position: relative;
+                .vd-video {
+                    display: inline-block !important;
+                    width: 180px;
+                    height: 96px;
+                    vertical-align: top;
+                    pointer-events: auto !important;
+                }
+                .vd-content-main-list-info {
+                    display: inline-block;
+                    width: 202px;
+                    height: 96px;
+                    span {
+                        display: inline-block;
+                        width: 200px;
+                        height: 32px;
+                        line-height: 32px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
                     }
-                    p {
-                        height: 40px;
-                        line-height: 40px;
-                        font-size: 20px;
+                    .vd-content-main-list-name {
+                        font-size: 18px;
                         font-family: Source Han Sans CN;
                         font-weight: 400;
-                        color: #CCCCCC;
+                        color: #333333;
+                    }
+                    
+                    .vd-content-main-list-time {
+                        font-size: 16px;
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #666666;
+                    }
+                    
+                    .vd-content-main-list-num {
+                        font-size: 16px;
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #666666;
+                        vertical-align: top;
+                    }
+                    i{
+                        font-style:normal
                     }
                 }
+                .video-right-check{
+                    width: 20px;
+                    height: 20px;
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    .vd-content-main-list-check {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+                
             }
-            .vd-content-main-foot {
-                height: 10px;
-                padding-top: 10px;
-                text-align: center;
+            .vd-content-main-none {
+                width: 142px;
+                height: 147px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                img {
+                    width: 142px;
+                    height: 107px;
+                }
+                p {
+                    height: 40px;
+                    line-height: 40px;
+                    font-size: 20px;
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #CCCCCC;
+                }
             }
-            
+            .mediaUpload {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                line-height: 50px;
+                font-size: 16px;
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #666666;
+                a {
+                    color: #F2591A;
+                }
+            }
+        }
+        .vd-content-main-foot {
+            text-align: center;
         }
         
-    }
-    .vd-footer {
-        height: 50px;
-        padding: 12px 40px 0 40px;
-        background: #FAFAFA;
-        box-shadow: 0px 1px 0px 0px rgba(85, 85, 85, 0.1);
-        text-align: right;
-        button {
-            width: 72px;
-            margin-left: 20px !important;
-            border-radius: 5px;
-        }
-        .mediaUpload {
-            float: left;
-            line-height: 50px;
-            font-size: 16px;
-            font-family: Source Han Sans CN;
-            font-weight: 400;
-            color: #666666;
-            display: none;
-            a {
-                color: #F2591A;
-            }
-        }
     }
 }
 

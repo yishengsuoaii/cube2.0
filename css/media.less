@@ -365,19 +365,15 @@
 /* 上传视频弹窗 */
 #uploadDialog {
     display: none;
-    width: 790px;
-    height: 552px;
-    padding-top: 50px;
-
+    width: 548px;
+    padding: 40px 46px 0;
     #uploadBox {
-        width: 558px;
-        height: 268px;
+        width: 546px;
+        height: 232px;
         border: 1px solid #CCCCCC;
         border-radius: 5px;
-        margin: 0 auto;
         position: relative;
         cursor: pointer;
-
         #previewVideo {
             border: none;
             outline: none;
@@ -385,10 +381,10 @@
         }
 
         #uploadImage {
-            width: 48px;
-            height: 48px;
+            width: 24px;
+            height: 24px;
             position: absolute;
-            top: 36%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
@@ -402,14 +398,14 @@
             line-height: 30px;
             text-align: center;
             position: absolute;
-            top: 50%;
+            bottom: 30px;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%);
         }
     }
 
     .hintUpload {
-        width: 560px;
+        width: 548px;
         height: 30px;
         font-size: 16px;
         margin: 0 auto 10px;
@@ -417,7 +413,6 @@
         font-weight: 400;
         color: #F2591A;
         line-height: 30px;
-
         .hintIcons {
             display: inline-block;
             width: 20px;
@@ -433,8 +428,8 @@
     }
 
     .uploadDesName {
-        width: 560px;
-        font-size: 18px;
+        width: 548px;
+        font-size: 22px;
         font-family: Source Han Sans CN;
         font-weight: 400;
         color: #666666;
@@ -444,11 +439,10 @@
 
     #textarea {
         display: block;
-        width: 538px;
-        height: 138px;
+        width: 526px;
+        height: 58px;
         padding: 10px;
         resize: none;
-        margin: 0 auto;
         border: 1px solid #CCCCCC;
         border-radius: 5px;
         font-size: 16px;
@@ -458,7 +452,7 @@
     }
 
     .textLength {
-        width: 560px;
+        width: 548px;
         height: 30px;
         text-align: right;
         font-size: 16px;
@@ -466,7 +460,6 @@
         font-weight: 400;
         color: #999999;
         line-height: 30px;
-        margin: 0 auto;
     }
 
 
@@ -475,61 +468,85 @@
 /* 编辑视频弹窗 */
 #describeDialog {
     display: none;
-    width: 790px;
-    height: 552px;
-    padding-top: 50px;
+    width: 548px;
+    padding: 40px 46px 0;
     .coverBox {
-        width: 558px;
-        height: 268px;
+        width: 546px;
+        height: 232px;
         border: 1px solid #CCCCCC;
-        border-radius: 5px;
-        margin: 0 auto 30px;
+        border-radius: 4px;
         position: relative;
         cursor: pointer;
         #uploadCover {
-            width: 48px;
-            height: 48px;
-            position: absolute;
-            top: 36%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        #coverName {
-            height: 30px;
-            font-size: 20px;
-            font-family: Source Han Sans CN;
-            font-weight: 400;
-            color: #FF914D;
-            line-height: 30px;
-            text-align: center;
+            width: 24px;
+            height: 24px;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            &:hover + #hintBox {
+                display: block;
+            }
+        }
+        #hintBox {
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 54px;
+            transform: translateX(-50%);
+            font-size: 14px;
+            padding: 10px 16px;
+            color: #fff;
+            background-color: #2D2D2D;
+            opacity: 0.8;
+            border-radius: 4px;
+            #hintAngle {
+                position: absolute;
+                left: 50%;
+                bottom: -6px;
+                transform: translateX(-50%)  rotate(45deg);
+                width: 12px;
+                height: 12px;
+                background-color: #2D2D2D;  
+            }
+            
+        }
+        #coverName {
+            height: 30px;
+            font-size: 14;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: #ccc;
+            line-height: 30px;
+            text-align: center;
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
         }
         .coverImg {
             display: none;
-            width: 558px;
-            height: 268px;
+            width: 546px;
+            height: 232px;
         }
 
     }
 
     .editDesName {
-        width: 560px;
+        width: 548px;
         height: 30px;
-        font-size: 18px;
+        font-size: 22px;
         font-family: Source Han Sans CN;
         font-weight: 300;
         color: #666666;
         line-height: 30px;
-        margin: 0 auto;
+        margin: 25px 0 10px;
     }
 
     #editDesText {
         display: block;
-        width: 538px;
-        height: 138px;
+        width: 526px;
+        height: 58px;
         border: 1px solid #CCCCCC;
         border-radius: 5px;
         padding: 10px;
@@ -542,15 +559,15 @@
     }
 
     #editTextLength {
-        width: 560px;
+        width: 548px;
         height: 30px;
         font-size: 16px;
         font-family: Source Han Sans CN;
         font-weight: 300;
         color: #666666;
         line-height: 30px;
-        margin: 0 auto;
         text-align: right;
+        margin-bottom: 6px;
     }
 }
 
@@ -558,16 +575,14 @@
 /* 观看视频弹窗 */
 #showVideoDialog {
     display: none;
-    width: 790px;
-    height: 690px;
-    padding-top: 20px;
+    width: 750px;
+    padding: 25px;
     overflow: hidden;
 
     #player-con {
         display: block;
         width: 750px;
-        height: 396px; 
-        margin: 0 auto;
+        height: 428px; 
         outline: none;
     }
 
@@ -576,7 +591,6 @@
         height: 60px;
         padding-left: 20px;
         line-height: 60px;
-        margin: 0 auto;
         font-size: 20px;
         font-family: Source Han Sans CN;
         font-weight: 400;
@@ -586,11 +600,9 @@
 
     .commentBox {
         width: 748px;
-        height: 212px;
+        height: 216px;
         border: 1px solid #CCCCCC;
-        margin: 0 auto;
         overflow-y: auto;
-
         .chatList {
             width: 100%;
             min-height: 42px;
@@ -601,13 +613,10 @@
 
             &:hover {
                 background: #f0f0f0;
-
-                /* opacity: 0.3; */
                 .deleteChat {
                     display: block;
                 }
             }
-
             .userImage {
                 width: 42px;
                 height: 42px;
@@ -618,7 +627,6 @@
             .chatRight {
                 padding-left: 10px;
                 flex: 1;
-
                 .userName {
                     width: 600px;
                     height: 21px;

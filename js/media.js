@@ -636,13 +636,14 @@ $(function () {
             layer.open({
                 type: 1,
                 title: '删除提示',
-                content: '<div style="padding: 30px 100px;font-size:18px;color:#666;">此操作将删除该视频,是否继续?</div>',
+                area: ['640px', '268px'],
+                content: '<div style="margin: 48px 0 0 46px;font-size:18px;color:#666;">此操作将删除该视频,是否继续?</div>',
                 shade: 0.3,
                 shadeClose: true,
-                closeBtn: 0,
+                closeBtn: 1,
                 resize: false,
                 btn: ['确认', '取消'],
-                btnAlign: 'c',
+                move:false,
                 btn1: function () {
                     $.ajax({
                         type: 'GET',
@@ -667,10 +668,7 @@ $(function () {
                             }
                         },
                     })
-                },
-                btn2: function () {
-                    layer.closeAll();
-                },
+                }
             })
         })
 
@@ -687,13 +685,14 @@ $(function () {
             layer.open({
                 type: 1,
                 title: '删除提示',
-                content: '<div style="padding: 30px 100px;font-size:18px;color:#666;">此操作将删除该视频,是否继续?</div>',
+                area: ['640px', '268px'],
+                content: '<div style="margin: 48px 0 0 46px;font-size:18px;color:#666;">此操作将删除该视频,是否继续?</div>',
                 shade: 0.3,
                 shadeClose: true,
-                closeBtn: 0,
+                closeBtn: 1,
                 resize: false,
                 btn: ['确认', '取消'],
-                btnAlign: 'c',
+                move:false,
                 btn1: function () {
                     $.ajax({
                         type: 'GET',
@@ -718,10 +717,7 @@ $(function () {
                             }
                         },
                     })
-                },
-                btn2: function () {
-                    layer.closeAll();
-                },
+                }
             })
         })
 
@@ -735,14 +731,14 @@ $(function () {
         $('#uploadVideo').on('click', function () {
             layer.open({
                 type: 1,
-                area: ['790px', '708px'],
-                title: ['上传视频', 'color:#fff'],
+                area: ['640px', '560px'],
+                title: '上传视频',
                 content: $("#uploadDialog"),
                 shade: 0.3,
                 shadeClose: true,
                 closeBtn: 1,
                 btn: ['确认', '取消'],
-                btnAlign: 'c',
+                move:false,
                 resize: false,
                 scrollbar: false,
                 btn1: function () {
@@ -754,11 +750,10 @@ $(function () {
                         layer.msg('请添加视频描述!')
                         return
                     }
-                    // layer.msg('视频正在上传,请勿重复点击!')
                     var formData = new FormData()
                     formData.append('file', videoFile)
                     formData.append('video_description', $('#textarea').val())
-                    clearDefault()
+                    layer.closeAll()
                     layer.msg('视频正在上传,请耐心等待!')
                     $('#uploadVideo').attr('disabled', true)
                     $('.loadingBox').show()
@@ -777,7 +772,6 @@ $(function () {
                                 monitorState(res.data.upload_action_id)
                                 sessionStorage.setItem('taskId', res.data
                                     .upload_action_id)
-
                             } else{
                                 $('.loadingBox').hide()
                                 layer.msg('视频上传失败,请稍后重试!')
@@ -786,18 +780,13 @@ $(function () {
                         }
                     })
                 },
-                btn2: function () {
-                    clearDefault()
-                },
-                cancel: function () {
+                end: function () {
                     clearDefault()
                 }
-
             })
         })
         // 清除上传视频默认信息
         function clearDefault() {
-            layer.closeAll()
             videoFile = null
             $('#textarea').val('')
             $('.textLength').text('0/140')
@@ -915,14 +904,14 @@ $(function () {
                 .text().length + '/140')
             layer.open({
                 type: 1,
-                area: ['790px', '708px'],
-                title: ['编辑', 'color:#fff'],
+                area: ['640px', '560px'],
+                title: '编辑',
                 content: $("#describeDialog"),
                 shade: 0.3,
                 shadeClose: true,
                 closeBtn: 1,
                 btn: ['确认', '取消'],
-                btnAlign: 'c',
+                move:false,
                 resize: false,
                 scrollbar: false,
                 btn1: function () {
@@ -980,14 +969,14 @@ $(function () {
                 .text().length + '/140')
             layer.open({
                 type: 1,
-                area: ['790px', '708px'],
-                title: ['编辑', 'color:#fff'],
+                area: ['640px', '560px'],
+                title: '编辑',
                 content: $("#describeDialog"),
                 shade: 0.3,
                 shadeClose: true,
                 closeBtn: 1,
                 btn: ['确认', '取消'],
-                btnAlign: 'c',
+                move:false,
                 resize: false,
                 scrollbar: false,
                 btn1: function () {
@@ -1063,7 +1052,7 @@ $(function () {
                             "id": "player-con",
                             "source": res.data.video_rui,
                             "width": "750px",
-                            "height": "396px",
+                            "height": "428px",
                             "autoplay": true,
                             "isLive": false,
                             "rePlay": false,
@@ -1075,15 +1064,15 @@ $(function () {
 
                         layer.open({
                             type: 1,
-                            area: ['790px', '770px'],
+                            area: ['800px', '800px'],
                             title: ['视频预览/评论管理', 'color:#fff'],
                             content: $("#showVideoDialog"),
                             shade: 0.3,
                             shadeClose: true,
                             closeBtn: 1,
-                            btnAlign: 'c',
                             resize: false,
                             scrollbar: false,
+                            move:false,
                             end: function () {
                                 layer.closeAll();
                                 player.dispose()
@@ -1179,7 +1168,7 @@ $(function () {
                             "id": "player-con",
                             "source": res.data.video_rui,
                             "width": "750px",
-                            "height": "396px",
+                            "height": "428px",
                             "autoplay": true,
                             "isLive": false,
                             "rePlay": false,
@@ -1191,15 +1180,15 @@ $(function () {
 
                         layer.open({
                             type: 1,
-                            area: ['790px', '770px'],
+                            area: ['800px', '800px'],
                             title: ['视频预览/评论管理', 'color:#fff'],
                             content: $("#showVideoDialog"),
                             shade: 0.3,
                             shadeClose: true,
                             closeBtn: 1,
-                            btnAlign: 'c',
                             resize: false,
                             scrollbar: false,
+                            move:false,
                             end: function () {
                                 layer.closeAll();
                                 player.dispose()

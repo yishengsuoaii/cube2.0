@@ -19,20 +19,9 @@
     <script src="./../js/common.js"></script>
     <title>裁剪</title>
     <style>
-            .layui-layer-title {
-                background-color: #FF914D !important;
-                color: #fff !important;
-                font-size: 20px !important;
-                font-family: Source Han Sans CN;
-                font-weight: 300;
-            }
-            .layui-layer-btn .layui-layer-btn0 {
-                background-color: #FF914D !important;
-                border: 0;
-            }
-            [v-cloak] {
-                display: none;
-            }
+        [v-cloak] {
+            display: none;
+        }
     </style>
 </head>
 
@@ -94,31 +83,22 @@
 
             <!--主要内容区-->
             <div class="parentMain">
-                    <div id="app">
-                            <div class="title">
-                                剪辑视频
-                            </div>
-                            <div class="videoBox">
-                                <video ref="video" class="prism-player" id="myVideo"></video>
-                            </div>
-                            <child-video :duration="duration" :playing="playing" :currentplayingtime="currentTime" @play="playVideo"
-                                @pause="pauseVideo" @stop="stopVideo" @success="showDialogFlag=true"></child-video>
-                            <!-- 弹窗 -->
-                            <div v-cloak v-if="showDialogFlag" id="showDialog" >
-                                <p class="hintName">提示</p>
-                                <div class="hintCont">
-                                    <p class="saveSuccess"><i class="layui-icon layui-icon-ok-circle"
-                                            style="font-size: 30px; color: #666666;"></i> 保存成功</p>
-                                    <p class="refresh">刷新媒体库后显示</p>
-                                    <p class="operation-btn">
-                                        <button type="button" class="layui-btn layui-btn-danger layui-btn-sm goMedia-btn"
-                                            @click="goMedia">去媒体库</button><button type="button" class="current-btn"
-                                            @click="showDialogFlag =false">留在当前页</button>
-                                    </p>
-                                </div>
-                            </div>
-                    
-                        </div>
+                <div id="app">
+                    <div class="title">
+                        剪辑视频
+                    </div>
+                    <div class="videoBox">
+                        <video ref="video" class="prism-player" id="myVideo"></video>
+                    </div>
+                    <child-video :duration="duration" :playing="playing" :currentplayingtime="currentTime" @play="playVideo"
+                        @pause="pauseVideo" @stop="stopVideo"></child-video>
+                    <!-- 弹窗 -->
+                    <div v-cloak  id="showDialog" >
+                        <p class="saveSuccess"><i class="layui-icon layui-icon-ok-circle"
+                                style="font-size: 30px; color: #7ECC42;"></i> 剪辑成功</p>
+                        <p class="refresh">刷新媒体库后显示</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

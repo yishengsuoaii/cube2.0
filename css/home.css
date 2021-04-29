@@ -58,11 +58,11 @@
   justify-content: space-between;
 }
 .parentMain .containerBox .chang-sx #from #chang-bt {
-  width: 214px;
+  width: 494px;
   box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
 }
 .parentMain .containerBox .chang-sx #from #chang-bt .inp {
-  width: 150px;
+  width: 430px;
   display: inline-block;
   vertical-align: top;
 }
@@ -232,31 +232,31 @@
   display: block;
 }
 #addDialog {
-  width: 574px;
-  padding: 40px 40px 0;
   display: none;
+  width: 548px;
+  padding: 40px 46px 0;
 }
 #addDialog .layui-form-label {
-  width: 130px;
+  width: 90px;
   font-size: 18px;
   font-family: Source Han Sans CN;
   font-weight: 300;
   color: #666666;
+  padding: 9px 0;
 }
 #addDialog .layui-input-block {
-  width: 414px;
-  margin-left: 160px;
+  width: 438px;
 }
 #addDialog #select-type .layui-form-select {
-  width: 330px;
+  width: 438px;
 }
 #addDialog #select-type .layui-form-select .layui-input {
   border: 1px solid #e6e6e6 !important;
 }
 #addDialog #username {
-  width: 330px;
+  width: 438px;
 }
 #addDialog .layui-textarea {
-  width: 330px;
+  width: 438px;
   resize: none;
 }

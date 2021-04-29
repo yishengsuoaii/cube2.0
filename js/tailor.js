@@ -803,7 +803,21 @@ Vue.component("child-video", {
                     this.isSendingCrop = false
                     if (res.data.msg === 'success') {
                         clearInterval(this.timer)
-                        this.$emit('success')
+                        layer.open({
+                            type: 1,
+                            title: '提示',
+                            area: ['640px', '268px'],
+                            content: $('#showDialog'),
+                            shade: 0.3,
+                            shadeClose: true,
+                            closeBtn: 1,
+                            resize: false,
+                            move:false,
+                            btn: ['去媒体库', '留在此页'],
+                            btn1: function () {
+                                window.location.href = './media.html'
+                            }
+                        })
                     } else if (res.data.msg === 'error') {
                         layer.msg('剪辑失败,请稍后重试...')
                         clearInterval(this.timer)
@@ -823,7 +837,6 @@ let vm = new Vue({
         duration: 0,
         playing: false,
         currentTime: 0,
-        showDialogFlag: false,
     },
     created() {
         this.getVideoUrl()
@@ -857,13 +870,6 @@ let vm = new Vue({
         stopVideo() {
             this.$refs.video.pause()
             this.$refs.video.currentTime = 0
-        },
-        goMedia() {
-            this.showDialogFlag = false
-            window.location.href = './media.html'
-        },
-        showDialog() {
-            this.showDialogFlag = true
         },
         // 获取视频url
         getVideoUrl() {

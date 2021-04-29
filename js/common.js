@@ -8,19 +8,20 @@ $(function () {
     var layer = layui.layer;
     //退出登录
     $('#userExit').click(function () {
-                layer.open({
-                    type: 1,
-                    content: `<div style="padding: 20px 20px 0;">是否退出</div>`,
-                    btn: ["确定退出", "暂不退出"],
-                    yes: function (index, layero) {
-                        location.href = "./../login.html";
-                        sessionStorage.removeItem('token')
-                    },
-                    btn2: function (index, layero) {
-                        //return false 开启该代码可禁止点击该按钮关闭
-                    }
-                })
+            layer.open({
+                type: 1,
+                title:'退出提示',
+                move:false,
+                shadeClose:true,
+                area: ['640px', '268px'],
+                content: `<div style="margin:48px 0 0 46px;font-size:18px;color:#666;">是否退出?</div>`,
+                btn: ["确定退出", "暂不退出"],
+                yes: function (index, layero) {
+                    location.href = "./../login.html";
+                    sessionStorage.removeItem('token')
+                }
             })
+        })
     })
     
 

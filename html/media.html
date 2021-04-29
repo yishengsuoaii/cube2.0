@@ -21,30 +21,6 @@
 			background-color: #F2591A;
 			color: #fff;
 		}
-
-		.layui-layer-title {
-			background-color: #FF914D;
-			color: #fff;
-			font-size: 20px;
-			font-family: Source Han Sans CN;
-			font-weight: 300;
-
-		}
-
-		.layui-layer-btn a {
-			width: 72px;
-			height: 34px;
-			background: #FFFFFF;
-			border: 1px solid #C5C5C5;
-			border-radius: 3px;
-			text-align: center;
-			line-height: 34px;
-		}
-
-		.layui-layer-btn .layui-layer-btn0 {
-			background-color: #FF914D;
-			border: 0;
-		}
 		.layui-tab-title {
             border: none;
 		}
@@ -208,8 +184,8 @@
 	<div id="uploadDialog">
 		<div id="uploadBox">
 			<img src="./../image/upload-video-icon.png" id="uploadImage" alt="">
-			<p id="uploadName">上传视频</p>
-			<video id="previewVideo" controls width="558" height="268"></video>
+			<p id="uploadName">点击上传视频</p>
+			<video id="previewVideo" controls width="546" height="232"></video>
 		</div>
 		<p class="hintUpload">
 			<span class="hintIcons">!</span>上传没声音的视频,剪辑、合并时可能会出现播放异常!
@@ -223,9 +199,11 @@
 	<div id="describeDialog">
         <div class="coverBox">
             <img src="./../image/upload-video-icon.png" id="uploadCover" alt="">
-            <p id="coverName">上传封面</p>
+            <div id="hintBox">
+                点击上传封面<div id="hintAngle"></div>
+            </div>
+            <p id="coverName">建议上传图片尺寸300*130</p>
             <img class="coverImg">
-
         </div>
 		<p class="editDesName">视频描述</p>
 		<textarea id="editDesText" maxlength="140" placeholder="视频描述"></textarea>

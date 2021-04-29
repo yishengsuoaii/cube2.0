@@ -67,6 +67,7 @@
                 layer.open({
                     type: 1,
                     title: '扫码支付',
+                    move: false,
                     skin: 'layui-ext-yourskin', //只对该层采用myskin皮肤
                     content: $('#qrcodeBox')
                 });

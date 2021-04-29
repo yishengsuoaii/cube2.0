@@ -27,7 +27,7 @@ $(function () {
                     }
                 }
             })
-        });
+        })
         $.get({
             url: "http://www.cube.vip/event/get_event_Category/",
             dataType: "json",
@@ -156,31 +156,20 @@ $(function () {
         $(".channelContent").html(divStr)
     }
 
-    // // 提示
-    // $('.channelContent').on('hover','.setChannel',function(){
-    //     alert(1)
-    //     $(this).siblings('#hintBox').toggle()
-    // })
-
-    // $('.channelContent').on('hover','.deleteChannel',function(){
-    //     alert(2)
-    //     $(this).siblings('#hintBox1').toggle()
-    // })
-
     // 创建频道
     $('.channelContent').on('click', '#newAdd', function () {
         layer.open({
             type: 1,
-            area: ['654px', '426px'],
-            title: ['新建直播频道', 'color:#fff'],
+            area: ['640px', '426px'],
+            title: '新建频道',
             content: $("#addDialog"),
             shade: 0.3,
             shadeClose: true,
             closeBtn: 1,
             btn: ['确认', '取消'],
-            btnAlign: 'c',
             resize: false,
-            btn1: function (index, layero) {
+            move: false,
+            btn1: function () {
                 
                 if ($.trim($("#username").val()).length <= 0) {
                     layer.msg('请输入频道名称!')
@@ -224,7 +213,6 @@ $(function () {
                                     layer.closeAll()
                                     getAllChannel()
                                     getUserInfo()
-                                    deleteInfo()
                                 }, 300)
 
                             } else if (result.msg == "error") {
@@ -234,12 +222,7 @@ $(function () {
                     });
                 }
             },
-            btn2: function () {
-                layer.closeAll();
-                deleteInfo()
-            },
-            cancel: function () {
-                layer.closeAll();
+            end: function () {
                 deleteInfo()
             }
 
@@ -251,13 +234,14 @@ $(function () {
         layer.open({
             type: 1,
             title: '删除提示',
-            content: '<div style="padding: 30px 100px;font-size:18px;color:#666;">此操作将删除该频道,是否继续?</div>',
+            area: ['640px', '268px'],
+            content: '<div style="margin:48px 0 0 46px;font-size:18px;color:#666;">此操作将删除该频道,是否继续?</div>',
             shade: 0.3,
             shadeClose: true,
-            closeBtn: 0,
+            closeBtn: 1,
             resize: false,
+            move:false,
             btn: ['确认', '取消'],
-            btnAlign: 'c',
             btn1: function () {
                 $.ajax({
                     type: 'POST',
@@ -283,10 +267,7 @@ $(function () {
                         }
                     },
                 })
-            },
-            btn2: function () {
-                layer.closeAll();
-            },
+            }
         });
         e.stopPropagation()
     })
@@ -316,15 +297,15 @@ $(function () {
                 form.render('select');
                 layer.open({
                     type: 1,
-                    area: ['654px', '426px'],
-                    title: ['修改直播频道', 'color:#fff'],
+                    area: ['640px', '426px'],
+                    title: '修改设置',
                     content: $("#addDialog"),
                     shade: 0.3,
                     shadeClose: true,
                     closeBtn: 1,
                     btn: ['确认', '取消'],
-                    btnAlign: 'c',
                     resize: false,
+                    move:false,
                     btn1: function () {
                         
                         if ($.trim($("#username").val()).length <= 0) {
@@ -369,7 +350,6 @@ $(function () {
                                             layer.closeAll()
                                             getAllChannel()
                                             getUserInfo()
-                                            deleteInfo()
                                         }, 300);
 
                                     } else if (result.msg == "error") {
@@ -379,12 +359,7 @@ $(function () {
                             });
                         }
                     },
-                    btn2: function () {
-                        layer.closeAll();
-                        deleteInfo()
-                    },
-                    cancel: function () {
-                        layer.closeAll();
+                    end: function () {
                         deleteInfo()
                     }
 

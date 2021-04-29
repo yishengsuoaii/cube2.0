@@ -657,7 +657,7 @@
                                 .preview-form {
                                     .layui-form-label {
                                         width: 0.9rem;
-                                        padding:9px 15px 9px 0 ;
+                                        padding:0.09rem 0.15rem 0.09rem 0 ;
                                         font-size: (18/100rem);
                                         font-family: Source Han Sans CN;
                                         font-weight: 400;
@@ -697,14 +697,14 @@
                                     display: flex;
                                     justify-content: center;
                                     width: (770/100rem);
-                                    height: (36/100rem);
+                                    height: (40/100rem);
                                     .preview_select {
-                                        width: (120/100rem);
-                                        height: (36/100rem);
+                                        width: (106/100rem);
+                                        height: (40/100rem);
                                         background: #FF914D;
-                                        border-radius: (5/100rem);
+                                        border-radius: (2/100rem);
                                         text-align: center;
-                                        line-height: (36/100rem);
+                                        line-height: (40/100rem);
                                         cursor: pointer;
                                         font-size: (20/100rem);
                                         font-family: Source Han Sans CN;
@@ -713,13 +713,13 @@
                                         margin-right: (20/100rem);
                                     }
                                     .previewVideo-btn {
-                                        width: (90/100rem);
-                                        height: (36/100rem);
-                                        line-height: (36/100rem);
+                                        width: 1.06rem;
+                                        height: (40/100rem);
+                                        line-height: (40/100rem);
                                         text-align: center;
-                                        background: #F2591A;
-                                        border-radius: (5/100rem);
-                                        font-size: (20/100rem);
+                                        background: #FF914D;
+                                        border-radius: (2/100rem);
+                                        font-size: (18/100rem);
                                         font-family: Source Han Sans CN;
                                         font-weight: 400;
                                         color: #FFFFFF;
@@ -1181,7 +1181,7 @@
                                                 display: inline-block;
                                                 width: 0.9rem;
                                                 height: 0.26rem;
-                                                line-height: 26px;
+                                                line-height: 0.26rem;
                                                 border: 0.01rem solid #F2591A;
                                                 border-radius: 0.03rem;
                                                 font-size: 0.16rem;
@@ -1265,13 +1265,13 @@
                                         bottom: 0;
                                         left:50%;
                                         transform: translateX(-50%);
-                                        width: 0.7rem;
+                                        width: 1.06rem;
                                         height: 0.4rem;
-                                        background-color: #FF5722;
+                                        background-color: #FF914D;
                                         color: #fff;
                                         text-align: center;
                                         line-height: 0.4rem;
-                                        font-size: 0.16rem;
+                                        font-size: 0.18rem;
                                         cursor: pointer;
                                     }
                                 }
@@ -3645,390 +3645,343 @@
 /* 添加视频弹窗 */
 #video-dialog {
     display: none;
-    width: (1170/100rem);
-    height: (707/100rem);
-    background-color: #FFF;
-    box-shadow: (0/100rem) (2/100rem) (10/100rem) (0/100rem) rgba(102, 102, 102, 0.1);
-    border-radius: (10/100rem) (10/100rem) (0/100rem) (0/100rem);
-    .vd-content {
-        width: (1090/100rem);
-        height: (623/100rem);
-        padding: (20/100rem) (40/100rem) 0;
+    width: 9.08rem;
+    padding: 0.20rem 0.46rem 0;
+    .select-search {
+        height: (34/100rem);
+        line-height: (34/100rem);
+        font-size: (18/100rem);
+        font-family: Source Han Sans CN;
+        font-weight: 400;
+        color: #666666;
+        margin-bottom: (20/100rem);
 
-        .select-search {
+        .search-video {
+            float: right;
+            width: (294/100rem);
             height: (34/100rem);
-            line-height: (34/100rem);
-            font-size: (18/100rem);
-            font-family: Source Han Sans CN;
-            font-weight: 400;
-            color: #666666;
-            margin-bottom: (20/100rem);
 
-            .search-video {
-                float: right;
-                width: (260/100rem);
-                height: (34/100rem);
-
-                .search-video-input {
-                    width: (201/100rem);
-                    height: (32/100rem);
-                    padding: 0 (7/100rem);
-                    background: #FFFFFF;
-                    border: (1/100rem) solid #CCCCCC;
-                    border-right: 0;
-                    border-top-left-radius: (5/100rem);
-                    border-bottom-left-radius: (5/100rem);
-                }
-
-                .search-video-btn {
-                    display: inline-block;
-                    width: (34/100rem);
-                    height: (34/100rem);
-                    background: #FF914D;
-                    border-radius: (0/100rem) (5/100rem) (5/100rem) (0/100rem);
-                    vertical-align: top;
-                    cursor: pointer;
-
-                    img {
-                        width: (24/100rem);
-                        height: (24/100rem);
-                        margin: (5/100rem);
-                    }
-                }
-
+            .search-video-input {
+                width: (244/100rem);
+                height: (32/100rem);
+                padding: 0 (7/100rem);
+                background: #FFFFFF;
+                border: (1/100rem) solid #CCCCCC;
+                border-right: 0;
+                border-top-left-radius: (5/100rem);
+                border-bottom-left-radius: (5/100rem);
             }
-        }
 
-        .vd-content-main {
-            height: (548/100rem);
-            margin-top: (20/100rem);
-            .vd-content-main-top {
-                height: (474/100rem);
-                display: flex;
-                justify-content: space-between;
-                flex-wrap: wrap;
-                align-content: flex-start;
-                position: relative;
-                .vd-content-main-list {
-                    width: (493/100rem);
-                    height: (96/100rem);
-                    padding: (20/100rem);
-                    border: (1/100rem) solid #CCCCCC;
-                    margin-bottom: (20/100rem);
-                    font-size: (16/100rem);
-                    font-family: Source Han Sans CN;
-                    font-weight: 400;
-                    color: #333333;
-                    position: relative;
-                    .vd-video {
-                        display: inline-block !important;
-                        width: (180/100rem);
-                        height: (96/100rem);
-                        vertical-align: top;
-                        pointer-events: auto !important;
-                    }
-                    .vd-content-main-list-info {
-                        display: inline-block;
-                        width: (290/100rem);
-                        height: (96/100rem);
-                        span {
-                            display: inline-block;
-                            width: (285/100rem);
-                            height: (32/100rem);
-                            line-height: (32/100rem);
-                            padding-left: (5/100rem);
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            white-space: nowrap;
-                        }
-                        .vd-content-main-list-name {
-                            font-size: (18/100rem);
-                            font-family: Source Han Sans CN;
-                            font-weight: 400;
-                            color: #333333;
-                        }
-                        
-                         .vd-content-main-list-time {
-                            font-size: (16/100rem);
-                            font-family: Source Han Sans CN;
-                            font-weight: 400;
-                            color: #666666;
-                        }
-                        
-                         .vd-content-main-list-num {
-                            font-size: (16/100rem);
-                            font-family: Source Han Sans CN;
-                            font-weight: 400;
-                            color: #666666;
-                            vertical-align: top;
-                        }
-                        i{
-                            font-style:normal
-                        }
-                    }
-                    .video-right-check{
-                        width: (20/100rem);
-                        height: (20/100rem);
-                        position: absolute;
-                        top: (20/100rem);
-                        right: (20/100rem);
-                        .vd-content-main-list-check {
-                            width: (20/100rem);
-                            height: (20/100rem);
-                        }
-                    }
-                    
+            .search-video-btn {
+                display: inline-block;
+                width: (34/100rem);
+                height: (34/100rem);
+                line-height: 0.34rem;
+                text-align: center;
+                background: #FF914D;
+                border-radius: 0 (5/100rem) (5/100rem) 0;
+                vertical-align: bottom;
+                cursor: pointer;
+                img {
+                    width: (24/100rem);
+                    height: (24/100rem);
                 }
-                .vd-content-main-none {
-                    width: (142/100rem);
-                    height: (147/100rem);
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    img {
-                        width: (142/100rem);
-                        height: (107/100rem);
+            }
+
+        }
+    }
+
+    .vd-content-main {
+        height: 5.3rem;
+        margin-top: (20/100rem);
+        .vd-content-main-top {
+            height: (474/100rem);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            position: relative;
+            .vd-content-main-list {
+                width: (402/100rem);
+                height: (96/100rem);
+                padding: (20/100rem);
+                border: (1/100rem) solid #CCCCCC;
+                margin-bottom: (20/100rem);
+                font-size: (16/100rem);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #333333;
+                position: relative;
+                .vd-video {
+                    display: inline-block !important;
+                    width: (180/100rem);
+                    height: (96/100rem);
+                    vertical-align: top;
+                    pointer-events: auto !important;
+                }
+                .vd-content-main-list-info {
+                    display: inline-block;
+                    width: (202/100rem);
+                    height: (96/100rem);
+                    span {
+                        display: inline-block;
+                        width: (200/100rem);
+                        height: (32/100rem);
+                        line-height: (32/100rem);
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
                     }
-                    p {
-                        height: (40/100rem);
-                        line-height: (40/100rem);
-                        font-size: (20/100rem);
+                    .vd-content-main-list-name {
+                        font-size: (18/100rem);
                         font-family: Source Han Sans CN;
                         font-weight: 400;
-                        color: #CCCCCC;
+                        color: #333333;
+                    }
+                    
+                    .vd-content-main-list-time {
+                        font-size: (16/100rem);
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #666666;
+                    }
+                    
+                    .vd-content-main-list-num {
+                        font-size: (16/100rem);
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #666666;
+                        vertical-align: top;
+                    }
+                    i{
+                        font-style:normal
                     }
                 }
+                .video-right-check{
+                    width: (20/100rem);
+                    height: (20/100rem);
+                    position: absolute;
+                    top: (20/100rem);
+                    right: (20/100rem);
+                    .vd-content-main-list-check {
+                        width: (20/100rem);
+                        height: (20/100rem);
+                    }
+                }
+                
             }
-            .vd-content-main-foot {
-                height: (10/100rem);
-                padding-top: (10/100rem);
-                text-align: center;
+            .vd-content-main-none {
+                width: (142/100rem);
+                height: (147/100rem);
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                img {
+                    width: (142/100rem);
+                    height: (107/100rem);
+                }
+                p {
+                    height: (40/100rem);
+                    line-height: (40/100rem);
+                    font-size: (20/100rem);
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #CCCCCC;
+                }
             }
-            
+            .mediaUpload {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: 0.5rem;
+                line-height: (50/100rem);
+                font-size: (16/100rem);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #666666;
+                a {
+                    color: #F2591A;
+                }
+            }
+        }
+        .vd-content-main-foot {
+            text-align: center;
         }
         
-    }
-    .vd-footer {
-        height: (50/100rem);
-        padding: (12/100rem) (40/100rem) 0 (40/100rem);
-        background: #FAFAFA;
-        box-shadow: (0/100rem) (1/100rem) (0/100rem) (0/100rem) rgba(85, 85, 85, 0.1);
-        text-align: right;
-        button {
-            width: 0.72rem;
-            height: 0.38rem;
-            padding: 0;
-            line-height: 0.38rem;
-            margin-left: (20/100rem) !important;
-            border-radius: (5/100rem);
-        }
-        .mediaUpload {
-            float: left;
-            line-height: (50/100rem);
-            font-size: (16/100rem);
-            font-family: Source Han Sans CN;
-            font-weight: 400;
-            color: #666666;
-            display: none;
-            a {
-                color: #F2591A;
-            }
-        }
     }
 }
 
 // 添加精彩视频弹窗
 #rec-dialog {
     display: none;
-    width: 1170px;
-    height: 707px;
-    background-color: #FFF;
-    box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
-    border-radius: 10px 10px 0px 0px;
-    .rec-content {
-        width: 1090px;
-        height: 623px;
-        padding: 20px 40px 0;
+    width: 9.08rem;
+    padding: 0.20rem 0.46rem 0;
 
-        .rec-search {
-            height: 34px;
-            line-height: 34px;
-            font-size: 18px;
-            font-family: Source Han Sans CN;
-            font-weight: 400;
-            color: #666666;
-            margin-bottom: 20px;
+    .rec-search {
+        height: (34/100rem);
+        line-height: (34/100rem);
+        font-size: (18/100rem);
+        font-family: Source Han Sans CN;
+        font-weight: 400;
+        color: #666666;
+        margin-bottom: (20/100rem);
 
-            .rec-search-video {
-                float: right;
-                width: 250px;
-                height: 34px;
+        .rec-search-video {
+            float: right;
+            width: (294/100rem);
+            height: (34/100rem);
 
-                .rec-search-video-input {
-                    width: 201px;
-                    height: 32px;
-                    padding: 0 7px;
-                    background: #FFFFFF;
-                    border: 1px solid #CCCCCC;
-                    border-right: 0;
-                    border-top-left-radius: 5px;
-                    border-bottom-left-radius: 5px;
-                }
-
-                .rec-search-video-btn {
-                    display: inline-block;
-                    width: 34px;
-                    height: 34px;
-                    background: #FF914D;
-                    border-radius: 0px 5px 5px 0px;
-                    vertical-align: top;
-                    cursor: pointer;
-
-                    img {
-                        width: 24px;
-                        height: 24px;
-                        margin: 5px;
-                    }
-                }
-
+            .rec-search-video-input {
+                width: (244/100rem);
+                height: (32/100rem);
+                padding: 0 (7/100rem);
+                background: #FFFFFF;
+                border: (1/100rem) solid #CCCCCC;
+                border-right: 0;
+                border-top-left-radius: (5/100rem);
+                border-bottom-left-radius: (5/100rem);
             }
-        }
 
-        .rec-content-main {
-            height: 548px;
-            margin-top: 20px;
-            .rec-content-main-top {
-                height: 474px;
-                display: flex;
-                justify-content: space-between;
-                flex-wrap: wrap;
-                align-content: flex-start;
-                position: relative;
-                .rec-content-main-list {
-                    width: 493px;
-                    height: 96px;
-                    padding: 20px;
-                    border: 1px solid #CCCCCC;
-                    margin-bottom: 20px;
-                    font-size: 16px;
-                    font-family: Source Han Sans CN;
-                    font-weight: 400;
-                    color: #333333;
-                    position: relative;
-                    .vd-video {
-                        display: inline-block !important;
-                        width: 180px;
-                        height: 96px;
-                        vertical-align: top;
-                        pointer-events: auto !important;
-                    }
-                    .rec-content-main-list-info {
-                        display: inline-block;
-                        width: 290px;
-                        height: 96px;
-                        span {
-                            display: inline-block;
-                            width: 285px;
-                            height: 32px;
-                            line-height: 32px;
-                            padding-left: 5px;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            white-space: nowrap;
-                        }
-                        .rec-content-main-list-name {
-                            font-size: 18px;
-                            font-family: Source Han Sans CN;
-                            font-weight: 400;
-                            color: #333333;
-                        }
-                        
-                         .rec-content-main-list-time {
-                            font-size: 16px;
-                            font-family: Source Han Sans CN;
-                            font-weight: 400;
-                            color: #666666;
-                        }
-                        
-                         .rec-content-main-list-num {
-                            font-size: 16px;
-                            font-family: Source Han Sans CN;
-                            font-weight: 400;
-                            color: #666666;
-                            vertical-align: top;
-                        }
-                        i{
-                            font-style:normal
-                        }
-                    }
-                    .video-right-check{
-                        width: 20px;
-                        height: 20px;
-                        position: absolute;
-                        top: 20px;
-                        right: 20px;
-                        .rec-content-main-list-check {
-                            width: 20px;
-                            height: 20px;
-                        }
-                    }
-                    
+            .rec-search-video-btn {
+                display: inline-block;
+                width: (34/100rem);
+                height: (34/100rem);
+                line-height: 0.34rem;
+                text-align: center;
+                background: #FF914D;
+                border-radius: 0 (5/100rem) (5/100rem) 0;
+                vertical-align: bottom;
+                cursor: pointer;
+                img {
+                    width: (24/100rem);
+                    height: (24/100rem);
                 }
-                .rec-content-main-none {
-                    width: 142px;
-                    height: 147px;
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    img {
-                        width: 142px;
-                        height: 107px;
+            }
+
+        }
+    }
+
+    .rec-content-main {
+        height: 5.3rem;
+        margin-top: (20/100rem);
+        .rec-content-main-top {
+            height: (474/100rem);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            position: relative;
+            .rec-content-main-list {
+                width: (402/100rem);
+                height: (96/100rem);
+                padding: (20/100rem);
+                border: (1/100rem) solid #CCCCCC;
+                margin-bottom: (20/100rem);
+                font-size: (16/100rem);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #333333;
+                position: relative;
+                .vd-video {
+                    display: inline-block !important;
+                    width: (180/100rem);
+                    height: (96/100rem);
+                    vertical-align: top;
+                    pointer-events: auto !important;
+                }
+                .rec-content-main-list-info {
+                    display: inline-block;
+                    width: (202/100rem);
+                    height: (96/100rem);
+                    span {
+                        display: inline-block;
+                        width: (200/100rem);
+                        height: (32/100rem);
+                        line-height: (32/100rem);
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
                     }
-                    p {
-                        height: 40px;
-                        line-height: 40px;
-                        font-size: 20px;
+                    .rec-content-main-list-name {
+                        font-size: 0.18rem;
                         font-family: Source Han Sans CN;
                         font-weight: 400;
-                        color: #CCCCCC;
+                        color: #333333;
+                    }
+                    
+                    .rec-content-main-list-time {
+                        font-size: 0.16rem;
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #666666;
+                    }
+                    
+                    .rec-content-main-list-num {
+                        font-size: 0.16rem;
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #666666;
+                        vertical-align: top;
+                    }
+                    i{
+                        font-style:normal
                     }
                 }
+                .video-right-check{
+                    width: 0.2rem;
+                    height: 0.2rem;
+                    position: absolute;
+                    top: 0.2rem;
+                    right: 0.2rem;
+                    .rec-content-main-list-check {
+                        width: 0.2rem;
+                        height: 0.2rem;
+                    }
+                }
+                
             }
-            .rec-content-main-foot {
-                height: 10px;
-                padding-top: 10px;
-                text-align: center;
+            .rec-content-main-none {
+                width: (142/100rem);
+                height: (147/100rem);
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                img {
+                    width: (142/100rem);
+                    height: (107/100rem);
+                }
+                p {
+                    height: (40/100rem);
+                    line-height: (40/100rem);
+                    font-size: (20/100rem);
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #CCCCCC;
+                }
             }
-            
+            .rec-mediaUpload {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: 0.5rem;
+                line-height: 0.5rem;
+                font-size: 0.16rem;
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #666666;
+                a {
+                    color: #F2591A;
+                }
+            }
+        }
+        .rec-content-main-foot {
+            text-align: center;
         }
         
     }
-    .rec-footer {
-        height: 50px;
-        padding: 12px 40px 0 40px;
-        background: #FAFAFA;
-        box-shadow: 0px 1px 0px 0px rgba(85, 85, 85, 0.1);
-        text-align: right;
-        button {
-            width: 72px;
-            margin-left: 20px !important;
-            border-radius: 5px;
-        }
-        .rec-mediaUpload {
-            float: left;
-            line-height: 50px;
-            font-size: 16px;
-            font-family: Source Han Sans CN;
-            font-weight: 400;
-            color: #666666;
-            display: none;
-            a {
-                color: #F2591A;
-            }
-        }
-    }
+        
 }
 
 // 复制推流地址弹窗

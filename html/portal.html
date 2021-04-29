@@ -15,22 +15,6 @@
     <script src="./../commonJs/qrcode.js"></script>
     <title>部落</title>
     <style>
-    /* .layui-layer-title {
-        background-color: #FF914D !important;
-        font-size: 20px !important;
-    } */
-    .layui-layer-title {
-			background-color: #FF914D !important;
-			color: #fff !important;
-			font-size: 20px !important;
-			font-family: Source Han Sans CN;
-			font-weight: 300;
-
-        }
-		.layui-layer-btn .layui-layer-btn0 {
-			background-color: #FF914D !important;
-			border: 0;
-		}
     .layui-form-checked[lay-skin=primary] i {
         border-color: #F2591A !important;
         background-color: #F2591A;
@@ -179,7 +163,6 @@
                                             封面图片:
                                         </div>
                                         <div class="cover-image-img">
-                                            <!-- <img src="./../image/bg1.png" alt=""> -->
                                             <div class="bgc"></div>
                                             <p class="cover-image-describe">建议图片尺寸：1400*580；</p>
                                             <div class="cover-image-img-layer" id="coverLayer"><i
@@ -193,7 +176,7 @@
                                 </div>
                                 <div class="portal-angle"></div>
                             </div>
-                            <button type="button" class="layui-btn layui-btn-sm layui-btn-danger portalSave">保存</button>
+                            <button type="button" class="portalSave">保存</button>
                         </div>
                         <!-- 右侧推荐信息 -->
                         <div class="main-right-recommend">
@@ -218,7 +201,7 @@
                                 </div>
                                 <div class="recommend-angle"></div>
                             </div>
-                            <button type="button" class="layui-btn layui-btn-sm layui-btn-danger recommendSave">保存</button>
+                            <button type="button" class="recommendSave">保存</button>
                         </div>
                         <!-- 手机预览二维码 -->
                         <div id="qrcodeBox">
@@ -242,58 +225,39 @@
     </div>
      <!-- 添加频道弹窗 -->
      <div id="channel-dialog">
-        <div class="cd-content">
-            <p class="select-search">
-                已选频道: <span class="check-channel-num">0</span>个
-                <span class="search-channel">
-                    <input type="text" class="search-channel-input" placeholder="输入频道名"><span
-                        class="search-channel-btn"><img src="../image/搜索.png" alt=""></span>
-                </span>
-            </p>
-            <hr />
-            <div class="cd-content-main">
-                <div class="cd-content-main-top">
-                    <div class="layui-form">
-                        <input type="checkbox" checked lay-skin="primary">
-                    </div>
-                </div>
-                <div class="cd-content-main-foot">
-                    <div id="channel-page"></div>
-                </div>
+        <p class="select-search">
+            已选频道: <span class="check-channel-num">0</span>个
+            <span class="search-channel">
+                <input type="text" class="search-channel-input" placeholder="输入频道名"><span
+                    class="search-channel-btn"><img src="../image/搜索.png" alt=""></span>
+            </span>
+        </p>
+        <hr />
+        <div class="cd-content-main">
+            <div class="cd-content-main-top">
             </div>
-        </div>
-        <div class="cd-footer">
-            <button type="button" class="layui-btn layui-btn-primary" id="channel-cancel">取消</button>
-            <button type="button" class="layui-btn layui-btn-danger" id="channel-confirm">确定</button>
+            <div class="cd-content-main-foot">
+                <div id="channel-page"></div>
+            </div>
         </div>
     </div>
     <!-- 添加视频弹窗 -->
     <div id="video-dialog">
-        <div class="vd-content">
-            <p class="select-search">
-                已选视频: <span class="check-video-num">0</span>个
-                <span class="search-video">
-                    <input type="text" class="search-video-input" placeholder="输入文件名"><span
-                        class="search-video-btn"><img src="../image/搜索.png" alt=""></span>
-                </span>
-            </p>
-            <hr />
-            <div class="vd-content-main">
-                <div class="vd-content-main-top">
-                </div>
-                <div class="vd-content-main-foot">
-                    <div id="video-page"></div>
-                </div>
-            </div>
-
-        </div>
-        <div class="vd-footer">
-            <span class="mediaUpload">
-                没有合适的视频？
-                <a href="./media.html">去媒体库上传</a>
+        
+        <p class="select-search">
+            已选视频: <span class="check-video-num">0</span>个
+            <span class="search-video">
+                <input type="text" class="search-video-input" placeholder="输入文件名"><span
+                    class="search-video-btn"><img src="../image/搜索.png" alt=""></span>
             </span>
-            <button type="button" class="layui-btn layui-btn-primary" id="video-cancel">取消</button>
-            <button type="button" class="layui-btn layui-btn-danger" id="video-confirm">确定</button>
+        </p>
+        <hr />
+        <div class="vd-content-main">
+            <div class="vd-content-main-top">
+            </div>
+            <div class="vd-content-main-foot">
+                <div id="video-page"></div>
+            </div>
         </div>
     </div>
 
