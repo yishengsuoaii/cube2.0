@@ -150,14 +150,14 @@
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set {
   width: 100%;
-  height: 8.16rem;
+  height: 8.06rem;
   display: flex;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-aside {
   width: 1.8rem;
   background-color: #fff;
   border: 0.01rem solid #E6E5E5;
-  height: 8.06rem;
+  height: 7.84rem;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-aside li {
   width: 1.76rem;
@@ -179,21 +179,16 @@
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content {
   width: 13.77rem;
-  height: 8.06rem;
+  height: 7.86rem;
   background-color: #fff;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .channel-set-item {
   width: 100%;
   padding-bottom: 0.2rem;
-  min-height: 6.8rem;
   display: none;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics {
-  background-color: #fff;
   /* 引导页 */
-  /* 直播倒计时 */
-  /* 直播倒计时提交 */
-  /* 观众人数 */
   /* 直播背景 */
   /* 加密 */
 }
@@ -260,199 +255,54 @@
   height: 6.67rem;
   vertical-align: top;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .introduce {
+  box-sizing: border-box;
   width: 100%;
-  display: flex;
+  padding-top: 0.2rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .countDown-form {
-  width: 5.1rem;
-  height: 4.1rem;
-  margin: 0.5rem 0.3rem 0 1.2rem;
-  font-size: 0.17rem;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #656565;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .countDown-form .layui-input-block {
-  margin-left: 0;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .countDown-form #timetest {
-  width: 3rem;
-  color: #656565;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .preview-time {
-  width: 5.08rem;
-  margin-top: 0.5rem;
-  margin-left: 0.12rem;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .preview-time .preview-time-title {
-  font-size: 0.18rem;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #666666;
-  height: 0.3rem;
-  line-height: 0.3rem;
-  margin-bottom: 0.2rem;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .preview-time .preview-time-content {
-  width: 5.08rem;
-  height: 3.6rem;
-  background: url('../image/count-down-bg.png') no-repeat;
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .introduce .introduce-bg {
+  width: 3.77rem;
+  height: 6.69rem;
+  margin: 0 auto;
+  background: url('../image/introduce-bg.png') no-repeat;
   background-size: 100% 100%;
   position: relative;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .preview-time .preview-time-content .top-time {
-  width: 100%;
-  height: 0.7rem;
-  text-align: center;
-  color: #fff;
-  font-size: 0.18rem;
-  line-height: 0.7rem;
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .introduce .introduce-bg .introduce-box {
+  width: 3.77rem;
+  height: 4.04rem;
   position: absolute;
-  top: 0.2rem;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .preview-time .preview-time-content .center-time {
-  width: 1.6rem;
-  height: 0.34rem;
-  background: #FF914D;
-  box-shadow: 0rem 0.01rem 0.02rem 0rem rgba(167, 80, 26, 0.35);
-  border-radius: 0.05rem;
-  line-height: 0.34rem;
-  text-align: center;
-  font-size: 0.14rem;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #FFFFFF;
-  position: absolute;
-  top: 36%;
-  left: 50%;
-  transform: translateX(-50%);
-  display: none;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .preview-time .preview-time-content .bottom-time {
-  display: none;
-  width: 2.02rem;
-  height: 0.66rem;
-  background: url('../image/timer.png') no-repeat;
+  left: 0;
+  bottom: 0;
+  background: transparent no-repeat;
   background-size: 100% 100%;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .introduce .introduce-bg .introduce-box:hover #introduce-cover {
+  display: block;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .introduce .introduce-bg .introduce-box #introduce-cover {
+  display: none;
+  width: 3.77rem;
+  height: 4.04rem;
+  background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.24rem;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #FFFFFF;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .preview-time .preview-time-content .bottom-time .hour1 {
-  position: absolute;
-  top: 0.17rem;
-  left: 0.18rem;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .preview-time .preview-time-content .bottom-time .hour2 {
-  position: absolute;
-  top: 0.17rem;
-  left: 0.41rem;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .preview-time .preview-time-content .bottom-time .minute1 {
-  position: absolute;
-  top: 0.17rem;
-  left: 0.84rem;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .preview-time .preview-time-content .bottom-time .minute2 {
-  position: absolute;
-  top: 0.17rem;
-  left: 1.07rem;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .preview-time .preview-time-content .bottom-time .second1 {
-  position: absolute;
-  top: 0.17rem;
-  left: 1.49rem;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .countDown .preview-time .preview-time-content .bottom-time .second2 {
-  position: absolute;
-  top: 0.17rem;
-  left: 1.72rem;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .save-btn {
-  height: 0.36rem;
-  text-align: center;
-  margin-top: 0.6rem;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .save-btn span {
-  display: inline-block;
+  left: 0;
+  top: 0;
   cursor: pointer;
-  width: 0.96rem;
-  height: 0.36rem;
-  background: #F2591A;
-  border-radius: 0.05rem;
-  font-size: 0.2rem;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #FFFFFF;
-  line-height: 0.36rem;
-  margin-left: -0.96rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .people-number {
-  width: 100%;
-  display: flex;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .people-number .people-form {
-  width: 40%;
-  float: left;
-  margin: 0.5rem 0.3rem 0 1.2rem;
-  font-size: 0.18rem;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #666666;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .people-number .people-form .Add_form {
-  display: flex;
-  height: 0.3rem;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .people-number .people-form .Add_form .reality {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .introduce #ai-submit {
   width: 0.8rem;
-  height: 0.28rem;
-  background: #FFFFFF;
-  border: 0.01rem solid #999999;
+  height: 0.38rem;
+  background: #F3591B;
   border-radius: 0.05rem;
-  margin-left: 0.2rem;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .people-number .people-form .hint-info {
   font-size: 0.16rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #666666;
-  margin-left: 1.16rem;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .people-number .people-form .hint-padding {
-  padding-left: 0.3rem;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .people-number .people-preview {
-  margin-top: 0.5rem;
-  width: 5.01rem;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .people-number .people-preview .people-preview-title {
-  height: 0.3rem;
-  font-size: 0.18rem;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #666666;
-  line-height: 0.3rem;
-  margin-bottom: 0.2rem;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .people-number .people-preview .people-preview-content {
-  width: 5.01rem;
-  height: 3.52rem;
-  background: url(../image/组%209.png) no-repeat;
-  background-size: 100% 100%;
-  position: relative;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .people-number .people-preview .people-preview-content .show-num {
-  color: #FFFFFF;
-  position: absolute;
-  bottom: 0.6rem;
-  left: 0.2rem;
+  color: #FEFEFE;
+  line-height: 0.38rem;
+  text-align: center;
+  margin: 0.1rem auto 0;
+  cursor: pointer;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .live-bg-title {
   width: 7.5rem;
@@ -502,6 +352,83 @@
   background: #F2591A;
   padding: 0;
   border-radius: 0.05rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics #videoPreview {
+  width: 100%;
+  padding-top: 0.5rem;
+  padding-left: 2.3rem;
+  box-sizing: border-box;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics #videoPreview .preview-form .layui-form-label {
+  width: 0.9rem;
+  padding: 0.09rem 0.15rem 0.09rem 0;
+  font-size: 0.18rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+  text-align: right;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics #videoPreview .preview-form .layui-form-switch {
+  margin: 0 !important;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics #videoPreview .preview-form .preview-info {
+  display: inline-block;
+  margin-top: 0.08rem;
+  font-size: 0.16rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #999999;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics #videoPreview .preview-name {
+  height: 0.3rem;
+  height: 0.18rem;
+  font-size: 0.18rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  line-height: 0.3rem;
+  margin-bottom: 0.2rem;
+  padding-left: 0.22rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics #videoPreview #viewVideos {
+  width: 7.5rem;
+  height: 4.22rem;
+  background-color: #000;
+  margin-left: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics #videoPreview .selectBox {
+  display: flex;
+  justify-content: center;
+  width: 7.7rem;
+  height: 0.4rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics #videoPreview .selectBox .preview_select {
+  width: 1.06rem;
+  height: 0.4rem;
+  background: #FF914D;
+  border-radius: 0.02rem;
+  text-align: center;
+  line-height: 0.4rem;
+  cursor: pointer;
+  font-size: 0.2rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin-right: 0.2rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics #videoPreview .selectBox .previewVideo-btn {
+  width: 1.06rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  text-align: center;
+  background: #FF914D;
+  border-radius: 0.02rem;
+  font-size: 0.18rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  cursor: pointer;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .channel-set-password {
   width: 100%;
@@ -567,146 +494,225 @@
   top: 0;
   left: -0.45rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #videoPreview {
-  width: 100%;
-  height: 8.06rem;
-  padding-top: 0.9rem;
-  padding-left: 2.3rem;
-  box-sizing: border-box;
-  background-color: #fff;
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set {
+  /* 直播倒计时 */
+  /* 直播倒计时提交 */
+  /* 观众人数 */
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #videoPreview .preview-form .layui-form-label {
-  width: 0.9rem;
-  padding: 0.09rem 0.15rem 0.09rem 0;
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .layui-form-label {
+  text-align: left;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set li {
+  width: 1.7rem;
+  font-size: 0.2rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .countDown {
+  width: 100%;
+  display: flex;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .countDown .countDown-form {
+  width: 5.1rem;
+  height: 4.1rem;
+  margin: 0.5rem 0.3rem 0 1.2rem;
+  font-size: 0.17rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #656565;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .countDown .countDown-form .layui-input-block {
+  margin-left: 0;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .countDown .countDown-form #timetest {
+  width: 3rem;
+  color: #656565;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .countDown .preview-time {
+  width: 5.08rem;
+  margin-top: 0.5rem;
+  margin-left: 0.12rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .countDown .preview-time .preview-time-title {
   font-size: 0.18rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #333333;
+  color: #666666;
+  height: 0.3rem;
+  line-height: 0.3rem;
+  margin-bottom: 0.2rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #videoPreview .preview-form .layui-form-switch {
-  margin: 0 !important;
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .countDown .preview-time .preview-time-content {
+  width: 5.08rem;
+  height: 3.6rem;
+  background: url('../image/count-down-bg.png') no-repeat;
+  background-size: 100% 100%;
+  position: relative;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #videoPreview .preview-form .preview-info {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .countDown .preview-time .preview-time-content .top-time {
+  width: 100%;
+  height: 0.7rem;
+  text-align: center;
+  color: #fff;
+  font-size: 0.18rem;
+  line-height: 0.7rem;
+  position: absolute;
+  top: 0.2rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .countDown .preview-time .preview-time-content .center-time {
+  width: 1.6rem;
+  height: 0.34rem;
+  background: #FF914D;
+  box-shadow: 0rem 0.01rem 0.02rem 0rem rgba(167, 80, 26, 0.35);
+  border-radius: 0.05rem;
+  line-height: 0.34rem;
+  text-align: center;
+  font-size: 0.14rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  position: absolute;
+  top: 36%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .countDown .preview-time .preview-time-content .bottom-time {
+  display: none;
+  width: 2.02rem;
+  height: 0.66rem;
+  background: url('../image/timer.png') no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.24rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .countDown .preview-time .preview-time-content .bottom-time .hour1 {
+  position: absolute;
+  top: 0.17rem;
+  left: 0.18rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .countDown .preview-time .preview-time-content .bottom-time .hour2 {
+  position: absolute;
+  top: 0.17rem;
+  left: 0.41rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .countDown .preview-time .preview-time-content .bottom-time .minute1 {
+  position: absolute;
+  top: 0.17rem;
+  left: 0.84rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .countDown .preview-time .preview-time-content .bottom-time .minute2 {
+  position: absolute;
+  top: 0.17rem;
+  left: 1.07rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .countDown .preview-time .preview-time-content .bottom-time .second1 {
+  position: absolute;
+  top: 0.17rem;
+  left: 1.49rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .countDown .preview-time .preview-time-content .bottom-time .second2 {
+  position: absolute;
+  top: 0.17rem;
+  left: 1.72rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .save-btn {
+  height: 0.36rem;
+  text-align: center;
+  margin-top: 0.6rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .save-btn span {
   display: inline-block;
-  margin-top: 0.08rem;
+  cursor: pointer;
+  width: 0.96rem;
+  height: 0.36rem;
+  background: #F2591A;
+  border-radius: 0.05rem;
+  font-size: 0.2rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 0.36rem;
+  margin-left: -0.96rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .people-number {
+  width: 100%;
+  display: flex;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .people-number .people-form {
+  width: 40%;
+  float: left;
+  margin: 0.5rem 0.3rem 0 1.2rem;
+  font-size: 0.18rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .people-number .people-form .Add_form {
+  display: flex;
+  height: 0.3rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .people-number .people-form .Add_form .reality {
+  width: 0.8rem;
+  height: 0.28rem;
+  background: #FFFFFF;
+  border: 0.01rem solid #999999;
+  border-radius: 0.05rem;
+  margin-left: 0.2rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .people-number .people-form .hint-info {
   font-size: 0.16rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #999999;
+  color: #666666;
+  margin-left: 1.16rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #videoPreview .preview-name {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .people-number .people-form .hint-padding {
+  padding-left: 0.3rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .people-number .people-preview {
+  margin-top: 0.5rem;
+  width: 5.01rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .people-number .people-preview .people-preview-title {
   height: 0.3rem;
-  height: 0.18rem;
   font-size: 0.18rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #666666;
   line-height: 0.3rem;
   margin-bottom: 0.2rem;
-  padding-left: 0.22rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #videoPreview #viewVideos {
-  width: 7.5rem;
-  height: 4.22rem;
-  background-color: #000;
-  margin-left: 0.2rem;
-  margin-bottom: 0.2rem;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #videoPreview .selectBox {
-  display: flex;
-  justify-content: center;
-  width: 7.7rem;
-  height: 0.4rem;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #videoPreview .selectBox .preview_select {
-  width: 1.06rem;
-  height: 0.4rem;
-  background: #FF914D;
-  border-radius: 0.02rem;
-  text-align: center;
-  line-height: 0.4rem;
-  cursor: pointer;
-  font-size: 0.2rem;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #FFFFFF;
-  margin-right: 0.2rem;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #videoPreview .selectBox .previewVideo-btn {
-  width: 1.06rem;
-  height: 0.4rem;
-  line-height: 0.4rem;
-  text-align: center;
-  background: #FF914D;
-  border-radius: 0.02rem;
-  font-size: 0.18rem;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #FFFFFF;
-  cursor: pointer;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .introduce {
-  box-sizing: border-box;
-  width: 100%;
-  height: 8.06rem;
-  padding-top: 0.6rem;
-  background-color: #fff;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .introduce .introduce-bg {
-  width: 3.77rem;
-  height: 6.69rem;
-  margin: 0 auto;
-  background: url('../image/introduce-bg.png') no-repeat;
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .people-number .people-preview .people-preview-content {
+  width: 5.01rem;
+  height: 3.52rem;
+  background: url(../image/组%209.png) no-repeat;
   background-size: 100% 100%;
   position: relative;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .introduce .introduce-bg .introduce-box {
-  width: 3.77rem;
-  height: 4.04rem;
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .people-number .people-preview .people-preview-content .show-num {
+  color: #FFFFFF;
   position: absolute;
-  left: 0;
-  bottom: 0;
-  background: transparent no-repeat;
-  background-size: 100% 100%;
+  bottom: 0.6rem;
+  left: 0.2rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .introduce .introduce-bg .introduce-box:hover #introduce-cover {
-  display: block;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .introduce .introduce-bg .introduce-box #introduce-cover {
-  display: none;
-  width: 3.77rem;
-  height: 4.04rem;
-  background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  left: 0;
-  top: 0;
-  cursor: pointer;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .introduce #ai-submit {
-  width: 0.8rem;
-  height: 0.38rem;
-  background: #F3591B;
-  border-radius: 0.05rem;
-  font-size: 0.16rem;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #FEFEFE;
-  line-height: 0.38rem;
-  text-align: center;
-  margin: 0.3rem auto 0;
-  cursor: pointer;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox {
   width: 100%;
-  width: 8.06rem;
   display: flex;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteLeft {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteLeft {
   width: 5.75rem;
   margin-top: 0.8rem;
   margin-left: 1rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteLeft .default-style {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteLeft .default-style {
   height: 0.3rem;
   font-size: 0.16rem;
   font-family: Source Han Sans CN;
@@ -716,7 +722,7 @@
   padding-left: 0.15rem;
   margin: 0.2rem 0;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteLeft .different-style {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteLeft .different-style {
   width: 2.8rem;
   height: 2.8rem;
   display: flex;
@@ -725,7 +731,7 @@
   flex-wrap: wrap;
   align-content: space-between;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteLeft .different-style .different-style-list {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteLeft .different-style .different-style-list {
   width: 1.28rem;
   height: 1.28rem;
   background: #FFFFFF;
@@ -734,19 +740,19 @@
   line-height: 1.28rem;
   cursor: pointer;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteLeft .different-style .different-style-list img {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteLeft .different-style .different-style-list img {
   width: 1.12rem;
   height: 1.12rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteLeft .different-style .different-style-list-active {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteLeft .different-style .different-style-list-active {
   border: 0.01rem solid #F2591A;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteLeft .style-submit {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteLeft .style-submit {
   width: 2.8rem;
   height: 0.36rem;
   margin: 0.5rem 0 0.5rem 0.15rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteLeft .style-submit #submit {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteLeft .style-submit #submit {
   height: 0.36rem;
   line-height: 0.36rem;
   width: 0.96rem;
@@ -756,13 +762,13 @@
   color: #FFFFFF;
   border-radius: 0.05rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteLeft .style-url {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteLeft .style-url {
   width: 5.6rem;
   height: 0.36rem;
   display: flex;
   margin-left: 0.15rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteLeft .style-url .copy-url {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteLeft .style-url .copy-url {
   width: 4.78rem;
   height: 0.34rem;
   line-height: 0.34rem;
@@ -774,7 +780,7 @@
   font-weight: 400;
   color: #666666;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteLeft .style-url .copy-btn {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteLeft .style-url .copy-btn {
   width: 0.58rem;
   height: 0.34rem;
   line-height: 0.36rem;
@@ -787,18 +793,18 @@
   font-size: 0.16rem;
   cursor: pointer;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteRight {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteRight {
   width: 3.75rem;
   height: 6.67rem;
   position: relative;
   margin-top: 0.4rem;
   margin-left: 2rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteRight .inviteImg {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteRight .inviteImg {
   width: 3.75rem;
   height: 6.67rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteRight .invitePreview {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteRight .invitePreview {
   position: absolute;
   top: 0;
   left: -0.42rem;
@@ -807,7 +813,7 @@
   font-weight: 400;
   color: #666666;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteRight #user-image {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteRight #user-image {
   width: 0.54rem;
   height: 0.54rem;
   position: absolute;
@@ -815,7 +821,7 @@
   left: 1.6rem;
   top: 1.87rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteRight #user-name {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteRight #user-name {
   width: 3.75rem;
   height: 0.3rem;
   font-size: 0.2rem;
@@ -831,7 +837,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteRight #channel-name {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteRight #channel-name {
   width: 1.73rem;
   height: 0.38rem;
   border-radius: 0.05rem;
@@ -849,7 +855,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #inviteBox .inviteRight #qr-code {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteRight #qr-code {
   width: 0.64rem;
   height: 0.64rem;
   position: absolute;
@@ -857,13 +863,11 @@
   left: 50%;
   transform: translateX(-50%);
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .ad-box {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .ad-box {
   width: 100%;
-  height: 8.06rem;
-  background-color: #fff;
   display: flex;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .ad-box .advertising-image {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .ad-box .advertising-image {
   width: 3.34rem;
   height: 5.67rem;
   background: url('../image/ad-image.png') no-repeat;
@@ -871,14 +875,14 @@
   position: relative;
   margin: 0.5rem 0 0 1.2rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .ad-box .advertising-image .upload-image {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .ad-box .advertising-image .upload-image {
   width: 3.08rem;
   height: 0.38rem;
   position: absolute;
   top: 1.97rem;
   left: 0.13rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .ad-box .advertising-info {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .ad-box .advertising-info {
   width: 6.1rem;
   height: 5.4rem;
   margin-left: 0.2rem;
@@ -887,14 +891,14 @@
   border-radius: 0.1rem 0rem 0rem 0rem;
   position: relative;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .ad-box .advertising-info .layui-form-label {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .ad-box .advertising-info .layui-form-label {
   font-size: 0.18rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #666666;
   line-height: 0.3rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .ad-box .advertising-info .upload-btn {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .ad-box .advertising-info .upload-btn {
   width: 2.59rem;
   height: 0.88rem;
   background: #F9F9F9;
@@ -904,7 +908,7 @@
   position: relative;
   cursor: pointer;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .ad-box .advertising-info .upload-btn .upload-text {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .ad-box .advertising-info .upload-btn .upload-text {
   width: 2.59rem;
   height: 0.3rem;
   font-size: 0.16rem;
@@ -917,7 +921,7 @@
   top: 50%;
   transform: translateY(-50%);
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .ad-box .advertising-info .ad-link-input {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .ad-box .advertising-info .ad-link-input {
   width: 4.84rem;
   height: 0.38rem;
   background: #FFFFFF;
@@ -931,7 +935,7 @@
   margin: 0.3rem 0 0.18rem 0.5rem;
   padding: 0 0.1rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .ad-box .advertising-info .upload-hint {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .ad-box .advertising-info .upload-hint {
   width: 5.06rem;
   height: 0.46rem;
   font-size: 0.16rem;
@@ -940,13 +944,13 @@
   color: #CCCCCC;
   margin-left: 0.5rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .ad-box .advertising-info .ad-submit {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .ad-box .advertising-info .ad-submit {
   width: 100%;
   height: 0.36rem;
   text-align: center;
   margin-top: 1rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .ad-box .advertising-info .ad-submit #ad-submit-btn {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .ad-box .advertising-info .ad-submit #ad-submit-btn {
   width: 0.96rem;
   height: 0.36rem;
   width: 0.8rem;
@@ -958,7 +962,7 @@
   color: #FEFEFE;
   line-height: 0.36rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .ad-box .advertising-info .message-angle {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .ad-box .advertising-info .message-angle {
   width: 0.1rem;
   height: 0.1rem;
   transform: rotate(45deg);
@@ -969,44 +973,42 @@
   border-left: 0.01rem solid rgba(255, 145, 77, 0.3);
   border-bottom: 0.01rem solid rgba(255, 145, 77, 0.3);
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox {
   width: 100%;
-  height: 8.06rem;
-  background-color: #fff;
   display: flex;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomLeft {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomLeft {
   width: 3.75rem;
   height: 6.67rem;
   background: url('../image/rec.png') no-repeat;
   background-size: 100% 100%;
   margin: 0.5rem 0 0 1.2rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomLeft #recLCont {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomLeft #recLCont {
   width: 3.55rem;
   height: 4rem;
   overflow: hidden;
   padding: 0 0.1rem;
   margin-top: 2.64rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomLeft #recLCont .backList {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomLeft #recLCont .backList {
   display: block;
   width: 3.55rem;
   height: 0.87rem;
   border-bottom: 0.02rem solid #f1f1f1;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomLeft #recLCont .backList .backContent {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomLeft #recLCont .backList .backContent {
   width: 3.55rem;
   height: 0.86rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomLeft #recLCont .backList .backContent .backInfo {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomLeft #recLCont .backList .backContent .backInfo {
   width: 2rem ;
   height: 0.66rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomLeft #recLCont .backList .backContent .backInfo .backName {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomLeft #recLCont .backList .backContent .backInfo .backName {
   height: 0.4rem;
   font-size: 0.13rem;
   font-family: Source Han Sans CN;
@@ -1020,7 +1022,7 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomLeft #recLCont .backList .backContent .backInfo .backShow {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomLeft #recLCont .backList .backContent .backInfo .backShow {
   height: 0.16rem;
   font-size: 0.12rem;
   font-family: Source Han Sans CN;
@@ -1028,18 +1030,18 @@
   line-height: 0.16rem;
   color: #999999;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomLeft #recLCont .backList .backContent .backImage {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomLeft #recLCont .backList .backContent .backImage {
   width: 1.17rem;
   height: 0.66rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomRight {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomRight {
   width: 6.1rem;
   height: 6.67rem;
   margin-left: 0.3rem;
   margin-top: 0.5rem;
   position: relative;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomRight .recomRTop {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomRight .recomRTop {
   width: 5.68rem;
   height: 5.66rem;
   border: 0.01rem solid rgba(255, 145, 77, 0.3);
@@ -1047,18 +1049,18 @@
   padding: 0.2rem 0.2rem 0;
   position: relative;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomRight .recomRTop .addRecName {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomRight .recomRTop .addRecName {
   width: 100%;
   height: 0.28rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomRight .recomRTop .addRecName .dorpIndex {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomRight .recomRTop .addRecName .dorpIndex {
   font-size: 0.14rem;
   color: #CCCCCC;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomRight .recomRTop .addRecName .addRecName-span {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomRight .recomRTop .addRecName .addRecName-span {
   display: inline-block;
   width: 0.9rem;
   height: 0.26rem;
@@ -1072,14 +1074,14 @@
   text-align: center;
   cursor: pointer;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomRight .recomRTop .recList {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomRight .recomRTop .recList {
   width: 5.68rem;
   height: 5.18rem;
   margin-top: 0.2rem;
   overflow-x: hidden;
   overflow-y: auto;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomRight .recomRTop .recList .rec-video-none {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomRight .recomRTop .recList .rec-video-none {
   padding-left: 0.1rem;
   height: 0.32rem;
   line-height: 0.32rem;
@@ -1090,25 +1092,25 @@
   font-weight: 400;
   color: #666666;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomRight .recomRTop .recList .rec-video-item {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomRight .recomRTop .recList .rec-video-item {
   display: flex;
   width: 5.68rem;
   height: 0.56rem;
   margin-bottom: 0.2rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomRight .recomRTop .recList .rec-video-item .rec-video-item-info {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomRight .recomRTop .recList .rec-video-item .rec-video-item-info {
   width: 5rem;
   height: 0.4rem;
   padding: 0.07rem;
   border: 0.01rem solid #CCCCCC;
   border-radius: 0.05rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomRight .recomRTop .recList .rec-video-item .rec-video-item-info img {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomRight .recomRTop .recList .rec-video-item .rec-video-item-info img {
   width: 0.7rem;
   height: 0.4rem;
   vertical-align: bottom;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomRight .recomRTop .recList .rec-video-item .rec-video-item-info .rec-video-item-name {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomRight .recomRTop .recList .rec-video-item .rec-video-item-info .rec-video-item-name {
   display: inline-block;
   width: 4.2rem;
   font-size: 0.14rem;
@@ -1119,12 +1121,12 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomRight .recomRTop .recList .rec-video-item .recommend-delete {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomRight .recomRTop .recList .rec-video-item .recommend-delete {
   font-size: 0.24rem;
   margin: 0.16rem 0.15rem;
   cursor: pointer;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomRight .recomRTop .recommend-angle {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomRight .recomRTop .recommend-angle {
   width: 0.1rem;
   height: 0.1rem;
   border-left: 0.01rem solid rgba(255, 145, 77, 0.3);
@@ -1135,7 +1137,7 @@
   transform: rotate(45deg);
   background-color: #fff;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content #recomBox #recomRight #saveAddRecVideo {
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #recomBox #recomRight #saveAddRecVideo {
   position: absolute;
   bottom: 0;
   left: 50%;

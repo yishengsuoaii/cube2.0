@@ -273,7 +273,7 @@ $(function () {
 				content: $('#video-dialog'),
 				shade: 0.3,
 				shadeClose: true,
-				closeBtn: 0,
+				closeBtn: 1,
 				resize: false,
 				scrollbar: false,
 				move:false,

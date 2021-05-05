@@ -13,7 +13,7 @@ $(function () {
     $('.aside-list').on('click', function () {
         $(this).addClass('active-aside').siblings('li').removeClass('active-aside')
         $('.channel-set-item').hide().eq($(this).index()).show()
-        videoJs.pause()
+        h5_videoJs.pause()
     })
 
     // 在线人数
@@ -43,7 +43,7 @@ $(function () {
     // 暂时频道添加视频预告
     let videoUrl = null
     let videoCode = null
-    var videoJs = ''
+    var h5_videoJs = ''
     // 是否已经添加过预览视频标志
     var previewNull = true
     
@@ -105,7 +105,7 @@ $(function () {
                    }
                    if(res.data.event_playback_uri!==null) {
                     previewNull = false
-                    videoJs = new Aliplayer({
+                    h5_videoJs = new Aliplayer({
                         "id": "viewVideos",
                         "source": res.data.event_playback_uri,
                         "width": "7.5rem",
@@ -118,6 +118,7 @@ $(function () {
                         "controlBarVisibility": "hover",
                         "useH5Prism": true,
                       })
+                      h5_videoJs.setVolume(0)
                    }
                     form.render('checkbox')
                 }
@@ -183,7 +184,7 @@ $(function () {
                                 if(differenceFlag  === 1) {
                                     if(previewNull){
                                         previewNull = false
-                                        videoJs = new Aliplayer({
+                                        h5_videoJs = new Aliplayer({
                                             "id": "viewVideos",
                                             "source": res.data.video_rui,
                                             "width": "7.5rem",
@@ -196,8 +197,9 @@ $(function () {
                                             "controlBarVisibility": "hover",
                                             "useH5Prism": true,
                                         })
+                                        h5_videoJs.setVolume(0)
                                     } else {
-                                        videoJs.loadByUrl(res.data.video_rui)
+                                        h5_videoJs.loadByUrl(res.data.video_rui)
                                     }
                                     videoUrl = res.data.video_rui
                                 }
@@ -275,7 +277,7 @@ $(function () {
                                 if(differenceFlag  === 1) {
                                     if(previewNull){
                                         previewNull = false
-                                        videoJs = new Aliplayer({
+                                        h5_videoJs = new Aliplayer({
                                             "id": "viewVideos",
                                             "source": res.data.video_rui,
                                             "width": "7.5rem",
@@ -289,7 +291,7 @@ $(function () {
                                             "useH5Prism": true,
                                         })
                                     } else {
-                                        videoJs.loadByUrl(res.data.video_rui)
+                                        h5_videoJs.loadByUrl(res.data.video_rui)
                                     }
                                     videoUrl = res.data.video_rui
                                 }

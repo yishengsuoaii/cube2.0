@@ -133,21 +133,17 @@
                                 <div class="channel-set">
                                    <ul class="channel-set-aside">
                                        <li class="active-aside aside-list">基础设置</li>
-                                       <li class="aside-list">预告/回放</li>
-                                       <li class="aside-list">活动简介</li>
-                                       <li class="aside-list">邀请卡分享</li>
-                                       <li class="aside-list">自定义广告</li>
-                                       <li class="aside-list">精彩推荐</li>
+                                       <li class="aside-list">高级设置</li>
                                    </ul>
                                    <div class="channel-set-content">
                                        <div class="channel-set-item container-basics" style="display: block">
                                             <div class="layui-tab">
                                                 <ul class="layui-tab-title" id="preferences">
                                                     <li class="layui-this">直播引导页</li>
-                                                    <li>直播倒计时</li>
-                                                    <li>观众人数显示</li>
+                                                    <li>活动简介</li>
                                                     <li>直播窗口背景</li>
-                                                    <li>频道设置</li>
+                                                    <li>预告/回放</li>
+                                                    <li>频道加密</li>
                                                 </ul>
                                                 <div class="layui-tab-content">
                                                     <div class="layui-tab-item layui-show">
@@ -172,6 +168,101 @@
                                     
                                                     </div>
                                                     <div class="layui-tab-item">
+                                                        <div class="introduce">
+                                                            <div class="introduce-bg">
+                                                                <div class="introduce-box">
+                                                                    <div id="introduce-cover"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div id="ai-submit">提交</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="layui-tab-item">
+                                                        <!-- 直播窗口背景 -->
+                                                        <p class="live-bg-title">
+                                                            预览:
+                                                        </p>
+                                                        <div class="live-bg-image">
+                                                            <img class="layui-upload-img" id="live-bg-cover" src="./../image/mobile-cover.png">
+                                                            <div class="live-bg-hint">
+                                                                <p class="live-bg-hint-list">
+                                                                    <span class="live-bg-hint-icon"></span>
+                                                                    图片大小2M以内
+                                                                </p>
+                                                                <p class="live-bg-hint-list">
+                                                                    <span class="live-bg-hint-icon"></span>
+                                                                    图片分辨率865*486像素
+                                                                </p>
+                                                                <p class="live-bg-hint-list">
+                                                                    <span class="live-bg-hint-icon"></span>
+                                                                    支持gif,png,jpg,jpeg格式
+                                                                </p>
+                                                                <button type="button" class="layui-btn" id="live-bg-upload">上传</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="layui-tab-item">
+                                                        <div id="videoPreview">
+                                                            <form class="layui-form preview-form">
+                                                                <div class="layui-form-item">
+                                                                    <label class="layui-form-label">视频显示</label>
+                                                                    <div class="layui-input-block">
+                                                                        <input type="checkbox" name="switch" lay-skin="switch" id="preview-open" lay-filter="preview-open">
+                                                                        <span class="preview-info">（功能开启后，当您不在直播时，用户可点击播放该视频）</span>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                            <p class="preview-name">预览:</p>
+                                                            <div id="viewVideos" class="prism-player">
+                                                            </div>
+                                                            <div class="selectBox">
+                                                                <p class="preview_select">选择视频</p>
+                                                                <p class="previewVideo-btn">提交</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="layui-tab-item">
+                                                        <!-- 频道设置 -->
+                                                        <div class="channel-set-password">
+                                                            <form class="layui-form" action="" id="encryption_left">
+                                                                <div class="layui-form-item">
+                                                                    <label class="layui-form-label">是否加密</label>
+                                                                    <div class="layui-input-block">
+                                                                        <input type="checkbox" name="switch" id="code-switch" 
+                                                                            lay-filter="code-switch"  lay-skin="switch">
+                                                                    </div>
+                                                                </div>
+                                                                <p class="encryption-hint">频道加密后进入此频道直播页需输入访问码</p>
+                                    
+                                                                <div class="code-input">
+                                                                    <input type="text" id="code1" maxlength="1" disabled>
+                                                                    <input type="text" id="code2" maxlength="1" disabled>
+                                                                    <input type="text" id="code3" maxlength="1" disabled>
+                                                                    <input type="text" id="code4" maxlength="1" disabled>
+                                                                    <input type="text" id="code5" maxlength="1" disabled>
+                                                                    <input type="text" id="code6" maxlength="1" disabled>
+                                                                </div>
+                                                                <button type="button" class="layui-btn layui-btn-danger" id="code-submit">提交</button>
+                                                            </form>
+                                                            <div class="encryption_right">
+                                                                <p class="encryption-preview">预览:  </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="channel-set-item high-set">
+                                            <div class="layui-tab">
+                                                <ul class="layui-tab-title" id="preferences">
+                                                    <li class="layui-this">直播倒计时</li>
+                                                    <li>观众人数显示</li>
+                                                    <li>自定义广告</li>
+                                                    <li>邀请卡分享</li>
+                                                    <li>精彩推荐</li>
+                                                </ul>
+                                                <div class="layui-tab-content">
+                                                    <div class="layui-tab-item layui-show">
                                                         <!-- 直播倒计时 -->
                                                         <div class="countDown">
                                                             <form class="layui-form countDown-form" action="">
@@ -282,169 +373,90 @@
                                                         </div>
                                                     </div>
                                                     <div class="layui-tab-item">
-                                                        <!-- 直播窗口背景 -->
-                                                        <p class="live-bg-title">
-                                                            预览:
-                                                        </p>
-                                                        <div class="live-bg-image">
-                                                            <img class="layui-upload-img" id="live-bg-cover" src="./../image/mobile-cover.png">
-                                                            <div class="live-bg-hint">
-                                                                <p class="live-bg-hint-list">
-                                                                    <span class="live-bg-hint-icon"></span>
-                                                                    图片大小2M以内
-                                                                </p>
-                                                                <p class="live-bg-hint-list">
-                                                                    <span class="live-bg-hint-icon"></span>
-                                                                    图片分辨率865*486像素
-                                                                </p>
-                                                                <p class="live-bg-hint-list">
-                                                                    <span class="live-bg-hint-icon"></span>
-                                                                    支持gif,png,jpg,jpeg格式
-                                                                </p>
-                                                                <button type="button" class="layui-btn" id="live-bg-upload">上传</button>
+                                                        <div class="ad-box">
+                                                            <div class="advertising-image">
+                                                                <img class="upload-image" alt="">
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="layui-tab-item">
-                                                        <!-- 频道设置 -->
-                                                        <div class="channel-set-password">
-                                                            <form class="layui-form" action="" id="encryption_left">
-                                                                <div class="layui-form-item">
-                                                                    <label class="layui-form-label">是否加密</label>
-                                                                    <div class="layui-input-block">
-                                                                        <input type="checkbox" name="switch" id="code-switch" 
-                                                                            lay-filter="code-switch"  lay-skin="switch">
+                                                            <div class="advertising-info">
+                                                                <div class="message-angle"></div>
+                                                                <div class="layui-form">
+                                                                    <div class="layui-form-item">
+                                                                        <label class="layui-form-label">添加广告</label>
+                                                                        <div class="layui-input-block">
+                                                                            <input type="checkbox" name="switch" lay-skin="switch" id="ad-switch" checked
+                                                                                lay-filter="ad-switch">
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                                <p class="encryption-hint">频道加密后进入此频道直播页需输入访问码</p>
-                                    
-                                                                <div class="code-input">
-                                                                    <input type="text" id="code1" maxlength="1" disabled>
-                                                                    <input type="text" id="code2" maxlength="1" disabled>
-                                                                    <input type="text" id="code3" maxlength="1" disabled>
-                                                                    <input type="text" id="code4" maxlength="1" disabled>
-                                                                    <input type="text" id="code5" maxlength="1" disabled>
-                                                                    <input type="text" id="code6" maxlength="1" disabled>
+                                                                <div class="upload-btn">
+                                                                    <p class="upload-text">
+                                                                        <i class="layui-icon layui-icon-addition" style="font-size: 18px; color: #FF914D;"></i> 上传图片
+                                                                    </p>
                                                                 </div>
-                                                                <button type="button" class="layui-btn layui-btn-danger" id="code-submit">提交</button>
-                                                            </form>
-                                                            <div class="encryption_right">
-                                                                <p class="encryption-preview">预览:  </p>
+                                                                <input type="text" class="ad-link-input" placeholder="链接地址">
+                                                                <div class="upload-hint">
+                                                                    图片尺寸：750*88px;您可上传自定尺寸的图片，内容将居中；图
+                                                                    片大小：2m以内；图片格式：PNG,jpg,JPEG,GIF
+                                                                </div>
+                                                                <div class="ad-submit">
+                                                                    <button type="button" class="layui-btn layui-btn-danger" id="ad-submit-btn">提交</button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="channel-set-item">
-                                            <div id="videoPreview">
-                                                <form class="layui-form preview-form">
-                                                    <div class="layui-form-item">
-                                                        <label class="layui-form-label">视频显示</label>
-                                                        <div class="layui-input-block">
-                                                            <input type="checkbox" name="switch" lay-skin="switch" id="preview-open" lay-filter="preview-open">
-                                                            <span class="preview-info">（功能开启后，当您不在直播时，用户可点击播放该视频）</span>
+
+                                                    <div class="layui-tab-item">
+                                                        <div id="inviteBox">
+                                                            <div class="inviteLeft">
+                                                                <p class="default-style">默认样式</p>
+                                                                <div class="different-style">
+                                                                </div>
+                                                                <div class="style-submit">
+                                                                    <button type="button" class="layui-btn layui-btn-danger" id="submit">提交</button>
+                                                                </div>
+                                                                <div class="style-url">
+                                                                    <input class="copy-url" type="text" readonly/>
+                                                                    <span class="copy-btn">复制</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="inviteRight">
+                                                               <p class="invitePreview">预览:</p>
+                                                               <img  alt="" class="inviteImg">
+                                                               <img id="user-image" alt="">
+                                                               <p id="user-name"></p>
+                                                               <p id="channel-name"></p>
+                                                               <div id="qr-code"></div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </form>
-                                                <p class="preview-name">预览:</p>
-                                                <div id="viewVideos" class="prism-player">
-                                                </div>
-                                                <div class="selectBox">
-                                                    <p class="preview_select">选择视频</p>
-                                                    <p class="previewVideo-btn">提交</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                       <div class="channel-set-item">
-                                        <div class="introduce">
-                                            <div class="introduce-bg">
-                                                <div class="introduce-box">
-                                                    <div id="introduce-cover"></div>
-                                                </div>
-                                            </div>
-                                            <div id="ai-submit">提交</div>
-                                        </div>
-                                       </div>
-                                       <div class="channel-set-item">
-                                        <div id="inviteBox">
-                                            <div class="inviteLeft">
-                                                <p class="default-style">默认样式</p>
-                                                <div class="different-style">
-                                                </div>
-                                                <div class="style-submit">
-                                                    <button type="button" class="layui-btn layui-btn-danger" id="submit">提交</button>
-                                                </div>
-                                                <div class="style-url">
-                                                    <input class="copy-url" type="text" readonly/>
-                                                    <span class="copy-btn">复制</span>
-                                                </div>
-                                            </div>
-                                            <div class="inviteRight">
-                                               <p class="invitePreview">预览:</p>
-                                               <img  alt="" class="inviteImg">
-                                               <img id="user-image" alt="">
-                                               <p id="user-name"></p>
-                                               <p id="channel-name"></p>
-                                               <div id="qr-code"></div>
-                                            </div>
-                                        </div>
-                                       </div>
-                                       <div class="channel-set-item">
-                                        <div class="ad-box">
-                                            <div class="advertising-image">
-                                                <img class="upload-image" alt="">
-                                            </div>
-                                            <div class="advertising-info">
-                                                <div class="message-angle"></div>
-                                                <div class="layui-form">
-                                                    <div class="layui-form-item">
-                                                        <label class="layui-form-label">添加广告</label>
-                                                        <div class="layui-input-block">
-                                                            <input type="checkbox" name="switch" lay-skin="switch" id="ad-switch" checked
-                                                                lay-filter="ad-switch">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="upload-btn">
-                                                    <p class="upload-text">
-                                                        <i class="layui-icon layui-icon-addition" style="font-size: 18px; color: #FF914D;"></i> 上传图片
-                                                    </p>
-                                                </div>
-                                                <input type="text" class="ad-link-input" placeholder="链接地址">
-                                                <div class="upload-hint">
-                                                    图片尺寸：750*88px;您可上传自定尺寸的图片，内容将居中；图
-                                                    片大小：2m以内；图片格式：PNG,jpg,JPEG,GIF
-                                                </div>
-                                                <div class="ad-submit">
-                                                    <button type="button" class="layui-btn layui-btn-danger" id="ad-submit-btn">提交</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                       </div>
-                                       <div class="channel-set-item">
-                                        <div id="recomBox">
+
+                                                    <div class="layui-tab-item">
+                                                        <div id="recomBox">
                                           
-                                            <div id="recomLeft">  
-                                               
-                                                <div id="recLCont"></div>
-                                            </div>
-                                            <div id="recomRight">
-                                                <div class="recomRTop">
-                                                    <p class="addRecName">
-                                                        <span class="dorpIndex">鼠标点击拖动可排序</span>
-                                                        <span class="addRecName-span">添加视频</span>
-                                                    </p>
-                                                    <div class="recList">
-                                                        
+                                                            <div id="recomLeft">  
+                                                               
+                                                                <div id="recLCont"></div>
+                                                            </div>
+                                                            <div id="recomRight">
+                                                                <div class="recomRTop">
+                                                                    <p class="addRecName">
+                                                                        <span class="dorpIndex">鼠标点击拖动可排序</span>
+                                                                        <span class="addRecName-span">添加视频</span>
+                                                                    </p>
+                                                                    <div class="recList">
+                                                                        
+                                                                    </div>
+                                                                    
+                                                                    <div class="recommend-angle"></div>
+                                                                </div>
+                                                               <div id="saveAddRecVideo">提交</div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     
-                                                    <div class="recommend-angle"></div>
                                                 </div>
-                                               <div id="saveAddRecVideo">提交</div>
                                             </div>
                                         </div>
-                                   </div>
                                    </div>
                                 </div>
             
