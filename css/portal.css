@@ -821,8 +821,6 @@
   background: #FFFFFF;
   border: 1px solid #CCCCCC;
   border-right: 0;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
 }
 #channel-dialog .select-search .search-channel .search-channel-btn {
   display: inline-block;
@@ -831,7 +829,6 @@
   line-height: 34px;
   text-align: center;
   background: #FF914D;
-  border-radius: 0px 5px 5px 0px;
   vertical-align: bottom;
   cursor: pointer;
 }
@@ -916,8 +913,6 @@
   background: #FFFFFF;
   border: 1px solid #CCCCCC;
   border-right: 0;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
 }
 #video-dialog .select-search .search-video .search-video-btn {
   display: inline-block;
@@ -926,7 +921,6 @@
   line-height: 34px;
   text-align: center;
   background: #FF914D;
-  border-radius: 0px 5px 5px 0px;
   vertical-align: bottom;
   cursor: pointer;
 }

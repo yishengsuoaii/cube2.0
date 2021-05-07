@@ -231,13 +231,14 @@
   line-height: 0.3rem;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .guidance .formUpload #test {
-  width: 1rem;
-  height: 0.36rem;
-  line-height: 0.36rem;
-  background: #F2591A;
-  border-radius: 0.05rem;
+  width: 1.06rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  background: #FF914D;
+  border-radius: 0.02rem;
   text-align: center;
   padding: 0;
+  font-size: 0.16rem;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .guidance .formUpload #test i {
   width: 0.18rem;
@@ -291,15 +292,15 @@
   cursor: pointer;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .introduce #ai-submit {
-  width: 0.8rem;
-  height: 0.38rem;
-  background: #F3591B;
-  border-radius: 0.05rem;
+  width: 1.06rem;
+  height: 0.4rem;
+  background: #FF914D;
+  border-radius: 0.02rem;
   font-size: 0.16rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #FEFEFE;
-  line-height: 0.38rem;
+  line-height: 0.4rem;
   text-align: center;
   margin: 0.1rem auto 0;
   cursor: pointer;
@@ -346,12 +347,13 @@
   background: #FF914D;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .live-bg-image .live-bg-hint #live-bg-upload {
-  width: 0.9rem;
-  height: 0.36rem;
-  line-height: 0.36rem;
-  background: #F2591A;
+  width: 1.06rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  background: #FF914D;
   padding: 0;
-  border-radius: 0.05rem;
+  border-radius: 0.02rem;
+  font-size: 0.16rem;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics #videoPreview {
   width: 100%;
@@ -411,7 +413,7 @@
   text-align: center;
   line-height: 0.4rem;
   cursor: pointer;
-  font-size: 0.2rem;
+  font-size: 0.16rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #FFFFFF;
@@ -424,7 +426,7 @@
   text-align: center;
   background: #FF914D;
   border-radius: 0.02rem;
-  font-size: 0.18rem;
+  font-size: 0.16rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #FFFFFF;
@@ -468,13 +470,14 @@
   background-color: #fff;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .channel-set-password #encryption_left #code-submit {
-  width: 0.96rem;
-  height: 0.36rem;
-  line-height: 0.36rem;
-  background: #F2591A;
-  border-radius: 0.05rem;
+  width: 1.06rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  background: #FF914D;
+  border-radius: 0.02rem;
   margin: 0.3rem 0 0 1.5rem;
   padding: 0;
+  font-size: 0.16rem;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .channel-set-password .encryption_right {
   width: 3.75rem;
@@ -631,15 +634,15 @@
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .save-btn span {
   display: inline-block;
   cursor: pointer;
-  width: 0.96rem;
-  height: 0.36rem;
-  background: #F2591A;
-  border-radius: 0.05rem;
-  font-size: 0.2rem;
+  width: 1.06rem;
+  height: 0.4rem;
+  background: #FF914D;
+  border-radius: 0.02rem;
+  font-size: 0.16rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #FFFFFF;
-  line-height: 0.36rem;
+  line-height: 0.4rem;
   margin-left: -0.96rem;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .people-number {
@@ -749,18 +752,19 @@
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteLeft .style-submit {
   width: 2.8rem;
-  height: 0.36rem;
+  height: 0.4rem;
   margin: 0.5rem 0 0.5rem 0.15rem;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteLeft .style-submit #submit {
-  height: 0.36rem;
-  line-height: 0.36rem;
-  width: 0.96rem;
-  font-size: 0.2rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  width: 1.06rem;
+  font-size: 0.16rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #FFFFFF;
-  border-radius: 0.05rem;
+  border-radius: 0.02rem;
+  background-color: #FF914D;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #inviteBox .inviteLeft .style-url {
   width: 5.6rem;
@@ -946,21 +950,20 @@
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .ad-box .advertising-info .ad-submit {
   width: 100%;
-  height: 0.36rem;
+  height: 0.4rem;
   text-align: center;
   margin-top: 1rem;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .ad-box .advertising-info .ad-submit #ad-submit-btn {
-  width: 0.96rem;
-  height: 0.36rem;
-  width: 0.8rem;
-  background: #F3591B;
-  border-radius: 0.05rem;
+  width: 1.06rem;
+  height: 0.4rem;
+  background: #FF914D;
+  border-radius: 0.02rem;
   font-size: 0.16rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #FEFEFE;
-  line-height: 0.36rem;
+  line-height: 0.4rem;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set .ad-box .advertising-info .message-angle {
   width: 0.1rem;
@@ -1148,7 +1151,7 @@
   color: #fff;
   text-align: center;
   line-height: 0.4rem;
-  font-size: 0.18rem;
+  font-size: 0.16rem;
   cursor: pointer;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #liveControl {
@@ -1760,7 +1763,7 @@
   height: 1.5rem;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item {
-  width: 10rem;
+  width: 10.08rem;
   height: 1.3rem;
   margin: 0 auto;
 }
@@ -1780,31 +1783,58 @@
   line-height: 0.82rem;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #score-card #select-oper {
-  width: 0.8rem;
-  height: 0.66rem;
-  padding: 0.32rem 0;
+  width: 0.96rem;
+  height: 0.84rem;
+  padding: 0.23rem 0;
   margin: 0 0.4rem 0 0.2rem;
   display: flex;
-  flex-wrap: wrap;
-  align-content: space-between;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #score-card #select-oper div {
-  width: 0.8rem;
-  height: 0.28rem;
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #score-card #select-oper #select-model {
+  width: 0.96rem;
+  height: 0.36rem;
+  background: #FF914D;
+  border-radius: 0.05rem;
+  font-size: 0.16rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFF;
+  line-height: 0.36rem;
+  text-align: center;
+  cursor: pointer;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #score-card #select-oper #reset {
+  width: 0.94rem;
+  height: 0.34rem;
   background: #444444;
   border-radius: 0.05rem;
   font-size: 0.16rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #E08248;
-  line-height: 0.28rem;
+  color: #666;
+  line-height: 0.34rem;
   text-align: center;
   cursor: pointer;
+  border: 0.01rem solid #444;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #score-card #select-oper #reset:hover {
+  color: #FF914D;
+  border: 0.01rem solid #FF914D;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #score-card #team-score-set {
   width: 7.2rem;
   height: 0.94rem;
   position: relative;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #score-card #team-score-set .defaultColor {
+  color: #6666;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #score-card #team-score-set .highlightOne {
+  color: #FFF;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #score-card #team-score-set .highlightTwo {
+  color: #FF914D;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #score-card #team-score-set #score-shade {
   width: 7.4rem;
@@ -1812,8 +1842,7 @@
   position: absolute;
   top: -0.13rem;
   left: -0.1rem;
-  background: #444444;
-  opacity: 0.5;
+  background: transparent;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #score-card #team-score-set #team-score-content {
   width: 7.2rem;
@@ -1841,7 +1870,6 @@
   text-align: center;
   line-height: 0.22rem;
   font-size: 0.22rem;
-  color: #ccc;
   background: #444444;
   border-radius: 0.05rem;
   cursor: pointer;
@@ -1854,7 +1882,6 @@
   font-size: 0.16rem;
   font-family: Source Han Sans CN;
   font-weight: bold;
-  color: #F2591A;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #score-card #team-score-set #team-score-content .team-score {
   width: 1.68rem;
@@ -1871,12 +1898,11 @@
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #score-card #team-score-set #team-score-content .team-score .score-preview .score-preview-hot {
   width: 0.24rem;
   height: 0.2rem;
-  background: #666666;
+  background: #444;
   border-radius: 0.03rem;
   font-size: 0.16rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #FFFFFF;
   line-height: 0.2rem;
   text-align: center;
 }
@@ -1884,12 +1910,11 @@
   width: 1.34rem;
   height: 0.3rem;
   text-align: center;
-  background: #666666;
+  background: #444;
   border-radius: 0.05rem;
   font-size: 0.24rem;
   font-family: Source Han Sans CN;
   font-weight: bold;
-  color: #F2591A;
   line-height: 0.3rem;
   border: none;
   outline: none;
@@ -1897,12 +1922,11 @@
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #score-card #team-score-set #team-score-content .team-score .team-name {
   width: 1.68rem;
   height: 0.22rem;
-  background: #333333;
+  background: #444;
   border-radius: 0.03rem;
   font-size: 0.16rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #DE8148;
   line-height: 0.22rem;
   text-align: center;
   overflow: hidden;
@@ -1928,7 +1952,6 @@
   font-size: 0.16rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #fff;
   text-align: center;
   line-height: 0.22rem;
   cursor: pointer;
@@ -1951,7 +1974,6 @@
   font-size: 0.24rem;
   font-family: Source Han Sans CN;
   font-weight: 500;
-  color: #FFFFFF;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #score-card #team-score-set #team-score-content .team-vs .scene-name {
   width: 0.82rem;
@@ -1965,7 +1987,7 @@
   color: #666666;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #bg-replace {
-  width: 10rem;
+  width: 10.08rem;
   height: 1.3rem;
   display: flex;
   justify-content: center;
@@ -1983,14 +2005,14 @@
   border: 0.02rem solid #FF914D;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #gesture-detection {
-  width: 10rem;
+  width: 10.08rem;
   height: 1.3rem;
   position: relative;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #gesture-detection .layui-btn {
-  width: 1rem;
-  height: 0.38rem;
-  line-height: 0.38rem;
+  width: 1.06rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
   font-size: 0.18rem;
   background-color: #ff914d;
   position: absolute;
@@ -1999,35 +2021,35 @@
   transform: translate(-50%, -50%);
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #auto-cut {
-  width: 10rem;
+  width: 10.08rem;
   height: 1.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #auto-cut .layui-btn {
-  width: 1rem;
-  height: 0.38rem;
-  line-height: 0.38rem;
+  width: 1.06rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
   font-size: 0.18rem;
   background-color: #ff914d;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #zoom-in {
-  width: 10rem;
+  width: 10.08rem;
   height: 1.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #zoom-in .layui-btn {
-  width: 1rem;
-  height: 0.38rem;
-  line-height: 0.38rem;
+  width: 1.06rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
   font-size: 0.18rem;
   background-color: #ff914d;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #logoBox {
-  width: 10rem;
+  width: 10.08rem;
   height: 1.3rem;
   display: flex;
   flex-direction: column;
@@ -2035,36 +2057,38 @@
   align-items: center;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #logoBox .watermark-submit-btn {
-  width: 1.26rem;
+  width: 0.96rem;
   height: 0.36rem;
   background: #444444;
   border-radius: 0.05rem;
   text-align: center;
   line-height: 0.36rem;
-  font-size: 0.2rem;
+  font-size: 0.16rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #666666;
   cursor: pointer;
-  border: 0.01rem solid #444;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #logoBox .logoStart {
-  color: #FF914D;
-  border: 0.01rem solid #FF914D;
+  background-color: #FF914D;
+  color: #FFF;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #logoBox #addLogoDialog {
-  width: 1.26rem;
-  height: 0.36rem;
+  width: 0.94rem;
+  height: 0.34rem;
   background: #444444;
   border-radius: 0.05rem;
   text-align: center;
-  line-height: 0.36rem;
-  font-size: 0.2rem;
+  line-height: 0.34rem;
+  font-size: 0.16rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #FF914D;
   border: 0.01rem solid #FF914D;
   cursor: pointer;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #logoBox #addLogoDialog:hover {
+  background: #555555;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide {
   display: flex;
@@ -2073,42 +2097,59 @@
   align-items: center;
   justify-content: center;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .activeStyle {
-  background: #444444;
-  color: #FF914D;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  text-align: center;
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .slideSelectBox {
+  width: 0.96rem;
+  height: 0.84rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide #lanternStart {
-  width: 1.28rem;
-  height: 0.38rem;
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .slideSelectBox #lanternStart {
+  width: 0.96rem;
+  height: 0.36rem;
   border-radius: 0.05rem;
-  font-size: 0.2rem;
-  line-height: 0.38rem;
+  font-size: 0.16rem;
+  line-height: 0.36rem;
   cursor: pointer;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .defaultStyle {
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .slideSelectBox .defaultStyle {
   background: #444444;
   color: #666666;
   font-family: Source Han Sans CN;
   font-weight: 400;
   text-align: center;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .startStyle {
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .slideSelectBox .startStyle {
   background: #FF914D;
   color: #fff;
   font-family: Source Han Sans CN;
   font-weight: 400;
   text-align: center;
 }
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .slideSelectBox #selectDoc {
+  width: 0.96rem;
+  height: 0.34rem;
+  line-height: 0.34rem;
+  font-size: 0.16rem;
+  border: 0.01rem solid #FF914D;
+  border-radius: 0.05rem;
+  cursor: pointer;
+  background: #444444;
+  color: #FF914D;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  text-align: center;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .slideSelectBox #selectDoc:hover {
+  background: #555555;
+}
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide #lanternPreview {
   width: 1.46rem;
   height: 0.82rem;
-  border: 0.01rem solid #FF914D;
   margin-left: 0.6rem;
   text-align: center;
   line-height: 0.82rem;
+  background: #444444;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide #lanternPreview #lanternImage {
   display: none;
@@ -2118,6 +2159,12 @@
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide #lanternPreview #lanternImage:hover {
   transform: scale(2);
 }
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .noneBorder {
+  border: 0.01rem solid #444;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .haveBorder {
+  border: 0.01rem solid #FF914D;
+}
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .lanternOperation {
   width: 3.14rem;
   height: 0.84rem;
@@ -2125,6 +2172,20 @@
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .lanternOperation p {
   width: 3.14rem;
   height: 0.3rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .lanternOperation .activeStyle {
+  background: #444444;
+  color: #FF914D;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  text-align: center;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .lanternOperation .endStyle {
+  background: #444444;
+  color: #666;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  text-align: center;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .lanternOperation .operationTop {
   display: flex;
@@ -2144,6 +2205,9 @@
   border-radius: 0.03rem;
   cursor: pointer;
 }
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .lanternOperation .operationTop .pageFirst:hover {
+  background: #555555;
+}
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .lanternOperation .operationTop .pageEnd {
   width: 0.78rem;
   height: 0.3rem;
@@ -2151,6 +2215,9 @@
   border-radius: 0.03rem;
   margin-left: 0.2rem;
   cursor: pointer;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .lanternOperation .operationTop .pageEnd:hover {
+  background: #555555;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .lanternOperation .operationBottom {
   display: flex;
@@ -2165,7 +2232,6 @@
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .lanternOperation .operationBottom .selectPage .pageInput {
   width: 0.58rem;
   height: 0.28rem;
-  border: 0.01rem solid #FF914D;
   border-radius: 0.03rem;
   margin: 0 0.1rem;
 }
@@ -2176,6 +2242,9 @@
   border-radius: 0.03rem;
   cursor: pointer;
 }
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .lanternOperation .operationBottom .pagePre:hover {
+  background: #555555;
+}
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .lanternOperation .operationBottom .pageNext {
   width: 0.78rem;
   height: 0.3rem;
@@ -2184,35 +2253,28 @@
   margin-left: 0.2rem;
   cursor: pointer;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide #selectDoc {
-  width: 1.26rem;
-  height: 0.36rem;
-  line-height: 0.36rem;
-  font-size: 0.2rem;
-  border: 0.01rem solid #FF914D;
-  border-radius: 0.05rem;
-  cursor: pointer;
-  margin-left: 0.6rem;
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .lanternOperation .operationBottom .pageNext:hover {
+  background: #555555;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox {
   display: flex;
   width: 100%;
-  height: 1.4rem;
+  height: 1.3rem;
   align-items: center;
   justify-content: center;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox .musicLeft {
   display: flex;
-  height: 1.4rem;
+  height: 1.3rem;
   flex-direction: column;
   justify-content: space-around;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox .musicLeft #musicStart {
-  width: 1.28rem;
-  height: 0.38rem;
+  width: 0.96rem;
+  height: 0.36rem;
   border-radius: 0.05rem;
-  font-size: 0.2rem;
-  line-height: 0.38rem;
+  font-size: 0.16rem;
+  line-height: 0.36rem;
   cursor: pointer;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox .musicLeft .defaultStyle {
@@ -2230,10 +2292,10 @@
   text-align: center;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox .musicLeft #musicSelect {
-  width: 1.26rem;
-  height: 0.36rem;
-  line-height: 0.36rem;
-  font-size: 0.2rem;
+  width: 0.94rem;
+  height: 0.34rem;
+  line-height: 0.34rem;
+  font-size: 0.16rem;
   border: 0.01rem solid #FF914D;
   border-radius: 0.05rem;
   cursor: pointer;
@@ -2242,6 +2304,9 @@
   font-family: Source Han Sans CN;
   font-weight: 400;
   text-align: center;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox .musicLeft #musicSelect:hover {
+  background-color: #666;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #musicName {
   display: none;
@@ -2379,16 +2444,17 @@
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #kvBox {
   display: flex;
   width: 100%;
-  height: 1.4rem;
+  height: 1.3rem;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #kvBox #kvStart {
-  width: 1.28rem;
-  height: 0.38rem;
+  width: 0.96rem;
+  height: 0.36rem;
   border-radius: 0.05rem;
-  font-size: 0.2rem;
-  line-height: 0.38rem;
+  font-size: 0.16rem;
+  line-height: 0.36rem;
   cursor: pointer;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #kvBox .defaultStyle {
@@ -2406,10 +2472,10 @@
   text-align: center;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #kvBox #kvSelect {
-  width: 1.26rem;
-  height: 0.36rem;
-  line-height: 0.36rem;
-  font-size: 0.2rem;
+  width: 0.94rem;
+  height: 0.34rem;
+  line-height: 0.34rem;
+  font-size: 0.16rem;
   border: 0.01rem solid #FF914D;
   border-radius: 0.05rem;
   cursor: pointer;
@@ -2418,7 +2484,9 @@
   font-family: Source Han Sans CN;
   font-weight: 400;
   text-align: center;
-  margin-left: 0.2rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #kvBox #kvSelect:hover {
+  background: #555555;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #cloudPlug {
   width: 15.59rem;
@@ -2495,10 +2563,9 @@
 /* 比分牌弹窗 样式*/
 #scoreDialog {
   display: none;
-  width: 11.7rem;
+  width: 10rem;
   height: 6.8rem;
   background: #333333;
-  box-shadow: 0rem 0.02rem 0.1rem 0rem rgba(102, 102, 102, 0.1);
 }
 #scoreDialog .scoreMain {
   height: 4.28rem;
@@ -2557,7 +2624,7 @@
   left: 2.6rem;
 }
 #scoreDialog .scoreMain .scoreRight {
-  width: 3.4rem;
+  width: 1.9rem;
   height: 4.28rem;
 }
 #scoreDialog .scoreMain .scoreRight .editName {
@@ -2578,10 +2645,10 @@
   line-height: 0.4rem;
 }
 #scoreDialog .scoreMain .scoreRight .teamInputName {
-  width: 3.2rem;
+  width: 1.68rem;
   height: 0.32rem;
   border: 0.01rem solid #CCCCCC;
-  border-radius: 0.05rem;
+  border-radius: 0.04rem;
   padding: 0 0.1rem;
   font-size: 0.16rem;
   font-family: Source Han Sans CN;
@@ -2597,7 +2664,7 @@
   line-height: 0.3rem;
 }
 #scoreDialog .scoreMain .scoreRight .uploadImg {
-  width: 3.38rem;
+  width: 1.88rem;
   height: 0.78rem;
   background: #FFFFFF;
   border: 0.01rem solid #CCCCCC;
@@ -2607,13 +2674,13 @@
 }
 #scoreDialog .scoreMain .scoreRight .uploadImg #left-logo {
   display: none;
-  width: 3.38rem;
+  width: 1.88rem;
   height: 0.78rem;
   border-radius: 0.05rem;
 }
 #scoreDialog .scoreMain .scoreRight .uploadImg #right-logo {
   display: none;
-  width: 3.38rem;
+  width: 1.88rem;
   height: 0.78rem;
   border-radius: 0.05rem;
 }
@@ -2626,7 +2693,7 @@
   transform: translate(-50%, -50%);
 }
 #scoreDialog #selectStyleArea {
-  width: 11.3rem;
+  width: 9.6rem;
   height: 1.6rem;
   margin-top: 0.2rem;
   padding: 0 0.2rem;
@@ -2772,15 +2839,14 @@
 }
 #scoreDialog .scoreFoot {
   height: 0.5rem;
-  padding-top: 0.12rem;
-  background: #181818;
-  box-shadow: 0rem 0.01rem 0rem 0rem rgba(85, 85, 85, 0.1);
+  padding-top: 0.11rem;
+  border-top: 0.01rem solid #2C2C2C;
   text-align: center;
 }
 #scoreDialog .scoreFoot #scoreSave {
-  width: 0.72rem;
-  height: 0.38rem;
-  line-height: 0.38rem;
+  width: 0.96rem;
+  height: 0.36rem;
+  line-height: 0.36rem;
   padding: 0;
   background: #FF914D;
   border-radius: 0.05rem;
@@ -2791,15 +2857,14 @@
 }
 #docDialog {
   display: none;
-  width: 11.7rem;
+  width: 10rem;
   height: 6.8rem;
-  box-shadow: 0rem 0.02rem 0.1rem 0rem rgba(102, 102, 102, 0.1);
+  background: #333333;
 }
 #docDialog #docContent {
-  width: 11.3rem;
+  width: 9.6rem;
   height: 5.98rem;
   padding: 0.1rem 0.2rem;
-  background: #333333;
   display: flex;
   justify-content: space-between;
 }
@@ -2868,7 +2933,7 @@
   color: #FFFFFF;
 }
 #docDialog #docContent #docRight {
-  width: 3.6rem;
+  width: 1.9rem;
   height: 5.98rem;
   background: #564F4F;
 }
@@ -2880,8 +2945,11 @@
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #FF914D;
-  border-bottom: 0.01rem solid #ccc;
+  border-bottom: 0.01rem solid #666;
   cursor: pointer;
+}
+#docDialog #docContent #docRight #addDoc:hover {
+  color: #EC6E1F;
 }
 #docDialog #docContent #docRight .docListCont {
   height: 5.32rem;
@@ -2889,6 +2957,7 @@
   position: relative;
 }
 #docDialog #docContent #docRight .docListCont .docNone {
+  width: 1.9rem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -2914,31 +2983,30 @@
   justify-content: space-between;
   height: 0.39rem;
   line-height: 0.39rem;
-  border-bottom: 0.01rem solid #ccc;
+  border-bottom: 0.01rem solid #333333;
   font-size: 0.16rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #FF914D;
-  padding: 0 0.2rem;
+  color: #999;
+  padding: 0 0.1rem;
   cursor: pointer;
 }
 #docDialog #docContent #docRight .docListCont .docItem .docITitle {
-  width: 2.6rem;
+  width: 1.3rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 #docDialog #docFoot {
   height: 0.5rem;
-  padding-top: 0.12rem;
-  background: #181818;
-  box-shadow: 0rem 0.01rem 0rem 0rem rgba(85, 85, 85, 0.1);
+  padding-top: 0.11rem;
+  border-top: 0.01rem solid #2C2C2C;
   text-align: center;
 }
 #docDialog #docFoot #docSave {
-  width: 0.72rem;
-  height: 0.38rem;
-  line-height: 0.38rem;
+  width: 0.96rem;
+  height: 0.36rem;
+  line-height: 0.36rem;
   padding: 0;
   background: #FF914D;
   border-radius: 0.05rem;
@@ -2949,18 +3017,17 @@
 }
 #musicDialog {
   display: none;
-  width: 11.7rem;
+  width: 10rem;
   height: 6.8rem;
-  box-shadow: 0rem 0.02rem 0.1rem 0rem rgba(102, 102, 102, 0.1);
-}
-#musicDialog #musicContent {
-  width: 11.3rem;
-  height: 5.98rem;
-  padding: 0.1rem 0.2rem;
   background: #333333;
 }
+#musicDialog #musicContent {
+  width: 9.6rem;
+  height: 5.98rem;
+  padding: 0.1rem 0.2rem;
+}
 #musicDialog #musicContent #addMusic {
-  width: 11.3rem;
+  width: 9.6rem;
   height: 0.65rem;
   text-align: center;
   line-height: 0.65rem;
@@ -2972,8 +3039,11 @@
   background: #564F4F;
   cursor: pointer;
 }
+#musicDialog #musicContent #addMusic:hover {
+  color: #EC6E1F;
+}
 #musicDialog #musicContent .musicList {
-  width: 11.3rem;
+  width: 9.6rem;
   height: 5.32rem;
   background: #564F4F;
   position: relative;
@@ -2981,7 +3051,7 @@
   overflow-x: hidden;
 }
 #musicDialog #musicContent .musicList .musicItem {
-  width: 10.9rem;
+  width: 9.2rem;
   height: 0.4rem;
   border-bottom: 0.01rem solid #666666;
   padding: 0 0.2rem;
@@ -2990,7 +3060,7 @@
   font-size: 0.16rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #FF914D;
+  color: #999;
   line-height: 0.4rem;
   cursor: pointer;
 }
@@ -3033,13 +3103,12 @@
 }
 #musicDialog #musicFoot {
   height: 0.5rem;
-  padding-top: 0.12rem;
-  background: #181818;
-  box-shadow: 0rem 0.01rem 0rem 0rem rgba(85, 85, 85, 0.1);
+  padding-top: 0.11rem;
+  border-top: 0.01rem solid #2C2C2C;
   text-align: center;
 }
 #musicDialog #musicFoot #musicSave {
-  width: 0.72rem;
+  width: 0.96rem;
   height: 0.38rem;
   line-height: 0.38rem;
   padding: 0;
@@ -3054,13 +3123,12 @@
   display: none;
   width: 7.9rem;
   height: 6.8rem;
-  box-shadow: 0rem 0.02rem 0.1rem 0rem rgba(102, 102, 102, 0.1);
+  background-color: #333;
 }
 #kvDialog #kvContent {
   width: 7.5rem;
   height: 5.78rem;
   padding: 0.2rem;
-  background: #333333;
 }
 #kvDialog #kvContent .kvPreview {
   width: 7.5rem;
@@ -3158,13 +3226,12 @@
 }
 #kvDialog #kvFoot {
   height: 0.5rem;
-  padding-top: 0.12rem;
-  background: #181818;
-  box-shadow: 0rem 0.01rem 0rem 0rem rgba(85, 85, 85, 0.1);
+  padding-top: 0.11rem;
+  border-top: 0.01rem solid #2C2C2C;
   text-align: center;
 }
 #kvDialog #kvFoot #kvSave {
-  width: 0.72rem;
+  width: 0.96rem;
   height: 0.38rem;
   line-height: 0.38rem;
   padding: 0;
@@ -3177,15 +3244,14 @@
 }
 #logoDialog {
   display: none;
-  width: 11.7rem;
+  width: 10rem;
   height: 6.8rem;
-  box-shadow: 0rem 0.02rem 0.1rem 0rem rgba(102, 102, 102, 0.1);
+  background-color: #333;
 }
 #logoDialog #logoContent {
-  width: 11.3rem;
+  width: 9.6rem;
   height: 5.98rem;
   padding: 0.1rem 0.2rem;
-  background: #333333;
 }
 #logoDialog #logoContent .logoPreview {
   width: 7.5rem;
@@ -3223,7 +3289,8 @@
   width: 1.8rem;
   position: absolute;
   top: 50%;
-  right: -1.9rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 #logoDialog #logoContent .logoPreview .logo-watermark-upload .logo-watermark-hint {
   height: 0.3rem;
@@ -3238,14 +3305,14 @@
   display: inline-block;
   width: 0.14rem;
   height: 0.14rem;
-  background-color: #F2591A;
+  background-color: #FF914D;
 }
 #logoDialog #logoContent .logoPreview .logo-watermark-upload #logo-upload-btn {
   width: 0.9rem;
   height: 0.36rem;
   line-height: 0.36rem;
   padding: 0;
-  background: #F2591A;
+  background: #FF914D;
   border-radius: 0.05rem;
 }
 #logoDialog #logoContent .logoSelect {
@@ -3253,17 +3320,16 @@
   width: 8rem;
   font-size: 0.14rem;
   color: #fff;
-  margin-left: 1.65rem;
+  margin: 0 auto;
 }
 #logoDialog #logoFoot {
   height: 0.5rem;
-  padding-top: 0.12rem;
-  background: #181818;
-  box-shadow: 0rem 0.01rem 0rem 0rem rgba(85, 85, 85, 0.1);
+  padding-top: 0.11rem;
+  border-top: 0.01rem solid #2C2C2C;
   text-align: center;
 }
 #logoDialog #logoFoot #logoSave {
-  width: 0.72rem;
+  width: 0.96rem;
   height: 0.38rem;
   line-height: 0.38rem;
   padding: 0;
@@ -3301,8 +3367,6 @@
   background: #FFFFFF;
   border: 0.01rem solid #CCCCCC;
   border-right: 0;
-  border-top-left-radius: 0.05rem;
-  border-bottom-left-radius: 0.05rem;
 }
 #video-dialog .select-search .search-video .search-video-btn {
   display: inline-block;
@@ -3311,7 +3375,6 @@
   line-height: 0.34rem;
   text-align: center;
   background: #FF914D;
-  border-radius: 0 0.05rem 0.05rem 0;
   vertical-align: bottom;
   cursor: pointer;
 }
@@ -3460,8 +3523,6 @@
   background: #FFFFFF;
   border: 0.01rem solid #CCCCCC;
   border-right: 0;
-  border-top-left-radius: 0.05rem;
-  border-bottom-left-radius: 0.05rem;
 }
 #rec-dialog .rec-search .rec-search-video .rec-search-video-btn {
   display: inline-block;
@@ -3470,7 +3531,6 @@
   line-height: 0.34rem;
   text-align: center;
   background: #FF914D;
-  border-radius: 0 0.05rem 0.05rem 0;
   vertical-align: bottom;
   cursor: pointer;
 }

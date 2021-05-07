@@ -33,69 +33,68 @@ $(function () {
         <div id="team-score-content">
             <div class="change-score">
                 <div class="change-list">
-                    <div id="left-three-plus">+</div>
-                    <span>3</span>
-                    <div id="left-three-minus">-</div>
+                    <div id="left-three-plus" class="oneClass defaultColor">+</div>
+                    <span class="twoClass defaultColor">3</span>
+                    <div id="left-three-minus" class="oneClass defaultColor">-</div>
                 </div>
                 <div class="change-list">
-                    <div id="left-two-plus">+</div>
-                    <span>2</span>
-                    <div id="left-two-minus">-</div>
+                    <div id="left-two-plus" class="oneClass defaultColor">+</div>
+                    <span class="twoClass defaultColor">2</span>
+                    <div id="left-two-minus" class="oneClass defaultColor">-</div>
                 </div>
                 <div class="change-list">
-                    <div id="left-one-plus">+</div>
-                    <span>1</span>
-                    <div id="left-one-minus">-</div>
+                    <div id="left-one-plus" class="oneClass defaultColor">+</div>
+                    <span class="twoClass defaultColor">1</span>
+                    <div id="left-one-minus" class="oneClass defaultColor">-</div>
                 </div>
             </div>
             <div class="team-score">
                 <p class="score-preview">
-                    <span class="score-preview-hot" id="left-subtotal">0</span>
-                    <input class="score-preview-input" id="left-score" type="text" value="0" maxlength="3">
+                    <span class="score-preview-hot twoClass defaultColor" id="left-subtotal">0</span>
+                    <input class="score-preview-input twoClass defaultColor" id="left-score" type="text" value="0" maxlength="3">
                 </p>
-                <p class="team-name" id="left-name">队名</p>
+                <p class="team-name twoClass defaultColor" id="left-name">队名</p>
                 <p class="team-subtotal">
                     场记分
-                    <span class="add-subtotal" id="left-subtotal-plus">+1</span>
-                    <span id="left-subtotal-minus">-1</span>
+                    <span class="add-subtotal twoClass defaultColor" id="left-subtotal-plus">+1</span>
+                    <span id="left-subtotal-minus" class="twoClass defaultColor">-1</span>
                 </p>
             </div>
             <div class="team-vs">
-                <p class="vs">VS</p>
+                <p class="vs twoClass defaultColor">VS</p>
                 <p class="scene-name">场次</p>
             </div>
             <div class="team-score">
                 <p class="score-preview">
-                    <input type="text" class="score-preview-input" id="right-score" value="0" maxlength="3">
-                    <span class="score-preview-hot" id="right-subtotal">0</span>
+                    <input type="text" class="score-preview-input twoClass defaultColor" id="right-score" value="0" maxlength="3">
+                    <span class="score-preview-hot twoClass defaultColor" id="right-subtotal">0</span>
                 </p>
-                <p class="team-name" id="right-name">队名</p>
+                <p class="team-name twoClass defaultColor" id="right-name">队名</p>
                 <p class="team-subtotal team-right-subtotal">
-                    <span id="right-subtotal-minus">-1</span>
-                    <span class="add-subtotal" id="right-subtotal-plus">+1</span>场记分
+                    <span id="right-subtotal-minus" class="twoClass defaultColor">-1</span>
+                    <span class="add-subtotal twoClass defaultColor" id="right-subtotal-plus">+1</span>场记分
                     
                 </p>
             </div>
             <div class="change-score">
                 <div class="change-list">
-                    <div id="right-one-plus">+</div>
-                    <span>1</span>
-                    <div id="right-one-minus">-</div>
+                    <div id="right-one-plus" class="oneClass defaultColor">+</div>
+                    <span class="twoClass defaultColor">1</span>
+                    <div id="right-one-minus" class="oneClass defaultColor">-</div>
                 </div>
 
                 <div class="change-list">
-                    <div id="right-two-plus">+</div>
-                    <span>2</span>
-                    <div id="right-two-minus">-</div>
+                    <div id="right-two-plus" class="oneClass defaultColor">+</div>
+                    <span class="twoClass defaultColor">2</span>
+                    <div id="right-two-minus" class="oneClass defaultColor">-</div>
                 </div>
                 <div class="change-list">
-                    <div id="right-three-plus">+</div>
-                    <span>3</span>
-                    <div id="right-three-minus">-</div>
+                    <div id="right-three-plus" class="oneClass defaultColor">+</div>
+                    <span class="twoClass defaultColor">3</span>
+                    <div id="right-three-minus" class="oneClass defaultColor">-</div>
                 </div>
             </div>
             </div>
-            <!-- 遮罩层 -->
             <div id="score-shade"></div>
         </div>
     </div>`
@@ -126,27 +125,29 @@ $(function () {
     // 云幻灯片dom
     var slidesHtml =   `
     <div id="lanternSlide">
+           <div class="slideSelectBox">
             <div id="lanternStart" class="defaultStyle">开启</div>
-            <div id="lanternPreview" class="activeStyle">
+            <div id="selectDoc">选择文档</div>
+           </div>
+            <div id="lanternPreview" class=" borderClass noneBorder">
                 <img  alt="" id="lanternImage">
             </div> 
             <div class="lanternOperation">
                 <p class="operationTop">
-                    <span class="pageNum activeStyle">0/0</span>
-                    <span class="pageFirst activeStyle">首页</span>
-                    <span class="pageEnd activeStyle">尾页</span>
+                    <span class="pageNum  equalClass endStyle">0/0</span>
+                    <span class="pageFirst equalClass endStyle">首页</span>
+                    <span class="pageEnd equalClass endStyle">尾页</span>
                 </p>
                 <p class="operationBottom">
                     <span class="selectPage">
                         <span>第</span>
-                        <input type="text" class="pageInput activeStyle">
+                        <input type="text" class="pageInput borderClass equalClass endStyle noneBorder">
                         <span>页</span>
                     </span>
-                    <span class="pagePre activeStyle">上一页</span>
-                    <span class="pageNext activeStyle">下一页</span>
+                    <span class="pagePre equalClass endStyle">上一页</span>
+                    <span class="pageNext equalClass endStyle">下一页</span>
                 </p>
             </div>
-            <div id="selectDoc" class="activeStyle">选择文档</div>
         </div>
     `
     // logoDom
@@ -158,10 +159,10 @@ $(function () {
     // 背景音乐dom
     var musicHtml = `
     <div id="musicBox">
-    <div class="musicLeft">
-         <div id="musicStart" class="defaultStyle">开启</div>
-         <div id="musicSelect">选择音乐</div>
-            </div>
+        <div class="musicLeft">
+            <div id="musicStart" class="defaultStyle">开启</div>
+            <div id="musicSelect">选择音乐</div>
+        </div>
         <div id="musicName"></div>
             <div id="music_box">
                 <div class="musicInfo">
@@ -1319,7 +1320,7 @@ $(function () {
         $('#addLogoDialog').on('click',function(){
             layer.open({
                 type: 1,
-                area: ['11.70rem', '7.22rem'],
+                area: ['10rem', '7.22rem'],
                 title: 'LOGO设置',
                 content: $('#logoDialog'),
                 shade: 0.3,
@@ -1849,6 +1850,8 @@ $(function () {
             // 渲染文档历史记录
             if(allInfo.pptInfo.data.length>0){
                 $('#lanternImage').show().attr('src',allInfo.pptInfo.data[allInfo.pptInfo.num-1])
+                $('.lanternOperation .equalClass').removeClass('endStyle').addClass('activeStyle')
+                $('.borderClass').removeClass('noneBorder').addClass('haveBorder')
             }
 
             $('.pageNum').html(allInfo.pptInfo.num+'/'+allInfo.pptInfo.total)
@@ -2018,7 +2021,7 @@ $(function () {
 
             layer.open({
                 type: 1,
-                area: ['11.70rem', '7.22rem'],
+                area: ['10rem', '7.22rem'],
                 title: '比分牌设置',
                 content: $('#scoreDialog'),
                 shade: 0.3,
@@ -2257,7 +2260,6 @@ $(function () {
 
             takeScreenshot()
             layer.closeAll()
-            $('#score-shade').hide()
 
         })
 
@@ -2291,6 +2293,8 @@ $(function () {
         function renderScore() {
             if (sessionStorage.getItem('score' + event_code)) {
                 $('#score-shade').hide()
+                $('.oneClass').removeClass('defaultColor').addClass('highlightOne')
+                $('.twoClass').removeClass('defaultColor').addClass('highlightTwo')
                 scoreData = JSON.parse(sessionStorage.getItem('score' + event_code))
                 $('#left-name').text(scoreData.nameLeft)
                 $('#right-name').text(scoreData.nameRight)
@@ -2448,6 +2452,8 @@ $(function () {
         function renderHistoryScore() {
             if (sessionStorage.getItem('score' + event_code)) {
                 $('#score-shade').hide()
+                $('.oneClass').removeClass('defaultColor').addClass('highlightOne')
+                $('.twoClass').removeClass('defaultColor').addClass('highlightTwo')
                 scoreData = JSON.parse(sessionStorage.getItem('score' + event_code))
                 $('#left-name').text(scoreData.nameLeft)
                 $('#right-name').text(scoreData.nameRight)
@@ -2666,9 +2672,13 @@ $(function () {
             $('#check-model').empty('')
             $('#scoreBrand').empty('').hide()
             $('#score-shade').show()
+            $('.oneClass').removeClass('highlightOne').addClass('defaultColor')
+            $('.twoClass').removeClass('highlightTwo').addClass('defaultColor')
             fileScore = 0
             allInfo.state = 'off'
             scoreLocation = 0
+            allInfo.update = 0
+            sendInstruct()
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
             sessionStorage.removeItem('score' + event_code)
             sessionStorage.removeItem('imageBase64' + event_code)
@@ -2990,8 +3000,8 @@ $(function () {
         $('#selectDoc').on('click',function(){
             layer.open({
                 type: 1,
-                area: ['11.70rem', '7.22rem'],
-                title: '幻灯片设置',
+                area: ['10rem', '7.22rem'],
+                title: '文档设置',
                 content: $('#docDialog'),
                 shade: 0.3,
                 shadeClose: true,
@@ -3056,7 +3066,7 @@ $(function () {
             exts:'pdf',
             headers:{token: sessionStorage.getItem('token')},
             progress: function(n, elem){
-                $(elem).text('上传中,请勿重复上传'+'('+n+'%)')
+                $(elem).text('上传中'+'('+n+'%)')
             },
             done: function(res){
               if(res.msg==="success"){
@@ -3076,14 +3086,20 @@ $(function () {
         $('.docListCont').on('click','.docIDelete',function(){
             layer.open({
                 type: 1,
-                title: ['删除提示', 'color:#fff;background-color:#FF914D;font-size: 0.2rem;height:0.42rem;line-height:0.42rem'],
-                content: `<div style="padding: 20px 20px 0;">是否删除?</div>`,
-                btn: ["删除", "取消"],
+                title: '删除提示',
+                area: ['640px', '268px'],
+                content: '<div style="margin: 48px 0 0 46px;font-size:18px;color:#666;">是否继续?</div>',
+                shade: 0.3,
+                shadeClose: true,
+                closeBtn: 1,
+                resize: false,
+                btn: ['确认', '取消'],
+                move:false,
                 yes: index=> {
                     layer.close(index)
                     if($(this).parent().attr('data-id') ==allInfo.pptInfo.id) {
                         if(allInfo.pptInfo.state === 'on'){
-                            layer.msg('请先关闭切除!')
+                            layer.msg('请先关闭!')
                             return
                         }
                     }
@@ -3111,18 +3127,18 @@ $(function () {
                                     allInfo.pptInfo.data = []
                                     allInfo.pptInfo.num = 0
                                     allInfo.pptInfo.total = 0
-
-                                   $('#lanternImage').hide()
-                                   $('.pageNum').html(0+'/'+0)
+                                    $('.lanternOperation .equalClass').removeClass('activeStyle').addClass('endStyle')
+                                    $('.borderClass').removeClass('haveBorder').addClass('noneBorder')
+                                    $('#lanternImage').hide()
+                                    $('.pageNum').html(0+'/'+0)
                                 }
+                                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
                                 getAllPdf()
                             } else {
                                 layer.msg('删除失败,请稍后重试!')
                             }
                         }
                     })
-                },
-                btn2: function () {
                 }
             })
             return false
@@ -3130,11 +3146,11 @@ $(function () {
         // 选中某个文档
         $('.docListCont').on('click','.docItem',function(){
             $(this).css({
-                backgroundColor:'#FF914D',
-                color:'#fff'
+                backgroundColor:'rgba(255,145,77,0.3)',
+                color:'#FF914D'
             }).siblings().css({
                 backgroundColor:'',
-                color:'#FF914D'
+                color:'#999'
             })
             $.ajax({
                 type: 'GET',
@@ -3175,6 +3191,8 @@ $(function () {
                 $('#lanternImage').show().attr('src',pptData.data[0])
                 $('.pageNum').html(pptData.num+'/'+pptData.total)
                 layer.closeAll()
+                $('.lanternOperation .equalClass').removeClass('endStyle').addClass('activeStyle')
+                $('.borderClass').removeClass('noneBorder').addClass('haveBorder')
             }
             
         })
@@ -3491,7 +3509,7 @@ $(function () {
        $('#musicSelect').on('click',function(){
         layer.open({
             type: 1,
-            area: ['11.70rem', '7.22rem'],
+            area: ['10rem', '7.22rem'],
             title: '背景音乐设置',
             content: $('#musicDialog'),
             shade: 0.3,
@@ -3563,7 +3581,7 @@ $(function () {
         exts:'mp3',
         headers:{token: sessionStorage.getItem('token')},
         progress: function(n, elem){
-            $(elem).text('上传中,请勿重复上传'+'('+n+'%)')
+            $(elem).text('上传中'+'('+n+'%)')
         },
         done: function(res){
           if(res.msg==="success"){
@@ -3583,9 +3601,15 @@ $(function () {
     $('.musicList').on('click','.musicDelete',function(){
         layer.open({
             type: 1,
-            title: ['删除提示', 'color:#fff;background-color:#FF914D;font-size: 0.2rem;height:0.42rem;line-height:0.42rem'],
-            content: `<div style="padding: 20px 20px 0;">是否删除?</div>`,
-            btn: ["删除", "取消"],
+            title: '删除提示',
+            area: ['640px', '268px'],
+            content: '<div style="margin: 48px 0 0 46px;font-size:18px;color:#666;">是否继续?</div>',
+            shade: 0.3,
+            shadeClose: true,
+            closeBtn: 1,
+            resize: false,
+            btn: ['确认', '取消'],
+            move:false,
             yes: index=> {
                 
                 musicData.oss = ''
@@ -3621,8 +3645,6 @@ $(function () {
                         }
                     }
                 })
-            },
-            btn2: function () {
             }
         })
         return false
@@ -3630,11 +3652,11 @@ $(function () {
     //  选中某个音乐
     $('.musicList').on('click','.musicItem',function(){
         $(this).css({
-            backgroundColor:'#FF914D',
-            color:'#fff'
+            backgroundColor:'rgba(255,145,77,0.3)',
+            color:'#FF914D'
         }).siblings().css({
             backgroundColor:'',
-            color:'#FF914D'
+            color:'#999'
         })
         musicData.oss = $(this).find('.musicAudio').attr('src').replace('beijing','beijing-internal')
         musicData.name = $(this).find('.musicTitle').html()

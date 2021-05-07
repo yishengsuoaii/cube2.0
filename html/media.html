@@ -25,14 +25,19 @@
             border: none;
 		}
 		.layui-tab-title li {
-                width: 120px;
-                margin-right: 100px;
-                font-size: 26px;
-                font-family: Source Han Sans CN;
-                font-weight: 400;
-                color: #333;
-
-            }
+            width: 120px;
+            margin-right: 100px;
+            font-size: 26px;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: #333;
+        } 
+        .layui-laypage-skip {
+            padding-left: 10px !important;
+        }
+        .layui-laypage-count {
+            padding: 0 10px !important;
+        }
 	</style>
 </head>
 
@@ -114,8 +119,9 @@
             
                                     <div class="video-keyword">
                                         <input type="text" name="title" placeholder="请输入文件名" class="layui-input fileName"><button
-                                            type="button" class="layui-btn fileSearch"><i
-                                                class="layui-icon layui-icon-search"></i></button>
+                                            type="button" class="layui-btn fileSearch">
+                                            <img src="./../image/search.png" alt="">
+                                        </button>
                                     </div>
                                 </form>
                                 <div class="setup_List">
