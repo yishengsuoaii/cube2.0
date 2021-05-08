@@ -2155,9 +2155,12 @@
   display: none;
   width: 1.2rem;
   height: 0.675rem;
+  position: relative;
+  z-index: 99;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide #lanternPreview #lanternImage:hover {
-  transform: scale(2);
+  transform: scale(6);
+  transform-origin: 50% 90%;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #lanternSlide .noneBorder {
   border: 0.01rem solid #444;
