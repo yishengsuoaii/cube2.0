@@ -2563,107 +2563,102 @@
                                             }
                                         }
                                     }
-                                    #musicName {
-                                        display: none;
-                                        height: 0.38rem;
-                                        padding:0 0.2rem;
-                                        line-height: 0.38rem;
-                                        font-size: 0.2rem;
-                                        color: #FF914D;
-                                        max-width: 2rem;
-                                        overflow: hidden;
-                                        text-overflow:ellipsis;
-                                        white-space: nowrap;
-                                    }
-                                    #music_box {
-                                        display: none;
-                                        
-                                        .musicInfo {
-                                            height: 1.4rem;
+                                    
+                                    .musicInfo {
+                                        height: 1.3rem;
+                                        display: flex;
+                                        flex-direction: column;
+                                        justify-content: space-around;
+                                        margin-left: 0.3rem;
+                                        #musicName {
+                                            width: 2.4rem;
+                                            height: 0.38rem;
+                                            line-height: 0.38rem;
+                                            font-size: 0.2rem;
+                                            color: #FF914D;
+                                            text-align: center;
+                                            overflow: hidden;
+                                            text-overflow:ellipsis;
+                                            white-space: nowrap;
+                                        }
+                                        .slideBox {
+                                            width: 2.4rem;
                                             display: flex;
-                                            flex-direction: column;
-                                            justify-content: space-around;
-                                           .slideBox {
-                                                width: 2.4rem;
-                                                display: flex;
-                                                align-items: center;
-                                                justify-content: space-between;
-                                                color: #FF914D;
-                                                position: relative;
-                                                img {
-                                                    width: (22/100rem);
-                                                    height: (18/100rem);
+                                            align-items: center;
+                                            justify-content: space-between;
+                                            color: #FF914D;
+                                            position: relative;
+                                            img {
+                                                width: (22/100rem);
+                                                height: (18/100rem);
+                                            }
+                                            .slideLine {
+                                                width: 1rem;
+                                            }
+                                            .slideInfo {
+                                                font-size: 0.14rem;
+                                            }
+                                            .wenhao {
+                                                width: 0.2rem;
+                                                height: 0.2rem;
+                                                line-height: 0.2rem;
+                                                text-align: center;
+                                                font-size: 0.14rem;
+                                                border-radius: 50%;
+                                                background-color: #666;
+                                                cursor: pointer;
+                                                &:hover + #wenInfo {
+                                                    display: block;
                                                 }
-                                                .slideLine {
-                                                    width: 1rem;
+                                            }
+                                            .wenhao1 {
+                                                &:hover + #wenInfo1 {
+                                                    display: block;
                                                 }
-                                                .slideInfo {
-                                                    font-size: 0.14rem;
-                                                }
-                                                .wenhao {
-                                                    width: 0.2rem;
-                                                    height: 0.2rem;
-                                                    line-height: 0.2rem;
-                                                    text-align: center;
-                                                    font-size: 0.14rem;
-                                                    border-radius: 50%;
-                                                    background-color: #666;
-                                                    cursor: pointer;
-                                                    &:hover + #wenInfo {
-                                                        display: block;
-                                                    }
-                                                }
-                                                .wenhao1 {
-                                                    &:hover + #wenInfo1 {
-                                                        display: block;
-                                                    }
-                                                }
-                                                #wenInfo{
-                                                    display: none;
+                                            }
+                                            #wenInfo{
+                                                display: none;
+                                                position: absolute;
+                                                top: -0.1rem;
+                                                right: -1.7rem;
+                                                font-size: 0.14rem;
+                                                padding: 0.1rem 0.16rem;
+                                                color: #999;
+                                                background-color: #666;
+                                                border-radius: 0.04rem;
+                                                .hintAngle {
                                                     position: absolute;
-                                                    top: 0.3rem;
-                                                    right: -0.7rem;
-                                                    font-size: 0.14rem;
-                                                    padding: 0.1rem 0.16rem;
-                                                    color: #999;
+                                                    top: 50%;
+                                                    left: -0.06rem;
+                                                    transform: translateY(-50%)  rotate(45deg);
+                                                    width: 0.12rem;
+                                                    height: 0.12rem;
                                                     background-color: #666;
-                                                    border-radius: 0.04rem;
-                                                    .hintAngle {
-                                                        position: absolute;
-                                                        left: 50%;
-                                                        top: -0.06rem;
-                                                        transform: translateX(-50%)  rotate(45deg);
-                                                        width: 0.12rem;
-                                                        height: 0.12rem;
-                                                        background-color: #666;
-                                                        
-                                                    }
+                                                    
                                                 }
-                                                #wenInfo1 {
-                                                    display: none;
+                                            }
+                                            #wenInfo1 {
+                                                display: none;
+                                                position: absolute;
+                                                top: -0.1rem;
+                                                right: -1.7rem;
+                                                font-size: 0.14rem;
+                                                padding: 0.1rem 0.16rem;
+                                                color: #999;
+                                                background-color: #666;
+                                                border-radius: 0.04rem;
+                                                .hintAngle {
                                                     position: absolute;
-                                                    bottom: 0.3rem;
-                                                    right: -0.7rem;
-                                                    font-size: 0.14rem;
-                                                    padding: 0.1rem 0.16rem;
-                                                    color: #999;
+                                                    top: 50%;
+                                                    left: -0.06rem;
+                                                    transform: translateY(-50%)  rotate(45deg);
+                                                    width: 0.12rem;
+                                                    height: 0.12rem;
                                                     background-color: #666;
-                                                    border-radius: 0.04rem;
-                                                    .hintAngle {
-                                                        position: absolute;
-                                                        left: 50%;
-                                                        bottom: -0.06rem;
-                                                        transform: translateX(-50%)  rotate(45deg);
-                                                        width: 0.12rem;
-                                                        height: 0.12rem;
-                                                        background-color: #666;
-                                                        
-                                                    }
                                                 }
                                             }
                                         }
                                     }
-                                    
                                 }
                                 // gif动态特效
                                 #dynamicBox {
@@ -3466,13 +3461,14 @@
 // kv弹窗
 #kvDialog {
     display: none;
-    width: 7.9rem;
+    width: 10rem;
     height: (680/100rem);
     background-color: #333;
     #kvContent {
         width: 7.5rem;
         height: 5.78rem;
-        padding: 0.2rem;
+        padding: 0.2rem 0;
+        margin: 0 auto;
         .kvPreview {
             width: 7.5rem;
             height: 4.28rem;
@@ -3515,24 +3511,16 @@
             width: 7.5rem;
             height: 0.7rem;
             display: flex;
-            // justify-content: space-evenly;
             align-items: center;
             #addKv {
-                width: 1.1rem;
+                width: 1.08rem;
                 height: 0.68rem;
-                background-color: #fff;
-                border-radius: 0.05rem;
-                border: 0.01rem solid #CCCCCC;
+                border-radius: 0.03rem;
+                border: 0.01rem dashed #FF914D;
                 cursor: pointer;
-                position: relative;
-                img {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%,-50%);
-                    width: 0.24rem;
-                    height: 0.24rem;
-                }
+                color: #FF914D;
+                text-align: center;
+                line-height: 0.68rem;
             }
             #kvLeft {
                 height: 0.7rem;
@@ -3554,12 +3542,25 @@
                     }
                     .kvDelete {
                         display: none;
+                        width: 0.20rem;
+                        height: 0.20rem;
+                        line-height: 0.20rem;
+                        background-color: rgba(255,255,255,1);
+                        box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
+                        border-radius: 0.04rem;
                         position: absolute;
-                        bottom: 0.05rem;
+                        top: 0.05rem;
                         right: 0.05rem;
                         cursor: pointer;
-                        color: #FF914D;
-                        font-size: 0.28rem;
+                        text-align: center;
+                        i {
+                            color: #999;
+                            font-size: 0.16rem;
+                            &:hover {
+                                color: #ff914d;
+                            }
+                        }
+                        
                     }
                     &:hover {
                         .kvDelete  {
@@ -3668,24 +3669,25 @@
 
                     }
                 }
-
-                #logo-upload-btn {
-                    width: (90/100rem);
-                    height: (36/100rem);
-                    line-height: 0.36rem;
-                    padding: 0;
-                    background: #FF914D;
-                    border-radius: (5/100rem);
-                }
-
+            }
+            #logo-upload-btn {
+                position: absolute;
+                right: 0;
+                bottom: -0.46rem;
+                width: (90/100rem);
+                height: (36/100rem);
+                line-height: 0.36rem;
+                padding: 0;
+                background: #FF914D;
+                border-radius: (5/100rem);
             }
         }
         .logoSelect {
             display: block;
-            width: 8rem;
+            width: 6rem;
             font-size: 0.14rem;
             color: #fff;
-            margin: 0 auto;
+            margin-left: 0.8rem;
         }
     }
     #logoFoot {

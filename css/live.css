@@ -2308,28 +2308,25 @@
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox .musicLeft #musicSelect:hover {
   background-color: #666;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #musicName {
-  display: none;
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox .musicInfo {
+  height: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 0.3rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox .musicInfo #musicName {
+  width: 2.4rem;
   height: 0.38rem;
-  padding: 0 0.2rem;
   line-height: 0.38rem;
   font-size: 0.2rem;
   color: #FF914D;
-  max-width: 2rem;
+  text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box {
-  display: none;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo {
-  height: 1.4rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox {
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox .musicInfo .slideBox {
   width: 2.4rem;
   display: flex;
   align-items: center;
@@ -2337,17 +2334,17 @@
   color: #FF914D;
   position: relative;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox img {
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox .musicInfo .slideBox img {
   width: 0.22rem;
   height: 0.18rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox .slideLine {
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox .musicInfo .slideBox .slideLine {
   width: 1rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox .slideInfo {
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox .musicInfo .slideBox .slideInfo {
   font-size: 0.14rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox .wenhao {
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox .musicInfo .slideBox .wenhao {
   width: 0.2rem;
   height: 0.2rem;
   line-height: 0.2rem;
@@ -2357,48 +2354,48 @@
   background-color: #666;
   cursor: pointer;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox .wenhao:hover + #wenInfo {
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox .musicInfo .slideBox .wenhao:hover + #wenInfo {
   display: block;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox .wenhao1:hover + #wenInfo1 {
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox .musicInfo .slideBox .wenhao1:hover + #wenInfo1 {
   display: block;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox #wenInfo {
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox .musicInfo .slideBox #wenInfo {
   display: none;
   position: absolute;
-  top: 0.3rem;
-  right: -0.7rem;
+  top: -0.1rem;
+  right: -1.7rem;
   font-size: 0.14rem;
   padding: 0.1rem 0.16rem;
   color: #999;
   background-color: #666;
   border-radius: 0.04rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox #wenInfo .hintAngle {
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox .musicInfo .slideBox #wenInfo .hintAngle {
   position: absolute;
-  left: 50%;
-  top: -0.06rem;
-  transform: translateX(-50%) rotate(45deg);
+  top: 50%;
+  left: -0.06rem;
+  transform: translateY(-50%) rotate(45deg);
   width: 0.12rem;
   height: 0.12rem;
   background-color: #666;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox #wenInfo1 {
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox .musicInfo .slideBox #wenInfo1 {
   display: none;
   position: absolute;
-  bottom: 0.3rem;
-  right: -0.7rem;
+  top: -0.1rem;
+  right: -1.7rem;
   font-size: 0.14rem;
   padding: 0.1rem 0.16rem;
   color: #999;
   background-color: #666;
   border-radius: 0.04rem;
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox #music_box .musicInfo .slideBox #wenInfo1 .hintAngle {
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #operation-tab .layui-tab-content .layui-tab-item #musicBox .musicInfo .slideBox #wenInfo1 .hintAngle {
   position: absolute;
-  left: 50%;
-  bottom: -0.06rem;
-  transform: translateX(-50%) rotate(45deg);
+  top: 50%;
+  left: -0.06rem;
+  transform: translateY(-50%) rotate(45deg);
   width: 0.12rem;
   height: 0.12rem;
   background-color: #666;
@@ -3121,14 +3118,15 @@
 }
 #kvDialog {
   display: none;
-  width: 7.9rem;
+  width: 10rem;
   height: 6.8rem;
   background-color: #333;
 }
 #kvDialog #kvContent {
   width: 7.5rem;
   height: 5.78rem;
-  padding: 0.2rem;
+  padding: 0.2rem 0;
+  margin: 0 auto;
 }
 #kvDialog #kvContent .kvPreview {
   width: 7.5rem;
@@ -3173,21 +3171,14 @@
   align-items: center;
 }
 #kvDialog #kvContent #kvList #addKv {
-  width: 1.1rem;
+  width: 1.08rem;
   height: 0.68rem;
-  background-color: #fff;
-  border-radius: 0.05rem;
-  border: 0.01rem solid #CCCCCC;
+  border-radius: 0.03rem;
+  border: 0.01rem dashed #FF914D;
   cursor: pointer;
-  position: relative;
-}
-#kvDialog #kvContent #kvList #addKv img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 0.24rem;
-  height: 0.24rem;
+  color: #FF914D;
+  text-align: center;
+  line-height: 0.68rem;
 }
 #kvDialog #kvContent #kvList #kvLeft {
   height: 0.7rem;
@@ -3211,12 +3202,24 @@
 }
 #kvDialog #kvContent #kvList #kvLeft .kvItem .kvDelete {
   display: none;
+  width: 0.2rem;
+  height: 0.2rem;
+  line-height: 0.2rem;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 0.04rem;
   position: absolute;
-  bottom: 0.05rem;
+  top: 0.05rem;
   right: 0.05rem;
   cursor: pointer;
-  color: #FF914D;
-  font-size: 0.28rem;
+  text-align: center;
+}
+#kvDialog #kvContent #kvList #kvLeft .kvItem .kvDelete i {
+  color: #999;
+  font-size: 0.16rem;
+}
+#kvDialog #kvContent #kvList #kvLeft .kvItem .kvDelete i:hover {
+  color: #ff914d;
 }
 #kvDialog #kvContent #kvList #kvLeft .kvItem:hover .kvDelete {
   display: block;
@@ -3307,7 +3310,10 @@
   height: 0.14rem;
   background-color: #FF914D;
 }
-#logoDialog #logoContent .logoPreview .logo-watermark-upload #logo-upload-btn {
+#logoDialog #logoContent .logoPreview #logo-upload-btn {
+  position: absolute;
+  right: 0;
+  bottom: -0.46rem;
   width: 0.9rem;
   height: 0.36rem;
   line-height: 0.36rem;
@@ -3317,10 +3323,10 @@
 }
 #logoDialog #logoContent .logoSelect {
   display: block;
-  width: 8rem;
+  width: 6rem;
   font-size: 0.14rem;
   color: #fff;
-  margin: 0 auto;
+  margin-left: 0.8rem;
 }
 #logoDialog #logoFoot {
   height: 0.5rem;

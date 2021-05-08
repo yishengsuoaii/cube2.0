@@ -163,30 +163,27 @@ $(function () {
             <div id="musicStart" class="defaultStyle">开启</div>
             <div id="musicSelect">选择音乐</div>
         </div>
-        <div id="musicName"></div>
-            <div id="music_box">
-                <div class="musicInfo">
-                    
-                    <div class="slideBox">
-                        <img src="./../image/mute-close.png" id="music-mute">
-                        <div class="slideLine" id="slideMusic"></div>
-                        <span class="slideInfo">背景音量</span> 
-                        <span class="wenhao">?</span>
-                        <div id="wenInfo">
-                            调节背景音乐的音量<div class="hintAngle"></div>
-                        </div>
-                    </div>
-                    <div class="slideBox">
-                        <img src="./../image/mute-close.png" id="audio-mute">
-                        <div class="slideLine" id="slideAudio"></div>
-                        <span class="slideInfo">混音音量</span>
-                        <span class="wenhao wenhao1">?</span>
-                        <div id="wenInfo1">
-                            调节机位混音的音量<div class="hintAngle"></div>
-                        </div>
-                    </div>
+        <div class="musicInfo">
+            <div id="musicName"></div>
+            <div class="slideBox">
+                <img src="./../image/mute-close.png" id="music-mute">
+                <div class="slideLine" id="slideMusic"></div>
+                <span class="slideInfo">背景音量</span> 
+                <span class="wenhao">?</span>
+                <div id="wenInfo">
+                    调节背景音乐的音量<div class="hintAngle"></div>
                 </div>
             </div>
+            <div class="slideBox">
+                <img src="./../image/mute-close.png" id="audio-mute">
+                <div class="slideLine" id="slideAudio"></div>
+                <span class="slideInfo">混音音量</span>
+                <span class="wenhao wenhao1">?</span>
+                <div id="wenInfo1">
+                    调节机位混音的音量<div class="hintAngle"></div>
+                </div>
+            </div>
+        </div>
     </div>
     `
 
@@ -510,13 +507,15 @@ $(function () {
                                 <div class="layui-tab-item layui-show">
                                 ${scoreHtml}
                                 </div>`
-                            } else if (item.appname == '背景替换') {
-                                functionTitleSrc += `<li class="layui-this">背景替换</li>`
-                                functionContentSrc += `
-                                <div class="layui-tab-item layui-show">
-                                    ${bgReplaceHtml}
-                                </div>`
-                            } else if (item.appname == '手势检测') {
+                            } 
+                            // else if (item.appname == '背景替换') {
+                            //     functionTitleSrc += `<li class="layui-this">背景替换</li>`
+                            //     functionContentSrc += `
+                            //     <div class="layui-tab-item layui-show">
+                            //         ${bgReplaceHtml}
+                            //     </div>`
+                            // } 
+                            else if (item.appname == '手势检测') {
                                 functionTitleSrc += `<li class="layui-this">手势检测</li>`
                                 functionContentSrc += `
                                 <div class="layui-tab-item layui-show">
@@ -577,13 +576,15 @@ $(function () {
                                     ${scoreHtml}
                                 </div>`
                                 
-                            } else if (item.appname == '背景替换') {
-                                functionTitleSrc += `<li>背景替换</li>`
-                                functionContentSrc += `
-                                <div class="layui-tab-item">
-                                    ${bgReplaceHtml}
-                                </div>`
-                            } else if (item.appname == '手势检测') {
+                            } 
+                            // else if (item.appname == '背景替换') {
+                            //     functionTitleSrc += `<li>背景替换</li>`
+                            //     functionContentSrc += `
+                            //     <div class="layui-tab-item">
+                            //         ${bgReplaceHtml}
+                            //     </div>`
+                            // } 
+                            else if (item.appname == '手势检测') {
                                 functionTitleSrc += `<li>手势检测</li>`
                                 functionContentSrc += `
                                 <div class="layui-tab-item">
@@ -1870,8 +1871,7 @@ $(function () {
                 $('#musicStart').addClass('startStyle').removeClass('defaultStyle').html('关闭')
             }
             if(allInfo.musicInfo.name !=='' && allInfo.musicInfo.oss !=='') {
-                $('#musicName').show().html(allInfo.musicInfo.name)
-                $('#music_box').show()
+                $('#musicName').html(allInfo.musicInfo.name)
             }
 
             if(allInfo.kvInfo.state === 'off') {
@@ -3622,8 +3622,7 @@ $(function () {
                     }
                     allInfo.musicInfo.oss = ''
                     allInfo.musicInfo.name = ''
-                    $('#music_box').hide()
-                    $('#musicName').hide().html('')
+                    $('#musicName').html('')
                 }
                 layer.close(index)
                 $.ajax({
@@ -3671,8 +3670,7 @@ $(function () {
         allInfo.musicInfo.oss = musicData.oss
         allInfo.musicInfo.name = musicData.name
         sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-        $('#music_box').show()
-        $('#musicName').show().html(musicData.name)
+        $('#musicName').html(musicData.name)
         if(allInfo.musicInfo.state === 'on') {
             allInfo.update = 0
             allInfo.musicInfo.update = 1
@@ -3800,7 +3798,7 @@ $(function () {
     $('#kvSelect').on('click',function(){
         layer.open({
             type: 1,
-            area: ['7.9rem', '7.22rem'],
+            area: ['10rem', '7.22rem'],
             title: '素材设置',
             content: $('#kvDialog'),
             shade: 0.3,
@@ -3851,7 +3849,10 @@ $(function () {
                     res.data.forEach(item=>{
                         str+=`<div class="kvItem">
                                     <img src="${item.scorecardurl}" alt="">
-                                    <i class="layui-icon layui-icon-delete kvDelete" data-id="${item.id}"></i>
+                                    <div class="kvDelete" data-id="${item.id}">
+                                        <i class="layui-icon layui-icon-delete"></i>
+                                    </div>
+                                    
                                 </div>`
                         
                     })
