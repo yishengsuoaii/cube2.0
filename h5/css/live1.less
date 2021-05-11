@@ -1,0 +1,433 @@
+@media screen and (min-width:750px) {
+    html {
+      font-size: 75px !important;
+    }
+  }
+  
+  
+  @media screen and (max-width:320px) {
+    html {
+      font-size: 32px !important;
+    }
+  }
+  
+  @base_fontsize: 75;
+  
+  * {
+    margin: 0;
+  }
+  
+  body {
+    width: (750rem/@base_fontsize);
+    margin: 0 auto;
+  
+    #live {
+        display: flex;
+        flex-direction: column;
+        width: (750rem/@base_fontsize);
+        height: 100vh;
+  
+        #videoContainer {
+            position: relative;
+            width: (750rem/@base_fontsize);
+            height: (421.875rem/@base_fontsize);
+            #videoBox {
+            width: (750rem/@base_fontsize);
+            height: (421.875rem/@base_fontsize);
+            overflow: hidden;
+            #refresh {
+                display: block;
+                width: (750rem/@base_fontsize);
+                height: (421.875rem/@base_fontsize);
+            }
+            }
+    
+            //顶部倒计时
+            #topDown {
+            display: none;
+            width: (750rem/@base_fontsize);
+            height: (80rem/@base_fontsize);
+            background-color: rgba(0, 0, 0, .3);
+            text-align: center;
+            line-height: (80rem/@base_fontsize);
+            color: #fff;
+            font-size: (28rem/@base_fontsize);
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            position: absolute;
+            top: 0;
+    
+            }
+            // 中部倒计时
+            #centerDown {
+            display: none;
+            width: (750rem/@base_fontsize);
+            height: (220rem/@base_fontsize);
+            position: absolute;
+            top: 20%;
+            transform: rotateY(-50%);
+            z-index: 999;
+    
+            #dayClass {
+                width: (320rem/@base_fontsize);
+                height: (40rem/@base_fontsize);
+                background: #FF914D;
+                border-radius: (10rem/@base_fontsize);
+                font-size: (28rem/@base_fontsize);
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #FFFFFF;
+                // line-height: (68rem/@base_fontsize);
+                text-align: center;
+                margin: 0 auto (10rem/@base_fontsize);
+                padding: (14rem/@base_fontsize)  0;
+                // vertical-align: bottom;
+            }
+    
+            .timeClass {
+                width: 202px;
+                height: 66px;
+                background: url('./../image/timer.png') no-repeat;
+                background-size: 100% 100%;
+                margin: 0 auto;
+                position: relative;
+                font-size: 24px;
+                font-family: Source Han Sans CN;
+                font-weight: 400;
+                color: #FFFFFF;
+    
+                .hour1 {
+                position: absolute;
+                top: 17px;
+                left: 18px;
+                }
+            
+                .hour2 {
+                position: absolute;
+                top: 17px;
+                left: 41px;
+                }
+            
+                .minute1 {
+                position: absolute;
+                top: 17px;
+                left: 84px;
+                }
+            
+                .minute2 {
+                position: absolute;
+                top: 17px;
+                left: 107px;
+                }
+            
+                .second1 {
+                position: absolute;
+                top: 17px;
+                left: 149px;
+                }
+            
+                .second2 {
+                position: absolute;
+                top: 17px;
+                left: 172px;
+                }
+            }
+            }
+            // 观众人数
+            #showNum {
+            display: none;
+            font-size: (24rem/@base_fontsize);
+            color: #FF914C;
+            position: absolute;
+            left: (20rem/@base_fontsize);
+            bottom: (90rem/@base_fontsize);
+            }
+        }
+    
+    
+        #ad-link {
+            display: block;
+            width: (750rem/@base_fontsize);
+            height: (90rem/@base_fontsize);
+            position: relative;
+            #ad-image {
+                display: block;
+                width: 100%;
+                height: 100%; 
+            }
+    
+            .close {
+                display: inline-block;
+                width: (34rem/@base_fontsize);
+                height: (34rem/@base_fontsize);
+                position: absolute;
+                top: (10rem/@base_fontsize);
+                right: (20rem/@base_fontsize);
+                color: red;
+                background-color: #ccc;
+                border-radius: 50%;
+                text-align: center;
+                font-size: (24rem/@base_fontsize);
+                line-height: (34rem/@base_fontsize);
+            }
+        }
+  
+      // 操作栏
+      .layui-tab {
+        flex: 1;
+        width: (750rem/@base_fontsize);
+        margin: 0 !important;
+        display: flex;
+        flex-direction: column;
+        // overflow-y: hidden;
+        .layui-tab-title {
+          width: (750rem/@base_fontsize);
+          box-shadow: 0px 3px 0px 0px rgba(229, 230, 234, 0.06);
+          border: 0 !important;
+          li {
+            width: (250rem/@base_fontsize);
+            padding: 0;
+            font-size: (28rem/@base_fontsize);
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: #666;
+          }
+          .layui-this {
+            color: #333;
+            font-weight: bold;
+            &:after {
+                border: none;
+                width: (48rem/@base_fontsize);
+                height: (5rem/@base_fontsize);
+                background: linear-gradient(-90deg, #0170FF, #0A8EFF, #13ABFF);
+                border-radius: (2.5rem/@base_fontsize);
+                margin-left: (96rem/@base_fontsize);
+                margin-top: (76rem/@base_fontsize);
+            }
+          }
+        }
+        .layui-tab-content {
+            flex: 1;
+            padding: 0 !important;
+            .layui-tab-item {
+                width: 100%;
+                height: 100%;
+                overflow-y: auto;
+                //聊天室
+                #chat {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    .chatBox {
+                        flex: 1;
+                        height: 200px;
+                        box-sizing: border-box;
+                        padding: (30rem/@base_fontsize);
+                        background-color: #F6F7FB;
+                        overflow-y: auto;
+                        #giveLike {
+                            position: fixed;
+                            bottom: 100px;
+                            right: 30px;
+                            height: 40px;
+                            width: 40px;
+                            display: block;
+                            z-index: 21;
+                            cursor: pointer;
+                        }
+                        canvas {
+                            position: fixed;
+                            bottom:110px;
+                            right: 0px;
+                            z-index: 20;
+                            cursor: pointer;
+                            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                        }
+            
+                        .chatList {
+                            width: 100%;
+                            min-height: (64rem/@base_fontsize);
+                            margin-bottom: (20rem/@base_fontsize);
+                            display: flex;
+                            justify-content: space-between;
+                
+                            .chatImage {
+                                width: (74rem/@base_fontsize);
+                                height: (74rem/@base_fontsize);
+                                img {
+                                    display: block;
+                                    width: (74rem/@base_fontsize);
+                                    height: (74rem/@base_fontsize);
+                                    border-radius: 50%;
+                                }
+                            }
+                
+                            .chatInfo {
+                                width: (600rem/@base_fontsize);
+                
+                                .chatName {
+                                    width: (600rem/@base_fontsize);
+                                    height: (34rem/@base_fontsize);
+                                    font-size: (28rem/@base_fontsize);
+                                    font-family: Source Han Sans CN;
+                                    font-weight: 400;
+                                    line-height: (34rem/@base_fontsize);
+                                    color: #666666;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    white-space: nowrap;
+                                    span {
+                                        font-size: (24rem/@base_fontsize);
+                                        color: #fff;
+                                        background: linear-gradient(-90deg, #0170FF, #0A8EFF, #13ABFF);
+                                        border-radius: (4rem/@base_fontsize);
+                                        padding: (4rem/@base_fontsize);
+                                    }
+                                    margin-bottom: (14rem/@base_fontsize);
+                                }
+                    
+                                .chatMessage {
+                                    display: inline-block;
+                                    font-size: (28rem/@base_fontsize);
+                                    font-family: Source Han Sans CN;
+                                    font-weight: 400;
+                                    line-height: (40rem/@base_fontsize);
+                                    color: #999999;
+                                    word-wrap:break-word;
+                                    background-color: #fff;
+                                    border-radius: 0px (10rem/@base_fontsize) (10rem/@base_fontsize) (10rem/@base_fontsize);
+                                    padding: (10rem/@base_fontsize) (20rem/@base_fontsize);
+                                    vertical-align: top;
+                                }
+                            }
+                        }
+                    }
+        
+                    .sendBox {
+                        box-sizing: border-box;
+                        padding:(20rem/@base_fontsize) (30rem/@base_fontsize) 0;
+                        height: (168rem/@base_fontsize);
+                        background-color: #fff;
+                        box-shadow: 0px -3px 0px 0px rgba(164, 169, 188, 0.03);
+                        .sendInput {
+                            width: 100%;
+                            height: (74rem/@base_fontsize);
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            .messageInput {
+                                width: (506rem/@base_fontsize);
+                                height: (74rem/@base_fontsize);
+                                padding: 0 (20rem/@base_fontsize);
+                                background: #FAFAFA;
+                                border-radius: (37rem/@base_fontsize);
+                                line-height: (74rem/@base_fontsize);
+                                border: 0;
+                                font-size: (28rem/@base_fontsize);
+                                color: #444;
+                            }
+                            #send-btn {
+                                width: (120rem/@base_fontsize);
+                                height: (56rem/@base_fontsize);
+                                line-height: (56rem/@base_fontsize);
+                                background: linear-gradient(-90deg, #0170FF, #0A8EFF, #13ABFF);
+                                border-radius: (28rem/@base_fontsize);
+                                font-size: (28rem/@base_fontsize);
+                                font-family: Source Han Sans CN;
+                                font-weight: 400;
+                                color: #FFFFFF;
+                                text-align: center;
+                            }
+                        }
+                        .support {
+                            width: 100%;
+                            height: (74rem/@base_fontsize);
+                            line-height: (74rem/@base_fontsize);
+                            font-size: (24rem/@base_fontsize);
+                            text-align: center;
+                            font-family: Arial;
+                            font-weight: 400;
+                            color: #CDCDCD;
+                        }
+                       
+                    }
+                }
+                // 活动简介
+                .brier {
+                    width: 100%;
+                    height: 100%;
+                    .brierImage {
+                        width: (750rem/@base_fontsize);
+                    }
+                }
+                // 回放
+                .playBack {
+                    width: (710rem/@base_fontsize);
+                    overflow-y: auto;
+                    .rec {
+                    height: (76rem/@base_fontsize);
+                    line-height: (76rem/@base_fontsize);
+                    font-size: (28rem/@base_fontsize);
+                    font-family: Source Han Sans CN;
+                    font-weight: 500;
+                    line-height: (76rem/@base_fontsize);
+                    color: #333333;
+                    }
+            
+                    .backList {
+                    display: block;
+                    width: (710rem/@base_fontsize);
+                    height: (174rem/@base_fontsize);
+                    border-bottom: (2rem/@base_fontsize) solid #f1f1f1;
+            
+                    .backContent {
+                        width: (710rem/@base_fontsize);
+                        height: (172rem/@base_fontsize);
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+            
+                        .backInfo {
+                        width: (400rem/@base_fontsize);
+                        height: (132rem/@base_fontsize);
+            
+                        .backName {
+                            height: (80rem/@base_fontsize);
+                            font-size: (28rem/@base_fontsize);
+                            font-family: Source Han Sans CN;
+                            font-weight: 400;
+                            line-height: (40rem/@base_fontsize);
+                            color: #666666;
+                            text-overflow: -o-ellipsis-lastline;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                        }
+            
+                        .backShow {
+                            height: (32rem/@base_fontsize);
+                            font-size: (24rem/@base_fontsize);
+                            font-family: Source Han Sans CN;
+                            font-weight: 400;
+                            line-height: (32rem/@base_fontsize);
+                            color: #999999;
+                        }
+                        }
+            
+                        .backImage {
+                        width: (234rem/@base_fontsize);
+                        height: (132rem/@base_fontsize);
+                        border-radius: (8rem/@base_fontsize);
+                        }
+                    }
+                    }
+                }
+            }
+        }
+  
+      }
+    }
+  }

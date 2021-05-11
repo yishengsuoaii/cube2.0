@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>直播间</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="./css/live1.css">
+    <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.9.3/skins/default/aliplayer-min.css"/>
+    <script src="./../commonJs/aliplayer-h5-min.js"></script>
+    <script src="../commonJs/jquery-3.2.1.min.js"></script>
+    <script src="./../commonJs/flexible.js"></script>
+    <script src="../layui/layui.js"></script>
+    <script src="./js/sha.js"></script>
+    <script src="./js/jweixin-1.6.0.js"></script>
+</head>
+
+<body>
+    <div id="live">
+        <div id="videoContainer">
+            <div id="videoBox" class="prism-player">
+            </div>
+            <p id="topDown"></p>
+            <div id="centerDown">
+                <p id="dayClass"></p>
+                <div class="timeClass">
+                    <span class="hour1">0</span>
+                    <span class="hour2">0</span>
+
+                    <span class="minute1">0</span>
+                    <span class="minute2">0</span>
+                    <span class="second1">0</span>
+                    <span class="second2">0</span>
+                </div>
+            </div>
+            <span id="showNum"></span>
+        </div>
+        <a id="ad-link">
+            <img id="ad-image" alt="">
+            <span class="close">x</span>
+        </a>
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">聊天</li>
+                <li>活动简介</li>
+                <li>精彩推荐</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <div id="chat">
+                        <div class="chatBox">
+                            <img src="./image/reward.png" id="giveLike">
+                        </div>
+                        <div class="sendBox">
+                            <p class="sendInput">
+                                <input type="text" class="messageInput" placeholder="说点什么吧"><span id="send-btn">发送</span>
+                            </p>
+                            <p class="support">Cube.vip 提供技术支持</p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="brier">
+                        <img class="brierImage" alt="">
+                    </div>
+                    
+                </div>
+                <div class="layui-tab-item">
+                    <div class="playBack"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="./js/live.js"></script>
+   
+</body>
+
+</html>

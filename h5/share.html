@@ -11,6 +11,7 @@
     <script src="./../commonJs/qrcode.js"></script>
     <script src="./js/sha.js"></script>
     <script src="./js/jweixin-1.6.0.js"></script>
+    <script src="./../commonJs/html2canvas.js"></script>
 </head>
 <body>
     <div id="shareBox">
@@ -44,12 +45,34 @@
                         $('#channelName').text(res.data.event_title)
                         new QRCode(document.getElementById("qrCode"), {
                             text: "http://www.cube.vip/h5/wxlogin.html?key="+event_uri_key,
-                            width: 64,
-                            height: 64,
+                            width: 80,
+                            height: 80,
                         });
+                       setTimeout(()=>{
+                        getCard()
+                       },0)
+                        
                     }
                 }
             })
+
+           
+            var c_width = $('#shareBg').outerWidth();
+            var c_height = $('#shareBg').outerHeight();
+            function getCard() {
+                html2canvas($("#shareBox"), {
+                    useCORS: true,
+                    onrendered: function (canvas) {
+                        $('#shareBg').attr('src',canvas.toDataURL('image/png',1.0))
+                        $('#userImage').hide()
+                        $('#userName').hide()
+                        $('#channelName').hide()
+                        $('#qrCode').hide()
+                    },
+                    width: c_width,
+                    height: c_height
+                })
+            }
 
             var shaStr = ''
             var time = createTimestamp()

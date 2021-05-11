@@ -1202,18 +1202,22 @@ $(function () {
                 $('#areaCont').removeClass('leftBottom rightTop leftTop bottomCenter bottomCenter1').addClass(
                     'rightBottom')
                 styleLocation = 4
-            } else if (data.value === 'bottomCenter') {
-                if (styleFlag === 1) {
-                    $('#areaCont').removeClass('leftBottom rightTop leftTop rightBottom bottomCenter1').addClass(
-                        'bottomCenter')
-                    styleLocation = 5
-                } else if (styleFlag === 2) {
-                    $('#areaCont').removeClass('leftBottom rightTop leftTop rightBottom bottomCenter').addClass(
-                        'bottomCenter1')
-                    styleLocation = 6
-                }
+            } 
+            // else if (data.value === 'bottomCenter') {
+            //     $('#areaCont').removeClass('leftBottom rightTop leftTop rightBottom bottomCenter1').addClass(
+            //         'bottomCenter')
+            //         styleLocation = 5
+            //     if (styleFlag === 1) {
+            //         $('#areaCont').removeClass('leftBottom rightTop leftTop rightBottom bottomCenter1').addClass(
+            //             'bottomCenter')
+            //         styleLocation = 5
+            //     } else if (styleFlag === 2) {
+            //         $('#areaCont').removeClass('leftBottom rightTop leftTop rightBottom bottomCenter').addClass(
+            //             'bottomCenter1')
+            //         styleLocation = 6
+            //     }
 
-            }
+            // }
         })
 
         // logo方位-----------------------------------------------------------------------------------------------------------
@@ -2018,6 +2022,10 @@ $(function () {
 
         // 打开模板弹窗
         $('#select-model').on('click', function () {
+            if(allInfo.pptInfo.state==='on'){
+                layer.msg('不允许在幻灯片上加比分牌!')
+                return
+            }
 
             layer.open({
                 type: 1,
@@ -3209,6 +3217,11 @@ $(function () {
                     layer.msg('不允许在动态特效上加PDF!')
                     return
                 }
+                if(allInfo.state==='on'){
+                    layer.msg('不允许在比分牌上加PDF!')
+                    return
+                }
+                
                 allInfo.pptInfo.state = 'on'
                 pptData.state = 'on'
                 $(this).addClass('startStyle').removeClass('defaultStyle').html('关闭')
@@ -3719,14 +3732,14 @@ $(function () {
                     if( allInfo.gifInfo.state === 'off'){
                         str+=`<div class="itemBox">
                             <div class="dynamicItem active-dynamicItem" data-id="-1"  data-x="0" data-y="0" data-width="0" data-height="0">
-                                <img src="./../image/active_img.png" id="default-img">
+                                <img src="http://changshijie.oss-cn-beijing.aliyuncs.com/media/other/gifopen.png" id="default-img">
                             </div>
                             <p class="itemName">无</p>
                         </div>`
                     } else {
                         str+=`<div class="itemBox">
                             <div class="dynamicItem" data-id="-1"  data-x="0" data-y="0" data-width="0" data-height="0">
-                                <img src="./../image/default_img.png" id="default-img">
+                                <img src="http://changshijie.oss-cn-beijing.aliyuncs.com/media/other/gifclose.png" id="default-img">
                             </div>
                             <p class="itemName">无</p>
                         </div>`
@@ -3770,11 +3783,11 @@ $(function () {
            
 
 
-            $('#default-img').attr('src','./../image/default_img.png')
+            $('#default-img').attr('src','http://changshijie.oss-cn-beijing.aliyuncs.com/media/other/gifclose.png')
             allInfo.gifInfo.state = 'on'
         }
         if($(this).attr('data-id')==='-1') {
-            $('#default-img').attr('src','./../image/active_img.png')
+            $('#default-img').attr('src','http://changshijie.oss-cn-beijing.aliyuncs.com/media/other/gifopen.png')
             allInfo.gifInfo.state = 'off'
         }
         // 
