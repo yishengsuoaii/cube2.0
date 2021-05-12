@@ -23,16 +23,36 @@
         </div>
         <div class="videoInfo">
             <p class="describe"></p>
-            <p class="viewNum"></p>
+            <p class="viewNum">
+                <span class="showTime"></span>
+                <span class="showNum"></span>
+            </p>
         </div>
 
-        <div class="comment">
-           评论
-        </div>
-        <div class="commentBox">
-        </div>
-        <div class="sendBox">
-            <input type="text" class="messageInput"><span id="send-btn">发送</span>
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">评论</li>
+                <li>精选</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <div id="chat">
+                        <div class="chatBox">
+                            
+                        </div>
+                        <div class="sendBox">
+                            <p class="sendInput">
+                                <input type="text" class="messageInput" placeholder="说点什么吧"><span id="send-btn">发送</span>
+                            </p>
+                            <p class="support">Cube.vip 提供技术支持</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="playBack">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -42,6 +62,7 @@
         var infoData = []
         var userInfoSrc= ''
         var userInfo = []
+        let event_uri_key = ''
         if(sessionStorage.getItem('cubeInfo')){
             userInfoSrc= sessionStorage.getItem('cubeInfo').split("&")
             userInfoSrc.forEach(item => {
@@ -52,10 +73,15 @@
             data.forEach(item => {
                 infoData.push(item.split("="))
             })
+            event_uri_key = infoData[2][1]
         }else {
             window.location.href='http://www.cube.vip/h5/wxminlogin.html' + window.location.search
         }
         $(function () {
+            layui.use(['element'], function () {
+                var element = layui.element;
+                layui.element.init();
+            }); 
             new Aliplayer({
                 "id": "videoBox",
                 "source": infoData[1][1],
@@ -149,6 +175,7 @@
             })
             $('.describe').text(decodeURI(infoData[3][1]))
 
+            // 获取观看量
             $.ajax({
                 type: "POST",
                 dataType: "json",
@@ -159,10 +186,28 @@
                 },
                 success:function(res){
                     if(res.msg==='success'){
-                        $('.viewNum').text(res.data.video_views+'人观看')
+                        $('.showNum').text(res.data.video_views+'人观看')
                     }
                 }
             })
+            // 获取时间
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                async: false,
+                url: "http://www.cube.vip/video/h5_video_code_to_uri/",
+                data:{
+                    video_id:infoData[0][1]
+                },
+                success:function(res){
+                    if(res.msg==='success'){
+                        $('.showTime').text(res.data.datetime)
+                        console.log(res)
+                    }
+                }
+            })
+            
             // 获取评论列表
             $.ajax({
                 url: 'http://www.cube.vip/commenting/h5_comments_show/',
@@ -174,23 +219,24 @@
                     if (res.msg === 'success') {
                         var str = ''
                         res.data.forEach(item => {
-
-                            str += `<div class="comList" id="${item.commend_id}">
-                                <div class="comImage">
+                            str += `
+                            <div class="chatList" id="${item.commend_id}">
+                                <div class="chatImage">
                                     <img src="${item.wechat_image_url}" alt="">
                                 </div>
-                                <div class="comInfo">
-                                    <p class="comName">${item.viewer }</p>
-                                    <p class="comMessage">${item.comment}</p>
+                                <div class="chatInfo">
+                                    <p class="chatName">${item.viewer }</p>
+                                    <p class="chatMessage">${item.comment}</p>
                                 </div>
                             </div>
                             `
                         })
-                        $('.commentBox').html(str)
+                        $('.chatBox').append(str)
                     }
                 }
             })
 
+            // 发送评论开始
             $('#send-btn').on('click', function () {
                 if ($.trim($('.messageInput').val()).length > 0) {
                     $.ajax({
@@ -243,29 +289,69 @@
                             var str = ''
                             res.data.forEach(item => {
 
-                                str += `<div class="comList" id="${item.commend_id}">
-                                <div class="comImage">
-                                    <img src="${item.wechat_image_url}" alt="">
+                                str += `
+                                <div class="chatList" id="${item.commend_id}">
+                                    <div class="chatImage">
+                                        <img src="${item.wechat_image_url}" alt="">
+                                    </div>
+                                    <div class="chatInfo">
+                                        <p class="chatName">${item.viewer }</p>
+                                        <p class="chatMessage">${item.comment}</p>
+                                    </div>
                                 </div>
-                                <div class="comInfo">
-                                    <p class="comName">${item.viewer }</p>
-                                    <p class="comMessage">${item.comment}</p>
-                                </div>
-                            </div>
                             `
                             })
-                            $('.commentBox').html(str)
+                            $('.chatBox').html(str)
                             setTimeout(() => {
-                                $('.commentBox').scrollTop($('.commentBox')[0].scrollHeight)
+                                $('.chatBox').scrollTop($('.chatBox')[0].scrollHeight)
                             }, 0)
                         }
                     }
                 })
             }
+            // 发送评论结束
 
-            $('.commentBox').css({
-                height: 'calc(100vh - 10.158rem - 10px )'
-            })
+             //获取回放视频
+                $.ajax({
+                    url: 'http://www.cube.vip/video/h5_get_event_video/',
+                    type: 'GET',
+                    data: {
+                        event_uri_key: event_uri_key
+                    },
+                    success: function (res) {
+                        if (res.msg === 'success') {
+                            var str = ''
+                            res.data.forEach(item => {
+                                str += `<a class="backList" data-id="${item.video_id}" href="http://www.cube.vip/h5/playback.html?id=${item.video_id}&url=${item.video_uri}&video_number_views=${event_uri_key}&video_profile=${item.video_profile}&cover=${item.video_description_image}">
+                                    <div class="backContent">
+                                        <img src="${item.video_description_image}" onerror="this.src='./image/back-image.png'"  class="backImage">
+                                        <div class="backInfo">
+                                            <div class="backName">
+                                            ${item.video_profile}               
+                                            </div>
+                                            <p class="backTime">
+                                                ${item.datetime}
+                                            </p>
+                                            <p class="backShow">
+                                                ${item.video_number_views}人观看
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                                `
+                            })
+                            if(res.data.length>3) {
+                                str+= '<img src="./image/offer.png"  class="offerImg">'
+                            }
+                            $('.playBack').html(str)
+                        }
+                    }
+                })
+
+
+
+
+
             var shaStr = ''
             var timeShare = createTimestamp()
             function createTimestamp() {

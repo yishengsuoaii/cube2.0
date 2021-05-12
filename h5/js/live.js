@@ -46,25 +46,25 @@ $(function () {
                     $('#ad-link').show()
                     $('#ad-link').attr('href', res.data.event_ads_external_uri)
                     $('#ad-image').attr('src', res.data.event_ads_image_uri)
-                    $('.chatBox').css({
-                        height: 'calc(100vh - 8.1316rem - 60px )'
+                    $('#chat').css({
+                        height: 'calc(100vh - 6.825rem - 40px )'
                     })
                     $('.brier').css({
-                        height: 'calc(100vh - 6.7983rem - 60px )'
+                        height: 'calc(100vh - 6.825rem - 40px )'
                     })
                     $('.playBack').css({
-                        height: 'calc(100vh - 6.7983rem - 60px )'
+                        height: 'calc(100vh - 6.825rem - 40px )'
                     })
                 } else {
                     $('#ad-link').hide()
-                    $('.chatBox').css({
-                        height: 'calc(100vh - 6.955rem - 60px )'
+                    $('#chat').css({
+                        height: 'calc(100vh - 5.625rem - 40px )'
                     })
                     $('.brier').css({
-                        height: 'calc(100vh - 5.625rem - 60px )'
+                        height: 'calc(100vh - 5.625rem - 40px )'
                     })
                     $('.playBack').css({
-                        height: 'calc(100vh - 5.625rem - 60px )'
+                        height: 'calc(100vh - 5.625rem - 40px )'
                     })
                 }
                 // 活动简介
@@ -141,21 +141,27 @@ $(function () {
             if (res.msg === 'success') {
                 var str = '<p class="rec">精彩推荐</p>'
                 res.data.forEach(item => {
-                    str += `<a class="backList" data-id="${item.video_id}" href="http://www.cube.vip/h5/playback.html?id=${item.video_id}&url=${item.video_uri}&video_number_views=${item.video_number_views}&video_profile=${item.video_profile}&cover=${item.video_description_image}">
+                    str += `<a class="backList" data-id="${item.video_id}" href="http://www.cube.vip/h5/playback.html?id=${item.video_id}&url=${item.video_uri}&video_number_views=${event_uri_key}&video_profile=${item.video_profile}&cover=${item.video_description_image}">
                         <div class="backContent">
+                            <img src="${item.video_description_image}" onerror="this.src='./image/back-image.png'"  class="backImage">
                             <div class="backInfo">
                                 <div class="backName">
-                                   ${item.video_profile}               
+                                ${item.video_profile}               
                                 </div>
+                                <p class="backTime">
+                                    ${item.datetime}
+                                </p>
                                 <p class="backShow">
                                     ${item.video_number_views}人观看
                                 </p>
                             </div>
-                            <img src="${item.video_description_image}" onerror="this.src='./image/back-image.png'"  class="backImage">
                         </div>
                     </a>
                     `
                 })
+                if(res.data.length>3) {
+                    str+= '<img src="./image/offer.png"  class="offerImg">'
+                }
                 $('.playBack').html(str)
             }
         }
@@ -175,14 +181,14 @@ $(function () {
     $('.close').on('click', function (e) {
         $('#ad-link').hide()
         e.preventDefault()
-        $('.chatBox').css({
-            height: 'calc(100vh - 6.955rem - 60px )'
+        $('#chat').css({
+            height: 'calc(100vh - 5.625rem - 40px )'
         })
         $('.brier').css({
-            height: 'calc(100vh - 5.625rem - 60px )'
+            height: 'calc(100vh - 5.625rem - 40px )'
         })
         $('.playBack').css({
-            height: 'calc(100vh - 5.625rem - 60px )'
+            height: 'calc(100vh - 5.625rem - 40px )'
         })
     })
     // 定时器
@@ -670,7 +676,7 @@ $(function () {
                 <img src="${message[2]}" alt="">
             </div>
             <div class="chatInfo">
-                <p class="chatName" style="color:#FF914D">管理员</p>
+                <p class="chatName"><span>管理员</span></p>
                 <p class="chatMessage">${message[3]}</p>
             </div>
         </div>
@@ -915,7 +921,7 @@ $(function () {
         }();
     return o
 });
-var assets = ['image/1.png', 'image/2.png', 'image/3.png', 'image/4.png', 'image/5.png', ];
+var assets = ['image/6.png', 'image/7.png', 'image/8.png', 'image/9.png', 'image/10.png','image/11.png', 'image/12.png' ];
 assets.forEach(function (src, index) {
     assets[index] = new Promise(function (resolve) {
         var img = new Image;
@@ -935,9 +941,9 @@ Promise.all(assets).then(function (images) {
     var stage = new BubbleHearts();
     var canvas = stage.canvas;
     canvas.width = 100;
-    canvas.height = 300;
+    canvas.height = 260;
     canvas.style['width'] = '100px';
-    canvas.style['height'] = '300px';
+    canvas.style['height'] = '260px';
     document.querySelector('.chatBox').appendChild(canvas);
     document.getElementById('giveLike').addEventListener('click', function () {
         stage.bubble(images[random.uniformDiscrete(0, images.length - 1)]);

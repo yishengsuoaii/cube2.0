@@ -39,27 +39,38 @@
         </div>
         <a id="ad-link">
             <img id="ad-image" alt="">
-            <span class="close">x</span>
+            <img src="./image/close.png" class="close">
         </a>
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-            <ul class="layui-tab-title tab">
+            <ul class="layui-tab-title">
                 <li class="layui-this">聊天</li>
-                <li>活动简介</li>
-                <li>精彩推荐</li>
+                <li>详情</li>
+                <li>精选</li>
             </ul>
             <div class="layui-tab-content">
-                <div class="layui-tab-item layui-show" id="chat">
-                    <div class="chatBox">
-                        <img src="./image/reward.png" id="giveLike">
-                    </div>
-                    <div class="sendBox">
-                        <input type="text" class="messageInput"><span id="send-btn">发送</span>
+                <div class="layui-tab-item layui-show">
+                    <div id="chat">
+                        <div class="chatBox">
+                            <img src="./image/reward1.png" id="giveLike">
+                        </div>
+                        <div class="sendBox">
+                            <p class="sendInput">
+                                <input type="text" class="messageInput" placeholder="说点什么吧"><span id="send-btn">发送</span>
+                            </p>
+                            <p class="support">Cube.vip 提供技术支持</p>
+                            
+                        </div>
                     </div>
                 </div>
-                <div class="layui-tab-item brier">
-                    <img class="brierImage" alt="">
+                <div class="layui-tab-item">
+                    <div class="brier">
+                        <img class="brierImage" alt="">
+                    </div>
+                    
                 </div>
-                <div class="layui-tab-item playBack">
+                <div class="layui-tab-item">
+                    <div class="playBack">
+                    </div>
                 </div>
             </div>
         </div>

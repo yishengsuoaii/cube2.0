@@ -13,32 +13,229 @@
 }
 body {
   width: 10rem !important;
-  overflow-y: hidden;
-  min-width: 320px;
   margin: 0 auto;
 }
 body #play {
   width: 10rem !important;
+  height: 100vh;
+  background-color: #F6F7FB;
 }
 body #play #videoBox {
   display: block;
   width: 10rem !important;
   height: 5.625rem;
+  overflow: hidden;
 }
 body #play .videoInfo {
-  width: 9.46666667rem !important;
-  height: 1.6rem !important;
-  padding: 0.26666667rem !important;
-  box-shadow: 0px 1px 2px #F0F0F0;
+  height: 1.92rem !important;
+  padding: 0.4rem !important;
+  background-color: #fff;
 }
 body #play .videoInfo .describe {
-  width: 9.46666667rem !important;
   height: 1.06666667rem !important;
   font-size: 0.42666667rem !important;
   font-family: Source Han Sans CN;
   font-weight: 400;
   line-height: 0.53333333rem !important;
+  color: #222;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-bottom: 0.32rem;
+}
+body #play .videoInfo .viewNum {
+  height: 0.53333333rem !important;
+  font-size: 0.32rem !important;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  line-height: 0.53333333rem !important;
+  color: #999999;
+}
+body #play .videoInfo .viewNum span {
+  margin-right: 0.53333333rem;
+}
+body #play .layui-tab {
+  width: 10rem;
+  margin: 0.26666667rem 0 0 !important;
+}
+body #play .layui-tab .layui-tab-title {
+  width: 10rem;
+  box-shadow: 0px 2px 4px 0px rgba(204, 204, 204, 0.2);
+  border: 0 !important;
+  background-color: #fff;
+}
+body #play .layui-tab .layui-tab-title li {
+  width: 1.86666667rem;
+  padding: 0;
+  font-size: 0.37333333rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666;
+}
+body #play .layui-tab .layui-tab-title .layui-this {
+  color: #333;
+  font-weight: bold;
+}
+body #play .layui-tab .layui-tab-title .layui-this:after {
+  border: none;
+  width: 0.64rem;
+  height: 0.06666667rem;
+  background: linear-gradient(-90deg, #0170FF, #0A8EFF, #13ABFF);
+  border-radius: 0.03333333rem;
+  margin-left: 0.61333333rem;
+  margin-top: 36px;
+}
+body #play .layui-tab .layui-tab-content {
+  padding: 0 !important;
+}
+body #play .layui-tab .layui-tab-content .layui-tab-item #chat .chatBox {
+  height: calc(100vh - 10.8517rem - 40px) !important;
+  box-sizing: border-box;
+  padding: 0.4rem;
+  background-color: #F6F7FB;
+  overflow-y: auto;
+}
+body #play .layui-tab .layui-tab-content .layui-tab-item #chat .chatBox .chatList {
+  width: 100%;
+  min-height: 0.85333333rem;
+  margin-bottom: 0.26666667rem;
+  display: flex;
+  justify-content: space-between;
+}
+body #play .layui-tab .layui-tab-content .layui-tab-item #chat .chatBox .chatList .chatImage {
+  width: 0.98666667rem;
+  height: 0.98666667rem;
+}
+body #play .layui-tab .layui-tab-content .layui-tab-item #chat .chatBox .chatList .chatImage img {
+  display: block;
+  width: 0.98666667rem;
+  height: 0.98666667rem;
+  border-radius: 50%;
+}
+body #play .layui-tab .layui-tab-content .layui-tab-item #chat .chatBox .chatList .chatInfo {
+  width: 8rem;
+}
+body #play .layui-tab .layui-tab-content .layui-tab-item #chat .chatBox .chatList .chatInfo .chatName {
+  width: 8rem;
+  height: 0.45333333rem;
+  font-size: 0.37333333rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  line-height: 0.45333333rem;
   color: #666666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 0.18666667rem;
+}
+body #play .layui-tab .layui-tab-content .layui-tab-item #chat .chatBox .chatList .chatInfo .chatName span {
+  font-size: 0.32rem;
+  color: #fff;
+  background: linear-gradient(-90deg, #0170FF, #0A8EFF, #13ABFF);
+  border-radius: 0.10666667rem;
+  padding: 0.05333333rem;
+}
+body #play .layui-tab .layui-tab-content .layui-tab-item #chat .chatBox .chatList .chatInfo .chatMessage {
+  display: inline-block;
+  font-size: 0.37333333rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  line-height: 0.53333333rem;
+  color: #999999;
+  word-wrap: break-word;
+  background-color: #fff;
+  border-radius: 0px 0.13333333rem 0.13333333rem 0.13333333rem;
+  padding: 0.13333333rem 0.26666667rem;
+  vertical-align: top;
+  box-shadow: 0px 3px 20px 0px rgba(215, 219, 237, 0.35);
+}
+body #play .layui-tab .layui-tab-content .layui-tab-item #chat .sendBox {
+  box-sizing: border-box;
+  padding: 0.26666667rem 0.4rem 0;
+  height: 2.21333333rem;
+  background-color: #fff;
+  border-top: 0.02666667rem solid rgba(204, 204, 204, 0.3);
+}
+body #play .layui-tab .layui-tab-content .layui-tab-item #chat .sendBox .sendInput {
+  width: 100%;
+  height: 0.98666667rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body #play .layui-tab .layui-tab-content .layui-tab-item #chat .sendBox .sendInput .messageInput {
+  width: 6.74666667rem;
+  height: 0.98666667rem;
+  padding: 0 0.26666667rem;
+  background: #FAFAFA;
+  border-radius: 0.49333333rem;
+  line-height: 0.98666667rem;
+  border: 0;
+  font-size: 0.37333333rem;
+  color: #444;
+}
+body #play .layui-tab .layui-tab-content .layui-tab-item #chat .sendBox .sendInput #send-btn {
+  width: 1.6rem;
+  height: 0.74666667rem;
+  line-height: 0.74666667rem;
+  background: linear-gradient(-90deg, #0170FF, #0A8EFF, #13ABFF);
+  border-radius: 0.37333333rem;
+  font-size: 0.37333333rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-align: center;
+}
+body #play .layui-tab .layui-tab-content .layui-tab-item #chat .sendBox .support {
+  width: 100%;
+  height: 0.96rem;
+  line-height: 0.96rem;
+  font-size: 0.32rem;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  color: #CDCDCD;
+}
+body #play .layui-tab .layui-tab-content .layui-tab-item .playBack {
+  height: calc(100vh - 8.6117rem - 40px) !important;
+  box-sizing: border-box;
+  overflow-y: auto;
+  background-color: #F6F7FB;
+  padding-top: 0.26666667rem;
+}
+body #play .layui-tab .layui-tab-content .layui-tab-item .playBack .backList {
+  display: block;
+  height: 2.26666667rem;
+  padding: 0.26666667rem 0.4rem;
+  background-color: #fff;
+}
+body #play .layui-tab .layui-tab-content .layui-tab-item .playBack .backList .backContent {
+  width: 9.2rem;
+  height: 2.26666667rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body #play .layui-tab .layui-tab-content .layui-tab-item .playBack .backList .backContent .backImage {
+  width: 3.06666667rem;
+  height: 2.26666667rem;
+  border-radius: 0.13333333rem;
+}
+body #play .layui-tab .layui-tab-content .layui-tab-item .playBack .backList .backContent .backInfo {
+  width: 5.86666667rem;
+  height: 2.26666667rem;
+}
+body #play .layui-tab .layui-tab-content .layui-tab-item .playBack .backList .backContent .backInfo .backName {
+  width: 5.86666667rem;
+  height: 1.06666667rem;
+  font-size: 0.34666667rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  line-height: 0.53333333rem;
+  color: #222;
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -46,98 +243,25 @@ body #play .videoInfo .describe {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
-body #play .videoInfo .viewNum {
-  height: 0rem !important;
-  font-size: 0.32rem !important;
+body #play .layui-tab .layui-tab-content .layui-tab-item .playBack .backList .backContent .backInfo .backTime {
+  height: 0.42666667rem;
+  font-size: 0.32rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  line-height: 0.53333333rem !important;
-  color: #999999;
+  line-height: 0.42666667rem;
+  color: #888;
+  margin: 0.17333333rem 0;
 }
-body #play .comment {
-  width: 9.68rem !important;
-  height: 0.8rem !important;
-  font-size: 0.42666667rem !important;
+body #play .layui-tab .layui-tab-content .layui-tab-item .playBack .backList .backContent .backInfo .backShow {
+  height: 0.42666667rem;
+  font-size: 0.32rem;
   font-family: Source Han Sans CN;
-  font-weight: 700;
-  line-height: 0.8rem !important;
-  color: #333333;
-  padding-left: 0.32rem !important;
+  font-weight: 400;
+  line-height: 0.42666667rem;
+  color: #888;
 }
-body #play .commentBox {
-  width: 9.46666667rem !important;
-  padding: 0.26666667rem 0.26666667rem 0;
-  overflow-y: auto;
-}
-body #play .commentBox .comList {
-  width: 9.46666667rem !important;
-  min-height: 0.85333333rem !important;
-  margin-bottom: 0.26666667rem !important;
-  display: flex;
-}
-body #play .commentBox .comList .comImage {
-  width: 0.85333333rem !important;
-  height: 0.85333333rem !important;
-}
-body #play .commentBox .comList .comImage img {
+body #play .layui-tab .layui-tab-content .layui-tab-item .playBack .offerImg {
   display: block;
-  width: 0.74666667rem !important;
-  height: 0.74666667rem !important;
-  border-radius: 50%;
-}
-body #play .commentBox .comList .comInfo {
-  width: 8.61333333rem !important;
-}
-body #play .commentBox .comList .comInfo .comName {
-  width: 8.61333333rem !important;
-  height: 0.45333333rem !important;
-  font-size: 0.32rem !important;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  line-height: 0.45333333rem !important;
-  color: #666666;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-body #play .commentBox .comList .comInfo .comMessage {
-  width: 8.61333333rem !important;
-  font-size: 0.37333333rem !important;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  line-height: 0.53333333rem !important;
-  color: #999999;
-  word-wrap: break-word;
-}
-body #play .sendBox {
-  width: 9.46666667rem !important;
-  height: 1.30666667rem !important;
-  padding: 0 0.26666667rem 0.26666667rem;
-  border-top: 0.02666667rem solid #ccc;
-}
-body #play .sendBox .messageInput {
-  width: 7.46666667rem !important;
-  height: 0.8rem !important;
-  padding: 0 0.26666667rem !important;
-  background: #F0F0F0;
-  border-radius: 5px;
-  line-height: 0.8rem !important;
-  margin-top: 0.25333333rem !important;
-  border: 0;
-  font-size: 0.32rem !important;
-  color: #666666;
-}
-body #play .sendBox #send-btn {
-  display: inline-block;
-  width: 1.22666667rem !important;
-  height: 0.8rem !important;
-  background: #FF914C;
-  border-radius: 0.08rem !important;
-  font-size: 0.4rem !important;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  line-height: 0.8rem !important;
-  color: #FFFFFF;
-  text-align: center;
-  margin-left: 0.24rem !important;
+  width: 10rem;
+  height: 2.56rem;
 }
