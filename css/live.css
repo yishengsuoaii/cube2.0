@@ -1540,7 +1540,8 @@
   line-height: 0.38rem;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .chatBox .sendBox .send:hover {
-  background-color: #F2591A;
+  background-color: #FF914D;
+  color: #fff;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over {
   width: 15.19rem;

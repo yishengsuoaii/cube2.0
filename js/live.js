@@ -4091,23 +4091,23 @@ $(function () {
         layer.msg('复制失败,请重试!');
     });
     // 复制拉流地址
-    // var clipboard4 = new ClipboardJS('#copyHlsBtn');
+    var clipboard4 = new ClipboardJS('#copyHlsBtn');
 
-    // clipboard4.on('success', function(e) {
-    //     layer.msg('复制成功!');
-    // });
+    clipboard4.on('success', function(e) {
+        layer.msg('复制成功!');
+    });
 
-    // clipboard4.on('error', function(e) {
-    //     layer.msg('复制失败,请重试!');
-    // });
-    // var clipboard5 = new ClipboardJS('#copyRtmpBtn');
+    clipboard4.on('error', function(e) {
+        layer.msg('复制失败,请重试!');
+    });
+    var clipboard5 = new ClipboardJS('#copyRtmpBtn');
 
-    // clipboard5.on('success', function(e) {
-    //     layer.msg('复制成功!');
-    // });
+    clipboard5.on('success', function(e) {
+        layer.msg('复制成功!');
+    });
 
-    // clipboard5.on('error', function(e) {
-    //     layer.msg('复制失败,请重试!');
-    // });
+    clipboard5.on('error', function(e) {
+        layer.msg('复制失败,请重试!');
+    });
 
 })
