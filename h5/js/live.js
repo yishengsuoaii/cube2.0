@@ -141,7 +141,7 @@ $(function () {
             if (res.msg === 'success') {
                 var str = '<p class="rec">精彩推荐</p>'
                 res.data.forEach(item => {
-                    str += `<a class="backList" data-id="${item.video_id}" href="http://www.cube.vip/h5/playback.html?id=${item.video_id}&url=${item.video_uri}&video_number_views=${event_uri_key}&video_profile=${item.video_profile}&cover=${item.video_description_image}">
+                    str += `<a class="backList" data-id="${item.video_id}" href="http://www.cube.vip/h5/playback.html?id=${item.video_id}&url=1&video_number_views=${event_uri_key}&video_profile=1&cover=${item.video_description_image}">
                         <div class="backContent">
                             <img src="${item.video_description_image}" onerror="this.src='./image/back-image.png'"  class="backImage">
                             <div class="backInfo">

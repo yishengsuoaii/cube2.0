@@ -63,6 +63,7 @@
         var userInfoSrc= ''
         var userInfo = []
         let event_uri_key = ''
+        let videoName = ''
         if(sessionStorage.getItem('cubeInfo')){
             userInfoSrc= sessionStorage.getItem('cubeInfo').split("&")
             userInfoSrc.forEach(item => {
@@ -82,98 +83,7 @@
                 var element = layui.element;
                 layui.element.init();
             }); 
-            new Aliplayer({
-                "id": "videoBox",
-                "source": infoData[1][1],
-                "width":'10rem',
-                "height":'5.625rem',
-                "autoplay": true,
-                "isLive": false,
-                "rePlay": false,
-                "playsinline": true,
-                "preload": true,
-                "controlBarVisibility": "click",
-                "useH5Prism": true,
-                "skinLayout": [
-                    {
-                        "name": "bigPlayButton",
-                        "align": "cc",
-                    },
-                    {
-                        "name": "H5Loading",
-                        "align": "cc"
-                    },
-                    {
-                        "name": "errorDisplay",
-                        "align": "tlabs",
-                        "x": 0,
-                        "y": 0
-                    },
-                    {
-                        "name": "infoDisplay"
-                    },
-                    {
-                        "name": "tooltip",
-                        "align": "blabs",
-                        "x": 0,
-                        "y": 56
-                    },
-                    {
-                        "name": "thumbnail"
-                    },
-                    {
-                        "name": "controlBar",
-                        "align": "blabs",
-                        "x": 0,
-                        "y": 0,
-                        "children": [
-                            {
-                                "name": "progress",
-                                "align": "blabs",
-                                "x": 0,
-                                "y": 44
-                            },
-                            {
-                                "name": "playButton",
-                                "align": "tl",
-                                "x": 15,
-                                "y": 12
-                            },
-                            {
-                                "name": "timeDisplay",
-                                "align": "tl",
-                                "x": 10,
-                                "y": 7
-                            },
-                            {
-                                "name": "subtitle",
-                                "align": "tr",
-                                "x": 15,
-                                "y": 12
-                            },
-                            {
-                                "name": "setting",
-                                "align": "tr",
-                                "x": 15,
-                                "y": 12
-                            },
-                            {
-                                "name": "fullScreenButton",
-                                "align": "tr",
-                                "x": 10,
-                                "y": 12
-                            },
-                            {
-                                "name": "volume",
-                                "align": "tr",
-                                "x": 5,
-                                "y": 10
-                            }
-                        ]
-                    }
-                ]
-            })
-            $('.describe').text(decodeURI(infoData[3][1]))
+           
 
             // 获取观看量
             $.ajax({
@@ -203,7 +113,99 @@
                 success:function(res){
                     if(res.msg==='success'){
                         $('.showTime').text(res.data.datetime)
-                        console.log(res)
+                        videoName = res.data.video_profile
+                        $('.describe').text(res.data.video_profile)
+                        new Aliplayer({
+                            "id": "videoBox",
+                            "source": res.data.video_rui,
+                            "width":'10rem',
+                            "height":'5.625rem',
+                            "autoplay": true,
+                            "isLive": false,
+                            "rePlay": false,
+                            "playsinline": true,
+                            "preload": true,
+                            "controlBarVisibility": "click",
+                            "useH5Prism": true,
+                            "skinLayout": [
+                                {
+                                    "name": "bigPlayButton",
+                                    "align": "cc",
+                                },
+                                {
+                                    "name": "H5Loading",
+                                    "align": "cc"
+                                },
+                                {
+                                    "name": "errorDisplay",
+                                    "align": "tlabs",
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                {
+                                    "name": "infoDisplay"
+                                },
+                                {
+                                    "name": "tooltip",
+                                    "align": "blabs",
+                                    "x": 0,
+                                    "y": 56
+                                },
+                                {
+                                    "name": "thumbnail"
+                                },
+                                {
+                                    "name": "controlBar",
+                                    "align": "blabs",
+                                    "x": 0,
+                                    "y": 0,
+                                    "children": [
+                                        {
+                                            "name": "progress",
+                                            "align": "blabs",
+                                            "x": 0,
+                                            "y": 44
+                                        },
+                                        {
+                                            "name": "playButton",
+                                            "align": "tl",
+                                            "x": 15,
+                                            "y": 12
+                                        },
+                                        {
+                                            "name": "timeDisplay",
+                                            "align": "tl",
+                                            "x": 10,
+                                            "y": 7
+                                        },
+                                        {
+                                            "name": "subtitle",
+                                            "align": "tr",
+                                            "x": 15,
+                                            "y": 12
+                                        },
+                                        {
+                                            "name": "setting",
+                                            "align": "tr",
+                                            "x": 15,
+                                            "y": 12
+                                        },
+                                        {
+                                            "name": "fullScreenButton",
+                                            "align": "tr",
+                                            "x": 10,
+                                            "y": 12
+                                        },
+                                        {
+                                            "name": "volume",
+                                            "align": "tr",
+                                            "x": 5,
+                                            "y": 10
+                                        }
+                                    ]
+                                }
+                            ]
+                        })
                     }
                 }
             })
@@ -322,7 +324,7 @@
                         if (res.msg === 'success') {
                             var str = ''
                             res.data.forEach(item => {
-                                str += `<a class="backList" data-id="${item.video_id}" href="http://www.cube.vip/h5/playback.html?id=${item.video_id}&url=${item.video_uri}&video_number_views=${event_uri_key}&video_profile=${item.video_profile}&cover=${item.video_description_image}">
+                                str += `<a class="backList" data-id="${item.video_id}" href="http://www.cube.vip/h5/playback.html?id=${item.video_id}&url=1&video_number_views=${event_uri_key}&video_profile=1&cover=${item.video_description_image}">
                                     <div class="backContent">
                                         <img src="${item.video_description_image}" onerror="this.src='./image/back-image.png'"  class="backImage">
                                         <div class="backInfo">
@@ -380,15 +382,15 @@
                         wx.ready(function() {
                             // 分享到朋友圈
                             wx.updateTimelineShareData({
-                                title: decodeURI(infoData[3][1]), // 分享标题
+                                title: videoName, // 分享标题
                                 link: 'http://www.cube.vip/h5/playback.html'+ window.location.search, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                                 imgUrl: infoData[4][1], // 分享图标
                             });
                             
                             // 分享给朋友
                             wx.updateAppMessageShareData({
-                                title: decodeURI(infoData[3][1]), // 分享标题
-                                desc: decodeURI(infoData[3][1]), // 分享描述
+                                title: videoName, // 分享标题
+                                desc: videoName, // 分享描述
                                 link: 'http://www.cube.vip/h5/playback.html'+ window.location.search, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                                 imgUrl: infoData[4][1], // 分享图标
                             });
