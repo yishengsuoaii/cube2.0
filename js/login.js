@@ -21,7 +21,7 @@ $(function () {
     //登录---------------------------------------------------------------------------------------------------------------
     $(".name").blur(function () {
         if ($.trim($(this).val()).length <= 0) {
-            $("#hintLogin").text("用户名不能为空!");
+            $("#hintLogin").text("用户名/手机号不能为空!");
         } else {
             $("#hintLogin").text('')
         }
@@ -36,7 +36,7 @@ $(function () {
 
     $('#login-btn').on('click', function () {
         if ($.trim($('.name').val()).length <= 0 || $.trim($('.txtPwd-1').val()).length <= 0) {
-            layer.msg('请输入用户名或密码!')
+            layer.msg('请输入用户名/手机号或密码!')
             return
         }
         $.ajax({
