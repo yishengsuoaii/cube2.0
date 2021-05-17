@@ -76,14 +76,12 @@ body #play .layui-tab .layui-tab-title li {
   color: #666;
 }
 body #play .layui-tab .layui-tab-title .layui-this {
-  color: #333;
   font-weight: bold;
 }
 body #play .layui-tab .layui-tab-title .layui-this:after {
   border: none;
   width: 0.64rem;
   height: 0.06666667rem;
-  background: linear-gradient(-90deg, #0170FF, #0A8EFF, #13ABFF);
   border-radius: 0.03333333rem;
   margin-left: 0.61333333rem;
   margin-top: 36px;
@@ -181,7 +179,6 @@ body #play .layui-tab .layui-tab-content .layui-tab-item #chat .sendBox .sendInp
   width: 1.6rem;
   height: 0.74666667rem;
   line-height: 0.74666667rem;
-  background: linear-gradient(-90deg, #0170FF, #0A8EFF, #13ABFF);
   border-radius: 0.37333333rem;
   font-size: 0.37333333rem;
   font-family: Source Han Sans CN;

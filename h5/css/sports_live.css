@@ -1,0 +1,12 @@
+body #live .layui-tab .layui-tab-title .layui-this {
+  color: #FF6401;
+}
+body #live .layui-tab .layui-tab-title .layui-this:after {
+  background: linear-gradient(-90deg, #FF5201, #FF7101, #FF9000);
+}
+body #live .layui-tab .layui-tab-content .layui-tab-item #chat .chatBox .chatList .chatInfo .chatName span {
+  background: linear-gradient(-90deg, #FF5201, #FF7101, #FF9000);
+}
+body #live .layui-tab .layui-tab-content .layui-tab-item #chat .sendBox .sendInput #send-btn {
+  background: linear-gradient(-90deg, #FF5201, #FF7101, #FF9000);
+}

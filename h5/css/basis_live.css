@@ -166,14 +166,12 @@ body #live .layui-tab .layui-tab-title li {
   color: #666;
 }
 body #live .layui-tab .layui-tab-title .layui-this {
-  color: #333;
   font-weight: bold;
 }
 body #live .layui-tab .layui-tab-title .layui-this:after {
   border: none;
   width: 0.64rem;
   height: 0.06666667rem;
-  background: linear-gradient(-90deg, #0170FF, #0A8EFF, #13ABFF);
   border-radius: 0.03333333rem;
   margin-left: 1.34666667rem;
   margin-top: 36px;
@@ -197,12 +195,12 @@ body #live .layui-tab .layui-tab-content .layui-tab-item #chat .chatBox {
   overflow-y: auto;
 }
 body #live .layui-tab .layui-tab-content .layui-tab-item #chat .chatBox #giveLike {
+  display: none;
   position: fixed;
   bottom: 100px;
   right: 20px;
   height: 40px;
   width: 40px;
-  display: block;
   z-index: 21;
   cursor: pointer;
   border-radius: 50%;
@@ -252,7 +250,6 @@ body #live .layui-tab .layui-tab-content .layui-tab-item #chat .chatBox .chatLis
 body #live .layui-tab .layui-tab-content .layui-tab-item #chat .chatBox .chatList .chatInfo .chatName span {
   font-size: 0.32rem;
   color: #fff;
-  background: linear-gradient(-90deg, #0170FF, #0A8EFF, #13ABFF);
   border-radius: 0.10666667rem;
   padding: 0.05333333rem;
 }
@@ -299,7 +296,6 @@ body #live .layui-tab .layui-tab-content .layui-tab-item #chat .sendBox .sendInp
   width: 1.6rem;
   height: 0.74666667rem;
   line-height: 0.74666667rem;
-  background: linear-gradient(-90deg, #0170FF, #0A8EFF, #13ABFF);
   border-radius: 0.37333333rem;
   font-size: 0.37333333rem;
   font-family: Source Han Sans CN;

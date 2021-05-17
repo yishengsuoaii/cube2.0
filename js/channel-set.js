@@ -47,6 +47,9 @@ $(function () {
     // 是否已经添加过预览视频标志
     var previewNull = true
     
+    // h5模板
+    var h5_check_id = ''
+    var h5_all_data = []
 
     // 1 是添加视频预告,2是添加转场视频
     var differenceFlag = 1
@@ -869,7 +872,6 @@ $(function () {
                         }
                     })
                     $('.different-style').html(str)
-                    form.render('checkbox');
                 }
             }
         })
@@ -1169,7 +1171,7 @@ $(function () {
     clipboard.on('error', function (e) {
         layer.msg('复制失败,请重试!');
     });
-
+    // 提交邀请卡
     $('#submit').on('click', function () {
         $.ajax({
             type: "POST",
@@ -1183,6 +1185,85 @@ $(function () {
                 event_id: event_id,
                 id: checkId,
                 invi_flag: 'True'
+            },
+            success: function (res) {
+                if (res.msg === 'success') {
+                    layer.msg('保存成功!');
+                } else {
+                    layer.msg('保存失败,请重试!');
+                }
+            }
+        })
+    })
+
+      // h5模板---------------------------------------------------------------------------------
+    // 获取m5模板
+    $.get({
+        url: "http://www.cube.vip/event/update_h5_stytle/",
+        dataType: "json",
+        headers: {
+            token: sessionStorage.getItem('token')
+        },
+        data: {
+            event_id: event_id
+        },
+        success: function (res) {
+            if (res.msg === 'success') {
+                console.log(res.data)
+                h5_check_id = res.data.id
+                h5_all_data = res.data.invi_data
+                var str = ''
+                res.data.invi_data.forEach(item=>{
+                    if (res.data.id === item.id) {
+                        str += `<div class="h5_item_box">
+                                    <div class="h5_item h5_item_active" data-id="${item.id}">
+                                        <img src="${item.h5_stytle_thumbnail_url}" alt="">
+                                    </div>
+                                    <p class="h5_name"> ${item.h5_stytle_name}</p>
+                                </div>
+                                `
+                        $('.h5_inviteImg').attr('src', item.h5_stytle_url)
+
+                    } else {
+                        str += `
+                                <div class="h5_item_box">
+                                    <div class="h5_item" data-id="${item.id}">
+                                        <img src="${item.h5_stytle_thumbnail_url}" alt="">
+                                    </div>
+                                    <p class="h5_name"> ${item.h5_stytle_name}</p>
+                                </div>
+                            `
+                    }
+                })
+                $('.h5_list').html(str)
+            }
+        }
+    })
+
+    // 选择h5模板样式
+    $('.h5_list').on('click', '.h5_item', function () {
+        $(this).addClass('h5_item_active').parent().siblings().find('.h5_item').removeClass('h5_item_active')
+        h5_check_id = $(this).attr('data-id')
+        h5_all_data.forEach(item => {
+            if (Number(h5_check_id) === item.id) {
+                $('.h5_inviteImg').attr('src', item.h5_stytle_url)
+            }
+        })
+    })
+
+    // 提交h5模板
+    $('#h5_submit').on('click',function(){
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            async: false,
+            headers: {
+                token: sessionStorage.getItem('token')
+            },
+            url: "http://www.cube.vip/event/update_h5_stytle/",
+            data: {
+                event_id: event_id,
+                id: h5_check_id
             },
             success: function (res) {
                 if (res.msg === 'success') {

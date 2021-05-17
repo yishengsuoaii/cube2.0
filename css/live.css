@@ -1154,6 +1154,98 @@
   font-size: 0.16rem;
   cursor: pointer;
 }
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #h5_template {
+  width: 100%;
+  display: flex;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #h5_template .h5_Left {
+  width: 5.75rem;
+  margin-top: 0.8rem;
+  margin-left: 1rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #h5_template .h5_Left .h5_default-style {
+  height: 0.3rem;
+  font-size: 0.16rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  line-height: 0.3rem;
+  padding-left: 0.15rem;
+  margin: 0.2rem 0;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #h5_template .h5_Left .h5_list {
+  width: 2.8rem;
+  height: 3.6rem;
+  display: flex;
+  margin-left: 0.15rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #h5_template .h5_Left .h5_list .h5_item_box {
+  width: 1.3rem;
+  height: 1.7rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #h5_template .h5_Left .h5_list .h5_item_box .h5_item {
+  width: 1.28rem;
+  height: 1.28rem;
+  background: #FFFFFF;
+  border: 0.01rem solid #CCCCCC;
+  text-align: center;
+  line-height: 1.28rem;
+  cursor: pointer;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #h5_template .h5_Left .h5_list .h5_item_box .h5_item img {
+  width: 1.12rem;
+  height: 1.12rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #h5_template .h5_Left .h5_list .h5_item_box .h5_item_active {
+  border: 0.01rem solid #F2591A;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #h5_template .h5_Left .h5_list .h5_item_box .h5_name {
+  width: 1.3rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  text-align: center;
+  font-size: 0.16rem;
+  color: #666;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #h5_template .h5_Left .style-submit {
+  width: 2.8rem;
+  height: 0.4rem;
+  margin: 0.5rem 0 0.5rem 0.15rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #h5_template .h5_Left .style-submit #h5_submit {
+  height: 0.4rem;
+  line-height: 0.4rem;
+  width: 1.06rem;
+  font-size: 0.16rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  border-radius: 0.02rem;
+  background-color: #FF914D;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #h5_template .h5_Right {
+  width: 3.75rem;
+  height: 6.67rem;
+  position: relative;
+  margin-top: 0.4rem;
+  margin-left: 2rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #h5_template .h5_Right .h5_inviteImg {
+  width: 3.75rem;
+  height: 6.67rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .high-set #h5_template .h5_Right .invitePreview {
+  position: absolute;
+  top: 0;
+  left: -0.42rem;
+  font-size: 0.18rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+}
 .parentMain .contentBox .layui-tab .layui-tab-content #liveControl {
   width: 100%;
   height: 8.66rem;
