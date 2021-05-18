@@ -83,22 +83,6 @@
                 var element = layui.element;
                 layui.element.init();
             }); 
-
-            if(true){
-                var link = document.createElement("link");
-                link.type = "text/css";
-                link.rel = "stylesheet";
-                link.href = './css/sports_back.css';
-                document.getElementsByTagName("head")[0].appendChild(link);
-            } else {
-                var link = document.createElement("link");
-                link.type = "text/css";
-                link.rel = "stylesheet";
-                link.href = './css/default_back.css';
-                document.getElementsByTagName("head")[0].appendChild(link);
-            }
-           
-
             // 获取观看量
             $.ajax({
                 type: "POST",
