@@ -1398,8 +1398,8 @@ $(function () {
                 allInfo.oneMuteSize = value * 10
                 domCameraOne.volume = value
                 sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-                allInfo.update = 0
-                sendInstruct()
+                // allInfo.update = 0
+                // sendInstruct()
             }
         })
 
@@ -1438,8 +1438,8 @@ $(function () {
                 allInfo.twoMuteSize = value * 10
                 domCameraTwo.volume = value
                 sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-                allInfo.update = 0
-                sendInstruct()
+                // allInfo.update = 0
+                // sendInstruct()
             }
         })
 
@@ -1478,8 +1478,8 @@ $(function () {
                 allInfo.threeMuteSize = value * 10
                 domCameraThree.volume = value
                 sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-                allInfo.update = 0
-                sendInstruct()
+                // allInfo.update = 0
+                // sendInstruct()
             }
         })
 
@@ -1518,8 +1518,8 @@ $(function () {
                 allInfo.fourMuteSize = value * 10
                 domCameraFour.volume = value
                 sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-                allInfo.update = 0
-                sendInstruct()
+                // allInfo.update = 0
+                // sendInstruct()
             }
         })
 
