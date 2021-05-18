@@ -1398,6 +1398,8 @@ $(function () {
                 allInfo.oneMuteSize = value * 10
                 domCameraOne.volume = value
                 sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                allInfo.update = 0
+                sendInstruct()
             }
         })
 
@@ -1436,6 +1438,8 @@ $(function () {
                 allInfo.twoMuteSize = value * 10
                 domCameraTwo.volume = value
                 sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                allInfo.update = 0
+                sendInstruct()
             }
         })
 
@@ -1455,7 +1459,7 @@ $(function () {
             max: 10,
             step: 1,
             value: 0,
-           type: 'default',
+            type: 'default',
             theme: '#FF914D',
             setTips: function (value) { //自定义提示文本
                 return value / 10;
@@ -1474,6 +1478,8 @@ $(function () {
                 allInfo.threeMuteSize = value * 10
                 domCameraThree.volume = value
                 sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                allInfo.update = 0
+                sendInstruct()
             }
         })
 
@@ -1512,6 +1518,8 @@ $(function () {
                 allInfo.fourMuteSize = value * 10
                 domCameraFour.volume = value
                 sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                allInfo.update = 0
+                sendInstruct()
             }
         })
 
