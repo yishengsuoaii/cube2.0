@@ -1209,7 +1209,6 @@ $(function () {
         },
         success: function (res) {
             if (res.msg === 'success') {
-                console.log(res.data)
                 h5_check_id = res.data.id
                 h5_all_data = res.data.invi_data
                 var str = ''

@@ -42,11 +42,55 @@
                 data:{
                     event_uri_key:infoData[1][1]
                 },
-                success:function(res){
+                success:function(result){
                  
-                    if(res.msg==='success'){
-                        imgSrc = res.data.event_wallpaper
-                        $('#container').css('background-image','url('+res.data.event_wallpaper+')')
+                    if(result.msg==='success'){
+                        imgSrc = result.data.event_wallpaper
+                        $('#container').css('background-image','url('+result.data.event_wallpaper+')')
+                        var shaStr = ''
+                        var timeShare = createTimestamp()
+                        function createTimestamp() {
+                            return parseInt(new Date().getTime() / 1000);
+                        }
+                        var srcShare = createNonceStr()
+                        function  createNonceStr() {
+                            return Math.random().toString(36).substr(2, 15);
+                        }
+                        $.ajax({
+                            url:'http://www.cube.vip/event/h5_wx_share/',
+                            type:'GET',
+                            success:function(res){
+                                if(res.msg==='success'){
+                                    shaStr = sha1('jsapi_ticket='+res.data+'&noncestr='+srcShare+'&timestamp='+timeShare+'&url=http://www.cube.vip/h5/index.html'+ window.location.search)
+                                    wx.config({
+                                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                                        appId: 'wxfeb6dd6cbf5a390b', // 必填，公众号的唯一标识
+                                        timestamp: timeShare, // 必填，生成签名的时间戳
+                                        nonceStr: srcShare, // 必填，生成签名的随机串
+                                        signature: shaStr, // 必填，签名，见附录1
+                                        jsApiList: ['updateTimelineShareData', 'updateAppMessageShareData'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                                    });
+                                    
+                                    wx.ready(function() {
+                                        // 分享到朋友圈
+                                        wx.updateTimelineShareData({
+                                            title: '首页', // 分享标题
+                                            link: 'http://www.cube.vip/h5/index.html'+ window.location.search, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                                            imgUrl: imgSrc, // 分享图标
+                                        });
+                                        
+                                        // 分享给朋友
+                                        wx.updateAppMessageShareData({
+                                            title: '首页', // 分享标题
+                                            desc: '邀请您观看直播!', // 分享描述
+                                            link: 'http://www.cube.vip/h5/index.html'+ window.location.search, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                                            imgUrl: imgSrc, // 分享图标
+                                        });
+                                    })
+                                }
+                            }
+                        })
+
                     }
                 }
             })
@@ -116,51 +160,6 @@
                     }
                 } else {
                     window.location.href='http://www.cube.vip/h5/live.html?key='+infoData[1][1]
-                }
-            })
-
-            var shaStr = ''
-            var timeShare = createTimestamp()
-            function createTimestamp() {
-                return parseInt(new Date().getTime() / 1000);
-            }
-            var srcShare = createNonceStr()
-            function  createNonceStr() {
-                return Math.random().toString(36).substr(2, 15);
-            }
-            $.ajax({
-                url:'http://www.cube.vip/event/h5_wx_share/',
-                type:'GET',
-                success:function(res){
-                    if(res.msg==='success'){
-
-                    shaStr = sha1('jsapi_ticket='+res.data+'&noncestr='+srcShare+'&timestamp='+timeShare+'&url=http://www.cube.vip/h5/index.html'+ window.location.search)
-                    wx.config({
-                            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                            appId: 'wxfeb6dd6cbf5a390b', // 必填，公众号的唯一标识
-                            timestamp: timeShare, // 必填，生成签名的时间戳
-                            nonceStr: srcShare, // 必填，生成签名的随机串
-                            signature: shaStr, // 必填，签名，见附录1
-                            jsApiList: ['updateTimelineShareData', 'updateAppMessageShareData'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-                        });
-                        
-                        wx.ready(function() {
-                            // 分享到朋友圈
-                            wx.updateTimelineShareData({
-                                title: '首页', // 分享标题
-                                link: 'http://www.cube.vip/h5/index.html'+ window.location.search, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                                imgUrl: imgSrc, // 分享图标
-                            });
-                            
-                            // 分享给朋友
-                            wx.updateAppMessageShareData({
-                                title: '首页', // 分享标题
-                                desc: '邀请您观看直播!', // 分享描述
-                                link: 'http://www.cube.vip/h5/index.html'+ window.location.search, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                                imgUrl: imgSrc, // 分享图标
-                            });
-                        })
-                    }
                 }
             })
         })
