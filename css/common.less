@@ -161,30 +161,31 @@
 /* 消息弹窗 */
 #messageDialog {
     display: none;
-    width: 540px;
+    width: 376px;
     position: absolute;
-    top: 100px;
+    top: 60px;
     right: 90px;
     background-color: #fff;
-    box-shadow: 0px 1px 6px 0px rgba(51, 51, 51, 0.1);
+    box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.16);
+    border-radius: 0px 0px 10px 10px;
     #messageDialogName {
-        height: 40px;
-        border-bottom: 1px solid rgba(153, 153, 153, 0.2);
-        line-height: 40px;
-        padding-left: 20px;
-        font-size: 18px;
+        height: 66px;
+        border-bottom: 1px solid #EAEAEA;
+        line-height: 66px;
+        padding-left: 30px;
+        font-size: 20px;
         font-family: Source Han Sans CN;
         font-weight: 400;
-        color: #999999;
+        color: #333333;
     }
     #messageContent {
-        width: 540px;
-        height: 365px;
+        width: 376px;
+        height: 363px;
         position: relative;
-        overflow: auto;
+        overflow: hidden;
 
         .notMessage {
-            width: 540px;
+            width: 376px;
             height: 30px;
             font-size: 24px;
             font-family: Source Han Sans CN;
@@ -198,39 +199,55 @@
         }
 
         .messageList {
-            height: 70px;
-            width: 500px;
-            padding: 0 20px;
+            height: 100px;
+            width: 376px;
+            padding: 10px 0;
             cursor: pointer;
             border-bottom: 1px solid rgba(153, 153, 153, 0.2);
-
-            &:hover {
-                background-color: #f0f0f0;
-            }
-
             .messageName {
                 height: 40px;
                 line-height: 40px;
+                display: flex;
+                justify-content: space-between;
+                padding: 0 30px 0 20px;
+                .inform {
+                    font-size: 18px;
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #333333;
+                }
+                .time {
+                    font-size: 16px;
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #999999;
+                }
+            }
+
+            .messageTitle {
+                padding: 0 30px;
+                height: 60px;
+                line-height: 30px;
                 font-size: 18px;
                 font-family: Source Han Sans CN;
                 font-weight: 400;
-                color: #666;
+                color: #444444;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
                 overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-            }
-
-            .messageTime {
-                height: 30px;
-                line-height: 30px;
-                font-size: 16px;
-                font-family: Source Han Sans CN;
-                font-weight: 400;
-                color: #999;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
             }
         }
+    }
+    #messageFoot {
+        cursor: pointer;
+        border-top: 1px solid #EAEAEA;
+        height: 55px;
+        line-height: 55px;
+        font-size: 18px;
+        font-family: Source Han Sans CN;
+        font-weight: 400;
+        color: #444444;
+        text-align: center;
     }
 }

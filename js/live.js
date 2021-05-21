@@ -911,10 +911,91 @@ $(function () {
                             "rePlay": false,
                             "playsinline": true,
                             "preload": true,
-                            "controlBarVisibility": "hover",
+                            "controlBarVisibility": "click",
                             "useH5Prism": true,
-                            "waitingTimeout":20
+                            "waitingTimeout":20,
+                            "skinLayout": [
+                              {
+                                "name": "bigPlayButton",
+                                "align": "blabs",
+                                "x": 30,
+                                "y": 80
+                              },
+                              {
+                                "name": "H5Loading",
+                                "align": "cc"
+                              },
+                              {
+                                "name": "errorDisplay",
+                                "align": "tlabs",
+                                "x": 0,
+                                "y": 0
+                              },
+                              {
+                                "name": "tooltip",
+                                "align": "blabs",
+                                "x": 0,
+                                "y": 56
+                              },
+                              {
+                                "name": "thumbnail"
+                              },
+                              {
+                                "name": "controlBar",
+                                "align": "blabs",
+                                "x": 0,
+                                "y": 0,
+                                "children": [
+                                  {
+                                    "name": "progress",
+                                    "align": "blabs",
+                                    "x": 0,
+                                    "y": 44
+                                  },
+                                  {
+                                    "name": "playButton",
+                                    "align": "tl",
+                                    "x": 15,
+                                    "y": 12
+                                  },
+                                  {
+                                    "name": "timeDisplay",
+                                    "align": "tl",
+                                    "x": 10,
+                                    "y": 7
+                                  },
+                                  {
+                                    "name": "fullScreenButton",
+                                    "align": "tr",
+                                    "x": 10,
+                                    "y": 12
+                                  },
+                                  {
+                                    "name": "subtitle",
+                                    "align": "tr",
+                                    "x": 15,
+                                    "y": 12
+                                  },
+                                  {
+                                    "name": "setting",
+                                    "align": "tr",
+                                    "x": 15,
+                                    "y": 12
+                                  },
+                                  {
+                                    "name": "volume",
+                                    "align": "tr",
+                                    "x": 5,
+                                    "y": 10
+                                  }
+                                ]
+                              }
+                            ]
                           })
+                           chatVideoJs.on('error',function(err){
+                                chatVideoJs.dispose()
+                                $('#chatVideo').removeClass('prism-player').html(`<img id="refresh" src="./../image/404.png">`)
+                            })
                         getIps()
                         if (sessionStorage.getItem(event_code)) {
                             allInfo = JSON.parse(sessionStorage.getItem(event_code))
@@ -1019,6 +1100,109 @@ $(function () {
                 }
             })
         }
+
+
+        // 刷新
+        $('#chatVideo').on('click','#refresh',function(){
+            $('#chatVideo').html('').addClass('prism-player')
+            chatVideoJs = new Aliplayer({
+                "id": "chatVideo",
+                "source": chatM3u8,
+                "width": "7.48rem",
+                "height": "3.87rem",
+                "autoplay": true,
+                "isLive": true,
+                "rePlay": false,
+                "playsinline": true,
+                "preload": true,
+                "controlBarVisibility": "click",
+                "useH5Prism": true,
+                "waitingTimeout":20,
+                "skinLayout": [
+                  {
+                    "name": "bigPlayButton",
+                    "align": "blabs",
+                    "x": 30,
+                    "y": 80
+                  },
+                  {
+                    "name": "H5Loading",
+                    "align": "cc"
+                  },
+                  {
+                    "name": "errorDisplay",
+                    "align": "tlabs",
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "name": "tooltip",
+                    "align": "blabs",
+                    "x": 0,
+                    "y": 56
+                  },
+                  {
+                    "name": "thumbnail"
+                  },
+                  {
+                    "name": "controlBar",
+                    "align": "blabs",
+                    "x": 0,
+                    "y": 0,
+                    "children": [
+                      {
+                        "name": "progress",
+                        "align": "blabs",
+                        "x": 0,
+                        "y": 44
+                      },
+                      {
+                        "name": "playButton",
+                        "align": "tl",
+                        "x": 15,
+                        "y": 12
+                      },
+                      {
+                        "name": "timeDisplay",
+                        "align": "tl",
+                        "x": 10,
+                        "y": 7
+                      },
+                      {
+                        "name": "fullScreenButton",
+                        "align": "tr",
+                        "x": 10,
+                        "y": 12
+                      },
+                      {
+                        "name": "subtitle",
+                        "align": "tr",
+                        "x": 15,
+                        "y": 12
+                      },
+                      {
+                        "name": "setting",
+                        "align": "tr",
+                        "x": 15,
+                        "y": 12
+                      },
+                      {
+                        "name": "volume",
+                        "align": "tr",
+                        "x": 5,
+                        "y": 10
+                      }
+                    ]
+                  }
+                ]
+              })
+               chatVideoJs.on('error',function(err){
+                    chatVideoJs.dispose()
+                    $('#chatVideo').removeClass('prism-player').html(`<img id="refresh" src="./../image/404.png">`)
+                })
+        })
+
+
         $('#pullUrlCopy').on('click',function(){
             layer.open({
                 type: 1,

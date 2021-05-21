@@ -10,60 +10,98 @@
         *{
             margin: 0;
         }
+        body {
+            background-color:#F8F8F8;
+        }
         #container{
-            width: 90%;
-            height: 90vh;
-            /* background-color: #666; */
-            margin: 30px auto 0;
-            border: 1px solid #f0f0f0;
+           width: 1200px;
+           height: 100vh;
+           margin: 0 auto;
         }
-        #title {
-            height: 60px;
-            line-height: 60px;
-            text-align: center;
-            font-size: 24px;
+        #center {
+            height: 88px;
+            line-height: 88px;
+            background: #FFFFFF;
+            box-shadow: 0px 2px 6px 0px rgba(102, 102, 102, 0.07);
+            padding-left: 60px;
+            font-size: 30px;
             font-family: Source Han Sans CN;
-            font-weight: 400;
-            color: #666666;
+            font-weight: 500;
+            color: #333333;
+            margin-bottom: 20px;
         }
-        .time {
-            height: 30px;
-            line-height: 30px;
-            text-align: center;
+        .contentBox {
+            height: 800px;
+            background: #FFFFFF;
+        }
+        .info {
+            height: 99px;
+            padding: 0 60px;
+            border-bottom: 1px solid #CECECE;
+            position: relative;
+        }
+        #back {
+            position: absolute;
+            top: 40px;
+            right: 60px;
             font-size: 18px;
             font-family: Source Han Sans CN;
             font-weight: 400;
-            color: #999;
+            color: #666666;
+            cursor: pointer;
         }
-        #line {
-            width: 80%;
-            margin: 30px  auto 0;
-            height: 1px;
-            border-bottom: 1px solid #f0f0f0;
+        #back:hover {
+            color: #FF914D;
+        }
+        #title {
+            width: 1000px;
+            height: 69px;
+            line-height: 69px;
+            font-size: 24px;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: #333333;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+        }
+        .time {
+            width: 1000px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
+            font-family: Arial;
+            font-weight: 400;
+            color: #999999;
         }
         .content {
-            width: 80%;
             font-size: 16px;
             font-family: Source Han Sans CN;
             font-weight: 400;
             color: #666;
             line-height: 20px;
-            margin: 10px auto 0;
-            height: 700px;
+            height: 660px;
+            padding: 20px 60px;
             overflow: auto;
-            text-indent:2em;
             word-wrap:break-word;
         }
     </style>
 </head>
 <body>
     <div id="container">
-        <h3 id="title"></h3>
-        <p class="time"></p>
-        <div id="line"></div>
-        <p class="content">
+        <div id="center">
+            消息中心
+        </div>
+        <div class="contentBox">
+            <div class="info">
+                <h3 id="title"></h3>
+                <p class="time"></p>
+                <span id="back">返回</span>
+            </div>
+            <p class="content">
                 
-        </p>
+            </p>
+        </div>
     </div>
     
 
@@ -95,6 +133,10 @@
                     }
                 }
             })
+        })
+
+        $('#back').on('click',function(){
+            window.location.href='http://www.cube.vip/html/center.html?key='+infoData[1][1]
         })
     </script>
 </body>

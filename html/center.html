@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消息中心</title>
+    <link rel="stylesheet" href="./../layui/css/layui.css">
+    <link rel="stylesheet" href="./../css/center.css">
+    <script src="./../layui/layui.js"></script>
+    <script src="./../commonJs/jquery-3.2.1.min.js"></script>
+    <script src="./../js/center.js"></script>
+</head>
+<body>
+    <div id="messageCenter">
+        <div id="centerTitle">消息中心</div>
+        <div id="centerContent">
+            <div class="layui-tab layui-tab-brief" lay-filter="tab">
+                <ul class="layui-tab-title">
+                  <li class="layui-this">全部</li>
+                  <li>已读<span id="readNum"></span></li>
+                  <li>未读<span id="unreadNum"></span></li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                            <div class="allContent">
+                            </div>
+                            <div class="allFoot">
+                                <div id="allPage"></div>
+                            </div>
+                    </div>
+                    <div class="layui-tab-item">
+                        <div class="readContent">
+                        </div>
+                        <div class="readFoot">
+                            <div id="readPage"></div>
+                        </div>
+                    </div>
+                    <div class="layui-tab-item">
+                        <div class="unreadContent">
+                        </div>
+                        <div class="unreadFoot">
+                            <div id="unreadPage"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="checkBox">
+                <div class="layui-form">
+                    <input type="checkbox" lay-skin="primary" id="check-All"  lay-filter="check-All" title="全选">
+                </div>
+                <i id="delete">删除</i>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

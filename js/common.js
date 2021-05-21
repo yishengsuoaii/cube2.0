@@ -37,8 +37,8 @@ $(function () {
             $(".userName").text(result.data.account_name)
         }
     });
-    // 获取消息
-    $.ajax({
+     // 获取消息
+     $.ajax({
         type: 'GET',
         url: "http://www.cube.vip/account/message/",
         dataType: "json",
@@ -46,18 +46,24 @@ $(function () {
         headers: {
             token: sessionStorage.getItem('token')
         },
+        data:{
+            has_read:'unread',
+            number: 3,
+            pege:1
+        },
         success: function (res) {
             if (res.msg === 'success') {
                 var str = ''
-                if (res.data.length > 0) {
+                if (res.data.posts.length > 0) {
                     $('#hot').show()
-                    res.data.forEach(item => {
+                    res.data.posts.forEach(item => {
                         str += `
                     <div class="messageList" data-id="${item.message_id}">
                         <p class="messageName">
-                           ${item.message_title}
+                            <span class="inform">【系统通知】</span>
+                            <span class="time">${item.datetime}</span>
                         </p>
-                        <p class="messageTime"> ${item.datetime}</p>
+                        <p class="messageTitle"> ${item.message_title}</p>
                     </div>
                     `
                     })
@@ -75,6 +81,10 @@ $(function () {
     $('#messageContent').on('click', '.messageList', function () {
         window.open('http://www.cube.vip/html/message.html?id=' + $(this).attr('data-id') +
             '&key=' + sessionStorage.getItem('token'))
+    })
+    // 查看全部消息
+    $('#messageFoot').on('click',function () {
+        window.open('http://www.cube.vip/html/center.html?key=' + sessionStorage.getItem('token'))
     })
 
     // 控制消息显示与隐藏

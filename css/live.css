@@ -1380,6 +1380,11 @@
   width: 7.48rem;
   height: 3.87rem;
 }
+.parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom #chatVideo #refresh {
+  width: 7.48rem;
+  height: 3.87rem;
+  cursor: pointer;
+}
 .parentMain .contentBox .layui-tab .layui-tab-content #liveControl .liveContent .liveRoom .event_code {
   width: 7.48rem;
   height: 1.8rem;
