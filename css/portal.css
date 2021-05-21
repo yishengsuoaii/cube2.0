@@ -128,8 +128,8 @@
   padding-left: 15px;
 }
 .parentMain .containerBox .mainCont .mainLeft .mainLeft-top .portal-info .portal-info-s .portal-info-name {
-  height: 30px;
-  line-height: 30px;
+  height: 38px;
+  line-height: 38px;
   font-size: 17px;
   font-family: Source Han Sans CN;
   font-weight: 400;
@@ -137,8 +137,8 @@
   margin-top: 20px;
 }
 .parentMain .containerBox .mainCont .mainLeft .mainLeft-top .portal-info .portal-info-s .portal-info-visit {
-  height: 38px;
-  line-height: 38px;
+  height: 30px;
+  line-height: 30px;
   font-size: 16px;
   font-family: Source Han Sans CN;
   font-weight: 400;
@@ -510,7 +510,7 @@
 .parentMain .containerBox .mainCont .main-right-portal .portal .cover-box .cover-image .cover-image-img .cover-image-describe {
   height: 40px;
   line-height: 40px;
-  font-size: 16px;
+  font-size: 14px;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #666666;
