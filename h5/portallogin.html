@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>微信登录</title>
+    <script src="../commonJs/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <script>
+        let data = window.location.search.substring(1).split("&")
+        $(function(){
+            $.ajax({
+			    type:"POST",
+			    dataType:"json",
+				async: false,
+			    url:"http://www.cube.vip/viewer/wx_login/",
+			    data:{"redirect_uri":"http://www.cube.vip/h5/portalBlank.html?"+data[0]+'|'+data[1]+'|'+data[2]+'|'+data[3]+'|'+data[4]},
+			    success:function (result){
+					
+					if (result.msg  == "success") {
+						window.location.href =  result.data;
+					}
+			    },
+			});
+        })
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>回放</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="./css/basic_back.css">
+    <link rel="stylesheet" href="./css/default_back.css">
+    <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.9.3/skins/default/aliplayer-min.css"/>
+    <script src="./../commonJs/aliplayer-h5-min.js"></script>
+    <script src="../commonJs/jquery-3.2.1.min.js"></script>
+    <script src="./../commonJs/flexible.js"></script>
+    <script src="../layui/layui.js"></script>
+    <script src="./js/sha.js"></script>
+    <script src="./js/jweixin-1.6.0.js"></script>
+</head>
+
+<body>
+    <div id="play">
+        <div id="videoBox" class="prism-player">
+        </div>
+        <div class="videoInfo">
+            <p class="describe"></p>
+            <p class="viewNum">
+                <span class="showTime"></span>
+                <span class="showNum"></span>
+            </p>
+        </div>
+
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">评论</li>
+                <li>精选</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <div id="chat">
+                        <div class="chatBox">
+                            
+                        </div>
+                        <div class="sendBox">
+                            <p class="sendInput">
+                                <input type="text" class="messageInput" placeholder="说点什么吧"><span id="send-btn">发送</span>
+                            </p>
+                            <p class="support">Cube.vip 提供技术支持</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="playBack">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        let data = ''
+        var infoData = []
+        var userInfoSrc= ''
+        var userInfo = []
+        let videoName = ''
+        var imgUrl = ''
+        if(sessionStorage.getItem('cubeInfo')){
+            userInfoSrc= sessionStorage.getItem('cubeInfo').split("&")
+            userInfoSrc.forEach(item => {
+                userInfo.push(item.split("="))
+            })
+
+            data = window.location.search.substring(1).split("&")
+            data.forEach(item => {
+                infoData.push(item.split("="))
+            })
+        }else {
+            window.location.href='http://www.cube.vip/h5/portallogin.html' + window.location.search
+        }
+        $(function () {
+            layui.use(['element'], function () {
+                var element = layui.element;
+                layui.element.init();
+            }); 
+
+            // 获取观看量
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                async: false,
+                url: "http://www.cube.vip/video_editing/h5_video_number_clicks/",
+                data:{
+                    video_id:infoData[0][1]
+                },
+                success:function(res){
+                    if(res.msg==='success'){
+                        $('.showNum').text(res.data.video_views+'人观看')
+                    }
+                }
+            })
+            // 获取信息
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                async: false,
+                url: "http://www.cube.vip/channel/h5_channel_video/",
+                data:{
+                    video_id:infoData[0][1],
+                    username: decodeURI(infoData[1][1])
+                },
+                success:function(res){
+                    if(res.msg==='success'){
+                        var str = ''
+                        res.data.video.forEach(item=>{
+                               if(Number(res.data.video_id) === item.video_id) {
+                                    $('.showTime').text(item.datetime)
+                                    videoName = item.video_profile
+                                    $('.describe').text(item.video_profile)
+                                    imgUrl = item.video_description_image
+                                    new Aliplayer({
+                                        "id": "videoBox",
+                                        "source": item.video_uri,
+                                        "width":'10rem',
+                                        "height":'5.625rem',
+                                        "autoplay": true,
+                                        "isLive": false,
+                                        "rePlay": false,
+                                        "playsinline": true,
+                                        "preload": true,
+                                        "controlBarVisibility": "click",
+                                        "useH5Prism": true,
+                                        "skinLayout": [
+                                            {
+                                                "name": "bigPlayButton",
+                                                "align": "cc",
+                                            },
+                                            {
+                                                "name": "H5Loading",
+                                                "align": "cc"
+                                            },
+                                            {
+                                                "name": "errorDisplay",
+                                                "align": "tlabs",
+                                                "x": 0,
+                                                "y": 0
+                                            },
+                                            {
+                                                "name": "infoDisplay"
+                                            },
+                                            {
+                                                "name": "tooltip",
+                                                "align": "blabs",
+                                                "x": 0,
+                                                "y": 56
+                                            },
+                                            {
+                                                "name": "thumbnail"
+                                            },
+                                            {
+                                                "name": "controlBar",
+                                                "align": "blabs",
+                                                "x": 0,
+                                                "y": 0,
+                                                "children": [
+                                                    {
+                                                        "name": "progress",
+                                                        "align": "blabs",
+                                                        "x": 0,
+                                                        "y": 44
+                                                    },
+                                                    {
+                                                        "name": "playButton",
+                                                        "align": "tl",
+                                                        "x": 15,
+                                                        "y": 12
+                                                    },
+                                                    {
+                                                        "name": "timeDisplay",
+                                                        "align": "tl",
+                                                        "x": 10,
+                                                        "y": 7
+                                                    },
+                                                    {
+                                                        "name": "subtitle",
+                                                        "align": "tr",
+                                                        "x": 15,
+                                                        "y": 12
+                                                    },
+                                                    {
+                                                        "name": "setting",
+                                                        "align": "tr",
+                                                        "x": 15,
+                                                        "y": 12
+                                                    },
+                                                    {
+                                                        "name": "fullScreenButton",
+                                                        "align": "tr",
+                                                        "x": 10,
+                                                        "y": 12
+                                                    },
+                                                    {
+                                                        "name": "volume",
+                                                        "align": "tr",
+                                                        "x": 5,
+                                                        "y": 10
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    })
+                               } else {
+                                str += `<a class="backList" data-id="${item.video_id}" href="http://www.cube.vip/h5/portalback.html?id=${item.video_id}&name=${decodeURI(infoData[1][1])}&view=1&profile=1&cover=1'">
+                                    <div class="backContent">
+                                        <img src="${item.video_description_image}" onerror="this.src='./image/back-image.png'"  class="backImage">
+                                        <div class="backInfo">
+                                            <div class="backName">
+                                            ${item.video_profile}               
+                                            </div>
+                                            <p class="backTime">
+                                                ${item.datetime}
+                                            </p>
+                                            <p class="backShow">
+                                                ${item.video_number_views}人观看
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                                `
+                               }
+                        })
+
+                        if(res.data.length>3) {
+                            str+= '<img src="./image/offer.png"  class="offerImg">'
+                        }
+                        $('.playBack').html(str)
+                    }
+                }
+            })
+            // 获取评论列表
+            $.ajax({
+                url: 'http://www.cube.vip/commenting/h5_comments_show/',
+                type: 'POST',
+                data: {
+                    video_id: infoData[0][1]
+                },
+                success: function (res) {
+                    if (res.msg === 'success') {
+                        var str = ''
+                        res.data.forEach(item => {
+                            str += `
+                            <div class="chatList" id="${item.commend_id}">
+                                <div class="chatImage">
+                                    <img src="${item.wechat_image_url}" alt="">
+                                </div>
+                                <div class="chatInfo">
+                                    <p class="chatName">${item.viewer }</p>
+                                    <p class="chatMessage">${item.comment}</p>
+                                </div>
+                            </div>
+                            `
+                        })
+                        $('.chatBox').append(str)
+                    }
+                }
+            })
+
+            // 发送评论开始
+            $('#send-btn').on('click', function () {
+                if ($.trim($('.messageInput').val()).length > 0) {
+                    $.ajax({
+                        url: 'http://www.cube.vip/commenting/h5_submit_comments/',
+                        type: 'POST',
+                        data: {
+                            video_id: infoData[0][1],
+                            wechat_nickname: decodeURI(userInfo[0][1]),
+                            comment: $('.messageInput').val()
+                        },
+                        success: function (res) {
+                            if (res.msg === 'success') {
+                                getCommentList()
+                            }
+                        }
+                    })
+                }
+                $('.messageInput').val('')
+
+            })
+            $('.messageInput').on('keypress', function (event) { // 监听回车事件
+                if (event.keyCode == "13") {
+                    $.ajax({
+                        url: 'http://www.cube.vip/commenting/h5_submit_comments/',
+                        type: 'POST',
+                        data: {
+                            video_id: infoData[0][1],
+                            wechat_nickname: decodeURI(userInfo[0][1]),
+                            comment: $(this).val()
+                        },
+                        success: function (res) {
+                            if (res.msg === 'success') {
+                                getCommentList()
+                            }
+                        }
+                    })
+                    $(this).val('')
+                }
+            })
+
+            function getCommentList() {
+                $.ajax({
+                    url: 'http://www.cube.vip/commenting/h5_comments_show/',
+                    type: 'POST',
+                    data: {
+                        video_id: infoData[0][1]
+                    },
+                    success: function (res) {
+                        if (res.msg === 'success') {
+                            var str = ''
+                            res.data.forEach(item => {
+
+                                str += `
+                                <div class="chatList" id="${item.commend_id}">
+                                    <div class="chatImage">
+                                        <img src="${item.wechat_image_url}" alt="">
+                                    </div>
+                                    <div class="chatInfo">
+                                        <p class="chatName">${item.viewer }</p>
+                                        <p class="chatMessage">${item.comment}</p>
+                                    </div>
+                                </div>
+                            `
+                            })
+                            $('.chatBox').html(str)
+                            setTimeout(() => {
+                                $('.chatBox').scrollTop($('.chatBox')[0].scrollHeight)
+                            }, 0)
+                        }
+                    }
+                })
+            }
+            // 发送评论结束
+
+
+
+            var shaStr = ''
+            var timeShare = createTimestamp()
+            function createTimestamp() {
+                return parseInt(new Date().getTime() / 1000);
+            }
+            var srcShare = createNonceStr()
+            function  createNonceStr() {
+                return Math.random().toString(36).substr(2, 15);
+            }
+            $.ajax({
+                url:'http://www.cube.vip/event/h5_wx_share/',
+                type:'GET',
+                success:function(res){
+                    if(res.msg==='success'){
+
+                    shaStr = sha1('jsapi_ticket='+res.data+'&noncestr='+srcShare+'&timestamp='+timeShare+'&url=http://www.cube.vip/h5/portalback.html'+ window.location.search)
+                    wx.config({
+                            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                            appId: 'wxfeb6dd6cbf5a390b', // 必填，公众号的唯一标识
+                            timestamp: timeShare, // 必填，生成签名的时间戳
+                            nonceStr: srcShare, // 必填，生成签名的随机串
+                            signature: shaStr, // 必填，签名，见附录1
+                            jsApiList: ['updateTimelineShareData', 'updateAppMessageShareData'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                        });
+                        
+                        wx.ready(function() {
+                            // 分享到朋友圈
+                            wx.updateTimelineShareData({
+                                title: videoName, // 分享标题
+                                link: 'http://www.cube.vip/h5/portalback.html'+ window.location.search, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                                imgUrl: imgUrl, // 分享图标
+                            });
+                            
+                            // 分享给朋友
+                            wx.updateAppMessageShareData({
+                                title: videoName, // 分享标题
+                                desc: videoName, // 分享描述
+                                link: 'http://www.cube.vip/h5/portalback.html'+ window.location.search, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                                imgUrl: imgUrl, // 分享图标
+                            });
+                        })
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

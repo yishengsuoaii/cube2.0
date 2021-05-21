@@ -189,7 +189,7 @@
             if(addedVideoData.length>0){
                 addedVideoData.forEach((item,index)=>{
                     str1+=`
-                        <div class="wonderful-video-list" data-id="${item.video_id}" data-src="${item.video_uri}" data-view="${item.video_number_views}" data-profile="${item.video_profile}">
+                        <div class="wonderful-video-list" data-id="${item.video_id}">
                             <p class="wonderful-video-describe">
                                 ${item.video_profile}
                             </p>
@@ -229,7 +229,7 @@
             window.location.href='http://www.cube.vip/h5/wxlogin.html?key='+$(this).attr('data-key').substr(19)
         })
         $('.wonderful-video').on('click','.wonderful-video-list',function(){
-            window.location.href='http://www.cube.vip/h5/wxminlogin.html?id='+$(this).attr('data-id')+'&src='+$(this).attr('data-src')+'&view='+$(this).attr('data-view')+'&profile='+$(this).attr('data-profile')+'&cover='+$(this).find('.wonderful-video-cover').attr('src')
+            window.location.href='http://www.cube.vip/h5/protallogin.html?id='+$(this).attr('data-id')+'&name='+userName+'&view=1&profile=1&cover=1'
         })
     })
     
