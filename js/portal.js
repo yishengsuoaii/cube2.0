@@ -114,6 +114,10 @@ $(function () {
 			headers: {
 				token: sessionStorage.getItem('token')
 			},
+			accept: 'images',
+			acceptMime: 'image/png',
+			exts:'png',
+			size: 1024 * 2,
 			done: function (res) {
 				if (res.msg === 'success') {
 					$('.userImg').attr('src', res.data.account_thundernail + '?' +
@@ -133,6 +137,10 @@ $(function () {
 			headers: {
 				token: sessionStorage.getItem('token')
 			},
+			accept: 'images',
+			acceptMime: 'image/png',
+			exts:'png',
+			size: 1024 * 2,
 			done: function (res) {
 				if (res.msg === 'success') {
 					// $('.cover-image-img img').attr('src',res.data.account_thundernail+'?'+new Date().getTime()) 

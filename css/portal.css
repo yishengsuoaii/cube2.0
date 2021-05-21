@@ -275,6 +275,7 @@
   height: 274px;
 }
 .parentMain .containerBox .mainCont .mainLeft .mainLeft-wonderful .wonderful-video .wonderful-video-list .wonderful-video-describe {
+  width: 375px;
   height: 32px;
   line-height: 32px;
   padding: 0 10px;
@@ -633,10 +634,15 @@
   vertical-align: bottom;
 }
 .parentMain .containerBox .mainCont .main-right-recommend .recommend-set .channel-set .channel-cont-add .add-channel-list .add-channel-list-info .channel-name {
+  display: inline-block;
+  width: 425px;
   font-size: 14px;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #666666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .parentMain .containerBox .mainCont .main-right-recommend .recommend-set .channel-set .channel-cont-add .add-channel-list .recommend-delete {
   font-size: 24px;
@@ -709,10 +715,15 @@
   vertical-align: bottom;
 }
 .parentMain .containerBox .mainCont .main-right-recommend .recommend-set .video-set .video-cont-add .add-video-list .add-video-list-info .video-name {
+  display: inline-block;
+  width: 425px;
   font-size: 14px;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #666666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .parentMain .containerBox .mainCont .main-right-recommend .recommend-set .video-set .video-cont-add .add-video-list .recommend-delete {
   font-size: 24px;

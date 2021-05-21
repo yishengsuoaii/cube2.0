@@ -183,6 +183,7 @@ body .wonderful-video .add-wonderful {
   transform: translateY(-50%);
 }
 body .wonderful-video .wonderful-video-describe {
+  width: 9.46666667rem;
   height: 0.85333333rem;
   line-height: 0.85333333rem;
   padding: 0 0.26666667rem;
