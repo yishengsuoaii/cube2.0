@@ -20,7 +20,6 @@ let filterVideoData = []
 let momentVideoData = []
 var form = null
 
-
 // 渲染已经添加的频道
 function renderViewChannel() {
 	var str1 = ''

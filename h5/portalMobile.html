@@ -48,6 +48,7 @@
        var userName = ''
        var describe = ''
        var userImg = ''
+       var nameAbc = ''
 
         // 获取门户基本信息
         $.ajax({
@@ -152,6 +153,7 @@
             url:'http://www.cube.vip/channel/portal_display/',
             success:function(res){
                 if(res.msg === 'success') {
+                    nameAbc = res.data.data.account_name
                     addedChannelData = res.data.data.event
                     addedVideoData = res.data.data.video
                     renderViewChannel()
@@ -229,7 +231,7 @@
             window.location.href='http://www.cube.vip/h5/wxlogin.html?key='+$(this).attr('data-key').substr(19)
         })
         $('.wonderful-video').on('click','.wonderful-video-list',function(){
-            window.location.href='http://www.cube.vip/h5/portallogin.html?id='+$(this).attr('data-id')+'&name='+userName+'&view=1&profile=1&cover=1'
+            window.location.href='http://www.cube.vip/h5/portallogin.html?id='+$(this).attr('data-id')+'&name='+nameAbc+'&view=1&profile=1&cover=1'
         })
     })
     
