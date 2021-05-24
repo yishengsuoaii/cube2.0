@@ -290,6 +290,29 @@ $(function () {
     }
     // 云推流定时器
     var pushTimer = null
+    // 推流数据
+    var pushData = [
+        {
+            serve:'',
+            code:''
+        },
+        {
+            serve:'',
+            code:''
+        },
+        {
+            serve:'',
+            code:''
+        },
+        {
+            serve:'',
+            code:''
+        },
+        {
+            serve:'',
+            code:''
+        }
+    ]
     // 绘制canvas 定时器
     var timerDraw = null
 
@@ -3531,12 +3554,21 @@ $(function () {
         // 点击开始推流
         $('.pushList').on('click',function(e){
 
+            var serverSrc = ''
+            var codeSrc  = ''
+            if($.trim($(this).find('.pushInputs').val()).length<=0||!/^rtmp:\/\/([\w.]+\/?)\S*/.test($.trim($(this).find('.pushInputs').val()))　){
+                $(this).find('.pushInputs').focus()
+                layer.msg('请正确输入推流地址!')
+                return
+            } else {
+                serverSrc = $.trim($(this).find('.pushInputs').val())
+                codeSrc = $.trim($(this).find('.pushCode').val())
+                pushData[$(this).index()].serve = serverSrc
+                pushData[$(this).index()].code = codeSrc
+                sessionStorage.setItem('push'+event_uri_key,JSON.stringify(pushData))
+            }
             // 未推流状态
             if(e.target.className === 'pushBtn') {
-                if($.trim($(this).find('.pushInputs').val()).length<=0||!/^rtmp:\/\/([\w.]+\/?)\S*/.test($.trim($(this).find('.pushInputs').val()))　){
-                    $(this).find('.pushInputs').focus()
-                    layer.msg('请正确输入推流地址!')
-                }else {
                     $.ajax({
                         type: 'POST',
                         url: "http://www.cube.vip/event/push_rtmp/",
@@ -3550,7 +3582,7 @@ $(function () {
                                 cloud_rtmp:{
                                     action:'on',
                                     index:$(this).index() + 1,
-                                    url:$.trim($(this).find('.pushInputs').val())
+                                    url:serverSrc.endsWith('/') ? serverSrc+codeSrc : serverSrc+'/'+codeSrc
                                 }
                             })
                            
@@ -3564,14 +3596,9 @@ $(function () {
                             }
                         }
                     })
-                }
             }
             // 关闭推流
            else if(e.target.className === 'pushBtn pushNormal'){
-                if($.trim($(this).find('.pushInputs').val()).length<=0||!/^rtmp:\/\/([\w.]+\/?)\S*/.test($.trim($(this).find('.pushInputs').val()))　){
-                    $(this).find('.pushInputs').focus()
-                    layer.msg('请正确输入推流地址!')
-                }else {
                     $.ajax({
                         type: 'POST',
                         url: "http://www.cube.vip/event/push_rtmp/",
@@ -3585,7 +3612,7 @@ $(function () {
                                 cloud_rtmp:{
                                     action:'off',
                                     index:$(this).index() + 1,
-                                    url:$.trim($(this).find('.pushInputs').val())
+                                    url:serverSrc.endsWith('/') ? serverSrc+codeSrc : serverSrc+'/'+codeSrc
                                 }
                             })
                            
@@ -3599,14 +3626,9 @@ $(function () {
                             }
                         }
                     })
-                }
             } 
             // 异常重新退
             else if(e.target.className === 'pushBtn pushError'){
-                if($.trim($(this).find('.pushInputs').val()).length<=0||!/^rtmp:\/\/([\w.]+\/?)\S*/.test($.trim($(this).find('.pushInputs').val()))　){
-                    $(this).find('.pushInputs').focus()
-                    layer.msg('请正确输入推流地址!')
-                }else {
                     $.ajax({
                         type: 'POST',
                         url: "http://www.cube.vip/event/push_rtmp/",
@@ -3620,7 +3642,7 @@ $(function () {
                                 cloud_rtmp:{
                                     action:'off',
                                     index:$(this).index() + 1,
-                                    url:$.trim($(this).find('.pushInputs').val())
+                                    url:serverSrc.endsWith('/') ? serverSrc+codeSrc : serverSrc+'/'+codeSrc
                                 }
                             })
                            
@@ -3640,7 +3662,7 @@ $(function () {
                                             cloud_rtmp:{
                                                 action:'on',
                                                 index:$(this).index() + 1,
-                                                url:$.trim($(this).find('.pushInputs').val())
+                                                url:serverSrc.endsWith('/') ? serverSrc+codeSrc : serverSrc+'/'+codeSrc
                                             }
                                         })
                                        
@@ -3659,11 +3681,15 @@ $(function () {
                             }
                         }
                     })
-                    
-                }
             }
-            
         })
+        if(sessionStorage.getItem('push'+event_uri_key)) {
+            var data = JSON.parse(sessionStorage.getItem('push'+event_uri_key))
+            data.forEach((item,index)=>{
+                $('.pushList').eq(index).find('.pushInputs').val(item.serve)
+                $('.pushList').eq(index).find('.pushCode').val(item.code)
+            })
+        }
         // 查询云推流状态
         inquirePushState()
         function inquirePushState(){
@@ -3681,13 +3707,13 @@ $(function () {
                     if (res.msg === 'success') {
                        $.each(res.data,function(key,value){
                         if(value !== null){
-                            $('.pushList').eq(value.cloud_rtmp.index - 1).find('.pushInputs').val(value.cloud_rtmp.url)
+                            // $('.pushList').eq(value.cloud_rtmp.index - 1).find('.pushInputs').val(value.cloud_rtmp.url)
                             if(value.cloud_rtmp.action==='on'){
                                 $('.pushList').eq(value.cloud_rtmp.index - 1).find('.pushBtn').html('正在推流').removeClass('pushNormal pushError').addClass('pushConnect')
                             } else if(value.cloud_rtmp.action==='normal'){
                                  $('.pushList').eq(value.cloud_rtmp.index - 1).find('.pushBtn').html('推流正常').removeClass('pushConnect pushError').addClass('pushNormal')
                             }else if(value.cloud_rtmp.action==='error') {
-                                $('.pushList').eq(value.cloud_rtmp.index - 1).find('.pushBtn').html('推流异常,点击重试').removeClass('pushConnect pushNormal').addClass('pushError')
+                                $('.pushList').eq(value.cloud_rtmp.index - 1).find('.pushBtn').html('点击重试').removeClass('pushConnect pushNormal').addClass('pushError')
                             } else {
                                 $('.pushList').eq(value.cloud_rtmp.index - 1).find('.pushBtn').html('开始').removeClass('pushConnect pushNormal pushError')
                             }
