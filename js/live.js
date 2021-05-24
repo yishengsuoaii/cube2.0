@@ -3556,6 +3556,7 @@ $(function () {
 
             var serverSrc = ''
             var codeSrc  = ''
+            var pushUrl = ''
             if($.trim($(this).find('.pushInputs').val()).length<=0||!/^rtmp:\/\/([\w.]+\/?)\S*/.test($.trim($(this).find('.pushInputs').val()))　){
                 $(this).find('.pushInputs').focus()
                 layer.msg('请正确输入推流地址!')
@@ -3565,6 +3566,11 @@ $(function () {
                 codeSrc = $.trim($(this).find('.pushCode').val())
                 pushData[$(this).index()].serve = serverSrc
                 pushData[$(this).index()].code = codeSrc
+                if(codeSrc==='') {
+                    pushUrl = serverSrc
+                } else {
+                    pushUrl = serverSrc.endsWith('/') ? serverSrc+codeSrc : serverSrc+'/'+codeSrc
+                }
                 sessionStorage.setItem('push'+event_uri_key,JSON.stringify(pushData))
             }
             // 未推流状态
@@ -3582,7 +3588,7 @@ $(function () {
                                 cloud_rtmp:{
                                     action:'on',
                                     index:$(this).index() + 1,
-                                    url:serverSrc.endsWith('/') ? serverSrc+codeSrc : serverSrc+'/'+codeSrc
+                                    url:pushUrl
                                 }
                             })
                            
@@ -3612,7 +3618,7 @@ $(function () {
                                 cloud_rtmp:{
                                     action:'off',
                                     index:$(this).index() + 1,
-                                    url:serverSrc.endsWith('/') ? serverSrc+codeSrc : serverSrc+'/'+codeSrc
+                                    url:pushUrl
                                 }
                             })
                            
@@ -3642,7 +3648,7 @@ $(function () {
                                 cloud_rtmp:{
                                     action:'off',
                                     index:$(this).index() + 1,
-                                    url:serverSrc.endsWith('/') ? serverSrc+codeSrc : serverSrc+'/'+codeSrc
+                                    url:pushUrl
                                 }
                             })
                            
@@ -3662,7 +3668,7 @@ $(function () {
                                             cloud_rtmp:{
                                                 action:'on',
                                                 index:$(this).index() + 1,
-                                                url:serverSrc.endsWith('/') ? serverSrc+codeSrc : serverSrc+'/'+codeSrc
+                                                url:pushUrl
                                             }
                                         })
                                        
