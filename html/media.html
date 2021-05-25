@@ -14,6 +14,7 @@
     <script src="./../commonJs/jquery-3.2.1.min.js"></script>
     <script src="./../commonJs/aliplayer-h5-min.js"></script>
     <script src="./../js/common.js"></script>
+    <script src="./../commonJs/clipboard.js"></script>
 	<title>媒体库</title>
 	<style>
 		.layui-form-checked[lay-skin=primary] i {
@@ -226,6 +227,21 @@
 		<div class="commentBox">
 		</div>
 	</div>
+
+    <!-- 下载弹窗 -->
+    <div id="downloadDialog">
+        <div class="m3u8Box">
+            <span>m3u8下载地址:</span>
+            <input type="text" id="m3u8Input" readonly>
+            <div class="copyBtn" data-clipboard-action="copy" data-clipboard-target="#m3u8Input">复制</div>
+        </div>
+        <p class="hint1">安装下载器后,复制m3u8地址进行视频下载</p>
+        <p class="hint2">
+            <span>!</span>下载器为第三方开源软件<br/>
+            请勿相信软件中任何有关金钱交易的消息
+        </p>
+        <div id="download">安装下载器</div>
+    </div>
 
 	<script src="./../js/media.js"></script>
 </body>

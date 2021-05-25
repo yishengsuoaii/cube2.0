@@ -418,7 +418,7 @@ $(function () {
 
             }
             $('.videoContent').html(str)
-            monitorDownload()
+            // monitorDownload()
             if ($('.singleVideo').length == 0) {
                 $('#all-check').prop('checked', false)
             } else {
@@ -544,7 +544,7 @@ $(function () {
             }
 
             $('.tsContent').html(str)
-            monitorDownload()
+            // monitorDownload()
             if ($('.ts-singleVideo').length == 0) {
                 $('#ts-all-check').prop('checked', false)
             } else {
@@ -1201,121 +1201,125 @@ $(function () {
                 }
             })
         })
+
+        // 老下载任务开始--------------------------------------------------------------------
         // 监听下载状态
-        function monitorDownload(){
-            if(sessionStorage.getItem('uploadflag')){
-                downloadVideo(sessionStorage.getItem('uploadflag'))
-                $('.layui-tab-item .video-upload').addClass('video-upload-wait')
-            } else {
-                $('.layui-tab-item .video-upload').removeClass('video-upload-wait')
-            }
-        }
+        // function monitorDownload(){
+        //     if(sessionStorage.getItem('uploadflag')){
+        //         downloadVideo(sessionStorage.getItem('uploadflag'))
+        //         $('.layui-tab-item .video-upload').addClass('video-upload-wait')
+        //     } else {
+        //         $('.layui-tab-item .video-upload').removeClass('video-upload-wait')
+        //     }
+        // }
 
         // 视频库下载
-        $('.videoContent').on('click', '.video-upload', function () {
-            if($(this).hasClass('video-upload-wait')) {
-                layer.msg('有下载任务,请稍等!')
-                return
-            } 
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                headers: {
-                    token: sessionStorage.getItem('token')
-                },
-                url: "http://www.cube.vip/video_editing/download_video/",
-                data: {
-                    video_code: $(this).attr('data-code')
-                },
-                success: function (res) {
-                    if (res.msg === 'success') {
-                        downloadVideo(res.data.video_download_id)
-                        sessionStorage.setItem('uploadflag',res.data.video_download_id)
-                        layer.msg('正在下载,请稍等...')
-                        $('.layui-tab-item .video-upload').addClass('video-upload-wait')
-                    } else {
-                        layer.msg('下载失败,请稍后重试...')
-                    }
-                }
-            })
-        })
+        // $('.videoContent').on('click', '.video-upload', function () {
+        //     if($(this).hasClass('video-upload-wait')) {
+        //         layer.msg('有下载任务,请稍等!')
+        //         return
+        //     } 
+        //     $.ajax({
+        //         type: "POST",
+        //         dataType: "json",
+        //         headers: {
+        //             token: sessionStorage.getItem('token')
+        //         },
+        //         url: "http://www.cube.vip/video_editing/download_video/",
+        //         data: {
+        //             video_code: $(this).attr('data-code')
+        //         },
+        //         success: function (res) {
+        //             if (res.msg === 'success') {
+        //                 downloadVideo(res.data.video_download_id)
+        //                 sessionStorage.setItem('uploadflag',res.data.video_download_id)
+        //                 layer.msg('正在下载,请稍等...')
+        //                 $('.layui-tab-item .video-upload').addClass('video-upload-wait')
+        //             } else {
+        //                 layer.msg('下载失败,请稍后重试...')
+        //             }
+        //         }
+        //     })
+        // })
 
         // 暂存库下载
-        $('.tsContent').on('click', '.video-upload', function () {
-            if($(this).hasClass('video-upload-wait')) {
-                layer.msg('有下载任务,请稍等!')
-                return
-            } 
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                // async: false,
-                headers: {
-                    token: sessionStorage.getItem('token')
-                },
-                url: "http://www.cube.vip/video_editing/download_video/",
-                data: {
-                    video_code: $(this).attr('data-code')
-                },
-                success: function (res) {
-                    if (res.msg === 'success') {
-                        downloadVideo(res.data.video_download_id)
-                        sessionStorage.setItem('uploadflag',res.data.video_download_id)
-                        layer.msg('正在下载,请稍等...')
-                        $('.layui-tab-item .video-upload').addClass('video-upload-wait')
-                    }else {
-                        layer.msg('下载失败,请稍后重试...')
-                    }
-                }
-            })
-        })
+        // $('.tsContent').on('click', '.video-upload', function () {
+        //     if($(this).hasClass('video-upload-wait')) {
+        //         layer.msg('有下载任务,请稍等!')
+        //         return
+        //     } 
+        //     $.ajax({
+        //         type: "POST",
+        //         dataType: "json",
+        //         // async: false,
+        //         headers: {
+        //             token: sessionStorage.getItem('token')
+        //         },
+        //         url: "http://www.cube.vip/video_editing/download_video/",
+        //         data: {
+        //             video_code: $(this).attr('data-code')
+        //         },
+        //         success: function (res) {
+        //             if (res.msg === 'success') {
+        //                 downloadVideo(res.data.video_download_id)
+        //                 sessionStorage.setItem('uploadflag',res.data.video_download_id)
+        //                 layer.msg('正在下载,请稍等...')
+        //                 $('.layui-tab-item .video-upload').addClass('video-upload-wait')
+        //             }else {
+        //                 layer.msg('下载失败,请稍后重试...')
+        //             }
+        //         }
+        //     })
+        // })
         // 监听下载状态
-        function downloadVideo(id) {
-            clearInterval(downTimer)
-            downTimer = setInterval(() => {
-                $.ajax({
-                    type: "GET",
-                    dataType: "json",
-                    async: false,
-                    headers: {
-                        token: sessionStorage.getItem('token')
-                    },
-                    url: "http://www.cube.vip/video_editing/download_video_status/",
-                    data: {
-                        video_download_id: id
-                    },
-                    success: function (res) {
-                        if (res.msg === 'success') {
-                            downLoadNum = 0
-                            clearInterval(downTimer)
-                            window.open(res.data.video_mp4_uri,'_self')
-                            sessionStorage.removeItem('uploadflag')
-                            $('.layui-tab-item .video-upload').removeClass('video-upload-wait')
-                        }else if(res.msg==='assigned'){
-                            monitorDownNum()
-                        } else if(res.msg==='error'){
-                            downLoadNum = 0
-                            layer.msg('下载失败,请重试!')
-                            clearInterval(downTimer)
-                            sessionStorage.removeItem('uploadflag')
-                            $('.layui-tab-item .video-upload').removeClass('video-upload-wait')
-                        }
-                    }
-                })
-            }, 1000)
+        // function downloadVideo(id) {
+        //     clearInterval(downTimer)
+        //     downTimer = setInterval(() => {
+        //         $.ajax({
+        //             type: "GET",
+        //             dataType: "json",
+        //             async: false,
+        //             headers: {
+        //                 token: sessionStorage.getItem('token')
+        //             },
+        //             url: "http://www.cube.vip/video_editing/download_video_status/",
+        //             data: {
+        //                 video_download_id: id
+        //             },
+        //             success: function (res) {
+        //                 if (res.msg === 'success') {
+        //                     downLoadNum = 0
+        //                     clearInterval(downTimer)
+        //                     window.open(res.data.video_mp4_uri,'_self')
+        //                     sessionStorage.removeItem('uploadflag')
+        //                     $('.layui-tab-item .video-upload').removeClass('video-upload-wait')
+        //                 }else if(res.msg==='assigned'){
+        //                     monitorDownNum()
+        //                 } else if(res.msg==='error'){
+        //                     downLoadNum = 0
+        //                     layer.msg('下载失败,请重试!')
+        //                     clearInterval(downTimer)
+        //                     sessionStorage.removeItem('uploadflag')
+        //                     $('.layui-tab-item .video-upload').removeClass('video-upload-wait')
+        //                 }
+        //             }
+        //         })
+        //     }, 1000)
 
-        }
+        // }
         // 监听下载分配次数\
-        function monitorDownNum(){
-            downLoadNum +=1
-            if(downLoadNum >=30) {
-                downLoadNum = 0
-                layer.msg('下载失败,请重试!')
-                clearInterval(downTimer)
-                sessionStorage.removeItem('uploadflag')
-                $('.layui-tab-item .video-upload').removeClass('video-upload-wait')
-            }
-        }
+        // function monitorDownNum(){
+        //     downLoadNum +=1
+        //     if(downLoadNum >=30) {
+        //         downLoadNum = 0
+        //         layer.msg('下载失败,请重试!')
+        //         clearInterval(downTimer)
+        //         sessionStorage.removeItem('uploadflag')
+        //         $('.layui-tab-item .video-upload').removeClass('video-upload-wait')
+        //     }
+        // }
+
+        // 老下载任务结束------------------------------------------------------------------------
 
 
         // 视频合并
@@ -1337,6 +1341,65 @@ $(function () {
             window.location.href = "tailor.html?key=" + checkVideoLibrary[0].video_code
 
         })
+
+        // 视频库下载
+        $('.videoContent').on('click', '.video-upload', function () {
+            getM3u8($(this).attr('data-code'))
+        })
+        // 暂存库下载
+        $('.tsContent').on('click', '.video-upload', function () {
+            getM3u8($(this).attr('data-code'))
+        })
+
+        // 获取视频m3u8
+        function getM3u8(id){
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                async: false,
+                url: "http://www.cube.vip/video/video_code_to_uri/",
+                data: {
+                    video_code: id
+                },
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                success: res => {
+                    if (res.msg === 'success') {
+                        console.log(res.data.video_rui)
+                        $('#m3u8Input').val(res.data.video_rui)
+                        layer.open({
+                            type: 1,
+                            area: ['640px', '360px'],
+                            title: '视频下载',
+                            content: $("#downloadDialog"),
+                            shade: 0.3,
+                            shadeClose: true,
+                            closeBtn: 1,
+                            move:false,
+                            resize: false,
+                            scrollbar: false,
+                            end: function () {
+                                $('#m3u8Input').val('')
+                            }
+                        })
+                    }
+                }
+            })
+        }
+        // 下载转码器
+        $('#download').on('click',function(){
+            window.open('http://cube-test.oss-cn-beijing.aliyuncs.com/media/download/M3U8-Downloader-win-2.0.6.exe','_self')
+        })
+        var clipboard = new ClipboardJS('.copyBtn');
+
+        clipboard.on('success', function(e) {
+           layer.msg('复制成功')
+        });
+    
+        clipboard.on('error', function(e) {
+            layer.msg('复制失败,请重试!')
+        });
     });
 
 })
