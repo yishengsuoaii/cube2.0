@@ -3557,136 +3557,152 @@ $(function () {
             var serverSrc = ''
             var codeSrc  = ''
             var pushUrl = ''
-            if($.trim($(this).find('.pushInputs').val()).length<=0||!/^rtmp:\/\/([\w.]+\/?)\S*/.test($.trim($(this).find('.pushInputs').val()))　){
-                $(this).find('.pushInputs').focus()
-                layer.msg('请正确输入推流地址!')
-                return
-            } else {
-                serverSrc = $.trim($(this).find('.pushInputs').val())
-                codeSrc = $.trim($(this).find('.pushCode').val())
-                pushData[$(this).index()].serve = serverSrc
-                pushData[$(this).index()].code = codeSrc
-                if(codeSrc==='') {
-                    pushUrl = serverSrc
-                } else {
-                    pushUrl = serverSrc.endsWith('/') ? serverSrc+codeSrc : serverSrc+'/'+codeSrc
-                }
-                sessionStorage.setItem('push'+event_uri_key,JSON.stringify(pushData))
-            }
             // 未推流状态
             if(e.target.className === 'pushBtn') {
-                    $.ajax({
-                        type: 'POST',
-                        url: "http://www.cube.vip/event/push_rtmp/",
-                        headers: {
-                            token: sessionStorage.getItem('token')
-                        },
-                        data: {
-                            event_code:event_code,
-                            message:JSON.stringify({
-                                code:'FRONT_END_ACTION',
-                                cloud_rtmp:{
-                                    action:'on',
-                                    index:$(this).index() + 1,
-                                    url:pushUrl
-                                }
-                            })
-                           
-                        },
-                        success: res => {
-                            if (res.msg === 'success') {
-                                inquirePushState()
-                                startPushTimer()
-                            } else if(res.msg === 'error') {
-                                layer.msg('直播未开始!')
+                if($.trim($(this).find('.pushInputs').val()).length<=0||!/^rtmp:\/\/([\w.]+\/?)\S*/.test($.trim($(this).find('.pushInputs').val()))　){
+                    $(this).find('.pushInputs').focus()
+                    layer.msg('请正确输入推流地址!')
+                    return
+                } else {
+                    serverSrc = $.trim($(this).find('.pushInputs').val())
+                    codeSrc = $.trim($(this).find('.pushCode').val())
+                    pushData[$(this).index()].serve = serverSrc
+                    pushData[$(this).index()].code = codeSrc
+                    if(codeSrc==='') {
+                        pushUrl = serverSrc
+                    } else {
+                        pushUrl = serverSrc.endsWith('/') ? serverSrc+codeSrc : serverSrc+'/'+codeSrc
+                    }
+                    sessionStorage.setItem('push'+event_uri_key,JSON.stringify(pushData))
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: "http://www.cube.vip/event/push_rtmp/",
+                    headers: {
+                        token: sessionStorage.getItem('token')
+                    },
+                    data: {
+                        event_code:event_code,
+                        message:JSON.stringify({
+                            code:'FRONT_END_ACTION',
+                            cloud_rtmp:{
+                                action:'on',
+                                index:$(this).index() + 1,
+                                url:pushUrl
                             }
+                        })
+                        
+                    },
+                    success: res => {
+                        if (res.msg === 'success') {
+                            inquirePushState()
+                            startPushTimer()
+                        } else if(res.msg === 'error') {
+                            layer.msg('直播未开始!')
                         }
-                    })
+                    }
+                })
             }
             // 关闭推流
            else if(e.target.className === 'pushBtn pushNormal'){
-                    $.ajax({
-                        type: 'POST',
-                        url: "http://www.cube.vip/event/push_rtmp/",
-                        headers: {
-                            token: sessionStorage.getItem('token')
-                        },
-                        data: {
-                            event_code:event_code,
-                            message:JSON.stringify({
-                                code:'FRONT_END_ACTION',
-                                cloud_rtmp:{
-                                    action:'off',
-                                    index:$(this).index() + 1,
-                                    url:pushUrl
-                                }
-                            })
-                           
-                        },
-                        success: res => {
-                            if (res.msg === 'success') {
-                                inquirePushState()
-                                startPushTimer()
-                            } else if(res.msg === 'error') {
-                                layer.msg('直播未开始!')
+                $.ajax({
+                    type: 'POST',
+                    url: "http://www.cube.vip/event/push_rtmp/",
+                    headers: {
+                        token: sessionStorage.getItem('token')
+                    },
+                    data: {
+                        event_code:event_code,
+                        message:JSON.stringify({
+                            code:'FRONT_END_ACTION',
+                            cloud_rtmp:{
+                                action:'off',
+                                index:$(this).index() + 1,
+                                url:pushUrl
                             }
+                        })
+                        
+                    },
+                    success: res => {
+                        if (res.msg === 'success') {
+                            inquirePushState()
+                            startPushTimer()
+                        } else if(res.msg === 'error') {
+                            layer.msg('直播未开始!')
                         }
-                    })
+                    }
+                })
             } 
             // 异常重新退
             else if(e.target.className === 'pushBtn pushError'){
-                    $.ajax({
-                        type: 'POST',
-                        url: "http://www.cube.vip/event/push_rtmp/",
-                        headers: {
-                            token: sessionStorage.getItem('token')
-                        },
-                        data: {
-                            event_code:event_code,
-                            message:JSON.stringify({
-                                code:'FRONT_END_ACTION',
-                                cloud_rtmp:{
-                                    action:'off',
-                                    index:$(this).index() + 1,
-                                    url:pushUrl
+                if($.trim($(this).find('.pushInputs').val()).length<=0||!/^rtmp:\/\/([\w.]+\/?)\S*/.test($.trim($(this).find('.pushInputs').val()))　){
+                    $(this).find('.pushInputs').focus()
+                    layer.msg('请正确输入推流地址!')
+                    return
+                } else {
+                    serverSrc = $.trim($(this).find('.pushInputs').val())
+                    codeSrc = $.trim($(this).find('.pushCode').val())
+                    pushData[$(this).index()].serve = serverSrc
+                    pushData[$(this).index()].code = codeSrc
+                    if(codeSrc==='') {
+                        pushUrl = serverSrc
+                    } else {
+                        pushUrl = serverSrc.endsWith('/') ? serverSrc+codeSrc : serverSrc+'/'+codeSrc
+                    }
+                    sessionStorage.setItem('push'+event_uri_key,JSON.stringify(pushData))
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: "http://www.cube.vip/event/push_rtmp/",
+                    headers: {
+                        token: sessionStorage.getItem('token')
+                    },
+                    data: {
+                        event_code:event_code,
+                        message:JSON.stringify({
+                            code:'FRONT_END_ACTION',
+                            cloud_rtmp:{
+                                action:'off',
+                                index:$(this).index() + 1,
+                                url:pushUrl
+                            }
+                        })
+                        
+                    },
+                    success: res => {
+                        if (res.msg === 'success') {
+                            $.ajax({
+                                type: 'POST',
+                                url: "http://www.cube.vip/event/push_rtmp/",
+                                headers: {
+                                    token: sessionStorage.getItem('token')
+                                },
+                                data: {
+                                    event_code:event_code,
+                                    message:JSON.stringify({
+                                        code:'FRONT_END_ACTION',
+                                        cloud_rtmp:{
+                                            action:'on',
+                                            index:$(this).index() + 1,
+                                            url:pushUrl
+                                        }
+                                    })
+                                    
+                                },
+                                success: res => {
+                                    if (res.msg === 'success') {
+                                        inquirePushState()
+                                        startPushTimer()
+                                    } else if(res.msg === 'error') {
+                                        layer.msg('直播未开始!')
+                                    }
                                 }
                             })
-                           
-                        },
-                        success: res => {
-                            if (res.msg === 'success') {
-                                $.ajax({
-                                    type: 'POST',
-                                    url: "http://www.cube.vip/event/push_rtmp/",
-                                    headers: {
-                                        token: sessionStorage.getItem('token')
-                                    },
-                                    data: {
-                                        event_code:event_code,
-                                        message:JSON.stringify({
-                                            code:'FRONT_END_ACTION',
-                                            cloud_rtmp:{
-                                                action:'on',
-                                                index:$(this).index() + 1,
-                                                url:pushUrl
-                                            }
-                                        })
-                                       
-                                    },
-                                    success: res => {
-                                        if (res.msg === 'success') {
-                                            inquirePushState()
-                                            startPushTimer()
-                                        } else if(res.msg === 'error') {
-                                            layer.msg('直播未开始!')
-                                        }
-                                    }
-                                })
-                            } else if(res.msg === 'error') {
-                                layer.msg('直播未开始!')
-                            }
+                        } else if(res.msg === 'error') {
+                            layer.msg('直播未开始!')
                         }
-                    })
+                    }
+                })
             }
         })
         if(sessionStorage.getItem('push'+event_uri_key)) {
