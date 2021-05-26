@@ -1,6 +1,7 @@
 
 #app {
-    width: 1559px;
+    width: 1560px;
+    height: 820px;
     background-color: #fff;
     position: relative;
 }
@@ -17,18 +18,13 @@
     color: #FFFFFF;
 }
 
-.videoBox {
-    width: 1520;
-    height: 348px;
-    background: #333333;
-    margin: 20px auto 20px;
-    padding-top: 20px;
-}
-
 #myVideo {
-    width: 700px;
-    height: 328px;
-    margin: 0 auto;
+    width: 760px;
+    height: 450px;
+    border-top: 20px solid #333;
+    border-bottom: 20px solid #333;
+    border-left: 380px solid #333;
+    border-right: 380px solid #333;
 }
 
 
@@ -63,25 +59,25 @@
 
 
 .submitBox {
-    height: 224px;
-    padding: 20px;
-    margin-top: 20px;
-    margin:20px auto 0;
+    width: 758px;
+    height: 262px;
+    border: 1px solid rgba(9, 1, 3, 0.1)
   }
   .videoName {
+    padding-left: 130px;
+    padding-top: 16px;
     height: 30px;
     font-size: 18px;
     font-family: Source Han Sans CN;
     font-weight: 400;
     color: #333333;
     line-height: 30px;
-    margin-bottom: 10px;
   } 
   #textVideo {
+    display: block;
     box-sizing: border-box;
-    width: 100%;
-    /* width: 238px; */
-    height: 78px;
+    width: 500px;
+    height: 98px;
     background: #FFFFFF;
     border: 1px solid #999999;
     padding: 10px;
@@ -89,7 +85,8 @@
     font-size: 16px;
     font-family: Source Han Sans CN;
     font-weight: 400;
-    color: #999;
+    color: #666;
+    margin: 10px auto;
   }
   .hintInfo {
     height: 30px;
@@ -97,7 +94,7 @@
     margin: 0 auto 10px;
     font-family: Source Han Sans CN;
     font-weight: 400;
-    color: #999;
+    color: #ccc;
     line-height: 30px;
     text-align: center;
   }
@@ -113,23 +110,30 @@
     text-align: center;
     vertical-align: middle;
   }
+
+  #containerBox {
+  display: flex;
+  justify-content: center;
+   width: 1560px;
+   height: 264px;
+  }
   .crop-container {
+      width: 758px;
+      height: 262px;
+      border: 1px solid rgba(9, 1, 3, 0.1);
       display: flex;
-      justify-content: center;
-      height: 40px;
-      background-color: #313239;
+      flex-direction: column;
+      justify-content:space-evenly;
+      align-items: center;
     }
     .crop-container .crop-slider {
       position: relative;
       display: flex;
       align-items: center;
-      width: 400px;
-      height: 100%;
+      width: 560px;
+      height: 40px;
       padding: 0 10px;
       background-color: #313239;
-      border: 1px solid #46484d;
-      border-top: none;
-      border-bottom: none;
       user-select: none;
     }
     .crop-container .crop-slider * {
@@ -151,8 +155,8 @@
     }
     .crop-container .crop-slider .media-duration {
       margin-left: 5px;
-      width: 55px;
-      font-size: 14px;
+      width: 80px;
+      font-size: 18px;
       color: #fff;
     }
     .crop-container .crop-slider .cursor-time-hint {
@@ -178,7 +182,7 @@
     }
     .crop-container .crop-slider .cursor-time-hint .cursor-time {
       position: absolute;
-      font-size: 12px;
+      font-size: 20px;
       line-height: 24px;
       padding: 2px 4px;
       top: -35px;
@@ -264,24 +268,25 @@
     }
     .crop-container .crop-panel {
       display: flex;
-      height: 100%;
-      margin-left: 10px;
+      width: 720px;
+      height: 80px;
       background-color: #313239;
-      width: 400px;
+     
     }
     .crop-container .crop-panel * {
       box-sizing: border-box;
     }
     .crop-container .crop-panel .small-btn {
-      padding: 0 3px;
-      height: 24px;
-      font-size: 12px;
-      line-height: 24px;
+      width: 60px;
+      background-color: #FF914D;
+      height: 40px;
+      font-size: 18px;
+      line-height: 40px;
       text-align: center;
       color: #fff;
       border: none;
-      background: none;
       cursor: pointer;
+      border-radius: 4px;
     }
     .crop-container .crop-panel .crop-time-area {
       background-color: #313239;
@@ -305,51 +310,16 @@
       color: #fff;
     }
     .crop-container .crop-panel .crop-time-area .crop-time-body {
+      width: 720px;
+      height: 80px;
       overflow-y: auto;
       overflow-x: hidden;
-      transition: height 0.3s;
-    }
-    .crop-container .crop-panel .crop-time-area .crop-time-body[data-count="0"] {
-      height: 0px;
-    }
-    .crop-container .crop-panel .crop-time-area .crop-time-body[data-count="1"] {
-      height: 40px;
-    }
-    .crop-container .crop-panel .crop-time-area .crop-time-body[data-count="2"] {
-      height: 80px;
-    }
-    .crop-container .crop-panel .crop-time-area .crop-time-body[data-count="3"] {
-      height: 120px;
-    }
-    .crop-container .crop-panel .crop-time-area .crop-time-body[data-count="4"] {
-      height: 160px;
-    }
-    .crop-container .crop-panel .crop-time-area .crop-time-body[data-count="5"] {
-      height: 200px;
-    }
-    .crop-container .crop-panel .crop-time-area .crop-time-body[data-count="6"] {
-      height: 240px;
-    }
-    .crop-container .crop-panel .crop-time-area .crop-time-body[data-count="7"] {
-      height: 280px;
-    }
-    .crop-container .crop-panel .crop-time-area .crop-time-body[data-count="8"] {
-      height: 320px;
-    }
-    .crop-container .crop-panel .crop-time-area .crop-time-body[data-count="9"] {
-      height: 360px;
-    }
-    .crop-container .crop-panel .crop-time-area .crop-time-body[data-count="10"] {
-      height: 400px;
-    }
-    .crop-container .crop-panel .crop-time-area .crop-time-body-hide {
-      height: 0;
+      /* transition: height 0.3s; */
     }
     .crop-container .crop-panel .crop-time-item {
       display: flex;
       align-items: center;
-      height: 40px;
-      padding: 0 10px;
+      height: 80px;
     }
     .crop-container .crop-panel .crop-time-item[data-highlight="1"] {
       background-color: #40414a;
@@ -358,7 +328,7 @@
       background-color: #40414a;
     }
     .crop-container .crop-panel .time-area {
-      flex-grow: 1;
+      width: 640px;
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -367,31 +337,35 @@
       display: flex;
       align-items: center;
       justify-content: space-around;
-      width: 128px;
-      height: 24px;
-      line-height: 24px;
-      border: 1px solid #46484d;
+      width: 300px;
+      height: 40px;
+      line-height: 40px;
+      /* border: 1px solid #46484d; */
     }
     .crop-container .crop-panel .time-area .time-input-area .time-text {
-      font-size: 12px;
+      font-size: 18px;
       color: #fff;
     }
     .crop-container .crop-panel .time-area .time-input-area .time-input {
       display: flex;
       justify-content: space-between;
-      width: 65px;
-      font-size: 14px;
+      width: 150px;
+      font-size: 18px;
       text-align: center;
       color: #9b9b9b;
       border: none;
       background: none;
     }
     .crop-container .crop-panel .time-area .time-input-area .time-input input {
-      width: 20px;
-      padding: 0 1px;
-      background: none;
-      border: none;
-      color: #9b9b9b;
+      width: 40px;
+      text-align: center;
+      font-size: 18px;
+      background:none;
+      border: 1px solid #ccc;
+      color: #fff;
+    }
+    .crop-container .crop-panel .time-area .time-input-area .time-input input:hover{
+      background-color: #FF914D;
     }
     .crop-container .crop-panel .time-area .range-text {
       font-size: 20px;
@@ -400,13 +374,14 @@
     .confirm-btn {
       width: 258px;
       height: 40px;
-      background: #F2591A;
-      border-radius: 10px;
+      background: #FF914D;
+      border-radius: 6px;
       line-height: 40px;
       text-align: center;
       color: #fff;
       cursor: pointer;
-      margin: 10px auto;
+      font-size: 16px;
+      margin: 0 auto;
     }
      .confirm-btn-disabled {
       background-color: #9b9b9b;

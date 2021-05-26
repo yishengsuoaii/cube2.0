@@ -16,8 +16,8 @@ const isCursorClose = function (x1, x2) {
 }
 Vue.component("child-video", {
     template: `
-                <div id="containerBox">
-                    <div class="crop-container">
+        <div id="containerBox">
+            <div class="crop-container">
         <div class="crop-slider">
           <div ref="timeLineContainer" class="crop-time-line-container">
             <div class="crop-time-line"></div>
@@ -40,8 +40,7 @@ Vue.component("child-video", {
         </div>
         <div class="crop-panel">
           <div class="crop-time-area">
-            <div ref="timeItemContainer" :class="['crop-time-body', {'crop-time-body-hide': !showList}]"
-                 :data-count="!showList ? 0 :(listLength > 10 ? 10 : listLength)">
+            <div ref="timeItemContainer" :class="['crop-time-body']">
               <template v-for="(item, index) in cropItemList">
                 <div :key="index"
                      :data-highlight="cropItemHoverIndex === index ? 1 : 0"
@@ -85,30 +84,26 @@ Vue.component("child-video", {
                   <button class="small-btn" @click="togglePlayClip(index)">
                     {{playingIndex === index ? '暂停' : '播放'}}
                   </button>
-                  <button class="small-btn" @click="removeCropItem(index)">
-                    删除
-                  </button>
                 </div>
               </template>
             </div>
           </div>
         </div>
       </div>
-        <div class="submitBox">
-            <p class="videoName">
-            视频描述
-            </p>
-            <textarea v-model.trim="videoDescribe" placeholder="请输入视频描述" maxlength="140"  id="textVideo">
-            </textarea>
-            <p class="hintInfo">
-                <span class="hintIcon">!</span>保存将另存为一个新的视频，不会覆盖原有视频。      
-            </p>
-            <div :class="['confirm-btn', {'confirm-btn-disabled': isSendingCrop}]"
-                @click="confirmCrop()">{{isSendingCrop ? language.SENDING_DATA :language.CONFIRM_CUT_VIDEO}}
-            </div>
+      <div class="submitBox">
+        <p class="videoName">
+        视频描述:
+        </p>
+        <textarea v-model.trim="videoDescribe" placeholder="请输入视频描述" maxlength="140"  id="textVideo">
+        </textarea>
+        <p class="hintInfo">
+            <span class="hintIcon">!</span>保存将另存为一个新的视频，不会覆盖原有视频。      
+        </p>
+        <div :class="['confirm-btn', {'confirm-btn-disabled': isSendingCrop}]"
+            @click="confirmCrop()">{{isSendingCrop ? language.SENDING_DATA :language.CONFIRM_CUT_VIDEO}}
         </div>
-    
-                </div>
+    </div>
+    </div>
                 `,
     props: {
         duration: {
@@ -162,7 +157,6 @@ Vue.component("child-video", {
                 CONFIRM_CUT_VIDEO: '裁剪',
             },
             playingIndex: -1,
-            showList: false,
             playingItem: null,
             isSendingCrop: false,
         }
@@ -243,7 +237,6 @@ Vue.component("child-video", {
             if (!this.listLength) {
                 return
             }
-
             const cropItemList = this.cropItemList
             const duration = this.duration
             const timeToPixelRatio = this.timeToPixelRatio
@@ -348,7 +341,6 @@ Vue.component("child-video", {
             this.isCropping = true
 
             // 添加一项后列表项肯定存在了
-            this.showList = true
         },
 
         stopCropping() {
@@ -364,7 +356,7 @@ Vue.component("child-video", {
          * @param currentCursorOffsetX
          */
         addNewCropItemInSlider() {
-            if (this.listLength < 1) { //标记123
+            if (this.listLength < 1) { 
                 const currentCursorTime = this.currentCursorTime
                 const newCropItem = this.getFormattedCropItem(currentCursorTime, currentCursorTime)
                 this.addCropItem(newCropItem)
@@ -605,14 +597,6 @@ Vue.component("child-video", {
             event.target.value = currentItem.endTimeArr[timeArrIndex]
         },
         /**
-         * 切换列表展示
-         */
-        toggleShowList() {
-            this.showList = !this.showList
-        },
-
-
-        /**
          * 更新全部裁剪
          */
         updateAllCropItems(cropItemList) {
@@ -643,8 +627,6 @@ Vue.component("child-video", {
          */
         onAddClick() {
             if (this.listLength < 1) {
-                // 标记123
-                this.showList = true;
                 // 将待裁剪数据项添加到裁剪列表, 无待裁剪则直接增加一条新数据
                 this.addCropItem(this.cropItemToAdd || this.getDefaultValues());
             }
@@ -699,7 +681,6 @@ Vue.component("child-video", {
             this.currentCursorOffsetX = 0
             this.isCursorIn = false
             this.isCropping = false
-            this.showList = false
             this.playingItem = undefined
             this.playingIndex = -1
             this.isSendingCrop = false
@@ -887,14 +868,14 @@ let vm = new Vue({
                     var player = new Aliplayer({
                         "id": "myVideo",
                         "source": res.data.data.video_rui,
-                        "width": "700px",
-                        "height": "328px",
+                        "width": "800px",
+                        "height": "450px",
                         "autoplay": false,
                         "isLive": false,
                         "rePlay": false,
                         "playsinline": true,
                         "preload": true,
-                        "controlBarVisibility": "hover",
+                        "controlBarVisibility": "always",
                         "useH5Prism": true,
                       })
                 }
