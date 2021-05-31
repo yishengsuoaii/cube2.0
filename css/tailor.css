@@ -19,12 +19,11 @@
 }
 
 #myVideo {
-    width: 760px;
+    width: 800px;
     height: 450px;
+    margin: 0 auto;
     border-top: 20px solid #333;
     border-bottom: 20px solid #333;
-    border-left: 380px solid #333;
-    border-right: 380px solid #333;
 }
 
 
