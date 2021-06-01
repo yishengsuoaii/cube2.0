@@ -10,6 +10,11 @@ $(function () {
     var event_id = searchData;
     var event_code = ''
     var event_uri_key = ''
+    // 唯一id
+    var idOnly = ''
+    // 主次标志
+    var mainFlag = true
+    var initializeFlag = false
     // 频道分类
     var channel_type = ''
     // 拉流IP
@@ -326,12 +331,14 @@ $(function () {
     var slide_two = null
     var slide_three = null
     var slide_four = null
+    // 音量防抖
+    var mute_timeout = null
     // 背景音乐滑块
     var slide_music = null
 
     var audio_music = null
-
-
+    // 背景音乐防抖
+    var bg_timeout = null
     //比分牌---------------------------------------------------------------------------------------------
 
     // 比分牌透明度实例
@@ -668,242 +675,118 @@ $(function () {
 
             },
         })
-
+        // 获取唯一id
+        function  onlyID() {
+            var  s = [];
+            var  hexDigits =  "0123456789abcdef" ;
+            for  ( var  i = 0; i < 36; i++) {
+                s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+            }
+            s[14] =  "4" ;
+            s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1)
+            s[8] = s[13] = s[18] = s[23] =  "-" ;
         
-        // 精彩推荐开始------------------------------------------------------------------------------------
-        // 获取已经添加的推荐视频
-        getRecVideo()
-        function getRecVideo(){
+            var  uuid = s.join( "" );
+            return  uuid;
+        }
+        if(localStorage.getItem(event_code+'_uuid')){
+            idOnly = localStorage.getItem(event_code+'_uuid')
+        } else {
+            idOnly = onlyID()
+            localStorage.setItem(event_code+'_uuid',idOnly)
+        }
+
+        // 查询主次
+        getMain()
+        function getMain(){
             $.ajax({
                 type: "GET",
 				headers: {
 					token: sessionStorage.getItem('token')
 				},
-				url: "http://www.cube.vip/video/get_event_video/",
+				url:'http://www.cube.vip/event/check_redis_exist/',
 				data: {
-					stream_code: event_code
+					stream_code: event_code,
+                    random_code: idOnly
 				},
 				success: function (res) {
-					if (res.msg === 'success') {
-						rec_addedVideoData = res.data
-                        renderViewVideo()
-                        
-					} else {
-						layer.msg('获取视频列表失败,请重试!');
-					}
+					if(res.msg==='success'){
+                        // 主
+                        // mainFlag = true 
+                        $('#requestFlag').html('主').css('background','#ff914d')
+                    } else {
+                        // 次
+                        // mainFlag = false
+                        $('#requestFlag').html('辅').css('background','red')
+                    }
 				}
             })
         }
-        // 打开添视频弹窗
-		$('.addRecName-span').on('click', function () {
-			$.ajax({
-				type: "GET",
-				dataType: "json",
-				async: false,
-				headers: {
-					token: sessionStorage.getItem('token')
-				},
-				url: "http://www.cube.vip/video/video_list/",
-				data: {
-					save_flag: 'media_library'
-				},
-				success: function (res) {
-					if (res.msg === 'success') {
-						rec_allVideoData = res.data
-					} else {
-						layer.msg('获取视频列表失败,请重试!');
-					}
-				}
-			})
-			rec_momentVideoData = []
-			rec_addedVideoData.forEach(item => {
-				rec_momentVideoData.push(item)
-				rec_allVideoData.forEach(its => {
-					if (Number(item.video_id) === Number(its.video_id)) {
-						its.checked = 'checked'
-					}
-				})
-			})
 
-			$('.rec-video-num').text(rec_addedVideoData.length)
-			layer.open({
+        // 申请主次获取云端指令
+        $('#request').on('click',function(){
+            layer.open({
 				type: 1,
-				area: ['10rem', '7.3rem'],
-				title: '添加视频',
-				content: $('#rec-dialog'),
+				area: ['3.6rem', '2.4rem'],
+				title: '申请主控提示',
+				content: `<div style="padding:0.4rem;font-size:0.2rem">是否确认申请主控?</div>`,
 				shade: 0.3,
 				shadeClose: true,
 				closeBtn: 1,
 				resize: false,
 				scrollbar: false,
                 move:false,
-                btn: ['确认', '取消'],
+                btn: ['是', '否'],
 				btn1: function () {
+                    getRedis()
                     layer.closeAll()
-                    rec_addedVideoData = []
-                    rec_momentVideoData.forEach(item => { // 取消  删除记录
-                        rec_addedVideoData.push(item)
-                    })
-                    renderViewVideo()
                 },
                 end: function(){
-                    $('.rec-search-video-input').val('')
                 }
 
 			})
-			rec_videoFiltrate()
-
-		})
-		//视频 选中 取消 change
-		form.on('checkbox(rec-checkbox)', function (data) {
-			var videoId = Number(data.value)
-			if (data.elem.checked) {
-				$('.rec-video-num').text(Number($('.rec-video-num').text()) + 1) //选中+1
-				rec_allVideoData.forEach(item => { //选中 添加标记
-					if (item.video_id === videoId) {
-						item.checked = 'checked'
-					}
-				})
-				rec_momentVideoData.push({ // 选中 添加记录
-					video_id: videoId,
-					video_profile: $(data.elem).parent().siblings('.rec-content-main-list-info').find(
-						'.rec-content-main-list-name').text(),
-					video_number_views: $(data.elem).parent().siblings('.rec-content-main-list-info').find(
-						'.rec-content-main-list-num i').text(),
-					datetime: $(data.elem).parent().siblings('.rec-content-main-list-info').find(
-						'.rec-content-main-list-time i').text(),
-					video_description_image:  $(data.elem).parent().siblings('.vd-video').attr("src")
-				})
-			} else {
-				$('.rec-video-num').text(Number($('.rec-video-num').text()) - 1) // 取消-1
-				rec_allVideoData.forEach(item => { // 取消 删除标记
-					if (item.video_id === videoId) {
-						delete item.checked
-					}
-				})
-				rec_momentVideoData.forEach((item, index) => { // 取消  删除记录
-					if (item.video_id === videoId) {
-						rec_momentVideoData.splice(index, 1)
-					}
-				})
-			}
-
-		})
-
-
-        // 删除视频-------------------------------------------------------------------------------------------------------------------
-        $('.recList').on('click', '.videoDelete', function () {
-            rec_addedVideoData.splice(Number($(this).parent().attr('data-dad-position'))-1, 1)
-            renderViewVideo()
         })
 
-        // 视频分页
-        function rec_videoPage(pageIndex) {
-            var str = ''
-            var length = rec_filterVideoData.length > pageIndex * 6 ? 6 : rec_filterVideoData.length - (pageIndex - 1) * 6
-            for (var i = 0; i < length; i++) {
-                var index = i + (pageIndex - 1) * 6
-                str += `<div class="rec-content-main-list">
-                    <img class="vd-video" src="${rec_filterVideoData[index].video_description_image}" onerror="this.src='./../image/video-page.png'"></img>
-                    <div class="rec-content-main-list-info">
-                        <span class="rec-content-main-list-name">${rec_filterVideoData[index].video_profile}</span>
-                        <span class="rec-content-main-list-time">上传时间: <i>${rec_filterVideoData[index].video_create_time}</i></span>
-                        <span class="rec-content-main-list-num">观看量: <i>${rec_filterVideoData[index].video_number_views}</i> 次</span>
-                    </div>
-                    <div class="layui-form video-right-check">
-                        <input type="checkbox" lay-filter="rec-checkbox" lay-skin="primary" class="rec-content-main-list-check" value="${rec_filterVideoData[index].video_id}" ${rec_filterVideoData[index].checked} /></div>
-                    </div>
-                `
-            }
-            if (rec_filterVideoData.length > 0) {
-                $('.rec-content-main-top').html(str)
-                form.render('checkbox')
-            } else {
-                $('.rec-content-main-top').html(
-                    `<div class="rec-content-main-none"><img src="./../image/video-none.png" alt=""><p>当前没有视频哦</p></div>
-                    <span class="rec-mediaUpload">
-                        没有合适的视频？
-                        <a href="./media.html">去媒体库上传</a>
-                    </span>
-                    `
-                )
-            }
-        }
-        // 视频筛选---------
-        $('.rec-search-video-input').on('keypress', function (event) { // 监听回车事件
-            if (event.keyCode == "13") {
-                rec_videoFiltrate()
-            }
-        })
-        $('.rec-search-video-btn').on('click', rec_videoFiltrate) //点击搜索按钮
-        // 视频过滤方法
-        function rec_videoFiltrate() {
-            rec_filterVideoData = rec_allVideoData.filter(item => item.video_profile.search($.trim($('.rec-search-video-input')
-                .val())) !== -1)
-            if (rec_filterVideoData.length > 6) {
-                layui.use(['laypage'], function () {
-                    var laypage = layui.laypage
-                    laypage.render({
-                        elem: 'rec-page',
-                        count: rec_filterVideoData.length,
-                        limit: 6,
-                        layout: ['prev', 'next'],
-                        jump: function (obj, first) {
-                            if (!first) {
-                                // layer.msg('第 '+ obj.curr +' 页'+',每页显示'+obj.limit+'条');
-                                rec_videoPage(obj.curr)
-                            }
-                        }
-                    })
-                })
-            } else {
-                $('#rec-page').empty()
-            }
-            rec_videoPage(1)
-        }
-
-        // 提交精彩推荐视频
-        $('#saveAddRecVideo').on('click',function(){
-            var video_id = []
-            rec_addedVideoData.forEach(item => {
-                video_id.push(item.video_id)
-            })
+        // 获取云端指令
+        function getRedis(){
             $.ajax({
                 type: "POST",
-                headers: {
-                    token: sessionStorage.getItem('token')
-                },
-                url: "http://www.cube.vip/video/get_event_video/",
-                data: {
-                    stream_code: event_code,
-                    video_id: JSON.stringify(video_id)
-                },
-                success: function (res) {
-                    if (res.msg === 'success') {
-                        layer.msg('保存成功!');
+				headers: {
+					token: sessionStorage.getItem('token')
+				},
+				url:'http://www.cube.vip/event/check_redis_exist/',
+				data: {
+					stream_code: event_code,
+                    random_code: idOnly
+				},
+				success: function (res) {
+					if(res.msg==='success'){
+                        layer.msg('申请成功!')
+                        mainFlag = true 
+                        $('#requestFlag').html('主').css('background','#ff914d')
+                        if(res.data!==null) {
+                            var data = JSON.parse(res.data)
+                            allInfo = data.allInfo
+                            fileScore = data.scoreImg 
+                            if(fileScore!=0){
+                                sessionStorage.setItem('imageBase64' + event_code,fileScore)
+                            }
+                            if(data.scoreInfo!=null){
+                                sessionStorage.setItem('score' + event_code,JSON.stringify(data.scoreInfo))
+                            }
+                            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                            
+                            renderHistory()
+                            renderHistoryScore()
+                        }
                     } else {
-                        layer.msg('保存失败,请重试!');
+                        mainFlag =  false
+                        $('#requestFlag').html('辅').css('background','red')
+                        layer.msg('申请失败,请稍后重试!')
                     }
-                }
-            });
-        })
-
-        // 精彩推荐结束------------------------------------------------------------------------------------
-
-
-
-        $(".liveScan1").hover(function(){
-            $('#liveQrcode1Box').toggle()
-        });
-        $(".liveScan").hover(function(){
-            $('#liveQrcodeBox').toggle()
-        });
-        $('.head-copy').hover(function(){
-            $('#hintBox').toggle()
-        })
-        $('.head-copy1').hover(function(){
-            $('#hintBox1').toggle()
-        })
+				}
+            })
+        }
         // 获取IP地址
         function getIp() {
             $.get({
@@ -1015,11 +898,14 @@ $(function () {
                               }
                             ]
                           })
-                           chatVideoJs.on('error',function(err){
-                                chatVideoJs.dispose()
-                                $('#chatVideo').removeClass('prism-player').html(`<img id="refresh" src="./../image/404.png">`)
-                            })
+                        chatVideoJs.on('error',function(err){
+                            chatVideoJs.dispose()
+                            $('#chatVideo').removeClass('prism-player').html(`<img id="refresh" src="./../image/404.png">`)
+                        })
                         getIps()
+                        // 查询推流状态
+                        inquirePushState()
+                        startPushTimer()
                         if (sessionStorage.getItem(event_code)) {
                             allInfo = JSON.parse(sessionStorage.getItem(event_code))
                             pptData.state = allInfo.pptInfo.state
@@ -1324,7 +1210,7 @@ $(function () {
                                                 }
                                             },
                                             success: function (jsep) {
-                                                Janus.debug("Got SDP!", jsep);
+                                                // Janus.debug("Got SDP!", jsep);
                                                 var body = {
                                                     request: "start"
                                                 };
@@ -1344,8 +1230,7 @@ $(function () {
                                 }
                             });
                         },
-                        error: function (error) {
-                           
+                        error: function (error) { 
                         },
                         destroyed: function () {
                             window.location.reload();
@@ -1373,61 +1258,393 @@ $(function () {
             }
         }
 
-        // KV图位置 切换选中状态 
-        form.on('radio(kvForm)', function(data){
-            if(Number(data.value)===1){
-                $('#kvImage').addClass('classOne').removeClass('classTwo classThree')
+        // 机位一二三四音频滑块---------------------------------------------------------------------------------------------------
+        slide_one = slider.render({
+            elem: '#slideOne',
+            min: 0,
+            max: 10,
+            step: 1,
+            value: 0,
+            type: 'default',
+            theme: '#FF914D',
+            setTips: function (value) { //自定义提示文本
+                return value / 10;
+            },
+            change: function (value) {
+                $('#slideOne .layui-slider-bar').css({
+                   width: value * 100 + '%'
+                })
+                if (value === 0) {
+                    oneMuteFlag = false
+                    $('#one-mute').attr('src', '/image/mute-close.png')
+                } else {
+                    oneMuteFlag = true
+                    $('#one-mute').attr('src', '/image/mute-open.png')
+                }
+                allInfo.oneMuteSize = value * 10
+                domCameraOne.volume = value
+                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                mute_debounce()
             }
-            else if(Number(data.value)===2){
-                $('#kvImage').addClass('classTwo').removeClass('classOne classThree')
-            }
-            else if(Number(data.value)===3){
-                $('#kvImage').addClass('classThree').removeClass('classTwo classOne')
-            }
-            allInfo.kvInfo.location = Number(data.value)
-        });  
-
-        // 比分显示方位
-        form.on('radio(areaRadio)', function (data) {
-            if (data.value === 'leftTop') {
-                $('#areaCont').removeClass('leftBottom rightTop rightBottom bottomCenter bottomCenter1').addClass(
-                    'leftTop')
-                styleLocation = 1
-
-            } else if (data.value === 'leftBottom') {
-                $('#areaCont').removeClass('leftTop rightTop rightBottom bottomCenter bottomCenter1').addClass(
-                    'leftBottom')
-                styleLocation = 2
-
-
-            } else if (data.value === 'rightTop') {
-                $('#areaCont').removeClass('leftBottom leftTop rightBottom bottomCenter bottomCenter1').addClass(
-                    'rightTop')
-                styleLocation = 3
-
-            } else if (data.value === 'rightBottom') {
-                $('#areaCont').removeClass('leftBottom rightTop leftTop bottomCenter bottomCenter1').addClass(
-                    'rightBottom')
-                styleLocation = 4
-            } 
-            // else if (data.value === 'bottomCenter') {
-            //     $('#areaCont').removeClass('leftBottom rightTop leftTop rightBottom bottomCenter1').addClass(
-            //         'bottomCenter')
-            //         styleLocation = 5
-            //     if (styleFlag === 1) {
-            //         $('#areaCont').removeClass('leftBottom rightTop leftTop rightBottom bottomCenter1').addClass(
-            //             'bottomCenter')
-            //         styleLocation = 5
-            //     } else if (styleFlag === 2) {
-            //         $('#areaCont').removeClass('leftBottom rightTop leftTop rightBottom bottomCenter').addClass(
-            //             'bottomCenter1')
-            //         styleLocation = 6
-            //     }
-
-            // }
         })
 
-        // logo方位-----------------------------------------------------------------------------------------------------------
+        $('#one-mute').on('click', function () {
+            if (oneMuteFlag) {
+                oneMuteFlag = false
+                slide_one.setValue(0)
+            } else {
+                oneMuteFlag = true
+                slide_one.setValue(5)
+            }
+        })
+
+        slide_two = slider.render({
+            elem: '#slideTwo',
+            min: 0,
+            max: 10,
+            step: 1,
+            value: 0,
+           type: 'default',
+            theme: '#FF914D',
+            setTips: function (value) { //自定义提示文本
+                return value / 10;
+            },
+            change: function (value) {
+                $('#slideTwo .layui-slider-bar').css({
+                   width: value * 100 + '%'
+                })
+                if (value === 0) {
+                    twoMuteFlag = false
+                    $('#two-mute').attr('src', '/image/mute-close.png')
+                } else {
+                    twoMuteFlag = true
+                    $('#two-mute').attr('src', '/image/mute-open.png')
+                }
+                allInfo.twoMuteSize = value * 10
+                domCameraTwo.volume = value
+                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                mute_debounce()
+            }
+        })
+
+        $('#two-mute').on('click', function () {
+            if (twoMuteFlag) {
+                twoMuteFlag = false
+                slide_two.setValue(0)
+            } else {
+                twoMuteFlag = true
+                slide_two.setValue(5)
+            }
+        })
+
+        slide_three = slider.render({
+            elem: '#slideThree',
+            min: 0,
+            max: 10,
+            step: 1,
+            value: 0,
+            type: 'default',
+            theme: '#FF914D',
+            setTips: function (value) { //自定义提示文本
+                return value / 10;
+            },
+            change: function (value) {
+                $('#slideThree .layui-slider-bar').css({
+                   width: value * 100 + '%'
+                })
+                if (value === 0) {
+                    threeMuteFlag = false
+                    $('#three-mute').attr('src', '/image/mute-close.png')
+                } else {
+                    threeMuteFlag = true
+                    $('#three-mute').attr('src', '/image/mute-open.png')
+                }
+                allInfo.threeMuteSize = value * 10
+                domCameraThree.volume = value
+                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                mute_debounce()
+            }
+        })
+
+        $('#three-mute').on('click', function () {
+            if (threeMuteFlag) {
+                threeMuteFlag = false
+                slide_three.setValue(0)
+            } else {
+                threeMuteFlag = true
+                slide_three.setValue(5)
+            }
+        })
+
+        slide_four = slider.render({
+            elem: '#slideFour',
+            min: 0,
+            max: 10,
+            step: 1,
+            value: 0,
+           type: 'default',
+            theme: '#FF914D',
+            setTips: function (value) { //自定义提示文本
+                return value / 10;
+            },
+            change: function (value) {
+                $('#slideFour .layui-slider-bar').css({
+                   width: value * 100 + '%'
+                })
+                if (value === 0) {
+                    fourMuteFlag = false
+                    $('#four-mute').attr('src', '/image/mute-close.png')
+                } else {
+                    fourMuteFlag = true
+                    $('#four-mute').attr('src', '/image/mute-open.png')
+                }
+                allInfo.fourMuteSize = value * 10
+                domCameraFour.volume = value
+                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                mute_debounce()
+            }
+        })
+
+        $('#four-mute').on('click', function () {
+            if (fourMuteFlag) {
+                fourMuteFlag = false
+                slide_four.setValue(0)
+            } else {
+                fourMuteFlag = true
+                slide_four.setValue(5)
+            }
+        })
+
+        // 背景音乐滑块
+        slide_music = slider.render({
+            elem: '#slideMusic',
+            min: 0,
+            max: 10,
+            step: 1,
+            value: 0,
+            type: 'default',
+            theme: '#FF914D',
+            setTips: function (value) { //自定义提示文本
+                return value / 10;
+            },
+            change: function (value) {
+                $('#slideMusic .layui-slider-bar').css({
+                    width: value * 100 + '%'
+                })
+                if (value === 0) {
+                    $('#music-mute').attr('src', '/image/mute-close.png')
+                } else {
+                    $('#music-mute').attr('src', '/image/mute-open.png')
+                }
+                allInfo.musicInfo.volume = value
+                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                if(allInfo.musicInfo.state === 'on') {
+                    bg_debounce()
+                }
+            }
+        })
+
+        audio_music = slider.render({
+            elem: '#slideAudio',
+            min: 0,
+            max: 10,
+            step: 1,
+            value: 0,
+            type: 'deslideAudiofault',
+            theme: '#FF914D',
+            setTips: function (value) { //自定义提示文本
+                return value / 10;
+            },
+            change: function (value) {
+                $('#slideAudio .layui-slider-bar').css({
+                    width: value * 100 + '%'
+                })
+                if (value === 0) {
+                    $('#audio-mute').attr('src', '/image/mute-close.png')
+                } else {
+                    $('#audio-mute').attr('src', '/image/mute-open.png')
+                }
+                allInfo.musicInfo.audio_volume = value
+                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                if(allInfo.musicInfo.state === 'on') {
+                    bg_debounce()
+                }
+            }
+        })
+        // 函数防抖 滑动音量时 停下超过500秒发切出请求
+        function mute_debounce(){
+            clearTimeout(mute_timeout)
+            mute_timeout = setTimeout(()=>{
+                if(initializeFlag) {
+                    allInfo.update = 0
+                    sendInstruct()
+                }else {
+                    initializeFlag = true
+                }
+            },500)
+           
+        }
+        // 直播耳机静音----------------
+        $('#live-headset').on('click', function () {
+            if (allInfo.liveHeadFlag) {
+                $(this).attr('src', './../image/headset-close.png').css({
+                    width: '0.24rem',
+                    height: '0.22rem'
+                })
+                allInfo.liveHeadFlag = false
+                domLiveRight.volume = 0
+
+            } else {
+                allInfo.liveHeadFlag = true
+                $(this).attr('src', './../image/headset-open.png').css({
+                    width: '0.24rem',
+                    height: '0.18rem'
+                })
+                domLiveRight.volume = 1
+            }
+            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+        })
+
+        //一拼二拼三拼--------------------------------------------------------------------------------------------------------------
+        $('#one-merge').on('click', function () {
+            renderOne()
+            drawCanvas(allInfo.numberFlag)
+            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+        })
+        $('#two-merge').on('click', function () {
+            $(this).addClass('mergeActive').siblings('img').removeClass('mergeActive')
+            allInfo.numberFlag = 2
+            allInfo.numFlag = 0
+            drawCanvas(allInfo.numberFlag)
+            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+        })
+        $('#three-merge').on('click', function () {
+            $(this).addClass('mergeActive').siblings('img').removeClass('mergeActive')
+            allInfo.numberFlag = 3
+            allInfo.numFlag = 0
+            drawCanvas(allInfo.numberFlag)
+            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+        })
+
+        // 机位一二三四切换----------------------------------------------------------------------------------------------------
+        $('#cameraOne').on('click', function () {
+            cameraCut({
+                dom: 'cameraOne',
+                name: 1
+            })
+        })
+
+        $('#cameraTwo').on('click', function () {
+            cameraCut({
+                dom: 'cameraTwo',
+                name: 2
+            })
+        })
+
+        $('#cameraThree').on('click', function () {
+            cameraCut({
+                dom: 'cameraThree',
+                name: 3
+            })
+        })
+        $('#cameraFour').on('click', function () {
+            cameraCut({
+                dom: 'cameraFour',
+                name: 4
+            })
+        })
+        // 机位一二三四快切-----------------------------------------------------------------------------------------------------
+        $('#one-cut').on('click', function () {
+            renderOne()
+            $('#cameraOne').trigger('click')
+            allInfo.update = 0
+            sendInstruct()
+        })
+        $('#two-cut').on('click', function () {
+            renderOne()
+            $('#cameraTwo').trigger('click')
+            allInfo.update = 0
+            sendInstruct()
+        })
+        $('#three-cut').on('click', function () {
+            renderOne()
+            $('#cameraThree').trigger('click')
+            allInfo.update = 0
+            sendInstruct()
+        })
+        $('#four-cut').on('click', function () {
+            renderOne()
+            $('#cameraFour').trigger('click')
+            allInfo.update = 0
+            sendInstruct()
+        })
+        // 机位切换渲染dom 
+        function cameraCut(item) {
+            if (allInfo.numberFlag === 1) {
+                allInfo.numFlag = 1
+                allInfo.oneSrc[0] = item
+            } else if (allInfo.numberFlag === 2) {
+                if (allInfo.numFlag % 2 === 0) {
+                    allInfo.twoSrc[0] = item
+                } else {
+                    allInfo.twoSrc[1] = item
+                }
+                allInfo.numFlag++
+            } else if (allInfo.numberFlag === 3) {
+                if (allInfo.numFlag % 3 === 0) {
+
+                    allInfo.threeSrc[0] = item
+                } else if (allInfo.numFlag % 3 === 1) {
+
+                    allInfo.threeSrc[1] = item
+                } else if (allInfo.numFlag % 3 === 2) {
+                    allInfo.threeSrc[2] = item
+                }
+                allInfo.numFlag++
+            }
+            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+            drawCanvas(allInfo.numberFlag)
+        }
+        //  绘制canvas预览
+        function drawCanvas(num) {
+            var v1 = null
+            var v2 = null
+            var v3 = null
+            var canvas = document.getElementById("myCanvas")
+            var ctx_canvas = canvas.getContext('2d')
+            if (num === 1) {
+                v1 = document.getElementById(allInfo.oneSrc[0].dom)
+            } else if (num === 2) {
+                v1 = document.getElementById(allInfo.twoSrc[0].dom)
+                v2 = document.getElementById(allInfo.twoSrc[1].dom)
+            } else {
+                v1 = document.getElementById(allInfo.threeSrc[0].dom)
+                v2 = document.getElementById(allInfo.threeSrc[1].dom)
+                v3 = document.getElementById(allInfo.threeSrc[2].dom)
+            }
+            clearInterval(timerDraw)
+            timerDraw = window.setInterval(() => {
+                if (num === 1) {
+                    ctx_canvas.drawImage(v1, 0, 0, canvas.width, canvas.height)
+                } else if (num === 2) {
+                    ctx_canvas.drawImage(v1, v1.videoWidth / 4, 0, v1.videoWidth / 2, v1.videoHeight, 0, 0, canvas.width / 2, canvas.height)
+                    ctx_canvas.drawImage(v2, v2.videoWidth / 4, 0, v2.videoWidth / 2, v2.videoHeight, canvas.width / 2, 0, canvas.width / 2, canvas.height)
+                } else {
+                    ctx_canvas.drawImage(v1, v1.videoWidth / 4, 0, v1.videoWidth / 2, v1.videoHeight, 0, 0, canvas.width / 2, canvas.height)
+                    ctx_canvas.drawImage(v2, 0, 0, v2.videoWidth, v2.videoHeight, canvas.width / 2, 0, canvas.width / 2, canvas.height / 2)
+                    ctx_canvas.drawImage(v3, 0, 0, v3.videoWidth, v3.videoHeight, canvas.width / 2, canvas.height / 2, canvas.width / 2, canvas.height / 2)
+                }
+            }, 20);
+
+        }
+        // 单机位时渲染dom
+        function renderOne() {
+            $('#one-merge').addClass('mergeActive').siblings('img').removeClass('mergeActive')
+            allInfo.numberFlag = 1
+            allInfo.numFlag = 0
+        }
+
+        // logo方位 开始--------------------------------------------------------------------------
         form.on('radio(logo-orientation)', function (data) {
             if (data.value === '1') {
                 $('.upload-watermark-image').removeClass(
@@ -1546,13 +1763,13 @@ $(function () {
         })
         // logo位置 开关提交
         $('.watermark-submit-btn').on('click', function () {
+            
             if($(this).hasClass('logoStart')) {
                 logoFlag = 'False'
-                $('.watermark-submit-btn').html('开启').removeClass('logoStart')
             } else {
                 logoFlag = 'True'
-                $('.watermark-submit-btn').html('关闭').addClass('logoStart')
             }
+
             $.ajax({
                 type: 'POST',
                 url: "http://www.cube.vip/event/logo_page_setup/",
@@ -1565,241 +1782,119 @@ $(function () {
                     event_logo_countdown: logoFlag,
                     event_logo_position: logoOrientation
                 },
-                success: function (res) {
+                success: res=> {
                     if (res.msg === 'success') {
                         if (logoFlag === 'True') {
                             setLogoLocation(logoOrientation)
                         }
-                        allInfo.update = 0
-                        sendInstruct()
+                        var info = {
+                            code: "FRONT_END_ACTION",
+                            // 视频一拼二品三拼标志 true/false
+                            video: {
+                                score: {
+                                    state: allInfo.state,
+                                    update:0,
+                                    scoreLocation: scoreLocation
+                                }
+                            }
+                        }
+                        var local_code = {
+                            allInfo: allInfo,
+                            scoreInfo:sessionStorage.getItem('score' + event_code)? JSON.parse(sessionStorage.getItem('score' + event_code)):null,
+                            scoreImg:sessionStorage.getItem('imageBase64' + event_code)?sessionStorage.getItem('imageBase64' + event_code):0
+                        }
+                        var formData = new FormData()
+                            formData.append('file', fileScore)
+                            formData.append('stream_code', event_code)
+                            formData.append('random_code', idOnly)
+                            formData.append('local_code', JSON.stringify(local_code))
+                            formData.append('json_data', JSON.stringify(info))
+                            $.ajax({
+                                type: "POST",
+                                url: 'http://www.cube.vip/director/director_instruct/',
+                                dataType: "json",
+                                headers: {
+                                    token: sessionStorage.getItem('token')
+                                },
+                                processData: false,
+                                contentType: false,
+                                data: formData,
+                                success:res=>{
+                                    if(mainFlag){
+                                         if(res.msg==='success'){
+                                            mainFlag = true 
+                                            if($('.watermark-submit-btn').hasClass('logoStart')) {
+                                                $('.watermark-submit-btn').html('开启').removeClass('logoStart')
+                                            
+                                            } else {
+                                                $('.watermark-submit-btn').html('关闭').addClass('logoStart')
+                                                
+                                            }
+                                            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                
+                                        } else if(res.msg==='not_main'){
+                                            mainFlag = false
+                                            not_remind()
+                                            $('#requestFlag').html('辅').css('background','red')
+                                            if($(this).hasClass('logoStart')) {
+                                                logoFlag = 'True'
+                                            } else {
+                                                logoFlag = 'False'
+                                            }
+                                        
+                                        }
+                                    }
+                                }
+                            })
                     } else {
                         layer.msg('提交失败,请重试!')
                     }
                 }
             })
         })
+        // logo 结束--------------------------------------------------------------------------
+        
+        // 比分牌开始-------------------------------------------------------------------------
+        // 比分显示方位
+        form.on('radio(areaRadio)', function (data) {
+            if (data.value === 'leftTop') {
+                $('#areaCont').removeClass('leftBottom rightTop rightBottom bottomCenter bottomCenter1').addClass(
+                    'leftTop')
+                styleLocation = 1
 
-        // 机位一二三音频滑块---------------------------------------------------------------------------------------------------
-        slide_one = slider.render({
-            elem: '#slideOne',
-            min: 0,
-            max: 10,
-            step: 1,
-            value: 0,
-            type: 'default',
-            theme: '#FF914D',
-            setTips: function (value) { //自定义提示文本
-                return value / 10;
-            },
-            change: function (value) {
-                $('#slideOne .layui-slider-bar').css({
-                   width: value * 100 + '%'
-                })
-                if (value === 0) {
-                    oneMuteFlag = false
-                    $('#one-mute').attr('src', '/image/mute-close.png')
-                } else {
-                    oneMuteFlag = true
-                    $('#one-mute').attr('src', '/image/mute-open.png')
-                }
-                allInfo.oneMuteSize = value * 10
-                domCameraOne.volume = value
-                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-                // allInfo.update = 0
-                // sendInstruct()
-            }
+            } else if (data.value === 'leftBottom') {
+                $('#areaCont').removeClass('leftTop rightTop rightBottom bottomCenter bottomCenter1').addClass(
+                    'leftBottom')
+                styleLocation = 2
+
+
+            } else if (data.value === 'rightTop') {
+                $('#areaCont').removeClass('leftBottom leftTop rightBottom bottomCenter bottomCenter1').addClass(
+                    'rightTop')
+                styleLocation = 3
+
+            } else if (data.value === 'rightBottom') {
+                $('#areaCont').removeClass('leftBottom rightTop leftTop bottomCenter bottomCenter1').addClass(
+                    'rightBottom')
+                styleLocation = 4
+            } 
+            // else if (data.value === 'bottomCenter') {
+            //     $('#areaCont').removeClass('leftBottom rightTop leftTop rightBottom bottomCenter1').addClass(
+            //         'bottomCenter')
+            //         styleLocation = 5
+            //     if (styleFlag === 1) {
+            //         $('#areaCont').removeClass('leftBottom rightTop leftTop rightBottom bottomCenter1').addClass(
+            //             'bottomCenter')
+            //         styleLocation = 5
+            //     } else if (styleFlag === 2) {
+            //         $('#areaCont').removeClass('leftBottom rightTop leftTop rightBottom bottomCenter').addClass(
+            //             'bottomCenter1')
+            //         styleLocation = 6
+            //     }
+
+            // }
         })
-
-        $('#one-mute').on('click', function () {
-            if (oneMuteFlag) {
-                oneMuteFlag = false
-                slide_one.setValue(0)
-            } else {
-                oneMuteFlag = true
-                slide_one.setValue(5)
-            }
-        })
-
-        slide_two = slider.render({
-            elem: '#slideTwo',
-            min: 0,
-            max: 10,
-            step: 1,
-            value: 0,
-           type: 'default',
-            theme: '#FF914D',
-            setTips: function (value) { //自定义提示文本
-                return value / 10;
-            },
-            change: function (value) {
-                $('#slideTwo .layui-slider-bar').css({
-                   width: value * 100 + '%'
-                })
-                if (value === 0) {
-                    twoMuteFlag = false
-                    $('#two-mute').attr('src', '/image/mute-close.png')
-                } else {
-                    twoMuteFlag = true
-                    $('#two-mute').attr('src', '/image/mute-open.png')
-                }
-                allInfo.twoMuteSize = value * 10
-                domCameraTwo.volume = value
-                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-                // allInfo.update = 0
-                // sendInstruct()
-            }
-        })
-
-        $('#two-mute').on('click', function () {
-            if (twoMuteFlag) {
-                twoMuteFlag = false
-                slide_two.setValue(0)
-            } else {
-                twoMuteFlag = true
-                slide_two.setValue(5)
-            }
-        })
-
-        slide_three = slider.render({
-            elem: '#slideThree',
-            min: 0,
-            max: 10,
-            step: 1,
-            value: 0,
-            type: 'default',
-            theme: '#FF914D',
-            setTips: function (value) { //自定义提示文本
-                return value / 10;
-            },
-            change: function (value) {
-                $('#slideThree .layui-slider-bar').css({
-                   width: value * 100 + '%'
-                })
-                if (value === 0) {
-                    threeMuteFlag = false
-                    $('#three-mute').attr('src', '/image/mute-close.png')
-                } else {
-                    threeMuteFlag = true
-                    $('#three-mute').attr('src', '/image/mute-open.png')
-                }
-                allInfo.threeMuteSize = value * 10
-                domCameraThree.volume = value
-                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-                // allInfo.update = 0
-                // sendInstruct()
-            }
-        })
-
-        $('#three-mute').on('click', function () {
-            if (threeMuteFlag) {
-                threeMuteFlag = false
-                slide_three.setValue(0)
-            } else {
-                threeMuteFlag = true
-                slide_three.setValue(5)
-            }
-        })
-
-        slide_four = slider.render({
-            elem: '#slideFour',
-            min: 0,
-            max: 10,
-            step: 1,
-            value: 0,
-           type: 'default',
-            theme: '#FF914D',
-            setTips: function (value) { //自定义提示文本
-                return value / 10;
-            },
-            change: function (value) {
-                $('#slideFour .layui-slider-bar').css({
-                   width: value * 100 + '%'
-                })
-                if (value === 0) {
-                    fourMuteFlag = false
-                    $('#four-mute').attr('src', '/image/mute-close.png')
-                } else {
-                    fourMuteFlag = true
-                    $('#four-mute').attr('src', '/image/mute-open.png')
-                }
-                allInfo.fourMuteSize = value * 10
-                domCameraFour.volume = value
-                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-                // allInfo.update = 0
-                // sendInstruct()
-            }
-        })
-
-        $('#four-mute').on('click', function () {
-            if (fourMuteFlag) {
-                fourMuteFlag = false
-                slide_four.setValue(0)
-            } else {
-                fourMuteFlag = true
-                slide_four.setValue(5)
-            }
-        })
-
-        // 背景音乐滑块
-        slide_music = slider.render({
-            elem: '#slideMusic',
-            min: 0,
-            max: 10,
-            step: 1,
-            value: 0,
-            type: 'default',
-            theme: '#FF914D',
-            setTips: function (value) { //自定义提示文本
-                return value / 10;
-            },
-            change: function (value) {
-                $('#slideMusic .layui-slider-bar').css({
-                    width: value * 100 + '%'
-                })
-                if (value === 0) {
-                    $('#music-mute').attr('src', '/image/mute-close.png')
-                } else {
-                    $('#music-mute').attr('src', '/image/mute-open.png')
-                }
-                allInfo.musicInfo.volume = value
-                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-                if(allInfo.musicInfo.state === 'on') {
-                    allInfo.update = 0
-                    sendInstruct()
-                }
-            }
-        })
-
-        audio_music = slider.render({
-            elem: '#slideAudio',
-            min: 0,
-            max: 10,
-            step: 1,
-            value: 0,
-            type: 'deslideAudiofault',
-            theme: '#FF914D',
-            setTips: function (value) { //自定义提示文本
-                return value / 10;
-            },
-            change: function (value) {
-                $('#slideAudio .layui-slider-bar').css({
-                    width: value * 100 + '%'
-                })
-                if (value === 0) {
-                    $('#audio-mute').attr('src', '/image/mute-close.png')
-                } else {
-                    $('#audio-mute').attr('src', '/image/mute-open.png')
-                }
-                allInfo.musicInfo.audio_volume = value
-                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-                if(allInfo.musicInfo.state === 'on') {
-                    allInfo.update = 0
-                    sendInstruct()
-                }
-            }
-        })
-
-
+        
         // 上传队伍logo
         upload.render({
             elem: '#left-uploadImg',
@@ -1849,361 +1944,7 @@ $(function () {
             }
         })
 
-        //一拼二拼三拼--------------------------------------------------------------------------------------------------------------
-        $('#one-merge').on('click', function () {
-            renderOne()
-            drawCanvas(allInfo.numberFlag)
-            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-        })
-        $('#two-merge').on('click', function () {
-            $(this).addClass('mergeActive').siblings('img').removeClass('mergeActive')
-            allInfo.numberFlag = 2
-            allInfo.numFlag = 0
-            drawCanvas(allInfo.numberFlag)
-            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-        })
-        $('#three-merge').on('click', function () {
-            $(this).addClass('mergeActive').siblings('img').removeClass('mergeActive')
-            allInfo.numberFlag = 3
-            allInfo.numFlag = 0
-            drawCanvas(allInfo.numberFlag)
-            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-        })
-
-        // 机位一二三切换----------------------------------------------------------------------------------------------------
-
-        $('#cameraOne').on('click', function () {
-            cameraCut({
-                dom: 'cameraOne',
-                name: 1
-            })
-        })
-
-        $('#cameraTwo').on('click', function () {
-            cameraCut({
-                dom: 'cameraTwo',
-                name: 2
-            })
-        })
-
-        $('#cameraThree').on('click', function () {
-            cameraCut({
-                dom: 'cameraThree',
-                name: 3
-            })
-        })
-        $('#cameraFour').on('click', function () {
-            cameraCut({
-                dom: 'cameraFour',
-                name: 4
-            })
-        })
-
-        // 机位切换渲染dom 
-        function cameraCut(item) {
-            if (allInfo.numberFlag === 1) {
-                allInfo.numFlag = 1
-                allInfo.oneSrc[0] = item
-            } else if (allInfo.numberFlag === 2) {
-                if (allInfo.numFlag % 2 === 0) {
-                    allInfo.twoSrc[0] = item
-                } else {
-                    allInfo.twoSrc[1] = item
-                }
-                allInfo.numFlag++
-            } else if (allInfo.numberFlag === 3) {
-                if (allInfo.numFlag % 3 === 0) {
-
-                    allInfo.threeSrc[0] = item
-                } else if (allInfo.numFlag % 3 === 1) {
-
-                    allInfo.threeSrc[1] = item
-                } else if (allInfo.numFlag % 3 === 2) {
-                    allInfo.threeSrc[2] = item
-                }
-                allInfo.numFlag++
-            }
-            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-            drawCanvas(allInfo.numberFlag)
-        }
-
-        //  绘制canvas
-        function drawCanvas(num) {
-            var v1 = null
-            var v2 = null
-            var v3 = null
-            var canvas = document.getElementById("myCanvas")
-            var ctx_canvas = canvas.getContext('2d')
-            if (num === 1) {
-                v1 = document.getElementById(allInfo.oneSrc[0].dom)
-            } else if (num === 2) {
-                v1 = document.getElementById(allInfo.twoSrc[0].dom)
-                v2 = document.getElementById(allInfo.twoSrc[1].dom)
-            } else {
-                v1 = document.getElementById(allInfo.threeSrc[0].dom)
-                v2 = document.getElementById(allInfo.threeSrc[1].dom)
-                v3 = document.getElementById(allInfo.threeSrc[2].dom)
-            }
-            clearInterval(timerDraw)
-            timerDraw = window.setInterval(() => {
-                if (num === 1) {
-                    ctx_canvas.drawImage(v1, 0, 0, canvas.width, canvas.height)
-                } else if (num === 2) {
-                    ctx_canvas.drawImage(v1, v1.videoWidth / 4, 0, v1.videoWidth / 2, v1.videoHeight, 0, 0, canvas.width / 2, canvas.height)
-                    ctx_canvas.drawImage(v2, v2.videoWidth / 4, 0, v2.videoWidth / 2, v2.videoHeight, canvas.width / 2, 0, canvas.width / 2, canvas.height)
-                } else {
-                    ctx_canvas.drawImage(v1, v1.videoWidth / 4, 0, v1.videoWidth / 2, v1.videoHeight, 0, 0, canvas.width / 2, canvas.height)
-                    ctx_canvas.drawImage(v2, 0, 0, v2.videoWidth, v2.videoHeight, canvas.width / 2, 0, canvas.width / 2, canvas.height / 2)
-                    ctx_canvas.drawImage(v3, 0, 0, v3.videoWidth, v3.videoHeight, canvas.width / 2, canvas.height / 2, canvas.width / 2, canvas.height / 2)
-                }
-            }, 20);
-
-        }
-
-        // 机位一二三快切-----------------------------------------------------------------------------------------------------
-        $('#one-cut').on('click', function () {
-            renderOne()
-            $('#cameraOne').trigger('click')
-            allInfo.update = 0
-            sendInstruct()
-        })
-        $('#two-cut').on('click', function () {
-            renderOne()
-            $('#cameraTwo').trigger('click')
-            allInfo.update = 0
-            sendInstruct()
-        })
-        $('#three-cut').on('click', function () {
-            renderOne()
-            $('#cameraThree').trigger('click')
-            allInfo.update = 0
-            sendInstruct()
-        })
-        $('#four-cut').on('click', function () {
-            renderOne()
-            $('#cameraFour').trigger('click')
-            allInfo.update = 0
-            sendInstruct()
-        })
-        // 单机位时渲染dom
-        function renderOne() {
-            $('#one-merge').addClass('mergeActive').siblings('img').removeClass('mergeActive')
-            allInfo.numberFlag = 1
-            allInfo.numFlag = 0
-        }
-        // 直播耳机静音--------------------------------------------------------------------------------------------------
-        $('#live-headset').on('click', function () {
-            if (allInfo.liveHeadFlag) {
-                $(this).attr('src', './../image/headset-close.png').css({
-                    width: '0.24rem',
-                    height: '0.22rem'
-                })
-                allInfo.liveHeadFlag = false
-                domLiveRight.volume = 0
-
-            } else {
-                allInfo.liveHeadFlag = true
-                $(this).attr('src', './../image/headset-open.png').css({
-                    width: '0.24rem',
-                    height: '0.18rem'
-                })
-                domLiveRight.volume = 1
-            }
-            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-        })
-
-        // 渲染导播sessionStorage记录
-        function renderHistory() {
-            // 渲染一二三拼
-            if (allInfo.numberFlag === 1) {
-                $('#one-merge').addClass('mergeActive').siblings('img').removeClass('mergeActive')
-            } else if (allInfo.numberFlag === 2) {
-                $('#two-merge').addClass('mergeActive').siblings('img').removeClass('mergeActive')
-            } else if (allInfo.numberFlag === 3) {
-                $('#three-merge').addClass('mergeActive').siblings('img').removeClass('mergeActive')
-            }
-            drawCanvas(allInfo.numberFlag)
-
-            // 直播耳机静音
-            if (allInfo.liveHeadFlag) {
-                $('#live-headset').attr('src', './../image/headset-open.png').css({
-                    width: '0.24rem',
-                    height: '0.18rem'
-                })
-                domLiveRight.volume = 1
-            } else {
-                $('#live-headset').attr('src', './../image/headset-close.png').css({
-                    width: '0.24rem',
-                    height: '0.22rem'
-                })
-                domLiveRight.volume = 0
-            }
-            // 一二三机位音量
-
-            setTimeout(() => {
-                slide_one.setValue(allInfo.oneMuteSize)
-                slide_two.setValue(allInfo.twoMuteSize)
-                slide_three.setValue(allInfo.threeMuteSize)
-                slide_four.setValue(allInfo.fourMuteSize)
-            }, 100)
-            // 渲染手势检测
-            if (allInfo.gestureFlag === 'off') {
-                $('#gesture-btn').text('开启').css('background-color', '#ff914d')
-            } else {
-                $('#gesture-btn').text('关闭').css('background-color', '#f2591a')
-            }
-            // 自动切换
-            if (allInfo.autoState === 'off') {
-                $('#auto-btn').text('开启').css('background-color', '#ff914d')
-            } else {
-                $('#auto-btn').text('关闭').css('background-color', '#f2591a')
-            }
-            // zoom-in 
-            if (allInfo.zoomState === 'off') {
-                $('#zoom-btn').text('开启').css('background-color', '#ff914d')
-            } else {
-                $('#zoom-btn').text('关闭').css('background-color', '#f2591a')
-            }
-            // 渲染背景替换
-            $('.bg-item').removeClass('bg-active').eq(allInfo.replaceFlag).addClass('bg-active')
-
-            // 渲染文档历史记录
-            if(allInfo.pptInfo.data.length>0){
-                $('#lanternImage').show().attr('src',allInfo.pptInfo.data[allInfo.pptInfo.num-1])
-                $('.lanternOperation .equalClass').removeClass('endStyle').addClass('activeStyle')
-                $('.borderClass').removeClass('noneBorder').addClass('haveBorder')
-            }
-
-            $('.pageNum').html(allInfo.pptInfo.num+'/'+allInfo.pptInfo.total)
-             
-            if(allInfo.pptInfo.state === 'off') {
-                $('#lanternStart').addClass('defaultStyle').removeClass('startStyle').html('开启')
-                
-            } else {
-                $('#lanternStart').addClass('startStyle').removeClass('defaultStyle').html('关闭')
-            }
-
-             // 渲染音乐
-             if(allInfo.musicInfo.state === 'off') {
-                $('#musicStart').addClass('defaultStyle').removeClass('startStyle').html('开启')
-            } else {
-                $('#musicStart').addClass('startStyle').removeClass('defaultStyle').html('关闭')
-            }
-            if(allInfo.musicInfo.name !=='' && allInfo.musicInfo.oss !=='') {
-                $('#musicName').html(allInfo.musicInfo.name)
-            }
-
-            if(allInfo.kvInfo.state === 'off') {
-                $('#kvStart').addClass('defaultStyle').removeClass('startStyle').html('开启')
-            } else {
-                $('#kvStart').addClass('startStyle').removeClass('defaultStyle').html('关闭')
-            }
-        }
-        // 手势检测-------------------------------------------------------------------------------------------------
-        $('#gesture-btn').on('click', function () {
-            if (allInfo.gestureFlag === 'off') {
-                allInfo.gestureFlag = 'on'
-                $(this).text('关闭').css('background-color', '#f2591a')
-            } else {
-                allInfo.gestureFlag = 'off'
-                $(this).text('开启').css('background-color', '#ff914d')
-            }
-            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-            allInfo.update = 0
-            sendInstruct()
-        })
-        // 自动导切-------------------------------------------------------------------------------------------------
-        $('#auto-btn').on('click', function () {
-            if (allInfo.autoState === 'off') {
-                allInfo.autoState = 'on'
-                $(this).text('关闭').css('background-color', '#f2591a')
-            } else {
-                allInfo.autoState = 'off'
-                $(this).text('开启').css('background-color', '#ff914d')
-            }
-            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-            var info = {
-                code: "FRONT_END_ACTION",
-                // 视频一拼二品三拼标志 true/false
-                video: {
-                    score: {
-                        state: allInfo.state,
-                        update:0,
-                        scoreLocation: scoreLocation
-                    },
-                    auto_selector: {
-                        state: allInfo.autoState
-                    }
-                    
-                }
-            }
-            var formData = new FormData()
-            formData.append('file', fileScore)
-            formData.append('stream_code', event_code)
-            formData.append('json_data', JSON.stringify(info))
-            $.ajax({
-                type: "POST",
-                url: 'http://www.cube.vip/director/director_instruct/',
-                dataType: "json",
-                headers: {
-                    token: sessionStorage.getItem('token')
-                },
-                processData: false,
-                contentType: false,
-                data: formData
-            })
-        })
-         // zoom-in-------------------------------------------------------------------------------------------------
-         $('#zoom-btn').on('click', function () {
-            if (allInfo.zoomState === 'off') {
-                allInfo.zoomState = 'on'
-                $(this).text('关闭').css('background-color', '#f2591a')
-            } else {
-                allInfo.zoomState = 'off'
-                $(this).text('开启').css('background-color', '#ff914d')
-            }
-            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-            var info = {
-                 code: "FRONT_END_ACTION",
-                 // 视频一拼二品三拼标志 true/false
-                 video: {
-                     
-                    score: {
-                        state: allInfo.state,
-                        update:0,
-                        scoreLocation: scoreLocation
-                    },
-                     zoom_in: {
-                         state: allInfo.zoomState
-                     }
-                     
-                 }
-             }
-             var formData = new FormData()
-             formData.append('file', fileScore)
-             formData.append('stream_code', event_code)
-             formData.append('json_data', JSON.stringify(info))
-             $.ajax({
-                 type: "POST",
-                 url: 'http://www.cube.vip/director/director_instruct/',
-                 dataType: "json",
-                 headers: {
-                     token: sessionStorage.getItem('token')
-                 },
-                 processData: false,
-                 contentType: false,
-                 data: formData
-             })
-            
-        })
-        // 背景替换------------------------------------------------------------------------------------------------
-        $('.bg-item').on('click', function () {
-            $(this).addClass('bg-active').siblings().removeClass('bg-active')
-            allInfo.replaceFlag = $(this).index()
-            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-        })
-
-        // 添加模板--------------------------------------------------------------------------------------------------------------------------------
+        // 添加模板----------------------------------------------------------------------------------------------
 
         // 获取比分牌样式
         function getScoreStyle() {
@@ -2671,164 +2412,6 @@ $(function () {
                 }, 0)
             }
         }
-        // 渲染带比分的历史记录比分牌
-        function renderHistoryScore() {
-            if (sessionStorage.getItem('score' + event_code)) {
-                $('#score-shade').hide()
-                $('.oneClass').removeClass('defaultColor').addClass('highlightOne')
-                $('.twoClass').removeClass('defaultColor').addClass('highlightTwo')
-                scoreData = JSON.parse(sessionStorage.getItem('score' + event_code))
-                $('#left-name').text(scoreData.nameLeft)
-                $('#right-name').text(scoreData.nameRight)
-                // 比分
-               
-                $('#left-score').val(scoreData.smallLeftScore)
-                $('#right-score').val(scoreData.smallRightScore)
-                
-                var image = new Image()
-                image.setAttribute('src', scoreData.src)
-                image.setAttribute('id', 'model')
-                image.style.width = '1.3rem'
-                $('#check-model').html(image)
-
-                var imgs = new Image()
-                imgs.setAttribute('src', scoreData.src)
-                imgs.setAttribute('display', 'block')
-                imgs.setAttribute('id', 'scoreBg')
-                $('#scoreBrand').show().html(imgs)
-
-                var imgBg = new Image();
-                var canvas2 = document.createElement('canvas');
-                var ctx = canvas2.getContext('2d');
-                imgBg.crossOrigin = 'Anonymous';
-                imgBg.src = $('#scoreBg').attr('src');
-                imgBg.onload = function () {
-                    canvas2.height = imgBg.height;
-                    canvas2.width = imgBg.width;
-                    ctx.drawImage(imgBg, 0, 0);
-                    var dataURL = canvas2.toDataURL('image/png');
-                    $('#scoreBg').attr('src', dataURL);
-                    canvas2 = null;
-                }
-                $('#logo-radio1').removeAttr('disabled')
-                $('#logo-radio2').removeAttr('disabled')
-                $('#logo-radio3').removeAttr('disabled')
-                $('#logo-radio4').removeAttr('disabled')
-                if (scoreData.location === 1) {
-                    scoreLocation = 1
-                    $('#logo-radio1').attr('disabled', 'true')
-                    $('#scoreBrand').removeClass('lbPosition rtPosition rbPosition bcPosition bc1Position').addClass('ltPosition')
-                } else if (scoreData.location === 2) {
-                    scoreLocation = 2
-                    $('#logo-radio2').attr('disabled', 'true')
-                    $('#scoreBrand').removeClass('ltPosition rtPosition rbPosition bcPosition bc1Position').addClass('lbPosition')
-                } else if (scoreData.location === 3) {
-                    scoreLocation = 3
-                    $('#logo-radio3').attr('disabled', 'true')
-                    $('#scoreBrand').removeClass('lbPosition ltPosition rbPosition bcPosition bc1Position').addClass('rtPosition')
-                } else if (scoreData.location === 4) {
-                    scoreLocation = 4
-                    $('#logo-radio4').attr('disabled', 'true')
-                    $('#scoreBrand').removeClass('lbPosition rtPosition ltPosition bcPosition bc1Position').addClass('rbPosition')
-                } else if (scoreData.location === 5) {
-                    scoreLocation = 5
-                    $('#scoreBrand').removeClass('ltPosition lbPosition rtPosition rbPosition bc1Position').addClass('bcPosition')
-                } else if (scoreData.location === 6) {
-                    scoreLocation = 5
-                    $('#scoreBrand').removeClass('ltPosition lbPosition rtPosition rbPosition bcPosition').addClass('bc1Position')
-                }
-                form.render('radio')
-                var liveScoreLeft = document.createElement('p')
-                liveScoreLeft.setAttribute('id', 'liveScoreLeft')
-                $('#scoreBrand').append(liveScoreLeft)
-                $('#liveScoreLeft').css({
-                    width: '30px',
-                    height: '12px',
-                    position: 'absolute',
-                    fontSize: '12px',
-                    color: '#fff',
-                    fontFamily: 'Source Han Sans CN',
-                    fontWeight: 400,
-                }).text(scoreData.smallLeftScore)
-
-                var liveScoreRight = document.createElement('p')
-                liveScoreRight.setAttribute('id', 'liveScoreRight')
-                $('#scoreBrand').append(liveScoreRight)
-                $('#liveScoreRight').css({
-                    width: '30px',
-                    height: '12px',
-                    position: 'absolute',
-                    fontSize: '12px',
-                    color: '#fff',
-                    fontFamily: 'Source Han Sans CN',
-                    fontWeight: 400,
-                }).text(scoreData.smallRightScore)
-
-
-                if (scoreData.info.classify === 1) {
-                    $('#liveScoreLeft').css({
-                        textAlign: 'center',
-                        left: scoreData.info.score_left[0] + 'px',
-                        top: scoreData.info.score_left[1] + 'px',
-                    })
-
-                    $('#liveScoreRight').css({
-                        textAlign: 'center',
-                        left: scoreData.info.score_right[0] + 'px',
-                        top: scoreData.info.score_right[1] + 'px',
-                    })
-                } else {
-
-                    $('#liveScoreLeft').css({
-                        textAlign: 'left',
-                        width: '20px',
-                        lineHeight: '8px',
-                        left: scoreData.info.score_small_left[0] + 'px',
-                        top: scoreData.info.score_small_left[1] + 'px',
-                    })
-                    $('#liveScoreRight').css({
-                        textAlign: 'left',
-                        width: '20px',
-                        lineHeight: '8px',
-                        left: scoreData.info.score_small_right[0] + 'px',
-                        top: scoreData.info.score_small_right[1] + 'px',
-                    })
-
-                    var liveBigScoreLeft = document.createElement('p')
-                    liveBigScoreLeft.setAttribute('id', 'liveBigScoreLeft')
-                    $('#scoreBrand').append(liveBigScoreLeft)
-                    $('#liveBigScoreLeft').css({
-                        width: '30px',
-                        height: '14px',
-                        lineHeight: '10px',
-                        position: 'absolute',
-                        left: scoreData.info.score_big_left[0] + 'px',
-                        top: scoreData.info.score_big_left[1] + 'px',
-                        fontSize: '14px',
-                        color: '#fff',
-                        fontFamily: 'Source Han Sans CN',
-                        fontWeight: 400,
-                    }).text(scoreData.bigLeftScore)
-                    $('#left-subtotal').text(scoreData.bigLeftScore)
-                    var liveBigScoreRight = document.createElement('p')
-                    liveBigScoreRight.setAttribute('id', 'liveBigScoreRight')
-                    $('#scoreBrand').append(liveBigScoreRight)
-                    $('#liveBigScoreRight').css({
-                        width: '30px',
-                        height: '14px',
-                        lineHeight: '10px',
-                        position: 'absolute',
-                        left: scoreData.info.score_big_right[0] + 'px',
-                        top: scoreData.info.score_big_right[1] + 'px',
-                        fontSize: '14px',
-                        color: '#fff',
-                        fontFamily: 'Source Han Sans CN',
-                        fontWeight: 400,
-                    }).text(scoreData.bigRightScore)
-                    $('#right-subtotal').text(scoreData.bigRightScore)
-                }
-            }
-        }
         // 保存比分状态
         function saveScoreLocal() {
             sessionStorage.setItem('score' + event_code, JSON.stringify(scoreData))
@@ -3091,7 +2674,7 @@ $(function () {
             allInfo.update = 0
             sendInstruct()
         })
-
+        // 发送指令
         function sendInstruct() {
             // 视频一拼二品三拼标志
             var oneSpell = 0
@@ -3124,14 +2707,7 @@ $(function () {
                 }
             }
 
-            //机位音量
-             var pptImg = ''
-             if(allInfo.pptInfo.state ==='on') {
-                 pptImg = allInfo.pptInfo.data[allInfo.pptInfo.num-1]
-             } else {
-                 pptImg = ''
-             }
-
+            
             var info = {
                 code: "FRONT_END_ACTION",
                 // 视频一拼二品三拼标志 true/false
@@ -3147,37 +2723,6 @@ $(function () {
                         state: allInfo.state,
                         update: allInfo.update,
                         scoreLocation: scoreLocation
-                    },
-                    auto_selector: {
-                        state: allInfo.autoState
-                    },
-                    zoom_in: {
-                        state: allInfo.zoomState
-                    },
-                    gesture_selector:{
-                        state:allInfo.gestureFlag
-                    },
-                    slides:{
-                        state:allInfo.pptInfo.state,
-                        slidesFormat:allInfo.pptInfo.style,
-                        slide_oss:pptImg,
-                        update:allInfo.pptInfo.update
-                    },
-                    gif:{
-                        state:allInfo.gifInfo.state,
-                        x:allInfo.gifInfo.x,
-                        y:allInfo.gifInfo.y,
-                        width:allInfo.gifInfo.width,
-                        height:allInfo.gifInfo.height,
-                        gif_oss:allInfo.gifInfo.oss,
-                        update:allInfo.gifInfo.update
-                    },
-                    image:{
-                        state:allInfo.kvInfo.state,
-                        imageLocation:allInfo.kvInfo.location,
-                        type:'static',
-                        image_oss:allInfo.kvInfo.oss,
-                        update:allInfo.kvInfo.update
                     }
                 },
                 audio: {
@@ -3187,19 +2732,19 @@ $(function () {
                         twoVolume: allInfo.twoMuteSize / 10,
                         threeVolume: allInfo.threeMuteSize / 10,
                         fourVolume: allInfo.fourMuteSize / 10
-                    },
-                    music: {
-                        state: allInfo.musicInfo.state,
-                        music_volume: allInfo.musicInfo.volume,
-                        audio_volume:allInfo.musicInfo.audio_volume,
-                        music_oss:allInfo.musicInfo.oss,
-                        update:allInfo.musicInfo.update
                     }
                 }
+            }
+            var local_code = {
+                allInfo: allInfo,
+                scoreInfo:sessionStorage.getItem('score' + event_code)? JSON.parse(sessionStorage.getItem('score' + event_code)):null,
+                scoreImg:sessionStorage.getItem('imageBase64' + event_code)?sessionStorage.getItem('imageBase64' + event_code):0
             }
             var formData = new FormData()
             formData.append('file', fileScore)
             formData.append('stream_code', event_code)
+            formData.append('random_code', idOnly)
+            formData.append('local_code', JSON.stringify(local_code))
             formData.append('json_data', JSON.stringify(info))
             $.ajax({
                 type: "POST",
@@ -3210,13 +2755,506 @@ $(function () {
                 },
                 processData: false,
                 contentType: false,
-                data: formData
+                data: formData,
+                success:res=>{
+                    if(mainFlag){
+                        if(res.msg === 'success'){
+                            mainFlag = true 
+                        }
+                        else if(res.msg==='not_main'){
+                            mainFlag = false
+                            not_remind()
+                            $('#requestFlag').html('辅').css('background','red')
+                        }           
+                    }
+                    
+                 }
             })
-            allInfo.pptInfo.update = 0 
-            allInfo.musicInfo.update = 0
-            allInfo.kvInfo.update = 0
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
         }
+        // 没有权限提醒
+        function not_remind(){
+            layer.open({
+                type: 1,
+                title: false, //不显示标题栏
+                closeBtn: false,
+                area: '5.4rem',
+                shade: 0.3,
+                btn: ['确定',''],
+                moveType: 1, //拖拽模式，0或者1
+                content: '<div style="padding: 50px; line-height: 30px; font-size:18px;background-color: #fff; color: #333; font-weight: 400;">当前导播台为辅助导播台，所有指令将不生效。<br/>如需使指令生效，请先申请成为主控导播台。<br />(主控导播台最多只有一个)<br />当前导播台成为主控导播台之后，其它导播台自动成辅助导播台。</div>',
+                success: function(layero){
+                    var btn = layero.find('.layui-layer-btn');
+                    btn.find('.layui-layer-btn1').css({
+                        'border':'none '
+                    });
+                },
+                btn1: function () {
+                    layer.closeAll();
+                },
+            })
+        }
+
+        // 渲染导播sessionStorage记录
+        function renderHistory() {
+            // 渲染一二三拼
+            if (allInfo.numberFlag === 1) {
+                $('#one-merge').addClass('mergeActive').siblings('img').removeClass('mergeActive')
+            } else if (allInfo.numberFlag === 2) {
+                $('#two-merge').addClass('mergeActive').siblings('img').removeClass('mergeActive')
+            } else if (allInfo.numberFlag === 3) {
+                $('#three-merge').addClass('mergeActive').siblings('img').removeClass('mergeActive')
+            }
+            drawCanvas(allInfo.numberFlag)
+
+            // 直播耳机静音
+            if (allInfo.liveHeadFlag) {
+                $('#live-headset').attr('src', './../image/headset-open.png').css({
+                    width: '0.24rem',
+                    height: '0.18rem'
+                })
+                domLiveRight.volume = 1
+            } else {
+                $('#live-headset').attr('src', './../image/headset-close.png').css({
+                    width: '0.24rem',
+                    height: '0.22rem'
+                })
+                domLiveRight.volume = 0
+            }
+            // 一二三机位音量
+
+            setTimeout(() => {
+                slide_one.setValue(allInfo.oneMuteSize)
+                slide_two.setValue(allInfo.twoMuteSize)
+                slide_three.setValue(allInfo.threeMuteSize)
+                slide_four.setValue(allInfo.fourMuteSize)
+            }, 100)
+            // 渲染手势检测
+            if (allInfo.gestureFlag === 'off') {
+                $('#gesture-btn').text('开启').css('background-color', '#ff914d')
+            } else {
+                $('#gesture-btn').text('关闭').css('background-color', '#f2591a')
+            }
+            // 自动切换
+            if (allInfo.autoState === 'off') {
+                $('#auto-btn').text('开启').css('background-color', '#ff914d')
+            } else {
+                $('#auto-btn').text('关闭').css('background-color', '#f2591a')
+            }
+            // zoom-in 
+            if (allInfo.zoomState === 'off') {
+                $('#zoom-btn').text('开启').css('background-color', '#ff914d')
+            } else {
+                $('#zoom-btn').text('关闭').css('background-color', '#f2591a')
+            }
+            // 渲染背景替换
+            $('.bg-item').removeClass('bg-active').eq(allInfo.replaceFlag).addClass('bg-active')
+
+            // 渲染文档历史记录
+            if(allInfo.pptInfo.data.length>0){
+                $('#lanternImage').show().attr('src',allInfo.pptInfo.data[allInfo.pptInfo.num-1])
+                $('.lanternOperation .equalClass').removeClass('endStyle').addClass('activeStyle')
+                $('.borderClass').removeClass('noneBorder').addClass('haveBorder')
+            }
+
+            $('.pageNum').html(allInfo.pptInfo.num+'/'+allInfo.pptInfo.total)
+            
+            if(allInfo.pptInfo.state === 'off') {
+                $('#lanternStart').addClass('defaultStyle').removeClass('startStyle').html('开启')
+                
+            } else {
+                $('#lanternStart').addClass('startStyle').removeClass('defaultStyle').html('关闭')
+            }
+
+            // 渲染音乐
+            if(allInfo.musicInfo.state === 'off') {
+                $('#musicStart').addClass('defaultStyle').removeClass('startStyle').html('开启')
+            } else {
+                $('#musicStart').addClass('startStyle').removeClass('defaultStyle').html('关闭')
+            }
+            if(allInfo.musicInfo.name !=='' && allInfo.musicInfo.oss !=='') {
+                $('#musicName').html(allInfo.musicInfo.name)
+            }
+
+            if(allInfo.kvInfo.state === 'off') {
+                $('#kvStart').addClass('defaultStyle').removeClass('startStyle').html('开启')
+            } else {
+                $('#kvStart').addClass('startStyle').removeClass('defaultStyle').html('关闭')
+            }
+        }
+
+        // 渲染带比分的历史记录比分牌
+        function renderHistoryScore() {
+            if (sessionStorage.getItem('score' + event_code)) {
+                $('#score-shade').hide()
+                $('.oneClass').removeClass('defaultColor').addClass('highlightOne')
+                $('.twoClass').removeClass('defaultColor').addClass('highlightTwo')
+                scoreData = JSON.parse(sessionStorage.getItem('score' + event_code))
+                $('#left-name').text(scoreData.nameLeft)
+                $('#right-name').text(scoreData.nameRight)
+                // 比分
+               
+                $('#left-score').val(scoreData.smallLeftScore)
+                $('#right-score').val(scoreData.smallRightScore)
+                
+                var image = new Image()
+                image.setAttribute('src', scoreData.src)
+                image.setAttribute('id', 'model')
+                image.style.width = '1.3rem'
+                $('#check-model').html(image)
+
+                var imgs = new Image()
+                imgs.setAttribute('src', scoreData.src)
+                imgs.setAttribute('display', 'block')
+                imgs.setAttribute('id', 'scoreBg')
+                $('#scoreBrand').show().html(imgs)
+
+                var imgBg = new Image();
+                var canvas2 = document.createElement('canvas');
+                var ctx = canvas2.getContext('2d');
+                imgBg.crossOrigin = 'Anonymous';
+                imgBg.src = $('#scoreBg').attr('src');
+                imgBg.onload = function () {
+                    canvas2.height = imgBg.height;
+                    canvas2.width = imgBg.width;
+                    ctx.drawImage(imgBg, 0, 0);
+                    var dataURL = canvas2.toDataURL('image/png');
+                    $('#scoreBg').attr('src', dataURL);
+                    canvas2 = null;
+                }
+                $('#logo-radio1').removeAttr('disabled')
+                $('#logo-radio2').removeAttr('disabled')
+                $('#logo-radio3').removeAttr('disabled')
+                $('#logo-radio4').removeAttr('disabled')
+                if (scoreData.location === 1) {
+                    scoreLocation = 1
+                    $('#logo-radio1').attr('disabled', 'true')
+                    $('#scoreBrand').removeClass('lbPosition rtPosition rbPosition bcPosition bc1Position').addClass('ltPosition')
+                } else if (scoreData.location === 2) {
+                    scoreLocation = 2
+                    $('#logo-radio2').attr('disabled', 'true')
+                    $('#scoreBrand').removeClass('ltPosition rtPosition rbPosition bcPosition bc1Position').addClass('lbPosition')
+                } else if (scoreData.location === 3) {
+                    scoreLocation = 3
+                    $('#logo-radio3').attr('disabled', 'true')
+                    $('#scoreBrand').removeClass('lbPosition ltPosition rbPosition bcPosition bc1Position').addClass('rtPosition')
+                } else if (scoreData.location === 4) {
+                    scoreLocation = 4
+                    $('#logo-radio4').attr('disabled', 'true')
+                    $('#scoreBrand').removeClass('lbPosition rtPosition ltPosition bcPosition bc1Position').addClass('rbPosition')
+                } else if (scoreData.location === 5) {
+                    scoreLocation = 5
+                    $('#scoreBrand').removeClass('ltPosition lbPosition rtPosition rbPosition bc1Position').addClass('bcPosition')
+                } else if (scoreData.location === 6) {
+                    scoreLocation = 5
+                    $('#scoreBrand').removeClass('ltPosition lbPosition rtPosition rbPosition bcPosition').addClass('bc1Position')
+                }
+                form.render('radio')
+                var liveScoreLeft = document.createElement('p')
+                liveScoreLeft.setAttribute('id', 'liveScoreLeft')
+                $('#scoreBrand').append(liveScoreLeft)
+                $('#liveScoreLeft').css({
+                    width: '30px',
+                    height: '12px',
+                    position: 'absolute',
+                    fontSize: '12px',
+                    color: '#fff',
+                    fontFamily: 'Source Han Sans CN',
+                    fontWeight: 400,
+                }).text(scoreData.smallLeftScore)
+
+                var liveScoreRight = document.createElement('p')
+                liveScoreRight.setAttribute('id', 'liveScoreRight')
+                $('#scoreBrand').append(liveScoreRight)
+                $('#liveScoreRight').css({
+                    width: '30px',
+                    height: '12px',
+                    position: 'absolute',
+                    fontSize: '12px',
+                    color: '#fff',
+                    fontFamily: 'Source Han Sans CN',
+                    fontWeight: 400,
+                }).text(scoreData.smallRightScore)
+
+
+                if (scoreData.info.classify === 1) {
+                    $('#liveScoreLeft').css({
+                        textAlign: 'center',
+                        left: scoreData.info.score_left[0] + 'px',
+                        top: scoreData.info.score_left[1] + 'px',
+                    })
+
+                    $('#liveScoreRight').css({
+                        textAlign: 'center',
+                        left: scoreData.info.score_right[0] + 'px',
+                        top: scoreData.info.score_right[1] + 'px',
+                    })
+                } else {
+
+                    $('#liveScoreLeft').css({
+                        textAlign: 'left',
+                        width: '20px',
+                        lineHeight: '8px',
+                        left: scoreData.info.score_small_left[0] + 'px',
+                        top: scoreData.info.score_small_left[1] + 'px',
+                    })
+                    $('#liveScoreRight').css({
+                        textAlign: 'left',
+                        width: '20px',
+                        lineHeight: '8px',
+                        left: scoreData.info.score_small_right[0] + 'px',
+                        top: scoreData.info.score_small_right[1] + 'px',
+                    })
+
+                    var liveBigScoreLeft = document.createElement('p')
+                    liveBigScoreLeft.setAttribute('id', 'liveBigScoreLeft')
+                    $('#scoreBrand').append(liveBigScoreLeft)
+                    $('#liveBigScoreLeft').css({
+                        width: '30px',
+                        height: '14px',
+                        lineHeight: '10px',
+                        position: 'absolute',
+                        left: scoreData.info.score_big_left[0] + 'px',
+                        top: scoreData.info.score_big_left[1] + 'px',
+                        fontSize: '14px',
+                        color: '#fff',
+                        fontFamily: 'Source Han Sans CN',
+                        fontWeight: 400,
+                    }).text(scoreData.bigLeftScore)
+                    $('#left-subtotal').text(scoreData.bigLeftScore)
+                    var liveBigScoreRight = document.createElement('p')
+                    liveBigScoreRight.setAttribute('id', 'liveBigScoreRight')
+                    $('#scoreBrand').append(liveBigScoreRight)
+                    $('#liveBigScoreRight').css({
+                        width: '30px',
+                        height: '14px',
+                        lineHeight: '10px',
+                        position: 'absolute',
+                        left: scoreData.info.score_big_right[0] + 'px',
+                        top: scoreData.info.score_big_right[1] + 'px',
+                        fontSize: '14px',
+                        color: '#fff',
+                        fontFamily: 'Source Han Sans CN',
+                        fontWeight: 400,
+                    }).text(scoreData.bigRightScore)
+                    $('#right-subtotal').text(scoreData.bigRightScore)
+                }
+            }
+        }
+        // 手势检测-------------------------------------------------------------------------------------------------
+        $('#gesture-btn').on('click', function () {
+            if (allInfo.gestureFlag === 'off') {
+                allInfo.gestureFlag = 'on'
+            } else {
+                allInfo.gestureFlag = 'off'
+            }
+            var info = {
+                code: "FRONT_END_ACTION",
+                // 视频一拼二品三拼标志 true/false
+                video: {
+                    score: {
+                        state: allInfo.state,
+                        update:0,
+                        scoreLocation: scoreLocation
+                    },
+                    gesture_selector:{
+                        state:allInfo.gestureFlag
+                    }
+                }
+            }
+            var local_code = {
+                allInfo: allInfo,
+                scoreInfo:sessionStorage.getItem('score' + event_code)? JSON.parse(sessionStorage.getItem('score' + event_code)):null,
+                scoreImg:sessionStorage.getItem('imageBase64' + event_code)?sessionStorage.getItem('imageBase64' + event_code):0
+            }
+            var formData = new FormData()
+                formData.append('file', fileScore)
+                formData.append('stream_code', event_code)
+                formData.append('random_code', idOnly)
+                formData.append('local_code', JSON.stringify(local_code))
+                formData.append('json_data', JSON.stringify(info))
+                $.ajax({
+                    type: "POST",
+                    url: 'http://www.cube.vip/director/director_instruct/',
+                    dataType: "json",
+                    headers: {
+                        token: sessionStorage.getItem('token')
+                    },
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    success:res=>{
+                        if(mainFlag){
+                            if(res.msg==='success'){
+                                mainFlag = true 
+                                if (allInfo.gestureFlag === 'off') {
+                                    $(this).text('开启').css('background-color', '#ff914d')
+                                } else {
+                                    $(this).text('关闭').css('background-color', '#f2591a')
+                                }
+                                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                            } else if(res.msg==='not_main'){
+                                mainFlag = false
+                                not_remind()
+                                $('#requestFlag').html('辅').css('background','red')
+                                if (allInfo.gestureFlag === 'off') {
+                                    allInfo.gestureFlag = 'on'
+                                } else {
+                                    allInfo.gestureFlag = 'off'
+                                }
+                            }            
+                        }
+                        
+                    }
+                })
+        })
+        // 自动导切-------------------------------------------------------------------------------------------------
+        $('#auto-btn').on('click', function () {
+            if (allInfo.autoState === 'off') {
+                allInfo.autoState = 'on'
+            } else {
+                allInfo.autoState = 'off'
+            }
+            var info = {
+                code: "FRONT_END_ACTION",
+                // 视频一拼二品三拼标志 true/false
+                video: {
+                    score: {
+                        state: allInfo.state,
+                        update:0,
+                        scoreLocation: scoreLocation
+                    },
+                    auto_selector: {
+                        state: allInfo.autoState
+                    }
+                    
+                }
+            }
+            var local_code = {
+                allInfo: allInfo,
+                scoreInfo:sessionStorage.getItem('score' + event_code)? JSON.parse(sessionStorage.getItem('score' + event_code)):null,
+                scoreImg:sessionStorage.getItem('imageBase64' + event_code)?sessionStorage.getItem('imageBase64' + event_code):0
+            }
+            var formData = new FormData()
+                formData.append('file', fileScore)
+                formData.append('stream_code', event_code)
+                formData.append('random_code', idOnly)
+                formData.append('local_code', JSON.stringify(local_code))
+                formData.append('json_data', JSON.stringify(info))
+                $.ajax({
+                    type: "POST",
+                    url: 'http://www.cube.vip/director/director_instruct/',
+                    dataType: "json",
+                    headers: {
+                        token: sessionStorage.getItem('token')
+                    },
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    success:res=>{
+                        if(mainFlag){
+                            if(res.msg==='success'){
+                                mainFlag = true 
+                                if (allInfo.autoState === 'off') {
+                                $(this).text('开启').css('background-color', '#ff914d')
+                                } else {
+                                $(this).text('关闭').css('background-color', '#f2591a')
+                                }
+                                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                            } else if(res.msg==='not_main'){
+                                mainFlag = false
+                                not_remind()
+                                $('#requestFlag').html('辅').css('background','red')
+                                if (allInfo.autoState === 'off') {
+                                    allInfo.autoState = 'on'
+                                } else {
+                                    allInfo.autoState = 'off'
+                                }
+                            }     
+                        }
+                        
+                    }
+                })
+        })
+        // zoom-in-------------------------------------------------------------------------------------------------
+        $('#zoom-btn').on('click', function () {
+            if (allInfo.zoomState === 'off') {
+                allInfo.zoomState = 'on'
+            } else {
+                allInfo.zoomState = 'off'
+            }
+            var info = {
+                code: "FRONT_END_ACTION",
+                // 视频一拼二品三拼标志 true/false
+                video: {
+                    
+                    score: {
+                        state: allInfo.state,
+                        update:0,
+                        scoreLocation: scoreLocation
+                    },
+                    zoom_in: {
+                        state: allInfo.zoomState
+                    }
+                    
+                }
+            }
+            var local_code = {
+                allInfo: allInfo,
+                scoreInfo:sessionStorage.getItem('score' + event_code)? JSON.parse(sessionStorage.getItem('score' + event_code)):null,
+                scoreImg:sessionStorage.getItem('imageBase64' + event_code)?sessionStorage.getItem('imageBase64' + event_code):0
+            }
+            var formData = new FormData()
+            formData.append('file', fileScore)
+            formData.append('stream_code', event_code)
+            formData.append('random_code', idOnly)
+            formData.append('local_code', JSON.stringify(local_code))
+            formData.append('json_data', JSON.stringify(info))
+            $.ajax({
+                type: "POST",
+                url: 'http://www.cube.vip/director/director_instruct/',
+                dataType: "json",
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                processData: false,
+                contentType: false,
+                data: formData,
+                success:res=>{
+                    if(mainFlag){
+                        if(res.msg==='success'){
+                            mainFlag = true 
+                            if (allInfo.zoomState === 'off') {
+                                $(this).text('开启').css('background-color', '#ff914d')
+                            } else {
+                            $(this).text('关闭').css('background-color', '#f2591a')
+                            } 
+                            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                        }
+                        else if(res.msg==='not_main'){
+                            mainFlag = false 
+                            not_remind()
+                            $('#requestFlag').html('辅').css('background','red')
+                            if (allInfo.zoomState === 'off') {
+                                allInfo.zoomState = 'on'
+                            } else {
+                                allInfo.zoomState = 'off'
+                            }
+                        }        
+                    }
+                    
+                }
+            })
+            
+        })
+        // 背景替换------------------------------------------------------------------------------------------------
+        $('.bg-item').on('click', function () {
+            $(this).addClass('bg-active').siblings().removeClass('bg-active')
+            allInfo.replaceFlag = $(this).index()
+            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+        })
+
+
         // 文档操作开始---------------------------------------------------------------------------------------------------------
 
         // 打开文档弹窗
@@ -3427,6 +3465,7 @@ $(function () {
                 layer.msg('请先选择文档!')
                 return 
             }
+            var pptImg = ''
             if(allInfo.pptInfo.state === 'off') {
                 if(allInfo.gifInfo.state==='on'){
                     layer.msg('不允许在动态特效上加PDF!')
@@ -3436,19 +3475,83 @@ $(function () {
                     layer.msg('不允许在比分牌上加PDF!')
                     return
                 }
-                
+                allInfo.pptInfo.update = 1
                 allInfo.pptInfo.state = 'on'
                 pptData.state = 'on'
-                $(this).addClass('startStyle').removeClass('defaultStyle').html('关闭')
+                pptImg = allInfo.pptInfo.data[allInfo.pptInfo.num-1]
                 
             } else {
+                allInfo.pptInfo.update = 0
                 allInfo.pptInfo.state = 'off'
                 pptData.state = 'off'
-                $(this).addClass('defaultStyle').removeClass('startStyle').html('开启')
+                pptImg = ''
             }
-            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-            allInfo.update = 0
-            sendInstruct()
+            
+            var info = {
+                code: "FRONT_END_ACTION",
+                // 视频一拼二品三拼标志 true/false
+                video: {
+                    score: {
+                        state: allInfo.state,
+                        update:0,
+                        scoreLocation: scoreLocation
+                    },
+                    slides:{
+                        state:allInfo.pptInfo.state,
+                        slidesFormat:allInfo.pptInfo.style,
+                        slide_oss:pptImg,
+                        update:allInfo.pptInfo.update
+                    }
+                }
+            }
+            var local_code = {
+                allInfo: allInfo,
+                scoreInfo:sessionStorage.getItem('score' + event_code)? JSON.parse(sessionStorage.getItem('score' + event_code)):null,
+                scoreImg:sessionStorage.getItem('imageBase64' + event_code)?sessionStorage.getItem('imageBase64' + event_code):0
+            }
+            var formData = new FormData()
+                formData.append('file', fileScore)
+                formData.append('stream_code', event_code)
+                formData.append('random_code', idOnly)
+                formData.append('local_code', JSON.stringify(local_code))
+                formData.append('json_data', JSON.stringify(info))
+                $.ajax({
+                    type: "POST",
+                    url: 'http://www.cube.vip/director/director_instruct/',
+                    dataType: "json",
+                    headers: {
+                        token: sessionStorage.getItem('token')
+                    },
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    success:res=>{
+                        if(mainFlag){
+                              if(res.msg==='success'){
+                                mainFlag = true 
+                                if(allInfo.pptInfo.state === 'off') {
+                                    $(this).addClass('defaultStyle').removeClass('startStyle').html('开启')
+                                } else {
+                                $(this).addClass('startStyle').removeClass('defaultStyle').html('关闭')
+                                }
+                                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+
+                            } else if(res.msg==='not_main'){
+                                mainFlag = false
+                                not_remind()
+                                $('#requestFlag').html('辅').css('background','red')
+                                if(allInfo.pptInfo.state === 'off') {
+                                    allInfo.pptInfo.state = 'on'
+                                    pptData.state = 'on'
+                                } else {
+                                    allInfo.pptInfo.state = 'off'
+                                    pptData.state = 'off'
+                                }
+                            }           
+                        }
+                       
+                    }
+                })
         })
         //首页
         $('.pageFirst').on('click',function(){
@@ -3539,13 +3642,66 @@ $(function () {
 
         // 改变页码
         function changePPTPage(){
-            $('#lanternImage').attr('src',allInfo.pptInfo.data[allInfo.pptInfo.num-1])
-            $('.pageNum').html(allInfo.pptInfo.num+'/'+allInfo.pptInfo.total)
-            allInfo.pptInfo.update = 1
-            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
             if(allInfo.pptInfo.state==='on'){
-                allInfo.update = 0
-                sendInstruct()
+                var info = {
+                    code: "FRONT_END_ACTION",
+                    // 视频一拼二品三拼标志 true/false
+                    video: {
+                        score: {
+                            state: allInfo.state,
+                            update:0,
+                            scoreLocation: scoreLocation
+                        },
+                        slides:{
+                            state:allInfo.pptInfo.state,
+                            slidesFormat:allInfo.pptInfo.style,
+                            slide_oss:allInfo.pptInfo.data[allInfo.pptInfo.num-1],
+                            update:1
+                        }
+                    }
+                }
+                var local_code = {
+                    allInfo: allInfo,
+                    scoreInfo:sessionStorage.getItem('score' + event_code)? JSON.parse(sessionStorage.getItem('score' + event_code)):null,
+                    scoreImg:sessionStorage.getItem('imageBase64' + event_code)?sessionStorage.getItem('imageBase64' + event_code):0
+                }
+                var formData = new FormData()
+                    formData.append('file', fileScore)
+                    formData.append('stream_code', event_code)
+                    formData.append('random_code', idOnly)
+                    formData.append('local_code', JSON.stringify(local_code))
+                    formData.append('json_data', JSON.stringify(info))
+                    $.ajax({
+                        type: "POST",
+                        url: 'http://www.cube.vip/director/director_instruct/',
+                        dataType: "json",
+                        headers: {
+                            token: sessionStorage.getItem('token')
+                        },
+                        processData: false,
+                        contentType: false,
+                        data: formData,
+                        success:res=>{
+                            if(mainFlag){
+                                if(res.msg==='success'){
+                                    mainFlag = true 
+                                    $('#lanternImage').attr('src',allInfo.pptInfo.data[allInfo.pptInfo.num-1])
+                                    $('.pageNum').html(allInfo.pptInfo.num+'/'+allInfo.pptInfo.total)
+                                    sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                                } else if(res.msg==='not_main'){
+                                    mainFlag = false
+                                    not_remind()
+                                    $('#requestFlag').html('辅').css('background','red')
+
+                                }     
+                            }
+                            
+                        }
+                    })
+            } else {
+                $('#lanternImage').attr('src',allInfo.pptInfo.data[allInfo.pptInfo.num-1])
+                $('.pageNum').html(allInfo.pptInfo.num+'/'+allInfo.pptInfo.total)
+                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
             }
         }
         // 文档操作结束---------------------------------------------------------------------------------------------------------
@@ -3713,7 +3869,6 @@ $(function () {
             })
         }
         // 查询云推流状态
-        inquirePushState()
         function inquirePushState(){
             $.ajax({
                 type: 'POST',
@@ -3745,466 +3900,1057 @@ $(function () {
                 }
             })
         }
-        startPushTimer()
         function startPushTimer(){
             clearInterval(pushTimer)
             pushTimer=setInterval(()=>{
                 inquirePushState()
             },10000)
         }
+        // 云推流结束---------------------------------------------------------------------------------------------------------
 
-
-       // 云推流结束---------------------------------------------------------------------------------------------------------
-
-         // 背景音乐开始-------------------------------------------------------------------------------------------------------
-
-       // 打开背景音乐弹窗
-       $('#musicSelect').on('click',function(){
-        layer.open({
-            type: 1,
-            area: ['10rem', '7.22rem'],
-            title: '背景音乐设置',
-            content: $('#musicDialog'),
-            shade: 0.3,
-            shadeClose: true,
-            scrollbar: false,
-            move: false,
-            end: function () {
-               $.each($('.musicAudio'),function(index,ele){
-                   ele.load()
-               })
-            }
+        // 背景音乐开始-------------------------------------------------------------------------------------------------------
+        // 打开背景音乐弹窗
+        $('#musicSelect').on('click',function(){
+            layer.open({
+                type: 1,
+                area: ['10rem', '7.22rem'],
+                title: '背景音乐设置',
+                content: $('#musicDialog'),
+                shade: 0.3,
+                shadeClose: true,
+                scrollbar: false,
+                move: false,
+                end: function () {
+                $.each($('.musicAudio'),function(index,ele){
+                    ele.load()
+                })
+                }
+            })
         })
-   })
-    // 获取所有音乐
-    getAllMusic()
-    function getAllMusic() {
-        $.ajax({
-              url:'http://www.cube.vip/event/upload_music/',
-              type: 'GET',
-              headers: {
-                  token: sessionStorage.getItem('token')
-              },
-              success:res =>{
-                  if(res.msg==='success'){
-                      var str= ''
-                      if(res.data.length>0){
-                          res.data.forEach(item=>{
-                              str+=`<div class="musicItem">
-                              <span class="musicTitle">${item.music_name.replace('.mp3','')}</span>
-                              <audio class="musicAudio" src="${item.oss_file}" controlslist="nodownload" controls preload="auto"></audio>
-                              <span class="musicDelete" data-id="${item.music_code}">删除</span>
-                              </div>`
-                          })
-                      }else {
-                          str+=`<div class="musicNone">
-                          <p class="maxMusic">
-                              当前列表为空<br />
-                              请添加音乐
-                          </p>
-                          <p class="minMusic">
-                              文件支持类型<br />
-                              目前仅支持MP3格式
-                          </p>
-                      </div>`
-                      }
-                      
-                        $('.musicList').html(str)
-                        // 播放某首音乐
-                        $.each($('.musicAudio'),function(index,ele){
-                            ele.addEventListener("playing", function(){		//播放状态Doing
-                                $.each($('.musicAudio'),function(inx,dom){
-                                    if(inx!==index){
-                                        dom.pause()
-                                    }
+        // 获取所有音乐
+        getAllMusic()
+        function getAllMusic() {
+            $.ajax({
+                url:'http://www.cube.vip/event/upload_music/',
+                type: 'GET',
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                success:res =>{
+                    if(res.msg==='success'){
+                        var str= ''
+                        if(res.data.length>0){
+                            res.data.forEach(item=>{
+                                str+=`<div class="musicItem">
+                                <span class="musicTitle">${item.music_name.replace('.mp3','')}</span>
+                                <audio class="musicAudio" src="${item.oss_file}" controlslist="nodownload" controls preload="auto"></audio>
+                                <span class="musicDelete" data-id="${item.music_code}">删除</span>
+                                </div>`
+                            })
+                        }else {
+                            str+=`<div class="musicNone">
+                            <p class="maxMusic">
+                                当前列表为空<br />
+                                请添加音乐
+                            </p>
+                            <p class="minMusic">
+                                文件支持类型<br />
+                                目前仅支持MP3格式
+                            </p>
+                        </div>`
+                        }
+                        
+                            $('.musicList').html(str)
+                            // 播放某首音乐
+                            $.each($('.musicAudio'),function(index,ele){
+                                ele.addEventListener("playing", function(){		//播放状态Doing
+                                    $.each($('.musicAudio'),function(inx,dom){
+                                        if(inx!==index){
+                                            dom.pause()
+                                        }
+                                    })
                                 })
                             })
-                        })
-                  }
-              }
-
-        })
-    }
-    // 上传音乐
-    upload.render({
-        elem: '#addMusic',
-        url: 'http://www.cube.vip/event/upload_music/', //上传接口
-        accept: 'audio',
-        acceptMime:'audio/mpeg',
-        exts:'mp3',
-        headers:{token: sessionStorage.getItem('token')},
-        progress: function(n, elem){
-            $(elem).text('上传中'+'('+n+'%)')
-        },
-        done: function(res){
-          if(res.msg==="success"){
-              layer.msg('上传成功!')
-              getAllMusic()
-          } else {
-            layer.msg('上传失败,请重试!')
-          }
-          $('#addMusic').html('+添加音乐')
-        },
-        error: function(){
-          //请求异常回调
-          $('#addMusic').html('+添加音乐')
-        }
-    });
-    // 删除音乐
-    $('.musicList').on('click','.musicDelete',function(){
-        layer.open({
-            type: 1,
-            title: '删除提示',
-            area: ['640px', '268px'],
-            content: '<div style="margin: 48px 0 0 46px;font-size:18px;color:#666;">是否继续?</div>',
-            shade: 0.3,
-            shadeClose: true,
-            closeBtn: 1,
-            resize: false,
-            btn: ['确认', '取消'],
-            move:false,
-            yes: index=> {
-                
-                musicData.oss = ''
-                musicData.name = ''
-                if($(this).siblings('.musicAudio').attr('src').replace('beijing','beijing-internal')===allInfo.musicInfo.oss && $(this).siblings('.musicTitle').html()===allInfo.musicInfo.name){
-                    if(allInfo.musicInfo.state === 'on') {
-                        layer.close(index)
-                        layer.msg('请先关闭背景音乐!')
-                        return
                     }
-                    allInfo.musicInfo.oss = ''
-                    allInfo.musicInfo.name = ''
-                    $('#musicName').html('')
                 }
-                layer.close(index)
+
+            })
+        }
+        // 上传音乐
+        upload.render({
+            elem: '#addMusic',
+            url: 'http://www.cube.vip/event/upload_music/', //上传接口
+            accept: 'audio',
+            acceptMime:'audio/mpeg',
+            exts:'mp3',
+            headers:{token: sessionStorage.getItem('token')},
+            progress: function(n, elem){
+                $(elem).text('上传中'+'('+n+'%)')
+            },
+            done: function(res){
+            if(res.msg==="success"){
+                layer.msg('上传成功!')
+                getAllMusic()
+            } else {
+                layer.msg('上传失败,请重试!')
+            }
+            $('#addMusic').html('+添加音乐')
+            },
+            error: function(){
+            //请求异常回调
+            $('#addMusic').html('+添加音乐')
+            }
+        });
+        // 删除音乐
+        $('.musicList').on('click','.musicDelete',function(){
+            layer.open({
+                type: 1,
+                title: '删除提示',
+                area: ['640px', '268px'],
+                content: '<div style="margin: 48px 0 0 46px;font-size:18px;color:#666;">是否继续?</div>',
+                shade: 0.3,
+                shadeClose: true,
+                closeBtn: 1,
+                resize: false,
+                btn: ['确认', '取消'],
+                move:false,
+                yes: index=> {
+                    
+                    musicData.oss = ''
+                    musicData.name = ''
+                    if($(this).siblings('.musicAudio').attr('src').replace('beijing','beijing-internal')===allInfo.musicInfo.oss && $(this).siblings('.musicTitle').html()===allInfo.musicInfo.name){
+                        if(allInfo.musicInfo.state === 'on') {
+                            layer.close(index)
+                            layer.msg('请先关闭背景音乐!')
+                            return
+                        }
+                        allInfo.musicInfo.oss = ''
+                        allInfo.musicInfo.name = ''
+                        $('#musicName').html('')
+                    }
+                    layer.close(index)
+                    $.ajax({
+                        type: 'GET',
+                        url: "http://www.cube.vip/event/delete_music/",
+                        dataType: "json",
+                        headers: {
+                            token: sessionStorage.getItem('token')
+                        },
+                        data: {
+                            music_code:$(this).attr('data-id')
+                        },
+                        success: res => {
+                            if(res.msg==='success'){
+                                layer.msg('删除成功!')
+                                getAllMusic()
+                            } else {
+                                layer.msg('删除失败,请稍后重试!')
+                            }
+                        }
+                    })
+                }
+            })
+            return false
+        })
+        //  选中某个音乐
+        $('.musicList').on('click','.musicItem',function(){
+            $(this).css({
+                backgroundColor:'rgba(255,145,77,0.3)',
+                color:'#FF914D'
+            }).siblings().css({
+                backgroundColor:'',
+                color:'#999'
+            })
+            musicData.oss = $(this).find('.musicAudio').attr('src').replace('beijing','beijing-internal')
+            musicData.name = $(this).find('.musicTitle').html()
+        })
+        // 音乐提交
+        $('#musicSave').on('click',function(){
+            if(musicData.oss === '' && musicData.name === ''){
+                layer.msg('请先选择音乐!')
+                return
+            } 
+            allInfo.musicInfo.oss = musicData.oss
+            allInfo.musicInfo.name = musicData.name
+            if(allInfo.musicInfo.state === 'on') {
+                var info = {
+                    code: "FRONT_END_ACTION",
+                    // 视频一拼二品三拼标志 true/false
+                    video: {
+                        score: {
+                            state: allInfo.state,
+                            update:0,
+                            scoreLocation: scoreLocation
+                        }
+                    },
+                    audio: {
+                        music: {
+                            state: 'on',
+                            music_volume: allInfo.musicInfo.volume,
+                            audio_volume:allInfo.musicInfo.audio_volume,
+                            music_oss:allInfo.musicInfo.oss,
+                            update:1
+                        }
+                    }
+                }
+                var local_code = {
+                    allInfo: allInfo,
+                    scoreInfo:sessionStorage.getItem('score' + event_code)? JSON.parse(sessionStorage.getItem('score' + event_code)):null,
+                    scoreImg:sessionStorage.getItem('imageBase64' + event_code)?sessionStorage.getItem('imageBase64' + event_code):0
+                }
+                var formData = new FormData()
+                    formData.append('file', fileScore)
+                    formData.append('stream_code', event_code)
+                    formData.append('random_code', idOnly)
+                    formData.append('local_code', JSON.stringify(local_code))
+                    formData.append('json_data', JSON.stringify(info))
+                    $.ajax({
+                        type: "POST",
+                        url: 'http://www.cube.vip/director/director_instruct/',
+                        dataType: "json",
+                        headers: {
+                            token: sessionStorage.getItem('token')
+                        },
+                        processData: false,
+                        contentType: false,
+                        data: formData,
+                        success:res=>{
+                            if(mainFlag){
+                                 if(res.msg==='success'){
+                                    mainFlag = true 
+                                    layer.closeAll()
+                                    $('#musicName').html(musicData.name)
+                                    sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+        
+                                } else if(res.msg==='not_main'){
+                                    mainFlag = false
+                                    not_remind()
+                                    $('#requestFlag').html('辅').css('background','red')
+                                }       
+                            }
+                            
+                        }
+                    })
+            } else {
+                $('#musicName').html(musicData.name)
+                layer.closeAll()
+            }
+        })
+        // 开启关闭音乐
+        $('#musicStart').on('click',function(){
+            if(allInfo.musicInfo.name ==='' || allInfo.musicInfo.oss ===''){
+                $('#musicName').html('')
+                layer.msg('请先选择音乐!')
+                return
+            }
+            
+            if($(this).hasClass('defaultStyle')){
+                allInfo.musicInfo.update = 1
+                allInfo.musicInfo.state = 'on'
+                
+            } else {
+                allInfo.musicInfo.update = 0
+                allInfo.musicInfo.state = 'off'
+            }   
+            var info = {
+                code: "FRONT_END_ACTION",
+                // 视频一拼二品三拼标志 true/false
+                video: {
+                    score: {
+                        state: allInfo.state,
+                        update:0,
+                        scoreLocation: scoreLocation
+                    }
+                },
+                audio: {
+                    music: {
+                        state: allInfo.musicInfo.state,
+                        music_volume: allInfo.musicInfo.volume,
+                        audio_volume:allInfo.musicInfo.audio_volume,
+                        music_oss:allInfo.musicInfo.oss,
+                        update:allInfo.musicInfo.update
+                    }
+                }
+            }
+            var local_code = {
+                allInfo: allInfo,
+                scoreInfo:sessionStorage.getItem('score' + event_code)? JSON.parse(sessionStorage.getItem('score' + event_code)):null,
+                scoreImg:sessionStorage.getItem('imageBase64' + event_code)?sessionStorage.getItem('imageBase64' + event_code):0
+            }
+            var formData = new FormData()
+                formData.append('file', fileScore)
+                formData.append('stream_code', event_code)
+                formData.append('random_code', idOnly)
+                formData.append('local_code', JSON.stringify(local_code))
+                formData.append('json_data', JSON.stringify(info))
                 $.ajax({
-                    type: 'GET',
-                    url: "http://www.cube.vip/event/delete_music/",
+                    type: "POST",
+                    url: 'http://www.cube.vip/director/director_instruct/',
                     dataType: "json",
                     headers: {
                         token: sessionStorage.getItem('token')
                     },
-                    data: {
-                        music_code:$(this).attr('data-id')
-                    },
-                    success: res => {
-                        if(res.msg==='success'){
-                            layer.msg('删除成功!')
-                            getAllMusic()
-                        } else {
-                            layer.msg('删除失败,请稍后重试!')
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    success:res=>{
+                        if(mainFlag){
+                            if(res.msg==='success'){
+                                mainFlag = true 
+                                if($(this).hasClass('defaultStyle')){
+                                    $(this).removeClass('defaultStyle').addClass('startStyle').html('关闭')
+                                } else {
+                                    $(this).removeClass('startStyle').addClass('defaultStyle').html('开启')
+                                }   
+                                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+
+                            } else if(res.msg==='not_main'){
+                                mainFlag = false
+                                not_remind()
+                                $('#requestFlag').html('辅').css('background','red')
+                                if (allInfo.musicInfo.state === 'off') {
+                                    allInfo.musicInfo.state = 'on'
+                                } else {
+                                    allInfo.musicInfo.state = 'off'
+                                }
+                            }          
                         }
+                        
                     }
                 })
-            }
+                
         })
-        return false
-    })
-    //  选中某个音乐
-    $('.musicList').on('click','.musicItem',function(){
-        $(this).css({
-            backgroundColor:'rgba(255,145,77,0.3)',
-            color:'#FF914D'
-        }).siblings().css({
-            backgroundColor:'',
-            color:'#999'
-        })
-        musicData.oss = $(this).find('.musicAudio').attr('src').replace('beijing','beijing-internal')
-        musicData.name = $(this).find('.musicTitle').html()
-    })
-    // 音乐提交
-    $('#musicSave').on('click',function(){
-        if(musicData.oss === '' && musicData.name === ''){
-            layer.msg('请先选择音乐!')
-            return
-        } 
-        layer.closeAll()
-        allInfo.musicInfo.oss = musicData.oss
-        allInfo.musicInfo.name = musicData.name
-        sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-        $('#musicName').html(musicData.name)
-        if(allInfo.musicInfo.state === 'on') {
-            allInfo.update = 0
-            allInfo.musicInfo.update = 1
-            sendInstruct()
+        // 函数防抖 滑动音量时 停下超过500秒发切出请求
+        function bg_debounce(){
+            clearTimeout(bg_timeout)
+            bg_timeout = setTimeout(()=>{
+                send_bgMusic()
+            },500)
         }
-    })
-    // 开启关闭音乐
-    $('#musicStart').on('click',function(){
-        if(allInfo.musicInfo.name ==='' || allInfo.musicInfo.oss ===''){
-            layer.msg('请先选择音乐!')
-            return
-        }
-        
-        if($(this).hasClass('defaultStyle')){
-            $(this).removeClass('defaultStyle').addClass('startStyle').html('关闭')
-            allInfo.musicInfo.update = 1
-            allInfo.musicInfo.state = 'on'
-            
-        } else {
-            $(this).removeClass('startStyle').addClass('defaultStyle').html('开启')
-            allInfo.musicInfo.update = 0
-            allInfo.musicInfo.state = 'off'
-        }   
-        allInfo.update = 0
-        sendInstruct()
-        sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-            
-    })
 
-   // 背景音乐结束-------------------------------------------------------------------------------------------------------
-
-
-   // 动态特效开始 ------------------------------------------------------------------------------------------------------
-    // 获取所有动态gif
-    getAllGif()
-    function getAllGif(){
-        $.ajax({
-            url:'http://www.cube.vip/event/get_all_gif/',
-            type: 'GET',
-            headers: {
-                token: sessionStorage.getItem('token')
-            },
-            success:res=>{
-                if(res.msg==='success'){
-                    var str=''
-                    if( allInfo.gifInfo.state === 'off'){
-                        str+=`<div class="itemBox">
-                            <div class="dynamicItem active-dynamicItem" data-id="-1"  data-x="0" data-y="0" data-width="0" data-height="0">
-                                <img src="http://changshijie.oss-cn-beijing.aliyuncs.com/media/other/gifopen.png" id="default-img">
-                            </div>
-                            <p class="itemName">无</p>
-                        </div>`
-                    } else {
-                        str+=`<div class="itemBox">
-                            <div class="dynamicItem" data-id="-1"  data-x="0" data-y="0" data-width="0" data-height="0">
-                                <img src="http://changshijie.oss-cn-beijing.aliyuncs.com/media/other/gifclose.png" id="default-img">
-                            </div>
-                            <p class="itemName">无</p>
-                        </div>`
+        function send_bgMusic() {
+            var info = {
+                code: "FRONT_END_ACTION",
+                // 视频一拼二品三拼标志 true/false
+                video: {
+                    score: {
+                        state: allInfo.state,
+                        update:0,
+                        scoreLocation: scoreLocation
                     }
-                    res.data.forEach((item,index)=>{
-                        var itm = JSON.parse(item.gif_description)
-                        if(allInfo.gifInfo.oss === itm.gif_oss.replace('beijing','beijing-internal')) {
-                             str+=`<div class="itemBox">
-                                <div class="dynamicItem active-dynamicItem" data-id="${index}" data-width="${itm.width}" data-height="${itm.height}" data-x="${itm.x}" data-y="${itm.y}">
-                                    <img src="${itm.gif_oss}" id="default-img">
+                },
+                audio: {
+                    music: {
+                        state: 'on',
+                        music_volume: allInfo.musicInfo.volume,
+                        audio_volume:allInfo.musicInfo.audio_volume,
+                        music_oss:allInfo.musicInfo.oss,
+                        update:0
+                    }
+                }
+            }
+            var local_code = {
+                allInfo: allInfo,
+                scoreInfo:sessionStorage.getItem('score' + event_code)? JSON.parse(sessionStorage.getItem('score' + event_code)):null,
+                scoreImg:sessionStorage.getItem('imageBase64' + event_code)?sessionStorage.getItem('imageBase64' + event_code):0
+            }
+            var formData = new FormData()
+                formData.append('file', fileScore)
+                formData.append('stream_code', event_code)
+                formData.append('random_code', idOnly)
+                formData.append('local_code', JSON.stringify(local_code))
+                formData.append('json_data', JSON.stringify(info))
+                $.ajax({
+                    type: "POST",
+                    url: 'http://www.cube.vip/director/director_instruct/',
+                    dataType: "json",
+                    headers: {
+                        token: sessionStorage.getItem('token')
+                    },
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    success:res=>{
+                        if(mainFlag){
+                              if(res.msg === 'success'){
+                                mainFlag = true 
+                            }
+                            else if(res.msg==='not_main'){
+                                mainFlag = false
+                                not_remind()
+                                $('#requestFlag').html('辅').css('background','red')
+                            }          
+                        }
+                        
+                    }
+                })
+        }
+
+
+        // 背景音乐结束-------------------------------------------------------------------------------------------------------
+
+        // 动态特效开始 ------------------------------------------------------------------------------------------------------
+        // 获取所有动态gif
+        getAllGif()
+        function getAllGif(){
+            $.ajax({
+                url:'http://www.cube.vip/event/get_all_gif/',
+                type: 'GET',
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                success:res=>{
+                    if(res.msg==='success'){
+                        var str=''
+                        if( allInfo.gifInfo.state === 'off'){
+                            str+=`<div class="itemBox">
+                                <div class="dynamicItem active-dynamicItem" data-id="-1"  data-x="0" data-y="0" data-width="0" data-height="0">
+                                    <img src="http://changshijie.oss-cn-beijing.aliyuncs.com/media/other/gifopen.png" id="default-img">
                                 </div>
-                                <p class="itemName">${item.gif_name}</p>
+                                <p class="itemName">无</p>
                             </div>`
                         } else {
                             str+=`<div class="itemBox">
-                                <div class="dynamicItem" data-id="${index}" data-x="${itm.x}" data-y="${itm.y}" data-width="${itm.width}" data-height="${itm.height}">
-                                    <img src="${itm.gif_oss}" id="default-img">
+                                <div class="dynamicItem" data-id="-1"  data-x="0" data-y="0" data-width="0" data-height="0">
+                                    <img src="http://changshijie.oss-cn-beijing.aliyuncs.com/media/other/gifclose.png" id="default-img">
                                 </div>
-                                <p class="itemName">${item.gif_name}</p>
+                                <p class="itemName">无</p>
                             </div>`
                         }
-                    })
-                    $('#dynamicBox').html(str)
-                }
-            }
-        })
-    }
-   // 动态特效选取
-    $('#dynamicBox').on('click','.dynamicItem',function(e){
-       
-        if($(this).attr('data-id')!=='-1') {
-
-            if(allInfo.kvInfo.state==='on'&&allInfo.kvInfo.location===3) {
-                layer.msg('不允许在全屏图层上加动态特效!')
-                return
-            }
-            if( allInfo.pptInfo.state === 'on'){
-                layer.msg('不允许在PDF上加动态特效!')
-                return
-            }
-           
-
-
-            $('#default-img').attr('src','http://changshijie.oss-cn-beijing.aliyuncs.com/media/other/gifclose.png')
-            allInfo.gifInfo.state = 'on'
-        }
-        if($(this).attr('data-id')==='-1') {
-            $('#default-img').attr('src','http://changshijie.oss-cn-beijing.aliyuncs.com/media/other/gifopen.png')
-            allInfo.gifInfo.state = 'off'
-        }
-        // 
-        allInfo.gifInfo.oss = $(this).find('img').attr('src').replace('beijing','beijing-internal')
-        allInfo.gifInfo.x = Number($(this).attr('data-x'))
-        allInfo.gifInfo.y = Number($(this).attr('data-y'))
-        allInfo.gifInfo.width = Number($(this).attr('data-width'))
-        allInfo.gifInfo.height = Number($(this).attr('data-height'))
-        allInfo.gifInfo.update = 1
-        $(this).addClass('active-dynamicItem').parent().siblings('.itemBox').find('.dynamicItem').removeClass('active-dynamicItem')
-
-        allInfo.update = 0
-        sendInstruct()
-        sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-    })
-    // 动态特效结束 -----------------------------------------------------------------------------------------------------
-
-
-    // kv图开始----------------------------------------------------------------------------------------------------------
-    // 打开kv图弹窗
-    $('#kvSelect').on('click',function(){
-        layer.open({
-            type: 1,
-            area: ['10rem', '7.22rem'],
-            title: '素材设置',
-            content: $('#kvDialog'),
-            shade: 0.3,
-            shadeClose: true,
-            scrollbar: false,
-            move: false,
-            end: function () {
-            //    $.each($('.musicAudio'),function(index,ele){
-            //        ele.load()
-            //    })
-            }
-        })
-    })
-
-    // 上传kv图
-    upload.render({
-        elem: '#addKv',
-        url: 'http://www.cube.vip/event/notice_board_style/', //上传接口
-        accept: 'images',
-        acceptMime: 'image/png',
-        exts:'png',
-        headers:{token: sessionStorage.getItem('token')},
-        done: function(res){
-        if(res.msg==="success"){
-            layer.msg('上传成功!')
-            getALlKvImage()
-        } else {
-            layer.msg('上传失败,请重试!')
-        }
-        },
-        error: function(){
-        //请求异常回调
-        }
-    });
-   
-    getALlKvImage()
-    // 获取所有kv图
-    function getALlKvImage(){
-        $.ajax({
-            url:'http://www.cube.vip/event/notice_board_style/',
-            type: 'GET',
-            headers: {
-                token: sessionStorage.getItem('token')
-            },
-            success:res=>{
-                if(res.msg==='success'){
-                    var str = ''
-                    res.data.forEach(item=>{
-                        str+=`<div class="kvItem">
-                                    <img src="${item.scorecardurl}" alt="">
-                                    <div class="kvDelete" data-id="${item.id}">
-                                        <i class="layui-icon layui-icon-delete"></i>
+                        res.data.forEach((item,index)=>{
+                            var itm = JSON.parse(item.gif_description)
+                            if(allInfo.gifInfo.oss === itm.gif_oss.replace('beijing','beijing-internal')) {
+                                str+=`<div class="itemBox">
+                                    <div class="dynamicItem active-dynamicItem" data-id="${index}" data-width="${itm.width}" data-height="${itm.height}" data-x="${itm.x}" data-y="${itm.y}">
+                                        <img src="${itm.gif_oss}" id="default-img">
                                     </div>
-                                    
+                                    <p class="itemName">${item.gif_name}</p>
                                 </div>`
-                        
-                    })
-                    if(res.data.length>=6){
-                        $('#addKv').hide()
-                    } else {
-                        $('#addKv').show()
+                            } else {
+                                str+=`<div class="itemBox">
+                                    <div class="dynamicItem" data-id="${index}" data-x="${itm.x}" data-y="${itm.y}" data-width="${itm.width}" data-height="${itm.height}">
+                                        <img src="${itm.gif_oss}" id="default-img">
+                                    </div>
+                                    <p class="itemName">${item.gif_name}</p>
+                                </div>`
+                            }
+                        })
+                        $('#dynamicBox').html(str)
                     }
-                    
-                    $('#kvLeft').html(str)
+                }
+            })
+        }
+        // 动态特效选取
+        $('#dynamicBox').on('click','.dynamicItem',function(e){
+        
+            if($(this).attr('data-id')!=='-1') {
+
+                if(allInfo.kvInfo.state==='on'&&allInfo.kvInfo.location===3) {
+                    layer.msg('不允许在全屏图层上加动态特效!')
+                    return
+                }
+                if( allInfo.pptInfo.state === 'on'){
+                    layer.msg('不允许在PDF上加动态特效!')
+                    return
+                }
+                allInfo.gifInfo.state = 'on'
+            } else  {
+                allInfo.gifInfo.state = 'off'
+            }
+            // 
+            allInfo.gifInfo.oss = $(this).find('img').attr('src').replace('beijing','beijing-internal')
+            allInfo.gifInfo.x = Number($(this).attr('data-x'))
+            allInfo.gifInfo.y = Number($(this).attr('data-y'))
+            allInfo.gifInfo.width = Number($(this).attr('data-width'))
+            allInfo.gifInfo.height = Number($(this).attr('data-height'))
+            allInfo.gifInfo.update = 1
+            var info = {
+                code: "FRONT_END_ACTION",
+                // 视频一拼二品三拼标志 true/false
+                video: {
+                    score: {
+                        state: allInfo.state,
+                        update:0,
+                        scoreLocation: scoreLocation
+                    },
+                    gif:{
+                        state:allInfo.gifInfo.state,
+                        x:allInfo.gifInfo.x,
+                        y:allInfo.gifInfo.y,
+                        width:allInfo.gifInfo.width,
+                        height:allInfo.gifInfo.height,
+                        gif_oss:allInfo.gifInfo.oss,
+                        update:allInfo.gifInfo.update
+                    }
                 }
             }
+            var local_code = {
+                allInfo: allInfo,
+                scoreInfo:sessionStorage.getItem('score' + event_code)? JSON.parse(sessionStorage.getItem('score' + event_code)):null,
+                scoreImg:sessionStorage.getItem('imageBase64' + event_code)?sessionStorage.getItem('imageBase64' + event_code):0
+            }
+            var formData = new FormData()
+                formData.append('file', fileScore)
+                formData.append('stream_code', event_code)
+                formData.append('random_code', idOnly)
+                formData.append('local_code', JSON.stringify(local_code))
+                formData.append('json_data', JSON.stringify(info))
+                $.ajax({
+                    type: "POST",
+                    url: 'http://www.cube.vip/director/director_instruct/',
+                    dataType: "json",
+                    headers: {
+                        token: sessionStorage.getItem('token')
+                    },
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    success:res=>{
+                        if(mainFlag){
+                            if(res.msg==='success'){
+                                mainFlag = true 
+                                if($(this).attr('data-id')!=='-1') {
+                                    $('#default-img').attr('src','http://changshijie.oss-cn-beijing.aliyuncs.com/media/other/gifclose.png')
+                                } else  {
+                                    $('#default-img').attr('src','http://changshijie.oss-cn-beijing.aliyuncs.com/media/other/gifopen.png')
+                                }
+                                $(this).addClass('active-dynamicItem').parent().siblings('.itemBox').find('.dynamicItem').removeClass('active-dynamicItem')
+                                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                            } else if(res.msg==='not_main'){
+                                mainFlag = false
+                                not_remind()
+                                $('#requestFlag').html('辅').css('background','red')
+                                if (allInfo.gifInfo.state === 'off') {
+                                    allInfo.gifInfo.state = 'on'
+                                } else {
+                                    allInfo.gifInfo.state = 'off'
+                                }
+                            }              
+                        }
+                        
+                    }
+                })
         })
-    }
+        // 动态特效结束 -----------------------------------------------------------------------------------------------------
 
-    //删除kv图
-    $('#kvLeft').on('click','.kvDelete',function(){
-        $.ajax({
-            url:'http://www.cube.vip/event/delete_notice_board/',
-            type: 'GET',
-            headers: {
-                token: sessionStorage.getItem('token')
-            },
-            data:{
-                id:$(this).attr('data-id')
-            },
-            success:res=>{
-                if(res.msg==='success'){
-                    layer.msg('删除成功!')
-                    $('#kvImage').hide().attr('src','')
-                    allInfo.kvInfo.oss = ''
-                    getALlKvImage()
-                } else {
-                    layer.msg('删除失败,请重试!')
+
+        // kv图开始----------------------------------------------------------------------------------------------------------
+        getALlKvImage()
+        // KV图位置 切换选中状态 
+        form.on('radio(kvForm)', function(data){
+            if(Number(data.value)===1){
+                $('#kvImage').addClass('classOne').removeClass('classTwo classThree')
+            }
+            else if(Number(data.value)===2){
+                $('#kvImage').addClass('classTwo').removeClass('classOne classThree')
+            }
+            else if(Number(data.value)===3){
+                $('#kvImage').addClass('classThree').removeClass('classTwo classOne')
+            }
+            allInfo.kvInfo.location = Number(data.value)
+        }) 
+        // 打开kv图弹窗
+        $('#kvSelect').on('click',function(){
+            layer.open({
+                type: 1,
+                area: ['10rem', '7.22rem'],
+                title: '素材设置',
+                content: $('#kvDialog'),
+                shade: 0.3,
+                shadeClose: true,
+                scrollbar: false,
+                move: false,
+                end: function () {
+                //    $.each($('.musicAudio'),function(index,ele){
+                //        ele.load()
+                //    })
                 }
-            }
+            })
         })
-        return false
-    })
 
-    // 选中kv图
-    $('#kvLeft').on('click','.kvItem',function(){
-        $(this).addClass('kvAcItem')
-        $(this).siblings('.kvItem').removeClass('kvAcItem')
-        $('#kvImage').show().attr('src',$(this).find('img').attr('src'))
-        allInfo.kvInfo.oss = $(this).find('img').attr('src').replace('beijing','beijing-internal')
-        allInfo.kvInfo.update = 1 
-    })
-
-    // 提交
-    $('#kvSave').on('click',function () {
-        if(allInfo.kvInfo.oss === ''){
-            layer.msg('请选择图片!')
-            return
+        // 上传kv图
+        upload.render({
+            elem: '#addKv',
+            url: 'http://www.cube.vip/event/notice_board_style/', //上传接口
+            accept: 'images',
+            acceptMime: 'image/png',
+            exts:'png',
+            headers:{token: sessionStorage.getItem('token')},
+            done: function(res){
+            if(res.msg==="success"){
+                layer.msg('上传成功!')
+                getALlKvImage()
+            } else {
+                layer.msg('上传失败,请重试!')
+            }
+            },
+            error: function(){
+            //请求异常回调
+            }
+        });
+    
+        // 获取所有kv图
+        function getALlKvImage(){
+            $.ajax({
+                url:'http://www.cube.vip/event/notice_board_style/',
+                type: 'GET',
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                success:res=>{
+                    if(res.msg==='success'){
+                        var str = ''
+                        res.data.forEach(item=>{
+                            str+=`<div class="kvItem">
+                                        <img src="${item.scorecardurl}" alt="">
+                                        <div class="kvDelete" data-id="${item.id}">
+                                            <i class="layui-icon layui-icon-delete"></i>
+                                        </div>
+                                        
+                                    </div>`
+                            
+                        })
+                        if(res.data.length>=6){
+                            $('#addKv').hide()
+                        } else {
+                            $('#addKv').show()
+                        }
+                        
+                        $('#kvLeft').html(str)
+                    }
+                }
+            })
         }
-        
-        if(allInfo.kvInfo.state === 'on'){
-            if(allInfo.gifInfo.state==='on'&&allInfo.kvInfo.location===3){
-                layer.msg('不允许在动态特效上加全屏图层!')
+
+        //删除kv图
+        $('#kvLeft').on('click','.kvDelete',function(){
+            $.ajax({
+                url:'http://www.cube.vip/event/delete_notice_board/',
+                type: 'GET',
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                data:{
+                    id:$(this).attr('data-id')
+                },
+                success:res=>{
+                    if(res.msg==='success'){
+                        layer.msg('删除成功!')
+                        $('#kvImage').hide().attr('src','')
+                        allInfo.kvInfo.oss = ''
+                        getALlKvImage()
+                    } else {
+                        layer.msg('删除失败,请重试!')
+                    }
+                }
+            })
+            return false
+        })
+
+        // 选中kv图
+        $('#kvLeft').on('click','.kvItem',function(){
+            $(this).addClass('kvAcItem')
+            $(this).siblings('.kvItem').removeClass('kvAcItem')
+            $('#kvImage').show().attr('src',$(this).find('img').attr('src'))
+            allInfo.kvInfo.oss = $(this).find('img').attr('src').replace('beijing','beijing-internal')
+        })
+
+        // 提交
+        $('#kvSave').on('click',function () {
+            if(allInfo.kvInfo.oss === ''){
+                layer.msg('请选择图片!')
                 return
             }
-            allInfo.kvInfo.update = 1
-            allInfo.update = 0
-            sendInstruct()
-        }
-        layer.closeAll()
-    })
-
-    // 开启
-    $('#kvStart').on('click',function(){
-        if(allInfo.kvInfo.oss === ''){
-            layer.msg('请先选择图片!')
-            return
-        }
-        
-        if($(this).hasClass('defaultStyle')){
-
-            if(allInfo.gifInfo.state==='on'&&allInfo.kvInfo.location===3){
-                layer.msg('不允许在动态特效上加全屏图层!')
-                return
-            }
-            $(this).removeClass('defaultStyle').addClass('startStyle').html('关闭')
-            allInfo.kvInfo.update = 1
-            allInfo.kvInfo.state = 'on'
             
-        } else {
-            $(this).removeClass('startStyle').addClass('defaultStyle').html('开启')
-            allInfo.kvInfo.update = 0
-            allInfo.kvInfo.state = 'off'
-        }   
-        allInfo.update = 0
-        sendInstruct()
-        sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-    })
-  
-      
+            if(allInfo.kvInfo.state === 'on'){
+                if(allInfo.gifInfo.state==='on'&&allInfo.kvInfo.location===3){
+                    layer.msg('不允许在动态特效上加全屏图层!')
+                    return
+                }
+                var info = {
+                    code: "FRONT_END_ACTION",
+                    // 视频一拼二品三拼标志 true/false
+                    video: {
+                        score: {
+                            state: allInfo.state,
+                            update:0,
+                            scoreLocation: scoreLocation
+                        },
+                        image:{
+                            state:allInfo.kvInfo.state,
+                            imageLocation:allInfo.kvInfo.location,
+                            type:'static',
+                            image_oss:allInfo.kvInfo.oss,
+                            update:1
+                        }
+                    }
+                }
+                var local_code = {
+                    allInfo: allInfo,
+                    scoreInfo:sessionStorage.getItem('score' + event_code)? JSON.parse(sessionStorage.getItem('score' + event_code)):null,
+                    scoreImg:sessionStorage.getItem('imageBase64' + event_code)?sessionStorage.getItem('imageBase64' + event_code):0
+                }
+                var formData = new FormData()
+                    formData.append('file', fileScore)
+                    formData.append('stream_code', event_code)
+                    formData.append('random_code', idOnly)
+                    formData.append('local_code', JSON.stringify(local_code))
+                    formData.append('json_data', JSON.stringify(info))
+                    $.ajax({
+                        type: "POST",
+                        url: 'http://www.cube.vip/director/director_instruct/',
+                        dataType: "json",
+                        headers: {
+                            token: sessionStorage.getItem('token')
+                        },
+                        processData: false,
+                        contentType: false,
+                        data: formData,
+                        success:res=>{
+                            if(mainFlag){
+                                  if(res.msg==='success'){
+                                    mainFlag = true 
+                                    layer.closeAll()
+                                    sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                                } else if(res.msg==='not_main'){
+                                    mainFlag = false
+                                    not_remind()
+                                    $('#requestFlag').html('辅').css('background','red')
+                                }      
+                            }
+                            
+                        }
+                    })
+            }else {
+                layer.closeAll()
+            }
+            
+        })
 
-    // kv图关闭----------------------------------------------------------------------------------------------------------
-        // WebSocket聊天室--------------------------------------------------------------------------------------------------
+        // 开启
+        $('#kvStart').on('click',function(){
+            if(allInfo.kvInfo.oss === ''){
+                layer.msg('请先选择图片!')
+                return
+            }
+            
+            if($(this).hasClass('defaultStyle')){
+
+                if(allInfo.gifInfo.state==='on'&&allInfo.kvInfo.location===3){
+                    layer.msg('不允许在动态特效上加全屏图层!')
+                    return
+                }
+                allInfo.kvInfo.update = 1
+                allInfo.kvInfo.state = 'on'
+                
+            } else {
+                allInfo.kvInfo.update = 0
+                allInfo.kvInfo.state = 'off'
+            }   
+            var info = {
+                code: "FRONT_END_ACTION",
+                // 视频一拼二品三拼标志 true/false
+                video: {
+                    score: {
+                        state: allInfo.state,
+                        update:0,
+                        scoreLocation: scoreLocation
+                    },
+                    image:{
+                        state:allInfo.kvInfo.state,
+                        imageLocation:allInfo.kvInfo.location,
+                        type:'static',
+                        image_oss:allInfo.kvInfo.oss,
+                        update:allInfo.kvInfo.update
+                    }
+                }
+            }
+            var local_code = {
+                allInfo: allInfo,
+                scoreInfo:sessionStorage.getItem('score' + event_code)? JSON.parse(sessionStorage.getItem('score' + event_code)):null,
+                scoreImg:sessionStorage.getItem('imageBase64' + event_code)?sessionStorage.getItem('imageBase64' + event_code):0
+            }
+            var formData = new FormData()
+                formData.append('file', fileScore)
+                formData.append('stream_code', event_code)
+                formData.append('random_code', idOnly)
+                formData.append('local_code', JSON.stringify(local_code))
+                formData.append('json_data', JSON.stringify(info))
+                $.ajax({
+                    type: "POST",
+                    url: 'http://www.cube.vip/director/director_instruct/',
+                    dataType: "json",
+                    headers: {
+                        token: sessionStorage.getItem('token')
+                    },
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    success:res=>{
+                        if(mainFlag){
+                            if(res.msg==='success'){
+                                mainFlag = true 
+                                if($(this).hasClass('defaultStyle')){
+                                    $(this).removeClass('defaultStyle').addClass('startStyle').html('关闭')
+                                    
+                                } else {
+                                    $(this).removeClass('startStyle').addClass('defaultStyle').html('开启')
+                                }   
+                                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+
+                            } else if(res.msg==='not_main'){
+                                mainFlag = false
+                                not_remind()
+                                $('#requestFlag').html('辅').css('background','red')
+                                if (allInfo.kvInfo.state === 'off') {
+                                    allInfo.kvInfo.state = 'on'
+                                } else {
+                                    allInfo.kvInfo.state = 'off'
+                                }
+                            }           
+                        }
+                        
+                    }
+                })
+        })
+
+        // kv图结束----------------------------------------------------------------------------------------------------------
+       
+        // 精彩推荐开始------------------------------------------------------------------------------------
+        // 获取已经添加的推荐视频
+        getRecVideo()
+        function getRecVideo(){
+            $.ajax({
+                type: "GET",
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                url: "http://www.cube.vip/video/get_event_video/",
+                data: {
+                    stream_code: event_code
+                },
+                success: function (res) {
+                    if (res.msg === 'success') {
+                        rec_addedVideoData = res.data
+                        renderViewVideo()
+                        
+                    } else {
+                        layer.msg('获取视频列表失败,请重试!');
+                    }
+                }
+            })
+        }
+        // 打开添视频弹窗
+        $('.addRecName-span').on('click', function () {
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                async: false,
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                url: "http://www.cube.vip/video/video_list/",
+                data: {
+                    save_flag: 'media_library'
+                },
+                success: function (res) {
+                    if (res.msg === 'success') {
+                        rec_allVideoData = res.data
+                    } else {
+                        layer.msg('获取视频列表失败,请重试!');
+                    }
+                }
+            })
+            rec_momentVideoData = []
+            rec_addedVideoData.forEach(item => {
+                rec_momentVideoData.push(item)
+                rec_allVideoData.forEach(its => {
+                    if (Number(item.video_id) === Number(its.video_id)) {
+                        its.checked = 'checked'
+                    }
+                })
+            })
+
+            $('.rec-video-num').text(rec_addedVideoData.length)
+            layer.open({
+                type: 1,
+                area: ['10rem', '7.3rem'],
+                title: '添加视频',
+                content: $('#rec-dialog'),
+                shade: 0.3,
+                shadeClose: true,
+                closeBtn: 1,
+                resize: false,
+                scrollbar: false,
+                move:false,
+                btn: ['确认', '取消'],
+                btn1: function () {
+                    layer.closeAll()
+                    rec_addedVideoData = []
+                    rec_momentVideoData.forEach(item => { // 取消  删除记录
+                        rec_addedVideoData.push(item)
+                    })
+                    renderViewVideo()
+                },
+                end: function(){
+                    $('.rec-search-video-input').val('')
+                }
+
+            })
+            rec_videoFiltrate()
+
+        })
+        //视频 选中 取消 change
+        form.on('checkbox(rec-checkbox)', function (data) {
+            var videoId = Number(data.value)
+            if (data.elem.checked) {
+                $('.rec-video-num').text(Number($('.rec-video-num').text()) + 1) //选中+1
+                rec_allVideoData.forEach(item => { //选中 添加标记
+                    if (item.video_id === videoId) {
+                        item.checked = 'checked'
+                    }
+                })
+                rec_momentVideoData.push({ // 选中 添加记录
+                    video_id: videoId,
+                    video_profile: $(data.elem).parent().siblings('.rec-content-main-list-info').find(
+                        '.rec-content-main-list-name').text(),
+                    video_number_views: $(data.elem).parent().siblings('.rec-content-main-list-info').find(
+                        '.rec-content-main-list-num i').text(),
+                    datetime: $(data.elem).parent().siblings('.rec-content-main-list-info').find(
+                        '.rec-content-main-list-time i').text(),
+                    video_description_image:  $(data.elem).parent().siblings('.vd-video').attr("src")
+                })
+            } else {
+                $('.rec-video-num').text(Number($('.rec-video-num').text()) - 1) // 取消-1
+                rec_allVideoData.forEach(item => { // 取消 删除标记
+                    if (item.video_id === videoId) {
+                        delete item.checked
+                    }
+                })
+                rec_momentVideoData.forEach((item, index) => { // 取消  删除记录
+                    if (item.video_id === videoId) {
+                        rec_momentVideoData.splice(index, 1)
+                    }
+                })
+            }
+
+        })
+
+
+        // 删除视频-------------------------------------------------------------------------------------------------------------------
+        $('.recList').on('click', '.videoDelete', function () {
+            rec_addedVideoData.splice(Number($(this).parent().attr('data-dad-position'))-1, 1)
+            renderViewVideo()
+        })
+
+        // 视频分页
+        function rec_videoPage(pageIndex) {
+            var str = ''
+            var length = rec_filterVideoData.length > pageIndex * 6 ? 6 : rec_filterVideoData.length - (pageIndex - 1) * 6
+            for (var i = 0; i < length; i++) {
+                var index = i + (pageIndex - 1) * 6
+                str += `<div class="rec-content-main-list">
+                    <img class="vd-video" src="${rec_filterVideoData[index].video_description_image}" onerror="this.src='./../image/video-page.png'"></img>
+                    <div class="rec-content-main-list-info">
+                        <span class="rec-content-main-list-name">${rec_filterVideoData[index].video_profile}</span>
+                        <span class="rec-content-main-list-time">上传时间: <i>${rec_filterVideoData[index].video_create_time}</i></span>
+                        <span class="rec-content-main-list-num">观看量: <i>${rec_filterVideoData[index].video_number_views}</i> 次</span>
+                    </div>
+                    <div class="layui-form video-right-check">
+                        <input type="checkbox" lay-filter="rec-checkbox" lay-skin="primary" class="rec-content-main-list-check" value="${rec_filterVideoData[index].video_id}" ${rec_filterVideoData[index].checked} /></div>
+                    </div>
+                `
+            }
+            if (rec_filterVideoData.length > 0) {
+                $('.rec-content-main-top').html(str)
+                form.render('checkbox')
+            } else {
+                $('.rec-content-main-top').html(
+                    `<div class="rec-content-main-none"><img src="./../image/video-none.png" alt=""><p>当前没有视频哦</p></div>
+                    <span class="rec-mediaUpload">
+                        没有合适的视频？
+                        <a href="./media.html">去媒体库上传</a>
+                    </span>
+                    `
+                )
+            }
+        }
+        // 视频筛选---------
+        $('.rec-search-video-input').on('keypress', function (event) { // 监听回车事件
+            if (event.keyCode == "13") {
+                rec_videoFiltrate()
+            }
+        })
+        $('.rec-search-video-btn').on('click', rec_videoFiltrate) //点击搜索按钮
+        // 视频过滤方法
+        function rec_videoFiltrate() {
+            rec_filterVideoData = rec_allVideoData.filter(item => item.video_profile.search($.trim($('.rec-search-video-input')
+                .val())) !== -1)
+            if (rec_filterVideoData.length > 6) {
+                layui.use(['laypage'], function () {
+                    var laypage = layui.laypage
+                    laypage.render({
+                        elem: 'rec-page',
+                        count: rec_filterVideoData.length,
+                        limit: 6,
+                        layout: ['prev', 'next'],
+                        jump: function (obj, first) {
+                            if (!first) {
+                                // layer.msg('第 '+ obj.curr +' 页'+',每页显示'+obj.limit+'条');
+                                rec_videoPage(obj.curr)
+                            }
+                        }
+                    })
+                })
+            } else {
+                $('#rec-page').empty()
+            }
+            rec_videoPage(1)
+        }
+
+        // 提交精彩推荐视频
+        $('#saveAddRecVideo').on('click',function(){
+            var video_id = []
+            rec_addedVideoData.forEach(item => {
+                video_id.push(item.video_id)
+            })
+            $.ajax({
+                type: "POST",
+                headers: {
+                    token: sessionStorage.getItem('token')
+                },
+                url: "http://www.cube.vip/video/get_event_video/",
+                data: {
+                    stream_code: event_code,
+                    video_id: JSON.stringify(video_id)
+                },
+                success: function (res) {
+                    if (res.msg === 'success') {
+                        layer.msg('保存成功!');
+                    } else {
+                        layer.msg('保存失败,请重试!');
+                    }
+                }
+            });
+        })
+
+        // 精彩推荐结束------------------------------------------------------------------------------------
+        // 鼠标放上去 出现二维码
+        $(".liveScan1").hover(function(){
+            $('#liveQrcode1Box').toggle()
+        });
+        $(".liveScan").hover(function(){
+            $('#liveQrcodeBox').toggle()
+        });
+        $('.head-copy').hover(function(){
+            $('#hintBox').toggle()
+        })
+        $('.head-copy1').hover(function(){
+            $('#hintBox1').toggle()
+        })
+
+    
+    // WebSocket聊天室--------------------------------------------------------------------------------------------------
         const chatSocket = new WebSocket(
             'ws://' +
             'www.cube.vip' +

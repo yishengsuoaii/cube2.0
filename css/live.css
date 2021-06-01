@@ -1723,10 +1723,53 @@
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-name .mergeActive {
   background-color: rgba(255, 255, 255, 0.3);
 }
-.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #switchover {
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #center {
+  display: flex;
+  flex-direction: column;
+  width: 3rem;
+  height: 3.78rem;
+  justify-content: space-around;
+  align-items: center;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #center #requestBox {
+  display: flex;
+  justify-content: space-between;
+  width: 1.72rem;
+  height: 0.36rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #center #requestBox #requestFlag {
+  width: 0.36rem;
+  height: 0.36rem;
+  text-align: center;
+  line-height: 0.36rem;
+  box-shadow: 0px 0.02rem 0.05rem 0px rgba(102, 102, 102, 0.2);
+  border-radius: 0.05rem;
+  font-size: 0.2rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #center #requestBox #request {
+  width: 0.96rem;
+  height: 0.36rem;
+  text-align: center;
+  line-height: 0.36rem;
+  background: #666666;
+  box-shadow: 0px 0.02rem 0.05rem 0px rgba(102, 102, 102, 0.2);
+  border-radius: 0.05rem;
+  font-size: 0.16rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #center #requestBox #request:hover {
+  background: #ff914d;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #center #switchover {
   width: 0.98rem;
-  height: 0.44rem;
-  background: #F2591A;
+  height: 0.36rem;
+  background: #ff914d;
   box-shadow: 0rem 0.02rem 0.05rem 0rem rgba(102, 102, 102, 0.2);
   border-radius: 0.05rem;
   text-align: center;
@@ -1734,7 +1777,7 @@
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #FFFFFF;
-  line-height: 0.44rem;
+  line-height: 0.36rem;
   cursor: pointer;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveRight {

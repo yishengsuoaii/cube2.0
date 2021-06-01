@@ -1281,7 +1281,7 @@
                                     }
                                 }
 
-                                // h5模板
+                                // 邀请卡
                                 #h5_template {
                                     width: 100%;
                                     display: flex;
@@ -1920,20 +1920,64 @@
                                 }
                             }
                         }
-
-                        #switchover {
-                            width: (98/100rem);
-                            height: (44/100rem);
-                            background: #F2591A;
-                            box-shadow: (0/100rem) (2/100rem) (5/100rem) (0/100rem) rgba(102, 102, 102, 0.2);
-                            border-radius: (5/100rem);
-                            text-align: center;
-                            font-size: (26/100rem);
-                            font-family: Source Han Sans CN;
-                            font-weight: 400;
-                            color: #FFFFFF;
-                            line-height: (44/100rem);
-                            cursor: pointer;
+                        #center {
+                            display: flex;
+                            flex-direction: column;
+                            width: 3rem;
+                            height: 3.78rem;
+                            justify-content: space-around;
+                            align-items: center;
+                            #requestBox {
+                                display: flex;
+                                justify-content: space-between;
+                                width: 1.72rem;
+                                height: 0.36rem;
+                                
+                                 #requestFlag {
+                                    width: 0.36rem;
+                                    height: 0.36rem;
+                                    text-align: center;
+                                    line-height: 0.36rem;
+                                    box-shadow: 0px 0.02rem 0.05rem 0px rgba(102, 102, 102, 0.2);
+                                    border-radius: 0.05rem;
+                                    font-size: 0.2rem;
+                                    font-family: Source Han Sans CN;
+                                    font-weight: 400;
+                                    color: #FFFFFF;
+                                 }
+                                #request {
+                                    width: 0.96rem;
+                                    height: 0.36rem;
+                                    text-align: center;
+                                    line-height: 0.36rem;
+                                    background: #666666;
+                                    box-shadow: 0px 0.02rem 0.05rem 0px rgba(102, 102, 102, 0.2);
+                                    border-radius: 0.05rem;
+                                    font-size: 0.16rem;
+                                    font-family: Source Han Sans CN;
+                                    font-weight: 400;
+                                    color: #FFFFFF;
+                                    cursor: pointer;
+                                    &:hover {
+                                        background:#ff914d;
+                                    }
+                                }
+                            }
+                           
+                            #switchover {
+                                width: (98/100rem);
+                                height: (36/100rem);
+                                background: #ff914d;
+                                box-shadow: (0/100rem) (2/100rem) (5/100rem) (0/100rem) rgba(102, 102, 102, 0.2);
+                                border-radius: (5/100rem);
+                                text-align: center;
+                                font-size: (26/100rem);
+                                font-family: Source Han Sans CN;
+                                font-weight: 400;
+                                color: #FFFFFF;
+                                line-height: (36/100rem);
+                                cursor: pointer;
+                            }
                         }
 
                         #liveRight {
