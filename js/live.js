@@ -781,6 +781,7 @@ $(function () {
                             
                             renderHistory()
                             renderHistoryScore()
+                            getAllGif()
                         }
                     } else {
                         mainFlag =  false
