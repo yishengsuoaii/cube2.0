@@ -14,7 +14,6 @@ $(function () {
     var idOnly = ''
     // 主次标志
     var mainFlag = true
-    var initializeFlag = false
     // 频道分类
     var channel_type = ''
     // 拉流IP
@@ -333,6 +332,10 @@ $(function () {
     var slide_four = null
     // 音量防抖
     var mute_timeout = null
+    // 音量首次不提示
+    var initializeFlag = false
+
+    var initializeFlag1 = false
     // 背景音乐滑块
     var slide_music = null
 
@@ -1780,75 +1783,87 @@ $(function () {
                 data: {
                     event_id: event_id,
                     event_logo_countdown: logoFlag,
-                    event_logo_position: logoOrientation
+                    event_logo_position: logoOrientation,
+                    random_code: idOnly
                 },
                 success: res=> {
-                    if (res.msg === 'success') {
-                        if (logoFlag === 'True') {
-                            setLogoLocation(logoOrientation)
-                        }
-                        var info = {
-                            code: "FRONT_END_ACTION",
-                            // 视频一拼二品三拼标志 true/false
-                            video: {
-                                score: {
-                                    state: allInfo.state,
-                                    update:0,
-                                    scoreLocation: scoreLocation
-                                }
+                    if(mainFlag){
+                        if (res.msg === 'success') {
+                            if (logoFlag === 'True') {
+                                setLogoLocation(logoOrientation)
                             }
-                        }
-                        var local_code = {
-                            allInfo: allInfo,
-                            scoreInfo:sessionStorage.getItem('score' + event_code)? JSON.parse(sessionStorage.getItem('score' + event_code)):null,
-                            scoreImg:sessionStorage.getItem('imageBase64' + event_code)?sessionStorage.getItem('imageBase64' + event_code):0
-                        }
-                        var formData = new FormData()
-                            formData.append('file', fileScore)
-                            formData.append('stream_code', event_code)
-                            formData.append('random_code', idOnly)
-                            formData.append('local_code', JSON.stringify(local_code))
-                            formData.append('json_data', JSON.stringify(info))
-                            $.ajax({
-                                type: "POST",
-                                url: 'http://www.cube.vip/director/director_instruct/',
-                                dataType: "json",
-                                headers: {
-                                    token: sessionStorage.getItem('token')
-                                },
-                                processData: false,
-                                contentType: false,
-                                data: formData,
-                                success:res=>{
-                                    if(mainFlag){
-                                         if(res.msg==='success'){
-                                            mainFlag = true 
-                                            if($('.watermark-submit-btn').hasClass('logoStart')) {
-                                                $('.watermark-submit-btn').html('开启').removeClass('logoStart')
-                                            
-                                            } else {
-                                                $('.watermark-submit-btn').html('关闭').addClass('logoStart')
-                                                
-                                            }
-                                            sessionStorage.setItem(event_code, JSON.stringify(allInfo))
-                
-                                        } else if(res.msg==='not_main'){
-                                            mainFlag = false
-                                            not_remind()
-                                            $('#requestFlag').html('辅').css('background','red')
-                                            if($(this).hasClass('logoStart')) {
-                                                logoFlag = 'True'
-                                            } else {
-                                                logoFlag = 'False'
-                                            }
-                                        
-                                        }
+                            var info = {
+                                code: "FRONT_END_ACTION",
+                                // 视频一拼二品三拼标志 true/false
+                                video: {
+                                    score: {
+                                        state: allInfo.state,
+                                        update:0,
+                                        scoreLocation: scoreLocation
                                     }
                                 }
-                            })
-                    } else {
-                        layer.msg('提交失败,请重试!')
+                            }
+                            var local_code = {
+                                allInfo: allInfo,
+                                scoreInfo:sessionStorage.getItem('score' + event_code)? JSON.parse(sessionStorage.getItem('score' + event_code)):null,
+                                scoreImg:sessionStorage.getItem('imageBase64' + event_code)?sessionStorage.getItem('imageBase64' + event_code):0
+                            }
+                            var formData = new FormData()
+                                formData.append('file', fileScore)
+                                formData.append('stream_code', event_code)
+                                formData.append('random_code', idOnly)
+                                formData.append('local_code', JSON.stringify(local_code))
+                                formData.append('json_data', JSON.stringify(info))
+                                $.ajax({
+                                    type: "POST",
+                                    url: 'http://www.cube.vip/director/director_instruct/',
+                                    dataType: "json",
+                                    headers: {
+                                        token: sessionStorage.getItem('token')
+                                    },
+                                    processData: false,
+                                    contentType: false,
+                                    data: formData,
+                                    success:res=>{
+                                        if(mainFlag){
+                                             if(res.msg==='success'){
+                                                mainFlag = true 
+                                                if($('.watermark-submit-btn').hasClass('logoStart')) {
+                                                    $('.watermark-submit-btn').html('开启').removeClass('logoStart')
+                                                
+                                                } else {
+                                                    $('.watermark-submit-btn').html('关闭').addClass('logoStart')
+                                                    
+                                                }
+                                                sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+                    
+                                            } else if(res.msg==='not_main'){
+                                                mainFlag = false
+                                                not_remind()
+                                                $('#requestFlag').html('辅').css('background','red')
+                                                if($(this).hasClass('logoStart')) {
+                                                    logoFlag = 'True'
+                                                } else {
+                                                    logoFlag = 'False'
+                                                }
+                                            
+                                            }
+                                        }
+                                    }
+                                })
+                        } else if(res.msg==='not_main'){
+                            mainFlag = false
+                            not_remind()
+                            $('#requestFlag').html('辅').css('background','red')
+                            if($(this).hasClass('logoStart')) {
+                                logoFlag = 'True'
+                            } else {
+                                logoFlag = 'False'
+                            }
+                        
+                        }
                     }
+                   
                 }
             })
         })
@@ -2828,6 +2843,9 @@ $(function () {
                 slide_two.setValue(allInfo.twoMuteSize)
                 slide_three.setValue(allInfo.threeMuteSize)
                 slide_four.setValue(allInfo.fourMuteSize)
+
+                slide_music.setValue(allInfo.musicInfo.volume * 10)
+                audio_music.setValue(allInfo.musicInfo.audio_volume * 10)
             }, 100)
             // 渲染手势检测
             if (allInfo.gestureFlag === 'off') {
@@ -4224,7 +4242,12 @@ $(function () {
         function bg_debounce(){
             clearTimeout(bg_timeout)
             bg_timeout = setTimeout(()=>{
-                send_bgMusic()
+                if(initializeFlag1){
+                    send_bgMusic()
+                } else {
+                    initializeFlag1 = true
+                }
+                
             },500)
         }
 
