@@ -99,7 +99,7 @@
             if(infoData[0][1]==='False'){
                     $('#codeInput').show()
             } else {
-                $('#codeInput').hide()
+                $('#submit').show()
             }
             // 输入密码
             $('#code1').focus(function () {
@@ -128,7 +128,12 @@
 					$('#codeInput input[type=text]').val("");
 					$('#code1').focus();
 				}
-			});
+			})
+            $('#code6').on('input',function(){
+                if($(this).val().length>0) {
+                    $('#submit').trigger('click')
+                }
+            })
 
             $('#submit').on('click',function(){
 

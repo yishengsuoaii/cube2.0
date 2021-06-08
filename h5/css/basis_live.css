@@ -49,6 +49,7 @@ body #live #videoContainer #topDown {
   font-weight: 400;
   position: absolute;
   top: 0;
+  z-index: 1000;
 }
 body #live #videoContainer #centerDown {
   display: none;
@@ -57,7 +58,7 @@ body #live #videoContainer #centerDown {
   position: absolute;
   top: 20%;
   transform: rotateY(-50%);
-  z-index: 999;
+  z-index: 1001;
 }
 body #live #videoContainer #centerDown #dayClass {
   width: 4.26666667rem;

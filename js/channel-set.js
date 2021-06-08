@@ -666,10 +666,10 @@ $(function () {
         form.on('switch(number-switch)', function (data) {
             if (data.elem.checked) {
                 numberFlag = 'True'
-                $('.show-num').show()
+                
             } else {
                 numberFlag = 'False'
-                $('.show-num').hide()
+               
             }
         });
         form.on('radio(number)', function (data) {
@@ -697,11 +697,11 @@ $(function () {
                     if (res.data.event_number_flag) {
                         numberFlag = 'True'
                         $("#number-switch").attr('checked', 'checked');
-                        $('.show-num').show()
+                        
                     } else {
                         numberFlag = 'False'
                         $("#number-switch").removeAttr('checked');
-                        $('.show-num').hide()
+                       
                     }
                     if (res.data.event_display_position === 1) {
                         onLine = 1
@@ -779,7 +779,7 @@ $(function () {
             var upload = layui.upload;
             //执行实例
             upload.render({
-                elem: '#introduce-cover',
+                elem: '#introduce-box',
                 type: "POST",
                 dataType: "json",
                 headers: {
@@ -793,7 +793,7 @@ $(function () {
                 url: 'http://www.cube.vip/event/introduction_activities/',
                 choose: function (obj) {
                     obj.preview(function (index, file, result) {
-                        $(".introduce-box").css('background-image', 'url(' + window.URL.createObjectURL(file) + ')')
+                        $("#introduce-image").attr('src',window.URL.createObjectURL(file)).show()
                     })
                 },
                 bindAction: '#ai-submit',
@@ -818,8 +818,7 @@ $(function () {
             },
             success: function (res) {
                 if (res.msg === "success") {
-
-                    $(".introduce-box").css('background-image', 'url(' + res.data.event_description_image + ')')
+                    $("#introduce-image").attr('src', res.data.event_description_image).show()
                 }
             }
         })

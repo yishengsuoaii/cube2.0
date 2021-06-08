@@ -1,6 +1,7 @@
 if (!sessionStorage.getItem('token')) {
 	window.location.href = "./../login.html"
 }
+var userId = null
 // 已经添加频道
 let addedChannelData = []
 // 所有频道
@@ -408,6 +409,7 @@ $(function () {
 				addedVideoData = res.data.data.video
 				renderViewChannel()
 				renderViewVideo()
+				userId = res.data.data.account_id
 			} else {
 				layer.msg('获取数据失败,请刷新页面重试!');
 			}
@@ -428,7 +430,7 @@ $(function () {
 
 	// 手机预览
 	new QRCode(document.getElementById("qrcode"), {
-		text: 'http://www.cube.vip/h5/portalMobile.html?token=' + sessionStorage.getItem('token'),
+		text: 'http://www.cube.vip/h5/portalMobile.html?key=' + userId,
 		width: 240,
 		height: 240,
 	});
@@ -439,8 +441,7 @@ $(function () {
 		$('#hintBox').toggle()
 	})
 	// 复制链接
-	$('#copyUrl').attr('data-clipboard-text', 'http://www.cube.vip/h5/portalMobile.html?token=' +
-		sessionStorage.getItem('token'))
+	$('#copyUrl').attr('data-clipboard-text', 'http://www.cube.vip/h5/portalMobile.html?key=' + userId )
 	var btn = document.getElementById('copyUrl');
 
 	var clipboard = new ClipboardJS(btn);

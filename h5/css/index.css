@@ -24,37 +24,44 @@ body #container {
   position: relative;
 }
 body #container #codeInput {
+  display: none;
   width: 10rem !important;
   height: 0.96rem !important;
   position: absolute;
-  top: 40%;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  display: none;
 }
 body #container #codeInput input {
-  width: 1.28rem !important;
-  height: 0.90666667rem !important;
-  background-color: transparent;
-  border: none;
-  border-bottom: 0.02666667rem solid #FF914C;
-  color: #FF914C;
+  width: 1.17333333rem !important;
+  height: 1.17333333rem !important;
+  background: rgba(255, 255, 255, 0.3);
+  border: 0.02666667rem solid #B8B8B8;
+  color: #FFF;
   text-align: center;
   outline: none;
+  border-radius: 0.08rem;
+  font-size: 0.64rem !important;
+  font-family: Source Han Sans CN;
 }
 body #container #submit {
-  width: 2.50666667rem !important;
-  height: 0.8rem !important;
-  line-height: 0.8rem !important;
-  background: #FF914C;
-  border-radius: 0.13333333rem !important;
-  font-size: 0.48rem !important;
+  display: none;
+  width: 6.90666667rem !important;
+  height: 1.28rem !important;
+  line-height: 1.28rem !important;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 3px 10px 0px rgba(104, 123, 207, 0.2);
+  border-radius: 0.64rem;
+  font-size: 0.64rem !important;
   font-family: Source Han Sans CN;
-  font-weight: 400;
+  font-weight: 500;
+  text-shadow: 0px 2px 4px rgba(26, 83, 142, 0.2);
   color: #FFFFFF;
   text-align: center;
   cursor: pointer;
   position: absolute;
-  top: 64%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
 }

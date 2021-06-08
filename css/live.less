@@ -291,31 +291,23 @@
                                         height: (669/100rem);
                                         margin: 0 auto;
                                         background: url('./../image/introduce-bg.png') no-repeat;
-                                        background-size: 100% 100%;
+                                        background-size: 100% 2.67rem;
+                                        border:1px solid rgba(102, 102, 102, 0.3);
                                         position: relative;
 
-                                        .introduce-box {
+                                        #introduce-box {
                                             width: (377/100rem);
                                             height: (404/100rem);
                                             position: absolute;
                                             left: 0;
                                             bottom: 0;
-                                            background: transparent no-repeat;
-                                            background-size: 100% 100%;
-
-                                            &:hover #introduce-cover {
-                                                display: block;
-                                            }
-
-                                            #introduce-cover {
+                                            overflow-y: auto;
+                                            overflow-x: hidden;
+                                            cursor: pointer;
+                                            text-align: center;
+                                            #introduce-image {
                                                 display: none;
-                                                width: (377/100rem);
-                                                height: (404/100rem);
-                                                background-color: rgba(0, 0, 0, .5);
-                                                position: absolute;
-                                                left: 0;
-                                                top: 0;
-                                                cursor: pointer;
+                                                width: (375/100rem);
                                             }
                                         }
                                     }
@@ -611,6 +603,7 @@
                                             height: (360/100rem);
                                             background: url('./../image/count-down-bg.png') no-repeat;
                                             background-size: 100% 100%;
+                                            border: 1px solid rgba(102, 102, 102, 0.3);
                                             position: relative;
 
                                             .top-time {
@@ -780,16 +773,10 @@
                                         .people-preview-content {
                                             width: (501/100rem);
                                             height: (352/100rem);
-                                            background: url(../image/组%209.png) no-repeat;
+                                            background: url(../image/showNum.png) no-repeat;
                                             background-size: 100% 100%;
                                             position: relative;
-
-                                            .show-num {
-                                                color: #FFFFFF;
-                                                position: absolute;
-                                                bottom: (60/100rem);
-                                                left: (20/100rem);
-                                            }
+                                            border:1px solid rgba(102,102,102,0.3)
                                         }
                                     }
                                 }
@@ -989,6 +976,7 @@
                                         background-size: 100% 100%;
                                         position: relative;
                                         margin: (50/100rem) 0 0 (120/100rem);
+                                        border: 1px solid rgba(102, 102, 102, 0.3);
                                         .upload-image {
                                             width: (308/100rem);
                                             height: (38/100rem);
@@ -1099,8 +1087,9 @@
                                         width: 3.75rem;
                                         height: 6.67rem;
                                         background: url('./../image/rec.png') no-repeat;
-                                        background-size: 100% 100%;
+                                        background-size: 100% 2.67rem;
                                         margin:  (50/100rem) 0 0 (120/100rem);
+                                        border: 1px solid rgba(102,102,102,0.3);
                                         #recLCont {
                                             width: 3.55rem;
                                             height: 4rem;

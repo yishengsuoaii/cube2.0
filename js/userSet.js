@@ -164,4 +164,50 @@ $(function () {
             $('.editPassBox').hide()
         }
     })
+
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        headers: {
+            token: sessionStorage.getItem('token')
+        },
+        url: "http://www.cube.vip/account/update_channel/",
+        success: function (res) {
+            if (res.msg === 'success') {
+                if(res.data!=null) {
+                    $('.channelInput').val(res.data).attr('readonly',true)
+                    $('.channelName').html('渠道码:(已绑定)')
+                }
+                
+            }
+        }
+
+    })
+    $('#channel-submit').on('click',function(){
+        if($.trim($('.channelInput').val()).length<=0){
+            layer.msg('请输入渠道码!')
+            return
+        }
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            async: false,
+            headers: {
+                token: sessionStorage.getItem('token')
+            },
+            url: "http://www.cube.vip/account/update_channel/",
+            data:{
+                channel_code:$.trim($('.channelInput').val())
+            },
+            success: function (res) {
+                if (res.msg === 'success') {
+                    layer.msg('绑定成功!')
+                } else {
+                    layer.msg('绑定失败,请稍后重试!')
+                }
+            }
+    
+        })
+    })
 })

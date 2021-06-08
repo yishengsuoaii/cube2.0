@@ -107,7 +107,7 @@
                 url: "http://www.cube.vip/channel/h5_channel_video/",
                 data:{
                     video_id:infoData[0][1],
-                    username: decodeURI(infoData[1][1])
+                    account_id: infoData[1][1]
                 },
                 success:function(res){
                     if(res.msg==='success'){
@@ -210,7 +210,7 @@
                                         ]
                                     })
                                } else {
-                                str += `<a class="backList" data-id="${item.video_id}" href="http://www.cube.vip/h5/portalback.html?id=${item.video_id}&name=${decodeURI(infoData[1][1])}&view=1&profile=1&cover=1'">
+                                str += `<a class="backList" data-id="${item.video_id}" href="http://www.cube.vip/h5/portalback.html?id=${item.video_id}&key=${infoData[1][1]}&view=1&profile=1&cover=1'">
                                     <div class="backContent">
                                         <img src="${item.video_description_image}" onerror="this.src='./image/back-image.png'"  class="backImage">
                                         <div class="backInfo">

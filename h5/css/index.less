@@ -16,51 +16,58 @@
       margin: 0;
   }
   body {
-      width:750rem/@base_fontsize !important;
+      width:(750rem/@base_fontsize) !important;
       min-width: 320px;
       margin: 0 auto;
       #container {
-            width: 750rem/@base_fontsize !important;
+            width: (750rem/@base_fontsize) !important;
             height: 100vh;
             background:  no-repeat;
             background-size: 100% 100%;
             position: relative;
 
             #codeInput {
-                width: 750rem/@base_fontsize !important;
-                height: 72rem/@base_fontsize !important;
-                position: absolute;
-                top: 40%;
-                text-align: center;
                 display: none;
+                width: (750rem/@base_fontsize) !important;
+                height: (72rem/@base_fontsize) !important;
+                position: absolute;
+                top: 60%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                text-align: center;
                 input {
-                    width: 96rem/@base_fontsize !important;
-                    height: 68rem/@base_fontsize !important;
-                    background-color: transparent;
-                    border: none;
-                    border-bottom: 2rem/@base_fontsize  solid #FF914C;
-                    color: #FF914C;
+                    width: (88rem/@base_fontsize) !important;
+                    height: (88rem/@base_fontsize) !important;
+                    background: rgba(255, 255, 255, 0.3);
+                    border: (2rem/@base_fontsize)  solid #B8B8B8;
+                    color: #FFF;
                     text-align: center;
                     outline: none;
+                    border-radius: (6rem/@base_fontsize);
+                    font-size: (48rem/@base_fontsize) !important;
+                    font-family: Source Han Sans CN;
                 }
             }
 
 
 
             #submit {
-                width: 188rem/@base_fontsize !important;
-                height: 60rem/@base_fontsize !important;
-                line-height: 60rem/@base_fontsize !important;
-                background: #FF914C;
-                border-radius: 10rem/@base_fontsize !important;
-                font-size: 36rem/@base_fontsize !important;
+                display: none;
+                width: (518rem/@base_fontsize) !important;
+                height: (96rem/@base_fontsize) !important;
+                line-height: (96rem/@base_fontsize) !important;
+                background: rgba(255, 255, 255, 0.3);
+                box-shadow: 0px 3px 10px 0px rgba(104, 123, 207, 0.2);
+                border-radius: (48rem/@base_fontsize);
+                font-size: (48rem/@base_fontsize) !important;
                 font-family: Source Han Sans CN;
-                font-weight: 400;
+                font-weight: 500;
+                text-shadow: 0px 2px 4px rgba(26, 83, 142, 0.2);
                 color: #FFFFFF;
                 text-align: center;
                 cursor: pointer;
                 position: absolute;
-                top: 64%;
+                top: 60%;
                 left: 50%;
                 transform: translate(-50%,-50%)
             }

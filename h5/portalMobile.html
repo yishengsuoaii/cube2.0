@@ -44,57 +44,53 @@
 
     <script>
     $(function(){
-       let token=window.location.search.substring(1).split("=")[1]
+       let key=window.location.search.substring(1).split("=")[1]
        var userName = ''
        var describe = ''
        var userImg = ''
-       var nameAbc = ''
+       // 获取已经添加的频道 和 视频
+        let addedChannelData =[]
+        let addedVideoData = []
 
-        // 获取门户基本信息
-        $.ajax({
+       // 获取门户信息
+       $.ajax({
             type: "GET",
             dataType: "json",
             async: false,
-            headers: {token:token},
-            url: "http://www.cube.vip/channel/channel_info/",
+            url: "http://www.cube.vip/channel/h5_channel_info/",
+            data:{
+                account_id:key
+            },
             success: function (res) {
+
                 if(res.msg === 'success') {
-                    if(res.data.channel_wallpaper !=='http://content.changsmart.com/channel_wallpaper/default.jpg') {
-                        $("#coverImage").prop('src',  res.data.channel_wallpaper+'?'+new Date().getTime()) //封面图片
+                    if(res.data.data.channel_wallpaper !=='http://content.changsmart.com/channel_wallpaper/default.jpg') {
+                        $("#coverImage").prop('src',  res.data.data.channel_wallpaper+'?'+new Date().getTime()) //封面图片
                     }
-                    $('.portalName').text(res.data.channel_name)
-                    userName = res.data.channel_name
-                    $('.portalDescribe').text(res.data.channel_description)
-                    describe = res.data.channel_description
-                    if(res.data.channel_wallpaper_url!==''&&res.data.channel_wallpaper_url!==null){
-                        if(res.data.channel_wallpaper_url.startsWith('http://')||res.data.channel_wallpaper_url.startsWith('https://')){
-                            $('#coverUrl').prop('href',res.data.channel_wallpaper_url)
+                    $('.portalName').text(res.data.data.channel_name)
+                    userName = res.data.data.channel_name
+                    $('.portalDescribe').text(res.data.data.channel_description)
+                    describe = res.data.data.channel_description
+                    if(res.data.data.channel_wallpaper_url!==''&&res.data.data.channel_wallpaper_url!==null){
+                        if(res.data.data.channel_wallpaper_url.startsWith('http://')||res.data.data.channel_wallpaper_url.startsWith('https://')){
+                            $('#coverUrl').prop('href',res.data.data.channel_wallpaper_url)
                         } else {
-                            $('#coverUrl').prop('href','http://'+res.data.channel_wallpaper_url)
+                            $('#coverUrl').prop('href','http://'+res.data.data.channel_wallpaper_url)
                         }
                     } 
-                } 
-            }
-        })
 
-
-        // 获取门户 头像
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            async: false,
-            headers: {token:token},
-            url: "http://www.cube.vip/account/check_account_thundernail/",
-            success: function (res) {
-                if(res.msg === 'success') {
-                    if(res.data.account_thundernail !=='http://content.changsmart.com/account/default.png') {
-                        $('#portalUser').prop('src',res.data.account_thundernail)
-                        userImg = res.data.account_thundernail
+                    if(res.data.data.account_thundernail !=='http://content.changsmart.com/account/default.png') {
+                        $('#portalUser').prop('src',res.data.data.account_thundernail)
+                        userImg = res.data.data.account_thundernail
                     }
-                } 
-            }
-        })
 
+                    addedChannelData = res.data.data.event
+                    addedVideoData = res.data.data.video
+                    renderViewChannel()
+                    renderViewVideo()
+                }
+            }
+       })
         var shaStr = ''
         var time = createTimestamp()
         function createTimestamp() {
@@ -110,7 +106,7 @@
             success:function(res){
                 if(res.msg==='success'){
 
-                shaStr = sha1('jsapi_ticket='+res.data+'&noncestr='+src+'&timestamp='+time+'&url=http://www.cube.vip/h5/portalMobile.html?token='+token)
+                shaStr = sha1('jsapi_ticket='+res.data+'&noncestr='+src+'&timestamp='+time+'&url=http://www.cube.vip/h5/portalMobile.html?key='+key)
                 wx.config({
                         debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                         appId: 'wxfeb6dd6cbf5a390b', // 必填，公众号的唯一标识
@@ -124,7 +120,7 @@
                         // 分享到朋友圈
                         wx.updateTimelineShareData({
                             title: userName, // 分享标题
-                            link: 'http://www.cube.vip/h5/portalMobile.html?token='+token, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                            link: 'http://www.cube.vip/h5/portalMobile.html?key='+key, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                             imgUrl: userImg, // 分享图标
                         });
                         
@@ -132,37 +128,13 @@
                         wx.updateAppMessageShareData({
                             title: userName, // 分享标题
                             desc: describe, // 分享描述
-                            link: 'http://www.cube.vip/h5/portalMobile.html?token='+token, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                            link: 'http://www.cube.vip/h5/portalMobile.html?key='+key, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                             imgUrl: userImg, // 分享图标
                         });
                     })
                 }
             }
         })
-
-
-         // 获取已经添加的频道 和 视频
-         let addedChannelData =[]
-        let addedVideoData = []
-
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            async: false,
-            headers: {token:token},
-            url:'http://www.cube.vip/channel/portal_display/',
-            success:function(res){
-                if(res.msg === 'success') {
-                    nameAbc = res.data.data.account_name
-                    addedChannelData = res.data.data.event
-                    addedVideoData = res.data.data.video
-                    renderViewChannel()
-                    renderViewVideo()
-                }
-            }
-        })
-
-       
             // 渲染已经添加的频道
         function renderViewChannel(){
             var str1=''
@@ -231,7 +203,7 @@
             window.location.href='http://www.cube.vip/h5/wxlogin.html?key='+$(this).attr('data-key').substr(19)
         })
         $('.wonderful-video').on('click','.wonderful-video-list',function(){
-            window.location.href='http://www.cube.vip/h5/portallogin.html?id='+$(this).attr('data-id')+'&name='+nameAbc+'&view=1&profile=1&cover=1'
+            window.location.href='http://www.cube.vip/h5/portallogin.html?id='+$(this).attr('data-id')+'&key='+key+'&view=1&profile=1&cover=1'
         })
     })
     

@@ -5,12 +5,16 @@
 .container {
     width: 100%;
     min-width: 1200px;
-    height: 100vh;
+    // height: 100vh;
     background-color: #f9f9f9;
     .topBox {
         width: 100%;
         height: 130px;
+        position: fixed;
+        top: 0;
+        z-index: 999;
         background-color: #fff;
+        box-shadow: 0px 3px 7px 0px rgba(102, 102, 102, 0.1);
         .topContent {
             width: 1200px;
             height: 64px;
@@ -73,9 +77,8 @@
     }
     .download {
         width: 1200px;
-        height: 500px;
+        margin: 130px auto 100px;
         padding-top: 80px;
-        margin: 0 auto;
         .downloadTitle {
             width: 1200px;
             height: 48px;
@@ -90,7 +93,7 @@
             display: block;
             width: 128px;
             height: 128px;
-            margin: 64px 0 25px 30px;
+            margin: 112px 0 0 30px;
         }
         .assistant {
             height: 36px;
@@ -100,18 +103,19 @@
             color: #333333;
             line-height: 36px;
             padding-left: 30px;
+            margin: 30px 0;
         }
         .downloadInfo {
             position: relative;
-            height: 348px;
-            margin-top: 60px;
+            height: 228px;
             padding-left: 30px;
             p{
+                height: 30px;
                 font-size: 24px;
                 font-family: Source Han Sans CN;
                 font-weight: 400;
                 color: #666666;
-                line-height: 42px;
+                line-height: 30px;
             }
             .downloadCode {
                 width: 160px;
@@ -139,8 +143,161 @@
                 width: 573px;
                 height: 283px;
                 position: absolute;
+                top: -40px;
                 right: 0;
-                bottom: 0;
+            }
+        }
+        #transcoder {
+            width: 1200px;
+            margin-top: 130px;
+            .trans_title{
+                font-size: 48px;
+                font-family: Source Han Sans CN;
+                font-weight: bold;
+                color: #333333;
+                text-align: center;
+            }
+            .trans_box {
+                width: 1200px;
+                height: 718px;
+                background-color: #fff;
+                border-radius: 30px;
+                margin-top: 215px;
+                position: relative;
+                .trans_left {
+                    width: 416px;
+                    height: 685px;
+                    position: absolute;
+                    left: 30px;
+                    top: -100px;
+                }
+                .trans_right {
+                    width: 250px;
+                    height: 300px;
+                    position: absolute;
+                    top: 115px;
+                    right: 140px;
+                    .trans_logo {
+                        width: 153px;
+                        height: 153px;
+                    }
+                    .trans_name {
+                        font-size: 36px;
+                        font-family: Source Han Sans CN;
+                        font-weight: 500;
+                        color: #333333;
+                    }
+                    .trans_info {
+                        font-size: 24px;
+                        font-family: Source Han Sans CN;
+                        font-weight: 400;
+                        color: #666666;
+                        margin: 30px 0 100px;
+                    }
+                    .trans_down {
+                        display: block;
+                        width: 175px;
+                        height: 62px;
+                        background: #F2591A;
+                        border-radius: 5px;
+                        font-size: 24px;
+                        font-family: Arial;
+                        font-weight: 400;
+                        color: #FFFFFF;
+                        text-align: center;
+                        line-height: 62px;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+    #chromeBox {
+        width: 100%;
+        min-width: 1200px;
+        height: 760px;
+        background: #FFFFFF;
+        padding-top: 82px;
+        .chrome_title {
+            font-size: 48px;
+            font-family: Source Han Sans CN;
+            font-weight: bold;
+            color: #333333;
+            text-align: center;
+        }
+        .chrome_logo {
+            display: block;
+            width: 132px;
+            height: 132px;
+            margin: 170px auto 25px;
+        }
+        .chrome_name {
+            font-size: 36px;
+            font-family: Source Han Sans CN;
+            font-weight: 500;
+            color: #333333;
+            text-align: center;
+        }
+        .chrome_apply {
+            font-size: 24px;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: #666666;
+            line-height: 42px;
+            text-align: center;
+        }
+        .chrome_version {
+            font-size: 24px;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: #666666;
+            line-height: 42px;
+            text-align: center;
+        }
+        #chrome_down {
+            display: block;
+            width: 175px;
+            height: 62px;
+            background: #F2591A;
+            border-radius: 5px;
+            line-height: 62px;
+            text-align: center;
+            text-decoration: none;
+            margin: 30px auto 0;
+            font-size: 24px;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: #FFFFFF;
+
+        }
+    }
+    .infoBox {
+        width: 100%;
+        min-width: 1200px;
+        height: 30px;
+        padding: 10px 0;
+
+        .beian {
+            width: 1200px;
+            height: 30px;
+            line-height: 30px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            a {
+                color: #333;
+                text-decoration: none;
+                font-size: 14px;
+                &:hover {
+                    color: #666;
+                }
+                margin: 0 5px;
+            }
+            img {
+                width: 18px;
+                height: 18px;
             }
         }
     }

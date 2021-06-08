@@ -2,7 +2,7 @@
 .parentMain {
     #contentBox {
         width: 1559px;
-        height: 900px;
+        min-height: 800px;
         background-color: #fff;
 
         #header {
@@ -19,7 +19,7 @@
 
         #content {
             width: 680px;
-            height: 500px;
+            // height: 500px;
             margin: 40px auto 0;
 
             .imageBox {
@@ -191,6 +191,51 @@
                     position: absolute;
                     right: 0;
                     bottom: 0;
+                    width: 98px;
+                    height: 40px;
+                    background: #EEEEEE;
+                    border-radius: 3px;
+                    text-align: center;
+                    line-height: 40px;
+                    font-size: 20px;
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #666666;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: #fff;
+                        background-color: #FF914D;
+                    }
+                }
+            }
+            .channelStyle {
+                width: 480px;
+                height: 140px;
+                margin: 20px auto 0 ;
+                position: relative;
+                .channelName {
+                    width: 480px;
+                    height: 30px;
+                    font-size: 18px;
+                    font-family: Source Han Sans CN;
+                    font-weight: 400;
+                    color: #666666;
+                    line-height: 30px;
+                }
+                .channelInput {
+                    width: 460px;
+                    height: 34px;
+                    padding: 0 10px;
+                    background: #EEEEEE;
+                    border-radius: 3px;
+                    border: none;
+                    outline: none;
+                }
+                #channel-submit {
+                    position: absolute;
+                    right: 0;
+                    bottom: 20px;
                     width: 98px;
                     height: 40px;
                     background: #EEEEEE;
