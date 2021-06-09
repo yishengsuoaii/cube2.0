@@ -3732,6 +3732,7 @@ $(function () {
             var serverSrc = ''
             var codeSrc  = ''
             var pushUrl = ''
+            let flag = 'no'
             // 未推流状态
             if(e.target.className === 'pushBtn') {
                 if($.trim($(this).find('.pushInputs').val()).length<=0||!/^rtmp:\/\/([\w.]+\/?)\S*/.test($.trim($(this).find('.pushInputs').val()))　){
@@ -3747,6 +3748,9 @@ $(function () {
                         pushUrl = serverSrc
                     } else {
                         pushUrl = serverSrc.endsWith('/') ? serverSrc+codeSrc : serverSrc+'/'+codeSrc
+                        if(codeSrc.indexOf('wxtoken')!==-1){
+                            flag = 'yes'
+                        }
                     }
                     sessionStorage.setItem('push'+event_uri_key,JSON.stringify(pushData))
                 }
@@ -3763,7 +3767,8 @@ $(function () {
                             cloud_rtmp:{
                                 action:'on',
                                 index:$(this).index() + 1,
-                                url:pushUrl
+                                url:pushUrl,
+                                ffmpeg_needed:flag
                             }
                         })
                         
@@ -3793,6 +3798,9 @@ $(function () {
                         pushUrl = serverSrc
                     } else {
                         pushUrl = serverSrc.endsWith('/') ? serverSrc+codeSrc : serverSrc+'/'+codeSrc
+                        if(codeSrc.indexOf('wxtoken')!==-1){
+                            flag = 'yes'
+                        }
                     }
                     sessionStorage.setItem('push'+event_uri_key,JSON.stringify(pushData))
                 }
@@ -3809,7 +3817,8 @@ $(function () {
                             cloud_rtmp:{
                                 action:'off',
                                 index:$(this).index() + 1,
-                                url:pushUrl
+                                url:pushUrl,
+                                ffmpeg_needed:flag
                             }
                         })
                         
@@ -3839,6 +3848,9 @@ $(function () {
                         pushUrl = serverSrc
                     } else {
                         pushUrl = serverSrc.endsWith('/') ? serverSrc+codeSrc : serverSrc+'/'+codeSrc
+                        if(codeSrc.indexOf('wxtoken')!==-1){
+                            flag = 'yes'
+                        }
                     }
                     sessionStorage.setItem('push'+event_uri_key,JSON.stringify(pushData))
                 }
@@ -3855,7 +3867,8 @@ $(function () {
                             cloud_rtmp:{
                                 action:'off',
                                 index:$(this).index() + 1,
-                                url:pushUrl
+                                url:pushUrl,
+                                ffmpeg_needed:flag
                             }
                         })
                         
@@ -3875,7 +3888,8 @@ $(function () {
                                         cloud_rtmp:{
                                             action:'on',
                                             index:$(this).index() + 1,
-                                            url:pushUrl
+                                            url:pushUrl,
+                                            ffmpeg_needed:flag
                                         }
                                     })
                                     
