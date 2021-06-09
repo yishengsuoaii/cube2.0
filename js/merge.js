@@ -20,7 +20,7 @@ $(function () {
         type: "GET",
         dataType: "json",
         async: false,
-        url: "http://www.cube.vip/video/video_code_to_uri/",
+        url: "http://www.cubee.vip/video/video_code_to_uri/",
         data: {
             video_code: infoData[0][1]
         },
@@ -58,7 +58,7 @@ $(function () {
         type: "GET",
         dataType: "json",
         async: false,
-        url: "http://www.cube.vip/video/video_code_to_uri/",
+        url: "http://www.cubee.vip/video/video_code_to_uri/",
         data: {
             video_code: infoData[1][1]
         },
@@ -108,7 +108,7 @@ $(function () {
                 type: "GET",
                 dataType: "json",
                 async: false,
-                url: "http://www.cube.vip/video_editing/merger_video/",
+                url: "http://www.cubee.vip/video_editing/merger_video/",
                 data: {
                     fistname: infoData[0][1],
                     secondname: infoData[1][1],
@@ -131,7 +131,7 @@ $(function () {
                 type: "GET",
                 dataType: "json",
                 async: false,
-                url: "http://www.cube.vip/video_editing/merger_video/",
+                url: "http://www.cubee.vip/video_editing/merger_video/",
                 data: {
                     fistname: infoData[1][1],
                     secondname: infoData[0][1],
@@ -160,7 +160,7 @@ $(function () {
                 type: "GET",
                 dataType: "json",
                 async: false,
-                url: "http://www.cube.vip/video_editing/merge_video_status/",
+                url: "http://www.cubee.vip/video_editing/merge_video_status/",
                 data: {
                     editing_action_id: id
                 },

@@ -478,7 +478,7 @@ $(function () {
             headers: {
                 token: sessionStorage.getItem('token')
             },
-            url: "http://www.cube.vip/account/check_account_thundernail/",
+            url: "http://www.cubee.vip/account/check_account_thundernail/",
             success: function (res) {
                 if (res.msg === 'success') {
                     userImage = res.data.account_thundernail
@@ -488,7 +488,7 @@ $(function () {
 
         // 获取直播信息
         $.get({
-            url: "http://www.cube.vip/event/live_control/",
+            url: "http://www.cubee.vip/event/live_control/",
             dataType: "json",
             headers: {
                 token: sessionStorage.getItem('token')
@@ -512,15 +512,15 @@ $(function () {
                     $("#username").text(result.data.account_name);
 
                     $('.head-copy').attr('data-clipboard-text',
-                        'http://www.cube.vip/h5/wxlogin.html?key=' + result.data
+                        'http://www.cubee.vip/h5/wxlogin.html?key=' + result.data
                         .event_uri_key)
                         new QRCode(document.getElementById("liveQrcode1"), {
-                            text: 'http://www.cube.vip/h5/wxlogin.html?key=' +  result.data.event_uri_key,
+                            text: 'http://www.cubee.vip/h5/wxlogin.html?key=' +  result.data.event_uri_key,
                             width: 240,
                             height: 240,
                         });
                         new QRCode(document.getElementById("liveQrcode"), {
-                            text: 'http://www.cube.vip/h5/wxlogin.html?key=' +  result.data.event_uri_key,
+                            text: 'http://www.cubee.vip/h5/wxlogin.html?key=' +  result.data.event_uri_key,
                             width: 240,
                             height: 240,
                         });
@@ -707,7 +707,7 @@ $(function () {
 				headers: {
 					token: sessionStorage.getItem('token')
 				},
-				url:'http://www.cube.vip/event/check_redis_exist/',
+				url:'http://www.cubee.vip/event/check_redis_exist/',
 				data: {
 					stream_code: event_code,
                     random_code: idOnly
@@ -757,7 +757,7 @@ $(function () {
 				headers: {
 					token: sessionStorage.getItem('token')
 				},
-				url:'http://www.cube.vip/event/check_redis_exist/',
+				url:'http://www.cubee.vip/event/check_redis_exist/',
 				data: {
 					stream_code: event_code,
                     random_code: idOnly
@@ -794,7 +794,7 @@ $(function () {
         // 获取IP地址
         function getIp() {
             $.get({
-                url: "http://www.cube.vip/event/get_ip/",
+                url: "http://www.cubee.vip/event/get_ip/",
                 dataType: "json",
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -962,7 +962,7 @@ $(function () {
 
         function getIps() {
             $.get({
-                url: "http://www.cube.vip/event/get_ip/",
+                url: "http://www.cubee.vip/event/get_ip/",
                 dataType: "json",
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -987,7 +987,7 @@ $(function () {
 
         function getIps2() {
             $.get({
-                url: "http://www.cube.vip/event/get_ip/",
+                url: "http://www.cubee.vip/event/get_ip/",
                 dataType: "json",
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -1678,7 +1678,7 @@ $(function () {
 
         // 获取logo信息
         $.get({
-            url: "http://www.cube.vip/event/logo_page_setup/",
+            url: "http://www.cubee.vip/event/logo_page_setup/",
             dataType: "json",
             headers: {
                 token: sessionStorage.getItem('token')
@@ -1776,7 +1776,7 @@ $(function () {
 
             $.ajax({
                 type: 'POST',
-                url: "http://www.cube.vip/event/logo_page_setup/",
+                url: "http://www.cubee.vip/event/logo_page_setup/",
                 dataType: "json",
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -1817,7 +1817,7 @@ $(function () {
                                 formData.append('json_data', JSON.stringify(info))
                                 $.ajax({
                                     type: "POST",
-                                    url: 'http://www.cube.vip/director/director_instruct/',
+                                    url: 'http://www.cubee.vip/director/director_instruct/',
                                     dataType: "json",
                                     headers: {
                                         token: sessionStorage.getItem('token')
@@ -1966,7 +1966,7 @@ $(function () {
         function getScoreStyle() {
             $.ajax({
                 type: 'GET',
-                url: "http://www.cube.vip/event/score_card_style/",
+                url: "http://www.cubee.vip/event/score_card_style/",
                 dataType: "json",
                 async: false,
                 headers: {
@@ -2764,7 +2764,7 @@ $(function () {
             formData.append('json_data', JSON.stringify(info))
             $.ajax({
                 type: "POST",
-                url: 'http://www.cube.vip/director/director_instruct/',
+                url: 'http://www.cubee.vip/director/director_instruct/',
                 dataType: "json",
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -3094,7 +3094,7 @@ $(function () {
                 formData.append('json_data', JSON.stringify(info))
                 $.ajax({
                     type: "POST",
-                    url: 'http://www.cube.vip/director/director_instruct/',
+                    url: 'http://www.cubee.vip/director/director_instruct/',
                     dataType: "json",
                     headers: {
                         token: sessionStorage.getItem('token')
@@ -3162,7 +3162,7 @@ $(function () {
                 formData.append('json_data', JSON.stringify(info))
                 $.ajax({
                     type: "POST",
-                    url: 'http://www.cube.vip/director/director_instruct/',
+                    url: 'http://www.cubee.vip/director/director_instruct/',
                     dataType: "json",
                     headers: {
                         token: sessionStorage.getItem('token')
@@ -3231,7 +3231,7 @@ $(function () {
             formData.append('json_data', JSON.stringify(info))
             $.ajax({
                 type: "POST",
-                url: 'http://www.cube.vip/director/director_instruct/',
+                url: 'http://www.cubee.vip/director/director_instruct/',
                 dataType: "json",
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -3297,7 +3297,7 @@ $(function () {
         function getAllPdf(){
             $.ajax({
                 type: 'GET',
-                url: "http://www.cube.vip/event/get_pdf/",
+                url: "http://www.cubee.vip/event/get_pdf/",
                 dataType: "json",
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -3340,7 +3340,7 @@ $(function () {
         // 上传文档
         upload.render({
             elem: '#addDoc', //绑定元素
-            url: 'http://www.cube.vip/event/pdf_drawing_create/', //上传接口
+            url: 'http://www.cubee.vip/event/pdf_drawing_create/', //上传接口
             accept: 'file',
             acceptMime:'application/pdf',
             exts:'pdf',
@@ -3385,7 +3385,7 @@ $(function () {
                     }
                     $.ajax({
                         type: 'GET',
-                        url: "http://www.cube.vip/event/delete_pdf/",
+                        url: "http://www.cubee.vip/event/delete_pdf/",
                         dataType: "json",
                         headers: {
                             token: sessionStorage.getItem('token')
@@ -3434,7 +3434,7 @@ $(function () {
             })
             $.ajax({
                 type: 'GET',
-                url: "http://www.cube.vip/event/get_pdf/",
+                url: "http://www.cubee.vip/event/get_pdf/",
                 dataType: "json",
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -3536,7 +3536,7 @@ $(function () {
                 formData.append('json_data', JSON.stringify(info))
                 $.ajax({
                     type: "POST",
-                    url: 'http://www.cube.vip/director/director_instruct/',
+                    url: 'http://www.cubee.vip/director/director_instruct/',
                     dataType: "json",
                     headers: {
                         token: sessionStorage.getItem('token')
@@ -3692,7 +3692,7 @@ $(function () {
                     formData.append('json_data', JSON.stringify(info))
                     $.ajax({
                         type: "POST",
-                        url: 'http://www.cube.vip/director/director_instruct/',
+                        url: 'http://www.cubee.vip/director/director_instruct/',
                         dataType: "json",
                         headers: {
                             token: sessionStorage.getItem('token')
@@ -3752,7 +3752,7 @@ $(function () {
                 }
                 $.ajax({
                     type: 'POST',
-                    url: "http://www.cube.vip/event/push_rtmp/",
+                    url: "http://www.cubee.vip/event/push_rtmp/",
                     headers: {
                         token: sessionStorage.getItem('token')
                     },
@@ -3780,9 +3780,25 @@ $(function () {
             }
             // 关闭推流
            else if(e.target.className === 'pushBtn pushNormal'){
+                if($.trim($(this).find('.pushInputs').val()).length<=0||!/^rtmp:\/\/([\w.]+\/?)\S*/.test($.trim($(this).find('.pushInputs').val()))　){
+                    $(this).find('.pushInputs').focus()
+                    layer.msg('请正确输入推流地址!')
+                    return
+                } else {
+                    serverSrc = $.trim($(this).find('.pushInputs').val())
+                    codeSrc = $.trim($(this).find('.pushCode').val())
+                    pushData[$(this).index()].serve = serverSrc
+                    pushData[$(this).index()].code = codeSrc
+                    if(codeSrc==='') {
+                        pushUrl = serverSrc
+                    } else {
+                        pushUrl = serverSrc.endsWith('/') ? serverSrc+codeSrc : serverSrc+'/'+codeSrc
+                    }
+                    sessionStorage.setItem('push'+event_uri_key,JSON.stringify(pushData))
+                }
                 $.ajax({
                     type: 'POST',
-                    url: "http://www.cube.vip/event/push_rtmp/",
+                    url: "http://www.cubee.vip/event/push_rtmp/",
                     headers: {
                         token: sessionStorage.getItem('token')
                     },
@@ -3828,7 +3844,7 @@ $(function () {
                 }
                 $.ajax({
                     type: 'POST',
-                    url: "http://www.cube.vip/event/push_rtmp/",
+                    url: "http://www.cubee.vip/event/push_rtmp/",
                     headers: {
                         token: sessionStorage.getItem('token')
                     },
@@ -3848,7 +3864,7 @@ $(function () {
                         if (res.msg === 'success') {
                             $.ajax({
                                 type: 'POST',
-                                url: "http://www.cube.vip/event/push_rtmp/",
+                                url: "http://www.cubee.vip/event/push_rtmp/",
                                 headers: {
                                     token: sessionStorage.getItem('token')
                                 },
@@ -3891,7 +3907,7 @@ $(function () {
         function inquirePushState(){
             $.ajax({
                 type: 'POST',
-                url: "http://www.cube.vip/event/get_push_status/",
+                url: "http://www.cubee.vip/event/get_push_status/",
                 headers: {
                     token: sessionStorage.getItem('token')
                 },
@@ -3950,7 +3966,7 @@ $(function () {
         getAllMusic()
         function getAllMusic() {
             $.ajax({
-                url:'http://www.cube.vip/event/upload_music/',
+                url:'http://www.cubee.vip/event/upload_music/',
                 type: 'GET',
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -3998,7 +4014,7 @@ $(function () {
         // 上传音乐
         upload.render({
             elem: '#addMusic',
-            url: 'http://www.cube.vip/event/upload_music/', //上传接口
+            url: 'http://www.cubee.vip/event/upload_music/', //上传接口
             accept: 'audio',
             acceptMime:'audio/mpeg',
             exts:'mp3',
@@ -4050,7 +4066,7 @@ $(function () {
                     layer.close(index)
                     $.ajax({
                         type: 'GET',
-                        url: "http://www.cube.vip/event/delete_music/",
+                        url: "http://www.cubee.vip/event/delete_music/",
                         dataType: "json",
                         headers: {
                             token: sessionStorage.getItem('token')
@@ -4125,7 +4141,7 @@ $(function () {
                     formData.append('json_data', JSON.stringify(info))
                     $.ajax({
                         type: "POST",
-                        url: 'http://www.cube.vip/director/director_instruct/',
+                        url: 'http://www.cubee.vip/director/director_instruct/',
                         dataType: "json",
                         headers: {
                             token: sessionStorage.getItem('token')
@@ -4204,7 +4220,7 @@ $(function () {
                 formData.append('json_data', JSON.stringify(info))
                 $.ajax({
                     type: "POST",
-                    url: 'http://www.cube.vip/director/director_instruct/',
+                    url: 'http://www.cubee.vip/director/director_instruct/',
                     dataType: "json",
                     headers: {
                         token: sessionStorage.getItem('token')
@@ -4286,7 +4302,7 @@ $(function () {
                 formData.append('json_data', JSON.stringify(info))
                 $.ajax({
                     type: "POST",
-                    url: 'http://www.cube.vip/director/director_instruct/',
+                    url: 'http://www.cubee.vip/director/director_instruct/',
                     dataType: "json",
                     headers: {
                         token: sessionStorage.getItem('token')
@@ -4318,7 +4334,7 @@ $(function () {
         getAllGif()
         function getAllGif(){
             $.ajax({
-                url:'http://www.cube.vip/event/get_all_gif/',
+                url:'http://www.cubee.vip/event/get_all_gif/',
                 type: 'GET',
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -4421,7 +4437,7 @@ $(function () {
                 formData.append('json_data', JSON.stringify(info))
                 $.ajax({
                     type: "POST",
-                    url: 'http://www.cube.vip/director/director_instruct/',
+                    url: 'http://www.cubee.vip/director/director_instruct/',
                     dataType: "json",
                     headers: {
                         token: sessionStorage.getItem('token')
@@ -4495,7 +4511,7 @@ $(function () {
         // 上传kv图
         upload.render({
             elem: '#addKv',
-            url: 'http://www.cube.vip/event/notice_board_style/', //上传接口
+            url: 'http://www.cubee.vip/event/notice_board_style/', //上传接口
             accept: 'images',
             acceptMime: 'image/png',
             exts:'png',
@@ -4516,7 +4532,7 @@ $(function () {
         // 获取所有kv图
         function getALlKvImage(){
             $.ajax({
-                url:'http://www.cube.vip/event/notice_board_style/',
+                url:'http://www.cubee.vip/event/notice_board_style/',
                 type: 'GET',
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -4549,7 +4565,7 @@ $(function () {
         //删除kv图
         $('#kvLeft').on('click','.kvDelete',function(){
             $.ajax({
-                url:'http://www.cube.vip/event/delete_notice_board/',
+                url:'http://www.cubee.vip/event/delete_notice_board/',
                 type: 'GET',
                 headers: {
                     token: sessionStorage.getItem('token')
@@ -4622,7 +4638,7 @@ $(function () {
                     formData.append('json_data', JSON.stringify(info))
                     $.ajax({
                         type: "POST",
-                        url: 'http://www.cube.vip/director/director_instruct/',
+                        url: 'http://www.cubee.vip/director/director_instruct/',
                         dataType: "json",
                         headers: {
                             token: sessionStorage.getItem('token')
@@ -4702,7 +4718,7 @@ $(function () {
                 formData.append('json_data', JSON.stringify(info))
                 $.ajax({
                     type: "POST",
-                    url: 'http://www.cube.vip/director/director_instruct/',
+                    url: 'http://www.cubee.vip/director/director_instruct/',
                     dataType: "json",
                     headers: {
                         token: sessionStorage.getItem('token')
@@ -4749,7 +4765,7 @@ $(function () {
                 headers: {
                     token: sessionStorage.getItem('token')
                 },
-                url: "http://www.cube.vip/video/get_event_video/",
+                url: "http://www.cubee.vip/video/get_event_video/",
                 data: {
                     stream_code: event_code
                 },
@@ -4773,7 +4789,7 @@ $(function () {
                 headers: {
                     token: sessionStorage.getItem('token')
                 },
-                url: "http://www.cube.vip/video/video_list/",
+                url: "http://www.cubee.vip/video/video_list/",
                 data: {
                     save_flag: 'media_library'
                 },
@@ -4943,7 +4959,7 @@ $(function () {
                 headers: {
                     token: sessionStorage.getItem('token')
                 },
-                url: "http://www.cube.vip/video/get_event_video/",
+                url: "http://www.cubee.vip/video/get_event_video/",
                 data: {
                     stream_code: event_code,
                     video_id: JSON.stringify(video_id)
@@ -4977,7 +4993,7 @@ $(function () {
     // WebSocket聊天室--------------------------------------------------------------------------------------------------
         const chatSocket = new WebSocket(
             'ws://' +
-            'www.cube.vip' +
+            'www.cubee.vip' +
             '/ws/chat/' +
             event_uri_key +
             '/'
@@ -5044,7 +5060,7 @@ $(function () {
         $('.chatContent').on('click', '.deleteChat', function () {
             $.ajax({
                 type: 'POST',
-                url: "http://www.cube.vip/chatting/delete_chat/",
+                url: "http://www.cubee.vip/chatting/delete_chat/",
                 dataType: "json",
                 headers: {
                     token: sessionStorage.getItem('token')

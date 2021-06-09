@@ -59,7 +59,7 @@ $(function () {
     function getAllMessage() {
       $.ajax({
         type: 'GET',
-        url: "http://www.cube.vip/account/message/",
+        url: "http://www.cubee.vip/account/message/",
         dataType: "json",
         async: false,
         headers: {
@@ -136,7 +136,7 @@ $(function () {
     function getPageAllMessage(page,num) {
       $.ajax({
         type: 'GET',
-        url: "http://www.cube.vip/account/message/",
+        url: "http://www.cubee.vip/account/message/",
         dataType: "json",
         async: false,
         headers: {
@@ -197,7 +197,7 @@ $(function () {
      function getReadMessage() {
        $.ajax({
          type: 'GET',
-         url: "http://www.cube.vip/account/message/",
+         url: "http://www.cubee.vip/account/message/",
          dataType: "json",
          async: false,
          headers: {
@@ -275,7 +275,7 @@ $(function () {
      function getPageReadMessage(page,num) {
        $.ajax({
          type: 'GET',
-         url: "http://www.cube.vip/account/message/",
+         url: "http://www.cubee.vip/account/message/",
          dataType: "json",
          async: false,
          headers: {
@@ -335,7 +335,7 @@ $(function () {
       function getUnReadMessage() {
         $.ajax({
           type: 'GET',
-          url: "http://www.cube.vip/account/message/",
+          url: "http://www.cubee.vip/account/message/",
           dataType: "json",
           async: false,
           headers: {
@@ -412,7 +412,7 @@ $(function () {
       function getPageUnReadMessage(page,num) {
         $.ajax({
           type: 'GET',
-          url: "http://www.cube.vip/account/message/",
+          url: "http://www.cubee.vip/account/message/",
           dataType: "json",
           async: false,
           headers: {
@@ -468,7 +468,7 @@ $(function () {
 
       // 查看详情
       $('.layui-tab-item').on('click','.messageTitle',function(){
-        window.location.href = 'http://www.cube.vip/html/message.html?id=' + $(this).attr('data-id') +
+        window.location.href = 'http://www.cubee.vip/html/message.html?id=' + $(this).attr('data-id') +
         '&key=' + token
          
       })
@@ -480,7 +480,7 @@ $(function () {
           } else {
             $.ajax({
               type:'POST',
-              url: "http://www.cube.vip/account/message_detail/",
+              url: "http://www.cubee.vip/account/message_detail/",
               dataType: "json",
               async: false,
               headers: {

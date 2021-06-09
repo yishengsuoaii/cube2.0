@@ -76,7 +76,7 @@
                 infoData.push(item.split("="))
             })
         }else {
-            window.location.href='http://www.cube.vip/h5/portallogin.html' + window.location.search
+            window.location.href='http://www.cubee.vip/h5/portallogin.html' + window.location.search
         }
         $(function () {
             layui.use(['element'], function () {
@@ -89,7 +89,7 @@
                 type: "POST",
                 dataType: "json",
                 async: false,
-                url: "http://www.cube.vip/video_editing/h5_video_number_clicks/",
+                url: "http://www.cubee.vip/video_editing/h5_video_number_clicks/",
                 data:{
                     video_id:infoData[0][1]
                 },
@@ -104,7 +104,7 @@
                 type: "GET",
                 dataType: "json",
                 async: false,
-                url: "http://www.cube.vip/channel/h5_channel_video/",
+                url: "http://www.cubee.vip/channel/h5_channel_video/",
                 data:{
                     video_id:infoData[0][1],
                     account_id: infoData[1][1]
@@ -210,7 +210,7 @@
                                         ]
                                     })
                                } else {
-                                str += `<a class="backList" data-id="${item.video_id}" href="http://www.cube.vip/h5/portalback.html?id=${item.video_id}&key=${infoData[1][1]}&view=1&profile=1&cover=1'">
+                                str += `<a class="backList" data-id="${item.video_id}" href="http://www.cubee.vip/h5/portalback.html?id=${item.video_id}&key=${infoData[1][1]}&view=1&profile=1&cover=1'">
                                     <div class="backContent">
                                         <img src="${item.video_description_image}" onerror="this.src='./image/back-image.png'"  class="backImage">
                                         <div class="backInfo">
@@ -239,7 +239,7 @@
             })
             // 获取评论列表
             $.ajax({
-                url: 'http://www.cube.vip/commenting/h5_comments_show/',
+                url: 'http://www.cubee.vip/commenting/h5_comments_show/',
                 type: 'POST',
                 data: {
                     video_id: infoData[0][1]
@@ -269,7 +269,7 @@
             $('#send-btn').on('click', function () {
                 if ($.trim($('.messageInput').val()).length > 0) {
                     $.ajax({
-                        url: 'http://www.cube.vip/commenting/h5_submit_comments/',
+                        url: 'http://www.cubee.vip/commenting/h5_submit_comments/',
                         type: 'POST',
                         data: {
                             video_id: infoData[0][1],
@@ -289,7 +289,7 @@
             $('.messageInput').on('keypress', function (event) { // 监听回车事件
                 if (event.keyCode == "13") {
                     $.ajax({
-                        url: 'http://www.cube.vip/commenting/h5_submit_comments/',
+                        url: 'http://www.cubee.vip/commenting/h5_submit_comments/',
                         type: 'POST',
                         data: {
                             video_id: infoData[0][1],
@@ -308,7 +308,7 @@
 
             function getCommentList() {
                 $.ajax({
-                    url: 'http://www.cube.vip/commenting/h5_comments_show/',
+                    url: 'http://www.cubee.vip/commenting/h5_comments_show/',
                     type: 'POST',
                     data: {
                         video_id: infoData[0][1]
@@ -352,12 +352,12 @@
                 return Math.random().toString(36).substr(2, 15);
             }
             $.ajax({
-                url:'http://www.cube.vip/event/h5_wx_share/',
+                url:'http://www.cubee.vip/event/h5_wx_share/',
                 type:'GET',
                 success:function(res){
                     if(res.msg==='success'){
 
-                    shaStr = sha1('jsapi_ticket='+res.data+'&noncestr='+srcShare+'&timestamp='+timeShare+'&url=http://www.cube.vip/h5/portalback.html'+ window.location.search)
+                    shaStr = sha1('jsapi_ticket='+res.data+'&noncestr='+srcShare+'&timestamp='+timeShare+'&url=http://www.cubee.vip/h5/portalback.html'+ window.location.search)
                     wx.config({
                             debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                             appId: 'wxfeb6dd6cbf5a390b', // 必填，公众号的唯一标识
@@ -371,7 +371,7 @@
                             // 分享到朋友圈
                             wx.updateTimelineShareData({
                                 title: videoName, // 分享标题
-                                link: 'http://www.cube.vip/h5/portalback.html'+ window.location.search, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                                link: 'http://www.cubee.vip/h5/portalback.html'+ window.location.search, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                                 imgUrl: imgUrl, // 分享图标
                             });
                             
@@ -379,7 +379,7 @@
                             wx.updateAppMessageShareData({
                                 title: videoName, // 分享标题
                                 desc: videoName, // 分享描述
-                                link: 'http://www.cube.vip/h5/portalback.html'+ window.location.search, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                                link: 'http://www.cubee.vip/h5/portalback.html'+ window.location.search, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                                 imgUrl: imgUrl, // 分享图标
                             });
                         })

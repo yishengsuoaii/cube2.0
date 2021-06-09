@@ -745,7 +745,7 @@ Vue.component("child-video", {
             this.isSendingCrop = true
             axios({
                 method: 'get',
-                url: 'http://www.cube.vip/video_editing/clip_video/',
+                url: 'http://www.cubee.vip/video_editing/clip_video/',
                 headers: {
                     token: sessionStorage.getItem('token')
                 },
@@ -773,7 +773,7 @@ Vue.component("child-video", {
             this.timer = setInterval(() => {
                 axios({
                     method: 'get',
-                    url: 'http://www.cube.vip/video_editing/clip_video_status/',
+                    url: 'http://www.cubee.vip/video_editing/clip_video_status/',
                     headers: {
                         token: sessionStorage.getItem('token')
                     },
@@ -856,7 +856,7 @@ let vm = new Vue({
         getVideoUrl() {
             axios({
                 method: 'get',
-                url: "http://www.cube.vip/video/video_code_to_uri/",
+                url: "http://www.cubee.vip/video/video_code_to_uri/",
                 params: {
                     video_code: window.location.search.substring(1).split("=")[1]
                 },

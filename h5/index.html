@@ -31,13 +31,13 @@
             infoData.push(item.split("="))
         })
         if(!sessionStorage.getItem('cubeInfo')){
-            window.location.href='http://www.cube.vip/h5/wxlogin.html?key=' +infoData[1][1]
+            window.location.href='http://www.cubee.vip/h5/wxlogin.html?key=' +infoData[1][1]
         }
         var imgSrc = ''
         $(function(){
 
             $.ajax({
-                url:'http://www.cube.vip/event/h5_login_password/',
+                url:'http://www.cubee.vip/event/h5_login_password/',
                 type:'GET',
                 data:{
                     event_uri_key:infoData[1][1]
@@ -57,11 +57,11 @@
                             return Math.random().toString(36).substr(2, 15);
                         }
                         $.ajax({
-                            url:'http://www.cube.vip/event/h5_wx_share/',
+                            url:'http://www.cubee.vip/event/h5_wx_share/',
                             type:'GET',
                             success:function(res){
                                 if(res.msg==='success'){
-                                    shaStr = sha1('jsapi_ticket='+res.data+'&noncestr='+srcShare+'&timestamp='+timeShare+'&url=http://www.cube.vip/h5/index.html'+ window.location.search)
+                                    shaStr = sha1('jsapi_ticket='+res.data+'&noncestr='+srcShare+'&timestamp='+timeShare+'&url=http://www.cubee.vip/h5/index.html'+ window.location.search)
                                     wx.config({
                                         debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                                         appId: 'wxfeb6dd6cbf5a390b', // 必填，公众号的唯一标识
@@ -75,7 +75,7 @@
                                         // 分享到朋友圈
                                         wx.updateTimelineShareData({
                                             title: '首页', // 分享标题
-                                            link: 'http://www.cube.vip/h5/index.html'+ window.location.search, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                                            link: 'http://www.cubee.vip/h5/index.html'+ window.location.search, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                                             imgUrl: imgSrc, // 分享图标
                                         });
                                         
@@ -83,7 +83,7 @@
                                         wx.updateAppMessageShareData({
                                             title: '首页', // 分享标题
                                             desc: '邀请您观看直播!', // 分享描述
-                                            link: 'http://www.cube.vip/h5/index.html'+ window.location.search, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                                            link: 'http://www.cubee.vip/h5/index.html'+ window.location.search, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                                             imgUrl: imgSrc, // 分享图标
                                         });
                                     })
@@ -148,7 +148,7 @@
                         alert('请输入密码')
                     } else{
                         $.ajax({
-                            url:'http://www.cube.vip/event/h5_login_password/',
+                            url:'http://www.cubee.vip/event/h5_login_password/',
                             type:'POST',
                             data:{
                                 event_uri_key:infoData[1][1],
@@ -156,7 +156,7 @@
                             },
                             success:function(res){
                                 if(res.msg==='success'){
-                                    window.location.href='http://www.cube.vip/h5/live.html?key='+infoData[1][1]
+                                    window.location.href='http://www.cubee.vip/h5/live.html?key='+infoData[1][1]
                                 } else{
                                     alert('密码错误,请重新输入')
                                 }
@@ -164,7 +164,7 @@
                         })
                     }
                 } else {
-                    window.location.href='http://www.cube.vip/h5/live.html?key='+infoData[1][1]
+                    window.location.href='http://www.cubee.vip/h5/live.html?key='+infoData[1][1]
                 }
             })
         })

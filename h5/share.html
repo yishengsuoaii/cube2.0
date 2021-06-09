@@ -31,7 +31,7 @@
                 type: "GET",
                 dataType: "json",
                 async: false,
-                url: "http://www.cube.vip/event/h5_card_message/",
+                url: "http://www.cubee.vip/event/h5_card_message/",
                 data:{
                     event_uri_key:event_uri_key
                 },
@@ -44,7 +44,7 @@
                         userName = res.data.account_name
                         $('#channelName').text(res.data.event_title)
                         new QRCode(document.getElementById("qrCode"), {
-                            text: "http://www.cube.vip/h5/wxlogin.html?key="+event_uri_key,
+                            text: "http://www.cubee.vip/h5/wxlogin.html?key="+event_uri_key,
                             width: 80,
                             height: 80,
                         });
@@ -84,12 +84,12 @@
                 return Math.random().toString(36).substr(2, 15);
             }
             $.ajax({
-                url:'http://www.cube.vip/event/h5_wx_share/',
+                url:'http://www.cubee.vip/event/h5_wx_share/',
                 type:'GET',
                 success:function(res){
                     if(res.msg==='success'){
 
-                    shaStr = sha1('jsapi_ticket='+res.data+'&noncestr='+src+'&timestamp='+time+'&url=http://www.cube.vip/h5/share.html?key='+ event_uri_key)
+                    shaStr = sha1('jsapi_ticket='+res.data+'&noncestr='+src+'&timestamp='+time+'&url=http://www.cubee.vip/h5/share.html?key='+ event_uri_key)
                     wx.config({
                             debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                             appId: 'wxfeb6dd6cbf5a390b', // 必填，公众号的唯一标识
@@ -103,7 +103,7 @@
                             // 分享到朋友圈
                             wx.updateTimelineShareData({
                                 title: userName, // 分享标题
-                                link: 'http://www.cube.vip/h5/share.html?key='+ event_uri_key, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                                link: 'http://www.cubee.vip/h5/share.html?key='+ event_uri_key, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                                 imgUrl: userImg, // 分享图标
                             });
                             
@@ -111,7 +111,7 @@
                             wx.updateAppMessageShareData({
                                 title: userName, // 分享标题
                                 desc: describe, // 分享描述
-                                link: 'http://www.cube.vip/h5/share.html?key='+ event_uri_key, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                                link: 'http://www.cubee.vip/h5/share.html?key='+ event_uri_key, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                                 imgUrl: userImg, // 分享图标
                             });
                         })

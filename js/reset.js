@@ -55,7 +55,7 @@ $(function () {
                 type: "GET",
                 dataType: "json",
                 async: false,
-                url: "http://www.cube.vip/account/send_phone_sms/",
+                url: "http://www.cubee.vip/account/send_phone_sms/",
                 data: $(".mobile").serialize(),
                 success: function (result) {
                     if (result.msg === 'success') {
@@ -108,7 +108,7 @@ $(function () {
                 type: "POST",
                 dataType: "json",
                 async: false,
-                url: "http://www.cube.vip/account/forgot_password/",
+                url: "http://www.cubee.vip/account/forgot_password/",
                 data: $("#form").serialize(),
                 success: function (result) {
                     if (result.msg == "success") {
