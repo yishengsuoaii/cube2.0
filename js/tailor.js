@@ -12,7 +12,7 @@ let containerWidth = 0
  * @param x2
  */
 const isCursorClose = function (x1, x2) {
-    return Math.abs(x1 - x2) < 2
+    return Math.abs(x1 - x2) < 10
 }
 Vue.component("child-video", {
     template: `
@@ -326,7 +326,7 @@ Vue.component("child-video", {
         getDefaultValues() {
             // 默认添加的时间为1/4到 3/4，到边缘时用户鼠标不好选中时间条
             const quarterTime = this.duration / 4
-            return this.getFormattedCropItem(quarterTime, quarterTime * 3)
+            return this.getFormattedCropItem(0, quarterTime)
         },
 
         /**
@@ -361,7 +361,6 @@ Vue.component("child-video", {
                 const newCropItem = this.getFormattedCropItem(currentCursorTime, currentCursorTime)
                 this.addCropItem(newCropItem)
             }
-
         },
 
         /**
@@ -504,7 +503,6 @@ Vue.component("child-video", {
                     this.stopCropping()
                     return
                 }
-
                 const currentCursorOffsetX = this.getFormattedOffsetX(e.clientX - containerLeft)
                 // mousedown与mouseup位置不一致，则不认为是点击,直接返回
                 if (Math.abs(currentCursorOffsetX - lastMouseDownOffsetX) > 3) {
@@ -612,6 +610,7 @@ Vue.component("child-video", {
                 return
             }
             const newItem = this.getFormattedCropItem(item.startTime, item.endTime)
+            this.$emit('update',item.startTime,item.endTime)
             this.cropItemList.splice(index, 1, newItem)
         },
 
@@ -660,8 +659,7 @@ Vue.component("child-video", {
                     this.$refs.timeItemContainer.scrollTo(0, currentHeight)
                     scrollFunc(currentHeight + heightRange)
                 })
-            }
-
+            }      
             scrollFunc(currentScrollTop + heightRange)
         },
 
@@ -818,6 +816,8 @@ let vm = new Vue({
         duration: 0,
         playing: false,
         currentTime: 0,
+        startTime:0,
+        endTime:0
     },
     created() {
         this.getVideoUrl()
@@ -826,6 +826,7 @@ let vm = new Vue({
         const videoElement = this.$refs.video
         videoElement.ondurationchange = () => {
             this.duration = videoElement.duration
+            this.endTime = videoElement.duration / 4
         }
         videoElement.onplaying = () => {
             this.playing = true
@@ -851,6 +852,16 @@ let vm = new Vue({
         stopVideo() {
             this.$refs.video.pause()
             this.$refs.video.currentTime = 0
+        },
+        updateVideo(startTime,endTime){
+            if(this.startTime!==startTime) {
+                this.startTime = startTime
+                this.$refs.video.currentTime = startTime
+            }
+            else if(this.endTime!==endTime) {
+                this.endTime = endTime
+                this.$refs.video.currentTime = endTime
+            }
         },
         // 获取视频url
         getVideoUrl() {

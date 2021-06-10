@@ -91,7 +91,7 @@
                         <video ref="video" class="prism-player" id="myVideo"></video>
                     </div>
                     <child-video :duration="duration" :playing="playing" :currentplayingtime="currentTime" @play="playVideo"
-                        @pause="pauseVideo" @stop="stopVideo"></child-video>
+                        @pause="pauseVideo" @stop="stopVideo" @update="updateVideo"></child-video>
                     <!-- 弹窗 -->
                     <div v-cloak  id="showDialog" >
                         <p class="saveSuccess"><i class="layui-icon layui-icon-ok-circle"
