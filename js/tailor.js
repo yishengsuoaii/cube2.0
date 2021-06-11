@@ -513,12 +513,12 @@ Vue.component("child-video", {
                 this.currentCursorTime = currentCursorOffsetX * this.timeToPixelRatio
 
                 // 鼠标点击新增裁剪片段
-                if (!this.isCropping) {
-                    this.addNewCropItemInSlider()
+                // if (!this.isCropping) {
+                //     this.addNewCropItemInSlider()
 
-                    // 新操作位置为数组最后一位
-                    this.startCropping(this.cropItemList.length - 1)
-                }
+                //     // 新操作位置为数组最后一位
+                //     this.startCropping(this.cropItemList.length - 1)
+                // }
             })
         },
 
