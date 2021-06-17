@@ -474,7 +474,7 @@ $(function () {
         $.ajax({
             type: "GET",
             dataType: "json",
-            async: false,
+            
             headers: {
                 token: sessionStorage.getItem('token')
             },
@@ -799,7 +799,7 @@ $(function () {
                 headers: {
                     token: sessionStorage.getItem('token')
                 },
-                async: false,
+                
                 data: {
                     stream_code: event_code
                 },
@@ -967,7 +967,7 @@ $(function () {
                 headers: {
                     token: sessionStorage.getItem('token')
                 },
-                async: false,
+                
                 data: {
                     stream_code: event_code
                 },
@@ -992,7 +992,7 @@ $(function () {
                 headers: {
                     token: sessionStorage.getItem('token')
                 },
-                async: false,
+                
                 data: {
                     stream_code: event_code
                 },
@@ -1968,7 +1968,7 @@ $(function () {
                 type: 'GET',
                 url: "http://www.cubee.vip/event/score_card_style/",
                 dataType: "json",
-                async: false,
+                
                 headers: {
                     token: sessionStorage.getItem('token')
                 },
@@ -4799,7 +4799,7 @@ $(function () {
             $.ajax({
                 type: "GET",
                 dataType: "json",
-                async: false,
+                
                 headers: {
                     token: sessionStorage.getItem('token')
                 },
@@ -5079,7 +5079,7 @@ $(function () {
                 headers: {
                     token: sessionStorage.getItem('token')
                 },
-                async: false,
+                
                 data: {
                     chat_id: $(this).attr('data-id')
                 },
