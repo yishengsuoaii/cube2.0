@@ -200,7 +200,7 @@
         })
         // 点击频道跳转
         $('.wonderful-channel-cont').on('click','.wonderful-channel-list',function(){
-            window.location.href='http://www.cubee.vip/h5/wxlogin.html?key='+$(this).attr('data-key').substr(19)
+            window.location.href='http://www.cubee.vip/h5/wxlogin.html?key='+$(this).attr('data-key').substr($(this).attr('data-key').lastIndexOf('/')+1)
         })
         $('.wonderful-video').on('click','.wonderful-video-list',function(){
             window.location.href='http://www.cubee.vip/h5/portallogin.html?id='+$(this).attr('data-id')+'&key='+key+'&view=1&profile=1&cover=1'
