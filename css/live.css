@@ -223,7 +223,7 @@
   margin: 0.1rem 0 0.3rem 0.15rem;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .guidance .formUpload .upList .tit2 {
-  height: 0.2rem;
+  height: 0.3rem;
   font-size: 0.18rem;
   font-family: Source Han Sans CN;
   font-weight: 400;
@@ -284,6 +284,38 @@
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .introduce .introduce-bg #introduce-box #introduce-image {
   display: none;
   width: 3.75rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .introduce .introduce-bg .introduce-hint {
+  width: 3rem;
+  position: absolute;
+  right: -3.1rem;
+  top: 50%;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .introduce .introduce-bg .introduce-hint .introduce-hint-list {
+  height: 0.3rem;
+  font-size: 0.16rem;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  line-height: 0.3rem;
+  margin-bottom: 0.1rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .introduce .introduce-bg .introduce-hint .introduce-hint-list .introduce-hint-icon {
+  display: inline-block;
+  width: 0.14rem;
+  height: 0.14rem;
+  background: #FF914D;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .introduce .introduce-bg #introduce-shade {
+  display: none;
+  width: 0.48rem;
+  height: 0.48rem;
+  position: absolute;
+  left: 50%;
+  bottom: 30%;
+  transform: translateX(-50%);
+  z-index: 2;
+  cursor: pointer;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #channelManage .channel-set .channel-set-content .container-basics .introduce #ai-submit {
   width: 1.06rem;
@@ -1659,7 +1691,7 @@
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox #scoreBrand {
   display: none;
   position: absolute;
-  z-index: 999;
+  z-index: 2;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox .ltPosition {
   left: 0.2rem;
@@ -1688,6 +1720,14 @@
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox #myCanvas {
   width: 5.8rem;
   height: 3.28rem;
+}
+.parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-videoBox #lineCanvas {
+  width: 5.8rem;
+  height: 3.28rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
 }
 .parentMain .contentBox .layui-tab .layui-tab-content #preside_over #liveBox #liveLeft #liveLeft-name {
   display: flex;

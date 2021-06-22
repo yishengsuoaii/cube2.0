@@ -214,6 +214,10 @@ $(function () {
     domCameraTwo.volume = 0
     domCameraThree.volume = 0
     domCameraFour.volume = 0
+
+    // 一二三拼canvas Dom
+    var lineCanvas = document.getElementById('lineCanvas');
+    var lineCtx = lineCanvas.getContext("2d");
     //所有信息
     var allInfo = {
         // 几拼标志
@@ -227,10 +231,10 @@ $(function () {
         // 输出机位耳机是否开启
         liveHeadFlag: true,
         // 一二三机位音量大小
-        oneMuteSize: 0,
-        twoMuteSize: 0,
-        threeMuteSize: 0,
-        fourMuteSize: 0,
+        oneMuteSize: 10,
+        twoMuteSize: 10,
+        threeMuteSize: 10,
+        fourMuteSize: 10,
         // 手势检测标志
         gestureFlag: 'off',
         // 背景替换标志
@@ -321,10 +325,10 @@ $(function () {
     var timerDraw = null
 
     // 机位一二三滑块----------------------------------------------------------------------------------------------
-    var oneMuteFlag = false
-    var twoMuteFlag = false
-    var threeMuteFlag = false
-    var fourMuteFlag = false
+    var oneMuteFlag = true
+    var twoMuteFlag = true
+    var threeMuteFlag = true
+    var fourMuteFlag = true
     // 机位一二三滑块实例
     var slide_one = null
     var slide_two = null
@@ -1268,7 +1272,7 @@ $(function () {
             min: 0,
             max: 10,
             step: 1,
-            value: 0,
+            value: 10,
             type: 'default',
             theme: '#FF914D',
             setTips: function (value) { //自定义提示文本
@@ -1307,7 +1311,7 @@ $(function () {
             min: 0,
             max: 10,
             step: 1,
-            value: 0,
+            value: 10,
            type: 'default',
             theme: '#FF914D',
             setTips: function (value) { //自定义提示文本
@@ -1346,7 +1350,7 @@ $(function () {
             min: 0,
             max: 10,
             step: 1,
-            value: 0,
+            value: 10,
             type: 'default',
             theme: '#FF914D',
             setTips: function (value) { //自定义提示文本
@@ -1385,7 +1389,7 @@ $(function () {
             min: 0,
             max: 10,
             step: 1,
-            value: 0,
+            value: 10,
            type: 'default',
             theme: '#FF914D',
             setTips: function (value) { //自定义提示文本
@@ -1519,16 +1523,44 @@ $(function () {
             $(this).addClass('mergeActive').siblings('img').removeClass('mergeActive')
             allInfo.numberFlag = 2
             allInfo.numFlag = 0
+            canvasTwo()
             drawCanvas(allInfo.numberFlag)
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
+            
         })
         $('#three-merge').on('click', function () {
             $(this).addClass('mergeActive').siblings('img').removeClass('mergeActive')
             allInfo.numberFlag = 3
             allInfo.numFlag = 0
+            canvasThree()
             drawCanvas(allInfo.numberFlag)
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
         })
+        function canvasOne(){
+            lineCtx.clearRect(0,0,lineCanvas.width,lineCanvas.height)
+        }
+        function canvasTwo(){
+            lineCtx.clearRect(0,0,lineCanvas.width,lineCanvas.height)
+            lineCtx.beginPath();
+            lineCtx.moveTo(lineCanvas.width/2, 0);
+            lineCtx.lineWidth = 1;
+            lineCtx.strokeStyle = "#55ffff";
+            lineCtx.lineTo(lineCanvas.width/2, lineCanvas.height);
+            lineCtx.stroke();
+        }
+        function canvasThree(){
+            lineCtx.clearRect(0,0,lineCanvas.width,lineCanvas.height)
+            lineCtx.beginPath();
+            lineCtx.moveTo(lineCanvas.width/2, 0);
+            lineCtx.lineWidth = 1;
+            lineCtx.strokeStyle = "#55ffff";
+            lineCtx.lineTo(lineCanvas.width/2, lineCanvas.height);
+            lineCtx.moveTo(lineCanvas.width/2, lineCanvas.height/2)
+            lineCtx.lineTo(lineCanvas.width, lineCanvas.height/2)
+            lineCtx.stroke();
+        }
+
+
 
         // 机位一二三四切换----------------------------------------------------------------------------------------------------
         $('#cameraOne').on('click', function () {
@@ -1643,6 +1675,7 @@ $(function () {
         }
         // 单机位时渲染dom
         function renderOne() {
+            canvasOne()
             $('#one-merge').addClass('mergeActive').siblings('img').removeClass('mergeActive')
             allInfo.numberFlag = 1
             allInfo.numFlag = 0
@@ -2815,10 +2848,13 @@ $(function () {
         function renderHistory() {
             // 渲染一二三拼
             if (allInfo.numberFlag === 1) {
+                canvasOne()
                 $('#one-merge').addClass('mergeActive').siblings('img').removeClass('mergeActive')
             } else if (allInfo.numberFlag === 2) {
+                canvasTwo()
                 $('#two-merge').addClass('mergeActive').siblings('img').removeClass('mergeActive')
             } else if (allInfo.numberFlag === 3) {
+                canvasThree()
                 $('#three-merge').addClass('mergeActive').siblings('img').removeClass('mergeActive')
             }
             drawCanvas(allInfo.numberFlag)

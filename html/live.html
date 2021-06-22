@@ -104,7 +104,7 @@
                     <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
                         <ul class="live-tab-title">
                             <li>频道管理</li>
-                            <li class="active-this">直播控制</li>
+                            <li class="active-this">观众画面</li>
                             <li>导播台</li>
                             <li>云推流</li>
                         </ul>
@@ -152,8 +152,8 @@
                                                                 <div class="tit1">此图片显示在进入直播页面之前，用于展示直播相关介绍内容</div>
                                                                 <ul class="upList">
                                                                     <li class="tit2">图片大小4m以内</li>
-                                                                    <li class="tit2">图片分辨率1125*2436像素</li>
-                                                                    <li class="tit2">支持gif,png,jpg,jpeg格式</li>
+                                                                    <li class="tit2">图片分辨率750*1334像素</li>
+                                                                    <li class="tit2">支持png,jpg,jpeg格式</li>
                                                                 </ul>
                                                                 <div class="layui-upload" style="margin-left: 0.14rem;">
                                                                     <button type="button" class="layui-btn" id="test">上传</button>
@@ -169,9 +169,24 @@
                                                     <div class="layui-tab-item">
                                                         <div class="introduce">
                                                             <div class="introduce-bg">
-                                                                <div id="introduce-box" title="点击上传图片">
+                                                                <div id="introduce-box">
                                                                     <img src=""  id="introduce-image">
                                                                 </div>
+                                                                <div class="introduce-hint">
+                                                                    <p class="introduce-hint-list">
+                                                                        <span class="introduce-hint-icon"></span>
+                                                                        图片大小2M以内
+                                                                    </p>
+                                                                    <p class="introduce-hint-list">
+                                                                        <span class="introduce-hint-icon"></span>
+                                                                        建议图片宽度750px
+                                                                    </p>
+                                                                    <p class="introduce-hint-list">
+                                                                        <span class="introduce-hint-icon"></span>
+                                                                        支持png,jpg,jpeg格式
+                                                                    </p>
+                                                                </div>
+                                                                <img id="introduce-shade" src="./../image/upload-video-icon.png" alt="">
                                                             </div>
                                                             <div id="ai-submit">提交</div>
                                                         </div>
@@ -190,11 +205,11 @@
                                                                 </p>
                                                                 <p class="live-bg-hint-list">
                                                                     <span class="live-bg-hint-icon"></span>
-                                                                    图片分辨率865*486像素
+                                                                    图片分辨率750*420像素
                                                                 </p>
                                                                 <p class="live-bg-hint-list">
                                                                     <span class="live-bg-hint-icon"></span>
-                                                                    支持gif,png,jpg,jpeg格式
+                                                                    支持png,jpg,jpeg格式
                                                                 </p>
                                                                 <button type="button" class="layui-btn" id="live-bg-upload">上传</button>
                                                             </div>
@@ -559,7 +574,8 @@
                                 <div id="liveBox">
                                     <div id="liveLeft">
                                         <div id="liveLeft-videoBox">
-                                           <canvas id="myCanvas" width="580" height="328"></canvas>
+                                            <canvas id="myCanvas" width="580" height="328"></canvas>
+                                            <canvas id="lineCanvas" width="580" height="328"></canvas>
                                             <div id="scoreBrand"></div>
                                         </div>
                                         <p id="liveLeft-name">
@@ -598,7 +614,7 @@
                                         <div class="cameraContent">
                                             <video id="cameraOne" autoplay  muted poster="./../image/nosignal.jpg"></video>
                                             <div class="slideBox">
-                                                <img src="./../image/mute-close.png" id="one-mute">
+                                                <img src="./../image/mute-open.png" id="one-mute">
                                                 <div class="slideLine" id="slideOne">
                                                 </div>
                                                 
@@ -613,7 +629,7 @@
                                         <div class="cameraContent">
                                             <video id="cameraTwo"  autoplay muted poster="./../image/nosignal.jpg"></video>
                                             <div class="slideBox">
-                                                <img src="./../image/mute-close.png" id="two-mute">
+                                                <img src="./../image/mute-open.png" id="two-mute">
                                                 <div class="slideLine" id="slideTwo">
                                                 </div>
                                                 
@@ -628,7 +644,7 @@
                                         <div class="cameraContent">
                                             <video id="cameraThree" autoplay muted poster="./../image/nosignal.jpg"></video>
                                             <div class="slideBox">
-                                                <img src="./../image/mute-close.png" id="three-mute">
+                                                <img src="./../image/mute-open.png" id="three-mute">
                                                 <div class="slideLine" id="slideThree">
                                                 </div>
                                                 
@@ -643,7 +659,7 @@
                                         <div class="cameraContent">
                                             <video id="cameraFour"  autoplay muted poster="./../image/nosignal.jpg"></video>
                                             <div class="slideBox">
-                                                <img src="./../image/mute-close.png" id="four-mute">
+                                                <img src="./../image/mute-open.png" id="four-mute">
                                                 <div class="slideLine" id="slideFour">
                                                 </div>
                                                 
@@ -660,7 +676,7 @@
                                             <div class="slideBox">
                                                 <div class="slideLine" id="slideFive">
                                                 </div>
-                                                <img src="./../image/mute-close.png" id="five-mute">
+                                                <img src="./../image/mute-open.png" id="five-mute">
                                             </div>
                                         </div>
                                     </div>

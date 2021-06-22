@@ -806,6 +806,17 @@ $(function () {
                 }
             })
         });
+        $('#introduce-shade').on('click',function(){
+            $('#introduce-box').trigger('click')
+        })
+        $('#introduce-shade').hover(function(){
+            $(this).show()
+        })
+        $('#introduce-box').hover(function(){
+            $('#introduce-shade').show()
+        },function(){
+            $('#introduce-shade').hide()
+        })
 
         $.get({
             url: "http://www.cubee.vip/event/introduction_activities/",

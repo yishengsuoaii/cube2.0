@@ -241,7 +241,7 @@
                                             margin: (10/100rem) 0 (30/100rem) (15/100rem);
 
                                             .tit2 {
-                                                height: (20/100rem);
+                                                height: (30/100rem);
                                                 font-size: (18/100rem);
                                                 font-family: Source Han Sans CN;
                                                 font-weight: 400;
@@ -309,6 +309,41 @@
                                                 display: none;
                                                 width: (375/100rem);
                                             }
+                                        }
+                                       
+                                        .introduce-hint {
+                                            width: (300/100rem);
+                                            position: absolute;
+                                            right: -(310/100rem);
+                                            top: 50%;
+                                            .introduce-hint-list {
+                                                height: (30/100rem);
+                                                font-size: (16/100rem);
+                                                font-family: Source Han Sans CN;
+                                                font-weight: 400;
+                                                color: #666666;
+                                                line-height: (30/100rem);
+                                                margin-bottom: (10/100rem);
+    
+                                                .introduce-hint-icon {
+                                                    display: inline-block;
+                                                    width: (14/100rem);
+                                                    height: (14/100rem);
+                                                    background: #FF914D;
+                                                }
+    
+                                            }
+                                        }
+                                        #introduce-shade {
+                                            display: none;
+                                            width: 0.48rem;
+                                            height: 0.48rem;
+                                            position: absolute;
+                                            left: 50%;
+                                            bottom: 30%;
+                                            transform: translateX(-50%);
+                                            z-index: 2;
+                                            cursor: pointer;
                                         }
                                     }
 
@@ -1837,11 +1872,10 @@
                                 height: (328/100rem);
                                 border: (1/100rem) solid #FF914D;
                                 position: relative;
-
                                 #scoreBrand {
                                     display: none;
                                     position: absolute;
-                                    z-index: 999;
+                                    z-index: 2;
                                 }
 
                                 .ltPosition {
@@ -1876,6 +1910,14 @@
                                 #myCanvas {
                                     width: (580/100rem);
                                     height: (328/100rem);
+                                }
+                                #lineCanvas {
+                                    width: (580/100rem);
+                                    height: (328/100rem);
+                                    position: absolute;
+                                    left: 0;
+                                    top: 0;
+                                    z-index: 3;
                                 }
                             }
 
