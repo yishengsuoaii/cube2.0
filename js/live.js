@@ -14,8 +14,6 @@ $(function () {
     var idOnly = ''
     // 主次标志
     var mainFlag = true
-    // 频道分类
-    var channel_type = ''
     // 拉流IP
     var serverIp = ''
     // 用户昵称
@@ -172,7 +170,7 @@ $(function () {
             <div class="slideBox">
                 <img src="./../image/mute-close.png" id="music-mute">
                 <div class="slideLine" id="slideMusic"></div>
-                <span class="slideInfo">背景音量</span> 
+                <span class="slideInfo">音乐音量</span> 
                 <span class="wenhao">?</span>
                 <div id="wenInfo">
                     调节背景音乐的音量<div class="hintAngle"></div>
@@ -506,7 +504,6 @@ $(function () {
                     event_code = result.data.event_code
                     userName = result.data.account_name
                     event_uri_key = result.data.event_uri_key
-                    channel_type = result.data.event_category_id
                     $(".head-title").text(result.data.event_title);
                     $("#codeInput").val(result.data.event_code);
 
@@ -544,6 +541,8 @@ $(function () {
                                 <div class="layui-tab-item layui-show">
                                 ${scoreHtml}
                                 </div>`
+                                getScoreStyle()
+                                renderHistoryScore()
                             } 
                             // else if (item.appname == '背景替换') {
                             //     functionTitleSrc += `<li class="layui-this">背景替换</li>`
@@ -612,7 +611,8 @@ $(function () {
                                 <div class="layui-tab-item">
                                     ${scoreHtml}
                                 </div>`
-                                
+                                getScoreStyle()
+                                renderHistoryScore()
                             } 
                             // else if (item.appname == '背景替换') {
                             //     functionTitleSrc += `<li>背景替换</li>`
@@ -672,10 +672,6 @@ $(function () {
                     })
                     $('#function-title').html(functionTitleSrc)
                     $('#function-content').html(functionContentSrc)
-                    if(Number(channel_type) ===1){
-                        getScoreStyle()
-                        renderHistoryScore()
-                    }
                     setVideoMuted()
                     getIp()
                 }
