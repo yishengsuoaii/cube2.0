@@ -225,4 +225,10 @@ $(function () {
         }
         
     })
+    // 眼睛
+    $('#eyes').hover(function(){
+        $('.txtPwd').prop('type','text')
+    },function(){
+        $('.txtPwd').prop('type','password')
+    })
 })
