@@ -134,7 +134,7 @@ Promise.all(assets).then(function (images) {
     document.getElementById('giveLike').addEventListener('click', function () {
         stage.bubble(images[random.uniformDiscrete(0, images.length - 1)]);
         $.ajax({
-            url: 'http://www.cubee.vip/event/h5_event_number_clicks/',
+            url: 'http://www.cube.vip/event/h5_event_number_clicks/',
             type: 'POST',
             data: {
                 event_uri_key: event_uri_key

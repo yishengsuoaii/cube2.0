@@ -27,7 +27,7 @@ $(function () {
 
 
     $.post({
-        url: "http://www.cubee.vip/account/userinfo/",
+        url: "http://www.cube.vip/account/userinfo/",
         dataType: "json",
         async: false,
         headers: {
@@ -40,7 +40,7 @@ $(function () {
      // 获取消息
      $.ajax({
         type: 'GET',
-        url: "http://www.cubee.vip/account/message/",
+        url: "http://www.cube.vip/account/message/",
         dataType: "json",
         async: false,
         headers: {
@@ -79,12 +79,12 @@ $(function () {
 
     // 查看消息
     $('#messageContent').on('click', '.messageList', function () {
-        window.open('http://www.cubee.vip/html/message.html?id=' + $(this).attr('data-id') +
+        window.open('http://www.cube.vip/html/message.html?id=' + $(this).attr('data-id') +
             '&key=' + sessionStorage.getItem('token'))
     })
     // 查看全部消息
     $('#messageFoot').on('click',function () {
-        window.open('http://www.cubee.vip/html/center.html?key=' + sessionStorage.getItem('token'))
+        window.open('http://www.cube.vip/html/center.html?key=' + sessionStorage.getItem('token'))
     })
 
     // 控制消息显示与隐藏

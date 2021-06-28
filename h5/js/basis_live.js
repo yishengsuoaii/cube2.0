@@ -9,7 +9,7 @@ if(sessionStorage.getItem('cubeInfo')){
     event_uri_key = window.location.search.substring(1).split("=")[1]
    
 }else {
-    window.location.href='http://www.cubee.vip/h5/wxlogin.html?key=' + window.location.search.substring(1).split("=")[1]
+    window.location.href='http://www.cube.vip/h5/wxlogin.html?key=' + window.location.search.substring(1).split("=")[1]
 }
 let timers = null
 let videoJs = ''
@@ -31,7 +31,7 @@ $(function () {
     });
     // 获取基本信息
     $.ajax({
-        url: 'http://www.cubee.vip/event/h5_broadcasting_room/',
+        url: 'http://www.cube.vip/event/h5_broadcasting_room/',
         type: 'GET',
         data: {
             event_uri_key: event_uri_key
@@ -125,7 +125,7 @@ $(function () {
    function getNumber(){
         setInterval(()=>{
         $.ajax({
-            url: 'http://www.cubee.vip/event/h5_get_online/',
+            url: 'http://www.cube.vip/event/h5_get_online/',
             type: 'GET',
             data: {
                 event_uri_key: event_uri_key
@@ -156,7 +156,7 @@ $(function () {
 
     //获取回放视频
     $.ajax({
-        url: 'http://www.cubee.vip/video/h5_get_event_video/',
+        url: 'http://www.cube.vip/video/h5_get_event_video/',
         type: 'GET',
         data: {
             event_uri_key: event_uri_key
@@ -165,7 +165,7 @@ $(function () {
             if (res.msg === 'success') {
                 var str = '<p class="rec">精彩推荐</p>'
                 res.data.forEach(item => {
-                    str += `<a class="backList" data-id="${item.video_id}" href="http://www.cubee.vip/h5/playback.html?id=${item.video_id}&url=1&video_number_views=${event_uri_key}&video_profile=1&cover=${item.video_description_image}">
+                    str += `<a class="backList" data-id="${item.video_id}" href="http://www.cube.vip/h5/playback.html?id=${item.video_id}&url=1&video_number_views=${event_uri_key}&video_profile=1&cover=${item.video_description_image}">
                         <div class="backContent">
                             <img src="${item.video_description_image}" onerror="this.src='./image/back-image.png'"  class="backImage">
                             <div class="backInfo">
@@ -193,7 +193,7 @@ $(function () {
     // 增加广告点击量
     $('#ad-link').on('click', function () {
         $.ajax({
-            url: 'http://www.cubee.vip/event/h5_ads_number_clicks/',
+            url: 'http://www.cube.vip/event/h5_ads_number_clicks/',
             type: 'POST',
             data: {
                 event_uri_key: event_uri_key
@@ -420,7 +420,7 @@ $(function () {
     function getState() {
          stateTimer = setInterval(()=>{
             $.ajax({
-                url: 'http://www.cubee.vip/event/h5_get_ip/',
+                url: 'http://www.cube.vip/event/h5_get_ip/',
                 type: 'GET',
                 data: {
                     event_uri_key: event_uri_key
@@ -440,7 +440,7 @@ $(function () {
             })
          },1000*60)
          $.ajax({
-            url: 'http://www.cubee.vip/event/h5_get_ip/',
+            url: 'http://www.cube.vip/event/h5_get_ip/',
             type: 'GET',
             data: {
                 event_uri_key: event_uri_key
@@ -462,7 +462,7 @@ $(function () {
     // 获取视频url
     function getVideoUrl() {
         $.ajax({
-            url: 'http://www.cubee.vip/event/h5_artc_url/',
+            url: 'http://www.cube.vip/event/h5_artc_url/',
             type: 'GET',
             data: {
                 event_uri_key: event_uri_key
@@ -684,7 +684,7 @@ $(function () {
     // WebSocket聊天室
     const chatSocket = new WebSocket(
         'ws://' +
-        'www.cubee.vip' +
+        'www.cube.vip' +
         '/ws/chat/' +
         event_uri_key +
         '/'
@@ -756,7 +756,7 @@ $(function () {
    getSessionCode()
    function getSessionCode(){
     $.ajax({
-            url: 'http://www.cubee.vip/event/h5_get_session_code/',
+            url: 'http://www.cube.vip/event/h5_get_session_code/',
             type: 'GET',
             data: {
                 event_uri_key: event_uri_key
@@ -772,7 +772,7 @@ $(function () {
         })
         sessionTimers = setInterval(()=>{
             $.ajax({
-                url: 'http://www.cubee.vip/event/h5_get_session_code/',
+                url: 'http://www.cube.vip/event/h5_get_session_code/',
                 type: 'GET',
                 data: {
                     event_uri_key: event_uri_key
@@ -805,12 +805,12 @@ $(function () {
         return Math.random().toString(36).substr(2, 15);
     }
     $.ajax({
-        url:'http://www.cubee.vip/event/h5_wx_share/',
+        url:'http://www.cube.vip/event/h5_wx_share/',
         type:'GET',
         success:function(res){
             if(res.msg==='success'){
 
-            shaStr = sha1('jsapi_ticket='+res.data+'&noncestr='+srcShare+'&timestamp='+timeShare+'&url=http://www.cubee.vip/h5/live.html?key='+ event_uri_key)
+            shaStr = sha1('jsapi_ticket='+res.data+'&noncestr='+srcShare+'&timestamp='+timeShare+'&url=http://www.cube.vip/h5/live.html?key='+ event_uri_key)
             wx.config({
                     debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                     appId: 'wxfeb6dd6cbf5a390b', // 必填，公众号的唯一标识
@@ -824,7 +824,7 @@ $(function () {
                     // 分享到朋友圈
                     wx.updateTimelineShareData({
                         title: userName, // 分享标题
-                        link: 'http://www.cubee.vip/h5/live.html?key='+ event_uri_key, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                        link: 'http://www.cube.vip/h5/live.html?key='+ event_uri_key, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                         imgUrl: userImg, // 分享图标
                     });
                     
@@ -832,7 +832,7 @@ $(function () {
                     wx.updateAppMessageShareData({
                         title: userName, // 分享标题
                         desc: describe, // 分享描述
-                        link: 'http://www.cubee.vip/h5/live.html?key='+ event_uri_key, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                        link: 'http://www.cube.vip/h5/live.html?key='+ event_uri_key, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                         imgUrl: userImg, // 分享图标
                     });
                 })

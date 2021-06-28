@@ -94,7 +94,7 @@
                 } else {
                     $.ajax({
                         type: "GET",
-                        url: "http://www.cubee.vip/account/exist_telphone/",
+                        url: "http://www.cube.vip/account/exist_telphone/",
                         dataType: "json",
                         data: $(".mobile").serialize(),
                         success: function (result) {
@@ -105,7 +105,7 @@
                                     type: "GET",
                                     dataType: "json",
                                     async: false,
-                                    url: "http://www.cubee.vip/account/send_phone_sms/",
+                                    url: "http://www.cube.vip/account/send_phone_sms/",
                                     data: $(".mobile").serialize(),
                                     success: function (result) {
                                         if (result.msg === 'success') {
@@ -157,7 +157,7 @@
                     type: "POST",
                     dataType: "json",
                     async: false,
-                    url: "http://www.cubee.vip/account/register/",
+                    url: "http://www.cube.vip/account/register/",
                     data: $("#form").serialize(),
                     success: function (result) {
                         if(result.data === 'account exist') {

@@ -15,7 +15,7 @@
             var table = layui.table;
 
             $.ajax({
-                url:'http://www.cubee.vip/usage_and_billing/export_billing_table/?token='+sessionStorage.getItem('token'),
+                url:'http://www.cube.vip/usage_and_billing/export_billing_table/?token='+sessionStorage.getItem('token'),
                 type:'POST',
                 success:function(res){
                    
@@ -80,7 +80,7 @@
                     type: "POST",
                     dataType: "json",
                     async: false,
-                    url: "http://www.cubee.vip/usage_and_billing/wxpay/",
+                    url: "http://www.cube.vip/usage_and_billing/wxpay/",
                     data: $(".form").serialize(),
                     headers: {
                         token: sessionStorage.getItem('token')
@@ -106,7 +106,7 @@
             wxTimer = setInterval(() => {
                 $.ajax({
                     type: "POST",
-                    url: "http://www.cubee.vip/usage_and_billing/order_query/",
+                    url: "http://www.cube.vip/usage_and_billing/order_query/",
                     data: {
                         out_trade_no: out_trade_no
                     },
@@ -137,6 +137,6 @@
         }
         // 账单导出
         $('.export').click(function(){
-            window.location.href = 'http://www.cubee.vip/usage_and_billing/export_billing_table/?token='+sessionStorage.getItem('token')
+            window.location.href = 'http://www.cube.vip/usage_and_billing/export_billing_table/?token='+sessionStorage.getItem('token')
         })
     })
