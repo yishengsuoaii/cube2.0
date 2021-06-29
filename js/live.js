@@ -4831,7 +4831,7 @@ $(function () {
             $.ajax({
                 type: "GET",
                 dataType: "json",
-                
+                async: false,
                 headers: {
                     token: sessionStorage.getItem('token')
                 },

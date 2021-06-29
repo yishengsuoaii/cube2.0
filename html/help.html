@@ -436,15 +436,25 @@
     </div>
     <script>
         $(function(){
+            if(window.location.search){
+                var search=window.location.search.substring(1).split("=")[1]
+                if(!isNaN(search)){
+                    $('.issue1 .issueTBox').hide(). // 隐藏问题列表
+                    siblings('.issueTCont').hide()// 隐藏所有问题正文
+                    .eq(Number(search)).show()// 展示当前正文
+                    $('.text').html('/'+$('.issue1 .issueTitle').eq(Number(search)).html()).show() // 显示当前位置  正文标题
+                }
+            }
+                
             window.addEventListener('scroll', function() {
             
-            var top = document.documentElement.scrollTop || document.body.scrollTop;
-            if(top>=200) {
-                $('#gotop_btn').show()
-             } else {
-                $('#gotop_btn').hide()
-             }
-        })
+                var top = document.documentElement.scrollTop || document.body.scrollTop;
+                if(top>=200) {
+                    $('#gotop_btn').show()
+                } else {
+                    $('#gotop_btn').hide()
+                }
+            })
             // 有菜单---------
             $('.menuTitle').on('click',function () {
                 if(!$(this).hasClass('open')){// 初始状态时没展开  点击一次展开  

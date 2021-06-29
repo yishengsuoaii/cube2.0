@@ -544,7 +544,7 @@ Vue.component("child-video", {
 
             // 判断输入值超出范围或NaN,恢复原值
             if (value < 0 || value > 59 || value !== value) {
-                console.log('不合法的输入值')
+                layer.msg('不合法的输入值')
             } else {
                 // 输出用户自定义值
                 currentItem.startTimeArr[timeArrIndex] = String(value).padStart(2, '0')
@@ -553,8 +553,7 @@ Vue.component("child-video", {
                 if (currentItem.startTime > currentItem.endTime) {
                     currentItem.startTime = currentItem.endTime - 1
                     currentItem.startTimeArr = getFormatTimeArr(currentItem.startTime)
-
-                    console.log('起始值必须小于结束值')
+                    layer.msg('开始时间必须小于结束时间')
                 }
 
                 this.updateCropItem(currentItem, cropItemListIndex)
@@ -568,7 +567,7 @@ Vue.component("child-video", {
 
             // 判断输入值超出范围或NaN,恢复原值
             if (value < 0 || value > 59 || value !== value) {
-                console.log('不合法的输入值')
+                layer.msg('不合法的输入值')
             } else {
                 // 输出用户自定义值
                 currentItem.endTimeArr[timeArrIndex] = String(value).padStart(2, '0')
@@ -578,13 +577,13 @@ Vue.component("child-video", {
                     currentItem.endTime = currentItem.startTime + 1
                     currentItem.endTimeArr = getFormatTimeArr(currentItem.endTime)
 
-                    console.log('结束值必须大于起始值')
+                    layer.msg('结束时间必须大于开始时间')
                 }
                 // 结束时间不能大于总时长
                 const duration = this.duration
                 if (currentItem.endTime > duration) {
 
-                    console.log('结束值不能大于总时长')
+                    layer.msg('结束时间不能大于总时长')
 
                     currentItem.endTime = duration
                     currentItem.endTimeArr = getFormatTimeArr(duration)
