@@ -73,37 +73,50 @@
             <!--主要内容区-->
             <div class="parentMain">
                 <div class="containerBox">
-                    <div class="wallet">
-                        <ul class="wallet-top">
-                            <li class="at">账户类型: <span class="account_category">体验版</span></li>
-                            <li class="boa">账户余额: <span class="account_amount">￥0.00</span></li>
-                            <li class="event_n">已建频道数:&nbsp;<span class="event_number">00</span>个</li>
-                            <li>累计充值金额: <span class="account_total_payment">￥0.00</span></li>
-                        </ul>
-                    </div>
-                    <div class="chang-sx">
-                        <div class="layui-form lab">
-                            <select id="select-order" name="order_by" lay-filter="select-order">
-                                <option name="event_start_time" value="event_start_time">直播开始时间</option>
-                                <option name="-event_start_time" value="-event_start_time">直播最后时间</option>
-                            </select>
-                            <img src="../image/排序.png" id="order-icon" />
-                        </div>
-                        <form class="layui-form form" id="from">
-                            <div class="layui-inline">
-                                <div class="layui-input-inline" name="start_time1" style="position: relative;">
-                                    <input type="text" name="start_time1" class="layui-input" id="test5"
-                                        placeholder=" 开 始 直 播 时 间 范 围  ~  开 始 直 播 时 间 范 围">
-                                    <img style="position: absolute;right: 10px;top: 9px;" src="../image/日历.png" />
+                    <div id="containerLeft">
+                        <div class="chang-sx">
+                            <div class="layui-form lab">
+                                <select id="select-order" name="order_by" lay-filter="select-order">
+                                    <option name="event_start_time" value="event_start_time">直播开始时间</option>
+                                    <option name="-event_start_time" value="-event_start_time">直播最后时间</option>
+                                </select>
+                                <!-- <img src="../image/sort.png" id="order-icon" /> -->
+                            </div>
+                            <form class="layui-form form" id="from">
+                                <div class="layui-inline">
+                                    <div class="layui-input-inline" name="start_time1" style="position: relative;">
+                                        <input type="text" name="start_time1" class="layui-input" id="calendar-select"
+                                            placeholder=" 开 始 直 播 时 间 范 围  ~  开 始 直 播 时 间 范 围">
+                                        <img style="position: absolute;right: 10px;top: 9px;" src="../image/calendar.png" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="chang-bt">
-                                <input type="text" name="keyword" placeholder="请输入频道关键字" autocomplete="off"
-                                    class="layui-input inp"><span class="danger"><img src="../image/search.png" /></span>
-                            </div>
-                        </form>
+                                <div id="chang-bt">
+                                    <input type="text" name="keyword" placeholder="请输入频道关键字" autocomplete="off"
+                                        class="layui-input inp"><span class="danger"><img src="../image/search.png" /></span>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="channelContent">
+                        </div>
                     </div>
-                    <div class="channelContent">
+                    <div id="containerRight">
+                        <div id="accountInfo">
+                            <p>账户类型: <span class="account_category">体验版</span></p>
+                            <p>账户余额: ￥<span class="account_amount">0.00</span> <span class="payStyle">充值</span></p>
+                            <p class="distanceTop">已建频道数: <span class="event_number">00</span>个</p>
+                            <p>累计充值金额: ￥<span class="account_total_payment">0.00</span></p>
+                        </div>
+                        <div id="helpCenter">
+                            <p class="helpTitle">
+                                <span class="help_title">帮助中心</span>
+                                <a class="show_more" href="http://cube.vip/html/help.html">查看更多>></a>
+                            </p>
+                            <hr />
+                            <a href="http://cube.vip/html/help.html?issue=1" class="issue">直播前需要准备什么？</a>
+                            <a href="http://cube.vip/html/help.html?issue=2" class="issue">如何快速创建一场直播？</a>
+                            <a href="http://cube.vip/html/help.html?issue=3" class="issue">Cube手机拍摄助手怎么使用？</a>
+                            <a href="http://cube.vip/html/help.html?issue=4" class="issue">直播后视频如何管理？</a>
+                        </div>
                     </div>
                 </div>
             </div>

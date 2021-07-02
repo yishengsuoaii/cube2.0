@@ -409,7 +409,7 @@
   border-radius: 5px;
   padding-left: 5px;
 }
-.parentMain .containerBox .mainCont .main-right-portal .portal .portalTop .portalTop-right .portalTop-right-title .portalTop-right-title-input:focus {
+.parentMain .containerBox .mainCont .main-right-portal .portal .portalTop .portalTop-right .portalTop-right-title .portalTop-right-title-input:hover {
   border: 1px solid rgba(255, 145, 77, 0.3);
 }
 .parentMain .containerBox .mainCont .main-right-portal .portal .portalTop .portalTop-right .portalTop-right-title .portalTop-right-title-length {
@@ -435,7 +435,7 @@
   resize: none;
   vertical-align: top;
 }
-.parentMain .containerBox .mainCont .main-right-portal .portal .portalTop .portalTop-right .portalTop-right-intro .portalTop-right-textarea:focus {
+.parentMain .containerBox .mainCont .main-right-portal .portal .portalTop .portalTop-right .portalTop-right-intro .portalTop-right-textarea:hover {
   border: 1px solid rgba(255, 145, 77, 0.3);
 }
 .parentMain .containerBox .mainCont .main-right-portal .portal .portalTop .portalTop-right .portalTop-right-intro .portalTop-right-textarea-length {
@@ -535,7 +535,7 @@
   border-radius: 5px;
   padding-left: 5px;
 }
-.parentMain .containerBox .mainCont .main-right-portal .portal .cover-box .cover-url .cover-url-input:focus {
+.parentMain .containerBox .mainCont .main-right-portal .portal .cover-box .cover-url .cover-url-input:hover {
   border: 1px solid rgba(255, 145, 77, 0.3);
 }
 .parentMain .containerBox .mainCont .main-right-portal .portalSave {
@@ -551,6 +551,9 @@
   border: 0;
   border-radius: 2px;
   cursor: pointer;
+}
+.parentMain .containerBox .mainCont .main-right-portal .portalSave:hover {
+  background: #F2591A;
 }
 .parentMain .containerBox .mainCont .main-right-recommend {
   width: 610px;
@@ -590,14 +593,18 @@
   width: 89px;
   height: 26px;
   line-height: 26px;
-  border: 1px solid #F2591A;
+  border: 1px solid #ff914d;
   border-radius: 3px;
   font-size: 16px;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #F2591A;
+  color: #ff914d;
   text-align: center;
   cursor: pointer;
+}
+.parentMain .containerBox .mainCont .main-right-recommend .recommend-set .channel-set .channel-set-name .add-channel-btn:hover {
+  color: #F2591A;
+  border: 1px solid #F2591A;
 }
 .parentMain .containerBox .mainCont .main-right-recommend .recommend-set .channel-set .channel-cont-add {
   height: 202px;
@@ -649,6 +656,9 @@
   margin: 16px 15px;
   cursor: pointer;
 }
+.parentMain .containerBox .mainCont .main-right-recommend .recommend-set .channel-set .channel-cont-add .add-channel-list .recommend-delete:hover {
+  color: #FF914D;
+}
 .parentMain .containerBox .mainCont .main-right-recommend .recommend-set .segmentation-line {
   margin: 0;
   background-color: #FF914D;
@@ -671,14 +681,18 @@
   width: 89px;
   height: 26px;
   line-height: 26px;
-  border: 1px solid #F2591A;
+  border: 1px solid #FF914D;
   border-radius: 3px;
   font-size: 16px;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #F2591A;
+  color: #FF914D;
   text-align: center;
   cursor: pointer;
+}
+.parentMain .containerBox .mainCont .main-right-recommend .recommend-set .video-set .video-set-name .add-video-btn:hover {
+  color: #F2591A;
+  border: 1px solid #F2591A;
 }
 .parentMain .containerBox .mainCont .main-right-recommend .recommend-set .video-set .video-cont-add {
   height: 351px;
@@ -730,6 +744,9 @@
   margin: 16px 15px;
   cursor: pointer;
 }
+.parentMain .containerBox .mainCont .main-right-recommend .recommend-set .video-set .video-cont-add .add-video-list .recommend-delete:hover {
+  color: #FF914D;
+}
 .parentMain .containerBox .mainCont .main-right-recommend .recommend-set .recommend-angle {
   width: 10px;
   height: 10px;
@@ -754,6 +771,9 @@
   border: 0;
   border-radius: 2px;
   cursor: pointer;
+}
+.parentMain .containerBox .mainCont .main-right-recommend .recommendSave:hover {
+  background: #F2591A;
 }
 .parentMain .containerBox .mainCont #qrcodeBox {
   display: none;
@@ -833,6 +853,10 @@
   border: 1px solid #CCCCCC;
   border-right: 0;
 }
+#channel-dialog .select-search .search-channel .search-channel-input:hover {
+  border: 1px solid #FF914D;
+  border-right: 0;
+}
 #channel-dialog .select-search .search-channel .search-channel-btn {
   display: inline-block;
   width: 34px;
@@ -840,8 +864,11 @@
   line-height: 34px;
   text-align: center;
   background: #FF914D;
-  vertical-align: bottom;
+  vertical-align: top;
   cursor: pointer;
+}
+#channel-dialog .select-search .search-channel .search-channel-btn:hover {
+  background: #F2591A;
 }
 #channel-dialog .select-search .search-channel .search-channel-btn img {
   width: 24px;
@@ -925,6 +952,10 @@
   border: 1px solid #CCCCCC;
   border-right: 0;
 }
+#video-dialog .select-search .search-video .search-video-input:hover {
+  border: 1px solid #FF914D;
+  border-right: 0;
+}
 #video-dialog .select-search .search-video .search-video-btn {
   display: inline-block;
   width: 34px;
@@ -932,8 +963,11 @@
   line-height: 34px;
   text-align: center;
   background: #FF914D;
-  vertical-align: bottom;
+  vertical-align: top;
   cursor: pointer;
+}
+#video-dialog .select-search .search-video .search-video-btn:hover {
+  background: #F2591A;
 }
 #video-dialog .select-search .search-video .search-video-btn img {
   width: 24px;

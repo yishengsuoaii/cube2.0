@@ -97,6 +97,9 @@
   font-weight: 400;
   color: #999999;
 }
+#container .parentTop .loginNameDiv #userExit:hover {
+  color: #FF914D;
+}
 #container #mainContent {
   width: 100%;
   min-height: calc(100vh - 0.8rem);
@@ -126,6 +129,11 @@
 }
 #container #mainContent .leftMenu li a .menu-icon {
   margin: 0 0.1rem 0 0.3rem;
+}
+#container #mainContent .leftMenu li a:hover {
+  color: #F2591A;
+  background: #F9F9F9;
+  border-left: 0.04rem solid #F2591A;
 }
 #container #mainContent .leftMenu li .menuActive {
   color: #F2591A;
@@ -226,4 +234,7 @@
   font-weight: 400;
   color: #444444;
   text-align: center;
+}
+#messageDialog #messageFoot:hover {
+  color: #FF914D;
 }

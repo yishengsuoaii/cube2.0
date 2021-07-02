@@ -47,7 +47,7 @@ $(function () {
         })
 
         laydate.render({
-            elem: '#test5',
+            elem: '#calendar-select',
             type: 'datetime',
             range: true,
             done: function (aa) {
@@ -118,7 +118,7 @@ $(function () {
         data.forEach((item, index) => {
             if (index % 3 === 0) {
                 divStr += `<div class="chan chanMargin" name="chan" id="${item.event_id}">
-                            <img class="channel-cover" src="../image/action-cover.png"><div class="channelInfo">
+                            <img class="channel-cover" src="../image/min-logo.png"><div class="channelInfo">
                                 <h1 class="channel-name">${item.event_title}</h1>
                                 <p class="channel-time">${item.event_start_time.replace('T',' ')}</p>
                                 <p class="channel-intro">${item.event_description}</p>
@@ -135,7 +135,7 @@ $(function () {
                     `
             } else {
                 divStr += `<div class="chan" name="chan" id="${item.event_id}">
-                            <img class="channel-cover" src="../image/action-cover.png"><div class="channelInfo">
+                            <img class="channel-cover" src="../image/min-logo.png"><div class="channelInfo">
                                 <h1 class="channel-name">${item.event_title}</h1>
                                 <p class="channel-time">${item.event_start_time.replace('T',' ')}</p>
                                 <p class="channel-intro">${item.event_description}</p>
@@ -449,4 +449,25 @@ $(function () {
         $('#channel-type').val('')
         form.render('select');
     }
+
+    // 控制鼠标显示隐藏
+    $('.channelContent').on('mouseenter','.setChannel',function(e){
+        $(this).siblings('#hintBox').show()
+        $(this).attr('src','./../image/active-set-icon.png')
+    })
+    $('.channelContent').on('mouseleave','.setChannel',function(){
+        $(this).siblings('#hintBox').hide()
+        $(this).attr('src','./../image/set-icon.png')
+    })
+
+    $('.channelContent').on('mouseenter','.deleteChannel',function(){
+        $(this).siblings('#hintBox1').show()
+        $(this).attr('src','./../image/active-delete-icon.png')
+    })
+    $('.channelContent').on('mouseleave','.deleteChannel',function(){
+        $(this).siblings('#hintBox1').hide()
+        $(this).attr('src','./../image/delete-icon.png')
+    })
+
+    
 })

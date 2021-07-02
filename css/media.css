@@ -76,6 +76,9 @@
   line-height: 30px;
   margin-left: 20px;
 }
+.parentMain #containerBox .layui-tab-content .setup_List .all-operate .layui-btn:hover {
+  color: #FF914D;
+}
 .parentMain #containerBox .layui-tab-content .setup_List .all-operate .loadingBox {
   font-size: 18px;
   color: #F2591A;
@@ -100,6 +103,9 @@
   width: 500px;
   margin-left: 40px;
 }
+.parentMain #containerBox .layui-tab-content #video-filter .video-time #videoTime:hover {
+  border: 1px solid #ff914d !important;
+}
 .parentMain #containerBox .layui-tab-content #video-filter .video-keyword {
   width: 320px;
   height: 38px;
@@ -111,6 +117,9 @@
   font-size: 22px;
   vertical-align: top;
 }
+.parentMain #containerBox .layui-tab-content #video-filter .video-keyword .layui-input:hover {
+  border: 1px solid #ff914d !important;
+}
 .parentMain #containerBox .layui-tab-content #video-filter .video-keyword .fileSearch {
   width: 60px;
   height: 38px;
@@ -120,6 +129,9 @@
   line-height: 38px;
   text-align: center;
   padding: 0;
+}
+.parentMain #containerBox .layui-tab-content #video-filter .video-keyword .fileSearch:hover {
+  background: #F2591A;
 }
 .parentMain #containerBox .layui-tab-content .videoContent {
   width: 100%;
@@ -226,10 +238,13 @@
   font-size: 16px;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #F2591A;
+  color: #FF914D;
   line-height: 30px;
   cursor: pointer;
   margin-left: 30px;
+}
+.parentMain #containerBox .layui-tab-content .videoList .videoPe .video-bottom .video-upload:hover {
+  color: #F2591A;
 }
 .parentMain #containerBox .layui-tab-content .videoList .videoPe .video-bottom .video-upload-wait {
   cursor: wait;
@@ -271,6 +286,9 @@
   color: #666666;
   line-height: 30px;
 }
+.parentMain #containerBox .layui-tab-content .ts-setup #ts-delete-video:hover {
+  color: #FF914D;
+}
 .parentMain #containerBox .layui-tab-content .ts-setup #ts-delete-video img {
   width: 20px;
   height: 20px;
@@ -287,6 +305,9 @@
   color: #666666;
   line-height: 30px;
   margin-left: 20px;
+}
+.parentMain #containerBox .layui-tab-content .ts-setup #ts-move-video:hover {
+  color: #FF914D;
 }
 .parentMain #containerBox .layui-tab-content .ts-setup #ts-move-video img {
   width: 20px;
@@ -320,6 +341,9 @@
   border-radius: 5px;
   position: relative;
   cursor: pointer;
+}
+#uploadDialog #uploadBox:hover {
+  border: 1px solid #ff914d;
 }
 #uploadDialog #uploadBox #previewVideo {
   border: none;
@@ -391,6 +415,9 @@
   font-weight: 400;
   color: #999999;
 }
+#uploadDialog #textarea:hover {
+  border: 1px solid #ff914d;
+}
 #uploadDialog .textLength {
   width: 548px;
   height: 30px;
@@ -414,6 +441,9 @@
   border-radius: 4px;
   position: relative;
   cursor: pointer;
+}
+#describeDialog .coverBox:hover {
+  border: 1px solid #ff914d;
 }
 #describeDialog .coverBox #uploadCover {
   width: 24px;
@@ -489,6 +519,9 @@
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #999999;
+}
+#describeDialog #editDesText:hover {
+  border: 1px solid #ff914d;
 }
 #describeDialog #editTextLength {
   width: 548px;

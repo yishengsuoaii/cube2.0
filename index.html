@@ -116,37 +116,28 @@
                 </div>
             </div>
         </div>
-        <div class="caseBox" style="display: none;">
+        <div class="caseBox">
             <div class="caseTitle">经典案例</div>
             <div id="certify">
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img src="image/case1.png" />
-                            <p>全运会羽毛球赛</p>
+                        <div class="swiper-slide"><video class="caseVideo" src="http://content.cube.vip/media/other/homevideo/%E5%B0%A4%E5%B0%BC%E5%85%8B%E6%96%AF.mp4" preload="auto" controls  controlsList="nodownload" disablePictureInPicture ></video>
+                            <p>尤尼克斯</p>
                         </div>
-                        <div class="swiper-slide"><img src="image/case2.png" />
-                            <p>摩托车大赛</p>
+                        <div class="swiper-slide"><video class="caseVideo" src="http://content.cube.vip/media/other/homevideo/%E5%A4%A7%E5%85%B4%E4%B9%9D%E5%B0%8F.mp4" preload="auto" controls controlsList="nodownload" disablePictureInPicture ></video>
+                            <p>大兴九小</p>
                         </div>
-                        <div class="swiper-slide"><img src="image/case3.png" />
-                            <p>西昌邛海国际帆船赛</p>
+                        <div class="swiper-slide"><video class="caseVideo" src="http://content.cube.vip/media/other/homevideo/%E5%AE%A2%E6%88%B7%E4%B8%96%E7%95%8C.mp4" preload="auto" controls controlsList="nodownload" disablePictureInPicture ></video>
+                            <p>客户世界</p>
                         </div>
-                        <div class="swiper-slide"><img src="image/case4.png" />
-                            <p>未来科学大奖颁奖典礼</p>
+                        <div class="swiper-slide"><video class="caseVideo" src="http://content.cube.vip/media/other/homevideo/%E7%99%BE%E5%9F%8E%E5%8D%83%E5%9B%AD.mp4" preload="auto"  controls controlsList="nodownload" disablePictureInPicture ></video>
+                            <p>百城千园</p>
+                        </div> 
+                         <div class="swiper-slide"><video class="caseVideo" src="http://content.cube.vip/media/other/homevideo/%E7%B4%A0%E8%B4%A8%E6%95%99%E8%82%B2%E9%92%A2%E7%90%B4.mp4"  preload="auto" controls controlsList="nodownload" disablePictureInPicture ></video>
+                            <p>素质教育钢琴</p>
                         </div>
-                        <div class="swiper-slide"><img src="image/case5.png" />
-                            <p>黑莓发布会</p>
-                        </div>
-                        <div class="swiper-slide"><img src="image/case6.png" />
-                            <p>"鲁能·潍坊杯"国际青年足球邀请赛</p>
-                        </div>
-                        <div class="swiper-slide"><img src="image/case7.png" />
-                            <p>全国体育院校篮球联赛</p>
-                        </div>
-                        <div class="swiper-slide"><img src="image/case8.png" />
-                            <p>伟仕佳杰2018集团新春盛会暨中国区颁奖典礼</p>
-                        </div>
-                        <div class="swiper-slide"><img src="image/case9.png" />
-                            <p>体育新闻事业成就展</p>
+                        <div class="swiper-slide"><video class="caseVideo" src="http://content.cube.vip/media/other/homevideo/%E8%AF%BE%E7%A8%8B%E5%9F%B9%E8%AE%AD.mp4" preload="auto" controls controlsList="nodownload" disablePictureInPicture ></video>
+                            <p>课程培训</p>
                         </div>
                     </div>
                 </div>
@@ -206,7 +197,7 @@
 			centeredSlides: true,
 			loop: true,
 			loopedSlides: 9,
-			autoplay: true,
+			autoplay: false,
 			navigation: {
 				nextEl: '.swiper-button-next',
 				prevEl: '.swiper-button-prev',
@@ -245,6 +236,20 @@
 			}
 
 		})
+
+        var allVideo=document.querySelectorAll(".caseVideo");
+        for(var i=0;i<allVideo.length;i++){
+            allVideo[i].addEventListener("playing", function(){
+                var this1=this;
+                this.play();
+                for(var b=0;b<allVideo.length;b++){
+                    var this2=allVideo[b];
+                    if(this1!==this2){
+                        this2.pause();
+                    }
+                }
+            });
+        }
 	</script>
 </body>
 </html>

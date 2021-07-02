@@ -112,23 +112,23 @@ $(function () {
 
     // 手势检测dom
     var gestureHtml = `<div id="gesture-detection">
-        <button type="button" class="layui-btn" id="gesture-btn">开启</button>
+        <button type="button" class="default-style"  id="gesture-btn">点击开启</button>
     </div>`
     // 自动导切dom
     var autoHtml = `<div id="auto-cut">
-        <button type="button" class="layui-btn" id="auto-btn">开启</button>
+        <button type="button" class="default-style"  id="auto-btn">点击开启</button>
     </div>`
 
     // 拉近镜头dom
     var zoomHtml = `<div id="zoom-in">
-        <button type="button" class="layui-btn" id="zoom-btn">开启</button>
+        <button type="button" class="default-style"  id="zoom-btn">点击开启</button>
     </div>`
 
     // 云幻灯片dom
     var slidesHtml =   `
     <div id="lanternSlide">
            <div class="slideSelectBox">
-            <div id="lanternStart" class="defaultStyle">开启</div>
+            <div id="lanternStart" class="default-style">点击开启</div>
             <div id="selectDoc">选择文档</div>
            </div>
             <div id="lanternPreview" class=" borderClass noneBorder">
@@ -154,7 +154,7 @@ $(function () {
     `
     // logoDom
     var logoHtml =`<div id="logoBox">
-        <div  class="watermark-submit-btn">开启</div>
+        <div  class="watermark-submit-btn default-style">点击开启</div>
         <div  id="addLogoDialog">添加LOGO</div>
     </div>`
 
@@ -162,7 +162,7 @@ $(function () {
     var musicHtml = `
     <div id="musicBox">
         <div class="musicLeft">
-            <div id="musicStart" class="defaultStyle">开启</div>
+            <div id="musicStart" class="default-style">点击开启</div>
             <div id="musicSelect">选择音乐</div>
         </div>
         <div class="musicInfo">
@@ -593,7 +593,7 @@ $(function () {
                                 functionContentSrc += `
                                 <div class="layui-tab-item layui-show">
                                     <div id="kvBox">
-                                        <div id="kvStart" class="defaultStyle">开启</div>
+                                        <div id="kvStart" class="default-style">点击开启</div>
                                         <div id="kvSelect">选择图片</div>
                                     </div>
                                 </div>`
@@ -663,7 +663,7 @@ $(function () {
                                 functionContentSrc += `
                                 <div class="layui-tab-item">
                                     <div id="kvBox">
-                                        <div id="kvStart" class="defaultStyle">开启</div>
+                                        <div id="kvStart" class="default-style">点击开启</div>
                                         <div id="kvSelect">选择图片</div>
                                     </div>
                                 </div>`
@@ -1750,11 +1750,11 @@ $(function () {
                         $('#logo-radio4').prop('checked', true);
                     }
                     if (res.data.event_logo_countdown) {
-                        $('.watermark-submit-btn').html('关闭').addClass('logoStart')
+                        $('.watermark-submit-btn').html('点击关闭').addClass('active-style').removeClass('default-style')
                         setLogoLocation(logoOrientation)
                     } else {
                         
-                        $('.watermark-submit-btn').html('开启').removeClass('logoStart')
+                        $('.watermark-submit-btn').html('点击开启').removeClass('active-style').addClass('default-style')
                     }
 
                     form.render('radio');
@@ -1797,7 +1797,7 @@ $(function () {
         // logo位置 开关提交
         $('.watermark-submit-btn').on('click', function () {
             
-            if($(this).hasClass('logoStart')) {
+            if($(this).hasClass('active-style')) {
                 logoFlag = 'False'
             } else {
                 logoFlag = 'True'
@@ -1858,11 +1858,11 @@ $(function () {
                                         if(mainFlag){
                                              if(res.msg==='success'){
                                                 mainFlag = true 
-                                                if($('.watermark-submit-btn').hasClass('logoStart')) {
-                                                    $('.watermark-submit-btn').html('开启').removeClass('logoStart')
+                                                if($('.watermark-submit-btn').hasClass('active-style')) {
+                                                    $('.watermark-submit-btn').html('点击开启').addClass('default-style').removeClass('active-style')
                                                 
                                                 } else {
-                                                    $('.watermark-submit-btn').html('关闭').addClass('logoStart')
+                                                    $('.watermark-submit-btn').html('点击关闭').addClass('active-style').removeClass('default-style')
                                                     
                                                 }
                                                 sessionStorage.setItem(event_code, JSON.stringify(allInfo))
@@ -1871,7 +1871,7 @@ $(function () {
                                                 mainFlag = false
                                                 not_remind()
                                                 $('#requestFlag').html('辅').css('background','red')
-                                                if($(this).hasClass('logoStart')) {
+                                                if($(this).hasClass('active-style')) {
                                                     logoFlag = 'True'
                                                 } else {
                                                     logoFlag = 'False'
@@ -1885,7 +1885,7 @@ $(function () {
                             mainFlag = false
                             not_remind()
                             $('#requestFlag').html('辅').css('background','red')
-                            if($(this).hasClass('logoStart')) {
+                            if($(this).hasClass('active-style')) {
                                 logoFlag = 'True'
                             } else {
                                 logoFlag = 'False'
@@ -2529,7 +2529,7 @@ $(function () {
             allInfo.state = 'off'
             scoreLocation = 0
             allInfo.update = 0
-            sendInstruct()
+            // sendInstruct()
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
             sessionStorage.removeItem('score' + event_code)
             sessionStorage.removeItem('imageBase64' + event_code)
@@ -2538,6 +2538,7 @@ $(function () {
             $('#logo-radio3').removeAttr('disabled')
             $('#logo-radio4').removeAttr('disabled')
             form.render('radio')
+            sendInstruct()
         })
         // 保存有比分的比分牌
         function saveScoreBrand() {
@@ -2882,21 +2883,21 @@ $(function () {
             }, 100)
             // 渲染手势检测
             if (allInfo.gestureFlag === 'off') {
-                $('#gesture-btn').text('开启').css('background-color', '#ff914d')
+                $('#gesture-btn').text('点击开启').addClass('default-style').removeClass('active-style')
             } else {
-                $('#gesture-btn').text('关闭').css('background-color', '#f2591a')
+                $('#gesture-btn').text('点击关闭').addClass('active-style').removeClass('default-style')
             }
             // 自动切换
             if (allInfo.autoState === 'off') {
-                $('#auto-btn').text('开启').css('background-color', '#ff914d')
+                $('#auto-btn').text('点击开启').addClass('default-style').removeClass('active-style')
             } else {
-                $('#auto-btn').text('关闭').css('background-color', '#f2591a')
+                $('#auto-btn').text('点击关闭').addClass('active-style').removeClass('default-style')
             }
             // zoom-in 
             if (allInfo.zoomState === 'off') {
-                $('#zoom-btn').text('开启').css('background-color', '#ff914d')
+                $('#zoom-btn').text('点击开启').addClass('default-style').removeClass('active-style')
             } else {
-                $('#zoom-btn').text('关闭').css('background-color', '#f2591a')
+                $('#zoom-btn').text('点击关闭').addClass('active-style').removeClass('default-style')
             }
             // 渲染背景替换
             $('.bg-item').removeClass('bg-active').eq(allInfo.replaceFlag).addClass('bg-active')
@@ -2911,26 +2912,26 @@ $(function () {
             $('.pageNum').html(allInfo.pptInfo.num+'/'+allInfo.pptInfo.total)
             
             if(allInfo.pptInfo.state === 'off') {
-                $('#lanternStart').addClass('defaultStyle').removeClass('startStyle').html('开启')
+                $('#lanternStart').addClass('default-style').removeClass('active-style').html('点击开启')
                 
             } else {
-                $('#lanternStart').addClass('startStyle').removeClass('defaultStyle').html('关闭')
+                $('#lanternStart').addClass('active-style').removeClass('default-style').html('点击关闭')
             }
 
             // 渲染音乐
             if(allInfo.musicInfo.state === 'off') {
-                $('#musicStart').addClass('defaultStyle').removeClass('startStyle').html('开启')
+                $('#musicStart').addClass('default-style').removeClass('active-style').html('点击开启')
             } else {
-                $('#musicStart').addClass('startStyle').removeClass('defaultStyle').html('关闭')
+                $('#musicStart').addClass('active-style').removeClass('default-style').html('点击关闭')
             }
             if(allInfo.musicInfo.name !=='' && allInfo.musicInfo.oss !=='') {
                 $('#musicName').html(allInfo.musicInfo.name)
             }
 
             if(allInfo.kvInfo.state === 'off') {
-                $('#kvStart').addClass('defaultStyle').removeClass('startStyle').html('开启')
+                $('#kvStart').addClass('default-style').removeClass('active-style').html('点击开启')
             } else {
-                $('#kvStart').addClass('startStyle').removeClass('defaultStyle').html('关闭')
+                $('#kvStart').addClass('active-style').removeClass('default-style').html('点击关闭')
             }
         }
 
@@ -3139,9 +3140,9 @@ $(function () {
                             if(res.msg==='success'){
                                 mainFlag = true 
                                 if (allInfo.gestureFlag === 'off') {
-                                    $(this).text('开启').css('background-color', '#ff914d')
+                                    $(this).text('点击开启').addClass('default-style').removeClass('active-style')
                                 } else {
-                                    $(this).text('关闭').css('background-color', '#f2591a')
+                                    $(this).text('点击关闭').addClass('active-style').removeClass('default-style')
                                 }
                                 sessionStorage.setItem(event_code, JSON.stringify(allInfo))
                             } else if(res.msg==='not_main'){
@@ -3207,9 +3208,9 @@ $(function () {
                             if(res.msg==='success'){
                                 mainFlag = true 
                                 if (allInfo.autoState === 'off') {
-                                $(this).text('开启').css('background-color', '#ff914d')
+                                $(this).text('点击开启').addClass('default-style').removeClass('active-style')
                                 } else {
-                                $(this).text('关闭').css('background-color', '#f2591a')
+                                $(this).text('点击关闭').addClass('active-style').removeClass('default-style')
                                 }
                                 sessionStorage.setItem(event_code, JSON.stringify(allInfo))
                             } else if(res.msg==='not_main'){
@@ -3276,9 +3277,9 @@ $(function () {
                         if(res.msg==='success'){
                             mainFlag = true 
                             if (allInfo.zoomState === 'off') {
-                                $(this).text('开启').css('background-color', '#ff914d')
+                                $(this).text('点击开启').addClass('default-style').removeClass('active-style')
                             } else {
-                            $(this).text('关闭').css('background-color', '#f2591a')
+                            $(this).text('点击关闭').addClass('active-style').removeClass('default-style')
                             } 
                             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
                         }
@@ -3299,7 +3300,7 @@ $(function () {
             
         })
         // 背景替换------------------------------------------------------------------------------------------------
-        $('.bg-item').on('click', function () {
+        $('.bg-item').on('click', function (e) {
             $(this).addClass('bg-active').siblings().removeClass('bg-active')
             allInfo.replaceFlag = $(this).index()
             sessionStorage.setItem(event_code, JSON.stringify(allInfo))
@@ -3581,9 +3582,9 @@ $(function () {
                               if(res.msg==='success'){
                                 mainFlag = true 
                                 if(allInfo.pptInfo.state === 'off') {
-                                    $(this).addClass('defaultStyle').removeClass('startStyle').html('开启')
+                                    $(this).addClass('default-style').removeClass('active-style').html('点击开启')
                                 } else {
-                                $(this).addClass('startStyle').removeClass('defaultStyle').html('关闭')
+                                    $(this).addClass('active-style').removeClass('default-style').html('点击关闭')
                                 }
                                 sessionStorage.setItem(event_code, JSON.stringify(allInfo))
 
@@ -4225,7 +4226,7 @@ $(function () {
                 return
             }
             
-            if($(this).hasClass('defaultStyle')){
+            if($(this).hasClass('default-style')){
                 allInfo.musicInfo.update = 1
                 allInfo.musicInfo.state = 'on'
                 
@@ -4278,10 +4279,10 @@ $(function () {
                         if(mainFlag){
                             if(res.msg==='success'){
                                 mainFlag = true 
-                                if($(this).hasClass('defaultStyle')){
-                                    $(this).removeClass('defaultStyle').addClass('startStyle').html('关闭')
+                                if($(this).hasClass('default-style')){
+                                    $(this).removeClass('default-style').addClass('active-style').html('点击关闭')
                                 } else {
-                                    $(this).removeClass('startStyle').addClass('defaultStyle').html('开启')
+                                    $(this).removeClass('active-style').addClass('default-style').html('点击开启')
                                 }   
                                 sessionStorage.setItem(event_code, JSON.stringify(allInfo))
 
@@ -4720,7 +4721,7 @@ $(function () {
                 return
             }
             
-            if($(this).hasClass('defaultStyle')){
+            if($(this).hasClass('default-style')){
 
                 if(allInfo.gifInfo.state==='on'&&allInfo.kvInfo.location===3){
                     layer.msg('不允许在动态特效上加全屏图层!')
@@ -4776,11 +4777,11 @@ $(function () {
                         if(mainFlag){
                             if(res.msg==='success'){
                                 mainFlag = true 
-                                if($(this).hasClass('defaultStyle')){
-                                    $(this).removeClass('defaultStyle').addClass('startStyle').html('关闭')
+                                if($(this).hasClass('default-style')){
+                                    $(this).removeClass('default-style').addClass('active-style').html('点击关闭')
                                     
                                 } else {
-                                    $(this).removeClass('startStyle').addClass('defaultStyle').html('开启')
+                                    $(this).removeClass('active-style').addClass('default-style').html('点击开启')
                                 }   
                                 sessionStorage.setItem(event_code, JSON.stringify(allInfo))
 
@@ -5181,5 +5182,12 @@ $(function () {
     clipboard5.on('error', function(e) {
         layer.msg('复制失败,请重试!');
     });
+
+    // 直播窗口音量提示
+    $('#live-mute').hover(function(){
+        $('#hintLive').show()
+    },function(){
+        $('#hintLive').hide()
+    })
 
 })

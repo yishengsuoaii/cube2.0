@@ -1,266 +1,331 @@
 .parentMain {
     .containerBox {
+        display: flex;
         width: 1559px;
-
-        .wallet {
-            background-color: #FFFFFF;
-            width: 1559px;
-            height: 82px;
-            padding-top: 53px;
-            border-radius: 10px;
-
-            .wallet-top {
-                height: 50px;
-
-                li {
-                    list-style: none;
-                    height: 50px;
-                    font-size: 20px;
-                    float: left;
-                    color: #666666;
-                }
-
-                .at {
-                    width: 198px;
-                    margin-left: 29px;
-
-                    .account_category {
-                        color: #f2591a;
-                    }
-                }
-
-                .event_n {
-                    width: 198px;
-                    margin-left: 300px;
-                }
-
-                .boa {
-                    width: 198px;
-                }
-
-            }
-        }
-
-        .chang-sx {
-            width: 1559px;
-            height: 38px;
-            margin: 33px 0 20px;
-            display: flex;
-            justify-content: space-between;
-
-            .lab {
-                width: 179px;
-                box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
-                position: relative;
-
-                #order-icon {
-                    width: 55px;
-                    height: 55px;
-                    position: absolute;
-                    top: -7px;
-                    right: -55px;
-                    cursor: pointer;
-                }
-            }
-
-            #from {
-                width: 1200px;
+        #containerLeft {
+            width: 1128px;
+            height: 100vh;
+            // background-color: blue;
+            .chang-sx {
+                width: 1128px;
+                height: 40px;
                 display: flex;
                 justify-content: space-between;
-
-                #chang-bt {
-                    width: 494px;
+    
+                .lab {
+                    width: 168px;
                     box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
-
-                    .inp {
-                        width: 430px;
-                        display: inline-block;
-                        vertical-align: top;
+                    position: relative;
+                    border: 1px solid #fff;
+                    &:hover {
+                        border: 1px solid #FF914C;
                     }
-
-                    .danger {
-                        display: inline-block;
-                        width: 64px;
-                        height: 38px;
-                        background-color: #FF914D;
-                        box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
-                        text-align: center;
-                        line-height: 38px;
+    
+                    #order-icon {
+                        width: 55px;
+                        height: 55px;
+                        position: absolute;
+                        top: -7px;
+                        right: -55px;
                         cursor: pointer;
-
-                        img {
-                            width: 28px;
-                            height: 28px;
+                    }
+                }
+    
+                #from {
+                    width: 840px;
+                    display: flex;
+                    justify-content: space-between;
+    
+                    #chang-bt {
+                        width: 360px;
+                        box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
+    
+                        .inp {
+                            width: 296px;
+                            display: inline-block;
+                            vertical-align: top;
+                            border: 1px solid #fff !important;
+                            &:hover {
+                                border: 1px solid #FF914C !important;
+                            }
+                        }
+    
+                        .danger {
+                            display: inline-block;
+                            width: 64px;
+                            height: 38px;
+                            background-color: #FF914D;
+                            box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
+                            text-align: center;
+                            line-height: 38px;
+                            cursor: pointer;
+                            &:hover {
+                                background: #F2591A;
+                            }
+                            img {
+                                width: 28px;
+                                height: 28px;
+                            }
                         }
                     }
+                    #calendar-select {
+                        width: 456px;
+                        border: 1px solid #fff !important;
+                        &:hover {
+                            border: 1px solid #FF914C !important;
+                        }
+                        box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
+                    }
                 }
-                #test5 {
-                    width: 361px;
-                    border: none;
+                
+            }
+            .channelContent {
+                width: 1128px;
+                margin-top: 54px;
+                display: flex;
+                justify-content: flex-start;
+                align-content: flex-start;
+                flex-wrap: wrap;
+    
+                #newAdd {
+                    width: 360px;
+                    height: 214px;
+                    background-color: #FFFFFF;
+                    color: #999999;
+                    font-size: 28px;
                     box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
+                    border-radius: 10px;
+                    position: relative;
+                    margin-bottom: 20px;
+                    &:hover {
+                        box-shadow: 0px 3px 6px rgba(255, 145, 76, 0.36);
+                    }
+                    img {
+                        width: 80px;
+                        height: 80px;
+                    }
                 }
+    
+                .chanMargin {
+                    margin: 0 24px;
+                }
+    
+                .chan {
+                    width: 360px;
+                    height: 122px;
+                    padding: 46px 0;
+                    background-color: #fff;
+                    box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
+                    border-radius: 10px;
+                    margin-bottom: 20px;
+                    position: relative;
+                    cursor: pointer;
+                    &:hover {
+                        box-shadow: 0px 3px 6px rgba(255, 145, 76, 0.36);
+                    }
+    
+                    .channel-cover {
+                        width: 90px;
+                        height: 72px;
+                        margin-left: 32px;
+                        vertical-align: top;
+                    }
+    
+                    .channelInfo {
+                        display: inline-block;
+                        width: 210px;
+                        height: 120px;
+                        padding-right: 20px;
+    
+                        .channel-name {
+                            height: 30px;
+                            font-size: 26px;
+                            font-family: Source Han Sans CN;
+                            font-weight: 500;
+                            color: #666666;
+                            line-height: 30px;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                        }
+    
+                        .channel-time {
+                            height: 30px;
+                            font-size: 20px;
+                            font-family: Source Han Sans CN;
+                            font-weight: 400;
+                            color: #666666;
+                            line-height: 30px;
+                            margin: 16px 0;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                        }
+    
+                        .channel-intro {
+                            height: 30px;
+                            font-size: 20px;
+                            font-family: Source Han Sans CN;
+                            font-weight: 400;
+                            color: #999999;
+                            line-height: 30px;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                        }
+                    }
+    
+                    #hintBox {
+                        display: none;
+                        position: absolute;
+                        right: 32px;
+                        top: 50px;
+                        font-size: 14px;
+                        padding: 10px 16px;
+                        color: #fff;
+                        background-color: #2D2D2D;
+                        opacity: 0.8;
+                        border-radius: 4px;
+                        #hintAngle {
+                            position: absolute;
+                            left: 50%;
+                            top: -6px;
+                            transform: translateX(-50%)  rotate(45deg);
+                            width: 12px;
+                            height: 12px;
+                            background-color: #2D2D2D;
+                        }
+                    }
+                    .setChannel {
+                        position: absolute;
+                        width: 22px;
+                        height: 22px;
+                        top: 20px;
+                        right: 52px;
+                        cursor: pointer;
+                        // &:hover + #hintBox {
+                        //     display: block;
+                        // }
+                    }
+    
+                    #hintBox1 {
+                        display: none;
+                        position: absolute;
+                        right: 0;
+                        top: 50px;
+                        font-size: 14px;
+                        padding: 10px 16px;
+                        color: #fff;
+                        background-color:#2D2D2D;
+                        opacity: 0.8;
+                        border-radius: 4px;
+                        #hintAngle {
+                            position: absolute;
+                            left: 50%;
+                            top: -6px;
+                            transform: translateX(-50%)  rotate(45deg);
+                            width: 12px;
+                            height: 12px;
+                            background-color:#2D2D2D;
+                        }
+                    }
+                    .deleteChannel {
+                        position: absolute;
+                        width: 20px;
+                        height: 22px;
+                        top: 20px;
+                        right: 20px;
+                        cursor: pointer;
+                        // &:hover + #hintBox1 {
+                        //     display: block;
+                        // }
+                    }
+                   
+                }
+    
             }
-            
         }
-
-        .channelContent {
-            width: 1559px;
-            display: flex;
-            justify-content: flex-start;
-            align-content: flex-start;
-            flex-wrap: wrap;
-
-            #newAdd {
-                width: 494px;
-                height: 262px;
-                background-color: #FFFFFF;
-                color: #999999;
-                font-size: 28px;
-                box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
-                border-radius: 10px;
-                position: relative;
-                margin-bottom: 20px;
-
-                img {
-                    width: 80px;
-                    height: 80px;
+        #containerRight {
+            width: 360px;
+            margin-left: 24px;
+            #accountInfo {
+                width: 360px;
+                height: 308px;
+                padding: 20px 0 0 20px;
+                box-sizing: border-box;
+                background: #FFFFFF;
+                box-shadow: 0px 3px 6px rgba(102, 102, 102, 0.1);
+                border-radius: 2px;
+                p {
+                    height: 24px;
+                    font-size: 24px;
+                    font-family: Source Han Sans CN;
+                    line-height: 24px;
+                    color: #666666;
+                    margin-bottom: 20px;
+                    .payStyle {
+                        display: inline-block;
+                        width: 52px;
+                        height: 24px;
+                        background: #FF914C;
+                        border-radius: 13px;
+                        font-size: 16px;
+                        color: #fff;
+                        text-align: center;
+                        vertical-align: top;
+                        cursor: pointer;
+                    }
+                }
+                .distanceTop {
+                    margin-top: 48px;
                 }
             }
-
-            .chanMargin {
-                margin: 0 38px;
-            }
-
-            .chan {
-                width: 494px;
-                height: 120px;
-                padding: 71px 0;
-                background-color: #fff;
-                box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
-                border-radius: 10px;
-                margin-bottom: 20px;
-                position: relative;
-                cursor: pointer;
-
-                .channel-cover {
-                    width: 104px;
-                    height: 120px;
-                    margin: 0 20px 0 50px;
-                    vertical-align: top;
-                }
-
-                .channelInfo {
-                    display: inline-block;
-                    width: 300px;
-                    height: 120px;
-                    padding-right: 20px;
-
-                    .channel-name {
-                        height: 30px;
-                        font-size: 26px;
+            #helpCenter {
+                width: 360px;
+                height: 398px;
+                background: #FFFFFF;
+                box-shadow: 0px 3px 6px rgba(102, 102, 102, 0.1);
+                margin-top: 24px;
+                .helpTitle {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0 20px;
+                    height: 66px;
+                    line-height: 66px;
+                    .help_title {
+                        font-size: 24px;
                         font-family: Source Han Sans CN;
                         font-weight: 500;
-                        color: #666666;
-                        line-height: 30px;
-                        overflow: hidden;
-                        white-space: nowrap;
-                        text-overflow: ellipsis;
+                        color: #444444;
                     }
-
-                    .channel-time {
-                        height: 30px;
-                        font-size: 20px;
-                        font-family: Source Han Sans CN;
-                        font-weight: 400;
-                        color: #666666;
-                        line-height: 30px;
-                        margin: 15px 0;
-                        overflow: hidden;
-                        white-space: nowrap;
-                        text-overflow: ellipsis;
-                    }
-
-                    .channel-intro {
-                        height: 30px;
+                    .show_more {
                         font-size: 20px;
                         font-family: Source Han Sans CN;
                         font-weight: 400;
                         color: #999999;
-                        line-height: 30px;
-                        overflow: hidden;
-                        white-space: nowrap;
-                        text-overflow: ellipsis;
+                        text-decoration: none;
+                        &:hover{
+                            color: #f2591a;
+                        }
                     }
                 }
-
-                #hintBox {
-                    display: none;
-                    position: absolute;
-                    right: 32px;
-                    top: 50px;
-                    font-size: 14px;
-                    padding: 10px 16px;
-                    color: #fff;
-                    background-color: #2D2D2D;
-                    opacity: 0.8;
-                    border-radius: 4px;
-                    #hintAngle {
-                        position: absolute;
-                        left: 50%;
-                        top: -6px;
-                        transform: translateX(-50%)  rotate(45deg);
-                        width: 12px;
-                        height: 12px;
-                        background-color: #2D2D2D;
+                hr {
+                    margin: 0 !important;
+                }
+                .issue {
+                    display: block;
+                    text-decoration: none;
+                    font-size: 20px;
+                    font-family: Source Han Sans CN;
+                    line-height: 30px;
+                    color: #999999;
+                    margin-top: 24px;
+                    padding-left: 20px;
+                    &:hover{
+                        color: #f2591a;
                     }
                 }
-                .setChannel {
-                    position: absolute;
-                    width: 22px;
-                    height: 22px;
-                    top: 20px;
-                    right: 52px;
-                    cursor: pointer;
-                    &:hover + #hintBox {
-                        display: block;
-                    }
-                }
-
-                #hintBox1 {
-                    display: none;
-                    position: absolute;
-                    right: 0;
-                    top: 50px;
-                    font-size: 14px;
-                    padding: 10px 16px;
-                    color: #fff;
-                    background-color:#2D2D2D;
-                    opacity: 0.8;
-                    border-radius: 4px;
-                    #hintAngle {
-                        position: absolute;
-                        left: 50%;
-                        top: -6px;
-                        transform: translateX(-50%)  rotate(45deg);
-                        width: 12px;
-                        height: 12px;
-                        background-color:#2D2D2D;
-                    }
-                }
-                .deleteChannel {
-                    position: absolute;
-                    width: 20px;
-                    height: 22px;
-                    top: 20px;
-                    right: 20px;
-                    cursor: pointer;
-                    &:hover + #hintBox1 {
-                        display: block;
-                    }
-                }
-               
             }
-
         }
 
     }

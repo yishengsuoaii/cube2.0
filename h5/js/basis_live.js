@@ -813,7 +813,7 @@ $(function () {
             shaStr = sha1('jsapi_ticket='+res.data+'&noncestr='+srcShare+'&timestamp='+timeShare+'&url=http://www.cube.vip/h5/live.html?key='+ event_uri_key)
             wx.config({
                     debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                    appId: 'wxfeb6dd6cbf5a390b', // 必填，公众号的唯一标识
+                    appId: 'wx4f25eb3e0b8f7433', // 必填，公众号的唯一标识
                     timestamp: timeShare, // 必填，生成签名的时间戳
                     nonceStr: srcShare, // 必填，生成签名的随机串
                     signature: shaStr, // 必填，签名，见附录1

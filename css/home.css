@@ -1,50 +1,27 @@
 .parentMain .containerBox {
+  display: flex;
   width: 1559px;
 }
-.parentMain .containerBox .wallet {
-  background-color: #FFFFFF;
-  width: 1559px;
-  height: 82px;
-  padding-top: 53px;
-  border-radius: 10px;
+.parentMain .containerBox #containerLeft {
+  width: 1128px;
+  height: 100vh;
 }
-.parentMain .containerBox .wallet .wallet-top {
-  height: 50px;
-}
-.parentMain .containerBox .wallet .wallet-top li {
-  list-style: none;
-  height: 50px;
-  font-size: 20px;
-  float: left;
-  color: #666666;
-}
-.parentMain .containerBox .wallet .wallet-top .at {
-  width: 198px;
-  margin-left: 29px;
-}
-.parentMain .containerBox .wallet .wallet-top .at .account_category {
-  color: #f2591a;
-}
-.parentMain .containerBox .wallet .wallet-top .event_n {
-  width: 198px;
-  margin-left: 300px;
-}
-.parentMain .containerBox .wallet .wallet-top .boa {
-  width: 198px;
-}
-.parentMain .containerBox .chang-sx {
-  width: 1559px;
-  height: 38px;
-  margin: 33px 0 20px;
+.parentMain .containerBox #containerLeft .chang-sx {
+  width: 1128px;
+  height: 40px;
   display: flex;
   justify-content: space-between;
 }
-.parentMain .containerBox .chang-sx .lab {
-  width: 179px;
+.parentMain .containerBox #containerLeft .chang-sx .lab {
+  width: 168px;
   box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
   position: relative;
+  border: 1px solid #fff;
 }
-.parentMain .containerBox .chang-sx .lab #order-icon {
+.parentMain .containerBox #containerLeft .chang-sx .lab:hover {
+  border: 1px solid #FF914C;
+}
+.parentMain .containerBox #containerLeft .chang-sx .lab #order-icon {
   width: 55px;
   height: 55px;
   position: absolute;
@@ -52,21 +29,25 @@
   right: -55px;
   cursor: pointer;
 }
-.parentMain .containerBox .chang-sx #from {
-  width: 1200px;
+.parentMain .containerBox #containerLeft .chang-sx #from {
+  width: 840px;
   display: flex;
   justify-content: space-between;
 }
-.parentMain .containerBox .chang-sx #from #chang-bt {
-  width: 494px;
+.parentMain .containerBox #containerLeft .chang-sx #from #chang-bt {
+  width: 360px;
   box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
 }
-.parentMain .containerBox .chang-sx #from #chang-bt .inp {
-  width: 430px;
+.parentMain .containerBox #containerLeft .chang-sx #from #chang-bt .inp {
+  width: 296px;
   display: inline-block;
   vertical-align: top;
+  border: 1px solid #fff !important;
 }
-.parentMain .containerBox .chang-sx #from #chang-bt .danger {
+.parentMain .containerBox #containerLeft .chang-sx #from #chang-bt .inp:hover {
+  border: 1px solid #FF914C !important;
+}
+.parentMain .containerBox #containerLeft .chang-sx #from #chang-bt .danger {
   display: inline-block;
   width: 64px;
   height: 38px;
@@ -76,25 +57,32 @@
   line-height: 38px;
   cursor: pointer;
 }
-.parentMain .containerBox .chang-sx #from #chang-bt .danger img {
+.parentMain .containerBox #containerLeft .chang-sx #from #chang-bt .danger:hover {
+  background: #F2591A;
+}
+.parentMain .containerBox #containerLeft .chang-sx #from #chang-bt .danger img {
   width: 28px;
   height: 28px;
 }
-.parentMain .containerBox .chang-sx #from #test5 {
-  width: 361px;
-  border: none;
+.parentMain .containerBox #containerLeft .chang-sx #from #calendar-select {
+  width: 456px;
+  border: 1px solid #fff !important;
   box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
 }
-.parentMain .containerBox .channelContent {
-  width: 1559px;
+.parentMain .containerBox #containerLeft .chang-sx #from #calendar-select:hover {
+  border: 1px solid #FF914C !important;
+}
+.parentMain .containerBox #containerLeft .channelContent {
+  width: 1128px;
+  margin-top: 54px;
   display: flex;
   justify-content: flex-start;
   align-content: flex-start;
   flex-wrap: wrap;
 }
-.parentMain .containerBox .channelContent #newAdd {
-  width: 494px;
-  height: 262px;
+.parentMain .containerBox #containerLeft .channelContent #newAdd {
+  width: 360px;
+  height: 214px;
   background-color: #FFFFFF;
   color: #999999;
   font-size: 28px;
@@ -103,17 +91,20 @@
   position: relative;
   margin-bottom: 20px;
 }
-.parentMain .containerBox .channelContent #newAdd img {
+.parentMain .containerBox #containerLeft .channelContent #newAdd:hover {
+  box-shadow: 0px 3px 6px rgba(255, 145, 76, 0.36);
+}
+.parentMain .containerBox #containerLeft .channelContent #newAdd img {
   width: 80px;
   height: 80px;
 }
-.parentMain .containerBox .channelContent .chanMargin {
-  margin: 0 38px;
+.parentMain .containerBox #containerLeft .channelContent .chanMargin {
+  margin: 0 24px;
 }
-.parentMain .containerBox .channelContent .chan {
-  width: 494px;
-  height: 120px;
-  padding: 71px 0;
+.parentMain .containerBox #containerLeft .channelContent .chan {
+  width: 360px;
+  height: 122px;
+  padding: 46px 0;
   background-color: #fff;
   box-shadow: 0px 2px 10px 0px rgba(102, 102, 102, 0.1);
   border-radius: 10px;
@@ -121,19 +112,22 @@
   position: relative;
   cursor: pointer;
 }
-.parentMain .containerBox .channelContent .chan .channel-cover {
-  width: 104px;
-  height: 120px;
-  margin: 0 20px 0 50px;
+.parentMain .containerBox #containerLeft .channelContent .chan:hover {
+  box-shadow: 0px 3px 6px rgba(255, 145, 76, 0.36);
+}
+.parentMain .containerBox #containerLeft .channelContent .chan .channel-cover {
+  width: 90px;
+  height: 72px;
+  margin-left: 32px;
   vertical-align: top;
 }
-.parentMain .containerBox .channelContent .chan .channelInfo {
+.parentMain .containerBox #containerLeft .channelContent .chan .channelInfo {
   display: inline-block;
-  width: 300px;
+  width: 210px;
   height: 120px;
   padding-right: 20px;
 }
-.parentMain .containerBox .channelContent .chan .channelInfo .channel-name {
+.parentMain .containerBox #containerLeft .channelContent .chan .channelInfo .channel-name {
   height: 30px;
   font-size: 26px;
   font-family: Source Han Sans CN;
@@ -144,19 +138,19 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.parentMain .containerBox .channelContent .chan .channelInfo .channel-time {
+.parentMain .containerBox #containerLeft .channelContent .chan .channelInfo .channel-time {
   height: 30px;
   font-size: 20px;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #666666;
   line-height: 30px;
-  margin: 15px 0;
+  margin: 16px 0;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.parentMain .containerBox .channelContent .chan .channelInfo .channel-intro {
+.parentMain .containerBox #containerLeft .channelContent .chan .channelInfo .channel-intro {
   height: 30px;
   font-size: 20px;
   font-family: Source Han Sans CN;
@@ -167,7 +161,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.parentMain .containerBox .channelContent .chan #hintBox {
+.parentMain .containerBox #containerLeft .channelContent .chan #hintBox {
   display: none;
   position: absolute;
   right: 32px;
@@ -179,7 +173,7 @@
   opacity: 0.8;
   border-radius: 4px;
 }
-.parentMain .containerBox .channelContent .chan #hintBox #hintAngle {
+.parentMain .containerBox #containerLeft .channelContent .chan #hintBox #hintAngle {
   position: absolute;
   left: 50%;
   top: -6px;
@@ -188,7 +182,7 @@
   height: 12px;
   background-color: #2D2D2D;
 }
-.parentMain .containerBox .channelContent .chan .setChannel {
+.parentMain .containerBox #containerLeft .channelContent .chan .setChannel {
   position: absolute;
   width: 22px;
   height: 22px;
@@ -196,10 +190,7 @@
   right: 52px;
   cursor: pointer;
 }
-.parentMain .containerBox .channelContent .chan .setChannel:hover + #hintBox {
-  display: block;
-}
-.parentMain .containerBox .channelContent .chan #hintBox1 {
+.parentMain .containerBox #containerLeft .channelContent .chan #hintBox1 {
   display: none;
   position: absolute;
   right: 0;
@@ -211,7 +202,7 @@
   opacity: 0.8;
   border-radius: 4px;
 }
-.parentMain .containerBox .channelContent .chan #hintBox1 #hintAngle {
+.parentMain .containerBox #containerLeft .channelContent .chan #hintBox1 #hintAngle {
   position: absolute;
   left: 50%;
   top: -6px;
@@ -220,7 +211,7 @@
   height: 12px;
   background-color: #2D2D2D;
 }
-.parentMain .containerBox .channelContent .chan .deleteChannel {
+.parentMain .containerBox #containerLeft .channelContent .chan .deleteChannel {
   position: absolute;
   width: 20px;
   height: 22px;
@@ -228,8 +219,87 @@
   right: 20px;
   cursor: pointer;
 }
-.parentMain .containerBox .channelContent .chan .deleteChannel:hover + #hintBox1 {
+.parentMain .containerBox #containerRight {
+  width: 360px;
+  margin-left: 24px;
+}
+.parentMain .containerBox #containerRight #accountInfo {
+  width: 360px;
+  height: 308px;
+  padding: 20px 0 0 20px;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  box-shadow: 0px 3px 6px rgba(102, 102, 102, 0.1);
+  border-radius: 2px;
+}
+.parentMain .containerBox #containerRight #accountInfo p {
+  height: 24px;
+  font-size: 24px;
+  font-family: Source Han Sans CN;
+  line-height: 24px;
+  color: #666666;
+  margin-bottom: 20px;
+}
+.parentMain .containerBox #containerRight #accountInfo p .payStyle {
+  display: inline-block;
+  width: 52px;
+  height: 24px;
+  background: #FF914C;
+  border-radius: 13px;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  vertical-align: top;
+  cursor: pointer;
+}
+.parentMain .containerBox #containerRight #accountInfo .distanceTop {
+  margin-top: 48px;
+}
+.parentMain .containerBox #containerRight #helpCenter {
+  width: 360px;
+  height: 398px;
+  background: #FFFFFF;
+  box-shadow: 0px 3px 6px rgba(102, 102, 102, 0.1);
+  margin-top: 24px;
+}
+.parentMain .containerBox #containerRight #helpCenter .helpTitle {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 66px;
+  line-height: 66px;
+}
+.parentMain .containerBox #containerRight #helpCenter .helpTitle .help_title {
+  font-size: 24px;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #444444;
+}
+.parentMain .containerBox #containerRight #helpCenter .helpTitle .show_more {
+  font-size: 20px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #999999;
+  text-decoration: none;
+}
+.parentMain .containerBox #containerRight #helpCenter .helpTitle .show_more:hover {
+  color: #f2591a;
+}
+.parentMain .containerBox #containerRight #helpCenter hr {
+  margin: 0 !important;
+}
+.parentMain .containerBox #containerRight #helpCenter .issue {
   display: block;
+  text-decoration: none;
+  font-size: 20px;
+  font-family: Source Han Sans CN;
+  line-height: 30px;
+  color: #999999;
+  margin-top: 24px;
+  padding-left: 20px;
+}
+.parentMain .containerBox #containerRight #helpCenter .issue:hover {
+  color: #f2591a;
 }
 #addDialog {
   display: none;

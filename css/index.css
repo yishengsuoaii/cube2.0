@@ -375,10 +375,15 @@
   background: #fff;
   box-shadow: 0 8px 30px #ddd;
 }
-.container .caseBox #certify .swiper-container .swiper-slide img {
+.container .caseBox #certify .swiper-container .swiper-slide video {
   width: 520px;
   height: 310px;
   display: block;
+  border: none;
+  outline: none;
+}
+.container .caseBox #certify .swiper-container .swiper-slide video::-webkit-media-controls-fullscreen-button {
+  display: none;
 }
 .container .caseBox #certify .swiper-container .swiper-slide p {
   line-height: 98px;

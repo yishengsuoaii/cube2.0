@@ -87,6 +87,9 @@
     color: #666;
     margin: 10px auto;
   }
+  #textVideo:hover {
+    border: 1px solid #FF914D;
+  }
   .hintInfo {
     height: 30px;
     font-size: 16px;
@@ -287,6 +290,9 @@
       cursor: pointer;
       border-radius: 4px;
     }
+    .crop-container .crop-panel .small-btn:hover{
+      background-color: #F2591A;
+    }
     .crop-container .crop-panel .crop-time-area {
       background-color: #313239;
     }
@@ -381,6 +387,9 @@
       cursor: pointer;
       font-size: 16px;
       margin: 0 auto;
+    }
+    .confirm-btn:hover {
+      background: #F2591A;
     }
      .confirm-btn-disabled {
       background-color: #9b9b9b;

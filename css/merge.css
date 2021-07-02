@@ -94,6 +94,9 @@
   border: 1px solid #999999;
   resize: none;
 }
+.parentMain #containerBox #content .dragCont .dragRight #videoText:hover {
+  border: 1px solid #FF914D;
+}
 .parentMain #containerBox #content .dragCont .dragRight .nameLength {
   height: 30px;
   font-size: 16px;
@@ -108,6 +111,10 @@
   height: 40px;
   border-radius: 10px;
   margin-top: 38px;
+  background: #FF914D !important;
+}
+.parentMain #containerBox #content .dragCont .dragRight #submit:hover {
+  background: #F2591A !important;
 }
 video {
   border: none;

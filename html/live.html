@@ -119,7 +119,7 @@
                                     </p>
                                     <div id="liveQrcodeBox">
                                         <div id="liveQrcode"></div>
-                                        <p class="scanName">微信扫码预览</p>
+                                        <p class="scanName">微信扫码观看</p>
                                     </div>
                                     
                                     <div class="head-copy">
@@ -173,6 +173,9 @@
                                                                     <img src=""  id="introduce-image">
                                                                 </div>
                                                                 <div class="introduce-hint">
+                                                                    <p class="introduce-hint-list" style="margin-bottom: 0.4rem;">
+                                                                        用于介绍直播活动详情(例如活动流程介绍)
+                                                                    </p>
                                                                     <p class="introduce-hint-list">
                                                                         <span class="introduce-hint-icon"></span>
                                                                         图片大小2M以内
@@ -185,16 +188,16 @@
                                                                         <span class="introduce-hint-icon"></span>
                                                                         支持png,jpg,jpeg格式
                                                                     </p>
+                                                                    <div id="ai-submit">上传</div>
                                                                 </div>
-                                                                <img id="introduce-shade" src="./../image/upload-video-icon.png" alt="">
                                                             </div>
-                                                            <div id="ai-submit">提交</div>
+                                                            
                                                         </div>
                                                     </div>
                                                     <div class="layui-tab-item">
                                                         <!-- 直播窗口背景 -->
                                                         <p class="live-bg-title">
-                                                            预览:
+                                                            预览:<span>用于观众侧直播未开始前的直播窗口封面图</span>
                                                         </p>
                                                         <div class="live-bg-image">
                                                             <img class="layui-upload-img" id="live-bg-cover" src="./../image/mobile-cover.png">
@@ -222,7 +225,7 @@
                                                                     <label class="layui-form-label">视频显示</label>
                                                                     <div class="layui-input-block">
                                                                         <input type="checkbox" name="switch" lay-skin="switch" id="preview-open" lay-filter="preview-open">
-                                                                        <span class="preview-info">（功能开启后，当您不在直播时，用户可点击播放该视频）</span>
+                                                                        <span class="preview-info">（视频可以用作直播前的视频预告或直播结束后的视频回放）</span>
                                                                     </div>
                                                                 </div>
                                                             </form>
@@ -246,7 +249,7 @@
                                                                             lay-filter="code-switch"  lay-skin="switch">
                                                                     </div>
                                                                 </div>
-                                                                <p class="encryption-hint">频道加密后进入此频道直播页需输入访问码</p>
+                                                                <p class="encryption-hint">加密后观众进入直播间需要输入直播间密码</p>
                                     
                                                                 <div class="code-input">
                                                                     <input type="text" id="code1" maxlength="1" disabled>
@@ -274,7 +277,7 @@
                                                     <li>自定义广告</li>
                                                     <li>邀请卡分享</li>
                                                     <li>精彩推荐</li>
-                                                    <li>H5模板</li>
+                                                    <li>观看侧模板</li>
                                                 </ul>
                                                 <div class="layui-tab-content">
                                                     <div class="layui-tab-item layui-show">
@@ -422,6 +425,7 @@
                                                     <div class="layui-tab-item">
                                                         <div id="inviteBox">
                                                             <div class="inviteLeft">
+                                                                <p class="inviteInfo">邀请朋友观看直播的邀请卡片</p>
                                                                 <p class="default-style">默认样式</p>
                                                                 <div class="different-style">
                                                                 </div>
@@ -470,6 +474,7 @@
                                                     <div class="layui-tab-item">
                                                         <div id="h5_template">
                                                             <div class="h5_Left">
+                                                                <p class="h5_info">直播间观看侧页面样式</p>
                                                                 <p class="h5_default-style">默认样式</p>
                                                                 <div class="h5_list">
                                                                 </div>
@@ -499,7 +504,7 @@
                                     </p>
                                     <div id="liveQrcode1Box">
                                         <div id="liveQrcode1"></div>
-                                        <p class="scanName">微信扫码预览</p>
+                                        <p class="scanName">微信扫码观看</p>
                                     </div>
                                         
                                     <div class="head-copy head-copy1">
@@ -600,8 +605,13 @@
                                             <video id="liveRight-video" muted autoplay></video>
                                         </div>
                                         <p id="liveRight-name">
-                                            <span>直播窗口</span>
-                                            <img src="./../image/headset-open.png" id="live-headset">
+                                            <span id="liveWin">直播窗口</span>
+                                            <span id="hintLive">
+                                                导播台监听,关闭不影响观众侧声音<span id="hintLiveAngle"></span>
+                                            </span>
+                                            <span id="live-mute">
+                                                <img src="./../image/headset-open.png" id="live-headset">
+                                            </span>
                                         </p>
                                     </div>
                                 </div>

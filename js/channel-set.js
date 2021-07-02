@@ -779,13 +779,13 @@ $(function () {
             var upload = layui.upload;
             //执行实例
             upload.render({
-                elem: '#introduce-box',
+                elem: '#ai-submit',
                 type: "POST",
                 dataType: "json",
                 headers: {
                     token: sessionStorage.getItem('token')
                 },
-                auto: false,
+                // auto: false,
                 size: 1024 * 2,
                 data: {
                     event_id: event_id,
@@ -796,12 +796,12 @@ $(function () {
                         $("#introduce-image").attr('src',window.URL.createObjectURL(file)).show()
                     })
                 },
-                bindAction: '#ai-submit',
+                // bindAction: '#ai-submit',
                 done: function (res) {
                     if (res.msg === 'success') {
-                        layer.msg('保存成功!');
+                        layer.msg('上传成功!');
                     } else {
-                        layer.msg('保存失败,请重试!');
+                        layer.msg('上传失败,请重试!');
                     }
                 }
             })

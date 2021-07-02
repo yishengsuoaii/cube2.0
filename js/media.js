@@ -1402,4 +1402,61 @@ $(function () {
         });
     });
 
+    // 鼠标浮上去效果
+    $('#delete-video').hover(function(){
+        $(this).find('img').attr('src','./../image/active-delete-icon.png')
+    },function(){
+        $(this).find('img').attr('src','./../image/delete-icon.png')
+    })
+
+    $('#ts-delete-video').hover(function(){
+        $(this).find('img').attr('src','./../image/active-delete-icon.png')
+    },function(){
+        $(this).find('img').attr('src','./../image/delete-icon.png')
+    })
+    
+    
+    $('#uploadVideo').hover(function(){
+        $(this).find('img').attr('src','./../image/uploadIcon.png')
+    },function(){
+        $(this).find('img').attr('src','./../image/upload-icon.png')
+    })
+
+    $('#editing').hover(function(){
+        $(this).find('img').attr('src','./../image/active-editing-icon.png')
+    },function(){
+        $(this).find('img').attr('src','./../image/editing-icon.png')
+    })
+    
+    
+    $('#merge').hover(function(){
+        $(this).find('img').attr('src','./../image/active-merge-icon.png')
+    },function(){
+        $(this).find('img').attr('src','./../image/merge-icon.png')
+    })
+    $('#move-ts').hover(function(){
+        $(this).find('img').attr('src','./../image/active-video-move-icon.png')
+    },function(){
+        $(this).find('img').attr('src','./../image/video-move-icon.png')
+    })
+    $('#ts-move-video').hover(function(){
+        $(this).find('img').attr('src','./../image/active-video-move-icon.png')
+    },function(){
+        $(this).find('img').attr('src','./../image/video-move-icon.png')
+    })
+
+    $('.videoContent').on('mouseenter','.video-edit',function(){
+        $(this).attr('src','./../image/active-edit-icon.png')
+    })
+    $('.videoContent').on('mouseleave','.video-edit',function(){
+        $(this).attr('src','./../image/edit-icon.png')
+    })
+
+    $('.tsContent').on('mouseenter','.video-edit',function(){
+        $(this).attr('src','./../image/active-edit-icon.png')
+    })
+    $('.tsContent').on('mouseleave','.video-edit',function(){
+        $(this).attr('src','./../image/edit-icon.png')
+    })
+    
 })
