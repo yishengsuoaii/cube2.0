@@ -165,6 +165,19 @@ $(function () {
         }
     })
 
+    // 渠道码
+    $('#channelBtn').click(function () {
+        if ($('#channelArrows').hasClass('layui-icon-down')) {
+            $('#channelArrows').removeClass('layui-icon-down').addClass('layui-icon-up')
+            $('.channelInput').show()
+            $('#channel-submit').show()
+        } else {
+            $('#channelArrows').removeClass('layui-icon-up').addClass('layui-icon-down')
+            $('.channelInput').hide()
+            $('#channel-submit').hide()
+        }
+    })
+
     $.ajax({
         type: "GET",
         dataType: "json",
@@ -177,7 +190,7 @@ $(function () {
             if (res.msg === 'success') {
                 if(res.data!=null) {
                     $('.channelInput').val(res.data).attr('readonly',true)
-                    $('.channelName').html('渠道码:(已绑定)')
+                    $('.channelNameText').html('渠道码:(已绑定)')
                 }
                 
             }

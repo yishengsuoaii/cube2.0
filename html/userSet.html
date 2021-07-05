@@ -70,6 +70,11 @@
                         <img class="menu-icon" width="34" height="29" src="./../image/user-set-active-icon.png">设置
                     </a>
                 </li>
+                <li>
+                    <a  href="./helpcentre.html">
+                        <img class="menu-icon" width="34" height="29" src="./../image/help-icon.png">帮助中心
+                    </a>
+                </li>
             </ul>
 
             <!--主要内容区-->
@@ -91,7 +96,7 @@
                             </p>
                             <p class="editNameBtn">
                                 修改用户名<i class="layui-icon layui-icon-down" id="nameArrows"
-                                    style="font-size: 20px; color: #FF914D;"></i>
+                                    style="font-size: 20px;"></i>
                             </p>
                         </div>
                         <div class="editNameBox">
@@ -105,7 +110,7 @@
                         <p class="userPass">
                             <span>登录密码</span>
                             <span id="editPassBtn">修改密码<i class="layui-icon layui-icon-down" id="passArrows"
-                                    style="font-size: 20px; color: #FF914D;"></i></span>
+                                    style="font-size: 20px;"></i></span>
                         </p>
                         <div class="editPassBox">
                             <p class="passName">原始密码:</p>
@@ -117,7 +122,14 @@
                             <div id="pass-submit">提交</div>
                         </div>
                         <div class="channelStyle">
-                            <p class="channelName">渠道码:</p>
+                            <p class="channelName">
+                                <span class=".channelNameText">
+                                    渠道码:
+                                </span>
+                                
+                                <span id="channelBtn">修改渠道码<i class="layui-icon layui-icon-down" id="channelArrows"
+                                    style="font-size: 20px;"></i></span>
+                            </p>
                             <input  class="channelInput"  maxlength="16">
                             <div id="channel-submit">提交</div>
                         </div>

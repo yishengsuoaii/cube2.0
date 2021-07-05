@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./../layui/css/layui.css">
+    <link rel="stylesheet" href="./../css/common.css">
+    <link rel="stylesheet" href="./../css/helpCentre.css">
+    <script src="./../layui/layui.js"></script>
+    <script src="./../commonJs/jquery-3.2.1.min.js"></script>
+    <script src="./../js/common.js"></script>
+    <title>设置</title>
+
+</head>
+
+<body>
+    <div id="container">
+        <!--上方标题栏-->
+        <div class="parentTop">
+            <img class="logImage" src="./../image/login-logo.png">
+            <div class="loginNameDiv">
+                <div class="messageBox">
+                    <img src="./../image/message-icon.png" alt="" class="messageIcon">
+                    <span class="layui-badge-dot" id="hot"></span>
+                </div>
+                <div class="nameContent">
+                    <span class="userName"></span>
+                </div>
+                <div id="userExit">退出</div>
+            </div>
+        </div>
+        <div id="mainContent">
+            <!--左侧菜单-->
+            <ul class="leftMenu">
+                <li>
+                    <a href="./home.html">
+                        <img class="menu-icon" width="35" height="28" src="./../image/channel-icon.png" alt="">频道
+                    </a>
+                </li>
+                <li>
+                    <a href="./portal.html">
+                        <img class="menu-icon" width="32" height="30" src="./../image/video-icon.png">部落
+                    </a>
+                </li>
+                <li>
+                    <a href="./media.html">
+                        <img class="menu-icon" width="32" height="26" src="./../image/media-library-icon.png">媒体库
+                    </a>
+                </li>
+                <li>
+                    <a href="./account.html">
+                        <img class="menu-icon" width="34" height="26" src="./../image/account-icon.png">账户
+                    </a>
+                </li>
+                <li>
+                    <a href="./data.html">
+                        <img class="menu-icon" width="32" height="24" src="./../image/data-icon.png">数据统计
+                    </a>
+                </li>
+                <li>
+                    <a href="./appStore.html">
+                        <img class="menu-icon" width="30" height="30" src="./../image/app-store-icon.png">应用商店
+                    </a>
+                </li>
+                <li>
+                    <a href="./userSet.html">
+                        <img class="menu-icon" width="34" height="29" src="./../image/user-set-icon.png">设置
+                    </a>
+                </li>
+                <li>
+                    <a class="menuActive" href="./helpcentre.html">
+                        <img class="menu-icon" width="34" height="29" src="./../image/help-active-icon.png">帮助中心
+                    </a>
+                </li>
+            </ul>
+
+            <!--主要内容区-->
+            <div class="parentMain">
+                <div class="container">
+                    <div id="content">
+                        <div class="helpCenter">
+                            <span class="helpTitle">帮助中心</span>
+                            <!-- <div class="searchBox">
+                                <input type="text" class="searchInput" placeholder="关键字搜索"><span class="searchBtn">搜索</span>
+                            </div> -->
+                        </div>
+                        <div class="helpCont">
+                            <ul class="navbar">
+                                <li class="navItem">
+                                    <div class="navTitle navTActive" data-id="1">
+                                        <a class="link">
+                                            <span class="linkTitle">新手入门</span>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="navItem">
+                                    <div class="menuTitle">
+                                        <a class="link">
+                                            <span class="linkTitle">使用手册</span>
+                                            <img class="icon-down" src="./../image/arrows.png" alt="">
+                                        </a>
+                                    </div>
+                                    <ul class="submenu">
+                                        <li class="menuItem" data-id="2"><a>频道</a></li>
+                                        <li class="menuItem" data-id="7"><a>部落</a></li>
+                                        <li class="menuItem" data-id="8"><a>媒体库</a></li>
+                                        <!-- <li class="menuItem" data-id="9"><a>账户</a></li> -->
+                                    </ul>
+                                </li>
+                                <!-- <li class="navItem">
+                                    <div class="navTitle" data-id="3">
+                                        <a class="link">
+                                            <span class="linkTitle">问题汇总</span>
+                                        </a>
+                                    </div>
+                                </li> -->
+                                <li class="navItem">
+                                    <div class="menuTitle">
+                                        <a class="link">
+                                            <span class="linkTitle">视频教程</span>
+                                            <img class="icon-down" src="./../image/arrows.png" alt="">
+                                        </a>
+                                    </div>
+                                    <ul class="submenu">
+                                        <li class="menuItem" data-id="4"><a>常规教程</a></li>
+                                    </ul>
+                                </li>
+                                <!-- <li class="navItem">
+                                    <div class="navTitle" data-id="5">
+                                        <a class="link">
+                                            <span class="linkTitle">常规操作</span>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="navItem">
+                                    <div class="menuTitle">
+                                        <a class="link">
+                                            <span  class="linkTitle">直播方案</span>
+                                            <img class="icon-down" src="./../image/arrows.png" alt="">
+                                        </a>
+                                    </div>
+                                    <ul class="submenu">
+                                        <li class="menuItem" data-id="6"><a>暂无</a></li>
+                                    </ul>
+                                </li> -->
+                            </ul>
+                            <div class="navCont">
+                                <div class="currentPosition ">
+                                   当前位置/<span class="currentParent" data-id="1">新手入门</span><span class="text"></span>
+                                </div>
+                                <div class="issue">
+                                    <div class="issueContent issue1">
+                                        <div class="issueTBox">
+                                            <p class="issueTitle">如何注册Cube账号？</p>
+                                            <p class="issueTitle">直播前需要准备什么？</p>
+                                            <p class="issueTitle">如何快速创建一场直播？</p>
+                                            <p class="issueTitle">Cube手机拍摄助手怎么使用？</p>
+                                            <p class="issueTitle">直播后视频如何管理？</p>
+                                        </div>
+                                        <div class="issueTCont">
+                                            <p class="textTitle">如何注册Cube账号？</p>
+                                            <P class="subtitle">注册Cube账号</P>
+                                            <p class="straightMatter">点击免费注册</p>
+                                            <img src="./../image/help_img1.png" width="700" height="347" style="margin-bottom: 30px;">
+                                            <p class="straightMatter">填写注册信息并提交,即注册成功</p>
+                                            <img src="./../image/help_img2.png" width="406" height="345" style="margin-bottom: 30px;">
+                                        </div> 
+                                        <div class="issueTCont">
+                                            <p class="textTitle">直播前需要准备什么？</p>
+                                            <P class="subtitle">所需设备</P>
+                                            <p class="straightMatter">笔记本电脑、网络（4g、5g)、手机、手机支架，手机需要下载安装好Cube手机拍摄助手。如果需要好的收音效果，也可以准备麦克风等外接收音设备。</p>
+                                            <P class="subtitle">直播准备</P>
+                                            <p class="straightMatter">1、保证网络环境稳定、手机设备电量充足。</p>
+                                            <p class="straightMatter">2、在预定方位架设好手机采集画面的位置。</p>
+                                            <p class="straightMatter">3、笔记本电脑注册登录Cube云平台，并创建好一个直播间。</p>
+                                            <p class="straightMatter">4、把直播推流码输入到手机采集设备，进行推流画面。</p>
+                                            <p class="straightMatter">5、在电脑端云导播台查看调试音视频效果，准备开启直播。</p>
+                                        </div>
+                                        <div class="issueTCont">
+                                            <p class="textTitle">如何快速创建一场直播？</p>
+                                            <p class="subtitle">一、注册账号并登录</p>
+                                            <p class="straightMatter">点击免费注册</p>
+                                            <img src="./../image/help_img1.png" width="700" height="347" style="margin-bottom: 30px;">
+                                            <p class="straightMatter">填写注册信息并点击注册,获取账号登录Cube云系统</p>
+                                            <img src="./../image/help_img2.png" width="406" height="345" style="margin-bottom: 30px;">
+                                            <p class="subtitle">二、下载手机拍摄助手</p>
+                                            <p class="straightMatter">下载安装手机拍摄助手（目前仅支持安卓系统下载）。</p>
+                                            <img src="./../image/help_img3.png" width="693" height="341" style="margin-bottom: 30px;">
+            
+                                            <p class="subtitle">三、创建直播间</p>
+                                            <p class="straightMatter">登录打开Cube云系统</p>
+                                            <img src="./../image/help_img4.png" width="700" height="345" style="margin-bottom: 30px;">
+                                            <p class="straightMatter">填写新建频道信息</p>
+                                            <img src="./../image/help_img5.png" width="700" height="347" style="margin-bottom: 30px;">
+            
+                                            <p class="subtitle">四、装修直播间</p>
+                                            <p class="straightMatter">创建好直播频道后进入频道管理，根据直播需求进行对应的设置。</p>
+                                            <img src="./../image/help_img6.png" width="563" height="361" style="margin-bottom: 30px;">
+            
+                                            <p class="subtitle">五、推流</p>
+                                            <p class="straightMatter">点击进入直播控制页面，复制手机推流码。</p>
+                                            <img src="./../image/help_img7.png" width="455" height="400" style="margin-bottom: 30px;">
+                                            <p class="straightMatter">把复制好的推流码输入到安装好的手机拍摄助手，点击摄像机按钮(按钮变红色）进行推流。</p>
+                                            <img src="./../image/help_img8.png" width="475" height="222" style="margin-bottom: 30px;">
+            
+                                            <p class="subtitle">六、开启直播</p>
+                                            <p class="straightMatter">根据需要摆好进行推流的手机位置，用来采集画面。开启直播，并用笔记本电脑查看并监控直播效果。</p>
+                                        </div> 
+                                        <div class="issueTCont">
+                                            <p class="textTitle">Cube手机拍摄助手如何安装使用？</p>
+                                            <p class="subtitle">Cube手机拍摄助手下载安装</p>
+                                            <p class="straightMatter">点击切换至下载页面如下图，使用手机扫码下载安装（目前仅支持安卓系统下载）。</p>
+                                            <img src="./../image/help_img3.png" width="693" height="341" style="margin-bottom: 30px;">
+                                            <p class="straightMatter">安装好的Cube拍摄助手打开界面有四个功能按钮如下图所示：</p>
+                                            <img src="./../image/help_img9.png" width="461" height="226" style="margin-bottom: 30px;">
+            
+                                            <p class="straightMatter">直播时点开图中所示按钮输入推流码</p>
+                                            <img src="./../image/help_img10.png" width="457" height="222" style="margin-bottom: 30px;">
+            
+                                            <p class="straightMatter">直播时输入推流码之后点击摄像头按钮，按钮变红后开启视频录像采集功能。</p>
+                                            <img src="./../image/help_img11.png" width="457" height="222" style="margin-bottom: 30px;">
+            
+                                            <p class="straightMatter">镜头切换按钮，点击镜头会进行前后位置切换。</p>
+                                            <img src="./../image/help_img12.png" width="457" height="222" style="margin-bottom: 30px;">
+            
+                                            <p class="straightMatter">闪光灯按钮，点击开启关闭灯光。</p>
+                                            <img src="./../image/help_img13.png" width="457" height="222" style="margin-bottom: 30px;">
+                                            
+                                        </div> 
+                                        <div class="issueTCont">
+                                            <p class="textTitle">直播后视频如何管理？</p>
+                                            <P class="subtitle">媒体库直播暂存管理</P>
+                                            <p class="straightMatter">直播后视频内容会实时存储到媒体库直播暂存库里，视频可以进行下载、编辑、删除等操作。
+                                                但是暂存库存储时间只有三天，三天到期会自动删除视频，如需要永久保存，直播后需及时将
+                                                要保存的视频移至视频库保存。</p>
+                                            <P class="subtitle">媒体库视频库管理</P>
+                                            <p class="straightMatter">视频库里的视频内容可以永久保存，视频可以剪辑、合并、上传、下载、编辑预览内容。但请勿保存或上传违规视频，否则将会被删除，严重者将会做封号处理。</p>
+                                        </div>
+                                    </div>
+                                    <div class="issueContent issue2">
+                                        <div class="issueTBox">
+                                            <p class="issueTitle">频道管理基础设置</p>
+                                            <p class="issueTitle">频道管理高级设置</p>
+                                            <p class="issueTitle">直播控制管理</p>
+                                            <p class="issueTitle">导播台介绍</p>
+                                            <p class="issueTitle">导播台应用插件使用介绍</p>
+                                            <p class="issueTitle">云推流</p>
+                                        </div>
+                                        <div class="issueTCont">
+                                            <p class="textTitle">频道管理基础设置</p>
+                                            <P class="subtitle">一、直播引导页</P>
+                                            <p class="straightMatter">此图片显示在手机观看直播时进入直播页面之前，用于展示直播相关介绍内容，点击上传按钮即可传入自定义的引导页面图（上传图片支持PNG、JPG、JPEG格式）。</p>
+                                            <P class="subtitle">二、活动详情</P>
+                                            <p class="straightMatter">显示在观看侧详情页，目前仅支持图片格式上传，图片内容可以自定义。图片尺寸(建议上传图片尺寸宽度为750px 、720px、640px , 高度不限制), 图片格式（PNG、JPG、JPEG)。如上传图片尺寸不符，图片将等比例压缩，将会影响查看效果。</p>
+                                            <P class="subtitle">三、直播窗口背景</P>
+                                            <p class="straightMatter">设置未开播前手机观看侧窗口图片(例如：直播内容预告），图片自定义，上传图片尺寸16：9建议尺寸（750px*428px）格式（PNG、JPG、JPEG）。</p>
+                                            <P class="subtitle">四、视频预告/回放</P>
+                                            <p class="straightMatter">设置直播视频预告或回放。直播开播前，添加预告视频，可设置开播前的视频预告。直播结束后，可以添加视频回放。</p>
+                                            <P class="subtitle">五、频道设置</P>
+                                            <p class="straightMatter">直播频道加密功能，开启后设置直播频道密码，进入直播间观看直播时需要输入密码进入。</p>
+                                        </div> 
+                                        <div class="issueTCont">
+                                            <p class="textTitle">频道管理高级设置</p>
+                                            <P class="subtitle">一、直播倒计时</P>
+                                            <p class="straightMatter">打开直播倒计时开关，选择直播倒计时显示位置(顶部显示，居中显示如下图所示）点击提交即
+                                                设置成功，直播倒计时时间会根据创建频道时设定的时间计时。</p>
+                                            <img src="./../image/help_img14.png" width="375" height="255" style="margin-bottom: 30px;">
+                                            <img src="./../image/help_img15.png" width="375" height="255" style="margin-left:7px;margin-bottom: 30px;">
+                                            <P class="subtitle">二、观众人数显示</P>
+                                            <p class="straightMatter">可设置真实人数/虚拟人数（该数据只为前端用户展现，后台数据以真实数据统计）</p>
+                                            <img src="./../image/help_img16.png" width="356" height="235" style="margin-bottom: 30px;">
+                                            <P class="subtitle">三、自定义广告</P>
+                                            <p class="straightMatter">开启可添加广告，点击上传图片传入做好的广告封面图，图片尺寸：(750*88px;您可上传自定义
+                                            尺寸的图片，内容将居中；图片大小：2m以内；图片格式：PNG、JPG、JPEG），输入广告地址链接，用户点击即可进入广告。</p>
+                                            <img src="./../image/help_img18.png" width="733" height="418" style="margin-bottom: 30px;">
+                                            <P class="subtitle">四、邀请卡分享</P>
+                                            <p class="straightMatter">移动端H5分享卡，点击分享地址链接，可以发送给好友,扫描图片中的二维码一同观看直播有四种卡片样式可选。</p>
+                                            <P class="subtitle">五、精彩视频分享</P>
+                                            <p class="straightMatter">点击添加视频，添加想要分享的精彩视频，点击提交，即可在观看页精选一栏分享添加好的精彩视频。</p>
+                                            <P class="subtitle">六、H5页模板</P>
+                                            <p class="straightMatter">H5页即观众观看侧页面，可根据想要直播的内容选择自己想要的页面主色调风格。</p>
+                                        </div> 
+                                        <div class="issueTCont">
+                                            <p class="textTitle">直播控制管理</p>
+                                            <P class="subtitle">pc端直播视频效果观看、直播推流、第三方平台拉流、直播分享、聊天管理</P>
+                                            <P class="subtitle">一、直播观看窗口</P>
+                                            <p class="straightMatter">开启直播后，用来观看监察直播画面效果</p>
+                                            <P class="subtitle">二、手机观看、分享</P>
+                                            <p class="straightMatter">点击手机观看，出现二维码手机扫描即可观看手机端直播效果。点击观看地址复制链接即可分享直播内容。</p>
+                                            <img src="./../image/help_img29.png" width="419" height="211" style="margin-bottom: 30px;">
+                                            <P class="subtitle">三、推流、拉流</P>
+                                            <p class="straightMatter">手机推流码，点击复制手机推流码，输入到Cube手机拍摄助手，即可实现手机推流，采集画面。拉流播放，提供两种格式可供第三方平台拉流播放视频。
+                                            </p>
+                                            <img src="./../image/help_img30.png" width="401" height="205" style="margin-bottom: 30px;">
+                                            <img src="./../image/help_img31.png" width="400" height="204" style="margin-bottom: 30px;">
+                                            <P class="subtitle">四、聊天管理</P>
+                                            <p class="straightMatter">管理观众聊天发言，实时互动，删除发言。</p>
+                                        </div> 
+                                        <div class="issueTCont">
+                                            <p class="textTitle">导播台介绍</p>
+                                            <P class="subtitle">导播台控制云台，分为直播窗口、预览窗口、机位展示小窗口和功能插件区域。</P>
+                                            <img src="./../image/help_img19.png" width="719" height="375" style="margin-bottom: 30px;">
+                                            <P class="subtitle">一、导播台主控辅助功能</P>
+                                            <p class="straightMatter">此功能为确定谁拥有导播台主控制权，辅助控制不能操作导播台，防止同时多人操作，导致直播混乱。需要操作导播台点击申请主控确定即可，另一方将成为辅助，不能操作导播台。</p>
+            
+                                            <P class="subtitle">二、预览窗口</P>
+                                            <p class="straightMatter">预览视频输出画面，预览窗口预览的是下边四个小窗机位画面，窗口底部三个功能按钮分别为单个输出画面按钮、两个画面拼接按钮、三个画面拼接按钮。直播时默认单个画面预览。</p>
+            
+                                            <P class="subtitle">三、直播窗口</P>
+                                            <p class="straightMatter">直播窗口画面为最终呈现给观众观看的画面，点击切换按钮，即把预览窗口画面输出呈现给观众侧观看，窗口底部有一个监听按钮，用来监听输出画面声音质量。</p>
+            
+            
+                                            <P class="subtitle">四、小窗口机位</P>
+                                            <p class="straightMatter">四个机位窗口可以呈现四路不同画面，满足多机位场景直播，每个机位都有快切和音量调节功能。快切功能，可以把想要呈现的画面一键切换到直播窗口呈现。音量调节每一路画面音量，多机位直播时可以做混音效果。</p>
+            
+                                            <P class="subtitle">五、功能插件区域</P>
+                                            <p class="straightMatter">根据不同直播场景选择需要的插件功能使用。</p>
+            
+                                        </div> 
+                                        <div class="issueTCont">
+                                            <p class="textTitle">导播台插件使用介绍</p>
+                                            <P class="subtitle">一、比分牌</P>
+                                            <p class="straightMatter">赛事体育时使用。点击设置模板按钮，出现比分牌设置弹窗，可以选择预设模板，设置赛事双方队名，logo,选择显示位置，设置好点击提交即可完成设置。</p>
+                                            <img src="./../image/help_img20.png" width="728" height="411" style="margin-bottom: 30px;">
+            
+                                            <p class="straightMatter">基础设置完成，比分牌控制面板开启，根据比赛情况加减比分。想要清除设置样式和比分，点击复位按钮即可。</p>
+                                            <img src="./../image/help_img21.png" width="730" height="150" style="margin-bottom: 30px;">
+            
+                                            <P class="subtitle">二、自动导切</P>
+                                            <p class="straightMatter">自动导切功能开启后，每隔10s会自动切换到下一个机位画面。</p>
+            
+                                            <P class="subtitle">三、手势检测</P>
+                                            <p class="straightMatter">智能手势导切功能，直播时开启此功能可以在机位前比出手势,镜头会根据手势来进行识别切
+                                                换。<img src="./../image/gestureone.png">表示机位一、<img src="./../image/gesturetwo.png">表示机位二、<img src="./../image/gesturethree.png">表示机位三。</p>
+            
+            
+                                            <P class="subtitle">四、ZOOM IN</P>
+                                            <p class="straightMatter">镜头放大功能。</p>
+            
+                                            <P class="subtitle">五、PDF云文档</P>
+                                            <p class="straightMatter">点击添加文档按钮出现文档设置弹窗。右侧可以上传、删除、管理文档列表，底部有四种播出模板可以选择预览。设置好点击提交即完成设置。</p>
+                                                <img src="./../image/help_img22.png" width="734" height="455" style="margin-bottom: 30px;">
+            
+                                            <p class="straightMatter">选择设置好文档后点击文档切出即开启文档直播，文档控制面板可以对文档进行翻页页数选择</p>
+                                            <img src="./../image/help_img23.png" width="731" height="110" style="margin-bottom: 30px;">
+            
+                                            <P class="subtitle">六、LOGO添加</P>
+                                            <p class="straightMatter">点击添加LOGO打开弹窗，上传LOGO图片，图片格式（PNG 、大小2m以内)选择LOGO位置点击提交即可。点击开启按钮，LOGO添加完成。取消LOGO,再次点击关闭即可。</p>
+            
+                                            <P class="subtitle">七、背景音乐</P>
+                                            <p class="straightMatter">点击添加音乐打开弹窗，上传准备好的MP3格式的音乐，选中要播放的音乐点击提交，点击开启，即可播放背景音乐。控制面板的两个音量条，可以调节背景音乐的音量，和机位混音的音量。关闭背景音乐，点击关闭按钮即可。</p>
+                                            <img src="./../image/help_img40.png" width="737" height="107" style="margin-bottom: 30px;">
+                                            <P class="subtitle">八、动态特效</P>
+                                            <p class="straightMatter">根据场景需要选择，点击一个动态特效会直接应用到直播画面里，关闭特效点击无特效即可。</p>
+                                            <img src="./../image/help_img41.png" width="740" height="107" style="margin-bottom: 30px;">
+                                            <P class="subtitle">九、图片素材</P>
+                                            <p class="straightMatter">直播时设置kv图(主视觉海报)。例：直播中场休息时，添加一张提前制作好的中场休息海报）。上传制作好的图片素材，素材展示有三种方式（全屏显示、底部居中、居中），根据显示预览效果，选择合适的图片展示方式，选择好点击提交即可。</p>
+                                        </div>
+                                        <div class="issueTCont">
+                                            <p class="textTitle">频道直播云推流</p>
+                                            <P class="subtitle">一、直播推流</P>
+                                            <p class="straightMatter">直播推流是将您的直播音视频画面，发送至第三方平台同步进行直播的过程。</p>
+                                            
+                                            <P class="subtitle">二、直播推流设置</P>
+                                            <p class="straightMatter">首先需要获取其他平台的推流地址。（每个平台的规则不同，具体怎么获取，是否能获取详情咨询对应平台客服）。把获取的推流地址按照对应格式输入到图片所示的输入框内，点击开始推流，推流成功后直播内容即可同步到第三方平台了。一个直播可添加多个第三方平台推流地址。
+                                            </p>
+                                            <img src="./../image/help_img37.png" width="852" height="111" style="margin-bottom: 30px;">
+                                        
+            
+                                        </div> 
+                                    </div>
+                                    <div class="issueContent issue4">
+                                        <div class="issueTBox">
+                                            <p class="issueTitle">如何登录直播系统？</p>
+                                            <p class="issueTitle">Cube手机拍摄助手下载使用</p>
+                                            <p class="issueTitle">如何创建直播间？</p>
+                                            <p class="issueTitle">如何装修直播间？</p>
+                                            <p class="issueTitle">直播控制台讲解</p>
+                                            <p class="issueTitle">如何操作直播控制？</p>
+                                            <p class="issueTitle">导播台和云推流操作</p>
+                                            <p class="issueTitle">媒体库操作</p>
+                                            <p class="issueTitle">部落装修教程</p>
+                                            <p class="issueTitle">剪辑与合并功能的使用讲解</p>
+                                        </div>
+                                        <div class="issueTCont">
+                                            <p class="textTitle">如何登录直播系统？</p>
+                                            <video src="http://content.changsmart.com/instructions/%E5%A6%82%E4%BD%95%E7%99%BB%E9%99%86%E7%9B%B4%E6%92%AD%E7%B3%BB%E7%BB%9F.mp4" poster="./../image/courseImg1.png" class="videos" controls preload="auto"></video>
+                                        </div>
+                                        <div class="issueTCont">
+                                            <p class="textTitle">Cube手机拍摄助手下载使用</p>
+                                            <video src="http://content.changsmart.com/instructions/cube%E6%89%8B%E6%9C%BA%E5%8A%A9%E6%89%8B%E4%B8%8B%E8%BD%BD%E4%BD%BF%E7%94%A8.mp4" class="videos" poster="./../image/courseImg2.png" controls preload="auto"></video>
+                                        </div>
+                                        <div class="issueTCont">
+                                            <p class="textTitle">如何创建直播间？</p>
+                                            <video src="http://content.changsmart.com/instructions/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E7%9B%B4%E6%92%AD%E9%97%B4.mp4" class="videos" poster="./../image/courseImg3.png" controls preload="auto"></video>
+                                        </div>
+                                        <div class="issueTCont">
+                                            <p class="textTitle">如何装修直播间？</p>
+                                            <video src="http://content.changsmart.com/instructions/%E5%A6%82%E4%BD%95%E8%A3%85%E4%BF%AE%E7%9B%B4%E6%92%AD%E9%97%B4.mp4" class="videos" poster="./../image/courseImg4.png" controls preload="auto"></video>
+                                        </div>
+                                        <div class="issueTCont">
+                                            <p class="textTitle">直播控制台讲解</p>
+                                            <video src="http://content.changsmart.com/instructions/%E7%9B%B4%E6%92%AD%E6%8E%A7%E5%8F%B0%E8%AE%B2%E8%A7%A3.mp4" class="videos" poster="./../image/courseImg5.png" controls preload="auto"></video>
+                                        </div>
+                                        <div class="issueTCont">
+                                            <p class="textTitle">如何操作直播控制？</p>
+                                            <video src="http://content.changsmart.com/instructions/%E5%A6%82%E4%BD%95%E6%93%8D%E4%BD%9C%E7%9B%B4%E6%92%AD%E6%8E%A7%E5%88%B6.mp4" class="videos" poster="./../image/courseImg6.png" controls preload="auto"></video>
+                                        </div>
+                                        <div class="issueTCont">
+                                            <p class="textTitle">导播台和云推流操作</p>
+                                            <video src="http://content.changsmart.com/instructions/%E5%AF%BC%E6%92%AD%E5%8F%B0%E5%92%8C%E4%BA%91%E6%8E%A8%E6%B5%81%E6%93%8D%E4%BD%9C.mp4" class="videos" poster="./../image/courseImg7.png" controls preload="auto"></video>
+                                        </div>
+                                        <div class="issueTCont">
+                                            <p class="textTitle">媒体库操作</p>
+                                            <video src="http://content.changsmart.com/instructions/%E5%AA%92%E4%BD%93%E5%BA%93%E6%93%8D%E4%BD%9C.mp4" class="videos" poster="./../image/courseImg8.png" controls preload="auto"></video>
+                                        </div>
+                                        <div class="issueTCont">
+                                            <p class="textTitle">部落装修教程</p>
+                                            <video src="http://content.changsmart.com/instructions/%E9%83%A8%E8%90%BD.mp4" class="videos" poster="./../image/courseImg9.png" controls preload="auto"></video>
+                                        </div>
+                                        <div class="issueTCont">
+                                            <p class="textTitle">剪辑与合并功能的使用讲解</p>
+                                            <video src="http://content.changsmart.com/instructions/%E8%A7%86%E9%A2%91%E5%BA%93%E7%9A%84%E5%89%AA%E8%BE%91%E5%92%8C%E5%90%88%E5%B9%B6%E4%BD%BF%E7%94%A8.mp4" class="videos" poster="./../image/courseImg10.png" controls preload="auto"></video>
+                                        </div>
+                                    </div>
+                                    <div class="issueContent issue7">
+                                        <div class="issueTBox">
+                                            <p class="issueTitle">部落使用介绍</p>
+                                        </div>
+                                        <div class="issueTCont">
+                                            <p class="textTitle">部落使用介绍</p>
+                                            <P class="subtitle">部落，可以自定义装修成个人的或公司的私有视频部落社区。</P>
+                                            <P class="subtitle">一、个人部落主页编辑</P>
+                                            <p class="straightMatter">可以设置名称、头像、个人部落简介个人主页封面图片，地址链接可以键入个人网站或者公司官网地址。</p>
+                                            <img src="./../image/help_img24.png" width="731" height="546" style="margin-bottom: 30px;">
+                                            <P class="subtitle">二、频道和视频添加</P>
+                                            <p class="straightMatter">添加个人直播频道和视频，如有其他想添加的视频，请提前上传或者添加到视频库中。</p>
+                                            <img src="./../image/help_img27.png" width="394" height="486" style="margin-bottom: 30px;">
+                                            <img src="./../image/help_img25.png" width="398" height="486" style="margin-left:9px;margin-bottom: 30px;">
+                                            <p class="straightMatter">点击添加频道、添加视频出现下图弹窗进行选择添加。点击确定即添加成功。</p>
+                                            <img src="./../image/help_img28.png" width="284" height="338" style="margin-bottom: 30px;">
+                                            <img src="./../image/help_img26.png" width="522" height="338" style="margin-bottom: 30px;">
+                                            <P class="subtitle">三、预览和分享</P>
+                                            <p class="straightMatter">点击预览或者复制链接地址即可查看和分享自己创建的视频部落。</p>
+                                            
+                                        </div> 
+                                    </div>
+                                    <div class="issueContent issue8">
+                                        <div class="issueTBox">
+                                            <p class="issueTitle">视频库介绍</p>
+                                            <p class="issueTitle">暂存库介绍</p>
+                                        </div>
+                                        <div class="issueTCont">
+                                            <p class="textTitle">视频库介绍</p>
+                                            <p class="subtitle">视频库里的视频内容可以永久保存，视频可以剪辑、合并、上传、下载、编辑预览内容。但请勿保存或上传违规视频，否则将会被删除，严重者将会做封号处理。</p>
+                                            <img src="./../image/help_img32.png" width="798" height="452" style="margin-bottom: 30px;">
+                                            <P class="subtitle">剪辑</P>
+                                            <p class="straightMatter">勾选想要进行剪辑的视频，点击剪辑按钮，进入视频剪辑界面。视频可以预览，然后鼠标拖动视频进度条选择想要截取的视频起始时间点击，再选择需要结束的视频时间进行点击，就可以剪出一段自己想要的视频。点击播放按钮，可以对截取视频进行预览，如果想重新截取视频，想重新点击删除，即可清除当前操作，可以重新选择时间。选取好时间，对视频输入描述，点击裁剪按钮保存视频，完成剪辑视频操作。</p>
+                                            <img src="./../image/help_img33.png" width="806" height="441" style="margin-bottom: 30px;">
+            
+                                            <P class="subtitle">合并</P>
+                                            <p class="straightMatter">勾选两个想要进行合并拼接的视频，点击合并按钮，进入视频合并界面。视频可以进行拖拽排列先后顺序，然后输入视频描述，点击提交合并完成可以去视频库查看合并好的视频，也可以留在当前页面预览合并好的视频。</p>
+                                            <img src="./../image/help_img34.png" width="790" height="406" style="margin-bottom: 30px;">
+            
+                                            <P class="subtitle">编辑和下载</P>
+                                            <p class="straightMatter">点击编辑按钮，可以上传更改视频封面，也可以更改视频描述。点击下载按钮，可以对当前视频进行下载。</p>
+                                            <img src="./../image/help_img35.png" width="633" height="248" style="margin-bottom: 30px;">
+                                            <P class="subtitle">下载视频</P>
+                                            <p class="straightMatter">点击下载按钮，出现视频下载弹窗。如未安装下载器首先需要安装下载器，点击安装下载器即可下载安装。安装成功后，把视频m3u8地址复制到下载器下载视频即可。</p>
+                                            <img src="./../image/help_img39.png" width="364" height="205" style="margin-bottom: 30px;">
+                                            <img src="./../image/help_img38.png" width="264" height="378" style="margin-bottom: 30px;">
+                                        </div> 
+                                        <div class="issueTCont">
+                                            <p class="textTitle">暂存库介绍</p>
+                                            <p class="straightMatter">直播后视频内容会实时存储到媒体库直播暂存库里，视频可以进行下载、编辑、删除等操作。但是暂存库存储时间只有三天，三天到期会自动删除视频，如需要永久保存，直播后需及时将要保存的视频移至视频库保存。</p>
+                                            <img src="./../image/help_img36.png" width="788" height="443" style="margin-bottom: 30px;">
+                                            
+                                        </div> 
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   <div id="gotop_btn" onclick="window.scroll(0, 0)">
+                    <img src="./../image/goTop.png" alt="">
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="messageDialog">
+        <p id="messageDialogName">
+            消息中心
+        </p>
+        <div id="messageContent">
+        </div>
+        <div id="messageFoot">
+            查看全部
+        </div>
+    </div>
+    <script>
+        $(function(){
+            if(window.location.search){
+                var search=window.location.search.substring(1).split("=")[1]
+                if(!isNaN(search)){
+                    $('.issue1 .issueTBox').hide(). // 隐藏问题列表
+                    siblings('.issueTCont').hide()// 隐藏所有问题正文
+                    .eq(Number(search)).show()// 展示当前正文
+                    $('.text').html('/'+$('.issue1 .issueTitle').eq(Number(search)).html()).show() // 显示当前位置  正文标题
+                }
+            }
+                
+            window.addEventListener('scroll', function() {
+            
+                var top = document.documentElement.scrollTop || document.body.scrollTop;
+                if(top>=200) {
+                    $('#gotop_btn').show()
+                } else {
+                    $('#gotop_btn').hide()
+                }
+            })
+            // 有菜单---------
+            $('.menuTitle').on('click',function () {
+                if(!$(this).hasClass('open')){// 初始状态时没展开  点击一次展开  
+                    $(this).addClass('open') // 添加展开标记
+                  
+                    $(this).parent().siblings('.navItem').find('.menuTitle').removeClass('open'). // 兄弟 元素移除展开状态
+                    find('.icon-down').removeClass('unfold').//兄弟 元素收起
+                    parents('.menuTitle').siblings('.submenu').slideUp() //兄弟 元素收起
+                } else { //已经展开时  点击一次收起
+                    $(this).removeClass('open') // 移除展开标记
+                }
+                $(this).siblings('.submenu').slideToggle()//自身 添加展开 收起动画
+                $(this).find('.icon-down').toggleClass('unfold') //自身 添加箭头展开 收起动画
+            })
+
+            // 无菜单-------
+            $('.navTitle').on('click',function () { 
+                $(this).addClass('navTActive').// 添加选中状态 
+                parent().siblings('.navItem').find('.navTitle').removeClass('navTActive')// 取消兄弟选中
+                $('.menuItem').removeClass('menuActive') // 取消菜单栏下选中状态
+                $('.currentParent').attr('data-id',$(this).attr('data-id')).html($(this).find('.linkTitle').html()) // 添加当前位置
+                $('.issueContent').hide().find('.issueTBox').show().siblings('.issueTCont').hide() // 隐藏菜单问题
+                $('.issue'+$(this).attr('data-id')).show()// 展示当前菜单下问题
+                $('.text').html('').hide() // 隐藏当前位置  正文标题
+
+                $('video').each((index,item)=>{ // 视频初始化
+                    // item.pause()
+                    item.load()
+                })
+            })
+
+            // 菜单下的某项点击------
+            $('.menuItem').on('click',function(){
+                $(this).addClass('menuActive'). // 添加选中状态 
+                siblings('.menuItem').removeClass('menuActive')// 取消兄弟选中
+                $(this).parents('.navItem').siblings('.navItem').find('.menuItem').removeClass('menuActive')// 取消兄弟选中
+                $('.navTitle').removeClass('navTActive') // 取消兄弟选中
+                $('.currentParent').attr('data-id',$(this).attr('data-id')).html($(this).html())// 添加当前位置
+                $('.issueContent').hide().find('.issueTBox').show().siblings('.issueTCont').hide()// 隐藏菜单问题
+                $('.issue'+$(this).attr('data-id')).show()// 展示当前菜单下问题
+                $('.text').html('').hide() // 隐藏当前位置  正文标题
+                
+                $('video').each((index,item)=>{ // 视频初始化
+                    // item.pause()
+                    item.load()
+                })
+            })
+            // 当前位置单击
+            $('.currentParent').on('click',function(){
+                $('.issueContent').hide().find('.issueTBox').show().siblings('.issueTCont').hide()// 隐藏菜单问题
+                $('.issue'+$(this).attr('data-id')).show()// 展示当前菜单下问题
+                $('.text').html('').hide() // 隐藏当前位置  正文标题
+                
+                $('video').each((index,item)=>{ // 视频初始化
+                    // item.pause()
+                    item.load()
+                })
+            })
+
+            // 每个问题点击--------
+            $('.issueTitle').on('click',function(){
+                $(this).parent().hide(). // 隐藏问题列表
+                siblings('.issueTCont').hide()// 隐藏所有问题正文
+                .eq($(this).index()).show()// 展示当前正文
+                $('.text').html('/'+$(this).html()).show() // 显示当前位置  正文标题
+                
+                $('video').each((index,item)=>{ // 视频初始化
+                    // item.pause()
+                    item.load()
+                })
+            })
+
+
+        })
+
+        
+    </script>
+
+</body>
+
+</html>
