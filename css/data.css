@@ -2,8 +2,12 @@
   width: 1559px;
 }
 .dataContent #selectActive {
-  width: 300px;
-  height: 40px;
+  width: 298px;
+  height: 38px;
+  border: 1px solid transparent;
+}
+.dataContent #selectActive:hover {
+  border: 1px solid #FF914d;
 }
 .dataContent #dataInfo {
   height: 190px;
