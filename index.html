@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/swiper.min.css">
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
 	<script src="js/swiper.min.js"></script>
+    <script src="./commonJs/jquery-3.2.1.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -19,7 +20,7 @@
                     <a href="./index.html" class="activeLink">首页</a>
                     <a href="./html/download.html">下载</a>
                     <a href="./html/help.html">帮助</a>
-                    <!-- <a href="#">开发者</a> -->
+                    <!-- <a href="./html/offer.html">价格</a> -->
                 </div>
                 <div class="loginBox">
                     <a href="./login.html" class="login">登录</a><a href="./login.html?register=true" class="signIn">免费注册</a>
@@ -188,6 +189,9 @@
                 <a href="https://beian.miit.gov.cn" target="_blank">京ICP备2021017129号-2</a>
             </div>
         </div>
+        <div id="gotop_btn" onclick="window.scroll(0, 0)">
+            <img src="./../image/goTop.png" alt="">
+        </div>
     </div>
 
     <script>
@@ -250,6 +254,16 @@
                 }
             });
         }
+
+        window.addEventListener('scroll', function() {
+            
+            var top = document.documentElement.scrollTop || document.body.scrollTop;
+            if(top>=200) {
+                $('#gotop_btn').show()
+            } else {
+                $('#gotop_btn').hide()
+            }
+        })
 	</script>
 </body>
 </html>
