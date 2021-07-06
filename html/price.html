@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>价格</title>
+    <link rel="stylesheet" href="./../css/price.css">
+    <script src="./../commonJs/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div id="container">
+        <div class="topBox">
+            <div class="topContent">
+                <img src="./../image/logo.png" class="logo" alt="">
+                <div class="navBox">
+                    <a href="./../index.html">首页</a>
+                    <a href="./download.html">下载</a>
+                    <a href="./help.html">帮助</a>
+                    <a href="./offer.html" class="activeLink">价格</a>
+                </div>
+                <div class="loginBox">
+                    <a href="./../login.html" class="login">登录</a><a href="./../login.html?register=true" class="signIn">免费注册</a>
+                </div>
+            </div>
+        </div>
+        <div id="banner">
+            <div id="bannerBox">
+                <p class="cubeSystem">CUBE云视频系统</p>
+                <p class="videoSimple">让视频更简单</p>
+                <a href="./../login.html" class="login">免费体验</a>
+                <img src="./../image/offer-page.png" alt="">
+            </div>
+        </div>
+        <div id="productQuotation">
+            <p class="proTitle">产品报价</p>
+            <p class="crossLine">
+                <span class="circle"></span>
+                <span class="shortLine"></span>
+                <span class="circle"></span>
+            </p>
+            <div id="pricePage">
+                <div class="item freeBox">
+                    <div class="top">
+                        <p class="title">免费试用</p>
+                        <p class="info">免费体验产品</p>
+                    </div>
+                    <div class="bottom">
+                        <p class="infoItem">30分钟测试时长</p>
+                        <p class="infoItem">并发20人观看</p>
+                        <p class="infoItem">最大支持1个并行直播间</p>
+                        <p class="flagInfo"><span>免费/</span>试用30分钟</p>
+                    </div>
+                </div>
+                <div class="item monthsPayBox">
+                    <div class="top">
+                        <p class="title">按量付费</p>
+                        <p class="info">按实际用量付费</p>
+                    </div>
+                    <div class="bottom">
+                        <p class="infoItem">会员费：260元/月、 1980元/年</p>
+                        <p class="infoItem">使用费50元/小时</p>
+                        <p class="infoItem" style="margin-top: 40px;">每个直播间包含500人并发观看</p>
+                        <p class="infoItem">超过500人并发观看</p>
+                        <p class="infoItem">0.2元/观众/小时</p>
+                        <p class="infoItem">最大支持10个直播间同时直播</p>
+                    </div>
+                </div>
+                <div class="item yearsPayBox">
+                    <div class="top">
+                        <p class="title">包年付费</p>
+                        <p class="info">包年自由试用</p>
+                    </div>
+                    <div class="bottom">
+                        <p class="infoItem">年费：19800元/年</p>
+                        <p class="infoItem" style="margin-top: 40px;">每个直播间包含500人并发观看</p>
+                        <p class="infoItem">超过500人并发观看</p>
+                        <p class="infoItem">0.2元/观众/小时</p>
+                        <p class="infoItem">最大支持3个直播间同时直播</p>
+                    </div>
+                </div>
+            </div>
+            <table id="priceTable">
+                <tr>
+                    <th>类型</th>
+                    <th>免费</th>
+                    <th>按量</th>
+                    <th>包年</th>
+                </tr>
+                <tr>
+                    <td rowspan="3" class="schemeContent">方案内容</td>
+                    <td>
+                        <img src="./../image/check-icon.png"  width="24" height="24">
+                        30分钟试用时长
+                    </td>
+                    <td>
+                        <img src="./../image/check-icon.png"  width="24" height="24"> 会员费：260元/月 <br />
+                        1980元/年 <br />
+                        使用费：50元/小时
+                    </td>
+                    <td>
+                        <img src="./../image/check-icon.png"  width="24" height="24">
+                        年费：19800/年
+                    </td>
+                </tr>
+                <tr>
+                   
+                    <td>
+                        <img src="./../image/check-icon.png"  width="24" height="24">
+                        并发20人观看
+                    </td>
+                    <td>
+                        <img src="./../image/check-icon.png"  width="24" height="24">
+                        每个直播间支持500人并发观看<br />
+                        超过500人并发观看<br />
+                        0.2元/观众/小时
+                    </td>
+                    <td>
+                        <img src="./../image/check-icon.png"  width="24" height="24">
+                        每个直播间支持500人并发观看<br />
+                        超过500人并发观看<br />
+                        0.2元/观众/小时
+                    </td>
+                </tr>
+                <tr>
+                    
+                    <td>
+                        <img src="./../image/check-icon.png"  width="24" height="24">
+                        支持一个直播间直播
+                    </td>
+                    <td>
+                        <img src="./../image/check-icon.png"  width="24" height="24">
+                        支持十个直播间同时直播
+                    </td>
+                    <td>
+                        <img src="./../image/check-icon.png"  width="24" height="24">
+                        支持三个直播间同时直播
+                    </td>
+                </tr>
+            </table>
+            <p class="proTitle">平台功能介绍</p>
+            <p class="crossLine">
+                <span class="circle"></span>
+                <span class="shortLine"></span>
+                <span class="circle"></span>
+            </p>
+            <table id="intTable">
+                <tr>
+                    <th>直播发起</th>
+                    <th>观看方式</th>
+                    <th>基础设置</th>
+                    <th>直播功能</th>
+                </tr>
+                <tr>
+                    <td>PC云端发起直播</td>
+                    <td>免费观看</td>
+                    <td>频道个数</td>
+                    <td>导播台</td>
+                </tr>
+                <tr>
+                    <td>不限制场地</td>
+                    <td>密码观看</td>
+                    <td>直播间数量</td>
+                    <td>比分牌</td>
+                </tr>
+                <tr>
+                    <td>手机直播信号采集</td>
+                    <td>推流其它平台观看</td>
+                    <td>观看用户数</td>
+                    <td>背景替换</td>
+                </tr>
+                <tr>
+                    <td>专业摄像机直播信号采集</td>
+                    <td>——</td>
+                    <td>直播预告</td>
+                    <td>剪辑</td>
+                </tr>
+                <tr>
+                    <td>——</td>
+                    <td>——</td>
+                    <td>直播背景设计</td>
+                    <td>手势检测</td>
+                </tr>
+                <tr>
+                    <td>——</td>
+                    <td>——</td>
+                    <td>直播广告位设置</td>
+                    <td>自动切换</td>
+                </tr>
+                <tr>
+                    <td>——</td>
+                    <td>——</td>
+                    <td>直播回放位</td>
+                    <td>背景音乐</td>
+                </tr>
+                <tr>
+                    <td>——</td>
+                    <td>——</td>
+                    <td>回放总时长</td>
+                    <td>云幻灯片</td>
+                </tr>
+                <tr>
+                    <td>——</td>
+                    <td>——</td>
+                    <td>控制台使用（PC）</td>
+                    <td>图片素材</td>
+                </tr>
+                <tr>
+                    <td>——</td>
+                    <td>——</td>
+                    <td>——</td>
+                    <td>动态特效</td>
+                </tr>
+                <tr>
+                    <td>——</td>
+                    <td>——</td>
+                    <td>——</td>
+                    <td>人名条</td>
+                </tr>
+                <tr>
+                    <td>——</td>
+                    <td>——</td>
+                    <td>——</td>
+                    <td>ZOOM IN</td>
+                </tr>
+                <tr>
+                    <td>——</td>
+                    <td>——</td>
+                    <td>——</td>
+                    <td>回放功能</td>
+                </tr>
+                <tr>
+                    <td>——</td>
+                    <td>——</td>
+                    <td>——</td>
+                    <td>云视频库</td>
+                </tr>
+            </table>
+        </div>
+        <div id="bannerCenter">
+            <div id="bannerCenterBox">
+                <p>现在注册，即可免费体验</p>
+                <a href="./../login.html">免费体验</a>
+            </div>
+        </div>
+        <p class="recTitle">直播设备推荐</p>
+        <p class="crossLine">
+            <span class="circle"></span>
+            <span class="shortLine"></span>
+            <span class="circle"></span>
+        </p>
+        <table id="recTable">
+            <tr>
+                <th>类型</th>
+                <th>设备</th>
+                <th>推荐品牌</th>
+                <th>配置</th>
+                <th>价格</th>
+                <th>备注</th>
+            </tr>
+            <tr>
+                <td class="first">采集设备</td>
+                <td>手机</td>
+                <td>华为、中兴、小米</td>
+                <td>安卓系统、高通芯片</td>
+                <td>1000元左右</td>
+                <td>数量按需配置1-4个</td>
+            </tr>
+            <tr>
+                <td class="first">收音设备</td>
+                <td>麦克</td>
+                <td>普通无线麦克</td>
+                <td>手机无线麦克</td>
+                <td>100-200元左右</td>
+                <td>数量按需配置</td>
+            </tr>
+            <tr>
+                <td class="first">辅助设备</td>
+                <td>三脚架</td>
+                <td>普通三脚架</td>
+                <td>稳定性好</td>
+                <td>30-100元左右</td>
+                <td>数量按需配置</td>
+            </tr>
+            <tr>
+                <td class="first">通话设备</td>
+                <td>远程对讲</td>
+                <td>南山对讲</td>
+                <td>——</td>
+                <td>免费</td>
+                <td>数量按需配置</td>
+            </tr>
+            <tr>
+                <td colspan="6">注：所推荐商品均是经测试较好用的产品设备，大家按需自行购买即可。</td>
+            </tr>
+        </table>
+        <div class="infoBox">
+            <div class="beian">
+                <img src="./../image/beian.png" alt="">
+                <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010602007621" target="_blank">京公网安备11010602007621号</a>
+                <a href="https://beian.miit.gov.cn" target="_blank">京ICP备2021017129号-2</a>
+            </div>
+        </div>
+        <div id="gotop_btn" onclick="window.scroll(0, 0)">
+            <img src="./../image/goTop.png" alt="">
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            
+            var top = document.documentElement.scrollTop || document.body.scrollTop;
+            if(top>=200) {
+                $('#gotop_btn').show()
+            } else {
+                $('#gotop_btn').hide()
+            }
+        })
+    </script>
+</body>
+</html>

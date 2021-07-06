@@ -1,0 +1,482 @@
+* {
+  margin: 0;
+}
+#container {
+  width: 100%;
+  min-width: 1200px;
+}
+#container .topBox {
+  width: 100%;
+  height: 100px;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0px 3px 7px 0px rgba(102, 102, 102, 0.1);
+}
+#container .topBox .topContent {
+  width: 1200px;
+  height: 64px;
+  padding: 18px 0;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+#container .topBox .topContent .logo {
+  width: 138px;
+  height: 64px;
+}
+#container .topBox .topContent .navBox {
+  width: 500px;
+  height: 64px;
+  line-height: 64px;
+}
+#container .topBox .topContent .navBox a {
+  font-size: 20px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+  text-decoration: none;
+  margin-right: 50px;
+}
+#container .topBox .topContent .navBox a:hover {
+  color: #F2591A;
+}
+#container .topBox .topContent .navBox .activeLink {
+  color: #F2591A;
+}
+#container .topBox .topContent .loginBox {
+  width: 276px;
+  height: 64px;
+  line-height: 64px;
+}
+#container .topBox .topContent .loginBox .login {
+  display: inline-block;
+  text-decoration: none;
+  width: 126px;
+  height: 36px;
+  border-radius: 19px;
+  font-size: 20px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FF914D;
+  line-height: 38px;
+  text-align: center;
+  border: 1px solid #FF914D;
+}
+#container .topBox .topContent .loginBox .login:hover {
+  background-color: #F2591A;
+  color: #FFF;
+}
+#container .topBox .topContent .loginBox .signIn {
+  display: inline-block;
+  text-decoration: none;
+  width: 128px;
+  height: 38px;
+  background: #FF914D;
+  border-radius: 19px;
+  font-size: 20px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFF;
+  line-height: 36px;
+  text-align: center;
+  margin-left: 20px;
+}
+#container .topBox .topContent .loginBox .signIn:hover {
+  background: #F2591A;
+}
+#container #banner {
+  width: 100%;
+  height: 400px;
+  min-width: 1200px;
+  margin-top: 100px;
+  background: url(../image/offer-bg.png) no-repeat;
+  background-size: 100% 400px;
+}
+#container #banner #bannerBox {
+  width: 1200px;
+  height: 400px;
+  margin: 0 auto;
+  position: relative;
+}
+#container #banner #bannerBox .cubeSystem {
+  width: 580px;
+  height: 80px;
+  font-size: 72px;
+  font-family: Source Han Sans CN;
+  font-weight: bold;
+  color: #FFFFFF;
+  line-height: 80px;
+  text-shadow: 0px 4px 8px rgba(214, 97, 44, 0.2);
+  padding: 75px 0 32px;
+  letter-spacing: 2px;
+}
+#container #banner #bannerBox .videoSimple {
+  font-size: 46px;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 46px;
+  text-shadow: 0px 2px 4px rgba(239, 116, 60, 0.25);
+}
+#container #banner #bannerBox .login {
+  display: block;
+  width: 196px;
+  height: 58px;
+  text-align: center;
+  line-height: 58px;
+  background: linear-gradient(0deg, #F2591A, #FF914D);
+  border-radius: 29px;
+  font-size: 24px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-decoration: none;
+  margin-top: 50px;
+}
+#container #banner #bannerBox .login:hover {
+  background: #F2591A;
+}
+#container #banner #bannerBox img {
+  width: 472px;
+  height: 374px;
+  position: absolute;
+  right: 0;
+  top: 12px;
+}
+#container #productQuotation {
+  width: 1200px;
+  margin: 0 auto;
+  padding-top: 70px;
+}
+#container #productQuotation .proTitle {
+  height: 42px;
+  font-size: 36px;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #666666;
+  line-height: 42px;
+  text-align: center;
+}
+#container #productQuotation .crossLine {
+  height: 8px;
+  margin: 20px 0 70px;
+  text-align: center;
+}
+#container #productQuotation .crossLine .circle {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #FF7638;
+  vertical-align: top;
+}
+#container #productQuotation .crossLine .shortLine {
+  display: inline-block;
+  width: 58px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: #FF7638;
+  margin: 0 10px;
+  vertical-align: top;
+}
+#container #productQuotation #pricePage {
+  display: flex;
+  justify-content: space-between;
+  width: 1200px;
+  height: 584px;
+}
+#container #productQuotation #pricePage .item {
+  width: 388px;
+  height: 584px;
+  background: #FFFFFF;
+  box-shadow: 0px 3px 20px 0px rgba(153, 153, 153, 0.35);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+#container #productQuotation #pricePage .item:hover {
+  transform: scale(1.02);
+}
+#container #productQuotation #pricePage .item .top {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 388px;
+  height: 240px;
+  border-radius: 20px 20px 0px 0px;
+}
+#container #productQuotation #pricePage .item .top .title {
+  text-align: center;
+  font-size: 38px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+#container #productQuotation #pricePage .item .top .info {
+  text-align: center;
+  font-size: 24px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+#container #productQuotation #pricePage .item .bottom {
+  width: 298px;
+  height: 350px;
+  padding: 34px 45px 0;
+}
+#container #productQuotation #pricePage .item .bottom .infoItem {
+  height: 30px;
+  font-size: 20px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  line-height: 30px;
+}
+#container #productQuotation #pricePage .item .bottom .flagInfo {
+  margin-top: 40px;
+  height: 36px;
+  font-size: 18px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #2DC790;
+  line-height: 36px;
+}
+#container #productQuotation #pricePage .item .bottom .flagInfo span {
+  font-size: 36px;
+}
+#container #productQuotation #pricePage .freeBox .top {
+  background: linear-gradient(0deg, #2EAEA3, #4DD0C8);
+}
+#container #productQuotation #pricePage .monthsPayBox .top {
+  background: linear-gradient(0deg, #3C4998, #5464B6);
+}
+#container #productQuotation #pricePage .yearsPayBox .top {
+  background: linear-gradient(0deg, #FF5D2A, #FF823E);
+}
+#container #productQuotation #priceTable {
+  width: 1200px;
+  height: 616px;
+  margin: 76px 0 84px;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+#container #productQuotation #priceTable tr {
+  height: 154px;
+}
+#container #productQuotation #priceTable tr th {
+  width: 368px;
+  border: 1px solid #ccc;
+  font-size: 36px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  padding: 0;
+}
+#container #productQuotation #priceTable tr th:first-child {
+  width: 96px !important;
+}
+#container #productQuotation #priceTable tr td {
+  width: 368px;
+  padding: 0;
+  border: 1px solid #ccc;
+  font-size: 20px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  text-align: center;
+}
+#container #productQuotation #priceTable tr .schemeContent {
+  width: 96px !important;
+  writing-mode: tb-rl;
+  text-align: center;
+  font-size: 30px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  letter-spacing: 2px;
+}
+#container #productQuotation #intTable {
+  width: 1200px;
+  height: 1038px;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+#container #productQuotation #intTable tr th {
+  height: 86px;
+  border: 1px solid #ccc;
+  font-size: 36px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  padding: 0;
+}
+#container #productQuotation #intTable tr td {
+  height: 68px;
+  padding: 0;
+  border: 1px solid #ccc;
+  font-size: 20px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  text-align: center;
+}
+#container #bannerCenter {
+  width: 100%;
+  height: 220px;
+  min-width: 1200px;
+  background: url(../image/offer-center.png) no-repeat;
+  background-size: 100% 220px;
+  margin: 100px 0 64px;
+}
+#container #bannerCenter #bannerCenterBox {
+  width: 1200px;
+  height: 220px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#container #bannerCenter #bannerCenterBox p {
+  font-size: 48px;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  font-style: italic;
+  color: #FFFFFF;
+}
+#container #bannerCenter #bannerCenterBox a {
+  width: 196px;
+  height: 68px;
+  background: linear-gradient(0deg, #F2591A, #FF914D);
+  text-align: center;
+  line-height: 68px;
+  border-radius: 34px;
+  text-decoration: none;
+  font-size: 30px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FEFEFE;
+}
+#container #bannerCenter #bannerCenterBox a:hover {
+  background: #F2591A;
+}
+#container .recTitle {
+  width: 1200px;
+  height: 42px;
+  margin: 0 auto;
+  font-size: 36px;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #666666;
+  line-height: 42px;
+  text-align: center;
+}
+#container .crossLine {
+  width: 1200px;
+  height: 8px;
+  margin: 20px auto 70px;
+  text-align: center;
+}
+#container .crossLine .circle {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #FF7638;
+  vertical-align: top;
+}
+#container .crossLine .shortLine {
+  display: inline-block;
+  width: 58px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: #FF7638;
+  margin: 0 10px;
+  vertical-align: top;
+}
+#container #recTable {
+  width: 1200px;
+  height: 368px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+#container #recTable tr th {
+  width: 200px;
+  height: 78px;
+  border: 1px solid #ccc;
+  font-size: 36px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  padding: 0;
+}
+#container #recTable tr td {
+  width: 200px;
+  height: 58px;
+  padding: 0;
+  border: 1px solid #ccc;
+  font-size: 20px;
+  font-family: Source Han Sans CN;
+  font-weight: 300;
+  color: #666666;
+  text-align: center;
+}
+#container #recTable tr .first {
+  font-weight: 400;
+}
+#container .infoBox {
+  width: 100%;
+  min-width: 1200px;
+  height: 30px;
+  padding: 10px 0;
+}
+#container .infoBox .beian {
+  width: 1200px;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#container .infoBox .beian a {
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  margin: 0 5px;
+}
+#container .infoBox .beian a:hover {
+  color: #666;
+}
+#container .infoBox .beian img {
+  width: 18px;
+  height: 18px;
+}
+#container #gotop_btn {
+  display: none;
+  position: fixed;
+  left: 50%;
+  margin-left: 620px;
+  bottom: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  background-color: #fff;
+  box-shadow: 0px 4px 5px #ddd;
+  cursor: pointer;
+}
+#container #gotop_btn img {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+}
+#container #gotop_btn:hover {
+  background-color: #ddd;
+}
