@@ -450,6 +450,7 @@ body #container #caseBox .caseTitle {
 body #container #caseBox video {
   display: block;
   width: 9.49333333rem;
+  height: 5.34rem;
   margin: 0 auto;
 }
 body #container #caseBox p {
