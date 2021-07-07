@@ -172,6 +172,9 @@
   cursor: pointer;
   color: #F2591A;
 }
+.container #content .helpCont .navCont .currentPosition .currentParent a {
+  color: #F2591A;
+}
 .container #content .helpCont .navCont .currentPosition .text {
   color: #444444;
 }
