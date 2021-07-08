@@ -310,6 +310,7 @@
 }
 #container #productQuotation #priceTable tr .schemeContent {
   width: 96px !important;
+  line-height: 96px;
   height: 462px;
   writing-mode: tb-rl;
   text-align: center !important;
