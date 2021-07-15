@@ -27,7 +27,7 @@
   height: 64px;
 }
 #container .topBox .topContent .navBox {
-  width: 500px;
+  width: 656px;
   height: 64px;
   line-height: 64px;
 }
@@ -37,7 +37,7 @@
   font-weight: 400;
   color: #333333;
   text-decoration: none;
-  margin-right: 50px;
+  margin-right: 30px;
 }
 #container .topBox .topContent .navBox a:hover {
   color: #F2591A;

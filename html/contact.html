@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们</title>
+    <link rel="stylesheet" href="./../css/contact.css">
+    <link rel="stylesheet" type="text/css" href="https://api.map.baidu.com/res/webgl/10/bmap.css">
+    <script type="text/javascript"
+        src="https://api.map.baidu.com/api?v=1.0&amp;&amp;type=webgl&amp;ak=DTA5FbzhLOFByPihQxNqq89UADfrbRnC"></script>
+    <script type="text/javascript"
+        src="https://api.map.baidu.com/getscript?type=webgl&amp;v=1.0&amp;ak=DTA5FbzhLOFByPihQxNqq89UADfrbRnC&amp;services=&amp;t=20210528194133">
+    </script>
+    
+</head>
+
+<body>
+    <div id="container">
+        <div class="topBox">
+            <div class="topContent">
+                <img src="./../image/logo.png" class="logo" alt="">
+                <div class="navBox">
+                    <a href="./../index.html">首页</a>
+                    <a href="./information.html">付费资讯</a>
+                    <a href="./about.html">关于我们</a>
+                    <a href="./contact.html" class="activeLink">联系我们</a>
+                    <a href="./download.html">下载</a>
+                    <a href="./help.html">帮助</a>
+                    <a href="./price.html">价格</a>
+                </div>
+                <div class="loginBox">
+                    <a href="./../login.html" class="login">登录</a><a href="./../login.html?register=true"
+                        class="signIn">免费注册</a>
+                </div>
+            </div>
+        </div>
+        <div id="banner">
+        </div>
+        <div id="contact">
+            <div class="cc_map bmap-container" id="contmap"
+                style="overflow: hidden; position: relative; background-image: url(&quot;http://webmap0.bdimg.com/image/api/bg.png&quot;); text-align: left; touch-action: none;">
+                <div id="platform"
+                    style="overflow: visible; position: absolute; z-index: 5; left: 0px; top: 0px; cursor: url(&quot;http://webmap0.bdimg.com/image/api/openhand.cur&quot;) 8 8, default;">
+                    <div id="mask" class=" BMap_mask"
+                        style="position: absolute; left: 0px; top: 0px; z-index: 9; overflow: hidden; user-select: none; width: 500px; height: 400px; opacity: 0; background: rgb(0, 0, 0); transition: opacity 0.4s ease 0s;">
+                    </div>
+                    <div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 200;">
+                        <div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 800;">
+                        </div>
+                        <div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 700;">
+                            <div class="BMap_Marker BMap_noprint" unselectable="on" ""=""
+                                style="position: absolute; padding: 0px; margin: 0px; border: 0px; cursor: pointer; width: 23px; height: 25px; left: 240px; top: 175px; z-index: -8015888; transform-origin: 10px 25px;"
+                                title=""></div>
+                        </div>
+                        <div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 600;">
+                        </div>
+                        <div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 500;">
+                        </div>
+                        <div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 400;">
+                        </div>
+                    </div>
+                </div>
+                <div class="click-ripple-container">
+                    <div class="click-ripple"></div>
+                </div>
+                <div class=" anchorBL" style="position: absolute; z-index: 10; inset: auto auto 15px 5px;"><img
+                        src="http://api.map.baidu.com/images/logo_hd.png" style="height:21px;width:62px;"></div><canvas
+                    width="500" height="400"
+                    style="position: absolute; left: 0px; top: 0px; width: 500px; height: 400px; z-index: 0;"></canvas>
+                <div unselectable="on" class=" BMap_cpyCtrl anchorBL"
+                    style="cursor: default; white-space: nowrap; text-size-adjust: none; inset: auto auto 2px 2px; position: absolute; z-index: 10;">
+                    <span _cid="1" style="display: block;"><span
+                            style="background: rgba(255, 255, 255, 0.701961);padding: 0px 1px;line-height: 16px;display: inline;height: 16px;">©&nbsp;2021
+                            Baidu - GS(2019)5218号 - 甲测资字1100930 - 京ICP证030173号 - Data © 长地万方</span></span></div>
+            </div>
+            <div class="info">
+                <p class="title">联系我们</p>
+                <p class="item">北京酷部科技有限公司</p>
+                <p class="item"><img src="./../image/location-icon.png">北京市丰台区小屯西路96号院22号楼4层408 </p>
+                <p class="item"><img src="./../image/iphone-icon.png" >010-56072119</p>
+            </div>
+        </div>
+        <div class="infoBox">
+            <div class="beian">
+                <img src="./../image/beian.png" alt="">
+                <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010602007621"
+                    target="_blank">京公网安备11010602007621号</a>
+                <a href="https://beian.miit.gov.cn" target="_blank">京ICP备2021017129号-2</a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function initialize() {
+            var mp = new BMapGL.Map('contmap');
+            var point = new BMapGL.Point(116.253585,39.882464);
+            mp.centerAndZoom(point, 18);
+            mp.addOverlay(new BMapGL.Marker(point));
+        }
+        window.onload = initialize;
+    </script>
+</body>
+
+</html>

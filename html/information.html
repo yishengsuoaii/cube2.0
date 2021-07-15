@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>付费资讯</title>
+    <link rel="stylesheet" href="./../css/information.css">
+    <link rel="stylesheet" href="./../layui/css/layui.css">
+    <script src="./../layui/layui.js"></script>
+    <script src="./../commonJs/jquery-3.2.1.min.js"></script>
+    <script src="./../commonJs/qrcode.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <div class="topBox">
+            <div class="topContent">
+                <img src="./../image/logo.png" class="logo" alt="">
+                <div class="navBox">
+                    <a href="./../index.html">首页</a>
+                    <a href="./information.html" class="activeLink">付费资讯</a>
+                    <a href="./about.html">关于我们</a>
+                    <a href="./contact.html">联系我们</a>
+                    <a href="./download.html">下载</a>
+                    <a href="./help.html">帮助</a>
+                    <a href="./price.html">价格</a>
+                </div>
+                <div class="loginBox">
+                    <a href="./../login.html" class="login">登录</a><a href="./../login.html?register=true"
+                        class="signIn">免费注册</a>
+                </div>
+            </div>
+        </div>
+        <div id="banner">
+        </div>
+        <div id="information">
+            <div class="item">
+                <img src="./../image/info-icon.png" alt="">
+                <div class="itemText">
+                    <p class="title">人工智能是什么？</p>
+                    <p class="text">
+                        人工智能之父 John McCarthy说：人工智能就是制造智能的机器，更特指制作人工智能的程序。人工智能模仿人类的思考方式使计算机能智能的思考问题。
+                    </p>
+                    <span class="pay" data-index='0'>￥2元/条，付费查看更多>></span>
+                    <span class="time">2021-07-14 13:36</span>
+                </div>
+            </div>
+            <div class="item">
+                <img src="./../image/info-icon.png" alt="">
+                <div class="itemText">
+                    <p class="title">人工智能的应用有哪些？</p>
+                    <p class="text">
+                        人工智能（Ar TI ficial Intelligence），英文缩写为AI。它是研究、开发用于模拟、延伸和扩展人的智能的理论、方法、技术及应用系统的一门新的技术科学。.
+                    </p>
+                    <span class="pay" data-index='1'>￥2元/条，付费查看更多>></span>
+                    <span class="time">2021-07-12 08:20</span>
+                </div>
+            </div>
+            <div class="item">
+                <img src="./../image/info-icon.png" alt="">
+                <div class="itemText">
+                    <p class="title">人工智能的发展是什么？</p>
+                    <p class="text">
+                        现在人类已经把计算机的计算能力提高到了前所未有的地步 ，而人工智能也在下世纪领导计算机发展的潮头，现在人工智能的发展因为受到理论上的限制不是很明显。
+                    </p>
+                    <span class="pay" data-index='2'>￥2元/条，付费查看更多>></span>
+                    <span class="time">2021-07-10 15:18</span>
+                </div>
+            </div>
+            <div class="item">
+                <img src="./../image/info-icon.png" alt="">
+                <div class="itemText">
+                    <p class="title">什么是人工智能机器人？</p>
+                    <p class="text">
+                        人工智能机器人 ​人工智能的定义可以分为两部分，即“ 人工 ”和“智能”。“人工”比较好理解，争议性也不大。
+                    </p>
+                    <span class="pay" data-index='3'>￥2元/条，付费查看更多>></span>
+                    <span class="time">2021-07-8 19:57</span>
+                </div>
+            </div>
+        </div>
+        <div class="infoBox">
+            <div class="beian">
+                <img src="./../image/beian.png" alt="">
+                <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010602007621"
+                    target="_blank">京公网安备11010602007621号</a>
+                <a href="https://beian.miit.gov.cn" target="_blank">京ICP备2021017129号-2</a>
+            </div>
+        </div>
+        <div id="qrcodeBox" style="display: none">
+            <p class="price">￥ 2元/条</p>
+            <div id="qrcode"></div>
+            <p class="scanName">通过微信二维码付费后可查看更多资讯</p>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            var out_trade_no = ''
+            var wxTimer = ''
+            let articleId = null
+            let token =
+                'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MjY4NTc3MzIuODA4MTAzMywiaWF0IjoxNjI2MjUyOTMyLjgwODEwNDUsImlzcyI6ImhyYiIsImRhdGEiOnsiYWNjb3VudF9uYW1lIjoiXHU4YzJkXHU0ZTdlXHU1NzY0In19.luUDFvPqkuri3qgm4Rs-z-ydj2kV2CmNsQSrpukbc98'
+            layui.use(['layer'], function () {
+                var layer = layui.layer;
+                $('.pay').on('click', function () {
+                    articleId = $(this).attr('data-index')
+                    layer.open({
+                        type: 1,
+                        title:false,
+                        move: false,
+                        area: ['500px', '500px'],
+                        skin: 'layui-ext-yourskin', //只对该层采用myskin皮肤
+                        content: $('#qrcodeBox'),
+                        scrollbar:false,
+                        end:()=>{
+                            clearInterval(wxTimer)
+                            wxTimer = null
+                        }
+                    });
+                    $('#qrcode').empty()
+                    var qrcode = new QRCode(document.getElementById("qrcode"), {
+                        width: 198,
+                        height: 198,
+                    });
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        async: false,
+                        url: "http://www.cube.vip/usage_and_billing/wxpay/",
+                        data: {
+                            amount: 2
+                        },
+                        headers: {
+                            token: token
+                        },
+                        success: function (result) {
+                            if (result.msg == "success") {
+                                qrcode.makeCode(result.data.code_url);
+                                out_trade_no = result.data.out_trade_no
+                                monitorState()
+                            }
+                        },
+                    });
+
+                })
+
+                function monitorState() {
+                    // 监听支付状态
+                    clearInterval(wxTimer)
+                    wxTimer = setInterval(() => {
+                        $.ajax({
+                            type: "POST",
+                            url: "http://www.cube.vip/usage_and_billing/order_query/",
+                            data: {
+                                out_trade_no: out_trade_no
+                            },
+                            headers: {
+                                token: token
+                            },
+                            success: function (result) {
+                                if (result.msg == "success" && result.data
+                                    .trade_state ==
+                                    "SUCCESS") {
+                                    if (wxTimer) { // 支付成功！钱收到了！就不用在监听了
+                                        clearInterval(wxTimer)
+                                        wxTimer = null
+                                        layer.closeAll()
+                                        sessionStorage.setItem('articleId',articleId)
+                                        window.location.href='./article.html'
+                                    }
+                                } else if (result.msg == "error") {
+                                    layer.msg("支付失败")
+                                    clearInterval(wxTimer)
+                                    wxTimer = null
+                                    setTimeout(() => {
+                                        layer.closeAll()
+                                    }, 1000)
+                                }
+                            }
+                        })
+                    }, 100);
+                }
+            })
+
+
+        })
+    </script>
+</body>
+
+</html>
